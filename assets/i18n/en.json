@@ -1,0 +1,257 @@
+{
+  "app_name": "BreatheWithMe",
+  "contact_us": {
+    "action_btn": "Contact us",
+    "subject": "BWM: Support request"
+  },
+  "track_list": {
+    "title": "Hi, {}",
+    "guest_hi": "Hello",
+    "heading": "Let's breathe",
+    "practice_languages": "LANGUAGE",
+    "languages": {
+      "en_lng": "En",
+      "ru_lng": "Ru"
+    }
+  },
+  "onboarding": {
+    "hello_title": "Hello breather,\nHappy to have you!",
+    "hello_subtitle": "Are you excited about the journey ahead? :)\nBefore you start, please read the safety and breathing instructions. It will make your experience more mindful and pleasant.",
+    "hello_btn": "Read now",
+    "hello_footnote": "or read them later in your Profile",
+    "title": "Hello, I'm Dasha. Breathe with me.",
+    "subtitle": " ",
+    "access_to_lib_lbl": "to get access to more tracks and features",
+    "action_btn": "Tap to begin",
+    "im_done_btn": "Finish",
+    "try_to_breath_btn": "Let's breathe",
+    "get_started_btn": "Get started",
+    "go_practices_btn": "Go to practices and register later",
+    "sign_in_btn": "Sign in",
+    "create_account_btn": "Create account",
+    "continue_btn": "Continue",
+    "register_using_btn": "register using",
+    "watch_again_btn": "Watch again",
+    "swipe_to": {
+      "lbl": "Swipe right to begin",
+      "sign_up_lbl": "Swipe to sign up",
+      "begin_lbl": "Swipe to begin"
+    },
+    "first_page": {
+      "title": "Deep meditation journey \u2028through breathing \u2028and electronic music",
+      "subtitle": {
+        "first_part": "By clicking a button you accept\n",
+        "second_part": "Terms",
+        "third_part": " and ",
+        "fourth_part": "Privacy policy"
+      },
+      "action_btn": "Continue"
+    },
+    "second_page": {
+      "title": "Effects of 15 min breathwork are equal to 1 hour of mindfulness meditation",
+      "subtitle": "",
+      "action_btn": "Continue"
+    },
+    "third_page": {
+      "title": "Our breathing practices are synced with electronic music and suit practitioners of all levels",
+      "action_btn": "Continue"
+    },
+    "follow_my_voice_lbl": "Just follow my voice..."
+  },
+  "breathe_player": {
+    "action_btn": "Finish"
+  },
+  "complete_popup": {
+    "header": "YOUR BREATHWORK",
+    "subheader": "3 min",
+    "title": "YOU HAVE",
+    "day": "DAY",
+    "days": "DAYS",
+    "streak": "STREAK",
+    "main_lbl": "We cannot breathe in the past or the future. We inhale and exhale always in the present.",
+    "auth_lbl": "—   Dasha Chen",
+    "create_account_btn": "Sign up",
+    "subtitle": "and",
+    "main_text": "get access to the library\nof relaxing, energizing\nand balancing practices\nand track your progress.",
+    "try_again_btn": "Repeat",
+    "14_days": "You have reached your 14-day streak",
+    "lives_monthly": "monthly streak lives",
+    "lives_will_get_more": "you will get 3 more lives next month",
+    "lives_restore_title": "Do you want to restore missed day \u2028and save your progress?",
+    "lives_restore_sub": "You will have one less streak live",
+    "lives_restore_btn": "Restore streak",
+    "lives_cancel_btn": "Skip",
+    "lives_amazing_text": "You are fantastic",
+    "lives_last_streak_label": "Last streaks",
+    "lives_days_missed_label": "Day missed",
+    "streaks_k_label": "k",
+    "streaks_label": "Streaks",
+    "streaks_practice": "Practice",
+    "streaks_practices": "Practices",
+    "streaks_min": "Min",
+    "streaks_mins": "Minutes",
+    "14_days_ok": "Okay"
+  },
+  "invite_complete_popup": {
+    "header_complete": "Congrats!",
+    "subheader_complete": "You have {} days \u2028of premium!",
+    "button_complete": "Yippee!",
+    "header_progress": "Exciting!",
+    "button_progress": "Good to know, thx",
+    "subheader_progress": "Your friend is now breathing \u2028with BREATHE WITH ME"
+  },
+  "account": {
+    "title": "Account Settings",
+    "action_btn": "Save",
+    "logout_btn": "Log out",
+    "chat_btn": "Community Chat",
+    "cancel_btn": "Cancel",
+    "reset_password_btn": "Reset password",
+    "remove_account_btn": "Delete account",
+    "back_btn": "Back",
+    "stat_invited": "Registered \nfriends",
+    "stat_invited_for_pro": "Registered friends until free premium",
+    "stat_info_pro": "a month of free premium for every 3 friends",
+    "pro_will_be": "Premium\u2028will go live\u2028in {}",
+    "type_base": "Base account",
+    "type_pro": "Premium account",
+    "field": {
+      "name": "Your name",
+      "email": "Your email"
+    },
+    "hint": {
+      "name": "Enter your name...",
+      "email": "Enter your email..."
+    },
+    "remove_popup": {
+      "title": "Delete account?",
+      "main_text": "Your data, history \u2028and progress in the application will be deleted. Deleted account cannot be returned."
+    }
+  },
+  "sign_up": {
+    "title": "Create account",
+    "and": "and",
+    "login_btn": "Existing account? Log in",
+    "info_streak": "Create an account to see your progress",
+    "subtitle": "get access to all practices \u2028and extended breathing statistics",
+    "field": {
+      "name": "Your name",
+      "email": "Your email",
+      "password": "Password",
+      "confirm_password": "Confirm password"
+    },
+    "hint": {
+      "name": "Enter your name...",
+      "email": "Enter your email...",
+      "password": "Set your password",
+      "confirm_password": "Set password confirmation"
+    },
+    "action_btn": "Sign up",
+    "error": {
+      "password_not_match": "Passwords don't match!"
+    },
+    "bottom_lbl": "or Sign in with"
+  },
+  "sign_in": {
+    "title": "Sign in",
+    "sign_up_btn": "Create account",
+    "action_btn": "Sign in",
+    "bottom_lbl": "Sign in with",
+    "header": "to access all tracks.",
+    "forgot_password_btn": "Forgot password",
+    "error": {
+      "email_required": "Email required!"
+    }
+  },
+  "reset_password": {
+    "title": "Forgot password",
+    "header": "We'll email you the instructions on how to restore your password",
+    "action_btn": "Send Instructions",
+    "error": {
+      "email_is_wrong": "Please check your email"
+    },
+    "action": {
+      "success": "Password reset email sent"
+    }
+  },
+  "languages": {
+    "title": "Language",
+    "action_btn": "Save",
+    "english": {
+      "code": "EN",
+      "title": "English",
+      "subtitle": "English"
+    },
+    "russian": {
+      "code": "RU",
+      "title": "Russian",
+      "subtitle": "Russian"
+    }
+  },
+  "reminder_popup": {
+    "title": "Do you want a reminder?",
+    "subtitle": "It can help you make breathwork a habit and achieve sustainable positive changes sooner.",
+    "action_btn": "Set a reminder"
+  },
+  "pro_popup": {
+    "title": "Upgrade \u2028to Premium",
+    "subtitle": "Get one free month \u2028of Premium for every \u20283 registered friends",
+    "tip_1": "Extended statistics of your breathing progress",
+    "tip_2": "Ability to restore your practice \u2028streak 3 times",
+    "invite_btn": "Invite friends",
+    "footnote": "*invite 3 friends every month \u2028and be a permanent premium member",
+    "banner_pro": "Premium",
+    "available_in": "Available in {} days",
+    "will_available_in": "will go live in\n{} DAY(s)",
+    "available_now": "IN LIVE",
+    "banner_title": "Upgrade your account for free",
+    "banner_subtitle": "Get a premium for a month for every \n3 friends who join the app",
+    "banner_more_btn": "Learn more",
+    "pro_until": "until {}"
+  },
+  "reminder": {
+    "title": "Reminder",
+    "placeholder_title": "Save your progress inspires regular practice and ensures sustainable change",
+    "action_btn": "Save",
+    "set_reminder": "Set a reminder",
+    "off_label": "Off",
+    "notification_title": "It's time to breathe",
+    "notification_description": "Take a comfortable position and let's start",
+    "alerts": {
+      "days_error": "Please select at least one day",
+      "time_error": "Please set time",
+      "success": "Reminder saved"
+    },
+    "day": {
+      "mon": "Mon",
+      "tue": "Tue",
+      "wed": "Wed",
+      "thu": "Thu",
+      "fri": "Fri",
+      "sat": "Sat",
+      "sun": "Sun"
+    },
+    "day_long": {
+      "mon": "Monday",
+      "tue": "Tuesday",
+      "wed": "Wednesday",
+      "thu": "Thursday",
+      "fri": "Friday",
+      "sat": "Saturday",
+      "sun": "Sunday"
+    }
+  },
+  "join_community_btn": "Join community",
+  "error": {
+    "prefix": "Error: ",
+    "email_already_in_use": "Email is already in use",
+    "user_not_found": "There is no user record corresponding to this identifier. The user may have been deleted.",
+    "invalid_email_signup": "Email is invalid",
+    "weak_password": "Password should be at least 6 characters",
+    "wrong_password": "The password is invalid or the user does not have a password.",
+    "requires_recent_login": "Too long since most recent sign in. Sign in again before deleting your account.",
+    "unknown": "Some fields are empty"
+  },
+  "share": "Share App",
+  "share_text": "Try Breathe With Me app.\nAfter downloading the app from the app store, follow this link again to create an account.\n{}"
+}
