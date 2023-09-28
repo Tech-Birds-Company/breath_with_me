@@ -1,4 +1,5 @@
 import 'package:breath_with_me/navigation/router.dart';
+import 'package:breath_with_me/theme/bwm_light_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -31,6 +32,11 @@ class MyApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       routerConfig: BWMRouter.router,
+      theme: ThemeData.light().copyWith(
+        extensions: [
+          BWMLightTheme(),
+        ],
+      ),
     );
   }
 }
