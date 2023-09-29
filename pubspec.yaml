@@ -23,4 +23,13 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/fonts/
     - assets/i18n/
+  fonts:
+    - family: Oxygen
+      fonts:
+        - asset: assets/fonts/Oxygen-Regular.ttf
+        - asset: assets/fonts/Oxygen-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Oxygen-Light.ttf
+          weight: 300
