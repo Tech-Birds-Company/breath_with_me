@@ -5,9 +5,14 @@ import 'bwm_theme.dart';
 
 @protected
 abstract class BWMTypography {
+  TextStyle get heading;
+
   TextStyle get heading2;
+
   TextStyle get bodyM;
+
   TextStyle get bodyMTrue;
+
   TextStyle get label;
 }
 
@@ -17,6 +22,13 @@ class BWMThemeTypography extends BWMTypography {
   static const _fontFamily = 'Oxygen';
 
   BWMThemeTypography(this.theme);
+
+  @override
+  TextStyle get heading => const TextStyle(
+        fontFamily: _fontFamily,
+        fontSize: 24,
+        height: 28 / 24,
+      );
 
   @override
   TextStyle get heading2 => const TextStyle(
