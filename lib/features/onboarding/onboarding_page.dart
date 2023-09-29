@@ -1,5 +1,4 @@
 import 'package:breath_with_me/theme/bwm_theme.dart';
-import 'package:breath_with_me/theme/bwm_typography.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -17,7 +16,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
       body: Center(
         child: Text(
           'Onboarding',
-          style: BWMThemeTypography(theme).heading2,
+          style: theme.typography.heading2,
         ),
       ),
     );

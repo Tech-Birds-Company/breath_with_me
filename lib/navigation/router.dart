@@ -1,3 +1,4 @@
+import 'package:breath_with_me/features/home/home_page.dart';
 import 'package:breath_with_me/features/onboarding/onboarding_page.dart';
 import 'package:breath_with_me/navigation/routes.dart';
 import 'package:flutter/widgets.dart';
@@ -7,7 +8,7 @@ class BWMRouter {
   const BWMRouter._();
 
   static final router = GoRouter(
-    initialLocation: BWMRoutes.onboarding,
+    initialLocation: BWMRoutes.home,
     routes: <RouteBase>[
       GoRoute(
         path: BWMRoutes.onboarding,
@@ -15,6 +16,12 @@ class BWMRouter {
           return const OnboardingPage();
         },
       ),
+      GoRoute(
+        path: BWMRoutes.home,
+        builder: (context, state) {
+          return const HomePage();
+        },
+      )
     ],
   );
 }
