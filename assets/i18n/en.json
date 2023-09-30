@@ -1,20 +1,14 @@
 {
-  "app_name": "BreatheWithMe",
-  "practices": {
-    "title": "Hi, {}",
-    "guest_welcome": "Hello",
-    "heading": "Let's breathe",
-    "practice_category": {
-      "title": "Choose practices category",
-      "all": "All practices",
-      "relax": "Relax",
-      "energize": "Energize",
-      "balance": "Balance"
-    },
-    "practice_language": {
-      "title": "Choose practices language",
-      "en": "En",
-      "ru": "Ru"
-    }
-  }
+	"appName": "BreatheWithMe",
+	"practicesTitle": "Hi, {}",
+	"practicesGuestWelcome": "Hello",
+	"practicesHeading": "Let's breathe",
+	"practiceCategoryTitle": "Choose practices category",
+	"practiceCategoryAll": "All practices",
+	"practiceCategoryRelax": "Relax",
+	"practiceCategoryEnergize": "Energize",
+	"practiceCategoryBalance": "Balance",
+	"practiceLanguageTitle": "Choose practices language",
+	"practiceLanguageEn": "En",
+	"practiceLanguageRu": "Ru"
 }

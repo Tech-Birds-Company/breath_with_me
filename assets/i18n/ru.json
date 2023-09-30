@@ -1,20 +1,14 @@
 {
-	"app_name": "BreatheWithMe",
-	"practices": {
-	  "title": "Привет, {}",
-	  "guest_welcome": "Привет",
-	  "heading": "Подышим?",
-	  "practice_category": {
-		"title": "Выбрать категории",
-		"all": "Все практики",
-		"relax": "Релакс",
-		"energize": "Энергия",
-		"balance": "Баланс"
-	  },
-	  "practice_language": {
-		"title": "Выберете язык практик",
-		"en": "En",
-		"ru": "Ru"
-	  }
-	}
+	"appName": "BreatheWithMe",
+	"practicesTitle": "Привет, {}",
+	"practicesGuestWelcome": "Привет",
+	"practicesHeading": "Подышим?",
+	"practiceCategoryTitle": "Выбрать категории",
+	"practiceCategoryAll": "Все практики",
+	"practiceCategoryRelax": "Релакс",
+	"practiceCategoryEnergize": "Энергия",
+	"practiceCategoryBalance": "Баланс",
+	"practiceLanguageTitle": "Выберете язык практик",
+	"practiceLanguageEn": "En",
+	"practiceLanguageRu": "Ru"
 }

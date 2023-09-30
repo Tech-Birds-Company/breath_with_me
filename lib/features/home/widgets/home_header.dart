@@ -42,13 +42,13 @@ class _WelcomeTitle extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          LocaleKeys.practices_guest_welcome.tr(),
+          LocaleKeys.practicesGuestWelcome.tr(),
           style: theme.typography.bodyM.copyWith(
             color: theme.primaryText,
           ),
         ),
         Text(
-          LocaleKeys.practices_heading.tr(),
+          LocaleKeys.practicesHeading.tr(),
           style: theme.typography.heading.copyWith(
             color: theme.primaryText,
             letterSpacing: 0.4,

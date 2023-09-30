@@ -14,11 +14,11 @@ class PracticesActions extends StatelessWidget {
     return Row(
       children: [
         PracticeFilter(
-          filterTitle: LocaleKeys.practices_practice_category_all.tr(),
+          filterTitle: LocaleKeys.practiceCategoryAll.tr(),
         ),
         const SizedBox(width: 8),
         PracticeFilter(
-          filterTitle: LocaleKeys.practices_practice_language_ru.tr(),
+          filterTitle: LocaleKeys.practiceLanguageRu.tr(),
         ),
         const Spacer(),
         SizedBox(

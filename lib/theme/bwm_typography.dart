@@ -1,27 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'bwm_theme.dart';
-
-@protected
-abstract class BWMTypography {
+abstract class BaseTypography {
   TextStyle get heading;
-
   TextStyle get heading2;
-
   TextStyle get bodyM;
-
   TextStyle get bodyMTrue;
-
   TextStyle get label;
 }
 
-class BWMThemeTypography extends BWMTypography {
-  final BWMTheme theme;
-
+class BWMTypography extends BaseTypography {
   static const _fontFamily = 'Oxygen';
-
-  BWMThemeTypography(this.theme);
 
   @override
   TextStyle get heading => const TextStyle(

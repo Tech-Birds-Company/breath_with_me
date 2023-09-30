@@ -69,7 +69,7 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
     );
   }
 
-  BWMTypography get typography => BWMThemeTypography(this);
+  BWMTypography get typography => BWMTypography();
 
   @override
   ThemeExtension<BWMTheme> lerp(
