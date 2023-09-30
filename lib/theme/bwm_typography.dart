@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 abstract class BaseTypography {
+  TextStyle get title;
+  TextStyle get subtitle;
   TextStyle get heading;
   TextStyle get heading2;
   TextStyle get bodyM;
@@ -11,6 +13,14 @@ abstract class BaseTypography {
 
 class BWMTypography extends BaseTypography {
   static const _fontFamily = 'Oxygen';
+
+  @override
+  TextStyle get title => const TextStyle(
+        fontFamily: _fontFamily,
+        fontWeight: FontWeight.w400,
+        fontSize: 28,
+        height: 40 / 28,
+      );
 
   @override
   TextStyle get heading => const TextStyle(
@@ -25,6 +35,14 @@ class BWMTypography extends BaseTypography {
         fontWeight: FontWeight.bold,
         fontSize: 24,
         height: 28 / 24,
+      );
+
+  @override
+  TextStyle get subtitle => const TextStyle(
+        fontFamily: _fontFamily,
+        fontWeight: FontWeight.w300,
+        fontSize: 18,
+        height: 28 / 18,
       );
 
   @override

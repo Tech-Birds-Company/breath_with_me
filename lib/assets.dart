@@ -1,8 +1,8 @@
 class BWMAssets {
   const BWMAssets._();
 
-  static const String i18n = 'assets/i18n';
-  static const String _icons = 'assets/icons';
+  static const i18n = 'assets/i18n';
+  static const _icons = 'assets/icons';
 
   static const logoIcon = '$_icons/logo.svg';
   static const profileIcon = '$_icons/profile.svg';

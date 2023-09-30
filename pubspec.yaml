@@ -14,6 +14,7 @@ dependencies:
   go_router: ^11.1.2
   easy_localization: ^3.0.3
   flutter_svg: ^2.0.7
+  collection: ^1.17.2
 
 dev_dependencies:
   flutter_test:
@@ -31,7 +32,9 @@ flutter:
     - family: Oxygen
       fonts:
         - asset: assets/fonts/Oxygen-Regular.ttf
+          weight: 300
+        - asset: assets/fonts/Oxygen-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Oxygen-Regular.ttf
         - asset: assets/fonts/Oxygen-Bold.ttf
           weight: 700
-        - asset: assets/fonts/Oxygen-Light.ttf
-          weight: 400

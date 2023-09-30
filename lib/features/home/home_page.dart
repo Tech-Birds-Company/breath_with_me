@@ -15,7 +15,14 @@ class HomePage extends StatelessWidget {
         bottom: false,
         child: CustomScrollView(
           slivers: [
-            const HomeHeader(),
+            const SliverPadding(
+              padding: EdgeInsetsDirectional.only(
+                top: 28,
+                start: 24,
+                end: 24,
+              ),
+              sliver: HomeHeader(),
+            ),
             const SizedBox(height: 28).toSliver,
             SliverPadding(
               padding: const EdgeInsetsDirectional.symmetric(horizontal: 12),

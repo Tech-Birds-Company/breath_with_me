@@ -1,5 +1,14 @@
 {
 	"appName": "BreatheWithMe",
+	"onboardingCreateAccount": "Создать аккаунт",
+	"onboardingPage1Title":"Как ты хочешь себя чувствовать?",
+	"onboardingPage2Title":"Испытай силу дыхания",
+	"onboardingPage3Title":"Присоединяйся к сообществу",
+	
+	"onboardingPage1Subtitle":"Расслабься, сконцентрируйся или зарядись энергией с BREATHE WITH ME",
+	"onboardingPage2Subtitle":"Дыхательные практики и электронная музыка могут усилить эффект медитации",
+	"onboardingPage3Subtitle":"Общайся с преподавателями практик и другими дышателями",
+
 	"practicesTitle": "Привет, {}",
 	"practicesGuestWelcome": "Привет",
 	"practicesHeading": "Подышим?",

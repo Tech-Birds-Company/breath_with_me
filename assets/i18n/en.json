@@ -1,5 +1,14 @@
 {
 	"appName": "BreatheWithMe",
+	"onboardingCreateAccount": "Create account",
+	"onboardingPage1Title":"How do you want to feel?",
+	"onboardingPage2Title":"Feel the power of breath",
+	"onboardingPage3Title":"Join a growing community of breathers",
+	
+	"onboardingPage1Subtitle":"Get more relaxed, balanced or energized in just minutes with BREATHE WITH ME",
+	"onboardingPage2Subtitle":"Breathing and electronic music can enhance the effects of your meditation",
+	"onboardingPage3Subtitle":"Discuss your breathing experience with fellow breathers and practice instructors",
+
 	"practicesTitle": "Hi, {}",
 	"practicesGuestWelcome": "Hello",
 	"practicesHeading": "Let's breathe",

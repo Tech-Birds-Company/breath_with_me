@@ -12,21 +12,21 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverPadding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      sliver: SliverMainAxisGroup(
-        slivers: [
-          Row(
-            children: [
-              SvgPicture.asset(BWMAssets.logoIcon),
-              const Spacer(),
-              const ProfileButton(),
-            ],
-          ).toSliver,
-          const SizedBox(height: 24).toSliver,
-          const _WelcomeTitle().toSliver
-        ],
-      ),
+    return SliverMainAxisGroup(
+      slivers: [
+        Row(
+          children: [
+            SvgPicture.asset(
+              BWMAssets.logoIcon,
+              width: 111,
+            ),
+            const Spacer(),
+            const ProfileButton(),
+          ],
+        ).toSliver,
+        const SizedBox(height: 24).toSliver,
+        const _WelcomeTitle().toSliver
+      ],
     );
   }
 }

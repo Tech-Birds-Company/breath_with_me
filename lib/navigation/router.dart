@@ -8,7 +8,7 @@ class BWMRouter {
   const BWMRouter._();
 
   static final router = GoRouter(
-    initialLocation: BWMRoutes.home,
+    initialLocation: BWMRoutes.onboarding,
     routes: <RouteBase>[
       GoRoute(
         path: BWMRoutes.onboarding,
