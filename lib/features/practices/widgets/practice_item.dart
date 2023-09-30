@@ -4,31 +4,30 @@ import 'package:breath_with_me/assets.dart';
 import 'package:breath_with_me/features/practices/widgets/practice_tutor.dart';
 import 'package:breath_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class PracticeItem extends StatelessWidget {
   const PracticeItem({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
+    return SizedBox(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(
+          const Stack(
             alignment: Alignment.center,
             children: [
               _PracticeCover(),
               _PracticePlayButton(),
             ],
           ),
-          SizedBox(width: 20),
-          _PracticeInfo(),
-          Spacer(),
+          const SizedBox(width: 20),
+          const _PracticeInfo(),
+          const Spacer(),
           Align(
             alignment: Alignment.topCenter,
-            child: Image(
-              image: AssetImage(BWMAssets.heartIcon),
-            ),
+            child: SvgPicture.asset(BWMAssets.heartIcon),
           ),
         ],
       ),
@@ -87,9 +86,7 @@ class _PracticePlayButton extends StatelessWidget {
               )
             ],
           ),
-          child: const Image(
-            image: AssetImage(BWMAssets.playIcon),
-          ),
+          child: Center(child: SvgPicture.asset(BWMAssets.playIcon)),
         ),
       ),
     );

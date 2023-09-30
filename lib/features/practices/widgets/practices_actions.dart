@@ -4,6 +4,7 @@ import 'package:breath_with_me/i18n/locale_keys.g.dart';
 import 'package:breath_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class PracticesActions extends StatelessWidget {
   const PracticesActions({super.key});
@@ -32,11 +33,13 @@ class PracticesActions extends StatelessWidget {
                 width: 1,
               ),
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(8),
-              child: Image(
-                image: const AssetImage(BWMAssets.heartIcon),
-                color: theme.primaryColor,
+            child: Center(
+              child: SvgPicture.asset(
+                BWMAssets.heartIcon,
+                colorFilter: ColorFilter.mode(
+                  theme.primaryColor,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
           ),

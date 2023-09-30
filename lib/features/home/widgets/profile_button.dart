@@ -1,21 +1,22 @@
 import 'package:breath_with_me/assets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class ProfileButton extends StatelessWidget {
   const ProfileButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const ClipOval(
+    return ClipOval(
       child: SizedBox(
         width: 40,
         height: 40,
         child: ColoredBox(
-          color: Color(0xFFF2F2F2),
-          child: Image(
-            image: AssetImage(BWMAssets.profileIcon),
-            width: 24,
-            height: 24,
+          color: const Color(0xFFF2F2F2),
+          child: Center(
+            child: SvgPicture.asset(
+              BWMAssets.profileIcon,
+            ),
           ),
         ),
       ),
