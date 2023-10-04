@@ -1,5 +1,6 @@
 import 'package:breathe_with_me/features/home/home_page.dart';
 import 'package:breathe_with_me/features/onboarding/onboarding_page.dart';
+import 'package:breathe_with_me/features/player/player_page.dart';
 import 'package:breathe_with_me/navigation/routes.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
@@ -20,6 +21,12 @@ class BWMRouter {
         path: BWMRoutes.home,
         builder: (context, state) {
           return const HomePage();
+        },
+      ),
+      GoRoute(
+        path: BWMRoutes.player,
+        builder: (context, state) {
+          return const PlayerPage();
         },
       )
     ],

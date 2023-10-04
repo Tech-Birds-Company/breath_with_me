@@ -37,7 +37,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               child: OnboardingHeader(),
             ),
             Expanded(
-              child: OboardingPageView(
+              child: OnboardingPageView(
                 pageController: _pageController,
               ),
             ),

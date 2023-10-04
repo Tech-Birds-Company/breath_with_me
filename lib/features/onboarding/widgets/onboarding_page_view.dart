@@ -3,27 +3,13 @@ import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class OboardingPageView extends StatelessWidget {
+class OnboardingPageView extends StatelessWidget {
   final PageController pageController;
-  OboardingPageView({
+
+  const OnboardingPageView({
     required this.pageController,
     super.key,
   });
-
-  late final _linearGradient = LinearGradient(
-    colors: <Color>[
-      const Color(0xFFFFFFFF).withOpacity(1),
-      const Color(0xFFFFFFFF).withOpacity(0.8479),
-      const Color(0xFFFFFFFF).withOpacity(0.3),
-    ],
-  ).createShader(
-    const Rect.fromLTWH(
-      0.0,
-      0.0,
-      200.0,
-      70.0,
-    ),
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +27,7 @@ class OboardingPageView extends StatelessWidget {
                 onboardingInfoModels[index].title.tr().toUpperCase(),
                 textAlign: TextAlign.start,
                 style: theme.typography.title.copyWith(
-                  foreground: Paint()..shader = _linearGradient,
+                  color: theme.primaryText,
                   letterSpacing: 0.9,
                 ),
               ),

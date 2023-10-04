@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1A1919).withOpacity(0.92),
+      backgroundColor: const Color(0xFF1A1919), // TODO: (vasidmi) update theme
       body: SafeArea(
         bottom: false,
         child: CustomScrollView(

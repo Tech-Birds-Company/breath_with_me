@@ -37,9 +37,15 @@ class MyApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       routerConfig: BWMRouter.router,
+      // TODO: Add dark theme
+      darkTheme: ThemeData.light().copyWith(
+        extensions: [
+          const BWMLightTheme(),
+        ],
+      ),
       theme: ThemeData.light().copyWith(
         extensions: [
-          BWMLightTheme(),
+          const BWMLightTheme(),
         ],
       ),
     );

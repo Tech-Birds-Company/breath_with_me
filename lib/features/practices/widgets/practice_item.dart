@@ -7,29 +7,40 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class PracticeItem extends StatelessWidget {
-  const PracticeItem({super.key});
+  final VoidCallback onTap;
+  const PracticeItem({
+    required this.onTap,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Stack(
-            alignment: Alignment.center,
-            children: [
-              _PracticeCover(),
-              _PracticePlayButton(),
-            ],
-          ),
-          const SizedBox(width: 20),
-          const _PracticeInfo(),
-          const Spacer(),
-          Align(
-            alignment: Alignment.topCenter,
-            child: SvgPicture.asset(BWMAssets.heartIcon),
-          ),
-        ],
+    return GestureDetector(
+      onTap: onTap,
+      child: ColoredBox(
+        color: Colors.transparent,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Stack(
+              alignment: Alignment.center,
+              children: [
+                _PracticeCover(),
+                _PracticePlayButton(),
+              ],
+            ),
+            const SizedBox(width: 20),
+            const _PracticeInfo(),
+            const Spacer(),
+            Align(
+              alignment: Alignment.topCenter,
+              child: IconButton(
+                icon: SvgPicture.asset(BWMAssets.heartIcon),
+                onPressed: () {},
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
