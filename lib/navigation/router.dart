@@ -1,6 +1,6 @@
-import 'package:breath_with_me/features/home/home_page.dart';
-import 'package:breath_with_me/features/onboarding/onboarding_page.dart';
-import 'package:breath_with_me/navigation/routes.dart';
+import 'package:breathe_with_me/features/home/home_page.dart';
+import 'package:breathe_with_me/features/onboarding/onboarding_page.dart';
+import 'package:breathe_with_me/navigation/routes.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 

@@ -1,4 +1,4 @@
-import 'package:breath_with_me/assets.dart';
+import 'package:breathe_with_me/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

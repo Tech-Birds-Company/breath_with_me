@@ -1,4 +1,4 @@
-name: breath_with_me
+name: breathe_with_me
 description: A new Flutter project.
 
 publish_to: "none"
@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  go_router: ^11.1.2
+  go_router: ^11.1.4
   easy_localization: ^3.0.3
   flutter_svg: ^2.0.7
   collection: ^1.17.2

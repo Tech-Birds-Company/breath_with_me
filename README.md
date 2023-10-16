@@ -1,4 +1,4 @@
-# breath_with_me
+# breathe_with_me
 
 A new Flutter project.
 

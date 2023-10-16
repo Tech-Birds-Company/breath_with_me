@@ -1,7 +1,7 @@
-import 'package:breath_with_me/assets.dart';
-import 'package:breath_with_me/features/practices/widgets/practice_filter.dart';
-import 'package:breath_with_me/i18n/locale_keys.g.dart';
-import 'package:breath_with_me/theme/bwm_theme.dart';
+import 'package:breathe_with_me/assets.dart';
+import 'package:breathe_with_me/features/practices/widgets/practice_filter.dart';
+import 'package:breathe_with_me/i18n/locale_keys.g.dart';
+import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

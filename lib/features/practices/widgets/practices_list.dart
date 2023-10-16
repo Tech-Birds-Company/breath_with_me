@@ -1,5 +1,5 @@
-import 'package:breath_with_me/features/practices/widgets/practice_item.dart';
-import 'package:breath_with_me/theme/bwm_theme.dart';
+import 'package:breathe_with_me/features/practices/widgets/practice_item.dart';
+import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
 
 class PracticesList extends StatelessWidget {

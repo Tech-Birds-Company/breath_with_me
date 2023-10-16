@@ -1,7 +1,7 @@
-import 'package:breath_with_me/extensions/widget.dart';
-import 'package:breath_with_me/features/home/widgets/home_header.dart';
-import 'package:breath_with_me/features/practices/widgets/practices_actions.dart';
-import 'package:breath_with_me/features/practices/widgets/practices_list.dart';
+import 'package:breathe_with_me/extensions/widget.dart';
+import 'package:breathe_with_me/features/home/widgets/home_header.dart';
+import 'package:breathe_with_me/features/practices/widgets/practices_actions.dart';
+import 'package:breathe_with_me/features/practices/widgets/practices_list.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {

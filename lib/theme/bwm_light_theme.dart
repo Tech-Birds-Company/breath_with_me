@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:breath_with_me/theme/bwm_theme.dart';
+import 'package:breathe_with_me/theme/bwm_theme.dart';
 
 class BWMLightTheme extends BWMTheme {
   BWMLightTheme({

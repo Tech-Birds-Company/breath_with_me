@@ -1,5 +1,5 @@
-import 'package:breath_with_me/features/onboarding/widgets/onboarding_info.dart';
-import 'package:breath_with_me/i18n/locale_keys.g.dart';
+import 'package:breathe_with_me/features/onboarding/widgets/onboarding_info.dart';
+import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 
 const onboardingInfoModels = [
   OnboardingInfo(

@@ -1,4 +1,4 @@
-import 'package:breath_with_me/theme/bwm_typography.dart';
+import 'package:breathe_with_me/theme/bwm_typography.dart';
 import 'package:flutter/material.dart';
 
 class BWMTheme extends ThemeExtension<BWMTheme> {
