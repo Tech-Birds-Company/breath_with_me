@@ -2,6 +2,7 @@ import 'package:breathe_with_me/extensions/widget.dart';
 import 'package:breathe_with_me/features/home/widgets/home_header.dart';
 import 'package:breathe_with_me/features/practices/widgets/practices_actions.dart';
 import 'package:breathe_with_me/features/practices/widgets/practices_list.dart';
+import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -9,8 +10,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).extension<BWMTheme>()!;
     return Scaffold(
-      backgroundColor: const Color(0xFF1A1919).withOpacity(0.92),
+      backgroundColor: theme.primaryBackground,
       body: SafeArea(
         bottom: false,
         child: CustomScrollView(

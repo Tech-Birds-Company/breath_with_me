@@ -22,6 +22,9 @@ dependencies:
   firebase_crashlytics: ^3.4.0
   cloud_firestore: ^4.10.0
   # ------------------------
+  audioplayers: ^5.2.0
+  rxdart: ^0.27.7
+  lottie: ^2.6.0
 
 dev_dependencies:
   flutter_test:
@@ -35,6 +38,8 @@ flutter:
     - assets/fonts/
     - assets/i18n/
     - assets/icons/
+    - assets/audio/
+    - assets/lottie/
   fonts:
     - family: Oxygen
       fonts:

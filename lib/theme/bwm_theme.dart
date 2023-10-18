@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 class BWMTheme extends ThemeExtension<BWMTheme> {
   final Color primaryColor;
   final Color secondaryColor;
-  final Color tertiaryColor;
   final Color fourthColor;
   final Color fifthColor;
   final Color primaryBackground;
@@ -15,7 +14,6 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
   const BWMTheme({
     required this.primaryColor,
     required this.secondaryColor,
-    required this.tertiaryColor,
     required this.fourthColor,
     required this.fifthColor,
     required this.primaryBackground,
@@ -44,7 +42,6 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
     return BWMTheme(
       primaryColor: primaryColor ?? this.primaryColor,
       secondaryColor: secondaryColor ?? this.secondaryColor,
-      tertiaryColor: tertiaryColor ?? this.tertiaryColor,
       fourthColor: fourthColor ?? this.fourthColor,
       fifthColor: fifthColor ?? this.fifthColor,
       primaryBackground: primaryBackground ?? this.primaryBackground,
@@ -67,7 +64,6 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
     return BWMTheme(
       primaryColor: Color.lerp(primaryColor, other.primaryColor, t)!,
       secondaryColor: Color.lerp(secondaryColor, other.secondaryColor, t)!,
-      tertiaryColor: Color.lerp(tertiaryColor, other.tertiaryColor, t)!,
       fourthColor: Color.lerp(fourthColor, other.fourthColor, t)!,
       fifthColor: Color.lerp(fifthColor, other.fifthColor, t)!,
       primaryBackground:
