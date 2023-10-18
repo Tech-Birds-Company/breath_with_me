@@ -1,0 +1,247 @@
+{
+  "project_info": {
+    "project_number": "807142596957",
+    "firebase_url": "https://breathwithme-5376b-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "breathwithme-5376b",
+    "storage_bucket": "breathwithme-5376b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807142596957:android:e46972b22e7564b46a08b4",
+        "android_client_info": {
+          "package_name": "com.dobry.breathewithme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "807142596957-4mteg9l6rfi843ta568s51u57s2bmare.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dobry.breathewithme",
+            "certificate_hash": "a9fd3f94a3d29c5bbd58f47b7b48f89da3aef208"
+          }
+        },
+        {
+          "client_id": "807142596957-cnknums2pat37e9noq14bfll97p9dgid.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dobry.breathewithme",
+            "certificate_hash": "a7ed015b449d822dc9a5424ec2cd38aaa3612120"
+          }
+        },
+        {
+          "client_id": "807142596957-qq54e4p8qipcu6o5ir4idhe6h6gh4l3k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dobry.breathewithme",
+            "certificate_hash": "dfa9e94d0c712847af86cdd15f927b0afc92b104"
+          }
+        },
+        {
+          "client_id": "807142596957-vdgimkm87lg0o7rtuldkjiph4ee9f0qq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dobry.breathewithme",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "807142596957-l7ti47nonccj4g66nmg11e9gvpdgci3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_74NPMZvM_wamx1AKJoYdnE6AcuPbUOM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "807142596957-l7ti47nonccj4g66nmg11e9gvpdgci3q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "807142596957-8v846cl2kn1j89s5pnfr73lqvghv1rch.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dobry.breathewithme",
+                "app_store_id": "1610009500"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807142596957:android:7a7bf73a8f5eea936a08b4",
+        "android_client_info": {
+          "package_name": "com.example.breathe_with_me"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "807142596957-l7ti47nonccj4g66nmg11e9gvpdgci3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_74NPMZvM_wamx1AKJoYdnE6AcuPbUOM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "807142596957-l7ti47nonccj4g66nmg11e9gvpdgci3q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "807142596957-8v846cl2kn1j89s5pnfr73lqvghv1rch.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dobry.breathewithme",
+                "app_store_id": "1610009500"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807142596957:android:194d3c3d521cb8346a08b4",
+        "android_client_info": {
+          "package_name": "com.flutterflow.breathewithme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "807142596957-4dfund42uq29d4skkqap9panegukb6u3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.flutterflow.breathewithme",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "807142596957-l7ti47nonccj4g66nmg11e9gvpdgci3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_74NPMZvM_wamx1AKJoYdnE6AcuPbUOM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "807142596957-l7ti47nonccj4g66nmg11e9gvpdgci3q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "807142596957-8v846cl2kn1j89s5pnfr73lqvghv1rch.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dobry.breathewithme",
+                "app_store_id": "1610009500"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807142596957:android:8ea0e64aee1585816a08b4",
+        "android_client_info": {
+          "package_name": "com.innate.beat.breathewithme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "807142596957-6r72n2mb7algio1ib0a6gv5qqa1oj18o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.innate.beat.breathewithme",
+            "certificate_hash": "dfa9e94d0c712847af86cdd15f927b0afc92b104"
+          }
+        },
+        {
+          "client_id": "807142596957-a1t2okffih490ubdsmrep4uf1vcsc3o1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.innate.beat.breathewithme",
+            "certificate_hash": "a9fd3f94a3d29c5bbd58f47b7b48f89da3aef208"
+          }
+        },
+        {
+          "client_id": "807142596957-fas4pq5hqtae2uj921loe4gg45aovf2t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.innate.beat.breathewithme",
+            "certificate_hash": "e3c7bdff647c6c18d198b48631e71d0554af2caf"
+          }
+        },
+        {
+          "client_id": "807142596957-pgbcmifqc7c7tuktm3nh1ts03mg7geqf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.innate.beat.breathewithme",
+            "certificate_hash": "a7ed015b449d822dc9a5424ec2cd38aaa3612120"
+          }
+        },
+        {
+          "client_id": "807142596957-rmv29j6odd9bodek2d9nb1c1kdn24p6m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.innate.beat.breathewithme",
+            "certificate_hash": "d4df021e8c386b61c2ab5f609e74e7711e50d6b9"
+          }
+        },
+        {
+          "client_id": "807142596957-ruf5qamgh8p8pvr4lftb5a107ku5u6f2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.innate.beat.breathewithme",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "807142596957-l7ti47nonccj4g66nmg11e9gvpdgci3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_74NPMZvM_wamx1AKJoYdnE6AcuPbUOM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "807142596957-l7ti47nonccj4g66nmg11e9gvpdgci3q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "807142596957-8v846cl2kn1j89s5pnfr73lqvghv1rch.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dobry.breathewithme",
+                "app_store_id": "1610009500"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>807142596957-8v846cl2kn1j89s5pnfr73lqvghv1rch.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.807142596957-8v846cl2kn1j89s5pnfr73lqvghv1rch</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>807142596957-4dfund42uq29d4skkqap9panegukb6u3.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDC77wINIsWw_B0VyexjpHCMykUJ9etlrE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>807142596957</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.dobry.breathewithme</string>
+	<key>PROJECT_ID</key>
+	<string>breathwithme-5376b</string>
+	<key>STORAGE_BUCKET</key>
+	<string>breathwithme-5376b.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:807142596957:ios:2f7a394f4d21707f6a08b4</string>
+	<key>DATABASE_URL</key>
+	<string>https://breathwithme-5376b-default-rtdb.europe-west1.firebasedatabase.app</string>
+</dict>
+</plist>

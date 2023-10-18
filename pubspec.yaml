@@ -14,7 +14,14 @@ dependencies:
   go_router: ^11.1.4
   easy_localization: ^3.0.3
   flutter_svg: ^2.0.7
-  collection: ^1.17.2
+  collection: 1.17.2
+  # ------------------------
+  # Firebase
+  firebase_core: ^2.18.0
+  firebase_analytics: ^10.6.0
+  firebase_crashlytics: ^3.4.0
+  cloud_firestore: ^4.10.0
+  # ------------------------
 
 dev_dependencies:
   flutter_test:
