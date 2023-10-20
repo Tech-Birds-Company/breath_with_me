@@ -19,7 +19,7 @@ class OnboardingIndicator extends StatelessWidget {
     return lerpDouble(
       from,
       to,
-      (1.0 - ((page - index).abs().clamp(0.0, 1.0))),
+      1.0 - ((page - index).abs().clamp(0.0, 1.0)),
     )!;
   }
 

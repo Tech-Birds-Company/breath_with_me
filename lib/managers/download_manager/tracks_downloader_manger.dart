@@ -46,7 +46,7 @@ final class TracksDownloaderManager implements DownloaderManager {
     final tmpDir = await getTemporaryDirectory();
     final path = '${tmpDir.path}/${task.savePath}';
     final folder = Directory(path);
-    final folderExists = await folder.exists();
+    final folderExists = folder.existsSync();
 
     if (!folderExists) {
       await folder.create();
@@ -56,7 +56,6 @@ final class TracksDownloaderManager implements DownloaderManager {
       task.url,
       '${tmpDir.path}/${task.savePath}/$id.${task.fileExtension}',
       cancelToken: cancelToken,
-      deleteOnError: true,
       onReceiveProgress: (count, total) {
         final progress = count / total;
         progressController.add(progress);

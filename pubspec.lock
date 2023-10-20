@@ -5,10 +5,10 @@ packages:
     dependency: transitive
     description:
       name: _flutterfire_internals
-      sha256: "2e3a565cdd40b32df6ff9a0d1f16b9144fcce769455597ee9195f568ffbb3a59"
+      sha256: "76c15c4167f820b74abcd8c6fc5e393e1ed5e1207a34e9b22953603e03b3ba6a"
       url: "https://pub.dev"
     source: hosted
-    version: "1.3.8"
+    version: "1.3.9"
   archive:
     dependency: transitive
     description:
@@ -117,26 +117,26 @@ packages:
     dependency: "direct main"
     description:
       name: cloud_firestore
-      sha256: bf95f7977945a7848c8f29924b43b8721e57da628762a808d60dc44bcc909c6a
+      sha256: "019da47850fe2c86266a4b86e82e0d00dcb5bf0718f26fc70bf9df275ee16537"
       url: "https://pub.dev"
     source: hosted
-    version: "4.10.0"
+    version: "4.11.0"
   cloud_firestore_platform_interface:
     dependency: transitive
     description:
       name: cloud_firestore_platform_interface
-      sha256: "38d20cb135f84b6e4fad923ed6011729d3d9ea2c92e94297f004cf1501f9d681"
+      sha256: "7e08cd322ff98ddfdb6ab8a89b24f895c473992d674bfd3b36865037879baa3f"
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.0"
+    version: "6.0.1"
   cloud_firestore_web:
     dependency: transitive
     description:
       name: cloud_firestore_web
-      sha256: "1f4af7224141bc6569b99699c6ec802749dc527647c8a8c55de2d4d866af44de"
+      sha256: bd2183128b67d66a6e672c50e47bc70393418f3bd669aad8ac321e88f027b2b5
       url: "https://pub.dev"
     source: hosted
-    version: "3.8.0"
+    version: "3.8.1"
   collection:
     dependency: "direct main"
     description:
@@ -213,34 +213,34 @@ packages:
     dependency: "direct main"
     description:
       name: firebase_analytics
-      sha256: db4b89ce32ecee475481e3ade28f623e74121b0ffe9c47b1374bd5db24ddad98
+      sha256: be3edadbd6e3a7840d9eae38ec3dfc6d83efab5c6e0d5cee5f758341d0643c30
       url: "https://pub.dev"
     source: hosted
-    version: "10.6.0"
+    version: "10.6.1"
   firebase_analytics_platform_interface:
     dependency: transitive
     description:
       name: firebase_analytics_platform_interface
-      sha256: "1f481bdcaf95f35d704b73c745b2dc4e01f8862339c08711c18720356e7c9641"
+      sha256: fc7c032f769e2c37bc7aa84eb44b02d17d53de8c256882072dbedbf1def158b8
       url: "https://pub.dev"
     source: hosted
-    version: "3.7.2"
+    version: "3.7.3"
   firebase_analytics_web:
     dependency: transitive
     description:
       name: firebase_analytics_web
-      sha256: "24294a6c28a2c2c17f09b6fe4f4fb75fd81495e85c81c84539f415b1575a3be8"
+      sha256: "219e5995e79aff8deb3d633041dbdb8f704c1f5a044e970eed141ad851caf9d1"
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.5+2"
+    version: "0.5.5+3"
   firebase_core:
     dependency: "direct main"
     description:
       name: firebase_core
-      sha256: "761d0a00562ba09d491eacdceaf1885df62d072c9431bf3110333e2a9904b1e1"
+      sha256: "57bba167105d2315d243a4524939406df688f38a5b6d7a4159382bbbe43cdd00"
       url: "https://pub.dev"
     source: hosted
-    version: "2.18.0"
+    version: "2.19.0"
   firebase_core_platform_interface:
     dependency: transitive
     description:
@@ -261,18 +261,18 @@ packages:
     dependency: "direct main"
     description:
       name: firebase_crashlytics
-      sha256: "85f1098487d1b177bb4b7e0d552f57029d6964d2da665104d6299acce2f58bb6"
+      sha256: c58902959e7a73aadcf82c87e8d64f6eb10b5287fd7aaadfab5c2ef34ec11ff5
       url: "https://pub.dev"
     source: hosted
-    version: "3.4.0"
+    version: "3.4.1"
   firebase_crashlytics_platform_interface:
     dependency: transitive
     description:
       name: firebase_crashlytics_platform_interface
-      sha256: "8bdcca9109595d353b467a97278becb726286596741b9cc0ace59abf9def9645"
+      sha256: "9d2f76bda1542615f75fb501a8c7afc6288d69c3728fdc762bf3d51f0ee0f4cb"
       url: "https://pub.dev"
     source: hosted
-    version: "3.6.8"
+    version: "3.6.9"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -313,10 +313,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: "2ccd74480706e0a70a0e0dfa9543dede41bc11d0fe3b146a6ad7b7686f6b4407"
+      sha256: a206cc4621a644531a2e05e7774616ab4d9d85eab1f3b0e255f3102937fccab1
       url: "https://pub.dev"
     source: hosted
-    version: "11.1.4"
+    version: "12.0.0"
   http:
     dependency: transitive
     description:
@@ -674,6 +674,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  very_good_analysis:
+    dependency: "direct dev"
+    description:
+      name: very_good_analysis
+      sha256: "9ae7f3a3bd5764fb021b335ca28a34f040cd0ab6eec00a1b213b445dae58a4b8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.1.0"
   web:
     dependency: transitive
     description:

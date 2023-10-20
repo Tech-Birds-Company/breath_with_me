@@ -15,7 +15,7 @@ class PlayerManagerImpl implements PlayerManager {
           _audioPlayer!.onPositionChanged,
           (totalDuration, currentDuration) =>
               currentDuration.inMilliseconds / totalDuration.inMilliseconds,
-        ).startWith(0.0)
+        ).startWith(0)
       : null;
 
   @override

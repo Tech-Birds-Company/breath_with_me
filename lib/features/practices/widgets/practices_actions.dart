@@ -30,7 +30,6 @@ class PracticesActions extends StatelessWidget {
               borderRadius: BorderRadius.circular(40),
               border: Border.all(
                 color: theme.secondaryBackground,
-                width: 1,
               ),
             ),
             child: Center(

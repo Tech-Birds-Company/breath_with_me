@@ -1,7 +1,7 @@
 PODS:
   - audioplayers_darwin (0.0.1):
     - Flutter
-  - cloud_firestore (4.10.0):
+  - cloud_firestore (4.11.0):
     - Firebase/Firestore (= 10.15.0)
     - firebase_core
     - Flutter
@@ -19,14 +19,14 @@ PODS:
   - Firebase/Firestore (10.15.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 10.15.0)
-  - firebase_analytics (10.6.0):
+  - firebase_analytics (10.6.1):
     - Firebase/Analytics (= 10.15.0)
     - firebase_core
     - Flutter
-  - firebase_core (2.18.0):
+  - firebase_core (2.19.0):
     - Firebase/CoreOnly (= 10.15.0)
     - Flutter
-  - firebase_crashlytics (3.4.0):
+  - firebase_crashlytics (3.4.1):
     - Firebase/Crashlytics (= 10.15.0)
     - firebase_core
     - Flutter
@@ -200,11 +200,11 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   audioplayers_darwin: 877d9a4d06331c5c374595e46e16453ac7eafa40
-  cloud_firestore: 73333503bfb9095d98b0b600b387b5859a72b24d
+  cloud_firestore: 0b05c34e8b36cde7026bed89616962c4e03aa307
   Firebase: 66043bd4579e5b73811f96829c694c7af8d67435
-  firebase_analytics: 6b016f3d8e86fec024f1a495834ae30d44fe4fe2
-  firebase_core: 49fd2395e3fbbf63f453888c8e9f42f541f4c11c
-  firebase_crashlytics: af0e347e4ab14d45da977c485568b0f0f1e697bb
+  firebase_analytics: 8b63b894ac3be5ced6a9a4614174754b03377c2f
+  firebase_core: fd674fcc642742ef7289acea60bd21a1a021bd98
+  firebase_crashlytics: 22dcddd1039445d697779785abe25dfcdd3bca02
   FirebaseAnalytics: 47cef43728f81a839cf1306576bdd77ffa2eac7e
   FirebaseCore: 2cec518b43635f96afe7ac3a9c513e47558abd2e
   FirebaseCoreExtension: 2dbc745b337eb99d2026a7a309ae037bd873f45e
