@@ -1,14 +1,12 @@
 import 'package:breathe_with_me/features/home/home_page.dart';
 import 'package:breathe_with_me/features/onboarding/onboarding_page.dart';
-import 'package:breathe_with_me/features/player/player_page.dart';
-import 'package:breathe_with_me/navigation/routes.dart';
-import 'package:flutter/widgets.dart';
+import 'package:breathe_with_me/features/track_player/track_player_page.dart';
+import 'package:breathe_with_me/managers/navigation_manager/routes.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-final class BWMRouter {
-  const BWMRouter._();
-
-  static final router = GoRouter(
+final class NavigationManager {
+  late final router = GoRouter(
     initialLocation: BWMRoutes.onboarding,
     routes: <RouteBase>[
       GoRoute(
@@ -26,9 +24,19 @@ final class BWMRouter {
       GoRoute(
         path: BWMRoutes.player,
         builder: (context, state) {
-          return const PlayerPage();
+          final trackId = state.uri.queryParameters['trackId']!;
+          return TrackPlayerPage(
+            trackId: trackId,
+          );
         },
       ),
     ],
   );
+
+  void openTrackPlayer(String trackId) {
+    router.push(
+      Uri(path: BWMRoutes.player, queryParameters: {'trackId': trackId})
+          .toString(),
+    );
+  }
 }

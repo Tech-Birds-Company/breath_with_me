@@ -8,7 +8,10 @@ import 'package:flutter/material.dart';
 class OnboardingIndicator extends StatelessWidget {
   final PageController pageController;
 
-  const OnboardingIndicator({required this.pageController, super.key});
+  const OnboardingIndicator({
+    required this.pageController,
+    super.key,
+  });
 
   double _indicatorInterpolator({
     required double from,

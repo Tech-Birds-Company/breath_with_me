@@ -2,7 +2,7 @@ import 'package:breathe_with_me/features/onboarding/widgets/create_account_butto
 import 'package:breathe_with_me/features/onboarding/widgets/onboarding_header.dart';
 import 'package:breathe_with_me/features/onboarding/widgets/onboarding_indicator.dart';
 import 'package:breathe_with_me/features/onboarding/widgets/onboarding_page_view.dart';
-import 'package:breathe_with_me/navigation/routes.dart';
+import 'package:breathe_with_me/managers/navigation_manager/routes.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

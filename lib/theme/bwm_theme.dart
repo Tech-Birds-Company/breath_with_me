@@ -26,18 +26,12 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
   ThemeExtension<BWMTheme> copyWith({
     Color? primaryColor,
     Color? secondaryColor,
-    Color? tertiaryColor,
     Color? fourthColor,
     Color? fifthColor,
-    Color? sixthColor,
-    Color? seventhColor,
-    Color? darkBlueColor,
-    Color? alternate,
     Color? primaryBackground,
     Color? secondaryBackground,
     Color? primaryText,
     Color? secondaryText,
-    Color? purpleText,
   }) {
     return BWMTheme(
       primaryColor: primaryColor ?? this.primaryColor,
