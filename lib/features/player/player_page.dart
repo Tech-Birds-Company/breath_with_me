@@ -37,7 +37,7 @@ class _PlayerPageState extends State<PlayerPage> with TickerProviderStateMixin {
     super.dispose();
   }
 
-  void _onPlayButtonPressed(bool isPaused) {
+  void _onPlayButtonPressed({required bool isPaused}) {
     if (isPaused) {
       _playerManager.pause();
       _playerAnimationController.stop(canceled: false);
@@ -68,9 +68,7 @@ class _PlayerPageState extends State<PlayerPage> with TickerProviderStateMixin {
             const Spacer(),
             Center(
               child: _PlayButton(
-                onPressed: (isPaused) {
-                  _onPlayButtonPressed(isPaused);
-                },
+                onPressed: _onPlayButtonPressed,
               ),
             ),
             Padding(
@@ -95,7 +93,7 @@ class _PlayerPageState extends State<PlayerPage> with TickerProviderStateMixin {
 }
 
 class _PlayButton extends StatefulWidget {
-  final Function(bool isPaused) onPressed;
+  final void Function({required bool isPaused}) onPressed;
 
   const _PlayButton({required this.onPressed});
 
@@ -104,7 +102,7 @@ class _PlayButton extends StatefulWidget {
 }
 
 class _PlayButtonState extends State<_PlayButton> {
-  var isPaused = false;
+  bool isPaused = false;
 
   @override
   Widget build(BuildContext context) {
@@ -116,11 +114,11 @@ class _PlayButtonState extends State<_PlayButton> {
           setState(() {
             isPaused = !isPaused;
           });
-          widget.onPressed(isPaused);
+          widget.onPressed(isPaused: isPaused);
         },
         elevation: 0,
         backgroundColor: const Color(0xFFC4C4C4)
-            .withOpacity(0.12), // TODO: (vasidmi) update theme
+            .withOpacity(0.12), // TODO(vasidmi): update theme
         child: Center(
           child: SvgPicture.asset(
             isPaused ? BWMAssets.playIcon : BWMAssets.pauseIcon,

@@ -12,7 +12,7 @@ class ProfileButton extends StatelessWidget {
         width: 40,
         height: 40,
         child: ColoredBox(
-          color: const Color(0xFFF2F2F2), // TODO: (vasidmi) update theme
+          color: const Color(0xFFF2F2F2), // TODO(vasidmi): update theme
           child: Center(
             child: SvgPicture.asset(
               BWMAssets.profileIcon,

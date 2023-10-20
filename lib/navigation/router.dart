@@ -28,7 +28,7 @@ final class BWMRouter {
         builder: (context, state) {
           return const PlayerPage();
         },
-      )
+      ),
     ],
   );
 }

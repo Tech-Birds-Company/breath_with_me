@@ -45,7 +45,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 92),
               child: Align(
-                alignment: Alignment.center,
                 child: OnboardingCreateAccountButton(
                   onTap: () {
                     context.pushReplacement(BWMRoutes.home);

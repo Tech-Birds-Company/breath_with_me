@@ -94,7 +94,7 @@ class _PracticePlayButton extends StatelessWidget {
                   -2,
                   4,
                 ),
-              )
+              ),
             ],
           ),
           child: Center(child: SvgPicture.asset(BWMAssets.playIcon)),

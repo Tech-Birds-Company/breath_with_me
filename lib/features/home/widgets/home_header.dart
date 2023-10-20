@@ -25,7 +25,7 @@ class HomeHeader extends StatelessWidget {
           ],
         ).toSliver,
         const SizedBox(height: 24).toSliver,
-        const _WelcomeTitle().toSliver
+        const _WelcomeTitle().toSliver,
       ],
     );
   }
