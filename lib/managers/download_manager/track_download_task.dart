@@ -1,0 +1,10 @@
+import 'package:breathe_with_me/managers/download_manager/download_task.dart';
+
+final class TrackDownloadTask extends DownloadTask {
+  const TrackDownloadTask({
+    required super.id,
+    required super.url,
+    required super.fileExtension,
+    required super.savePath,
+  });
+}

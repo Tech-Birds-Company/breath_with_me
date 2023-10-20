@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-abstract class BaseTypography {
+abstract interface class Typography {
   TextStyle get title;
   TextStyle get subtitle;
   TextStyle get heading;
@@ -11,7 +11,7 @@ abstract class BaseTypography {
   TextStyle get label;
 }
 
-class BWMTypography extends BaseTypography {
+final class BWMTypography extends Typography {
   static const _fontFamily = 'Oxygen';
 
   @override

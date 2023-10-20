@@ -1,4 +1,4 @@
-class BWMAssets {
+final class BWMAssets {
   const BWMAssets._();
 
   static const i18n = 'assets/i18n';

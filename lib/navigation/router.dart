@@ -5,7 +5,7 @@ import 'package:breathe_with_me/navigation/routes.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
-class BWMRouter {
+final class BWMRouter {
   const BWMRouter._();
 
   static final router = GoRouter(

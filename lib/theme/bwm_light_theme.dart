@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 
-class BWMLightTheme extends BWMTheme {
+final class BWMLightTheme extends BWMTheme {
   const BWMLightTheme({
     super.primaryColor = const Color(0xFFFFFFFF),
     super.secondaryColor = const Color(0xFF6FCF97),
