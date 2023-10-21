@@ -36,6 +36,7 @@ class PracticeItem extends StatelessWidget {
             const SizedBox(width: 20),
             Expanded(
               child: PracticeInfo(
+                trackId: track.id,
                 title: track.title,
                 duration: track.duration,
                 tutor: track.tutor,

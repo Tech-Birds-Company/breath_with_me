@@ -22,7 +22,7 @@ class PracticesList extends HookConsumerWidget {
       const [],
     );
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    return BlocBuilder<PracticeListCubit, PracticeListState>(
+    return BlocBuilder<PracticeListBloc, PracticeListState>(
       bloc: bloc,
       builder: (context, state) {
         return SliverList.separated(

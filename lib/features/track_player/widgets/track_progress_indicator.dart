@@ -1,0 +1,66 @@
+import 'package:breathe_with_me/di/di.dart';
+import 'package:breathe_with_me/features/track_player/blocs/track_player_bloc.dart';
+import 'package:breathe_with_me/features/track_player/models/track_player_state.dart';
+import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+class TrackProgressIndicator extends ConsumerWidget {
+  final String trackId;
+
+  const TrackProgressIndicator({
+    required this.trackId,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context).extension<BWMTheme>()!;
+    final bloc = ref.read(Di.bloc.trackPlayer(trackId));
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Stack(
+            children: [
+              ColoredBox(
+                color: theme.secondaryBackground,
+                child: SizedBox(
+                  width: constraints.maxWidth,
+                  height: 3,
+                ),
+              ),
+              ColoredBox(
+                color: theme.secondaryColor,
+                child: BlocSelector<TrackPlayerBloc, TrackPlayerState, double>(
+                  bloc: bloc,
+                  selector: (state) => state.progress ?? 0,
+                  builder: (context, progress) {
+                    return SizedBox(
+                      width: constraints.maxWidth * progress,
+                      height: 3,
+                    );
+                  },
+                ),
+              ),
+              ColoredBox(
+                color: theme.secondaryColor.withOpacity(0.2),
+                child: BlocSelector<TrackPlayerBloc, TrackPlayerState, double>(
+                  bloc: bloc,
+                  selector: (state) => state.downloadProgress,
+                  builder: (context, downloadProgress) {
+                    return SizedBox(
+                      width: constraints.maxWidth * downloadProgress,
+                      height: 3,
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
