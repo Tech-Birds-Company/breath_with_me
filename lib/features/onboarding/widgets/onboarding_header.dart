@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class OnboardingHeader extends StatelessWidget {
-  const OnboardingHeader({
-    super.key,
-  });
+  const OnboardingHeader({super.key});
 
   @override
   Widget build(BuildContext context) {

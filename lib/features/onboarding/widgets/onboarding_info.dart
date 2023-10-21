@@ -1,4 +1,4 @@
-class OnboardingInfo {
+final class OnboardingInfo {
   final String title;
   final String subtitle;
 

@@ -19,5 +19,11 @@
 	"practiceCategoryBalance": "Balance",
 	"practiceLanguageTitle": "Choose practices language",
 	"practiceLanguageEn": "En",
-	"practiceLanguageRu": "Ru"
+	"practiceLanguageRu": "Ru",
+
+	"practiceDurationTitle": "{duration} min",
+
+	"tutorJacksonNameKey": "Jackson",
+	"tutorDashaNameKey": "Dasha",
+	"tutorJohnnyNameKey": "Johnny"
 }
