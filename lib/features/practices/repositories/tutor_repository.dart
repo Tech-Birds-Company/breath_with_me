@@ -12,15 +12,11 @@ final class TutorRepository {
     final tutorId = snapshot.id;
 
     final data = snapshot.data();
+    final tutorJson = {
+      'id': tutorId,
+      ...data!,
+    };
 
-    final nameKey = data!['tutorNameKey'] as String;
-    final avatarUrl = data['avatarUrl'] as String;
-
-    final tutor = Tutor(
-      id: tutorId,
-      tutorNameKey: nameKey,
-      avatarUrl: avatarUrl,
-    );
-    return tutor;
+    return Tutor.fromJson(tutorJson);
   }
 }
