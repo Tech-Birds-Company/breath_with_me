@@ -14,6 +14,7 @@ import 'package:objectbox/internal.dart'; // generated code can access "internal
 import 'package:objectbox/objectbox.dart';
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
+import 'database/entities/bloc_state_entity.dart';
 import 'database/entities/download_task_entity.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
@@ -57,6 +58,31 @@ final _entities = <ModelEntity>[
             flags: 0)
       ],
       relations: <ModelRelation>[],
+      backlinks: <ModelBacklink>[]),
+  ModelEntity(
+      id: const IdUid(2, 7122328718598964543),
+      name: 'BlocStateEntity',
+      lastPropertyId: const IdUid(4, 31987012256534505),
+      flags: 0,
+      properties: <ModelProperty>[
+        ModelProperty(
+            id: const IdUid(1, 5788823921696499688),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        ModelProperty(
+            id: const IdUid(3, 2205848117698045990),
+            name: 'json',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(4, 31987012256534505),
+            name: 'key',
+            type: 9,
+            flags: 2080,
+            indexId: const IdUid(4, 5744209523469708764))
+      ],
+      relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[])
 ];
 
@@ -87,13 +113,17 @@ Future<Store> openStore(
 ModelDefinition getObjectBoxModel() {
   final model = ModelInfo(
       entities: _entities,
-      lastEntityId: const IdUid(1, 3443719293430748280),
-      lastIndexId: const IdUid(2, 2357976250776051976),
+      lastEntityId: const IdUid(2, 7122328718598964543),
+      lastIndexId: const IdUid(4, 5744209523469708764),
       lastRelationId: const IdUid(0, 0),
       lastSequenceId: const IdUid(0, 0),
       retiredEntityUids: const [],
-      retiredIndexUids: const [3843725167060959184, 2357976250776051976],
-      retiredPropertyUids: const [7502259553311868414],
+      retiredIndexUids: const [
+        3843725167060959184,
+        2357976250776051976,
+        604298339150924081
+      ],
+      retiredPropertyUids: const [7502259553311868414, 5553752235591540271],
       retiredRelationUids: const [],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
@@ -144,6 +174,36 @@ ModelDefinition getObjectBoxModel() {
             ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
 
           return object;
+        }),
+    BlocStateEntity: EntityDefinition<BlocStateEntity>(
+        model: _entities[1],
+        toOneRelations: (BlocStateEntity object) => [],
+        toManyRelations: (BlocStateEntity object) => {},
+        getId: (BlocStateEntity object) => object.id,
+        setId: (BlocStateEntity object, int id) {
+          object.id = id;
+        },
+        objectToFB: (BlocStateEntity object, fb.Builder fbb) {
+          final jsonOffset = fbb.writeString(object.json);
+          final keyOffset = fbb.writeString(object.key);
+          fbb.startTable(5);
+          fbb.addInt64(0, object.id);
+          fbb.addOffset(2, jsonOffset);
+          fbb.addOffset(3, keyOffset);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+          final keyParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 10, '');
+          final jsonParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 8, '');
+          final object = BlocStateEntity(key: keyParam, json: jsonParam)
+            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+
+          return object;
         })
   };
 
@@ -175,4 +235,19 @@ class DownloadTaskEntity_ {
   /// see [DownloadTaskEntity.taskId]
   static final taskId =
       QueryStringProperty<DownloadTaskEntity>(_entities[0].properties[5]);
+}
+
+/// [BlocStateEntity] entity fields to define ObjectBox queries.
+class BlocStateEntity_ {
+  /// see [BlocStateEntity.id]
+  static final id =
+      QueryIntegerProperty<BlocStateEntity>(_entities[1].properties[0]);
+
+  /// see [BlocStateEntity.json]
+  static final json =
+      QueryStringProperty<BlocStateEntity>(_entities[1].properties[1]);
+
+  /// see [BlocStateEntity.key]
+  static final key =
+      QueryStringProperty<BlocStateEntity>(_entities[1].properties[2]);
 }

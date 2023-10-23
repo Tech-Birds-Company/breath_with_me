@@ -10,7 +10,7 @@ import 'package:dio/dio.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
-final class TracksDownloaderManager extends DownloaderManager {
+final class TracksDownloaderManager implements DownloaderManager {
   static const defaultTracksPath = 'tracks';
 
   final DatabaseManager _databaseManager;
@@ -19,20 +19,36 @@ final class TracksDownloaderManager extends DownloaderManager {
 
   late final _httpClient = Dio();
 
-  Future<Directory> get _tracksDir async {
-    final tmpDir = await getApplicationCacheDirectory();
-    final tracksDir = Directory(join(tmpDir.path, defaultTracksPath));
+  @override
+  Future<void> validateDownloads() async {
+    final box = _databaseManager.downloadTaskBox;
+    final tasks = box.getAll();
+    final tasksToDelete = <int>[];
 
-    final tracksDirExists = tracksDir.existsSync();
-    if (!tracksDirExists) {
-      await tracksDir.create();
+    for (final task in tasks) {
+      if (task.isCompleted) {
+        final file = File(task.filePath);
+        final fileNotExists = !file.existsSync();
+
+        if (fileNotExists) {
+          tasksToDelete.add(task.id);
+          continue;
+        }
+
+        final fileCorrupted = file.lengthSync() != task.totalBytes;
+
+        if (fileCorrupted) {
+          await file.delete();
+          tasksToDelete.add(task.id);
+        }
+      }
     }
 
-    return tracksDir;
+    await box.removeManyAsync(tasksToDelete);
   }
 
   @override
-  Stream<double>? taskProgress(String taskId) {
+  Stream<double> taskProgress(String taskId) {
     return _databaseManager.taskProgressStream(taskId);
   }
 
@@ -54,18 +70,22 @@ final class TracksDownloaderManager extends DownloaderManager {
 
     final length = response.data!.length;
     dbEntity.downloadedBytes += length;
+
     _databaseManager.downloadTaskBox.putQueued(
       dbEntity,
       mode: PutMode.update,
     );
+
     final chunkFile = File(chunkFilePath);
     final raf = chunkFile.openSync(mode: FileMode.write)
       ..writeFromSync(response.data!);
+
     await raf.close();
   }
 
   Future<int> _getFileSize(String url) async {
     final fileSizeResponse = await _httpClient.head<List<int>>(url);
+
     return int.parse(
       fileSizeResponse.headers.value(Headers.contentLengthHeader)!,
     );
@@ -99,9 +119,14 @@ final class TracksDownloaderManager extends DownloaderManager {
     DownloadTask task, {
     int chunksCount = 10,
   }) async {
-    final cacheDirPath = (await _tracksDir).path;
-    final savePath = join(cacheDirPath, task.id);
+    final cacheDir = await getApplicationCacheDirectory();
+    final tracksCacheDirPath = join(cacheDir.path, defaultTracksPath);
+    final savePath = join(tracksCacheDirPath, task.id);
     final saveDir = Directory(savePath);
+
+    if (!saveDir.existsSync()) {
+      await saveDir.create(recursive: true);
+    }
 
     final fileExtension = extension(Uri.parse(task.url).path);
     final filename = '${task.id}$fileExtension';

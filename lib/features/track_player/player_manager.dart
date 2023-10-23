@@ -2,16 +2,16 @@ import 'dart:async';
 
 import 'package:audioplayers/audioplayers.dart';
 
-base class PlayerManager {
+abstract base class PlayerManager {
   AudioPlayer? audioPlayer;
   Stream<double>? progressStream;
 
   /// Should be called before [play] or [pause]
-  Future<void> init(Source source) async {}
+  Future<void> init(Source source);
 
-  Future<void> play() async {}
+  Future<void> play();
 
-  Future<void> pause() async {}
+  Future<void> pause();
 
   Future<void> dispose() async {
     await audioPlayer?.dispose();

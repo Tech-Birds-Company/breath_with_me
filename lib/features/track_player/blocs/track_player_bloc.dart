@@ -51,9 +51,8 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   }
 
   Future<void> _handleOnlinePlay() async {
-    final track = await _tracksRepository.getFirebaseTrack(_trackId);
-    final trackDownloadUrl =
-        await _tracksRepository.getFirebaseTrackDownloadUrl(track);
+    final track = await _tracksRepository.getTrack(_trackId);
+    final trackDownloadUrl = await _tracksRepository.getTrackDownloadUrl(track);
     await _initPlayerWithUrl(trackDownloadUrl);
     _queueTrackDownload(trackDownloadUrl);
   }

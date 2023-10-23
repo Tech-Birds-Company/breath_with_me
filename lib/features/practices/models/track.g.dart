@@ -32,6 +32,6 @@ Map<String, dynamic> _$$TrackImplToJson(_$TrackImpl instance) =>
 
 const _$TrackLanguageEnumMap = {
   TrackLanguage.ru: 'ru',
-  TrackLanguage.en: 'ru',
+  TrackLanguage.en: 'en',
   TrackLanguage.unknown: 'unknown',
 };

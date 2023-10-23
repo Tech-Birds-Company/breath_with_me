@@ -1,12 +1,13 @@
 part of 'di.dart';
 
 final class _RepositoryProviders {
-  late final tracks = Provider.autoDispose(
-    (ref) => TracksRepository(
-      ref.read(Di.shared.repository.tutor),
+  late final firebaseTracks = Provider.autoDispose(
+    (ref) => FirebaseTracksRepository(
+      ref.read(Di.shared.repository.firebaseTutors),
       ref.read(Di.shared.manager.database),
     ),
   );
 
-  late final tutor = Provider.autoDispose((ref) => const TutorRepository());
+  late final firebaseTutors =
+      Provider.autoDispose((ref) => const FirebaseTutorsRepository());
 }
