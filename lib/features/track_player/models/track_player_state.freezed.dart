@@ -21,6 +21,7 @@ TrackPlayerState _$TrackPlayerStateFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TrackPlayerState {
   bool get isPaused => throw _privateConstructorUsedError;
+  double get downloadProgress => throw _privateConstructorUsedError;
   double? get progress => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +36,7 @@ abstract class $TrackPlayerStateCopyWith<$Res> {
           TrackPlayerState value, $Res Function(TrackPlayerState) then) =
       _$TrackPlayerStateCopyWithImpl<$Res, TrackPlayerState>;
   @useResult
-  $Res call({bool isPaused, double? progress});
+  $Res call({bool isPaused, double downloadProgress, double? progress});
 }
 
 /// @nodoc
@@ -52,6 +53,7 @@ class _$TrackPlayerStateCopyWithImpl<$Res, $Val extends TrackPlayerState>
   @override
   $Res call({
     Object? isPaused = null,
+    Object? downloadProgress = null,
     Object? progress = freezed,
   }) {
     return _then(_value.copyWith(
@@ -59,6 +61,10 @@ class _$TrackPlayerStateCopyWithImpl<$Res, $Val extends TrackPlayerState>
           ? _value.isPaused
           : isPaused // ignore: cast_nullable_to_non_nullable
               as bool,
+      downloadProgress: null == downloadProgress
+          ? _value.downloadProgress
+          : downloadProgress // ignore: cast_nullable_to_non_nullable
+              as double,
       progress: freezed == progress
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
@@ -75,7 +81,7 @@ abstract class _$$TrackPlayerStateImplCopyWith<$Res>
       __$$TrackPlayerStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isPaused, double? progress});
+  $Res call({bool isPaused, double downloadProgress, double? progress});
 }
 
 /// @nodoc
@@ -90,6 +96,7 @@ class __$$TrackPlayerStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isPaused = null,
+    Object? downloadProgress = null,
     Object? progress = freezed,
   }) {
     return _then(_$TrackPlayerStateImpl(
@@ -97,6 +104,10 @@ class __$$TrackPlayerStateImplCopyWithImpl<$Res>
           ? _value.isPaused
           : isPaused // ignore: cast_nullable_to_non_nullable
               as bool,
+      downloadProgress: null == downloadProgress
+          ? _value.downloadProgress
+          : downloadProgress // ignore: cast_nullable_to_non_nullable
+              as double,
       progress: freezed == progress
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
@@ -108,7 +119,8 @@ class __$$TrackPlayerStateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TrackPlayerStateImpl implements _TrackPlayerState {
-  const _$TrackPlayerStateImpl({this.isPaused = true, this.progress});
+  const _$TrackPlayerStateImpl(
+      {this.isPaused = true, this.downloadProgress = 0, this.progress});
 
   factory _$TrackPlayerStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$TrackPlayerStateImplFromJson(json);
@@ -117,11 +129,14 @@ class _$TrackPlayerStateImpl implements _TrackPlayerState {
   @JsonKey()
   final bool isPaused;
   @override
+  @JsonKey()
+  final double downloadProgress;
+  @override
   final double? progress;
 
   @override
   String toString() {
-    return 'TrackPlayerState(isPaused: $isPaused, progress: $progress)';
+    return 'TrackPlayerState(isPaused: $isPaused, downloadProgress: $downloadProgress, progress: $progress)';
   }
 
   @override
@@ -131,13 +146,16 @@ class _$TrackPlayerStateImpl implements _TrackPlayerState {
             other is _$TrackPlayerStateImpl &&
             (identical(other.isPaused, isPaused) ||
                 other.isPaused == isPaused) &&
+            (identical(other.downloadProgress, downloadProgress) ||
+                other.downloadProgress == downloadProgress) &&
             (identical(other.progress, progress) ||
                 other.progress == progress));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, isPaused, progress);
+  int get hashCode =>
+      Object.hash(runtimeType, isPaused, downloadProgress, progress);
 
   @JsonKey(ignore: true)
   @override
@@ -156,13 +174,17 @@ class _$TrackPlayerStateImpl implements _TrackPlayerState {
 
 abstract class _TrackPlayerState implements TrackPlayerState {
   const factory _TrackPlayerState(
-      {final bool isPaused, final double? progress}) = _$TrackPlayerStateImpl;
+      {final bool isPaused,
+      final double downloadProgress,
+      final double? progress}) = _$TrackPlayerStateImpl;
 
   factory _TrackPlayerState.fromJson(Map<String, dynamic> json) =
       _$TrackPlayerStateImpl.fromJson;
 
   @override
   bool get isPaused;
+  @override
+  double get downloadProgress;
   @override
   double? get progress;
   @override

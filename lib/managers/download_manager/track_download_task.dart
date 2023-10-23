@@ -4,7 +4,5 @@ final class TrackDownloadTask extends DownloadTask {
   const TrackDownloadTask({
     required super.id,
     required super.url,
-    required super.fileExtension,
-    required super.savePath,
   });
 }

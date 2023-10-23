@@ -1,5 +1,6 @@
 import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/features/practices/models/tutor.dart';
+import 'package:breathe_with_me/features/practices/widgets/practice_download_indicator.dart';
 import 'package:breathe_with_me/features/practices/widgets/practice_tutor.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
@@ -8,11 +9,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class PracticeInfo extends StatelessWidget {
+  final String trackId;
   final String title;
   final int duration;
   final Tutor tutor;
 
   const PracticeInfo({
+    required this.trackId,
     required this.title,
     required this.duration,
     required this.tutor,
@@ -66,10 +69,22 @@ class PracticeInfo extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 12),
-        PracticeTutor(
-          key: ValueKey(tutor.id),
-          tutorAvatarUrl: tutor.avatarUrl,
-          tutorName: tutor.tutorNameKey.tr(),
+        Row(
+          children: [
+            Expanded(
+              child: PracticeTutor(
+                key: ValueKey(tutor.id),
+                tutorAvatarUrl: tutor.avatarUrl,
+                tutorName: tutor.tutorNameKey.tr(),
+              ),
+            ),
+            Expanded(
+              flex: 0,
+              child: PracticeDownloadIndicator(
+                trackId: trackId,
+              ),
+            ),
+          ],
         ),
       ],
     );

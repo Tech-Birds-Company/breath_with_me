@@ -5,8 +5,10 @@ part 'track_player_state.g.dart';
 
 @freezed
 class TrackPlayerState with _$TrackPlayerState {
+  static const initialState = TrackPlayerState();
   const factory TrackPlayerState({
     @Default(true) bool isPaused,
+    @Default(0) double downloadProgress,
     double? progress,
   }) = _TrackPlayerState;
 
