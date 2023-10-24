@@ -14,7 +14,7 @@ class TrackPlayButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final bloc = ref.read(Di.bloc.trackPlayer(trackId));
+    final bloc = ref.read(Di.shared.bloc.trackPlayer(trackId));
     return BlocSelector<TrackPlayerBloc, TrackPlayerState, bool>(
       bloc: bloc,
       selector: (state) => state.isPaused,

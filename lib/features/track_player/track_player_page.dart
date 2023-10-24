@@ -17,7 +17,7 @@ class TrackPlayerPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    final bloc = ref.read(Di.bloc.trackPlayer(trackId));
+    final bloc = ref.read(Di.shared.bloc.trackPlayer(trackId));
 
     useEffect(
       () {

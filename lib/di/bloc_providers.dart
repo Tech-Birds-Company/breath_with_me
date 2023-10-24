@@ -3,9 +3,9 @@ part of 'di.dart';
 final class _BlocProviders {
   late final practiceList = Provider(
     (ref) => PracticeListBloc(
-      ref.read(Di.manager.navigation),
-      ref.read(Di.repository.tracks),
-      ref.read(Di.manager.tracksDownloader),
+      ref.read(Di.shared.manager.navigation),
+      ref.read(Di.shared.repository.tracks),
+      ref.read(Di.shared.manager.tracksDownloader),
     ),
   );
 
@@ -13,9 +13,9 @@ final class _BlocProviders {
     (ref, trackId) {
       final bloc = TrackPlayerBloc(
         trackId,
-        ref.read(Di.repository.tracks),
-        ref.read(Di.manager.trackPlayer(trackId)),
-        ref.read(Di.manager.tracksDownloader),
+        ref.read(Di.shared.repository.tracks),
+        ref.read(Di.shared.manager.trackPlayer(trackId)),
+        ref.read(Di.shared.manager.tracksDownloader),
       );
       ref.onDispose(bloc.dispose);
       return bloc;

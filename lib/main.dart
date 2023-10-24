@@ -14,7 +14,7 @@ Future<List<Override>> _setupDependencies() async {
   final databaseManager = DatabaseManager(database);
 
   return [
-    Di.manager.database.overrideWith((ref) {
+    Di.shared.manager.database.overrideWith((ref) {
       ref.onDispose(databaseManager.dispose);
       return databaseManager;
     }),

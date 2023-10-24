@@ -3,7 +3,7 @@ part of 'di.dart';
 final class _ManagerProviders {
   late final tracksDownloader = Provider(
     (ref) => TracksDownloaderManager(
-      ref.read(Di.manager.database),
+      ref.read(Di.shared.manager.database),
     ),
   );
 
