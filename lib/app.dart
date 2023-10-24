@@ -9,7 +9,7 @@ class BWMApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final navigationManager = ref.read(Di.manager.navigation);
+    final navigationManager = ref.read(Di.shared.manager.navigation);
     return MaterialApp.router(
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,

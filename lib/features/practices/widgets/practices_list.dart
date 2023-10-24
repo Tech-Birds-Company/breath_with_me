@@ -13,7 +13,7 @@ class PracticesList extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final bloc = ref.read(Di.bloc.practiceList);
+    final bloc = ref.read(Di.shared.bloc.practiceList);
     useEffect(
       () {
         bloc.loadTracks();
