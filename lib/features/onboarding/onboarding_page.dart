@@ -1,27 +1,13 @@
 import 'package:breathe_with_me/features/onboarding/widgets/create_account_button.dart';
 import 'package:breathe_with_me/features/onboarding/widgets/onboarding_header.dart';
-import 'package:breathe_with_me/features/onboarding/widgets/onboarding_indicator.dart';
 import 'package:breathe_with_me/features/onboarding/widgets/onboarding_page_view.dart';
 import 'package:breathe_with_me/managers/navigation_manager/routes.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class OnboardingPage extends StatefulWidget {
+class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
-
-  @override
-  State<OnboardingPage> createState() => _OnboardingPageState();
-}
-
-class _OnboardingPageState extends State<OnboardingPage> {
-  late final _pageController = PageController();
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +23,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
               child: OnboardingHeader(),
             ),
             Expanded(
-              child: OnboardingPageView(
-                pageController: _pageController,
-              ),
+              child: OnboardingPageView(),
             ),
-            OnboardingIndicator(pageController: _pageController),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 92),
               child: Align(
