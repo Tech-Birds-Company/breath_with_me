@@ -1,8 +1,8 @@
 import 'package:breathe_with_me/features/practices/models/tutor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-final class TutorRepository {
-  const TutorRepository();
+final class FirebaseTutorsRepository {
+  const FirebaseTutorsRepository();
 
   Future<Tutor> getTutorFromReference(
     DocumentReference<Map<String, dynamic>> ref,

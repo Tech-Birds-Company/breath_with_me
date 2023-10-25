@@ -4,8 +4,7 @@ final class _BlocProviders {
   late final practiceList = Provider(
     (ref) => PracticeListBloc(
       ref.read(Di.shared.manager.navigation),
-      ref.read(Di.shared.repository.tracks),
-      ref.read(Di.shared.manager.tracksDownloader),
+      ref.read(Di.shared.repository.firebaseTracks),
     ),
   );
 
@@ -13,7 +12,7 @@ final class _BlocProviders {
     (ref, trackId) {
       final bloc = TrackPlayerBloc(
         trackId,
-        ref.read(Di.shared.repository.tracks),
+        ref.read(Di.shared.repository.firebaseTracks),
         ref.read(Di.shared.manager.trackPlayer(trackId)),
         ref.read(Di.shared.manager.tracksDownloader),
       );

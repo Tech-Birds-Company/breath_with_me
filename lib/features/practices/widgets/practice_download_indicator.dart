@@ -18,7 +18,7 @@ class PracticeDownloadIndicator extends ConsumerWidget {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     final bloc = ref.read(Di.shared.bloc.practiceList);
     return StreamBuilder<bool>(
-      stream: bloc.trackDownloadProgressStream(trackId),
+      stream: bloc.trackIsDownloadedStream(trackId),
       initialData: false,
       builder: (context, snapshot) {
         final downloaded = snapshot.requireData;

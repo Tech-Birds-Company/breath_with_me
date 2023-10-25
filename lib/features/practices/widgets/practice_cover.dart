@@ -16,14 +16,18 @@ class PracticeCover extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
-      child: Image(
-        image: AssetImage(
-          _covers[Random().nextInt(
-            max(
-              0,
-              _covers.length,
-            ),
-          )],
+      child: SizedBox(
+        width: 103,
+        height: 103,
+        child: Image(
+          image: AssetImage(
+            _covers[Random().nextInt(
+              max(
+                0,
+                _covers.length,
+              ),
+            )],
+          ),
         ),
       ),
     );

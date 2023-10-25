@@ -7,7 +7,7 @@ part 'track.g.dart';
 enum TrackLanguage {
   @JsonValue('ru')
   ru,
-  @JsonValue('ru')
+  @JsonValue('en')
   en,
   unknown,
 }

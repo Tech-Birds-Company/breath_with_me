@@ -1,32 +1,40 @@
 import 'package:breathe_with_me/features/practices/models/practice_list_state.dart';
-import 'package:breathe_with_me/managers/download_manager/downloader_manager.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/repositories/tracks_repository.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 
-final class PracticeListBloc extends BlocBase<PracticeListState> {
+final class PracticeListBloc extends CacheableBloc<PracticeListState> {
   final NavigationManager _navigationManager;
   final TracksRepository _tracksRepository;
-  final DownloaderManager _downloadManager;
 
   PracticeListBloc(
     this._navigationManager,
     this._tracksRepository,
-    this._downloadManager,
-  ) : super(const PracticeListState());
+  ) : super(const PracticeListState.loading()) {
+    loadCache();
+  }
 
-  Stream<bool>? trackDownloadProgressStream(String trackId) {
-    return _downloadManager
-        .taskProgress(trackId)
-        ?.map((progress) => progress == 1.0);
+  Stream<bool> trackIsDownloadedStream(String trackId) {
+    return _tracksRepository.getTrackIsDownloadedStream(trackId);
   }
 
   Future<void> loadTracks() async {
-    final tracks = await _tracksRepository.getFirebaseTracks();
-    emit(state.copyWith(tracks: tracks));
+    final tracks = await _tracksRepository.getTracks();
+    emit(PracticeListState.data(tracks));
+    await cache();
   }
 
   void openTrackPlayer(String trackId) {
     _navigationManager.openTrackPlayer(trackId);
+  }
+
+  @override
+  PracticeListState fromJson(Map<String, dynamic> json) {
+    return PracticeListState.fromJson(json);
+  }
+
+  @override
+  Map<String, dynamic> toJson(PracticeListState state) {
+    return state.toJson();
   }
 }

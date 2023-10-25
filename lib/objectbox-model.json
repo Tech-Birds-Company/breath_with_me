@@ -41,10 +41,36 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "2:7122328718598964543",
+      "lastPropertyId": "4:31987012256534505",
+      "name": "BlocStateEntity",
+      "properties": [
+        {
+          "id": "1:5788823921696499688",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "3:2205848117698045990",
+          "name": "json",
+          "type": 9
+        },
+        {
+          "id": "4:31987012256534505",
+          "name": "key",
+          "type": 9,
+          "flags": 2080,
+          "indexId": "4:5744209523469708764"
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "1:3443719293430748280",
-  "lastIndexId": "2:2357976250776051976",
+  "lastEntityId": "2:7122328718598964543",
+  "lastIndexId": "4:5744209523469708764",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
@@ -52,10 +78,12 @@
   "retiredEntityUids": [],
   "retiredIndexUids": [
     3843725167060959184,
-    2357976250776051976
+    2357976250776051976,
+    604298339150924081
   ],
   "retiredPropertyUids": [
-    7502259553311868414
+    7502259553311868414,
+    5553752235591540271
   ],
   "retiredRelationUids": [],
   "version": 1
