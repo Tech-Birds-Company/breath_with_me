@@ -10,6 +10,8 @@ _$TrackPlayerStateImpl _$$TrackPlayerStateImplFromJson(Map json) =>
     _$TrackPlayerStateImpl(
       isPaused: json['isPaused'] as bool? ?? true,
       downloadProgress: (json['downloadProgress'] as num?)?.toDouble() ?? 0,
+      currentTimeMs: json['currentTimeMs'] as int?,
+      estimatedTimeMs: json['estimatedTimeMs'] as int?,
       progress: (json['progress'] as num?)?.toDouble(),
     );
 
@@ -18,5 +20,7 @@ Map<String, dynamic> _$$TrackPlayerStateImplToJson(
     <String, dynamic>{
       'isPaused': instance.isPaused,
       'downloadProgress': instance.downloadProgress,
+      'currentTimeMs': instance.currentTimeMs,
+      'estimatedTimeMs': instance.estimatedTimeMs,
       'progress': instance.progress,
     };

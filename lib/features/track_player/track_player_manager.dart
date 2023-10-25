@@ -10,9 +10,13 @@ final class TrackPlayerManager extends PlayerManager {
     audioPlayer ??= AudioPlayer();
     await audioPlayer!.setSource(source);
     final duration = await audioPlayer!.getDuration();
-    progressStream = audioPlayer!.onPositionChanged
-        .map((event) => event.inMilliseconds / duration!.inMilliseconds)
-        .startWith(0);
+    progressStream = audioPlayer!.onPositionChanged.map((position) {
+      final currentMs = position.inMilliseconds;
+      final estimatedMs = duration!.inMilliseconds - currentMs;
+      final progress = currentMs / duration.inMilliseconds;
+
+      return (currentMs, progress, estimatedMs);
+    }).startWith((0, 0, 0));
   }
 
   @override
