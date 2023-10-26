@@ -13,7 +13,7 @@ final class _BlocProviders {
       final bloc = TrackPlayerBloc(
         trackId,
         ref.read(Di.shared.repository.firebaseTracks),
-        ref.read(Di.shared.manager.trackPlayer(trackId)),
+        ref.read(Di.shared.manager.audio),
         ref.read(Di.shared.manager.tracksDownloader),
       );
       ref.onDispose(bloc.dispose);

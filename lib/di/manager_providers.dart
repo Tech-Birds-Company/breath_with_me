@@ -7,8 +7,7 @@ final class _ManagerProviders {
     ),
   );
 
-  late final trackPlayer =
-      Provider.family<TrackPlayerManager, String>((ref, trackId) {
+  late final trackPlayer = Provider.autoDispose((ref) {
     final manager = TrackPlayerManager();
     ref.onDispose(manager.dispose);
     return manager;
@@ -19,6 +18,16 @@ final class _ManagerProviders {
   late final database = Provider<DatabaseManager>(
     (ref) {
       throw UnimplementedError();
+    },
+  );
+
+  late final audio = Provider.autoDispose(
+    (ref) {
+      final manager = TrackAudioManager(
+        ref.read(Di.shared.manager.trackPlayer),
+      );
+      ref.onDispose(manager.dispose);
+      return manager;
     },
   );
 }

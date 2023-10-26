@@ -1,3 +1,5 @@
+import 'package:breathe_with_me/constants.dart';
+
 final class BWMAssets {
   const BWMAssets._();
 
@@ -13,6 +15,7 @@ final class BWMAssets {
   static const dashaIcon = '$_icons/dasha.png';
   static const arrowDown = '$_icons/arrow_down.svg';
 
+  static const appIcon = '$_icons/${BWMConstants.appIconFilename}';
   static const purpleCover = '$_icons/purple_cover.png';
   static const blueCover = '$_icons/blue_cover.png';
   static const emeraldCover = '$_icons/emerald_cover.png';

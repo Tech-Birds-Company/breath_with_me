@@ -1,7 +1,8 @@
 import 'package:breathe_with_me/database/database.dart';
 import 'package:breathe_with_me/database/entities/bloc_state_entity.dart';
-import 'package:breathe_with_me/database/entities/download_task_entity.dart';
+import 'package:breathe_with_me/database/entities/download_track_task_entity.dart';
 import 'package:breathe_with_me/managers/download_manager/download_task.dart';
+import 'package:breathe_with_me/managers/download_manager/track_download_task.dart';
 import 'package:breathe_with_me/objectbox.g.dart';
 
 final class DatabaseManager {
@@ -10,30 +11,33 @@ final class DatabaseManager {
   DatabaseManager(this._database);
 
   late final _store = _database.store;
-  late final downloadTaskBox = _store.box<DownloadTaskEntity>();
+  late final downloadTaskBox = _store.box<DownloadTrackTaskEntity>();
   late final blocStateBox = _store.box<BlocStateEntity>();
 
-  Future<DownloadTaskEntity?> getDownloadTask(String taskId) async {
+  Future<DownloadTrackTaskEntity?> getDownloadTask(String taskId) async {
     return downloadTaskBox
-        .query(DownloadTaskEntity_.taskId.equals(taskId))
+        .query(DownloadTrackTaskEntity_.taskId.equals(taskId))
         .build()
         .findFirstAsync();
   }
 
-  Future<DownloadTaskEntity> createDownloadTask({
+  Future<DownloadTrackTaskEntity> createDownloadTrackTask({
     required DownloadTask task,
     required String filePath,
     required int totalBytes,
   }) async {
     final dbEntity = await getDownloadTask(task.id);
+    final downloadTrackTask = task as TrackDownloadTask;
 
     if (dbEntity != null) {
       return dbEntity;
     }
 
-    final entity = DownloadTaskEntity(
+    final entity = DownloadTrackTaskEntity(
       taskId: task.id,
       url: task.url,
+      tutorNameKey: downloadTrackTask.tutorNameKey,
+      trackName: downloadTrackTask.trackName,
       filePath: filePath,
       totalBytes: totalBytes,
     );
@@ -43,14 +47,14 @@ final class DatabaseManager {
 
   Future<void> deleteDownloadTask(String taskId) {
     return downloadTaskBox
-        .query(DownloadTaskEntity_.taskId.equals(taskId))
+        .query(DownloadTrackTaskEntity_.taskId.equals(taskId))
         .build()
         .removeAsync();
   }
 
   Stream<double> taskProgressStream(String taskId) {
     return downloadTaskBox
-        .query(DownloadTaskEntity_.taskId.equals(taskId))
+        .query(DownloadTrackTaskEntity_.taskId.equals(taskId))
         .watch(triggerImmediately: true)
         .map(
           (event) {
