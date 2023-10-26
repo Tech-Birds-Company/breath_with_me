@@ -23,7 +23,7 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   ) : super(TrackPlayerState.initialState);
 
   StreamSubscription<PlayerState>? _playerStateSub;
-  StreamSubscription<double>? _playerProgressSub;
+  StreamSubscription<(int?, double, int?)>? _playerProgressSub;
   StreamSubscription<double>? _downloadProgressSub;
   Stream<double>? _downloadProgressStream;
 
@@ -103,8 +103,16 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   }
 
   void _subscribeToPlayerProgress() {
-    _playerProgressSub ??= _playerManager.progressStream?.listen((progress) {
-      emit(state.copyWith(progress: progress));
+    _playerProgressSub ??= _playerManager.progressStream?.listen((event) {
+      final (currentTimeMs, progress, estimatedMs) = event;
+
+      emit(
+        state.copyWith(
+          currentTimeMs: currentTimeMs,
+          progress: progress,
+          estimatedTimeMs: estimatedMs,
+        ),
+      );
     });
   }
 

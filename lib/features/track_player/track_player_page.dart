@@ -41,7 +41,11 @@ class TrackPlayerPage extends HookConsumerWidget {
               child: TrackPlayButton(trackId: trackId),
             ),
             Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsetsDirectional.only(
+                top: 16,
+                start: 16,
+                end: 16,
+              ),
               child: TrackProgressIndicator(trackId: trackId),
             ),
           ],

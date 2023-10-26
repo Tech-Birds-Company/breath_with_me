@@ -4,7 +4,7 @@ import 'package:audioplayers/audioplayers.dart';
 
 abstract base class PlayerManager {
   AudioPlayer? audioPlayer;
-  Stream<double>? progressStream;
+  Stream<(int?, double, int?)>? progressStream;
 
   /// Should be called before [play] or [pause]
   Future<void> init(Source source);
