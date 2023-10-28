@@ -1,13 +1,15 @@
 import 'package:objectbox/objectbox.dart';
 
 @Entity()
-class DownloadTaskEntity {
+class DownloadTrackTaskEntity {
   @Id()
   int id = 0;
 
   String taskId;
   String url;
   String filePath;
+  String tutorNameKey;
+  String trackName;
 
   int downloadedBytes = 0;
   int? totalBytes;
@@ -17,10 +19,12 @@ class DownloadTaskEntity {
     return downloadedBytes == totalBytes;
   }
 
-  DownloadTaskEntity({
+  DownloadTrackTaskEntity({
     required this.taskId,
     required this.url,
     required this.filePath,
+    required this.tutorNameKey,
+    required this.trackName,
     this.downloadedBytes = 0,
     this.totalBytes,
   });

@@ -10,12 +10,16 @@ final class ObjectBoxBlocStateStorage implements BlocCacheStorage {
   ObjectBoxBlocStateStorage(this._box);
 
   BlocStateEntity? _getBlocState(String key) {
-    return _box.query(BlocStateEntity_.key.equals(key)).build().findFirst();
+    final entity =
+        _box.query(BlocStateEntity_.key.equals(key)).build().findFirst();
+
+    return entity;
   }
 
   @override
   Object? read(String key) {
     final entity = _getBlocState(key);
+
     return entity?.json;
   }
 

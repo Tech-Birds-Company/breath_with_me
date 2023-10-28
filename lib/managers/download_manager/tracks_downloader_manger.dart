@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:breathe_with_me/database/entities/download_task_entity.dart';
+import 'package:breathe_with_me/database/entities/download_track_task_entity.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/download_task.dart';
 import 'package:breathe_with_me/managers/download_manager/downloader_manager.dart';
+import 'package:breathe_with_me/managers/download_manager/track_download_task.dart';
 import 'package:breathe_with_me/objectbox.g.dart';
 import 'package:dio/dio.dart';
 import 'package:path/path.dart';
@@ -53,7 +54,7 @@ final class TracksDownloaderManager implements DownloaderManager {
   }
 
   Future<void> _downloadChunk({
-    required DownloadTaskEntity dbEntity,
+    required DownloadTrackTaskEntity dbEntity,
     required String chunkFilePath,
     required int startBytesRange,
     required int endBytesRange,
@@ -140,7 +141,7 @@ final class TracksDownloaderManager implements DownloaderManager {
 
     final queue = <Future<void>>[];
 
-    final dbEntity = await _databaseManager.createDownloadTask(
+    final dbEntity = await _databaseManager.createDownloadTrackTask(
       task: task,
       filePath: join(savePath, filename),
       totalBytes: fileSize,
@@ -179,7 +180,7 @@ final class TracksDownloaderManager implements DownloaderManager {
   @override
   void queue({required List<DownloadTask> tasks}) {
     for (final task in tasks) {
-      _queueTask(task);
+      _queueTask(task as TrackDownloadTask);
     }
   }
 }

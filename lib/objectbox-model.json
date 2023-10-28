@@ -4,45 +4,6 @@
   "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
   "entities": [
     {
-      "id": "1:3443719293430748280",
-      "lastPropertyId": "7:6058418397631871564",
-      "name": "DownloadTaskEntity",
-      "properties": [
-        {
-          "id": "1:2470138575464844556",
-          "name": "id",
-          "type": 6,
-          "flags": 1
-        },
-        {
-          "id": "3:7796491158390526320",
-          "name": "downloadedBytes",
-          "type": 6
-        },
-        {
-          "id": "4:8256646648292446768",
-          "name": "totalBytes",
-          "type": 6
-        },
-        {
-          "id": "5:3033313459825828610",
-          "name": "url",
-          "type": 9
-        },
-        {
-          "id": "6:4630339859809275241",
-          "name": "filePath",
-          "type": 9
-        },
-        {
-          "id": "7:6058418397631871564",
-          "name": "taskId",
-          "type": 9
-        }
-      ],
-      "relations": []
-    },
-    {
       "id": "2:7122328718598964543",
       "lastPropertyId": "4:31987012256534505",
       "name": "BlocStateEntity",
@@ -67,15 +28,66 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "3:1520315073668077580",
+      "lastPropertyId": "9:5201689941450672282",
+      "name": "DownloadTrackTaskEntity",
+      "properties": [
+        {
+          "id": "1:6688239300631462190",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:2680563204192860788",
+          "name": "taskId",
+          "type": 9
+        },
+        {
+          "id": "3:4754970558086022460",
+          "name": "url",
+          "type": 9
+        },
+        {
+          "id": "4:6594271542272299772",
+          "name": "filePath",
+          "type": 9
+        },
+        {
+          "id": "6:7067867094891868379",
+          "name": "trackName",
+          "type": 9
+        },
+        {
+          "id": "7:2504329923867089452",
+          "name": "downloadedBytes",
+          "type": 6
+        },
+        {
+          "id": "8:7823351769199542968",
+          "name": "totalBytes",
+          "type": 6
+        },
+        {
+          "id": "9:5201689941450672282",
+          "name": "tutorNameKey",
+          "type": 9
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "2:7122328718598964543",
+  "lastEntityId": "3:1520315073668077580",
   "lastIndexId": "4:5744209523469708764",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
-  "retiredEntityUids": [],
+  "retiredEntityUids": [
+    3443719293430748280
+  ],
   "retiredIndexUids": [
     3843725167060959184,
     2357976250776051976,
@@ -83,7 +95,14 @@
   ],
   "retiredPropertyUids": [
     7502259553311868414,
-    5553752235591540271
+    5553752235591540271,
+    2470138575464844556,
+    7796491158390526320,
+    8256646648292446768,
+    3033313459825828610,
+    4630339859809275241,
+    6058418397631871564,
+    6053680223680892832
   ],
   "retiredRelationUids": [],
   "version": 1

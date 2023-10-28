@@ -1,5 +1,5 @@
 import 'package:breathe_with_me/constants.dart';
-import 'package:breathe_with_me/database/entities/download_task_entity.dart';
+import 'package:breathe_with_me/database/entities/download_track_task_entity.dart';
 import 'package:breathe_with_me/features/practices/models/track.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/repositories/firebase_tutors_repository.dart';
@@ -60,8 +60,10 @@ final class FirebaseTracksRepository implements TracksRepository {
   }
 
   @override
-  Future<DownloadTaskEntity?> getTrackDownloadTask(String trackId) {
-    return _databaseManager.getDownloadTask(trackId);
+  Future<DownloadTrackTaskEntity?> getTrackDownloadTask(String trackId) async {
+    final entity = await _databaseManager.getDownloadTask(trackId);
+
+    return entity;
   }
 
   @override
@@ -81,7 +83,6 @@ final class FirebaseTracksRepository implements TracksRepository {
   }
 
   @override
-  Future<void> deleteTrackDownloadTask(String taskId) {
-    return _databaseManager.deleteDownloadTask(taskId);
-  }
+  Future<void> deleteTrackDownloadTask(String taskId) =>
+      _databaseManager.deleteDownloadTask(taskId);
 }

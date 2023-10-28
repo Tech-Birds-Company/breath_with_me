@@ -22,12 +22,14 @@ abstract base class CacheableBloc<State> extends BlocBase<State> {
     if (_sharedStorage == null) {
       throw const StorageNotFound();
     }
+
     return _sharedStorage!;
   }
 
-  Future<void> cache() async {
-    return _storage.write(runtimeType.toString(), toJson(state));
-  }
+  Future<void> cache() => _storage.write(
+        runtimeType.toString(),
+        toJson(state),
+      );
 
   Future<void> loadCache() async {
     final json = _storage.read('$runtimeType$key');
