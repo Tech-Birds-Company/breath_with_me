@@ -14,6 +14,7 @@ final class BWMAssets {
   static const dropdownArrowIcon = '$_icons/dropdown_arrow.svg';
   static const dashaIcon = '$_icons/dasha.png';
   static const arrowDown = '$_icons/arrow_down.svg';
+  static const close = '$_icons/close.svg';
 
   static const appIcon = '$_icons/${BWMConstants.appIconFilename}';
   static const purpleCover = '$_icons/purple_cover.png';
