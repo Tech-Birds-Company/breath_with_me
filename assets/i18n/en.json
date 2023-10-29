@@ -9,6 +9,13 @@
 	"onboardingPage2Subtitle":"Breathing and electronic music can enhance the effects of your meditation",
 	"onboardingPage3Subtitle":"Discuss your breathing experience with fellow breathers and practice instructors",
 
+	"createAccountHeaderTitle":"Create account",
+	"createAccountHeaderConjunction":"and",
+	"createAccountHeaderSubtitle":"get access to all practices\nand extended breathing statistics",
+	"createAccountHeaderLogin":"Existing account? Log in",
+	"createAccountContact":"Contact us",
+	"createAccountAgreement":"By clicking a button you accept\nthe Terms and Privacy policy",
+
 	"practicesTitle": "Hi, {}",
 	"practicesGuestWelcome": "Hello",
 	"practicesHeading": "Let's breathe",
