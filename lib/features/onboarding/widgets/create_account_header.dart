@@ -5,7 +5,18 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class CreateAccountHeader extends StatelessWidget {
-  const CreateAccountHeader({super.key});
+  final VoidCallback onApplePressed;
+  final VoidCallback onGooglePressed;
+  final VoidCallback onEmailPressed;
+  final VoidCallback onLoginPressed;
+
+  const CreateAccountHeader({
+    required this.onApplePressed,
+    required this.onGooglePressed,
+    required this.onEmailPressed,
+    required this.onLoginPressed,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +84,7 @@ class CreateAccountHeader extends StatelessWidget {
               },
               style: TextButton.styleFrom(shape: const StadiumBorder()),
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
                   LocaleKeys.createAccountHeaderLogin.tr(),
                   style: theme.typography.bodyM.copyWith(

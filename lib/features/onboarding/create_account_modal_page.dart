@@ -1,11 +1,13 @@
 import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/features/onboarding/widgets/create_account_header.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
+import 'package:breathe_with_me/managers/navigation_manager/routes.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class CreateAccountModalPage extends StatelessWidget {
   const CreateAccountModalPage({super.key});
@@ -29,7 +31,7 @@ class CreateAccountModalPage extends StatelessWidget {
               right: 0,
               child: ElevatedButton(
                 onPressed: () {
-                  // TODO:
+                  Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(20, 20),
@@ -46,7 +48,20 @@ class CreateAccountModalPage extends StatelessWidget {
             Column(
               children: [
                 const Spacer(),
-                const CreateAccountHeader(),
+                CreateAccountHeader(
+                  onApplePressed: () {
+                    _openHome(context);
+                  },
+                  onGooglePressed: () {
+                    _openHome(context);
+                  },
+                  onEmailPressed: () {
+                    _openHome(context);
+                  },
+                  onLoginPressed: () {
+                    _openHome(context);
+                  },
+                ),
                 const Spacer(),
                 TextButton(
                   style: TextButton.styleFrom(
@@ -54,7 +69,7 @@ class CreateAccountModalPage extends StatelessWidget {
                     backgroundColor: const Color.fromRGBO(189, 214, 233, 0.14),
                   ),
                   onPressed: () {
-                    // Add your button functionality here
+                    _openHome(context);
                   },
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -83,5 +98,9 @@ class CreateAccountModalPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _openHome(BuildContext context) {
+    context.pushReplacement(BWMRoutes.home);
   }
 }
