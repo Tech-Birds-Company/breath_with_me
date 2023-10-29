@@ -19,4 +19,8 @@ final class BWMAssets {
   static const purpleCover = '$_icons/purple_cover.png';
   static const blueCover = '$_icons/blue_cover.png';
   static const emeraldCover = '$_icons/emerald_cover.png';
+
+  static const signAppleIcon = '$_icons/sign_apple.svg';
+  static const signGoogleIcon = '$_icons/sign_google.svg';
+  static const signMailIcon = '$_icons/sign_mail.svg';
 }
