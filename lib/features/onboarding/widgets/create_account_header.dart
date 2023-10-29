@@ -66,6 +66,22 @@ class CreateAccountHeader extends StatelessWidget {
                 height: 1.8,
               ),
             ),
+            const SizedBox(height: 40),
+            TextButton(
+              onPressed: () {
+                // Add your button functionality here
+              },
+              style: TextButton.styleFrom(shape: const StadiumBorder()),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: Text(
+                  LocaleKeys.createAccountHeaderLogin.tr(),
+                  style: theme.typography.bodyM.copyWith(
+                    color: theme.secondaryColor,
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),
