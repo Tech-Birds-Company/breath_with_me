@@ -41,23 +41,17 @@ class CreateAccountHeader extends StatelessWidget {
               children: [
                 SignCircleButton(
                   provider: SignCircleButtonProvider.apple,
-                  onPressed: () {
-                    // Perform Apple sign up action
-                  },
+                  onPressed: onApplePressed,
                 ),
-                const SizedBox(width: 20),
+                const SizedBox(width: 12),
                 SignCircleButton(
                   provider: SignCircleButtonProvider.google,
-                  onPressed: () {
-                    // Perform Google sign up action
-                  },
+                  onPressed: onGooglePressed,
                 ),
-                const SizedBox(width: 20),
+                const SizedBox(width: 12),
                 SignCircleButton(
                   provider: SignCircleButtonProvider.email,
-                  onPressed: () {
-                    // Perform Mail sign up action
-                  },
+                  onPressed: onEmailPressed,
                 ),
               ],
             ),
@@ -79,9 +73,7 @@ class CreateAccountHeader extends StatelessWidget {
             ),
             const SizedBox(height: 40),
             TextButton(
-              onPressed: () {
-                // Add your button functionality here
-              },
+              onPressed: onLoginPressed,
               style: TextButton.styleFrom(shape: const StadiumBorder()),
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
