@@ -3,9 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 enum SignCircleButtonProvider {
-  apple,
-  google,
-  email,
+  apple(iconName: BWMAssets.signAppleIcon),
+  google(iconName: BWMAssets.signGoogleIcon),
+  email(iconName: BWMAssets.signMailIcon);
+
+  const SignCircleButtonProvider({
+    required this.iconName,
+  });
+
+  final String iconName;
 }
 
 class SignCircleButton extends StatelessWidget {
@@ -28,21 +34,10 @@ class SignCircleButton extends StatelessWidget {
         backgroundColor: Colors.white,
       ),
       child: SvgPicture.asset(
-        _getIconName(provider),
+        provider.iconName,
         width: 34,
         height: 34,
       ),
     );
-  }
-
-  String _getIconName(SignCircleButtonProvider provider) {
-    switch (provider) {
-      case SignCircleButtonProvider.apple:
-        return BWMAssets.signAppleIcon;
-      case SignCircleButtonProvider.google:
-        return BWMAssets.signGoogleIcon;
-      case SignCircleButtonProvider.email:
-        return BWMAssets.signMailIcon;
-    }
   }
 }
