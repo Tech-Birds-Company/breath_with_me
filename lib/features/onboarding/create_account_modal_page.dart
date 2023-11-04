@@ -66,7 +66,7 @@ class CreateAccountModalPage extends StatelessWidget {
                 TextButton(
                   style: TextButton.styleFrom(
                     shape: const StadiumBorder(),
-                    backgroundColor: const Color.fromRGBO(189, 214, 233, 0.14),
+                    backgroundColor: const Color(0x24BDD6E9),
                   ),
                   onPressed: () {
                     _openHome(context);
