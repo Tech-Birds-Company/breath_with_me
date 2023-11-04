@@ -99,6 +99,7 @@ class CreateAccountModalPage extends StatelessWidget {
               right: 0,
               child: ElevatedButton(
                 onPressed: () {
+                  // TODO: Move out navigation logic
                   Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
@@ -119,6 +120,7 @@ class CreateAccountModalPage extends StatelessWidget {
   }
 
   void _openHome(BuildContext context) {
+    // TODO: Move out navigation logic
     context.pushReplacement(BWMRoutes.home);
   }
 }
