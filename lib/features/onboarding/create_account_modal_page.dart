@@ -106,10 +106,9 @@ class CreateAccountModalPage extends StatelessWidget {
                   shape: const CircleBorder(),
                   backgroundColor: Colors.transparent,
                 ),
-                child: SvgPicture.asset(
-                  BWMAssets.close,
-                  width: 16,
-                  height: 16,
+                child: const Icon(
+                  Icons.close,
+                  size: 20,
                 ),
               ),
             ),
