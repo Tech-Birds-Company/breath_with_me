@@ -79,5 +79,12 @@
 
 	"safetyPrecautionsWelcomeTitle": "Hi, we are glad to see you!",
 	"safetyPrecautionsWelcomeDescription": "Before you continue, familiarize yourself with the safety techniques and breathing recommendations",
-	"safetyPrecautionsReadNow": "Read now"
+	"safetyPrecautionsReadNow": "Read now",
+	
+	"signInLogin": "Login",
+	"signInEmail": "Email",
+	"signInPassword": "Password",
+	"signInForgotPass": "Forgot Password",
+	"signInOrSignUp": "or Log in with",
+	"welcomeBack": "Welcome back!"
 }

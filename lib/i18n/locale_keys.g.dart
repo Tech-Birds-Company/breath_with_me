@@ -78,4 +78,10 @@ abstract class LocaleKeys {
   static const safetyPrecautionsWelcomeDescription =
       'safetyPrecautionsWelcomeDescription';
   static const safetyPrecautionsReadNow = 'safetyPrecautionsReadNow';
+  static const signInLogin = 'signInLogin';
+  static const signInEmail = 'signInEmail';
+  static const signInPassword = 'signInPassword';
+  static const signInForgotPass = 'signInForgotPass';
+  static const signInOrSignUp = 'signInOrSignUp';
+  static const welcomeBack = 'welcomeBack';
 }

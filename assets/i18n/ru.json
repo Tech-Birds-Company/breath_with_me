@@ -79,5 +79,12 @@
 
 	"safetyPrecautionsWelcomeTitle": "Привет, мы рады тебя видеть!",
 	"safetyPrecautionsWelcomeDescription": "Прежде чем продолжить, ознакомься с техникой безопасности и рекомендациями по дыханию",
-	"safetyPrecautionsReadNow": "Читать сейчас"
+	"safetyPrecautionsReadNow": "Читать сейчас",
+	
+	"signInLogin": "Login",
+	"signInEmail": "Email",
+	"signInPassword": "Password",
+	"signInForgotPass": "Forgot Password",
+	"signInOrSignUp": "or Log in with",
+	"welcomeBack": "Welcome back!"
 }
