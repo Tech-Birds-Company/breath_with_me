@@ -10,17 +10,18 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
   final Color secondaryBackground;
   final Color primaryText;
   final Color secondaryText;
+  final Color gray26;
 
-  const BWMTheme({
-    required this.primaryColor,
-    required this.secondaryColor,
-    required this.fourthColor,
-    required this.fifthColor,
-    required this.primaryBackground,
-    required this.secondaryBackground,
-    required this.primaryText,
-    required this.secondaryText,
-  });
+  const BWMTheme(
+      {required this.primaryColor,
+      required this.secondaryColor,
+      required this.fourthColor,
+      required this.fifthColor,
+      required this.primaryBackground,
+      required this.secondaryBackground,
+      required this.primaryText,
+      required this.secondaryText,
+      required this.gray26});
 
   @override
   ThemeExtension<BWMTheme> copyWith({
@@ -32,17 +33,18 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
     Color? secondaryBackground,
     Color? primaryText,
     Color? secondaryText,
+    Color? gray26,
   }) {
     return BWMTheme(
-      primaryColor: primaryColor ?? this.primaryColor,
-      secondaryColor: secondaryColor ?? this.secondaryColor,
-      fourthColor: fourthColor ?? this.fourthColor,
-      fifthColor: fifthColor ?? this.fifthColor,
-      primaryBackground: primaryBackground ?? this.primaryBackground,
-      secondaryBackground: secondaryBackground ?? this.secondaryBackground,
-      primaryText: primaryText ?? this.primaryText,
-      secondaryText: secondaryText ?? this.secondaryText,
-    );
+        primaryColor: primaryColor ?? this.primaryColor,
+        secondaryColor: secondaryColor ?? this.secondaryColor,
+        fourthColor: fourthColor ?? this.fourthColor,
+        fifthColor: fifthColor ?? this.fifthColor,
+        primaryBackground: primaryBackground ?? this.primaryBackground,
+        secondaryBackground: secondaryBackground ?? this.secondaryBackground,
+        primaryText: primaryText ?? this.primaryText,
+        secondaryText: secondaryText ?? this.secondaryText,
+        gray26: gray26 ?? this.gray26);
   }
 
   BWMTypography get typography => BWMTypography();
@@ -66,6 +68,7 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
           Color.lerp(secondaryBackground, other.secondaryBackground, t)!,
       primaryText: Color.lerp(primaryText, other.primaryText, t)!,
       secondaryText: Color.lerp(secondaryText, other.secondaryText, t)!,
+      gray26: Color.lerp(gray26, other.gray26, t)!,
     );
   }
 }

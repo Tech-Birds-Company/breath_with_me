@@ -5,4 +5,5 @@ final class BWMRoutes {
   static const String home = '/home';
   static const String player = '/track-player';
   static const String profile = '/profile';
+  static const String signIn = '/sign-in';
 }

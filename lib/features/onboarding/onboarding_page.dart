@@ -30,7 +30,7 @@ class OnboardingPage extends StatelessWidget {
               child: Align(
                 child: OnboardingCreateAccountButton(
                   onTap: () {
-                    context.pushReplacement(BWMRoutes.home);
+                    context.pushReplacement(BWMRoutes.signIn);
                   },
                 ),
               ),

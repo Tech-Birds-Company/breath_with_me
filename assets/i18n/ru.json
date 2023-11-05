@@ -25,6 +25,10 @@
 
 	"tutorJacksonNameKey": "Джексон",
 	"tutorDashaNameKey": "Даша",
-	"tutorJohnnyNameKey": "Джонни"
+	"tutorJohnnyNameKey": "Джонни",
 
+	"signInLogin": "Login",
+	"signInEmail": "Email",
+	"signInPassword": "Password",
+	"signInForgotPass": "Forgot Password"
 }
