@@ -8,7 +8,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class HomeHeader extends StatelessWidget {
-  const HomeHeader({super.key});
+  final VoidCallback onProfileTap;
+
+  const HomeHeader({
+    required this.onProfileTap,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +26,9 @@ class HomeHeader extends StatelessWidget {
               width: 111,
             ),
             const Spacer(),
-            const ProfileButton(),
+            ProfileButton(
+              onTap: onProfileTap,
+            ),
           ],
         ).toSliver,
         const SizedBox(height: 24).toSliver,
