@@ -35,6 +35,34 @@ class ProfilePage extends StatelessWidget {
               child: CustomScrollView(
                 slivers: [
                   const ProfileHeader().toSliver,
+                  const Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 32),
+                  ).toSliver,
+                  const Row(
+                    children: [
+                      Center(
+                        child: SizedBox(
+                          width: 350.0,
+                          height: 246.0,
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: Color(0xeb000000),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(12)),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ).toSliver,
+                  Center(
+                    child: Text(
+                      'a month of free premium for every 3 friends',
+                      style: theme.typography.label.copyWith(
+                        color: theme.fourthColor,
+                      ),
+                    ),
+                  ).toSliver,
                 ],
               ),
             ),
