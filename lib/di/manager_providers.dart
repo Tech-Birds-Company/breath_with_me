@@ -30,4 +30,6 @@ final class _ManagerProviders {
       return manager;
     },
   );
+
+  late final userManager = Provider((ref) => UserManager());
 }
