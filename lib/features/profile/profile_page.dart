@@ -1,6 +1,7 @@
 import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/extensions/widget.dart';
 import 'package:breathe_with_me/features/profile/widgets/profile_header.dart';
+import 'package:breathe_with_me/features/profile/widgets/profile_info_block.dart';
 import 'package:breathe_with_me/features/profile/widgets/profile_menu_button.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
@@ -38,24 +39,8 @@ class ProfilePage extends StatelessWidget {
                 slivers: [
                   const ProfileHeader().toSliver,
                   const Padding(
-                    padding: EdgeInsets.fromLTRB(0, 32, 0, 0),
-                  ).toSliver,
-                  const Row(
-                    children: [
-                      Center(
-                        child: SizedBox(
-                          width: 350,
-                          height: 246,
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              color: Color(0xeb000000),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12)),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                    padding: EdgeInsets.fromLTRB(20, 32, 20, 0),
+                    child: ProfileInfoBlock(),
                   ).toSliver,
                   Center(
                     child: Text(
