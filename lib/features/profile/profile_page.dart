@@ -1,5 +1,7 @@
+import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/extensions/widget.dart';
 import 'package:breathe_with_me/features/profile/widgets/profile_header.dart';
+import 'package:breathe_with_me/features/profile/widgets/profile_menu_button.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -36,14 +38,14 @@ class ProfilePage extends StatelessWidget {
                 slivers: [
                   const ProfileHeader().toSliver,
                   const Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 32),
+                    padding: EdgeInsets.fromLTRB(0, 32, 0, 0),
                   ).toSliver,
                   const Row(
                     children: [
                       Center(
                         child: SizedBox(
-                          width: 350.0,
-                          height: 246.0,
+                          width: 350,
+                          height: 246,
                           child: DecoratedBox(
                             decoration: BoxDecoration(
                               color: Color(0xeb000000),
@@ -62,6 +64,74 @@ class ProfilePage extends StatelessWidget {
                         color: theme.fourthColor,
                       ),
                     ),
+                  ).toSliver,
+                  const Padding(
+                    padding: EdgeInsets.fromLTRB(0, 36, 0, 0),
+                  ).toSliver,
+                  const ProfileMenuButton(
+                    title: 'Account settings',
+                    showArrow: true,
+                  ).toSliver,
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 18),
+                    child: Divider(
+                      thickness: 1,
+                      indent: 0,
+                      endIndent: 0,
+                      color: Color(0x995D5D6D),
+                    ),
+                  ).toSliver,
+                  const ProfileMenuButton(
+                    title: 'Language',
+                    subtitle: 'English',
+                    showArrow: true,
+                  ).toSliver,
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 18),
+                    child: Divider(
+                      thickness: 1,
+                      indent: 0,
+                      endIndent: 0,
+                      color: Color(0x995D5D6D),
+                    ),
+                  ).toSliver,
+                  const ProfileMenuButton(
+                    title: 'Reminder',
+                    subtitle: '10:00 AM; Tue, Thu, Sat',
+                    showArrow: true,
+                  ).toSliver,
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 18),
+                    child: Divider(
+                      thickness: 1,
+                      indent: 0,
+                      endIndent: 0,
+                      color: Color(0x995D5D6D),
+                    ),
+                  ).toSliver,
+                  const ProfileMenuButton(
+                    title: 'FAQ',
+                    showArrow: true,
+                  ).toSliver,
+                  const Padding(
+                    padding: EdgeInsets.fromLTRB(0, 0, 0, 89),
+                  ).toSliver,
+                  const ProfileMenuButton(
+                    title: 'Community chat',
+                    icon: BWMAssets.telegram,
+                  ).toSliver,
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 18),
+                    child: Divider(
+                      thickness: 1,
+                      indent: 0,
+                      endIndent: 0,
+                      color: Color(0x995D5D6D),
+                    ),
+                  ).toSliver,
+                  const ProfileMenuButton(
+                    title: 'Contact us',
+                    icon: BWMAssets.email,
                   ).toSliver,
                 ],
               ),

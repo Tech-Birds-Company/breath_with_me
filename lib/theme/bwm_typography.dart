@@ -10,7 +10,11 @@ abstract interface class Typography {
   TextStyle get bodyMTrue;
   TextStyle get label;
   TextStyle get labelM;
+<<<<<<< HEAD
   TextStyle get footer;
+=======
+  TextStyle get footnote;
+>>>>>>> ba9dfbf (Skeleton)
 }
 
 final class BWMTypography extends Typography {
@@ -85,5 +89,13 @@ final class BWMTypography extends Typography {
         fontWeight: FontWeight.w400,
         fontSize: 14,
         height: 18 / 14,
+        );
+      
+  @override
+  TextStyle get footnote => const TextStyle(
+        fontFamily: _fontFamily,
+        fontWeight: FontWeight.w400,
+        fontSize: 13,
+        height: 16 / 12,
       );
 }
