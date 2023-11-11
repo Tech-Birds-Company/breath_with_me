@@ -10,6 +10,7 @@ abstract interface class Typography {
   TextStyle get bodyMTrue;
   TextStyle get label;
   TextStyle get labelM;
+  TextStyle get footnote;
 }
 
 final class BWMTypography extends Typography {
@@ -76,5 +77,13 @@ final class BWMTypography extends Typography {
         fontWeight: FontWeight.w700,
         fontSize: 16,
         height: 20 / 16,
+      );
+
+  @override
+  TextStyle get footnote => const TextStyle(
+        fontFamily: _fontFamily,
+        fontWeight: FontWeight.w400,
+        fontSize: 13,
+        height: 16 / 12,
       );
 }
