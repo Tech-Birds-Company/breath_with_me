@@ -9,9 +9,9 @@ class ProfileInfoBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    return const Stack(
+    return Stack(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 246,
           width: 350,
           child: DecoratedBox(
@@ -21,10 +21,133 @@ class ProfileInfoBlock extends StatelessWidget {
             ),
           ),
         ),
-        Text(
-          'data',
-          style: TextStyle(color: Colors.white),
-        )
+        Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                    child: Center(
+                      child: SvgPicture.asset(
+                        BWMAssets.checkmark,
+                        fit: BoxFit.cover,
+                        width: 20,
+                        height: 20,
+                        colorFilter: ColorFilter.mode(
+                          theme.primaryColor,
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 280,
+                    child: Text(
+                      'Extended statistics of your breathing progress',
+                      style: theme.typography.bodyM.copyWith(
+                        color: theme.primaryText,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                    child: Center(
+                      child: SvgPicture.asset(
+                        BWMAssets.checkmark,
+                        fit: BoxFit.cover,
+                        width: 20,
+                        height: 20,
+                        colorFilter: ColorFilter.mode(
+                          theme.primaryColor,
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 280,
+                    child: Text(
+                      'Ability to restore your practice streak 3 times',
+                      style: theme.typography.bodyM.copyWith(
+                        color: theme.primaryText,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Center(
+                child: Text(
+                  'Go premium',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  const Text(
+                    '5',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  SizedBox(
+                    width: 12,
+                  ),
+                  const SizedBox(
+                    width: 50,
+                    child: Text(
+                      'Friends joined',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  const VerticalDivider(
+                    thickness: 5,
+                    color: Colors.white,
+                  ),
+                  const Text(
+                    '2/3',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  SizedBox(
+                    width: 12,
+                  ),
+                  const SizedBox(
+                    width: 150,
+                    child: Text(
+                      'Joined friends until free premium',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  Center(
+                    child: SvgPicture.asset(
+                      BWMAssets.share,
+                      fit: BoxFit.cover,
+                      alignment: Alignment.centerRight,
+                      width: 20,
+                      height: 20,
+                      colorFilter: ColorFilter.mode(
+                        theme.primaryColor,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }
