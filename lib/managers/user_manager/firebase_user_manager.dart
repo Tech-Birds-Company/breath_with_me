@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-// import 'package:apple_sign_in/apple_sign_in.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 final class FirebaseUserManager extends UserManager {
   User? user;
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  late final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   @override
   Future<User?> signInWithEmail(String email, String password) async {
@@ -20,7 +20,7 @@ final class FirebaseUserManager extends UserManager {
 
   @override
   Future<User?> signInWithGoogle() async {
-    final googleSignIn = GoogleSignIn();
+    final googleSignIn = GoogleSignIn(scopes: ['email']);
     final googleUser = await googleSignIn.signIn();
 
     if (googleUser != null) {
@@ -43,40 +43,25 @@ final class FirebaseUserManager extends UserManager {
     }
   }
 
-  // Future<User?> signInWithApple() {
-  //       final AuthorizationResult result = await AppleSignIn.performRequests(
-  //       [AppleIdRequest(requestedScopes: scopes)]);
-  //   switch (result.status) {
-  //     case AuthorizationStatus.authorized:
-  //       final appleIdCredential = result.credential;
-  //       final oAuthProvider = OAuthProvider('apple.com');
-  //       final credential = oAuthProvider.credential(
-  //         idToken: String.fromCharCodes(appleIdCredential.identityToken),
-  //         accessToken:
-  //             String.fromCharCodes(appleIdCredential.authorizationCode),
-  //       );
+  @override
+  Future<User?> signInWithApple() async {
+    final appleIdCredential = await SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+    );
 
-  //       final authResult = await _firebaseAuth.signInWithCredential(credential);
-  //       final firebaseUser = authResult.user;
-  //       if (scopes.contains(Scope.fullName)) {
-  //         final String displayName =
-  //             '${appleIdCredential.fullName.givenName} ${appleIdCredential.fullName.familyName}';
-  //         await firebaseUser.updateProfile(displayName: displayName);
-  //       }
-  //       return _userFromFirebase(firebaseUser);
-  //     case AuthorizationStatus.error:
-  //       throw PlatformException(
-  //         code: 'ERROR_AUTHORIZATION_DENIED',
-  //         message: result.error.toString(),
-  //       );
-  //     case AuthorizationStatus.cancelled:
-  //       throw PlatformException(
-  //         code: 'ERROR_ABORTED_BY_USER',
-  //         message: 'Sign in aborted by user',
-  //       );
-  //   }
-  //   return null;
-  // }
+    final oAuthProvider = OAuthProvider('apple.com');
+    final credential = oAuthProvider.credential(
+      idToken: appleIdCredential.identityToken,
+      accessToken: appleIdCredential.authorizationCode,
+    );
+
+    final authResult = await _firebaseAuth.signInWithCredential(credential);
+
+    return authResult.user;
+  }
 
   @override
   Future<void> signOut() async {

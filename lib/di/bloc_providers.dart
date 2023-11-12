@@ -20,4 +20,11 @@ final class _BlocProviders {
       return bloc;
     },
   );
+
+  late final onboarding = Provider(
+    (ref) => OnboardingBloc(
+      ref.read(Di.shared.manager.navigation),
+      ref.read(Di.shared.manager.userManager),
+    ),
+  );
 }
