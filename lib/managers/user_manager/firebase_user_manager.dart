@@ -15,12 +15,18 @@ final class FirebaseUserManager extends UserManager {
       email: email,
       password: password,
     );
+
     return userCredential.user;
   }
 
   @override
   Future<User?> signInWithGoogle() async {
-    final googleSignIn = GoogleSignIn(scopes: ['email']);
+    final googleSignIn = GoogleSignIn(
+      scopes: [
+        'email',
+        'https://www.googleapis.com/auth/userinfo.profile',
+      ],
+    );
     final googleUser = await googleSignIn.signIn();
 
     if (googleUser != null) {
@@ -33,14 +39,12 @@ final class FirebaseUserManager extends UserManager {
           ),
         );
         return userCredential.user;
-      } else {
-        print('Missing Google Auth Token');
-        return null;
       }
-    } else {
-      print('Sign in aborted by user');
-      return null;
     }
+
+    // TODO(bestk1ngarthur): If first sign in -> update display name
+
+    return null;
   }
 
   @override
@@ -60,11 +64,36 @@ final class FirebaseUserManager extends UserManager {
 
     final authResult = await _firebaseAuth.signInWithCredential(credential);
 
+    // TODO(bestk1ngarthur): If first sign in -> update display name
+
     return authResult.user;
+  }
+
+  @override
+  Future<User?> signUpWithEmail(
+    String name,
+    String email,
+    String password,
+  ) async {
+    final credential =
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+
+    await credential.user?.updateDisplayName(name);
+    await sendEmailVerification();
+
+    return credential.user;
   }
 
   @override
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
+  }
+
+  @override
+  Future<void> sendEmailVerification() async {
+    await _firebaseAuth.currentUser?.sendEmailVerification();
   }
 }

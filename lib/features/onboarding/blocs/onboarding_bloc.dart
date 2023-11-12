@@ -23,17 +23,17 @@ final class OnboardingBloc extends BlocBase<OnboardingState> {
   }
 
   Future<void> signUpWithEmail() async {
-    // TODO: Open email sign up flow
+    // TODO(bestk1ngarthur): Open email sign up flow
     _openMain();
   }
 
   Future<void> signIn() async {
-    // TODO: Open sign in flow
+    // TODO(bestk1ngarthur): Open sign in flow
     _openMain();
   }
 
   void openContactUs() {
-    // TODO: Open contact us
+    // TODO(bestk1ngarthur): Open contact us
     _openMain();
   }
 
