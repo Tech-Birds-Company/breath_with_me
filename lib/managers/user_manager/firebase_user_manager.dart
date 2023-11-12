@@ -6,7 +6,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 final class FirebaseUserManager extends UserManager {
-  User? user;
   late final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   @override
