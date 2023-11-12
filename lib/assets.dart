@@ -17,6 +17,8 @@ final class BWMAssets {
   static const menuArrow = '$_icons/menu_button_arrow.svg';
   static const email = '$_icons/email.svg';
   static const telegram = '$_icons/telegram.svg';
+  static const checkmark = '$_icons/checkmark.svg';
+  static const share = '$_icons/share.svg';
 
   static const appIcon = '$_icons/${BWMConstants.appIconFilename}';
   static const purpleCover = '$_icons/purple_cover.png';
