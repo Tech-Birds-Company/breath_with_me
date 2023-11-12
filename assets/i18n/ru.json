@@ -30,5 +30,7 @@
 	"signInLogin": "Login",
 	"signInEmail": "Email",
 	"signInPassword": "Password",
-	"signInForgotPass": "Forgot Password"
+	"signInForgotPass": "Forgot Password",
+	"signInOrSignUp": "or Log in with",
+	"welcomeBack": "Welcome back!"
 }

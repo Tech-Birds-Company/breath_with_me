@@ -1,6 +1,7 @@
 import 'package:breathe_with_me/assets.dart';
-import 'package:breathe_with_me/features/sign_in/widgets/button_with_colored_border.dart';
-import 'package:breathe_with_me/features/sign_in/widgets/obscured_field.dart';
+import 'package:breathe_with_me/design/button_with_colored_border.dart';
+import 'package:breathe_with_me/design/obscured_field.dart';
+
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -33,7 +34,7 @@ class LoginScreen extends StatelessWidget {
           children: <Widget>[
             const Spacer(),
             const Text(
-              'Welcome back!',
+              LocaleKeys.welcomeBack,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,
@@ -63,7 +64,7 @@ class LoginScreen extends StatelessWidget {
                 // Handle forgot password logic here
               },
               child: Text(
-                'Forgot password',
+                LocaleKeys.signInForgotPass,
                 style: TextStyle(color: theme.secondaryColor),
               ),
             ),
@@ -79,7 +80,7 @@ class LoginScreen extends StatelessWidget {
                     const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('or Log in with',
+                        Text(LocaleKeys.signInOrSignUp,
                             style: TextStyle(color: Colors.white)),
                       ],
                     ),
