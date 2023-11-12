@@ -24,24 +24,24 @@ final class OnboardingBloc extends BlocBase<OnboardingState> {
 
   Future<void> signUpWithEmail() async {
     // TODO(bestk1ngarthur): Open email sign up flow
-    _openMain();
+    _openHome();
   }
 
   Future<void> signIn() async {
     // TODO(bestk1ngarthur): Open sign in flow
-    _openMain();
+    _openHome();
   }
 
   void openContactUs() {
     // TODO(bestk1ngarthur): Open contact us
-    _openMain();
+    _openHome();
   }
 
   void closeCreateAccountModal() {
     _navigationManager.router.pop();
   }
 
-  void _openMain() {
-    _navigationManager.replaceMain();
+  void _openHome() {
+    _navigationManager.replaceHome();
   }
 }

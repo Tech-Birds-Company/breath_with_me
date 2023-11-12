@@ -47,7 +47,7 @@ final class NavigationManager {
     );
   }
 
-  void replaceMain() {
+  void replaceHome() {
     router.pushReplacement(BWMRoutes.home);
   }
 }
