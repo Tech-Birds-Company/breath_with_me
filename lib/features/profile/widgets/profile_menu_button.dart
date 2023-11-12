@@ -41,6 +41,7 @@ class ProfileMenuButton extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(0, 0, 12, 0),
           ),
         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               title,
@@ -54,7 +55,7 @@ class ProfileMenuButton extends StatelessWidget {
                 style: theme.typography.footnote.copyWith(
                   color: theme.secondaryText,
                 ),
-              )
+              ),
           ],
         ),
         const Spacer(),

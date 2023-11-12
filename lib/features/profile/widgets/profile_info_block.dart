@@ -130,6 +130,7 @@ class ProfileInfoBlock extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
+                  const Spacer(),
                   Center(
                     child: SvgPicture.asset(
                       BWMAssets.share,
