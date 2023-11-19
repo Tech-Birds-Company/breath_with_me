@@ -6,4 +6,5 @@ final class BWMRoutes {
   static const String player = '/track-player';
   static const String profile = '/profile';
   static const String signIn = '/sign-in';
+  static const String signUp = '/sing-up';
 }

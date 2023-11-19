@@ -2,6 +2,7 @@ import 'package:breathe_with_me/features/home/home_page.dart';
 import 'package:breathe_with_me/features/onboarding/onboarding_page.dart';
 import 'package:breathe_with_me/features/profile/profile_page.dart';
 import 'package:breathe_with_me/features/sign_in/sign_in_page.dart';
+import 'package:breathe_with_me/features/sign_up/sign_up_page.dart';
 import 'package:breathe_with_me/features/track_player/track_player_page.dart';
 import 'package:breathe_with_me/managers/navigation_manager/routes.dart';
 import 'package:go_router/go_router.dart';
@@ -20,6 +21,12 @@ final class NavigationManager {
         path: BWMRoutes.signIn,
         builder: (context, state) {
           return const SignInPageWidget();
+        },
+      ),
+      GoRoute(
+        path: BWMRoutes.signUp,
+        builder: (context, state) {
+          return const SignUpPage();
         },
       ),
       GoRoute(

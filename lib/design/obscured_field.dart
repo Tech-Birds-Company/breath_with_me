@@ -36,7 +36,16 @@ class _ObscuredFieldState extends State<ObscuredField> {
         prefixIcon: SizedBox(
           width: 24,
           height: 24,
-          child: Center(child: SvgPicture.asset(widget.prefixIcon)),
+          child: Center(
+            child: SvgPicture.asset(
+              widget.prefixIcon,
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(
+                theme.secondaryColor,
+                BlendMode.srcIn,
+              ),
+            ),
+          ),
         ),
         suffixIcon: widget.enableObscuredTextToggle
             ? GestureDetector(
