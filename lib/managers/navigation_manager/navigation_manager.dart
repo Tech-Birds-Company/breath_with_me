@@ -29,7 +29,9 @@ final class NavigationManager {
             final path = routeMatch?.matchedLocation;
             if (path == null ||
                 path == BWMRoutes.onboarding ||
-                path == BWMRoutes.createAccount) {
+                path == BWMRoutes.createAccount ||
+                path == BWMRoutes.signInPage ||
+                path == BWMRoutes.signUpPage) {
               popToRoot();
               router.pushReplacement(BWMRoutes.home);
             }
@@ -112,4 +114,8 @@ final class NavigationManager {
     _userSubscription?.cancel();
     _userSubscription = null;
   }
+
+  void singUpPage() => router.push(BWMRoutes.signUpPage);
+
+  void singInPage() => router.push(BWMRoutes.signInPage);
 }

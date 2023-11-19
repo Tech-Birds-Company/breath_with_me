@@ -15,6 +15,7 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
   final Color gray4;
   final Color gray6;
   final Color gray26;
+  final Color red;
 
   const BWMTheme({
     required this.primaryColor,
@@ -30,6 +31,7 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
     required this.gray4,
     required this.gray6,
     required this.gray26,
+    required this.red,
   });
 
   @override
@@ -47,21 +49,24 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
     Color? gray4,
     Color? gray6,
     Color? gray26,
+    Color? red,
   }) {
     return BWMTheme(
-        primaryColor: primaryColor ?? this.primaryColor,
-        secondaryColor: secondaryColor ?? this.secondaryColor,
-        fourthColor: fourthColor ?? this.fourthColor,
-        fifthColor: fifthColor ?? this.fifthColor,
-        primaryBackground: primaryBackground ?? this.primaryBackground,
-        secondaryBackground: secondaryBackground ?? this.secondaryBackground,
-        primaryText: primaryText ?? this.primaryText,
-        secondaryText: secondaryText ?? this.secondaryText,
-        green3: green3 ?? this.green3,
-        gray3: gray3 ?? this.gray3,
-        gray4: gray4 ?? this.gray4,
-        gray6: gray6 ?? this.gray6,
-        gray26: gray26 ?? this.gray26);
+      primaryColor: primaryColor ?? this.primaryColor,
+      secondaryColor: secondaryColor ?? this.secondaryColor,
+      fourthColor: fourthColor ?? this.fourthColor,
+      fifthColor: fifthColor ?? this.fifthColor,
+      primaryBackground: primaryBackground ?? this.primaryBackground,
+      secondaryBackground: secondaryBackground ?? this.secondaryBackground,
+      primaryText: primaryText ?? this.primaryText,
+      secondaryText: secondaryText ?? this.secondaryText,
+      green3: green3 ?? this.green3,
+      gray3: gray3 ?? this.gray3,
+      gray4: gray4 ?? this.gray4,
+      gray6: gray6 ?? this.gray6,
+      gray26: gray26 ?? this.gray26,
+      red: red ?? this.red,
+    );
   }
 
   BWMTypography get typography => BWMTypography();
@@ -90,6 +95,7 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
       gray4: Color.lerp(gray4, other.gray4, t)!,
       gray6: Color.lerp(gray6, other.gray6, t)!,
       gray26: Color.lerp(gray26, other.gray26, t)!,
+      red: Color.lerp(red, other.red, t)!,
     );
   }
 }

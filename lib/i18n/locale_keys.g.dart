@@ -1,6 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class LocaleKeys {
+abstract class  LocaleKeys {
   static const appName = 'appName';
   static const appBarBackTitle = 'appBarBackTitle';
   static const onboardingCreateAccount = 'onboardingCreateAccount';
@@ -11,8 +11,7 @@ abstract class LocaleKeys {
   static const onboardingPage2Subtitle = 'onboardingPage2Subtitle';
   static const onboardingPage3Subtitle = 'onboardingPage3Subtitle';
   static const createAccountHeaderTitle = 'createAccountHeaderTitle';
-  static const createAccountHeaderConjunction =
-      'createAccountHeaderConjunction';
+  static const createAccountHeaderConjunction = 'createAccountHeaderConjunction';
   static const createAccountHeaderSubtitle = 'createAccountHeaderSubtitle';
   static const createAccountHeaderLogin = 'createAccountHeaderLogin';
   static const createAccountContact = 'createAccountContact';
@@ -72,11 +71,9 @@ abstract class LocaleKeys {
   static const reminderWd6Short = 'reminderWd6Short';
   static const reminderWd7Short = 'reminderWd7Short';
   static const reminderNotificationTitle = 'reminderNotificationTitle';
-  static const reminderNotificationDescription =
-      'reminderNotificationDescription';
+  static const reminderNotificationDescription = 'reminderNotificationDescription';
   static const safetyPrecautionsWelcomeTitle = 'safetyPrecautionsWelcomeTitle';
-  static const safetyPrecautionsWelcomeDescription =
-      'safetyPrecautionsWelcomeDescription';
+  static const safetyPrecautionsWelcomeDescription = 'safetyPrecautionsWelcomeDescription';
   static const safetyPrecautionsReadNow = 'safetyPrecautionsReadNow';
   static const signInLogin = 'signInLogin';
   static const signInEmail = 'signInEmail';
@@ -84,4 +81,8 @@ abstract class LocaleKeys {
   static const signInForgotPass = 'signInForgotPass';
   static const signInOrSignUp = 'signInOrSignUp';
   static const welcomeBack = 'welcomeBack';
+  static const welcomeBreather = 'welcomeBreather';
+  static const confirmPassword = 'confirmPassword';
+  static const yourName = 'yourName';
+
 }

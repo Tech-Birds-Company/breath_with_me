@@ -5,29 +5,51 @@ import 'package:flutter_svg/svg.dart';
 class ObscuredField extends StatefulWidget {
   final String hintText;
   final String prefixIcon;
-  final bool enableObscuredTextToggle; // New parameter
+  final bool enableObscuredTextToggle;
+  final void Function(String text) textChange;
 
   const ObscuredField({
     required this.hintText,
     required this.prefixIcon,
-    this.enableObscuredTextToggle = false, // Default is true
+    required this.textChange,
+    this.enableObscuredTextToggle = false,
     super.key,
   });
 
   @override
-  _ObscuredFieldState createState() => _ObscuredFieldState();
+  ObscuredFieldState createState() => ObscuredFieldState();
 }
 
-class _ObscuredFieldState extends State<ObscuredField> {
-  late bool _isObscured = true; // Default value
+class ObscuredFieldState extends State<ObscuredField> {
+  var _isObscured = true;
+  late final _controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(_onControllerChanged);
+  }
+
+  void _onControllerChanged() {
+    widget.textChange(_controller.text);
+  }
+
+  @override
+  void dispose() {
+    _controller
+      ..removeListener(_onControllerChanged)
+      ..dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
 
     return TextField(
+      controller: _controller,
       style: TextStyle(color: theme.primaryText),
-      obscureText: widget.enableObscuredTextToggle ? _isObscured : false,
+      obscureText: widget.enableObscuredTextToggle && _isObscured,
       decoration: InputDecoration(
         filled: true,
         fillColor: theme.gray26,
@@ -36,7 +58,16 @@ class _ObscuredFieldState extends State<ObscuredField> {
         prefixIcon: SizedBox(
           width: 24,
           height: 24,
-          child: Center(child: SvgPicture.asset(widget.prefixIcon)),
+          child: Center(
+            child: SvgPicture.asset(
+              widget.prefixIcon,
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(
+                theme.secondaryColor,
+                BlendMode.srcIn,
+              ),
+            ),
+          ),
         ),
         suffixIcon: widget.enableObscuredTextToggle
             ? GestureDetector(

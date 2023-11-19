@@ -86,5 +86,8 @@
 	"signInPassword": "Password",
 	"signInForgotPass": "Forgot Password",
 	"signInOrSignUp": "or Log in with",
-	"welcomeBack": "Welcome back!"
+	"welcomeBack": "Welcome back!",
+	"welcomeBreather": "Welcome, breather!",
+	"confirmPassword": "Confirm Password",
+	"yourName": "Your name"
 }

@@ -38,4 +38,12 @@ final class OnboardingBloc extends BlocBase<OnboardingState> {
   }
 
   void onCloseCreateAccountModal() => _navigationManager.router.pop();
+
+  void signUpWithEmail() {
+    _navigationManager.singUpPage();
+  }
+
+  void signIn() {
+    _navigationManager.singInPage();
+  }
 }
