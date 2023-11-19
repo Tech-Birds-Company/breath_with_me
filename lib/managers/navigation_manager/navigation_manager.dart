@@ -1,6 +1,7 @@
 import 'package:breathe_with_me/features/home/home_page.dart';
 import 'package:breathe_with_me/features/onboarding/create_account_modal_page.dart';
 import 'package:breathe_with_me/features/onboarding/onboarding_page.dart';
+import 'package:breathe_with_me/features/profile/profile_page.dart';
 import 'package:breathe_with_me/features/track_player/track_player_page.dart';
 import 'package:breathe_with_me/managers/navigation_manager/routes.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,12 @@ final class NavigationManager {
         },
       ),
       GoRoute(
+        path: BWMRoutes.profile,
+        builder: (context, state) {
+          return const ProfilePage();
+        },
+      ),
+      GoRoute(
         path: BWMRoutes.player,
         builder: (context, state) {
           final trackId = state.uri.queryParameters['trackId']!;
@@ -41,10 +48,15 @@ final class NavigationManager {
   );
 
   void openTrackPlayer(String trackId) {
-    router.push(
-      Uri(path: BWMRoutes.player, queryParameters: {'trackId': trackId})
-          .toString(),
+    final uri = Uri(
+      path: BWMRoutes.player,
+      queryParameters: {'trackId': trackId},
     );
+    router.push(uri.toString());
+  }
+
+  void openProfile() {
+    router.push(BWMRoutes.profile);
   }
 
   void replaceHome() {
