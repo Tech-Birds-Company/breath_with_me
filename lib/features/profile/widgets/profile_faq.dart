@@ -30,10 +30,23 @@ class ProfileFAQ extends StatelessWidget {
           ),
           child: SafeArea(
             child: ExpansionTile(
-              title: Text('ExpansionTile 1'),
-              subtitle: Text('Trailing expansion arrow icon'),
+              iconColor: theme.green4,
+              collapsedIconColor: theme.green4,
+              expandedAlignment: Alignment.centerLeft,
+              title: Text(
+                'Question',
+                style: theme.typography.heading3.copyWith(
+                  color: theme.gray4,
+                ),
+              ),
               children: <Widget>[
-                ListTile(title: Text('This is tile number 1')),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Text('Answer',
+                      style: theme.typography.bodyM.copyWith(
+                        color: theme.gray6,
+                      )),
+                )
               ],
             ),
           ),

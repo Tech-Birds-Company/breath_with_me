@@ -40,13 +40,13 @@ class BWMAppBar extends StatelessWidget implements PreferredSizeWidget {
                     Icon(
                       Icons.arrow_back,
                       size: 24,
-                      color: theme.greenColor,
+                      color: theme.green4,
                     ),
                     const SizedBox(width: 8),
                     Text(
                       LocaleKeys.appBarBackTitle.tr(),
-                      style: theme.typography.bodyM.copyWith(
-                        color: theme.greenColor,
+                      style: theme.typography.bodyMTrue.copyWith(
+                        color: theme.green4,
                       ),
                     ),
                   ],
