@@ -36,7 +36,7 @@ class CreateAccountModalPage extends StatelessWidget {
             Positioned.fill(
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
-                child: Container(
+                child: ColoredBox(
                   color: Colors.black.withAlpha(60),
                 ),
               ),
