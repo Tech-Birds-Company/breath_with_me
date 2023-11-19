@@ -12,7 +12,7 @@ class SignInPageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LoginScreen();
+    return const LoginScreen();
   }
 }
 
@@ -27,15 +27,15 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             const Spacer(),
-            const Text(
-              LocaleKeys.welcomeBack,
-              style: TextStyle(
+            Text(
+              LocaleKeys.welcomeBack.tr(),
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -64,7 +64,7 @@ class LoginScreen extends StatelessWidget {
                 // Handle forgot password logic here
               },
               child: Text(
-                LocaleKeys.signInForgotPass,
+                LocaleKeys.signInForgotPass.tr(),
                 style: TextStyle(color: theme.secondaryColor),
               ),
             ),
@@ -77,11 +77,13 @@ class LoginScreen extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min, // Add this line
                   children: [
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(LocaleKeys.signInOrSignUp,
-                            style: TextStyle(color: Colors.white)),
+                        Text(
+                          LocaleKeys.signInOrSignUp.tr(),
+                          style: const TextStyle(color: Colors.white),
+                        ),
                       ],
                     ),
                     Row(
@@ -95,9 +97,10 @@ class LoginScreen extends StatelessWidget {
                         ),
                         const SizedBox(width: 20),
                         IconButton(
-                          icon: const Icon(Icons.circle,
-                              color: Colors
-                                  .white), // Note: You'll need a custom Google icon here
+                          icon: const Icon(
+                            Icons.circle,
+                            color: Colors.white,
+                          ), // Note: You'll need a custom Google icon here
                           onPressed: () {
                             // Handle login with Google logic here
                           },
