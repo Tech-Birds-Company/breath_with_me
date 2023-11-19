@@ -1,5 +1,7 @@
 {
 	"appName": "BreatheWithMe",
+	"appBarBackTitle": "Назад",
+
 	"onboardingCreateAccount": "Создать аккаунт",
 	"onboardingPage1Title":"Как ты хочешь себя чувствовать?",
 	"onboardingPage2Title":"Испытай силу дыхания",
@@ -25,6 +27,7 @@
 
 	"tutorJacksonNameKey": "Джексон",
 	"tutorDashaNameKey": "Даша",
-	"tutorJohnnyNameKey": "Джонни"
+	"tutorJohnnyNameKey": "Джонни",
 
+	"profileFaqTitle": "FAQ"
 }

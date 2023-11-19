@@ -10,6 +10,7 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
   final Color secondaryBackground;
   final Color primaryText;
   final Color secondaryText;
+  final Color greenColor;
 
   const BWMTheme({
     required this.primaryColor,
@@ -20,6 +21,7 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
     required this.secondaryBackground,
     required this.primaryText,
     required this.secondaryText,
+    required this.greenColor,
   });
 
   @override
@@ -32,6 +34,7 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
     Color? secondaryBackground,
     Color? primaryText,
     Color? secondaryText,
+    Color? greenColor,
   }) {
     return BWMTheme(
       primaryColor: primaryColor ?? this.primaryColor,
@@ -42,6 +45,7 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
       secondaryBackground: secondaryBackground ?? this.secondaryBackground,
       primaryText: primaryText ?? this.primaryText,
       secondaryText: secondaryText ?? this.secondaryText,
+      greenColor: greenColor ?? this.greenColor,
     );
   }
 
@@ -66,6 +70,7 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
           Color.lerp(secondaryBackground, other.secondaryBackground, t)!,
       primaryText: Color.lerp(primaryText, other.primaryText, t)!,
       secondaryText: Color.lerp(secondaryText, other.secondaryText, t)!,
+      greenColor: Color.lerp(secondaryText, other.secondaryText, t)!,
     );
   }
 }

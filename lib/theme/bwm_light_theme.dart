@@ -12,5 +12,6 @@ final class BWMLightTheme extends BWMTheme {
     super.secondaryBackground = const Color(0xFF333333),
     super.primaryText = const Color(0xFFFFFFFF),
     super.secondaryText = const Color(0xFF828282),
+    super.greenColor = const Color(0xFF6FCF97),
   });
 }
