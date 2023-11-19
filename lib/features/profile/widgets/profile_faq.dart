@@ -42,10 +42,12 @@ class ProfileFAQ extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Text('Answer',
-                      style: theme.typography.bodyM.copyWith(
-                        color: theme.gray6,
-                      )),
+                  child: Text(
+                    'Answer',
+                    style: theme.typography.bodyM.copyWith(
+                      color: theme.gray6,
+                    ),
+                  ),
                 )
               ],
             ),
