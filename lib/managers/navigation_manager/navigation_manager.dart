@@ -1,4 +1,5 @@
 import 'package:breathe_with_me/features/home/home_page.dart';
+import 'package:breathe_with_me/features/onboarding/create_account_modal_page.dart';
 import 'package:breathe_with_me/features/onboarding/onboarding_page.dart';
 import 'package:breathe_with_me/features/profile/profile_page.dart';
 import 'package:breathe_with_me/features/track_player/track_player_page.dart';
@@ -37,6 +38,12 @@ final class NavigationManager {
           );
         },
       ),
+      GoRoute(
+        path: BWMRoutes.createAccount,
+        builder: (context, state) {
+          return const CreateAccountModalPage();
+        },
+      )
     ],
   );
 

@@ -9,6 +9,13 @@ abstract class LocaleKeys {
   static const onboardingPage1Subtitle = 'onboardingPage1Subtitle';
   static const onboardingPage2Subtitle = 'onboardingPage2Subtitle';
   static const onboardingPage3Subtitle = 'onboardingPage3Subtitle';
+  static const createAccountHeaderTitle = 'createAccountHeaderTitle';
+  static const createAccountHeaderConjunction =
+      'createAccountHeaderConjunction';
+  static const createAccountHeaderSubtitle = 'createAccountHeaderSubtitle';
+  static const createAccountHeaderLogin = 'createAccountHeaderLogin';
+  static const createAccountContact = 'createAccountContact';
+  static const createAccountAgreement = 'createAccountAgreement';
   static const practicesTitle = 'practicesTitle';
   static const practicesGuestWelcome = 'practicesGuestWelcome';
   static const practicesHeading = 'practicesHeading';
