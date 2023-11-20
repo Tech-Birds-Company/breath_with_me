@@ -58,4 +58,8 @@ final class NavigationManager {
   void openProfile() {
     router.push(BWMRoutes.profile);
   }
+
+  void replaceHome() {
+    router.pushReplacement(BWMRoutes.home);
+  }
 }

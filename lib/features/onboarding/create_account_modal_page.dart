@@ -1,20 +1,22 @@
 import 'dart:ui';
+
 import 'package:breathe_with_me/assets.dart';
+import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/onboarding/widgets/create_account_header.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
-import 'package:breathe_with_me/managers/navigation_manager/routes.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CreateAccountModalPage extends StatelessWidget {
+// TODO(bestk1ngarthur): Hide apple sign if anavailable
+
+class CreateAccountModalPage extends ConsumerWidget {
   const CreateAccountModalPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bloc = ref.read(Di.shared.bloc.onboarding);
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return Scaffold(
       backgroundColor: Colors.black,
@@ -39,22 +41,10 @@ class CreateAccountModalPage extends StatelessWidget {
               children: [
                 const Spacer(),
                 CreateAccountHeader(
-                  onApplePressed: () {
-                    // TODO(bestk1ngarthur): Auth with Apple
-                    _openHome(context);
-                  },
-                  onGooglePressed: () {
-                    // TODO(bestk1ngarthur): Auth with Google
-                    _openHome(context);
-                  },
-                  onEmailPressed: () {
-                    // TODO(bestk1ngarthur): Open email flow
-                    _openHome(context);
-                  },
-                  onLoginPressed: () {
-                    // TODO(bestk1ngarthur): Open login flow
-                    _openHome(context);
-                  },
+                  onApplePressed: bloc.signUpWithApple,
+                  onGooglePressed: bloc.signUpWithGoogle,
+                  onEmailPressed: bloc.signUpWithEmail,
+                  onLoginPressed: bloc.signIn,
                 ),
                 const Spacer(),
                 TextButton(
@@ -62,9 +52,7 @@ class CreateAccountModalPage extends StatelessWidget {
                     shape: const StadiumBorder(),
                     backgroundColor: const Color(0x24BDD6E9),
                   ),
-                  onPressed: () {
-                    _openHome(context);
-                  },
+                  onPressed: bloc.openContactUs,
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text(
@@ -92,10 +80,7 @@ class CreateAccountModalPage extends StatelessWidget {
               top: 0,
               right: 0,
               child: ElevatedButton(
-                onPressed: () {
-                  // TODO: Move out navigation logic
-                  Navigator.pop(context);
-                },
+                onPressed: bloc.closeCreateAccountModal,
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(20, 20),
                   shape: const CircleBorder(),
@@ -111,10 +96,5 @@ class CreateAccountModalPage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void _openHome(BuildContext context) {
-    // TODO: Move out navigation logic
-    context.pushReplacement(BWMRoutes.home);
   }
 }
