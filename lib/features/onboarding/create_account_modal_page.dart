@@ -17,12 +17,6 @@ class CreateAccountModalPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        toolbarHeight: 0,
-        systemOverlayStyle: SystemUiOverlayStyle.light,
-      ),
       backgroundColor: Colors.black,
       body: SafeArea(
         child: Stack(
