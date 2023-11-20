@@ -20,12 +20,6 @@ class CreateAccountModalPage extends ConsumerWidget {
     final bloc = ref.read(Di.shared.bloc.onboarding);
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        toolbarHeight: 0,
-        systemOverlayStyle: SystemUiOverlayStyle.light,
-      ),
       backgroundColor: Colors.black,
       body: SafeArea(
         child: Stack(

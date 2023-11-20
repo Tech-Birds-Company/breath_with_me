@@ -42,7 +42,11 @@ class OnboardingPage extends StatelessWidget {
   }
 
   void _openCreateAccountPage(BuildContext context) {
-    showCupertinoModalPopup<CreateAccountModalPage>(
+    showModalBottomSheet<CreateAccountModalPage>(
+      barrierColor: Colors.black,
+      isScrollControlled: true,
+      useSafeArea: true,
+      enableDrag: false,
       context: context,
       builder: (BuildContext context) {
         return const CreateAccountModalPage();
