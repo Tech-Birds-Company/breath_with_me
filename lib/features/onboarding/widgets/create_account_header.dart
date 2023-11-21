@@ -84,7 +84,7 @@ class CreateAccountHeader extends StatelessWidget {
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -3,7 +3,6 @@ import 'package:breathe_with_me/features/onboarding/widgets/create_account_butto
 import 'package:breathe_with_me/features/onboarding/widgets/onboarding_header.dart';
 import 'package:breathe_with_me/features/onboarding/widgets/onboarding_page_view.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingPage extends StatelessWidget {

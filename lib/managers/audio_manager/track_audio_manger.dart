@@ -13,9 +13,9 @@ final class TrackAudioManager extends AudioManager {
   TrackAudioManager(this._playerManager);
 
   Future<Uri> _getArtUri() async {
-    final appDir = await getApplicationDocumentsDirectory();
+    final appDocsDir = await getApplicationDocumentsDirectory();
     return Uri.parse(
-      'file://${join(appDir.path, BWMConstants.appIconFilename)}',
+      'file://${join(appDocsDir.path, BWMConstants.appIconFilename)}',
     );
   }
 

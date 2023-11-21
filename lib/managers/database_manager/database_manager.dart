@@ -2,7 +2,6 @@ import 'package:breathe_with_me/database/database.dart';
 import 'package:breathe_with_me/database/entities/bloc_state_entity.dart';
 import 'package:breathe_with_me/database/entities/download_track_task_entity.dart';
 import 'package:breathe_with_me/managers/download_manager/download_task.dart';
-import 'package:breathe_with_me/managers/download_manager/track_download_task.dart';
 import 'package:breathe_with_me/objectbox.g.dart';
 
 final class DatabaseManager {
@@ -23,22 +22,25 @@ final class DatabaseManager {
 
   Future<DownloadTrackTaskEntity> createDownloadTrackTask({
     required DownloadTask task,
-    required String filePath,
+    required String id,
+    required String filename,
+    required String url,
+    required String tutorNameKey,
+    required String trackName,
     required int totalBytes,
   }) async {
-    final dbEntity = await getDownloadTask(task.id);
-    final downloadTrackTask = task as TrackDownloadTask;
+    final dbEntity = await getDownloadTask(id);
 
     if (dbEntity != null) {
       return dbEntity;
     }
 
     final entity = DownloadTrackTaskEntity(
-      taskId: task.id,
-      url: task.url,
-      tutorNameKey: downloadTrackTask.tutorNameKey,
-      trackName: downloadTrackTask.trackName,
-      filePath: filePath,
+      taskId: id,
+      url: url,
+      filename: filename,
+      tutorNameKey: tutorNameKey,
+      trackName: trackName,
       totalBytes: totalBytes,
     );
 

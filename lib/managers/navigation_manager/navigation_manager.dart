@@ -43,7 +43,7 @@ final class NavigationManager {
         builder: (context, state) {
           return const CreateAccountModalPage();
         },
-      )
+      ),
     ],
   );
 

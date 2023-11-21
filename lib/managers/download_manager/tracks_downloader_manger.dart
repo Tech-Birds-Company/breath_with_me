@@ -23,12 +23,14 @@ final class TracksDownloaderManager implements DownloaderManager {
   @override
   Future<void> validateDownloads() async {
     final box = _databaseManager.downloadTaskBox;
+    final appDocsDir = await getApplicationDocumentsDirectory();
+    final tracksPath = join(appDocsDir.path, defaultTracksPath);
     final tasks = box.getAll();
     final tasksToDelete = <int>[];
 
     for (final task in tasks) {
       if (task.isCompleted) {
-        final file = File(task.filePath);
+        final file = File(join(tracksPath, task.taskId, task.filename));
         final fileNotExists = !file.existsSync();
 
         if (fileNotExists) {
@@ -117,10 +119,10 @@ final class TracksDownloaderManager implements DownloaderManager {
   }
 
   Future<void> _queueTask(
-    DownloadTask task, {
+    TrackDownloadTask task, {
     int chunksCount = 10,
   }) async {
-    final cacheDir = await getApplicationCacheDirectory();
+    final cacheDir = await getApplicationDocumentsDirectory();
     final tracksCacheDirPath = join(cacheDir.path, defaultTracksPath);
     final savePath = join(tracksCacheDirPath, task.id);
     final saveDir = Directory(savePath);
@@ -132,10 +134,6 @@ final class TracksDownloaderManager implements DownloaderManager {
     final fileExtension = extension(Uri.parse(task.url).path);
     final filename = '${task.id}$fileExtension';
 
-    if (!saveDir.existsSync()) {
-      await saveDir.create(recursive: true);
-    }
-
     final fileSize = await _getFileSize(task.url);
     final chunkSize = (fileSize / chunksCount).ceil();
 
@@ -143,7 +141,11 @@ final class TracksDownloaderManager implements DownloaderManager {
 
     final dbEntity = await _databaseManager.createDownloadTrackTask(
       task: task,
-      filePath: join(savePath, filename),
+      id: task.id,
+      url: task.url,
+      filename: filename,
+      trackName: task.trackName,
+      tutorNameKey: task.tutorNameKey,
       totalBytes: fileSize,
     );
 
