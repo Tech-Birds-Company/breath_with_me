@@ -1,10 +1,9 @@
+import 'package:breathe_with_me/features/onboarding/create_account_modal_page.dart';
 import 'package:breathe_with_me/features/onboarding/widgets/create_account_button.dart';
 import 'package:breathe_with_me/features/onboarding/widgets/onboarding_header.dart';
 import 'package:breathe_with_me/features/onboarding/widgets/onboarding_page_view.dart';
-import 'package:breathe_with_me/managers/navigation_manager/routes.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
@@ -30,7 +29,7 @@ class OnboardingPage extends StatelessWidget {
               child: Align(
                 child: OnboardingCreateAccountButton(
                   onTap: () {
-                    context.pushReplacement(BWMRoutes.home);
+                    _openCreateAccountPage(context);
                   },
                 ),
               ),
@@ -38,6 +37,19 @@ class OnboardingPage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void _openCreateAccountPage(BuildContext context) {
+    showModalBottomSheet<CreateAccountModalPage>(
+      barrierColor: Colors.black,
+      isScrollControlled: true,
+      useSafeArea: true,
+      enableDrag: false,
+      context: context,
+      builder: (BuildContext context) {
+        return const CreateAccountModalPage();
+      },
     );
   }
 }

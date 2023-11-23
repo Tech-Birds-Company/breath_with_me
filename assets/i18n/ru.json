@@ -11,6 +11,13 @@
 	"onboardingPage2Subtitle":"Дыхательные практики и электронная музыка могут усилить эффект медитации",
 	"onboardingPage3Subtitle":"Общайся с преподавателями практик и другими дышателями",
 
+	"createAccountHeaderTitle":"Создай аккаунт",
+	"createAccountHeaderConjunction":"и получи",
+	"createAccountHeaderSubtitle":"доступ ко всем практикам и возможность сохранять свой прогресс",
+	"createAccountHeaderLogin":"У меня уже есть аккаунт",
+	"createAccountContact":"Связаться с нами",
+	"createAccountAgreement":"Нажимая на кнопку, вы принимаете лицензионное соглашение и политику конфиденциальности",
+
 	"practicesTitle": "Привет, {}",
 	"practicesGuestWelcome": "Привет",
 	"practicesHeading": "Подышим?",
@@ -29,5 +36,20 @@
 	"tutorDashaNameKey": "Даша",
 	"tutorJohnnyNameKey": "Джонни",
 
+	"profileSettings": "Настройки",
+	"profileLanguage": "Язык",
+	"profileLanguageEn": "Английский",
+	"profileLanguageRu": "Русский",
+	"profileReminder": "Календарь",
+	"profileFAQ": "FAQ",
+	"profileChat": "Сообщества",
+	"profileContactUs": "Свяжитесь с нами",
+	"profilePremiumFor3Friends": "месяц бесплатного премиума за каждых 3 друзей",
+	"profilePremiumStatus": "ПРЕМИУМ АККАУНТ",
+	"profileProgress": "Расширенная статистика вашего прогресса дыхания",
+	"profileStreak": "Возможность восстановить серию практик 3 раза",
+	"profileGetPremium": "Получить премиум",
+	"profileTotalFriends": "Друзей присоединилось",
+	"profileFriendsUntilPremium": "Присоединившихся друзей до бесплатного премиума",
 	"profileFaqTitle": "FAQ"
 }

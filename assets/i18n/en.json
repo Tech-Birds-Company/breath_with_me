@@ -11,6 +11,13 @@
 	"onboardingPage2Subtitle":"Breathing and electronic music can enhance the effects of your meditation",
 	"onboardingPage3Subtitle":"Discuss your breathing experience with fellow breathers and practice instructors",
 
+	"createAccountHeaderTitle":"Create account",
+	"createAccountHeaderConjunction":"and",
+	"createAccountHeaderSubtitle":"get access to all practices\nand extended breathing statistics",
+	"createAccountHeaderLogin":"Existing account? Log in",
+	"createAccountContact":"Contact us",
+	"createAccountAgreement":"By clicking a button you accept\nthe Terms and Privacy policy",
+
 	"practicesTitle": "Hi, {}",
 	"practicesGuestWelcome": "Hello",
 	"practicesHeading": "Let's breathe",
@@ -29,5 +36,20 @@
 	"tutorDashaNameKey": "Dasha",
 	"tutorJohnnyNameKey": "Johnny",
 
+	"profileSettings": "Settings",
+	"profileLanguage": "Language",
+	"profileLanguageEn": "English",
+	"profileLanguageRu": "Russian",
+	"profileReminder": "Reminder",
+	"profileFAQ": "FAQ",
+	"profileChat": "Community chat",
+	"profileContactUs": "Contact us",
+	"profilePremiumFor3Friends": "a month of free premium for every 3 friends",
+	"profilePremiumStatus": "PREMIUM ACCOUNT",
+	"profileProgress": "Extended statistics of your breathing progress",
+	"profileStreak": "Ability to restore your practice streak 3 times",
+	"profileGetPremium": "Go Premium",
+	"profileTotalFriends": "Friends joined",
+	"profileFriendsUntilPremium": "Joined friends until free premium",
 	"profileFaqTitle": "FAQ"
 }

@@ -10,6 +10,13 @@ abstract class  LocaleKeys {
   static const onboardingPage1Subtitle = 'onboardingPage1Subtitle';
   static const onboardingPage2Subtitle = 'onboardingPage2Subtitle';
   static const onboardingPage3Subtitle = 'onboardingPage3Subtitle';
+  static const createAccountHeaderTitle = 'createAccountHeaderTitle';
+  static const createAccountHeaderConjunction =
+      'createAccountHeaderConjunction';
+  static const createAccountHeaderSubtitle = 'createAccountHeaderSubtitle';
+  static const createAccountHeaderLogin = 'createAccountHeaderLogin';
+  static const createAccountContact = 'createAccountContact';
+  static const createAccountAgreement = 'createAccountAgreement';
   static const practicesTitle = 'practicesTitle';
   static const practicesGuestWelcome = 'practicesGuestWelcome';
   static const practicesHeading = 'practicesHeading';
@@ -25,6 +32,21 @@ abstract class  LocaleKeys {
   static const tutorJacksonNameKey = 'tutorJacksonNameKey';
   static const tutorDashaNameKey = 'tutorDashaNameKey';
   static const tutorJohnnyNameKey = 'tutorJohnnyNameKey';
+  static const profileSettings = 'profileSettings';
+  static const profileLanguage = 'profileLanguage';
+  static const profileLanguageEn = 'profileLanguageEn';
+  static const profileLanguageRu = 'profileLanguageRu';
+  static const profileReminder = 'profileReminder';
+  static const profileFAQ = 'profileFAQ';
+  static const profileChat = 'profileChat';
+  static const profileContactUs = 'profileContactUs';
+  static const profilePremiumFor3Friends = 'profilePremiumFor3Friends';
+  static const profilePremiumStatus = 'profilePremiumStatus';
+  static const profileProgress = 'profileProgress';
+  static const profileStreak = 'profileStreak';
+  static const profileGetPremium = 'profileGetPremium';
+  static const profileTotalFriends = 'profileTotalFriends';
+  static const profileFriendsUntilPremium = 'profileFriendsUntilPremium';
   static const profileFaqTitle = 'profileFaqTitle';
 
 }

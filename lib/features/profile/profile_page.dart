@@ -5,6 +5,7 @@ import 'package:breathe_with_me/features/profile/widgets/profile_info_block.dart
 import 'package:breathe_with_me/features/profile/widgets/profile_menu_button.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -23,9 +24,9 @@ class ProfilePage extends StatelessWidget {
                   center: Alignment.topCenter,
                   focal: Alignment(0, -0.3),
                   colors: [
-                    Color(0xE6463050),
-                    Color(0xD7000000),
-                    Color(0xFC100c0c),
+                    Color(0xE6463050), // TODO: Use color from theme
+                    Color(0xD7000000), // TODO: Use color from theme
+                    Color(0xFC100c0c), // TODO: Use color from theme
                   ],
                   radius: 3,
                 ),
@@ -44,7 +45,7 @@ class ProfilePage extends StatelessWidget {
                   ).toSliver,
                   Center(
                     child: Text(
-                      'a month of free premium for every 3 friends',
+                      LocaleKeys.profilePremiumFor3Friends,
                       style: theme.typography.label.copyWith(
                         color: theme.fourthColor,
                       ),
@@ -54,7 +55,7 @@ class ProfilePage extends StatelessWidget {
                     padding: EdgeInsets.fromLTRB(0, 36, 0, 0),
                   ).toSliver,
                   const ProfileMenuButton(
-                    title: 'Account settings',
+                    title: LocaleKeys.profileSettings,
                     showArrow: true,
                   ).toSliver,
                   const Padding(
@@ -63,12 +64,12 @@ class ProfilePage extends StatelessWidget {
                       thickness: 1,
                       indent: 0,
                       endIndent: 0,
-                      color: Color(0x995D5D6D),
+                      color: Color(0x995D5D6D), // TODO: Use color from theme
                     ),
                   ).toSliver,
                   const ProfileMenuButton(
-                    title: 'Language',
-                    subtitle: 'English',
+                    title: LocaleKeys.profileLanguage,
+                    subtitle: LocaleKeys.profileLanguageEn,
                     showArrow: true,
                   ).toSliver,
                   const Padding(
@@ -77,11 +78,11 @@ class ProfilePage extends StatelessWidget {
                       thickness: 1,
                       indent: 0,
                       endIndent: 0,
-                      color: Color(0x995D5D6D),
+                      color: Color(0x995D5D6D), // TODO: Use color from theme
                     ),
                   ).toSliver,
                   const ProfileMenuButton(
-                    title: 'Reminder',
+                    title: LocaleKeys.profileReminder,
                     subtitle: '10:00 AM; Tue, Thu, Sat',
                     showArrow: true,
                   ).toSliver,
@@ -91,18 +92,18 @@ class ProfilePage extends StatelessWidget {
                       thickness: 1,
                       indent: 0,
                       endIndent: 0,
-                      color: Color(0x995D5D6D),
+                      color: Color(0x995D5D6D), // TODO: Use color from theme
                     ),
                   ).toSliver,
                   const ProfileMenuButton(
-                    title: 'FAQ',
+                    title: LocaleKeys.profileFAQ,
                     showArrow: true,
                   ).toSliver,
                   const Padding(
                     padding: EdgeInsets.fromLTRB(0, 0, 0, 89),
                   ).toSliver,
                   const ProfileMenuButton(
-                    title: 'Community chat',
+                    title: LocaleKeys.profileChat,
                     icon: BWMAssets.telegram,
                   ).toSliver,
                   const Padding(
@@ -111,11 +112,11 @@ class ProfilePage extends StatelessWidget {
                       thickness: 1,
                       indent: 0,
                       endIndent: 0,
-                      color: Color(0x995D5D6D),
+                      color: Color(0x995D5D6D), // TODO: Use color from theme
                     ),
                   ).toSliver,
                   const ProfileMenuButton(
-                    title: 'Contact us',
+                    title: LocaleKeys.profileContactUs,
                     icon: BWMAssets.email,
                   ).toSliver,
                 ],

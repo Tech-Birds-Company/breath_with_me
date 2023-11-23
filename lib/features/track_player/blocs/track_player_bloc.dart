@@ -7,9 +7,12 @@ import 'package:breathe_with_me/features/track_player/models/track_player_state.
 import 'package:breathe_with_me/managers/audio_manager/audio_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/downloader_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/track_download_task.dart';
+import 'package:breathe_with_me/managers/download_manager/tracks_downloader_manger.dart';
 import 'package:breathe_with_me/repositories/tracks_repository.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 
 final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   final String _trackId;
@@ -43,7 +46,16 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   }
 
   Future<void> _handleOfflinePlay(DownloadTrackTaskEntity task) async {
-    final localTrackFile = File(task.filePath);
+    final appDocsDir = await getApplicationDocumentsDirectory();
+    final tracksPath =
+        join(appDocsDir.path, TracksDownloaderManager.defaultTracksPath);
+    final localTrackFile = File(
+      join(
+        tracksPath,
+        task.taskId,
+        task.filename,
+      ),
+    );
     if (localTrackFile.existsSync()) {
       await _initPlayerWithLocalFile(
         localFile: localTrackFile,

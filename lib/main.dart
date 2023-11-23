@@ -11,6 +11,7 @@ import 'package:breathe_with_me/managers/audio_manager/track_audio_manger.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/tracks_downloader_manger.dart';
 import 'package:breathe_with_me/managers/player_manager/track_player_manager.dart';
+import 'package:breathe_with_me/managers/user_manager/firebase_user_manager.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc_storage.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -51,6 +52,8 @@ Future<List<Override>> _setupDependencies() async {
   final storage = ObjectBoxBlocStateStorage(databaseManager.blocStateBox);
   CacheableBloc.storage = storage;
 
+  final userManager = FirebaseUserManager();
+
   return [
     Di.shared.manager.database.overrideWith((ref) {
       ref.onDispose(databaseManager.dispose);
@@ -59,6 +62,7 @@ Future<List<Override>> _setupDependencies() async {
     Di.shared.manager.tracksDownloader.overrideWithValue(tracksDownloadManager),
     Di.shared.manager.trackPlayer.overrideWithValue(playerManager),
     Di.shared.manager.audio.overrideWithValue(trackAudioManager),
+    Di.shared.manager.userManager.overrideWithValue(userManager),
   ];
 }
 

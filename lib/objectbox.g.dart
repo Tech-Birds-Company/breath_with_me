@@ -48,7 +48,7 @@ final _entities = <ModelEntity>[
   ModelEntity(
       id: const IdUid(3, 1520315073668077580),
       name: 'DownloadTrackTaskEntity',
-      lastPropertyId: const IdUid(9, 5201689941450672282),
+      lastPropertyId: const IdUid(10, 1477663148854029096),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
@@ -64,11 +64,6 @@ final _entities = <ModelEntity>[
         ModelProperty(
             id: const IdUid(3, 4754970558086022460),
             name: 'url',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(4, 6594271542272299772),
-            name: 'filePath',
             type: 9,
             flags: 0),
         ModelProperty(
@@ -89,6 +84,11 @@ final _entities = <ModelEntity>[
         ModelProperty(
             id: const IdUid(9, 5201689941450672282),
             name: 'tutorNameKey',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(10, 1477663148854029096),
+            name: 'filename',
             type: 9,
             flags: 0)
       ],
@@ -142,7 +142,8 @@ ModelDefinition getObjectBoxModel() {
         3033313459825828610,
         4630339859809275241,
         6058418397631871564,
-        6053680223680892832
+        6053680223680892832,
+        6594271542272299772
       ],
       retiredRelationUids: const [],
       modelVersion: 5,
@@ -191,18 +192,18 @@ ModelDefinition getObjectBoxModel() {
         objectToFB: (DownloadTrackTaskEntity object, fb.Builder fbb) {
           final taskIdOffset = fbb.writeString(object.taskId);
           final urlOffset = fbb.writeString(object.url);
-          final filePathOffset = fbb.writeString(object.filePath);
           final trackNameOffset = fbb.writeString(object.trackName);
           final tutorNameKeyOffset = fbb.writeString(object.tutorNameKey);
-          fbb.startTable(10);
+          final filenameOffset = fbb.writeString(object.filename);
+          fbb.startTable(11);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, taskIdOffset);
           fbb.addOffset(2, urlOffset);
-          fbb.addOffset(3, filePathOffset);
           fbb.addOffset(5, trackNameOffset);
           fbb.addInt64(6, object.downloadedBytes);
           fbb.addInt64(7, object.totalBytes);
           fbb.addOffset(8, tutorNameKeyOffset);
+          fbb.addOffset(9, filenameOffset);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -213,8 +214,8 @@ ModelDefinition getObjectBoxModel() {
               .vTableGet(buffer, rootOffset, 6, '');
           final urlParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 8, '');
-          final filePathParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 10, '');
+          final filenameParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 22, '');
           final tutorNameKeyParam =
               const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 20, '');
@@ -227,7 +228,7 @@ ModelDefinition getObjectBoxModel() {
           final object = DownloadTrackTaskEntity(
               taskId: taskIdParam,
               url: urlParam,
-              filePath: filePathParam,
+              filename: filenameParam,
               tutorNameKey: tutorNameKeyParam,
               trackName: trackNameParam,
               downloadedBytes: downloadedBytesParam,
@@ -270,23 +271,23 @@ class DownloadTrackTaskEntity_ {
   static final url =
       QueryStringProperty<DownloadTrackTaskEntity>(_entities[1].properties[2]);
 
-  /// see [DownloadTrackTaskEntity.filePath]
-  static final filePath =
-      QueryStringProperty<DownloadTrackTaskEntity>(_entities[1].properties[3]);
-
   /// see [DownloadTrackTaskEntity.trackName]
   static final trackName =
-      QueryStringProperty<DownloadTrackTaskEntity>(_entities[1].properties[4]);
+      QueryStringProperty<DownloadTrackTaskEntity>(_entities[1].properties[3]);
 
   /// see [DownloadTrackTaskEntity.downloadedBytes]
   static final downloadedBytes =
-      QueryIntegerProperty<DownloadTrackTaskEntity>(_entities[1].properties[5]);
+      QueryIntegerProperty<DownloadTrackTaskEntity>(_entities[1].properties[4]);
 
   /// see [DownloadTrackTaskEntity.totalBytes]
   static final totalBytes =
-      QueryIntegerProperty<DownloadTrackTaskEntity>(_entities[1].properties[6]);
+      QueryIntegerProperty<DownloadTrackTaskEntity>(_entities[1].properties[5]);
 
   /// see [DownloadTrackTaskEntity.tutorNameKey]
   static final tutorNameKey =
+      QueryStringProperty<DownloadTrackTaskEntity>(_entities[1].properties[6]);
+
+  /// see [DownloadTrackTaskEntity.filename]
+  static final filename =
       QueryStringProperty<DownloadTrackTaskEntity>(_entities[1].properties[7]);
 }

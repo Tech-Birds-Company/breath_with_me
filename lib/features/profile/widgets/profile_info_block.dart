@@ -1,4 +1,5 @@
 import 'package:breathe_with_me/assets.dart';
+import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -16,7 +17,7 @@ class ProfileInfoBlock extends StatelessWidget {
           width: 350,
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color: Color(0xeb000000),
+              color: Color(0xeb000000), // TODO: Use color from theme
               borderRadius: BorderRadius.all(Radius.circular(12)),
             ),
           ),
@@ -45,7 +46,7 @@ class ProfileInfoBlock extends StatelessWidget {
                   SizedBox(
                     width: 280,
                     child: Text(
-                      'Extended statistics of your breathing progress',
+                      LocaleKeys.profileProgress,
                       style: theme.typography.bodyM.copyWith(
                         color: theme.primaryText,
                       ),
@@ -76,7 +77,7 @@ class ProfileInfoBlock extends StatelessWidget {
                   SizedBox(
                     width: 280,
                     child: Text(
-                      'Ability to restore your practice streak 3 times',
+                      LocaleKeys.profileStreak,
                       style: theme.typography.bodyM.copyWith(
                         color: theme.primaryText,
                       ),
@@ -89,7 +90,7 @@ class ProfileInfoBlock extends StatelessWidget {
               ),
               const Center(
                 child: Text(
-                  'Go premium',
+                  LocaleKeys.profileGetPremium,
                   style: TextStyle(color: Colors.white),
                 ),
               ),
@@ -108,7 +109,7 @@ class ProfileInfoBlock extends StatelessWidget {
                   const SizedBox(
                     width: 50,
                     child: Text(
-                      'Friends joined',
+                      LocaleKeys.profileTotalFriends,
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
@@ -126,7 +127,7 @@ class ProfileInfoBlock extends StatelessWidget {
                   const SizedBox(
                     width: 150,
                     child: Text(
-                      'Joined friends until free premium',
+                      LocaleKeys.profileFriendsUntilPremium,
                       style: TextStyle(color: Colors.white),
                     ),
                   ),

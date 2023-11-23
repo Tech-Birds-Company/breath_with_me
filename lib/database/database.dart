@@ -9,9 +9,9 @@ final class BWMDatabase {
   const BWMDatabase._create(this.store);
 
   static Future<BWMDatabase> init() async {
-    final cacheDir = await getApplicationCacheDirectory();
+    final appDocsDir = await getApplicationDocumentsDirectory();
     final store = await openStore(
-      directory: join(cacheDir.path, _databaseName),
+      directory: join(appDocsDir.path, _databaseName),
     );
     return BWMDatabase._create(store);
   }
