@@ -27,4 +27,10 @@ final class _BlocProviders {
       ref.read(Di.shared.manager.userManager),
     ),
   );
+
+  late final faq = Provider(
+    (ref) => FaqBloc(
+      ref.read(Di.shared.repository.firebaseQuestions),
+    ),
+  );
 }

@@ -10,4 +10,7 @@ final class _RepositoryProviders {
 
   late final firebaseTutors =
       Provider.autoDispose((ref) => const FirebaseTutorsRepository());
+
+  late final firebaseQuestions =
+      Provider.autoDispose((ref) => const FirebaseQuestionsRepository());
 }
