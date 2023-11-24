@@ -18,43 +18,45 @@ class FaqPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final bloc = ref.read(Di.shared.bloc.faq);
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    return BlocBuilder<FaqBloc, FaqState>(
-      bloc: bloc,
-      builder: (context, state) {
-        return state.when(
-          data: (questions) {
-            return AnnotatedRegion<SystemUiOverlayStyle>(
-              value: SystemUiOverlayStyle.light,
-              child: Scaffold(
-                backgroundColor: theme.primaryBackground,
-                appBar: BWMAppBar(title: LocaleKeys.profileFaqTitle.tr()),
-                body: Container(
-                  height: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        theme.primaryBackground,
-                        Colors.black,
-                      ],
-                    ),
-                  ),
-                  child: FaqQuestionList(
-                    questions: questions,
-                  ),
-                ),
-              ),
-            );
-          },
-          loading: () {
-            return Text("Loading");
-          },
-          error: () {
-            return Text("Error");
-          },
-        );
-      },
+
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light,
+      child: Scaffold(
+        backgroundColor: theme.primaryBackground,
+        appBar: BWMAppBar(title: LocaleKeys.profileFaqTitle.tr()),
+        body: Container(
+          height: double.infinity,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                theme.primaryBackground,
+                Colors.black,
+              ],
+            ),
+          ),
+          child: BlocBuilder<FaqBloc, FaqState>(
+            bloc: bloc,
+            builder: (context, state) {
+              return state.when(
+                data: (questions) {
+                  return FaqQuestionList(questions: questions);
+                },
+                loading: () {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+                error: () {
+                  // TODO(bestK1ngArthur): Show error widget
+                  return const Text("Error");
+                },
+              );
+            },
+          ),
+        ),
+      ),
     );
   }
 }
