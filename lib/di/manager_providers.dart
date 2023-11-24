@@ -32,4 +32,6 @@ final class _ManagerProviders {
   );
 
   late final userManager = Provider((ref) => FirebaseUserManager());
+
+  late final permissions = Provider((ref) => PermissionsManager());
 }

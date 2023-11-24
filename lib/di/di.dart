@@ -7,6 +7,7 @@ import 'package:breathe_with_me/managers/audio_manager/track_audio_manger.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/tracks_downloader_manger.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
+import 'package:breathe_with_me/managers/permissions_manager/permissions_manager.dart';
 import 'package:breathe_with_me/managers/player_manager/track_player_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/firebase_user_manager.dart';
 import 'package:breathe_with_me/repositories/firebase_tracks_repository.dart';

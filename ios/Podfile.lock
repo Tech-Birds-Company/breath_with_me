@@ -1,4 +1,6 @@
 PODS:
+  - app_tracking_transparency (0.0.1):
+    - Flutter
   - AppAuth (1.6.2):
     - AppAuth/Core (= 1.6.2)
     - AppAuth/ExternalUserAgent (= 1.6.2)
@@ -208,6 +210,7 @@ PODS:
     - FMDB (>= 2.7.5)
 
 DEPENDENCIES:
+  - app_tracking_transparency (from `.symlinks/plugins/app_tracking_transparency/ios`)
   - audio_service (from `.symlinks/plugins/audio_service/ios`)
   - audio_session (from `.symlinks/plugins/audio_session/ios`)
   - audioplayers_darwin (from `.symlinks/plugins/audioplayers_darwin/ios`)
@@ -255,6 +258,8 @@ SPEC REPOS:
     - RecaptchaInterop
 
 EXTERNAL SOURCES:
+  app_tracking_transparency:
+    :path: ".symlinks/plugins/app_tracking_transparency/ios"
   audio_service:
     :path: ".symlinks/plugins/audio_service/ios"
   audio_session:
@@ -297,6 +302,7 @@ CHECKOUT OPTIONS:
     :tag: 10.17.0
 
 SPEC CHECKSUMS:
+  app_tracking_transparency: 5b1745ef9ade815f7455cb6a0848349589afb7c5
   AppAuth: 3bb1d1cd9340bd09f5ed189fb00b1cc28e1e8570
   audio_service: f509d65da41b9521a61f1c404dd58651f265a567
   audio_session: 4f3e461722055d21515cf3261b64c973c062f345

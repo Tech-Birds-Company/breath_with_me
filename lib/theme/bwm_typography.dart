@@ -104,4 +104,12 @@ final class BWMTypography extends Typography {
         fontSize: 13,
         height: 16 / 12,
       );
+
+  @override
+  TextStyle get footnote => const TextStyle(
+        fontFamily: _fontFamily,
+        fontWeight: FontWeight.w400,
+        fontSize: 13,
+        height: 16 / 12,
+      );
 }
