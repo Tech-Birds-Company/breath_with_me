@@ -7,5 +7,5 @@ final class BWMConstants {
       'bwm_androidNotificationChannelId';
   static const androidNotificationChannelName =
       'bwm_androidNotificationChannelName';
-  static const questionsCollection = 'faq';
+  static const faqQuestionsCollection = 'faq';
 }

@@ -1,9 +1,9 @@
 import 'package:breathe_with_me/features/faq/models/faq_state.dart';
-import 'package:breathe_with_me/repositories/questions_repository.dart';
+import 'package:breathe_with_me/repositories/faq_questions_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 final class FaqBloc extends BlocBase<FaqState> {
-  final QuestionsRepository _questionsRepository;
+  final FaqQuestionsRepository _questionsRepository;
 
   FaqBloc(
     this._questionsRepository,
