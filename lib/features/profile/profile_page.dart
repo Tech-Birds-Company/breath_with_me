@@ -5,6 +5,7 @@ import 'package:breathe_with_me/features/profile/widgets/profile_info_block.dart
 import 'package:breathe_with_me/features/profile/widgets/profile_menu_button.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -45,7 +46,7 @@ class ProfilePage extends StatelessWidget {
                   ).toSliver,
                   Center(
                     child: Text(
-                      LocaleKeys.profilePremiumFor3Friends,
+                      LocaleKeys.profilePremiumFor3Friends.tr(),
                       style: theme.typography.label.copyWith(
                         color: theme.fourthColor,
                       ),
@@ -54,8 +55,8 @@ class ProfilePage extends StatelessWidget {
                   const Padding(
                     padding: EdgeInsets.fromLTRB(0, 36, 0, 0),
                   ).toSliver,
-                  const ProfileMenuButton(
-                    title: LocaleKeys.profileSettings,
+                  ProfileMenuButton(
+                    title: LocaleKeys.profileSettings.tr(),
                     showArrow: true,
                   ).toSliver,
                   const Padding(
@@ -67,9 +68,9 @@ class ProfilePage extends StatelessWidget {
                       color: Color(0x995D5D6D), // TODO: Use color from theme
                     ),
                   ).toSliver,
-                  const ProfileMenuButton(
-                    title: LocaleKeys.profileLanguage,
-                    subtitle: LocaleKeys.profileLanguageEn,
+                  ProfileMenuButton(
+                    title: LocaleKeys.profileLanguage.tr(),
+                    subtitle: LocaleKeys.profileLanguageEn.tr(),
                     showArrow: true,
                   ).toSliver,
                   const Padding(
@@ -81,8 +82,8 @@ class ProfilePage extends StatelessWidget {
                       color: Color(0x995D5D6D), // TODO: Use color from theme
                     ),
                   ).toSliver,
-                  const ProfileMenuButton(
-                    title: LocaleKeys.profileReminder,
+                  ProfileMenuButton(
+                    title: LocaleKeys.profileReminder.tr(),
                     subtitle: '10:00 AM; Tue, Thu, Sat',
                     showArrow: true,
                   ).toSliver,
@@ -95,15 +96,15 @@ class ProfilePage extends StatelessWidget {
                       color: Color(0x995D5D6D), // TODO: Use color from theme
                     ),
                   ).toSliver,
-                  const ProfileMenuButton(
-                    title: LocaleKeys.profileFAQ,
+                  ProfileMenuButton(
+                    title: LocaleKeys.profileFAQ.tr(),
                     showArrow: true,
                   ).toSliver,
                   const Padding(
                     padding: EdgeInsets.fromLTRB(0, 0, 0, 89),
                   ).toSliver,
-                  const ProfileMenuButton(
-                    title: LocaleKeys.profileChat,
+                  ProfileMenuButton(
+                    title: LocaleKeys.profileChat.tr(),
                     icon: BWMAssets.telegram,
                   ).toSliver,
                   const Padding(
@@ -115,8 +116,8 @@ class ProfilePage extends StatelessWidget {
                       color: Color(0x995D5D6D), // TODO: Use color from theme
                     ),
                   ).toSliver,
-                  const ProfileMenuButton(
-                    title: LocaleKeys.profileContactUs,
+                  ProfileMenuButton(
+                    title: LocaleKeys.profileContactUs.tr(),
                     icon: BWMAssets.email,
                   ).toSliver,
                 ],
