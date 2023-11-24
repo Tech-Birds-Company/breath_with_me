@@ -32,5 +32,21 @@
 
 	"tutorJacksonNameKey": "Jackson",
 	"tutorDashaNameKey": "Dasha",
-	"tutorJohnnyNameKey": "Johnny"
+	"tutorJohnnyNameKey": "Johnny",
+
+	"profileSettings": "Settings",
+	"profileLanguage": "Language",
+	"profileLanguageEn": "English",
+	"profileLanguageRu": "Russian",
+	"profileReminder": "Reminder",
+	"profileFAQ": "FAQ",
+	"profileChat": "Community chat",
+	"profileContactUs": "Contact us",
+	"profilePremiumFor3Friends": "a month of free premium for every 3 friends",
+	"profilePremiumStatus": "PREMIUM ACCOUNT",
+	"profileProgress": "Extended statistics of your breathing progress",
+	"profileStreak": "Ability to restore your practice streak 3 times",
+	"profileGetPremium": "Go Premium",
+	"profileTotalFriends": "Friends joined",
+	"profileFriendsUntilPremium": "Joined friends until free premium"
 }
