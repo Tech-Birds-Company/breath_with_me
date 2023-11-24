@@ -13,10 +13,13 @@ class FaqQuestionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: ListView.builder(
+      child: ListView.separated(
         itemCount: questions.length,
         itemBuilder: (context, index) {
           return FaqQuestionItem(question: questions[index]);
+        },
+        separatorBuilder: (context, index) {
+          return const SizedBox(height: 20);
         },
       ),
     );
