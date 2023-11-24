@@ -1,8 +1,8 @@
 import 'package:audio_service/audio_service.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:breathe_with_me/constants.dart';
 import 'package:breathe_with_me/managers/audio_manager/audio_manager.dart';
 import 'package:breathe_with_me/managers/player_manager/player_manager.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:rxdart/rxdart.dart';
@@ -21,17 +21,17 @@ final class TrackAudioManager extends AudioManager {
 
   @override
   Future<void> init(
-    Source source, {
+    AudioSource source, {
     required String title,
     required String artist,
   }) async {
     await _playerManager.init(source);
 
     final audioPlayer = _playerManager.audioPlayer;
-    final duration = await audioPlayer!.getDuration();
+    final duration = audioPlayer!.duration;
 
     final playerMediaItem = MediaItem(
-      id: _playerManager.audioPlayer!.playerId,
+      id: 'id',
       title: title,
       artist: artist,
       duration: duration,
@@ -40,7 +40,7 @@ final class TrackAudioManager extends AudioManager {
 
     mediaItem.add(playerMediaItem);
 
-    progressStream ??= audioPlayer.onPositionChanged.map((position) {
+    progressStream ??= audioPlayer.positionStream.map((position) {
       final currentMs = position.inMilliseconds;
       final estimatedMs = duration!.inMilliseconds - currentMs;
       final progress = currentMs / duration.inMilliseconds;
@@ -59,8 +59,8 @@ final class TrackAudioManager extends AudioManager {
       return (currentMs, progress, estimatedMs);
     }).startWith((0, 0, 0));
 
-    onPlayerStateChanged ??= audioPlayer.onPlayerStateChanged.map((state) {
-      if (state != PlayerState.playing) {
+    onPlayerStateChanged ??= audioPlayer.playerStateStream.map((state) {
+      if (!state.playing) {
         playbackState.add(
           playbackState.value.copyWith(
             playing: false,

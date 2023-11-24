@@ -11,8 +11,6 @@ PODS:
     - Flutter
   - audio_session (0.0.1):
     - Flutter
-  - audioplayers_darwin (0.0.1):
-    - Flutter
   - cloud_firestore (4.13.1):
     - Firebase/Firestore (= 10.17.0)
     - firebase_core
@@ -184,6 +182,8 @@ PODS:
     - AppAuth/Core (~> 1.6)
     - GTMSessionFetcher/Core (< 3.0, >= 1.5)
   - GTMSessionFetcher/Core (2.3.0)
+  - just_audio (0.0.1):
+    - Flutter
   - nanopb (2.30909.1):
     - nanopb/decode (= 2.30909.1)
     - nanopb/encode (= 2.30909.1)
@@ -213,7 +213,6 @@ DEPENDENCIES:
   - app_tracking_transparency (from `.symlinks/plugins/app_tracking_transparency/ios`)
   - audio_service (from `.symlinks/plugins/audio_service/ios`)
   - audio_session (from `.symlinks/plugins/audio_session/ios`)
-  - audioplayers_darwin (from `.symlinks/plugins/audioplayers_darwin/ios`)
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
@@ -223,6 +222,7 @@ DEPENDENCIES:
   - FirebaseFirestore (from `https://github.com/invertase/firestore-ios-sdk-frameworks.git`, tag `10.17.0`)
   - Flutter (from `Flutter`)
   - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/ios`)
+  - just_audio (from `.symlinks/plugins/just_audio/ios`)
   - objectbox_flutter_libs (from `.symlinks/plugins/objectbox_flutter_libs/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
@@ -264,8 +264,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/audio_service/ios"
   audio_session:
     :path: ".symlinks/plugins/audio_session/ios"
-  audioplayers_darwin:
-    :path: ".symlinks/plugins/audioplayers_darwin/ios"
   cloud_firestore:
     :path: ".symlinks/plugins/cloud_firestore/ios"
   firebase_analytics:
@@ -285,6 +283,8 @@ EXTERNAL SOURCES:
     :path: Flutter
   google_sign_in_ios:
     :path: ".symlinks/plugins/google_sign_in_ios/ios"
+  just_audio:
+    :path: ".symlinks/plugins/just_audio/ios"
   objectbox_flutter_libs:
     :path: ".symlinks/plugins/objectbox_flutter_libs/ios"
   path_provider_foundation:
@@ -306,7 +306,6 @@ SPEC CHECKSUMS:
   AppAuth: 3bb1d1cd9340bd09f5ed189fb00b1cc28e1e8570
   audio_service: f509d65da41b9521a61f1c404dd58651f265a567
   audio_session: 4f3e461722055d21515cf3261b64c973c062f345
-  audioplayers_darwin: 877d9a4d06331c5c374595e46e16453ac7eafa40
   cloud_firestore: c0e21891b99d3ac3d91abfe476ac88830a7c9939
   Firebase: f4ac0b02927af9253ae094d23deecf0890da7374
   firebase_analytics: d6f520c1030d2c1215851f6e332d39a489a30bd2
@@ -335,6 +334,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 0759d1a57ebb953965c2dfe0ba4c82e95ccc2e34
   GTMAppAuth: 0ff230db599948a9ad7470ca667337803b3fc4dd
   GTMSessionFetcher: 3a63d75eecd6aa32c2fc79f578064e1214dfdec2
+  just_audio: baa7252489dbcf47a4c7cc9ca663e9661c99aafa
   nanopb: d4d75c12cd1316f4a64e3c6963f879ecd4b5e0d5
   ObjectBox: e7ff611291a0663380e0736b46786bcd077294ff
   objectbox_flutter_libs: 0948d6feb7de4f7edaebc7a898b9e85b7fc2bc89

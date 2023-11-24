@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:audioplayers/audioplayers.dart';
 import 'package:breathe_with_me/database/entities/download_track_task_entity.dart';
 import 'package:breathe_with_me/features/track_player/models/track_player_state.dart';
 import 'package:breathe_with_me/managers/audio_manager/audio_manager.dart';
@@ -11,6 +10,7 @@ import 'package:breathe_with_me/managers/download_manager/tracks_downloader_mang
 import 'package:breathe_with_me/repositories/tracks_repository.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -31,6 +31,12 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   StreamSubscription<(int?, double, int?)>? _playerProgressSub;
   StreamSubscription<double>? _downloadProgressSub;
   Stream<double>? _downloadProgressStream;
+
+  void _initSubscriptions() {
+    _subscribeToPlayerState();
+    _subscribeToPlayerProgress();
+    _subscribeToDownloadProgress(_trackId);
+  }
 
   Future<void> init() async {
     final trackDownloadTask =
@@ -71,14 +77,14 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   Future<void> _handleOnlinePlay() async {
     final track = await _tracksRepository.getTrack(_trackId);
     final trackDownloadUrl = await _tracksRepository.getTrackDownloadUrl(track);
-    await _initPlayerWithUrl(
-      url: trackDownloadUrl,
-      title: track.title,
-      tutorNameKey: track.tutor.tutorNameKey,
-    );
     _queueTrackDownload(
       url: trackDownloadUrl,
       trackName: track.title,
+      tutorNameKey: track.tutor.tutorNameKey,
+    );
+    await _initPlayerWithUrl(
+      url: trackDownloadUrl,
+      title: track.title,
       tutorNameKey: track.tutor.tutorNameKey,
     );
   }
@@ -89,7 +95,7 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
     required String tutorNameKey,
   }) async {
     await _audioManager.init(
-      DeviceFileSource(localFile.path),
+      AudioSource.file(localFile.path),
       title: title,
       artist: tutorNameKey.tr(),
     );
@@ -103,18 +109,12 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
     required String tutorNameKey,
   }) async {
     await _audioManager.init(
-      UrlSource(url),
+      AudioSource.uri(Uri.parse(url)),
       title: title,
       artist: tutorNameKey.tr(),
     );
     _initSubscriptions();
     await _audioManager.play();
-  }
-
-  void _initSubscriptions() {
-    _subscribeToPlayerState();
-    _subscribeToPlayerProgress();
-    _subscribeToDownloadProgress(_trackId);
   }
 
   void _queueTrackDownload({
@@ -133,21 +133,11 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   }
 
   void _subscribeToPlayerState() {
-    _playerStateSub ??=
-        _audioManager.onPlayerStateChanged?.listen((playerState) {
-      switch (playerState) {
-        case PlayerState.playing:
-          emit(state.copyWith(isPaused: false));
-        case PlayerState.paused:
-          emit(state.copyWith(isPaused: true));
-        case PlayerState.stopped:
-          break;
-        case PlayerState.completed:
-          break;
-        case PlayerState.disposed:
-          break;
-      }
-    });
+    _playerStateSub ??= _audioManager.onPlayerStateChanged?.listen(
+      (playerState) => emit(
+        state.copyWith(isPaused: !playerState.playing),
+      ),
+    );
   }
 
   void _subscribeToPlayerProgress() {
@@ -167,7 +157,9 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   void _subscribeToDownloadProgress(String taskId) {
     _downloadProgressStream ??= _downloaderManager.taskProgress(taskId);
     _downloadProgressSub ??= _downloadProgressStream?.listen(
-      (progress) => emit(state.copyWith(downloadProgress: progress)),
+      (progress) {
+        emit(state.copyWith(downloadProgress: progress));
+      },
     );
   }
 

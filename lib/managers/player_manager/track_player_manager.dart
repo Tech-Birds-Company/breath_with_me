@@ -1,15 +1,15 @@
 import 'dart:async';
 
 import 'package:audio_session/audio_session.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:breathe_with_me/managers/player_manager/player_manager.dart';
+import 'package:just_audio/just_audio.dart';
 
 final class TrackPlayerManager extends PlayerManager {
   @override
-  Future<void> init(Source source) async {
+  Future<void> init(AudioSource source) async {
     await _setupAudioSession();
     audioPlayer ??= AudioPlayer();
-    await audioPlayer!.setSource(source);
+    await audioPlayer!.setAudioSource(source);
   }
 
   Future<void> _setupAudioSession() async {
@@ -22,10 +22,10 @@ final class TrackPlayerManager extends PlayerManager {
 
   @override
   Future<void> play() async {
-    final source = audioPlayer?.source;
+    final source = audioPlayer?.audioSource;
     if (source != null) {
       if (await audioSession?.setActive(true) ?? false) {
-        await audioPlayer?.play(source);
+        await audioPlayer?.play();
       }
     }
   }

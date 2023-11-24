@@ -27,8 +27,9 @@ dependencies:
   sign_in_with_apple: ^5.0.0
   # ------------------------
   app_tracking_transparency: ^2.0.4
-  audioplayers: 5.2.1
+  just_audio: ^0.9.36
   audio_session: ^0.1.18
+  audio_service: ^0.18.12
   rxdart: ^0.27.7
   path_provider: ^2.1.1
   dio: ^5.3.3
@@ -43,7 +44,6 @@ dependencies:
   objectbox_flutter_libs: ^2.3.1
   path: ^1.8.3
   flutter_animate: ^4.2.0+1
-  audio_service: ^0.18.12
 
 dev_dependencies:
   flutter_test:
