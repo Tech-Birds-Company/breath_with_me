@@ -2,6 +2,7 @@
 
 abstract class  LocaleKeys {
   static const appName = 'appName';
+  static const appBarBackTitle = 'appBarBackTitle';
   static const onboardingCreateAccount = 'onboardingCreateAccount';
   static const onboardingPage1Title = 'onboardingPage1Title';
   static const onboardingPage2Title = 'onboardingPage2Title';
@@ -46,5 +47,6 @@ abstract class  LocaleKeys {
   static const profileGetPremium = 'profileGetPremium';
   static const profileTotalFriends = 'profileTotalFriends';
   static const profileFriendsUntilPremium = 'profileFriendsUntilPremium';
+  static const profileFaqTitle = 'profileFaqTitle';
 
 }

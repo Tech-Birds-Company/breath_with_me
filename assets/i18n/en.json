@@ -1,5 +1,7 @@
 {
 	"appName": "BreatheWithMe",
+	"appBarBackTitle": "Back",
+
 	"onboardingCreateAccount": "Create account",
 	"onboardingPage1Title":"How do you want to feel?",
 	"onboardingPage2Title":"Feel the power of breath",
@@ -48,5 +50,6 @@
 	"profileStreak": "Ability to restore your practice streak 3 times",
 	"profileGetPremium": "Go Premium",
 	"profileTotalFriends": "Friends joined",
-	"profileFriendsUntilPremium": "Joined friends until free premium"
+	"profileFriendsUntilPremium": "Joined friends until free premium",
+	"profileFaqTitle": "FAQ"
 }

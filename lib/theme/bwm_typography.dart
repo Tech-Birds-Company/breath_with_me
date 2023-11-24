@@ -6,6 +6,7 @@ abstract interface class Typography {
   TextStyle get subtitle;
   TextStyle get heading;
   TextStyle get heading2;
+  TextStyle get heading3;
   TextStyle get bodyM;
   TextStyle get bodyMTrue;
   TextStyle get label;
@@ -38,6 +39,14 @@ final class BWMTypography extends Typography {
         fontWeight: FontWeight.bold,
         fontSize: 24,
         height: 28 / 24,
+      );
+
+  @override
+  TextStyle get heading3 => const TextStyle(
+        fontFamily: _fontFamily,
+        fontWeight: FontWeight.bold,
+        fontSize: 20,
+        height: 24 / 20,
       );
 
   @override
@@ -86,6 +95,14 @@ final class BWMTypography extends Typography {
         fontWeight: FontWeight.w400,
         fontSize: 14,
         height: 18 / 14,
+        );
+      
+  @override
+  TextStyle get footnote => const TextStyle(
+        fontFamily: _fontFamily,
+        fontWeight: FontWeight.w400,
+        fontSize: 13,
+        height: 16 / 12,
       );
 
   @override

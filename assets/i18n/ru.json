@@ -1,5 +1,7 @@
 {
 	"appName": "BreatheWithMe",
+	"appBarBackTitle": "Назад",
+
 	"onboardingCreateAccount": "Создать аккаунт",
 	"onboardingPage1Title":"Как ты хочешь себя чувствовать?",
 	"onboardingPage2Title":"Испытай силу дыхания",
@@ -48,5 +50,6 @@
 	"profileStreak": "Возможность восстановить серию практик 3 раза",
 	"profileGetPremium": "Получить премиум",
 	"profileTotalFriends": "Друзей присоединилось",
-	"profileFriendsUntilPremium": "Присоединившихся друзей до бесплатного премиума"
+	"profileFriendsUntilPremium": "Присоединившихся друзей до бесплатного премиума",
+	"profileFaqTitle": "FAQ"
 }
