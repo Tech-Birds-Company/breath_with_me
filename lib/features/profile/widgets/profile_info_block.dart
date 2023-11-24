@@ -51,7 +51,7 @@ class ProfileInfoBlock extends StatelessWidget {
                         color: theme.primaryText,
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
               const SizedBox(
@@ -82,7 +82,7 @@ class ProfileInfoBlock extends StatelessWidget {
                         color: theme.primaryText,
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
               const SizedBox(
@@ -103,9 +103,7 @@ class ProfileInfoBlock extends StatelessWidget {
                     '5',
                     style: TextStyle(color: Colors.white),
                   ),
-                  SizedBox(
-                    width: 12,
-                  ),
+                  const SizedBox(width: 12),
                   const SizedBox(
                     width: 50,
                     child: Text(
@@ -121,9 +119,7 @@ class ProfileInfoBlock extends StatelessWidget {
                     '2/3',
                     style: TextStyle(color: Colors.white),
                   ),
-                  SizedBox(
-                    width: 12,
-                  ),
+                  const SizedBox(width: 12),
                   const SizedBox(
                     width: 150,
                     child: Text(

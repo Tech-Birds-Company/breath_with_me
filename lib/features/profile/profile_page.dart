@@ -3,9 +3,9 @@ import 'package:breathe_with_me/extensions/widget.dart';
 import 'package:breathe_with_me/features/profile/widgets/profile_header.dart';
 import 'package:breathe_with_me/features/profile/widgets/profile_info_block.dart';
 import 'package:breathe_with_me/features/profile/widgets/profile_menu_button.dart';
+import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
