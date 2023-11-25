@@ -10,4 +10,10 @@ final class _RepositoryProviders {
 
   late final firebaseTutors =
       Provider.autoDispose((ref) => const FirebaseTutorsRepository());
+
+  late final firebaseRemoteConfig = Provider.autoDispose(
+    (ref) => FirebaseRemoteConfigRepository(
+      ref.read(Di.shared.manager.database),
+    ),
+  );
 }

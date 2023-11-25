@@ -16,6 +16,7 @@ import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
 import 'database/entities/bloc_state_entity.dart';
 import 'database/entities/download_track_task_entity.dart';
+import 'database/entities/remote_config_entity.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
@@ -93,6 +94,25 @@ final _entities = <ModelEntity>[
             flags: 0)
       ],
       relations: <ModelRelation>[],
+      backlinks: <ModelBacklink>[]),
+  ModelEntity(
+      id: const IdUid(4, 8023868237763278366),
+      name: 'RemoteConfigEntity',
+      lastPropertyId: const IdUid(2, 6957836496469491890),
+      flags: 0,
+      properties: <ModelProperty>[
+        ModelProperty(
+            id: const IdUid(1, 7143378916413641663),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        ModelProperty(
+            id: const IdUid(2, 6957836496469491890),
+            name: 'json',
+            type: 9,
+            flags: 0)
+      ],
+      relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[])
 ];
 
@@ -123,7 +143,7 @@ Future<Store> openStore(
 ModelDefinition getObjectBoxModel() {
   final model = ModelInfo(
       entities: _entities,
-      lastEntityId: const IdUid(3, 1520315073668077580),
+      lastEntityId: const IdUid(4, 8023868237763278366),
       lastIndexId: const IdUid(4, 5744209523469708764),
       lastRelationId: const IdUid(0, 0),
       lastSequenceId: const IdUid(0, 0),
@@ -236,6 +256,32 @@ ModelDefinition getObjectBoxModel() {
             ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
 
           return object;
+        }),
+    RemoteConfigEntity: EntityDefinition<RemoteConfigEntity>(
+        model: _entities[2],
+        toOneRelations: (RemoteConfigEntity object) => [],
+        toManyRelations: (RemoteConfigEntity object) => {},
+        getId: (RemoteConfigEntity object) => object.id,
+        setId: (RemoteConfigEntity object, int id) {
+          object.id = id;
+        },
+        objectToFB: (RemoteConfigEntity object, fb.Builder fbb) {
+          final jsonOffset = fbb.writeString(object.json);
+          fbb.startTable(3);
+          fbb.addInt64(0, object.id);
+          fbb.addOffset(1, jsonOffset);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+          final jsonParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 6, '');
+          final object = RemoteConfigEntity(json: jsonParam)
+            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+
+          return object;
         })
   };
 
@@ -290,4 +336,15 @@ class DownloadTrackTaskEntity_ {
   /// see [DownloadTrackTaskEntity.filename]
   static final filename =
       QueryStringProperty<DownloadTrackTaskEntity>(_entities[1].properties[7]);
+}
+
+/// [RemoteConfigEntity] entity fields to define ObjectBox queries.
+class RemoteConfigEntity_ {
+  /// see [RemoteConfigEntity.id]
+  static final id =
+      QueryIntegerProperty<RemoteConfigEntity>(_entities[2].properties[0]);
+
+  /// see [RemoteConfigEntity.json]
+  static final json =
+      QueryStringProperty<RemoteConfigEntity>(_entities[2].properties[1]);
 }
