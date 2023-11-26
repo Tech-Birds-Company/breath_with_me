@@ -52,6 +52,10 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>tg</string>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -64,8 +68,8 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>FLTEnableImpeller</key>
-    <true />
-    <key>NSUserTrackingUsageDescription</key>
-    <string>We use tracking to improve your user experience and provide better services.</string>
+	<true/>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>We use tracking to improve your user experience and provide better services.</string>
 </dict>
 </plist>

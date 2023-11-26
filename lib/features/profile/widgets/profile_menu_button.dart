@@ -8,11 +8,13 @@ class ProfileMenuButton extends StatelessWidget {
   final String? subtitle;
   final String? icon;
   final bool showArrow;
+  final VoidCallback? onTap;
 
   const ProfileMenuButton({
-    this.title = '',
+    required this.title,
     this.subtitle,
     this.icon,
+    this.onTap,
     this.showArrow = false,
     super.key,
   });
@@ -20,60 +22,63 @@ class ProfileMenuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    return Row(
-      children: [
-        if (icon != null)
-          Center(
-            child: SvgPicture.asset(
-              icon!,
-              fit: BoxFit.cover,
-              alignment: Alignment.centerRight,
-              width: 20,
-              height: 20,
-              colorFilter: ColorFilter.mode(
-                theme.primaryColor,
-                BlendMode.srcIn,
-              ),
-            ),
-          ),
-        if (icon != null)
-          const Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 12, 0),
-          ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: theme.typography.bodyM.copyWith(
-                color: theme.fifthColor,
-              ),
-            ),
-            if (subtitle != null)
-              Text(
-                subtitle!,
-                style: theme.typography.footnote.copyWith(
-                  color: theme.secondaryText,
+    return GestureDetector(
+      onTap: onTap,
+      child: Row(
+        children: [
+          if (icon != null)
+            Center(
+              child: SvgPicture.asset(
+                icon!,
+                fit: BoxFit.cover,
+                alignment: Alignment.centerRight,
+                width: 20,
+                height: 20,
+                colorFilter: ColorFilter.mode(
+                  theme.primaryColor,
+                  BlendMode.srcIn,
                 ),
               ),
-          ],
-        ),
-        const Spacer(),
-        if (showArrow)
-          Center(
-            child: SvgPicture.asset(
-              BWMAssets.menuArrow,
-              fit: BoxFit.cover,
-              alignment: Alignment.centerRight,
-              width: 20,
-              height: 20,
-              colorFilter: ColorFilter.mode(
-                theme.primaryColor,
-                BlendMode.srcIn,
+            ),
+          if (icon != null)
+            const Padding(
+              padding: EdgeInsets.fromLTRB(0, 0, 12, 0),
+            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: theme.typography.bodyM.copyWith(
+                  color: theme.fifthColor,
+                ),
+              ),
+              if (subtitle != null)
+                Text(
+                  subtitle!,
+                  style: theme.typography.footnote.copyWith(
+                    color: theme.secondaryText,
+                  ),
+                ),
+            ],
+          ),
+          const Spacer(),
+          if (showArrow)
+            Center(
+              child: SvgPicture.asset(
+                BWMAssets.menuArrow,
+                fit: BoxFit.cover,
+                alignment: Alignment.centerRight,
+                width: 20,
+                height: 20,
+                colorFilter: ColorFilter.mode(
+                  theme.primaryColor,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
-          ),
-      ],
+        ],
+      ),
     );
   }
 }

@@ -27,4 +27,12 @@ final class _BlocProviders {
       ref.read(Di.shared.manager.userManager),
     ),
   );
+
+  late final profile = Provider(
+    (ref) => ProfileBloc(
+      ref.read(
+        Di.shared.repository.firebaseRemoteConfig,
+      ),
+    ),
+  );
 }
