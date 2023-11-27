@@ -36,10 +36,11 @@
 	"tutorDashaNameKey": "Dasha",
 	"tutorJohnnyNameKey": "Johnny",
 
+	"en": "English",
+	"ru": "Русский",
+
 	"profileSettings": "Settings",
 	"profileLanguage": "Language",
-	"profileLanguageEn": "English",
-	"profileLanguageRu": "Russian",
 	"profileReminder": "Reminder",
 	"profileFAQ": "FAQ",
 	"profileChat": "Community chat",

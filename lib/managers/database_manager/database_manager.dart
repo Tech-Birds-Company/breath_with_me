@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:breathe_with_me/database/database.dart';
 import 'package:breathe_with_me/database/entities/bloc_state_entity.dart';
 import 'package:breathe_with_me/database/entities/download_track_task_entity.dart';
+import 'package:breathe_with_me/database/entities/remote_config_entity.dart';
 import 'package:breathe_with_me/managers/download_manager/download_task.dart';
 import 'package:breathe_with_me/objectbox.g.dart';
 
@@ -11,6 +14,7 @@ final class DatabaseManager {
 
   late final _store = _database.store;
   late final downloadTaskBox = _store.box<DownloadTrackTaskEntity>();
+  late final remoteConfigBox = _store.box<RemoteConfigEntity>();
   late final blocStateBox = _store.box<BlocStateEntity>();
 
   Future<DownloadTrackTaskEntity?> getDownloadTask(String taskId) async {
@@ -52,6 +56,22 @@ final class DatabaseManager {
         .query(DownloadTrackTaskEntity_.taskId.equals(taskId))
         .build()
         .removeAsync();
+  }
+
+  Future<RemoteConfigEntity?> getRemoteConfig() {
+    return remoteConfigBox.query().build().findFirstAsync();
+  }
+
+  Future<void> saveRemoteConfig(Map<String, Object?> json) async {
+    final entities = await remoteConfigBox.getAllAsync();
+    final jsonString = jsonEncode(json);
+    if (entities.isNotEmpty) {
+      final updatedEntity = entities.first..json = jsonString;
+      await remoteConfigBox.putAsync(updatedEntity);
+    } else {
+      final entity = RemoteConfigEntity(json: jsonString);
+      await remoteConfigBox.putAsync(entity);
+    }
   }
 
   Stream<double> taskProgressStream(String taskId) {

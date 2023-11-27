@@ -1,18 +1,23 @@
 import 'package:breathe_with_me/assets.dart';
+import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/extensions/widget.dart';
 import 'package:breathe_with_me/features/profile/widgets/profile_header.dart';
 import 'package:breathe_with_me/features/profile/widgets/profile_info_block.dart';
 import 'package:breathe_with_me/features/profile/widgets/profile_menu_button.dart';
-import 'package:breathe_with_me/theme/bwm_theme.dart';
-import 'package:flutter/material.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
+import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends ConsumerWidget {
   const ProfilePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
+    final currentLocale = EasyLocalization.of(context)!.locale;
+    final bloc = ref.read(Di.shared.bloc.profile);
     return Scaffold(
       backgroundColor: theme.primaryBackground,
       body: Stack(
@@ -45,7 +50,7 @@ class ProfilePage extends StatelessWidget {
                   ).toSliver,
                   Center(
                     child: Text(
-                      LocaleKeys.profilePremiumFor3Friends,
+                      LocaleKeys.profilePremiumFor3Friends.tr(),
                       style: theme.typography.label.copyWith(
                         color: theme.fourthColor,
                       ),
@@ -54,8 +59,8 @@ class ProfilePage extends StatelessWidget {
                   const Padding(
                     padding: EdgeInsets.fromLTRB(0, 36, 0, 0),
                   ).toSliver,
-                  const ProfileMenuButton(
-                    title: LocaleKeys.profileSettings,
+                  ProfileMenuButton(
+                    title: LocaleKeys.profileSettings.tr(),
                     showArrow: true,
                   ).toSliver,
                   const Padding(
@@ -67,10 +72,11 @@ class ProfilePage extends StatelessWidget {
                       color: Color(0x995D5D6D), // TODO: Use color from theme
                     ),
                   ).toSliver,
-                  const ProfileMenuButton(
-                    title: LocaleKeys.profileLanguage,
-                    subtitle: LocaleKeys.profileLanguageEn,
+                  ProfileMenuButton(
+                    title: LocaleKeys.profileLanguage.tr(),
+                    subtitle: currentLocale.languageCode.tr(),
                     showArrow: true,
+                    onTap: bloc.openLanguageSheet,
                   ).toSliver,
                   const Padding(
                     padding: EdgeInsets.symmetric(vertical: 18),
@@ -81,8 +87,8 @@ class ProfilePage extends StatelessWidget {
                       color: Color(0x995D5D6D), // TODO: Use color from theme
                     ),
                   ).toSliver,
-                  const ProfileMenuButton(
-                    title: LocaleKeys.profileReminder,
+                  ProfileMenuButton(
+                    title: LocaleKeys.profileReminder.tr(),
                     subtitle: '10:00 AM; Tue, Thu, Sat',
                     showArrow: true,
                   ).toSliver,
@@ -95,16 +101,17 @@ class ProfilePage extends StatelessWidget {
                       color: Color(0x995D5D6D), // TODO: Use color from theme
                     ),
                   ).toSliver,
-                  const ProfileMenuButton(
-                    title: LocaleKeys.profileFAQ,
+                  ProfileMenuButton(
+                    title: LocaleKeys.profileFAQ.tr(),
                     showArrow: true,
                   ).toSliver,
                   const Padding(
                     padding: EdgeInsets.fromLTRB(0, 0, 0, 89),
                   ).toSliver,
-                  const ProfileMenuButton(
-                    title: LocaleKeys.profileChat,
+                  ProfileMenuButton(
+                    title: LocaleKeys.profileChat.tr(),
                     icon: BWMAssets.telegram,
+                    onTap: bloc.openCommunityChat,
                   ).toSliver,
                   const Padding(
                     padding: EdgeInsets.symmetric(vertical: 18),
@@ -115,9 +122,10 @@ class ProfilePage extends StatelessWidget {
                       color: Color(0x995D5D6D), // TODO: Use color from theme
                     ),
                   ).toSliver,
-                  const ProfileMenuButton(
-                    title: LocaleKeys.profileContactUs,
+                  ProfileMenuButton(
+                    title: LocaleKeys.profileContactUs.tr(),
                     icon: BWMAssets.email,
+                    onTap: bloc.onSupportEmail,
                   ).toSliver,
                 ],
               ),

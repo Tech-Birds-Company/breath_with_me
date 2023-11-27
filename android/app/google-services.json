@@ -12,7 +12,12 @@
           "package_name": "com.dobry.breathewithme"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "847416864961-hth864tu36o6glhvek8cbldpni3n4hmh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBwIpAXuiZIqbseUH1fpqhXLxcO1sbesrs"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "847416864961-hth864tu36o6glhvek8cbldpni3n4hmh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "847416864961-nru6bh3uoavn8ea82cbm20aboed5m46p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dobry.breathewithme"
+              }
+            }
+          ]
         }
       }
     }

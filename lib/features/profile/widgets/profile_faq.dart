@@ -48,7 +48,7 @@ class ProfileFAQ extends StatelessWidget {
                       color: theme.gray6,
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),

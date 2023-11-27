@@ -28,6 +28,13 @@ final class _BlocProviders {
     ),
   );
 
+  late final profile = Provider(
+    (ref) => ProfileBloc(
+      ref.read(Di.shared.manager.navigation),
+      ref.read(Di.shared.repository.firebaseRemoteConfig),
+    ),
+  );
+
   late final faq = Provider(
     (ref) => FaqBloc(
       ref.read(Di.shared.repository.firebaseFaqQuestions),

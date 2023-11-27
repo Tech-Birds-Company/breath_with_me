@@ -3,15 +3,25 @@ import 'package:flutter/widgets.dart';
 
 abstract interface class Typography {
   TextStyle get title;
+
   TextStyle get subtitle;
+
   TextStyle get heading;
+
   TextStyle get heading2;
+
   TextStyle get heading3;
+
   TextStyle get bodyM;
+
   TextStyle get bodyMTrue;
+
   TextStyle get label;
+
   TextStyle get labelM;
+
   TextStyle get footer;
+
   TextStyle get footnote;
 }
 
@@ -95,13 +105,5 @@ final class BWMTypography extends Typography {
         fontWeight: FontWeight.w400,
         fontSize: 14,
         height: 18 / 14,
-        );
-      
-  @override
-  TextStyle get footnote => const TextStyle(
-        fontFamily: _fontFamily,
-        fontWeight: FontWeight.w400,
-        fontSize: 13,
-        height: 16 / 12,
       );
 }

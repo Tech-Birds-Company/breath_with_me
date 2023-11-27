@@ -1,6 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const appName = 'appName';
   static const appBarBackTitle = 'appBarBackTitle';
   static const onboardingCreateAccount = 'onboardingCreateAccount';
@@ -32,10 +32,10 @@ abstract class  LocaleKeys {
   static const tutorJacksonNameKey = 'tutorJacksonNameKey';
   static const tutorDashaNameKey = 'tutorDashaNameKey';
   static const tutorJohnnyNameKey = 'tutorJohnnyNameKey';
+  static const en = 'en';
+  static const ru = 'ru';
   static const profileSettings = 'profileSettings';
   static const profileLanguage = 'profileLanguage';
-  static const profileLanguageEn = 'profileLanguageEn';
-  static const profileLanguageRu = 'profileLanguageRu';
   static const profileReminder = 'profileReminder';
   static const profileFAQ = 'profileFAQ';
   static const profileChat = 'profileChat';
@@ -48,5 +48,4 @@ abstract class  LocaleKeys {
   static const profileTotalFriends = 'profileTotalFriends';
   static const profileFriendsUntilPremium = 'profileFriendsUntilPremium';
   static const profileFaqTitle = 'profileFaqTitle';
-
 }

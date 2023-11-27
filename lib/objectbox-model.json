@@ -77,9 +77,28 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "4:8023868237763278366",
+      "lastPropertyId": "2:6957836496469491890",
+      "name": "RemoteConfigEntity",
+      "properties": [
+        {
+          "id": "1:7143378916413641663",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6957836496469491890",
+          "name": "json",
+          "type": 9
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "3:1520315073668077580",
+  "lastEntityId": "4:8023868237763278366",
   "lastIndexId": "4:5744209523469708764",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
