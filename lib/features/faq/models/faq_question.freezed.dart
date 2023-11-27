@@ -23,7 +23,8 @@ mixin _$FaqQuestion {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  TrackLanguage get language => throw _privateConstructorUsedError;
+  @JsonKey(unknownEnumValue: ContentLanguage.unknown)
+  ContentLanguage get language => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +38,12 @@ abstract class $FaqQuestionCopyWith<$Res> {
           FaqQuestion value, $Res Function(FaqQuestion) then) =
       _$FaqQuestionCopyWithImpl<$Res, FaqQuestion>;
   @useResult
-  $Res call({int id, String title, String description, TrackLanguage language});
+  $Res call(
+      {int id,
+      String title,
+      String description,
+      @JsonKey(unknownEnumValue: ContentLanguage.unknown)
+      ContentLanguage language});
 }
 
 /// @nodoc
@@ -74,7 +80,7 @@ class _$FaqQuestionCopyWithImpl<$Res, $Val extends FaqQuestion>
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as TrackLanguage,
+              as ContentLanguage,
     ) as $Val);
   }
 }
@@ -87,7 +93,12 @@ abstract class _$$FaqQuestionImplCopyWith<$Res>
       __$$FaqQuestionImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String title, String description, TrackLanguage language});
+  $Res call(
+      {int id,
+      String title,
+      String description,
+      @JsonKey(unknownEnumValue: ContentLanguage.unknown)
+      ContentLanguage language});
 }
 
 /// @nodoc
@@ -122,7 +133,7 @@ class __$$FaqQuestionImplCopyWithImpl<$Res>
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as TrackLanguage,
+              as ContentLanguage,
     ));
   }
 }
@@ -134,6 +145,7 @@ class _$FaqQuestionImpl implements _FaqQuestion {
       {required this.id,
       required this.title,
       required this.description,
+      @JsonKey(unknownEnumValue: ContentLanguage.unknown)
       required this.language});
 
   factory _$FaqQuestionImpl.fromJson(Map<String, dynamic> json) =>
@@ -146,7 +158,8 @@ class _$FaqQuestionImpl implements _FaqQuestion {
   @override
   final String description;
   @override
-  final TrackLanguage language;
+  @JsonKey(unknownEnumValue: ContentLanguage.unknown)
+  final ContentLanguage language;
 
   @override
   String toString() {
@@ -190,7 +203,8 @@ abstract class _FaqQuestion implements FaqQuestion {
       {required final int id,
       required final String title,
       required final String description,
-      required final TrackLanguage language}) = _$FaqQuestionImpl;
+      @JsonKey(unknownEnumValue: ContentLanguage.unknown)
+      required final ContentLanguage language}) = _$FaqQuestionImpl;
 
   factory _FaqQuestion.fromJson(Map<String, dynamic> json) =
       _$FaqQuestionImpl.fromJson;
@@ -202,7 +216,8 @@ abstract class _FaqQuestion implements FaqQuestion {
   @override
   String get description;
   @override
-  TrackLanguage get language;
+  @JsonKey(unknownEnumValue: ContentLanguage.unknown)
+  ContentLanguage get language;
   @override
   @JsonKey(ignore: true)
   _$$FaqQuestionImplCopyWith<_$FaqQuestionImpl> get copyWith =>

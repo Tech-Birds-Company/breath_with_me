@@ -1,16 +1,9 @@
 import 'package:breathe_with_me/features/practices/models/tutor.dart';
+import 'package:breathe_with_me/utils/content_language.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'track.freezed.dart';
 part 'track.g.dart';
-
-enum TrackLanguage {
-  @JsonValue('ru')
-  ru,
-  @JsonValue('en')
-  en,
-  unknown,
-}
 
 @freezed
 class Track with _$Track {
@@ -20,8 +13,8 @@ class Track with _$Track {
     required String title,
     required int duration,
     required Tutor tutor,
-    @JsonKey(unknownEnumValue: TrackLanguage.unknown)
-    required TrackLanguage language,
+    @JsonKey(unknownEnumValue: ContentLanguage.unknown)
+    required ContentLanguage language,
     @Default(false) bool isPremium,
     @Default(false) bool isNew,
   }) = _Track;

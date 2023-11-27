@@ -10,7 +10,8 @@ _$FaqQuestionImpl _$$FaqQuestionImplFromJson(Map json) => _$FaqQuestionImpl(
       id: json['id'] as int,
       title: json['title'] as String,
       description: json['description'] as String,
-      language: $enumDecode(_$TrackLanguageEnumMap, json['language']),
+      language: $enumDecode(_$ContentLanguageEnumMap, json['language'],
+          unknownValue: ContentLanguage.unknown),
     );
 
 Map<String, dynamic> _$$FaqQuestionImplToJson(_$FaqQuestionImpl instance) =>
@@ -18,11 +19,11 @@ Map<String, dynamic> _$$FaqQuestionImplToJson(_$FaqQuestionImpl instance) =>
       'id': instance.id,
       'title': instance.title,
       'description': instance.description,
-      'language': _$TrackLanguageEnumMap[instance.language]!,
+      'language': _$ContentLanguageEnumMap[instance.language]!,
     };
 
-const _$TrackLanguageEnumMap = {
-  TrackLanguage.ru: 'ru',
-  TrackLanguage.en: 'en',
-  TrackLanguage.unknown: 'unknown',
+const _$ContentLanguageEnumMap = {
+  ContentLanguage.ru: 'ru',
+  ContentLanguage.en: 'en',
+  ContentLanguage.unknown: 'unknown',
 };

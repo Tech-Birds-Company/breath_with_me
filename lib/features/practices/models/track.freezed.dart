@@ -25,8 +25,8 @@ mixin _$Track {
   String get title => throw _privateConstructorUsedError;
   int get duration => throw _privateConstructorUsedError;
   Tutor get tutor => throw _privateConstructorUsedError;
-  @JsonKey(unknownEnumValue: TrackLanguage.unknown)
-  TrackLanguage get language => throw _privateConstructorUsedError;
+  @JsonKey(unknownEnumValue: ContentLanguage.unknown)
+  ContentLanguage get language => throw _privateConstructorUsedError;
   bool get isPremium => throw _privateConstructorUsedError;
   bool get isNew => throw _privateConstructorUsedError;
 
@@ -46,7 +46,8 @@ abstract class $TrackCopyWith<$Res> {
       String title,
       int duration,
       Tutor tutor,
-      @JsonKey(unknownEnumValue: TrackLanguage.unknown) TrackLanguage language,
+      @JsonKey(unknownEnumValue: ContentLanguage.unknown)
+      ContentLanguage language,
       bool isPremium,
       bool isNew});
 
@@ -99,7 +100,7 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as TrackLanguage,
+              as ContentLanguage,
       isPremium: null == isPremium
           ? _value.isPremium
           : isPremium // ignore: cast_nullable_to_non_nullable
@@ -133,7 +134,8 @@ abstract class _$$TrackImplCopyWith<$Res> implements $TrackCopyWith<$Res> {
       String title,
       int duration,
       Tutor tutor,
-      @JsonKey(unknownEnumValue: TrackLanguage.unknown) TrackLanguage language,
+      @JsonKey(unknownEnumValue: ContentLanguage.unknown)
+      ContentLanguage language,
       bool isPremium,
       bool isNew});
 
@@ -185,7 +187,7 @@ class __$$TrackImplCopyWithImpl<$Res>
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as TrackLanguage,
+              as ContentLanguage,
       isPremium: null == isPremium
           ? _value.isPremium
           : isPremium // ignore: cast_nullable_to_non_nullable
@@ -207,7 +209,8 @@ class _$TrackImpl implements _Track {
       required this.title,
       required this.duration,
       required this.tutor,
-      @JsonKey(unknownEnumValue: TrackLanguage.unknown) required this.language,
+      @JsonKey(unknownEnumValue: ContentLanguage.unknown)
+      required this.language,
       this.isPremium = false,
       this.isNew = false});
 
@@ -225,8 +228,8 @@ class _$TrackImpl implements _Track {
   @override
   final Tutor tutor;
   @override
-  @JsonKey(unknownEnumValue: TrackLanguage.unknown)
-  final TrackLanguage language;
+  @JsonKey(unknownEnumValue: ContentLanguage.unknown)
+  final ContentLanguage language;
   @override
   @JsonKey()
   final bool isPremium;
@@ -284,8 +287,8 @@ abstract class _Track implements Track {
       required final String title,
       required final int duration,
       required final Tutor tutor,
-      @JsonKey(unknownEnumValue: TrackLanguage.unknown)
-      required final TrackLanguage language,
+      @JsonKey(unknownEnumValue: ContentLanguage.unknown)
+      required final ContentLanguage language,
       final bool isPremium,
       final bool isNew}) = _$TrackImpl;
 
@@ -302,8 +305,8 @@ abstract class _Track implements Track {
   @override
   Tutor get tutor;
   @override
-  @JsonKey(unknownEnumValue: TrackLanguage.unknown)
-  TrackLanguage get language;
+  @JsonKey(unknownEnumValue: ContentLanguage.unknown)
+  ContentLanguage get language;
   @override
   bool get isPremium;
   @override

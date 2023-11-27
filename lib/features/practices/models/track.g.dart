@@ -12,8 +12,8 @@ _$TrackImpl _$$TrackImplFromJson(Map json) => _$TrackImpl(
       title: json['title'] as String,
       duration: json['duration'] as int,
       tutor: Tutor.fromJson(Map<String, dynamic>.from(json['tutor'] as Map)),
-      language: $enumDecode(_$TrackLanguageEnumMap, json['language'],
-          unknownValue: TrackLanguage.unknown),
+      language: $enumDecode(_$ContentLanguageEnumMap, json['language'],
+          unknownValue: ContentLanguage.unknown),
       isPremium: json['isPremium'] as bool? ?? false,
       isNew: json['isNew'] as bool? ?? false,
     );
@@ -25,13 +25,13 @@ Map<String, dynamic> _$$TrackImplToJson(_$TrackImpl instance) =>
       'title': instance.title,
       'duration': instance.duration,
       'tutor': instance.tutor,
-      'language': _$TrackLanguageEnumMap[instance.language]!,
+      'language': _$ContentLanguageEnumMap[instance.language]!,
       'isPremium': instance.isPremium,
       'isNew': instance.isNew,
     };
 
-const _$TrackLanguageEnumMap = {
-  TrackLanguage.ru: 'ru',
-  TrackLanguage.en: 'en',
-  TrackLanguage.unknown: 'unknown',
+const _$ContentLanguageEnumMap = {
+  ContentLanguage.ru: 'ru',
+  ContentLanguage.en: 'en',
+  ContentLanguage.unknown: 'unknown',
 };
