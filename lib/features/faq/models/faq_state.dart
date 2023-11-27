@@ -5,7 +5,7 @@ part 'faq_state.freezed.dart';
 part 'faq_state.g.dart';
 
 @freezed
-abstract class FaqState with _$FaqState {
+class FaqState with _$FaqState {
   const factory FaqState.data(List<FaqQuestion> tracks) = _Data;
   const factory FaqState.loading() = _Loading;
   const factory FaqState.error() = _Error;
