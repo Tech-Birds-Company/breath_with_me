@@ -32,10 +32,10 @@ abstract class LocaleKeys {
   static const tutorJacksonNameKey = 'tutorJacksonNameKey';
   static const tutorDashaNameKey = 'tutorDashaNameKey';
   static const tutorJohnnyNameKey = 'tutorJohnnyNameKey';
+  static const en = 'en';
+  static const ru = 'ru';
   static const profileSettings = 'profileSettings';
   static const profileLanguage = 'profileLanguage';
-  static const profileLanguageEn = 'profileLanguageEn';
-  static const profileLanguageRu = 'profileLanguageRu';
   static const profileReminder = 'profileReminder';
   static const profileFAQ = 'profileFAQ';
   static const profileChat = 'profileChat';

@@ -96,6 +96,7 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   }) async {
     await _audioManager.init(
       AudioSource.file(localFile.path),
+      id: _trackId,
       title: title,
       artist: tutorNameKey.tr(),
     );
@@ -110,6 +111,7 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   }) async {
     await _audioManager.init(
       AudioSource.uri(Uri.parse(url)),
+      id: _trackId,
       title: title,
       artist: tutorNameKey.tr(),
     );

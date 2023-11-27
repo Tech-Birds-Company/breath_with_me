@@ -2,9 +2,7 @@ part of 'di.dart';
 
 final class _ManagerProviders {
   late final tracksDownloader = Provider(
-    (ref) => TracksDownloaderManager(
-      ref.read(Di.shared.manager.database),
-    ),
+    (ref) => TracksDownloaderManager(ref.read(database)),
   );
 
   late final trackPlayer = Provider.autoDispose((ref) {
@@ -23,9 +21,7 @@ final class _ManagerProviders {
 
   late final audio = Provider.autoDispose(
     (ref) {
-      final manager = TrackAudioManager(
-        ref.read(Di.shared.manager.trackPlayer),
-      );
+      final manager = TrackAudioManager(ref.read(trackPlayer));
       ref.onDispose(manager.dispose);
       return manager;
     },

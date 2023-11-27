@@ -22,6 +22,7 @@ final class TrackAudioManager extends AudioManager {
   @override
   Future<void> init(
     AudioSource source, {
+    required String id,
     required String title,
     required String artist,
   }) async {
@@ -31,7 +32,7 @@ final class TrackAudioManager extends AudioManager {
     final duration = audioPlayer!.duration;
 
     final playerMediaItem = MediaItem(
-      id: 'id',
+      id: id,
       title: title,
       artist: artist,
       duration: duration,

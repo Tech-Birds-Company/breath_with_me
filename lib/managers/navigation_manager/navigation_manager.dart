@@ -2,12 +2,16 @@ import 'package:breathe_with_me/features/home/home_page.dart';
 import 'package:breathe_with_me/features/onboarding/create_account_modal_page.dart';
 import 'package:breathe_with_me/features/onboarding/onboarding_page.dart';
 import 'package:breathe_with_me/features/profile/profile_page.dart';
+import 'package:breathe_with_me/features/profile/widgets/language_sheet.dart';
 import 'package:breathe_with_me/features/track_player/track_player_page.dart';
 import 'package:breathe_with_me/managers/navigation_manager/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 final class NavigationManager {
+  BuildContext? get context =>
+      router.routerDelegate.navigatorKey.currentContext;
+
   late final router = GoRouter(
     initialLocation: BWMRoutes.onboarding,
     routes: <RouteBase>[
@@ -53,6 +57,19 @@ final class NavigationManager {
       queryParameters: {'trackId': trackId},
     );
     router.push(uri.toString());
+  }
+
+  void openLanguageSheet() {
+    if (context == null) {
+      return;
+    }
+    showModalBottomSheet<void>(
+      backgroundColor: Colors.transparent,
+      context: context!,
+      builder: (context) {
+        return const LanguageSheet();
+      },
+    );
   }
 
   void openProfile() {

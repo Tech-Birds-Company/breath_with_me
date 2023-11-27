@@ -16,6 +16,7 @@ class ProfilePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
+    final currentLocale = EasyLocalization.of(context)!.locale;
     final bloc = ref.read(Di.shared.bloc.profile);
     return Scaffold(
       backgroundColor: theme.primaryBackground,
@@ -73,8 +74,9 @@ class ProfilePage extends ConsumerWidget {
                   ).toSliver,
                   ProfileMenuButton(
                     title: LocaleKeys.profileLanguage.tr(),
-                    subtitle: LocaleKeys.profileLanguageEn.tr(),
+                    subtitle: currentLocale.languageCode.tr(),
                     showArrow: true,
+                    onTap: bloc.openLanguageSheet,
                   ).toSliver,
                   const Padding(
                     padding: EdgeInsets.symmetric(vertical: 18),

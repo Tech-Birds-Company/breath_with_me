@@ -3,7 +3,7 @@ part of 'di.dart';
 final class _RepositoryProviders {
   late final firebaseTracks = Provider.autoDispose(
     (ref) => FirebaseTracksRepository(
-      ref.read(Di.shared.repository.firebaseTutors),
+      ref.read(firebaseTutors),
       ref.read(Di.shared.manager.database),
     ),
   );

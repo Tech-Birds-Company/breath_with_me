@@ -7,6 +7,7 @@ abstract base class AudioManager extends BaseAudioHandler {
 
   Future<void> init(
     AudioSource source, {
+    required String id,
     required String title,
     required String artist,
   });
