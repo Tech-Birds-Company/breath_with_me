@@ -13,14 +13,23 @@ class FaqQuestionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: ListView.separated(
-        itemCount: questions.length,
-        itemBuilder: (context, index) {
-          return FaqQuestionItem(question: questions[index]);
-        },
-        separatorBuilder: (context, index) {
-          return const SizedBox(height: 20);
-        },
+      child: Padding(
+        padding: const EdgeInsets.only(top: 20),
+        child: ListView.separated(
+          itemCount: questions.length,
+          itemBuilder: (context, index) {
+            return FaqQuestionItem(question: questions[index]);
+          },
+          separatorBuilder: (context, index) {
+            return const Padding(
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              child: Divider(
+                color: Color(0x405D5D6D), // TODO: Use color from theme
+                thickness: 1,
+              ),
+            );
+          },
+        ),
       ),
     );
   }

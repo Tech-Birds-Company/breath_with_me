@@ -17,15 +17,18 @@ class FaqQuestionItem extends StatelessWidget {
       iconColor: theme.green4,
       collapsedIconColor: theme.green4,
       expandedAlignment: Alignment.centerLeft,
-      title: Text(
-        question.title,
-        style: theme.typography.heading3.copyWith(
-          color: theme.gray4,
+      title: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4),
+        child: Text(
+          question.title,
+          style: theme.typography.heading3.copyWith(
+            color: theme.gray4,
+          ),
         ),
       ),
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.only(top: 6, left: 20, right: 20),
           child: Text(
             question.description,
             style: theme.typography.bodyM.copyWith(
