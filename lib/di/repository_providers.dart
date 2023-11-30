@@ -16,4 +16,7 @@ final class _RepositoryProviders {
       ref.read(Di.shared.manager.database),
     ),
   );
+
+  late final firebaseFaqQuestions =
+      Provider.autoDispose((ref) => const FirebaseFaqQuestionsRepository());
 }

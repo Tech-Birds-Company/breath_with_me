@@ -34,4 +34,10 @@ final class _BlocProviders {
       ref.read(Di.shared.repository.firebaseRemoteConfig),
     ),
   );
+
+  late final faq = Provider(
+    (ref) => FaqBloc(
+      ref.read(Di.shared.repository.firebaseFaqQuestions),
+    ),
+  );
 }
