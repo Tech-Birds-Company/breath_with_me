@@ -10,9 +10,7 @@ final class PracticeListBloc extends CacheableBloc<PracticeListState> {
   PracticeListBloc(
     this._navigationManager,
     this._tracksRepository,
-  ) : super(const PracticeListState.loading()) {
-    loadCache();
-  }
+  ) : super(const PracticeListState.loading());
 
   Stream<bool> trackIsDownloadedStream(String trackId) {
     return _tracksRepository.getTrackIsDownloadedStream(trackId);

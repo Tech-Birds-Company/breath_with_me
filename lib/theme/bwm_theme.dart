@@ -10,7 +10,8 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
   final Color secondaryBackground;
   final Color primaryText;
   final Color secondaryText;
-  final Color green4;
+  final Color green3;
+  final Color gray3;
   final Color gray4;
   final Color gray6;
 
@@ -23,7 +24,8 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
     required this.secondaryBackground,
     required this.primaryText,
     required this.secondaryText,
-    required this.green4,
+    required this.green3,
+    required this.gray3,
     required this.gray4,
     required this.gray6,
   });
@@ -38,7 +40,8 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
     Color? secondaryBackground,
     Color? primaryText,
     Color? secondaryText,
-    Color? green4,
+    Color? green3,
+    Color? gray3,
     Color? gray4,
     Color? gray6,
   }) {
@@ -51,7 +54,8 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
       secondaryBackground: secondaryBackground ?? this.secondaryBackground,
       primaryText: primaryText ?? this.primaryText,
       secondaryText: secondaryText ?? this.secondaryText,
-      green4: green4 ?? this.green4,
+      green3: green3 ?? this.green3,
+      gray3: gray3 ?? this.gray3,
       gray4: gray4 ?? this.gray4,
       gray6: gray6 ?? this.gray6,
     );
@@ -78,7 +82,8 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
           Color.lerp(secondaryBackground, other.secondaryBackground, t)!,
       primaryText: Color.lerp(primaryText, other.primaryText, t)!,
       secondaryText: Color.lerp(secondaryText, other.secondaryText, t)!,
-      green4: Color.lerp(green4, other.green4, t)!,
+      green3: Color.lerp(green3, other.green3, t)!,
+      gray3: Color.lerp(gray4, other.gray3, t)!,
       gray4: Color.lerp(gray4, other.gray4, t)!,
       gray6: Color.lerp(gray6, other.gray6, t)!,
     );

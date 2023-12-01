@@ -30,13 +30,13 @@ class ProfileFAQ extends StatelessWidget {
           ),
           child: SafeArea(
             child: ExpansionTile(
-              iconColor: theme.green4,
-              collapsedIconColor: theme.green4,
+              iconColor: theme.green3,
+              collapsedIconColor: theme.green3,
               expandedAlignment: Alignment.centerLeft,
               title: Text(
                 'Question',
                 style: theme.typography.heading3.copyWith(
-                  color: theme.gray4,
+                  color: theme.gray3,
                 ),
               ),
               children: <Widget>[

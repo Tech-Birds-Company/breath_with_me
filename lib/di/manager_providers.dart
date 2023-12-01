@@ -40,4 +40,8 @@ final class _ManagerProviders {
       return manager;
     },
   );
+
+  late final pushNotifications = Provider(
+    (ref) => PushNotificationsManager(),
+  );
 }

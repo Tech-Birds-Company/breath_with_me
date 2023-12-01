@@ -41,7 +41,6 @@
 
 	"profileSettings": "Настройки",
 	"profileLanguage": "Язык",
-	"profileReminder": "Календарь",
 	"profileFAQ": "FAQ",
 	"profileChat": "Сообщества",
 	"profileContactUs": "Свяжитесь с нами",
@@ -52,5 +51,25 @@
 	"profileGetPremium": "Получить премиум",
 	"profileTotalFriends": "Друзей присоединилось",
 	"profileFriendsUntilPremium": "Присоединившихся друзей до бесплатного премиума",
-	"profileFaqTitle": "FAQ"
+	"profileFaqTitle": "FAQ",
+
+	"reminderTitle": "Напоминания",
+	"reminderDisabled": "Выключено",
+	"reminderSaveButtonTitle": "Сохранить",
+	"reminderEveryWd1": "Каждый понедельник",
+	"reminderEveryWd2": "Каждый вторник",
+	"reminderEveryWd3": "Каждую среду",
+	"reminderEveryWd4": "Каждый четверг",
+	"reminderEveryWd5": "Каждую пятницу",
+	"reminderEveryWd6": "Каждую субботу",
+	"reminderEveryWd7": "Каждое воскресенье",
+	"reminderWd1Short": "Пн",
+	"reminderWd2Short": "Вт",
+	"reminderWd3Short": "Ср",
+	"reminderWd4Short": "Чт",
+	"reminderWd5Short": "Пт",
+	"reminderWd6Short": "Сб",
+	"reminderWd7Short": "Вс",
+	"reminderNotificationTitle": "Пора дышать",
+	"reminderNotificationDescription": "Примите удобную позицию и начнем"
 }

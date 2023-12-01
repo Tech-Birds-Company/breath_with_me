@@ -50,7 +50,6 @@ class _LanguageItem extends StatelessWidget {
 
   const _LanguageItem({
     required this.languageCode,
-    super.key,
   });
 
   @override

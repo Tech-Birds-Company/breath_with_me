@@ -14,8 +14,8 @@ class FaqQuestionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return ExpansionTile(
-      iconColor: theme.green4,
-      collapsedIconColor: theme.green4,
+      iconColor: theme.green3,
+      collapsedIconColor: theme.green3,
       expandedAlignment: Alignment.centerLeft,
       title: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -35,7 +35,7 @@ class FaqQuestionItem extends StatelessWidget {
               color: theme.gray6,
             ),
           ),
-        )
+        ),
       ],
     );
   }
