@@ -12,7 +12,7 @@ final class FaqBloc extends BlocBase<FaqState> {
   }
 
   Future<void> loadQuestions() async {
-    final tracks = await _questionsRepository.getQuestions();
-    emit(FaqState.data(tracks));
+    final questions = await _questionsRepository.getQuestions();
+    emit(FaqState.data(questions));
   }
 }
