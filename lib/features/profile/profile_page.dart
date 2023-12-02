@@ -4,6 +4,7 @@ import 'package:breathe_with_me/extensions/widget.dart';
 import 'package:breathe_with_me/features/profile/widgets/profile_header.dart';
 import 'package:breathe_with_me/features/profile/widgets/profile_info_block.dart';
 import 'package:breathe_with_me/features/profile/widgets/profile_menu_button.dart';
+import 'package:breathe_with_me/features/profile/widgets/reminder_profile_item.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -87,11 +88,7 @@ class ProfilePage extends ConsumerWidget {
                       color: Color(0x995D5D6D), // TODO: Use color from theme
                     ),
                   ).toSliver,
-                  ProfileMenuButton(
-                    title: LocaleKeys.profileReminder.tr(),
-                    subtitle: '10:00 AM; Tue, Thu, Sat',
-                    showArrow: true,
-                  ).toSliver,
+                  const ReminderProfileItem().toSliver,
                   const Padding(
                     padding: EdgeInsets.symmetric(vertical: 18),
                     child: Divider(
