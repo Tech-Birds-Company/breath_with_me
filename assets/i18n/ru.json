@@ -52,5 +52,10 @@
 	"profileGetPremium": "Получить премиум",
 	"profileTotalFriends": "Друзей присоединилось",
 	"profileFriendsUntilPremium": "Присоединившихся друзей до бесплатного премиума",
-	"profileFaqTitle": "FAQ"
+	"profileFaqTitle": "FAQ",
+
+	"streakStatisticsCardTitle": "Ты впечатляешь!",
+	"streakStatisticsCardStreaksCount": "День подряд",
+	"streakStatisticsCardPracticesCount": "Практики",
+	"streakStatisticsCardMinCount": "Минут"
 }

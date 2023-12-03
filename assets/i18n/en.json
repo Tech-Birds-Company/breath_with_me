@@ -52,5 +52,10 @@
 	"profileGetPremium": "Go Premium",
 	"profileTotalFriends": "Friends joined",
 	"profileFriendsUntilPremium": "Joined friends until free premium",
-	"profileFaqTitle": "FAQ"
+	"profileFaqTitle": "FAQ",
+
+	"streakStatisticsCardTitle": "You are fantastic",
+	"streakStatisticsCardStreaksCount": "Streaks",
+	"streakStatisticsCardPracticesCount": "Practices",
+	"streakStatisticsCardMinCount": "Min"
 }

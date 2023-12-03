@@ -13,7 +13,7 @@ final class BWMLightTheme extends BWMTheme {
     super.primaryText = const Color(0xFFFFFFFF),
     super.secondaryText = const Color(0xFF828282),
     super.green4 = const Color(0xFF6FCF97),
-    super.gray4 = const Color(0xFFF2F2F2),
-    super.gray6 = const Color(0xFFBDBDBD),
+    super.gray4 = const Color(0xFFBDBDBD),
+    super.gray6 = const Color(0xFFF2F2F2),
   });
 }
