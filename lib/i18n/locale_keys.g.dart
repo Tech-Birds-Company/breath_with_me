@@ -47,6 +47,7 @@ abstract class LocaleKeys {
   static const profileTotalFriends = 'profileTotalFriends';
   static const profileFriendsUntilPremium = 'profileFriendsUntilPremium';
   static const profileFaqTitle = 'profileFaqTitle';
+  static const profileLogout = 'profileLogout';
   static const reminderTitle = 'reminderTitle';
   static const reminderDisabled = 'reminderDisabled';
   static const reminderSaveButtonTitle = 'reminderSaveButtonTitle';

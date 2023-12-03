@@ -6,7 +6,14 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 final class FirebaseUserManager implements UserManager {
-  late final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  late final _firebaseAuth = FirebaseAuth.instance;
+
+  @override
+  User? get currentUser => _firebaseAuth.currentUser;
+
+  @override
+  Stream<User?> get userStream =>
+      _firebaseAuth.userChanges().asBroadcastStream().distinct();
 
   @override
   Future<User?> signInWithEmail(String email, String password) async {
@@ -37,11 +44,10 @@ final class FirebaseUserManager implements UserManager {
             accessToken: googleAuth.accessToken,
           ),
         );
+
         return userCredential.user;
       }
     }
-
-    // TODO(bestk1ngarthur): If first sign in -> update display name
 
     return null;
   }
@@ -62,8 +68,6 @@ final class FirebaseUserManager implements UserManager {
     );
 
     final authResult = await _firebaseAuth.signInWithCredential(credential);
-
-    // TODO(bestk1ngarthur): If first sign in -> update display name
 
     return authResult.user;
   }
@@ -87,9 +91,7 @@ final class FirebaseUserManager implements UserManager {
   }
 
   @override
-  Future<void> signOut() async {
-    await _firebaseAuth.signOut();
-  }
+  Future<void> signOut() => _firebaseAuth.signOut();
 
   @override
   Future<void> sendEmailVerification() async {

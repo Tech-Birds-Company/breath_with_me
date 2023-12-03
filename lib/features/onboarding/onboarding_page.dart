@@ -1,16 +1,18 @@
-import 'package:breathe_with_me/features/onboarding/create_account_modal_page.dart';
+import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/onboarding/widgets/create_account_button.dart';
 import 'package:breathe_with_me/features/onboarding/widgets/onboarding_header.dart';
 import 'package:breathe_with_me/features/onboarding/widgets/onboarding_page_view.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class OnboardingPage extends StatelessWidget {
+class OnboardingPage extends ConsumerWidget {
   const OnboardingPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
+    final bloc = ref.read(Di.shared.bloc.onboarding);
     return Scaffold(
       backgroundColor: theme.primaryBackground,
       body: SafeArea(
@@ -28,28 +30,13 @@ class OnboardingPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 92),
               child: Align(
                 child: OnboardingCreateAccountButton(
-                  onTap: () {
-                    _openCreateAccountPage(context);
-                  },
+                  onTap: bloc.onOpenCreateAccountModal,
                 ),
               ),
             ),
           ],
         ),
       ),
-    );
-  }
-
-  void _openCreateAccountPage(BuildContext context) {
-    showModalBottomSheet<CreateAccountModalPage>(
-      barrierColor: Colors.black,
-      isScrollControlled: true,
-      useSafeArea: true,
-      enableDrag: false,
-      context: context,
-      builder: (BuildContext context) {
-        return const CreateAccountModalPage();
-      },
     );
   }
 }

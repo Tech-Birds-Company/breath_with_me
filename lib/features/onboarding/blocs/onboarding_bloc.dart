@@ -22,22 +22,11 @@ final class OnboardingBloc extends BlocBase<OnboardingState> {
     await _userManager.signInWithGoogle();
   }
 
-  Future<void> signUpWithEmail() async {
-    // TODO(bestk1ngarthur): Open email sign up flow
-    _openHome();
+  void onOpenCreateAccountModal() {
+    _navigationManager.openCreateAccount();
   }
 
-  Future<void> signIn() async {
-    // TODO(bestk1ngarthur): Open sign in flow
-    _openHome();
-  }
-
-  void openContactUs() {
-    // TODO(bestk1ngarthur): Open contact us
-    _openHome();
-  }
-
-  void closeCreateAccountModal() {
+  void onCloseCreateAccountModal() {
     _navigationManager.router.pop();
   }
 

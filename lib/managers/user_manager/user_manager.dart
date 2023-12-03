@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract interface class UserManager {
@@ -13,4 +14,8 @@ abstract interface class UserManager {
   Future<void> signOut();
 
   Future<void> sendEmailVerification();
+
+  Stream<User?> get userStream;
+
+  User? get currentUser;
 }

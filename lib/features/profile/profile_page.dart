@@ -124,6 +124,20 @@ class ProfilePage extends ConsumerWidget {
                     icon: BWMAssets.email,
                     onTap: bloc.onSupportEmail,
                   ).toSliver,
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 18),
+                    child: Divider(
+                      thickness: 1,
+                      indent: 0,
+                      endIndent: 0,
+                      color: Color(0x995D5D6D), // TODO: Use color from theme
+                    ),
+                  ).toSliver,
+                  ProfileMenuButton(
+                    title: LocaleKeys.profileLogout.tr(),
+                    icon: BWMAssets.logout,
+                    onTap: bloc.onSignOut,
+                  ).toSliver,
                 ],
               ),
             ),

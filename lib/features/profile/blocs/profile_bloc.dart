@@ -1,5 +1,6 @@
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
+import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/repositories/firebase_remote_config_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -8,11 +9,13 @@ final class ProfileBloc extends BlocBase<Object?> {
   final NavigationManager _navigationManager;
   final PushNotificationsManager _pushNotificationsManager;
   final FirebaseRemoteConfigRepository _firebaseRemoteConfigRepository;
+  final UserManager _userManager;
 
   ProfileBloc(
     this._navigationManager,
     this._pushNotificationsManager,
     this._firebaseRemoteConfigRepository,
+    this._userManager,
   ) : super(null);
 
   Future<void> openReminder() async {
@@ -48,5 +51,9 @@ final class ProfileBloc extends BlocBase<Object?> {
       return;
     }
     _navigationManager.openLanguageSheet();
+  }
+
+  Future<void> onSignOut() async {
+    await _userManager.signOut();
   }
 }
