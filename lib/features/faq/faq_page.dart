@@ -50,7 +50,7 @@ class FaqPage extends ConsumerWidget {
                 },
                 error: () {
                   // TODO(bestK1ngArthur): Show error widget
-                  return const Text("Error");
+                  return const Text('Error');
                 },
               );
             },

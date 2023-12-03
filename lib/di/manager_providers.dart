@@ -11,7 +11,11 @@ final class _ManagerProviders {
     return manager;
   });
 
-  late final navigation = Provider((ref) => NavigationManager());
+  late final navigation = Provider((ref) {
+    return NavigationManager(
+      ref.read(Di.shared.manager.userManager),
+    );
+  });
 
   late final database = Provider<DatabaseManager>(
     (ref) {
@@ -39,5 +43,9 @@ final class _ManagerProviders {
       ref.onDispose(manager.dispose);
       return manager;
     },
+  );
+
+  late final pushNotifications = Provider(
+    (ref) => PushNotificationsManager(),
   );
 }

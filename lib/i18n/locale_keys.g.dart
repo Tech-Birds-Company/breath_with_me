@@ -35,7 +35,6 @@ abstract class  LocaleKeys {
   static const ru = 'ru';
   static const profileSettings = 'profileSettings';
   static const profileLanguage = 'profileLanguage';
-  static const profileReminder = 'profileReminder';
   static const profileFAQ = 'profileFAQ';
   static const profileChat = 'profileChat';
   static const profileContactUs = 'profileContactUs';
@@ -47,6 +46,27 @@ abstract class  LocaleKeys {
   static const profileTotalFriends = 'profileTotalFriends';
   static const profileFriendsUntilPremium = 'profileFriendsUntilPremium';
   static const profileFaqTitle = 'profileFaqTitle';
+  static const profileLogout = 'profileLogout';
+  static const reminderTitle = 'reminderTitle';
+  static const reminderDisabled = 'reminderDisabled';
+  static const reminderSaveButtonTitle = 'reminderSaveButtonTitle';
+  static const reminderEveryWd1 = 'reminderEveryWd1';
+  static const reminderEveryWd2 = 'reminderEveryWd2';
+  static const reminderEveryWd3 = 'reminderEveryWd3';
+  static const reminderEveryWd4 = 'reminderEveryWd4';
+  static const reminderEveryWd5 = 'reminderEveryWd5';
+  static const reminderEveryWd6 = 'reminderEveryWd6';
+  static const reminderEveryWd7 = 'reminderEveryWd7';
+  static const reminderWd1Short = 'reminderWd1Short';
+  static const reminderWd2Short = 'reminderWd2Short';
+  static const reminderWd3Short = 'reminderWd3Short';
+  static const reminderWd4Short = 'reminderWd4Short';
+  static const reminderWd5Short = 'reminderWd5Short';
+  static const reminderWd6Short = 'reminderWd6Short';
+  static const reminderWd7Short = 'reminderWd7Short';
+  static const reminderNotificationTitle = 'reminderNotificationTitle';
+  static const reminderNotificationDescription =
+      'reminderNotificationDescription';
   static const streakStatisticsCardTitle = 'streakStatisticsCardTitle';
   static const streakStatisticsCardStreaksCount = 'streakStatisticsCardStreaksCount';
   static const streakStatisticsCardPracticesCount = 'streakStatisticsCardPracticesCount';

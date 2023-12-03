@@ -10,13 +10,27 @@ final class StorageNotFound implements Exception {
 }
 
 abstract base class CacheableBloc<State> extends BlocBase<State> {
-  CacheableBloc(super.state);
+  CacheableBloc(super.state) {
+    loadCache();
+  }
 
   static BlocCacheStorage? _sharedStorage;
 
   String get key => '';
 
+  String get _entityName => '$runtimeType$key';
+
   static set storage(BlocCacheStorage storage) => _sharedStorage ??= storage;
+
+  Stream<State?> get cachedBlocStateStream {
+    return _storage.stream(_entityName).map((object) {
+      if (object == null) {
+        return null;
+      }
+      final jsonMap = jsonDecode(object as String) as Map<String, dynamic>;
+      return fromJson(jsonMap);
+    });
+  }
 
   BlocCacheStorage get _storage {
     if (_sharedStorage == null) {
@@ -27,7 +41,7 @@ abstract base class CacheableBloc<State> extends BlocBase<State> {
   }
 
   Future<void> cache() => _storage.write(
-        runtimeType.toString(),
+        _entityName,
         toJson(state),
       );
 
@@ -40,6 +54,9 @@ abstract base class CacheableBloc<State> extends BlocBase<State> {
     emit(fromJson(jsonMap));
   }
 
+  Future<void> deleteCache() => _storage.delete(_entityName);
+
   Map<String, dynamic> toJson(State state);
+
   State fromJson(Map<String, dynamic> json);
 }

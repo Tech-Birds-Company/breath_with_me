@@ -31,7 +31,7 @@ class CreateAccountModalPage extends ConsumerWidget {
             ),
             Positioned.fill(
               child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
+                filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
                 child: ColoredBox(
                   color: Colors.black.withAlpha(60),
                 ),
@@ -43,8 +43,12 @@ class CreateAccountModalPage extends ConsumerWidget {
                 CreateAccountHeader(
                   onApplePressed: bloc.signUpWithApple,
                   onGooglePressed: bloc.signUpWithGoogle,
-                  onEmailPressed: bloc.signUpWithEmail,
-                  onLoginPressed: bloc.signIn,
+                  onEmailPressed: () {
+                    // TODO(bestk1ngarthur): code
+                  },
+                  onLoginPressed: () {
+                    // TODO(bestk1ngarthur): code
+                  },
                 ),
                 const Spacer(),
                 TextButton(
@@ -52,8 +56,10 @@ class CreateAccountModalPage extends ConsumerWidget {
                     shape: const StadiumBorder(),
                     backgroundColor: const Color(0x24BDD6E9),
                   ),
-                  onPressed: bloc.openContactUs,
-                  child: Container(
+                  onPressed: () {
+                    // TODO(bestk1ngarthur): code
+                  },
+                  child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text(
                       LocaleKeys.createAccountContact.tr(),
@@ -63,9 +69,11 @@ class CreateAccountModalPage extends ConsumerWidget {
                     ),
                   ),
                 ),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 24,
+                  ),
                   child: Text(
                     LocaleKeys.createAccountAgreement.tr(),
                     textAlign: TextAlign.center,
@@ -80,7 +88,7 @@ class CreateAccountModalPage extends ConsumerWidget {
               top: 0,
               right: 0,
               child: ElevatedButton(
-                onPressed: bloc.closeCreateAccountModal,
+                onPressed: bloc.onCloseCreateAccountModal,
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(20, 20),
                   shape: const CircleBorder(),

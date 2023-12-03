@@ -20,6 +20,7 @@ final class BWMAssets {
   static const telegram = '$_icons/telegram.svg';
   static const checkmark = '$_icons/checkmark.svg';
   static const share = '$_icons/share.svg';
+  static const logout = '$_icons/logout.svg';
 
   static const appIcon = '$_icons/${BWMConstants.appIconFilename}';
   static const purpleCover = '$_icons/purple_cover.png';

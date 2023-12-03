@@ -31,13 +31,21 @@ final class _BlocProviders {
   late final profile = Provider(
     (ref) => ProfileBloc(
       ref.read(Di.shared.manager.navigation),
+      ref.read(Di.shared.manager.pushNotifications),
       ref.read(Di.shared.repository.firebaseRemoteConfig),
+      ref.read(Di.shared.manager.userManager),
     ),
   );
 
   late final faq = Provider(
     (ref) => FaqBloc(
       ref.read(Di.shared.repository.firebaseFaqQuestions),
+    ),
+  );
+
+  late final reminder = Provider.autoDispose(
+    (ref) => ReminderBloc(
+      ref.read(Di.shared.manager.pushNotifications),
     ),
   );
 }
