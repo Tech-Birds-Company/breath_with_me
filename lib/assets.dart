@@ -7,6 +7,7 @@ final class BWMAssets {
   static const _icons = 'assets/icons';
 
   static const logoIcon = '$_icons/logo.svg';
+  static const logoTextIcon = '$_icons/logo_text.svg';
   static const profileIcon = '$_icons/profile.svg';
   static const playIcon = '$_icons/play.svg';
   static const pauseIcon = '$_icons/pause.svg';
