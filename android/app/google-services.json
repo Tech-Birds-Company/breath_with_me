@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "847416864961-d0era2vo7egt5tuo35ap75a9kic7h2vm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dobry.breathewithme",
+            "certificate_hash": "81ccc77bf412ec71a638fa0abb98bc940fd1b094"
+          }
+        },
+        {
           "client_id": "847416864961-hth864tu36o6glhvek8cbldpni3n4hmh.apps.googleusercontent.com",
           "client_type": 3
         }

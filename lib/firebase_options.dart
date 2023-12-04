@@ -63,6 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '847416864961',
     projectId: 'bwithmedev',
     storageBucket: 'bwithmedev.appspot.com',
+    androidClientId:
+        '847416864961-d0era2vo7egt5tuo35ap75a9kic7h2vm.apps.googleusercontent.com',
     iosClientId:
         '847416864961-nru6bh3uoavn8ea82cbm20aboed5m46p.apps.googleusercontent.com',
     iosBundleId: 'com.dobry.breathewithme',

@@ -43,7 +43,6 @@ final class NavigationManager {
     initialLocation: BWMRoutes.onboarding,
     routes: BWMRoutes.routes,
     redirect: (context, state) {
-      print(state.uri.path);
       final authorized = _userManager.currentUser != null;
       if (authorized) {
         if (state.uri.path == BWMRoutes.onboarding) {

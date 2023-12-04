@@ -29,8 +29,4 @@ final class OnboardingBloc extends BlocBase<OnboardingState> {
   void onCloseCreateAccountModal() {
     _navigationManager.router.pop();
   }
-
-  void _openHome() {
-    _navigationManager.replaceHome();
-  }
 }

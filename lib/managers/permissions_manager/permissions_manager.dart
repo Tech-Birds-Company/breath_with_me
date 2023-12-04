@@ -25,10 +25,18 @@ final class PermissionsManager {
             sound: true,
           );
     } else if (Platform.isAndroid) {
-      return _flutterLocalNotificationsPlugin
-          .resolvePlatformSpecificImplementation<
-              AndroidFlutterLocalNotificationsPlugin>()
-          ?.requestNotificationsPermission();
+      final notificationsPermissionGranted =
+          await _flutterLocalNotificationsPlugin
+              .resolvePlatformSpecificImplementation<
+                  AndroidFlutterLocalNotificationsPlugin>()
+              ?.requestNotificationsPermission();
+      final exactAlarmsPermissionGranted =
+          await _flutterLocalNotificationsPlugin
+              .resolvePlatformSpecificImplementation<
+                  AndroidFlutterLocalNotificationsPlugin>()
+              ?.requestExactAlarmsPermission();
+      return (notificationsPermissionGranted ?? false) &&
+          (exactAlarmsPermissionGranted ?? false);
     }
     return null;
   }
