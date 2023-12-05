@@ -981,6 +981,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.3"
+  qonversion_flutter:
+    dependency: "direct main"
+    description:
+      name: qonversion_flutter
+      sha256: "15a60672af515cf51661ff37dd4fb46f3f2df8a2049530fb9a04a7b3ed91aad8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.2.0"
   quiver:
     dependency: transitive
     description:

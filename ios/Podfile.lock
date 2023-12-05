@@ -203,6 +203,14 @@ PODS:
   - PromisesObjC (2.3.1)
   - PromisesSwift (2.3.1):
     - PromisesObjC (= 2.3.1)
+  - Qonversion (5.2.0):
+    - Qonversion/Main (= 5.2.0)
+  - Qonversion/Main (5.2.0)
+  - qonversion_flutter (5.0.0):
+    - Flutter
+    - QonversionSandwich (= 3.2.0)
+  - QonversionSandwich (3.2.0):
+    - Qonversion (= 5.2.0)
   - RecaptchaInterop (100.0.0)
   - shared_preferences_foundation (0.0.1):
     - Flutter
@@ -233,6 +241,7 @@ DEPENDENCIES:
   - just_audio (from `.symlinks/plugins/just_audio/ios`)
   - objectbox_flutter_libs (from `.symlinks/plugins/objectbox_flutter_libs/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - qonversion_flutter (from `.symlinks/plugins/qonversion_flutter/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - sign_in_with_apple (from `.symlinks/plugins/sign_in_with_apple/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
@@ -264,6 +273,8 @@ SPEC REPOS:
     - ObjectBox
     - PromisesObjC
     - PromisesSwift
+    - Qonversion
+    - QonversionSandwich
     - RecaptchaInterop
 
 EXTERNAL SOURCES:
@@ -302,6 +313,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/objectbox_flutter_libs/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  qonversion_flutter:
+    :path: ".symlinks/plugins/qonversion_flutter/ios"
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
   sign_in_with_apple:
@@ -358,6 +371,9 @@ SPEC CHECKSUMS:
   path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   PromisesSwift: 28dca69a9c40779916ac2d6985a0192a5cb4a265
+  Qonversion: 7b56446a98f5a31bbe9a4611c6baa14e0bafa4c8
+  qonversion_flutter: 19bba0384650a587213afc28b6effa86820ddb79
+  QonversionSandwich: fac00203d7b082871264b4383d3627fd1ec8d5bf
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
   sign_in_with_apple: f3bf75217ea4c2c8b91823f225d70230119b8440
