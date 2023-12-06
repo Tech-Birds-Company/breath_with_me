@@ -1,12 +1,10 @@
 import 'dart:io';
 
 import 'package:audio_service/audio_service.dart';
-import 'package:breathe_with_me/app.dart';
 import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/constants.dart';
 import 'package:breathe_with_me/database/database.dart';
 import 'package:breathe_with_me/di/di.dart';
-import 'package:breathe_with_me/firebase_options.dart';
 import 'package:breathe_with_me/managers/audio_manager/track_audio_manger.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/tracks_downloader_manger.dart';
@@ -17,6 +15,7 @@ import 'package:breathe_with_me/managers/remote_config_manager/remote_config_man
 import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager_impl.dart';
 import 'package:breathe_with_me/managers/user_manager/firebase_user_manager.dart';
 import 'package:breathe_with_me/repositories/firebase_remote_config_repository.dart';
+import 'package:breathe_with_me/theme/bwm_light_theme.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/objectbox_bloc_storage.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -88,7 +87,7 @@ Future<List<Override>> _setupDependencies() async {
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   tz.initializeTimeZones();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp();
 
   final dependencies = await _setupDependencies();
 
@@ -105,8 +104,35 @@ Future<void> main() async {
       ],
       child: ProviderScope(
         overrides: dependencies,
-        child: const BWMApp(),
+        child: const _BWMApp(),
       ),
     ),
   );
+}
+
+class _BWMApp extends ConsumerWidget {
+  const _BWMApp();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final navigationManager = ref.read(Di.shared.manager.navigation);
+
+    return MaterialApp.router(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      routerConfig: navigationManager.router,
+      // TODO(vasidmi): Add dark theme
+      darkTheme: ThemeData.light(useMaterial3: false).copyWith(
+        extensions: [
+          const BWMLightTheme(),
+        ],
+      ),
+      theme: ThemeData.light(useMaterial3: false).copyWith(
+        extensions: [
+          const BWMLightTheme(),
+        ],
+      ),
+    );
+  }
 }

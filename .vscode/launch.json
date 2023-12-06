@@ -1,0 +1,69 @@
+{
+    "version": "1.0.0",
+    "configurations": [
+        {
+            "name": "[Dev] Debug Breathe With Me",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor",
+                "Dev"
+            ]
+        },
+        {
+            "name": "[Dev] Profile Breathe With Me",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor",
+                "Dev"
+            ],
+            "flutterMode": "profile"
+        },
+        {
+            "name": "[Dev] Release Breathe With Me",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor",
+                "Dev"
+            ],
+            "flutterMode": "release"
+        },
+        {
+            "name": "[Prod] Debug Breathe With Me",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor",
+                "Prod"
+            ]
+        },
+        {
+            "name": "[Prod] Profile Breathe With Me",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor",
+                "Prod"
+            ],
+            "flutterMode": "profile"
+        },
+        {
+            "name": "[Prod] Release Breathe With Me",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor",
+                "Prod"
+            ],
+            "flutterMode": "release"
+        }
+    ]
+}
