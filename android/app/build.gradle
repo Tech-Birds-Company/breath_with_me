@@ -73,6 +73,21 @@ android {
             signingConfig signingConfigs.release
         }
     }
+
+    flavorDimensions "env"
+
+    productFlavors {
+
+        dev {
+            dimension "env"
+            applicationId "com.dobry.breathewithme.develop"
+        }
+
+        prod {
+            dimension "env"
+            applicationId "com.dobry.breathewithme"
+        }
+    }
 }
 
 flutter {
