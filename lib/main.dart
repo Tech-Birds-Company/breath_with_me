@@ -33,7 +33,8 @@ Future<List<Override>> _setupDependencies() async {
   final databaseManager = DatabaseManager(database);
 
   final tracksDownloadManager = TracksDownloaderManager(databaseManager);
-  final remoteConfigManager = RemoteConfigManager(FirebaseRemoteConfigRepository(databaseManager));
+  final remoteConfigManager =
+      RemoteConfigManager(FirebaseRemoteConfigRepository(databaseManager));
   final pushNotificationsManager = PushNotificationsManager();
   final userManager = FirebaseUserManager();
   final navigationManager = NavigationManager(userManager)..init();
@@ -44,7 +45,8 @@ Future<List<Override>> _setupDependencies() async {
     builder: () => TrackAudioManager(playerManager),
     config: const AudioServiceConfig(
       androidNotificationChannelId: BWMConstants.androidNotificationChannelId,
-      androidNotificationChannelName: BWMConstants.androidNotificationChannelName,
+      androidNotificationChannelName:
+          BWMConstants.androidNotificationChannelName,
     ),
   );
 
@@ -75,7 +77,8 @@ Future<List<Override>> _setupDependencies() async {
     Di.shared.manager.trackPlayer.overrideWithValue(playerManager),
     Di.shared.manager.audio.overrideWithValue(trackAudioManager),
     Di.shared.manager.remoteConfig.overrideWithValue(remoteConfigManager),
-    Di.shared.manager.pushNotifications.overrideWithValue(pushNotificationsManager),
+    Di.shared.manager.pushNotifications
+        .overrideWithValue(pushNotificationsManager),
     Di.shared.manager.userManager.overrideWithValue(userManager),
     Di.shared.manager.navigation.overrideWithValue(navigationManager),
     Di.shared.manager.subscriptions.overrideWithValue(subscriptionsManager),
