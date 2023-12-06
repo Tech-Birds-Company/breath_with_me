@@ -5,7 +5,7 @@
             "name": "[Dev] Debug Breathe With Me",
             "request": "launch",
             "type": "dart",
-            "program": "lib/main.dart",
+            "program": "lib/main_dev.dart",
             "args": [
                 "--flavor",
                 "Dev"
@@ -15,7 +15,7 @@
             "name": "[Dev] Profile Breathe With Me",
             "request": "launch",
             "type": "dart",
-            "program": "lib/main.dart",
+            "program": "lib/main_dev.dart",
             "args": [
                 "--flavor",
                 "Dev"
@@ -26,7 +26,7 @@
             "name": "[Dev] Release Breathe With Me",
             "request": "launch",
             "type": "dart",
-            "program": "lib/main.dart",
+            "program": "lib/main_dev.dart",
             "args": [
                 "--flavor",
                 "Dev"
@@ -37,7 +37,7 @@
             "name": "[Prod] Debug Breathe With Me",
             "request": "launch",
             "type": "dart",
-            "program": "lib/main.dart",
+            "program": "lib/main_prod.dart",
             "args": [
                 "--flavor",
                 "Prod"
@@ -47,7 +47,7 @@
             "name": "[Prod] Profile Breathe With Me",
             "request": "launch",
             "type": "dart",
-            "program": "lib/main.dart",
+            "program": "lib/main_prod.dart",
             "args": [
                 "--flavor",
                 "Prod"
@@ -58,7 +58,7 @@
             "name": "[Prod] Release Breathe With Me",
             "request": "launch",
             "type": "dart",
-            "program": "lib/main.dart",
+            "program": "lib/main_prod.dart",
             "args": [
                 "--flavor",
                 "Prod"

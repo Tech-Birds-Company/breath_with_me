@@ -50,5 +50,5 @@ final class _ManagerProviders {
   );
 
   late final subscriptions =
-      Provider<SubscriptionsManager>((ref) => SubscriptionsManagerImpl());
+      Provider<SubscriptionsManager>((ref) => throw UnimplementedError());
 }

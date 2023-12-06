@@ -1,7 +1,7 @@
 import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
 import 'package:qonversion_flutter/qonversion_flutter.dart';
 
-final class SubscriptionsManagerImpl
+final class SubscriptionsManagerProd
     implements SubscriptionsManager<QProduct, QEntitlement> {
   late final Qonversion _qonversion;
 
@@ -11,7 +11,7 @@ final class SubscriptionsManagerImpl
       QonversionConfig(
         '2p-CRwvYGLcHR3vYdxdXlvrD7Tp24HB_',
         QLaunchMode.subscriptionManagement,
-        QEnvironment.sandbox,
+        QEnvironment.production,
         QEntitlementsCacheLifetime.month,
         null,
         false,

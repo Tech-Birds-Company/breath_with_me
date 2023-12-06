@@ -15,7 +15,6 @@ import 'package:breathe_with_me/managers/player_manager/track_player_manager.dar
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
 import 'package:breathe_with_me/managers/remote_config_manager/remote_config_manager.dart';
 import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
-import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager_impl.dart';
 import 'package:breathe_with_me/managers/user_manager/firebase_user_manager.dart';
 import 'package:breathe_with_me/repositories/firebase_faq_questions_repository.dart';
 import 'package:breathe_with_me/repositories/firebase_remote_config_repository.dart';
