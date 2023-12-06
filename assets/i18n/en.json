@@ -77,5 +77,6 @@
 	"streakStatisticsCardTitle": "You are fantastic",
 	"streakStatisticsCardStreaksCount": "Streaks",
 	"streakStatisticsCardPracticesCount": "Practices",
-	"streakStatisticsCardMinCount": "Min"
+	"streakStatisticsCardMinCount": "Min",
+	"streakStatisticsCardDayMissedCount": "Day missed"
 }

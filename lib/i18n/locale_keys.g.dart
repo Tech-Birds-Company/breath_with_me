@@ -65,11 +65,11 @@ abstract class  LocaleKeys {
   static const reminderWd6Short = 'reminderWd6Short';
   static const reminderWd7Short = 'reminderWd7Short';
   static const reminderNotificationTitle = 'reminderNotificationTitle';
-  static const reminderNotificationDescription =
-      'reminderNotificationDescription';
+  static const reminderNotificationDescription = 'reminderNotificationDescription';
   static const streakStatisticsCardTitle = 'streakStatisticsCardTitle';
   static const streakStatisticsCardStreaksCount = 'streakStatisticsCardStreaksCount';
   static const streakStatisticsCardPracticesCount = 'streakStatisticsCardPracticesCount';
   static const streakStatisticsCardMinCount = 'streakStatisticsCardMinCount';
+  static const streakStatisticsCardDayMissedCount = 'streakStatisticsCardDayMissedCount';
 
 }

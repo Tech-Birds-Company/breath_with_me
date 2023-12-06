@@ -77,5 +77,6 @@
 	"streakStatisticsCardTitle": "Ты впечатляешь!",
 	"streakStatisticsCardStreaksCount": "День подряд",
 	"streakStatisticsCardPracticesCount": "Практики",
-	"streakStatisticsCardMinCount": "Минут"
+	"streakStatisticsCardMinCount": "Минут",
+	"streakStatisticsCardDayMissedCount": "Дней пропущено"
 }

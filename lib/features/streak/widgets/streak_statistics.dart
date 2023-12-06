@@ -5,13 +5,15 @@ import 'package:flutter/material.dart';
 
 class StreakStatisticsData {
   final int streaksCount;
-  final int practicesCount;
-  final int minutesCount;
+  final int? practicesCount;
+  final int? minutesCount;
+  final int? dayMissedCount;
 
   StreakStatisticsData({
     required this.streaksCount,
     required this.practicesCount,
     required this.minutesCount,
+    required this.dayMissedCount,
   });
 }
 
@@ -26,15 +28,20 @@ class StreakStatistics extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    return IntrinsicHeight(
-      child: Row(
-        children: [
-          _buildItem(
-            data.streaksCount.toString(),
-            LocaleKeys.streakStatisticsCardStreaksCount.tr(),
-            theme,
-            CrossAxisAlignment.start,
-          ),
+
+    final widgets = <Widget>[
+      const Spacer(),
+      _buildItem(
+        data.streaksCount.toString(),
+        LocaleKeys.streakStatisticsCardStreaksCount.tr(),
+        theme,
+        CrossAxisAlignment.center,
+      ),
+    ];
+
+    if (data.practicesCount != null) {
+      widgets.addAll(
+        [
           const Spacer(),
           _buildDivider(theme),
           const Spacer(),
@@ -44,6 +51,13 @@ class StreakStatistics extends StatelessWidget {
             theme,
             CrossAxisAlignment.center,
           ),
+        ],
+      );
+    }
+
+    if (data.minutesCount != null) {
+      widgets.addAll(
+        [
           const Spacer(),
           _buildDivider(theme),
           const Spacer(),
@@ -51,11 +65,30 @@ class StreakStatistics extends StatelessWidget {
             data.minutesCount.toString(),
             LocaleKeys.streakStatisticsCardMinCount.tr(),
             theme,
-            CrossAxisAlignment.end,
+            CrossAxisAlignment.center,
           ),
         ],
-      ),
-    );
+      );
+    }
+
+    if (data.dayMissedCount != null) {
+      widgets.addAll(
+        [
+          const Spacer(),
+          _buildDivider(theme),
+          const Spacer(),
+          _buildItem(
+            data.dayMissedCount.toString(),
+            LocaleKeys.streakStatisticsCardDayMissedCount.tr(),
+            theme,
+            CrossAxisAlignment.center,
+          ),
+          const Spacer(),
+        ],
+      );
+    }
+
+    return IntrinsicHeight(child: Row(children: widgets));
   }
 
   Widget _buildItem(
