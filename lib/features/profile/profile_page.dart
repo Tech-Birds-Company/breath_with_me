@@ -20,6 +20,10 @@ class ProfilePage extends ConsumerWidget {
     final currentLocale = EasyLocalization.of(context)!.locale;
     final bloc = ref.read(Di.shared.bloc.profile);
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: theme.primaryBackground,
+      ),
       backgroundColor: theme.primaryBackground,
       body: Stack(
         children: [
@@ -32,7 +36,7 @@ class ProfilePage extends ConsumerWidget {
                   colors: [
                     Color(0xE6463050), // TODO: Use color from theme
                     Color(0xD7000000), // TODO: Use color from theme
-                    Color(0xFC100c0c), // TODO: Use color from theme
+                    Color(0xFC100C0C), // TODO: Use color from theme
                   ],
                   radius: 3,
                 ),
