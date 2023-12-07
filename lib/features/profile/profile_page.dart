@@ -27,22 +27,22 @@ class ProfilePage extends ConsumerWidget {
       backgroundColor: theme.primaryBackground,
       body: Stack(
         children: [
-          const SizedBox.expand(
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: RadialGradient(
-                  center: Alignment.topCenter,
-                  focal: Alignment(0, -0.3),
-                  colors: [
-                    Color(0xE6463050), // TODO: Use color from theme
-                    Color(0xD7000000), // TODO: Use color from theme
-                    Color(0xFC100C0C), // TODO: Use color from theme
-                  ],
-                  radius: 3,
-                ),
-              ),
-            ),
-          ),
+          // const SizedBox.expand(
+          //   child: DecoratedBox(
+          //     decoration: BoxDecoration(
+          //       gradient: RadialGradient(
+          //         center: Alignment.topCenter,
+          //         focal: Alignment(0, -0.3),
+          //         colors: [
+          //           Color(0xE6463050), // TODO: Use color from theme
+          //           Color(0xD7000000), // TODO: Use color from theme
+          //           Color(0xFC100C0C), // TODO: Use color from theme
+          //         ],
+          //         radius: 3,
+          //       ),
+          //     ),
+          //   ),
+          // ),
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
