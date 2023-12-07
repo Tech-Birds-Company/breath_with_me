@@ -30,6 +30,10 @@ class ReminderPage extends HookConsumerWidget {
     final bloc = ref.read(Di.shared.bloc.reminder);
 
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: theme.primaryBackground,
+      ),
       backgroundColor: theme.primaryBackground,
       body: SafeArea(
         child: Padding(
