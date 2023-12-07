@@ -46,18 +46,6 @@ class ProfilePage extends ConsumerWidget {
                 slivers: [
                   const ProfileHeader().toSliver,
                   const Padding(
-                    padding: EdgeInsets.fromLTRB(20, 32, 20, 0),
-                    child: ProfileInfoBlock(),
-                  ).toSliver,
-                  Center(
-                    child: Text(
-                      LocaleKeys.profilePremiumFor3Friends.tr(),
-                      style: theme.typography.label.copyWith(
-                        color: theme.fourthColor,
-                      ),
-                    ),
-                  ).toSliver,
-                  const Padding(
                     padding: EdgeInsets.fromLTRB(0, 36, 0, 0),
                   ).toSliver,
                   ProfileMenuButton(
