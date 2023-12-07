@@ -1,3 +1,4 @@
+import 'package:breathe_with_me/features/faq/faq_page.dart';
 import 'package:breathe_with_me/features/home/home_page.dart';
 import 'package:breathe_with_me/features/onboarding/create_account_modal_page.dart';
 import 'package:breathe_with_me/features/onboarding/onboarding_page.dart';
@@ -19,6 +20,7 @@ final class BWMRoutes {
   static const createAccount = '/create-account';
   static const reminderPage = '/reminder-page';
   static const languageSheet = '/language-sheet';
+  static const faq = '/faq';
 
   static final routes = <RouteBase>[
     GoRoute(
@@ -73,6 +75,12 @@ final class BWMRoutes {
       path: BWMRoutes.reminderPage,
       builder: (context, state) {
         return const ReminderPage();
+      },
+    ),
+    GoRoute(
+      path: BWMRoutes.faq,
+      builder: (context, state) {
+        return const FaqPage();
       },
     ),
   ];

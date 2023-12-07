@@ -1,6 +1,6 @@
 library di;
 
-import 'package:breathe_with_me/features/faq/blocks/faq_block.dart';
+import 'package:breathe_with_me/features/faq/blocs/faq_block.dart';
 import 'package:breathe_with_me/features/onboarding/blocs/onboarding_bloc.dart';
 import 'package:breathe_with_me/features/practices/blocs/practice_list_bloc.dart';
 import 'package:breathe_with_me/features/profile/blocs/profile_bloc.dart';
@@ -23,7 +23,9 @@ import 'package:breathe_with_me/repositories/firebase_tutors_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 part 'bloc_providers.dart';
+
 part 'manager_providers.dart';
+
 part 'repository_providers.dart';
 
 final class Di {

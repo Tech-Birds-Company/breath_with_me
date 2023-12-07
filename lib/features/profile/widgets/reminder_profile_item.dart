@@ -42,10 +42,10 @@ class ReminderProfileItem extends ConsumerWidget {
         },
       ),
       builder: (context, snapshot) {
-        return ProfileMenuButton(
+        return ProfileMenuItem(
           title: LocaleKeys.reminderTitle.tr(),
           subtitle: snapshot.requireData,
-          showArrow: true,
+          showIndicator: true,
           onTap: profileBloc.openReminder,
         );
       },

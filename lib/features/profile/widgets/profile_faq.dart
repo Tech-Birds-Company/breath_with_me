@@ -1,4 +1,4 @@
-import 'package:breathe_with_me/features/profile/widgets/bwm_app_bar.dart';
+import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';

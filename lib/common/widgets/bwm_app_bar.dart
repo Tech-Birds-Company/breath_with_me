@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 class BWMAppBar extends StatelessWidget implements PreferredSizeWidget {
   static const double appBarHeight = 112;
 
-  final String title;
+  final String? title;
 
   const BWMAppBar({
-    required this.title,
+    this.title,
     super.key,
   });
 
@@ -53,12 +53,13 @@ class BWMAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
               const SizedBox(height: 36),
-              Text(
-                title,
-                style: theme.typography.heading.copyWith(
-                  color: theme.primaryText,
+              if (title != null)
+                Text(
+                  title!,
+                  style: theme.typography.heading.copyWith(
+                    color: theme.primaryText,
+                  ),
                 ),
-              ),
             ],
           ),
         ),

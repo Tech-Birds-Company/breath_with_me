@@ -1,3 +1,4 @@
+import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
 import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/reminder/blocs/reminder_bloc.dart';
 import 'package:breathe_with_me/features/reminder/models/reminder_state.dart';
@@ -30,6 +31,7 @@ class ReminderPage extends HookConsumerWidget {
     final bloc = ref.read(Di.shared.bloc.reminder);
 
     return Scaffold(
+      appBar: BWMAppBar(title: LocaleKeys.reminderTitle.tr()),
       backgroundColor: theme.primaryBackground,
       body: SafeArea(
         child: Padding(
@@ -38,13 +40,6 @@ class ReminderPage extends HookConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  LocaleKeys.reminderTitle.tr(),
-                  style: theme.typography.heading1.copyWith(
-                    color: theme.primaryColor,
-                  ),
-                ),
-                const SizedBox(height: 20),
                 BWMTimePicker(
                   initialHours: bloc.state.selectedWeekDays.isEmpty
                       ? DateTime.now().toLocal().hour

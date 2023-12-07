@@ -1,3 +1,4 @@
+import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
 import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/track_player/widgets/play_button.dart';
 import 'package:breathe_with_me/features/track_player/widgets/track_progress_indicator.dart';
@@ -28,10 +29,7 @@ class TrackPlayerPage extends HookConsumerWidget {
     );
 
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: theme.primaryBackground,
-      ),
+      appBar: const BWMAppBar(),
       backgroundColor: theme.primaryBackground,
       body: SafeArea(
         child: Column(

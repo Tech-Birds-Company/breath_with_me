@@ -69,13 +69,9 @@ final class NavigationManager {
     router.push(BWMRoutes.languageSheet);
   }
 
-  void openReminderPage() {
-    router.push(BWMRoutes.reminderPage);
-  }
+  void openReminderPage() => router.push(BWMRoutes.reminderPage);
 
-  void openProfile() {
-    router.push(BWMRoutes.profile);
-  }
+  void openProfile() => router.push(BWMRoutes.profile);
 
   void openCreateAccount() {
     if (context == null) {
@@ -85,9 +81,9 @@ final class NavigationManager {
     router.push(BWMRoutes.createAccount);
   }
 
-  void replaceHome() {
-    router.pushReplacement(BWMRoutes.home);
-  }
+  void openFaq() => router.push(BWMRoutes.faq);
+
+  void replaceHome() => router.pushReplacement(BWMRoutes.home);
 
   void popToRoot() {
     while (router.canPop()) {
