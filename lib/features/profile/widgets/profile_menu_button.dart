@@ -24,6 +24,7 @@ class ProfileMenuButton extends StatelessWidget {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return GestureDetector(
       onTap: onTap,
+      behavior: HitTestBehavior.translucent,
       child: Row(
         children: [
           if (icon != null)
