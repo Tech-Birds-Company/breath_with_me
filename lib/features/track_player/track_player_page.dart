@@ -29,7 +29,7 @@ class TrackPlayerPage extends HookConsumerWidget {
     );
 
     return Scaffold(
-      appBar: const BWMAppBar(),
+      appBar: BWMAppBar(color: theme.primaryBackground),
       backgroundColor: theme.primaryBackground,
       body: SafeArea(
         child: Column(

@@ -20,7 +20,10 @@ class FaqPage extends ConsumerWidget {
 
     return Scaffold(
       backgroundColor: theme.primaryBackground,
-      appBar: BWMAppBar(title: LocaleKeys.profileFaqTitle.tr()),
+      appBar: BWMAppBar(
+        color: theme.primaryBackground,
+        title: LocaleKeys.profileFaqTitle.tr(),
+      ),
       body: BlocBuilder<FaqBloc, FaqState>(
         bloc: bloc,
         builder: (context, state) => state.when(

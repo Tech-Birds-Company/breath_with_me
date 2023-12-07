@@ -15,7 +15,10 @@ class ProfileFAQ extends StatelessWidget {
       value: SystemUiOverlayStyle.light,
       child: Scaffold(
         backgroundColor: theme.primaryBackground,
-        appBar: BWMAppBar(title: LocaleKeys.profileFaqTitle.tr()),
+        appBar: BWMAppBar(
+          color: theme.primaryBackground,
+          title: LocaleKeys.profileFaqTitle.tr(),
+        ),
         body: Container(
           height: double.infinity,
           decoration: BoxDecoration(

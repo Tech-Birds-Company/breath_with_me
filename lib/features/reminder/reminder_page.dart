@@ -31,7 +31,10 @@ class ReminderPage extends HookConsumerWidget {
     final bloc = ref.read(Di.shared.bloc.reminder);
 
     return Scaffold(
-      appBar: BWMAppBar(title: LocaleKeys.reminderTitle.tr()),
+      appBar: BWMAppBar(
+        color: theme.primaryBackground,
+        title: LocaleKeys.reminderTitle.tr(),
+      ),
       backgroundColor: theme.primaryBackground,
       body: SafeArea(
         child: Padding(

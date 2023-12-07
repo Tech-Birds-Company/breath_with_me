@@ -6,6 +6,7 @@ import 'package:breathe_with_me/features/profile/widgets/profile_menu_button.dar
 import 'package:breathe_with_me/features/profile/widgets/reminder_profile_item.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,6 +20,11 @@ class ProfilePage extends ConsumerWidget {
     final currentLocale = EasyLocalization.of(context)!.locale;
     final bloc = ref.read(Di.shared.bloc.profile);
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: const BWMAppBar(
+        color: Colors.transparent,
+        height: 80,
+      ),
       backgroundColor: theme.primaryBackground,
       body: Stack(
         children: [

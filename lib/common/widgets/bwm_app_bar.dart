@@ -4,25 +4,27 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class BWMAppBar extends StatelessWidget implements PreferredSizeWidget {
-  static const double appBarHeight = 112;
-
+  final Color color;
+  final double height;
   final String? title;
 
   const BWMAppBar({
+    required this.color,
+    this.height = 112,
     this.title,
     super.key,
   });
 
   @override
-  Size get preferredSize => const Size.fromHeight(appBarHeight);
+  Size get preferredSize => Size.fromHeight(height);
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return SafeArea(
       child: Container(
-        height: appBarHeight,
-        color: theme.primaryBackground,
+        height: height,
+        color: Colors.transparent,
         child: Padding(
           padding: const EdgeInsets.symmetric(
             vertical: 8,
