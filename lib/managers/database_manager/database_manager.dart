@@ -79,20 +79,18 @@ final class DatabaseManager {
         .query(DownloadTrackTaskEntity_.taskId.equals(taskId))
         .watch(triggerImmediately: true)
         .map(
-          (event) {
-            final task = event.findFirst();
-            if (task != null) {
-              final downloadedBytes = task.downloadedBytes;
-              final totalBytes = task.totalBytes ?? 0;
-              if (totalBytes > 0) {
-                return downloadedBytes / totalBytes;
-              }
-            }
-            return 0.0;
-          },
-        )
-        .asBroadcastStream()
-        .distinct();
+      (event) {
+        final task = event.findFirst();
+        if (task != null) {
+          final downloadedBytes = task.downloadedBytes;
+          final totalBytes = task.totalBytes ?? 0;
+          if (totalBytes > 0) {
+            return downloadedBytes / totalBytes;
+          }
+        }
+        return 0.0;
+      },
+    ).distinct();
   }
 
   void dispose() {

@@ -22,7 +22,8 @@ class PracticeDownloadIndicator extends ConsumerWidget {
       initialData: false,
       builder: (context, snapshot) {
         final downloaded = snapshot.requireData;
-        return ClipOval(
+        return ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
           child: ColoredBox(
             color:
                 downloaded ? theme.secondaryColor : theme.secondaryBackground,

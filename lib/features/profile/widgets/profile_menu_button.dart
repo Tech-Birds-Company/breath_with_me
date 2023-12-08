@@ -52,16 +52,12 @@ class ProfileMenuItem extends StatelessWidget {
             contentPadding: EdgeInsets.zero,
             leading: icon != null
                 ? SizedBox(
-                    width: 20,
-                    height: 20,
-                    child: Center(
-                      child: SvgPicture.asset(
-                        icon!,
-                        fit: BoxFit.cover,
-                        colorFilter: ColorFilter.mode(
-                          theme.primaryColor,
-                          BlendMode.srcIn,
-                        ),
+                    height: double.infinity,
+                    child: SvgPicture.asset(
+                      icon!,
+                      colorFilter: ColorFilter.mode(
+                        theme.primaryColor,
+                        BlendMode.srcIn,
                       ),
                     ),
                   )
@@ -70,9 +66,6 @@ class ProfileMenuItem extends StatelessWidget {
                 ? SvgPicture.asset(
                     BWMAssets.menuArrow,
                     fit: BoxFit.cover,
-                    alignment: Alignment.centerRight,
-                    width: 20,
-                    height: 20,
                     colorFilter: ColorFilter.mode(
                       theme.primaryColor,
                       BlendMode.srcIn,
