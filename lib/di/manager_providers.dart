@@ -51,4 +51,6 @@ final class _ManagerProviders {
 
   late final subscriptions =
       Provider<SubscriptionsManager>((ref) => throw UnimplementedError());
+
+  late final sharedPreferences = Provider((ref) => SharedPreferencesManager());
 }

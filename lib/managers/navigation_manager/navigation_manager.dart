@@ -73,6 +73,8 @@ final class NavigationManager {
 
   void openProfile() => router.push(BWMRoutes.profile);
 
+  void openSafetyPrecautions() => router.push(BWMRoutes.safetyPrecautions);
+
   void openCreateAccount() {
     if (context == null) {
       return;

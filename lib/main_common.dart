@@ -13,6 +13,7 @@ import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.d
 import 'package:breathe_with_me/managers/player_manager/track_player_manager.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
 import 'package:breathe_with_me/managers/remote_config_manager/remote_config_manager.dart';
+import 'package:breathe_with_me/managers/shared_preferences_manager/shared_preferences_manager.dart';
 import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager_dev.dart';
 import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager_prod.dart';
 import 'package:breathe_with_me/managers/user_manager/firebase_user_manager.dart';
@@ -53,6 +54,7 @@ Future<List<Override>> _setupDependencies({required bool isProduction}) async {
           BWMConstants.androidNotificationChannelName,
     ),
   );
+  final sharedPrefsManager = SharedPreferencesManager();
 
   final appDocumentsDir = await getApplicationDocumentsDirectory();
   final playerIconFile = File(
@@ -64,6 +66,7 @@ Future<List<Override>> _setupDependencies({required bool isProduction}) async {
     await playerIconFile.writeAsBytes(bytes.buffer.asUint8List());
   }
 
+  await sharedPrefsManager.init();
   navigationManager.init();
   subscriptionsManager.init();
   remoteConfigManager.init();
@@ -84,6 +87,7 @@ Future<List<Override>> _setupDependencies({required bool isProduction}) async {
     Di.shared.manager.userManager.overrideWithValue(userManager),
     Di.shared.manager.navigation.overrideWithValue(navigationManager),
     Di.shared.manager.subscriptions.overrideWithValue(subscriptionsManager),
+    Di.shared.manager.sharedPreferences.overrideWithValue(sharedPrefsManager),
   ];
 }
 

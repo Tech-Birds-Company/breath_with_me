@@ -18,7 +18,8 @@ class TrackPlayerAnimation extends StatefulWidget {
   State<StatefulWidget> createState() => TrackPlayerAnimationState();
 }
 
-class TrackPlayerAnimationState extends State<TrackPlayerAnimation> with SingleTickerProviderStateMixin {
+class TrackPlayerAnimationState extends State<TrackPlayerAnimation>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
 
   StreamSubscription<bool>? _isPlayingSub;

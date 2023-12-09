@@ -8,6 +8,14 @@ final class _BlocProviders {
     ),
   );
 
+  late final home = Provider(
+    (ref) => HomeBloc(
+      ref.read(Di.shared.manager.permissions),
+      ref.read(Di.shared.manager.sharedPreferences),
+      ref.read(Di.shared.manager.navigation),
+    ),
+  );
+
   late final trackPlayer = Provider.family<TrackPlayerBloc, String>(
     (ref, trackId) {
       final bloc = TrackPlayerBloc(

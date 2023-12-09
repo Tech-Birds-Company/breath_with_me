@@ -1,6 +1,7 @@
 library di;
 
 import 'package:breathe_with_me/features/faq/blocs/faq_block.dart';
+import 'package:breathe_with_me/features/home/blocs/home_bloc.dart';
 import 'package:breathe_with_me/features/onboarding/blocs/onboarding_bloc.dart';
 import 'package:breathe_with_me/features/practices/blocs/practice_list_bloc.dart';
 import 'package:breathe_with_me/features/profile/blocs/profile_bloc.dart';
@@ -14,6 +15,7 @@ import 'package:breathe_with_me/managers/permissions_manager/permissions_manager
 import 'package:breathe_with_me/managers/player_manager/track_player_manager.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
 import 'package:breathe_with_me/managers/remote_config_manager/remote_config_manager.dart';
+import 'package:breathe_with_me/managers/shared_preferences_manager/shared_preferences_manager.dart';
 import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/firebase_user_manager.dart';
 import 'package:breathe_with_me/repositories/firebase_faq_questions_repository.dart';

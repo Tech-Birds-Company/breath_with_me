@@ -1,3 +1,4 @@
+import 'package:breathe_with_me/common/widgets/bwm_action_button.dart';
 import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
 import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/reminder/blocs/reminder_bloc.dart';
@@ -97,34 +98,14 @@ class ReminderPage extends HookConsumerWidget {
                   initialData: false,
                   builder: (context, snapshot) {
                     final saveAvailable = snapshot.requireData;
-                    return DecoratedBox(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(
-                          color: theme.green3,
-                        ),
-                      ),
-                      child: saveAvailable
-                          ? SizedBox(
-                              width: double.infinity,
-                              height: 40,
-                              child: TextButton(
-                                style: ButtonStyle(
-                                  overlayColor: MaterialStateProperty.all(
-                                    theme.green3.withOpacity(0.3),
-                                  ),
-                                ),
-                                onPressed: bloc.saveReminder,
-                                child: Text(
-                                  LocaleKeys.reminderSaveButtonTitle.tr(),
-                                  style: theme.typography.bodyM.copyWith(
-                                    color: theme.green3,
-                                  ),
-                                ),
-                              ),
-                            )
-                          : const SizedBox.shrink(),
-                    );
+                    return saveAvailable
+                        ? BWMActionButton(
+                            title: LocaleKeys.reminderSaveButtonTitle.tr(),
+                            width: double.infinity,
+                            height: 40,
+                            onPressed: bloc.saveReminder,
+                          )
+                        : const SizedBox.shrink();
                   },
                 ),
               ],
