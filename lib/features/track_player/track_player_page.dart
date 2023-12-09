@@ -1,11 +1,13 @@
 import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
 import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/track_player/widgets/play_button.dart';
+import 'package:breathe_with_me/features/track_player/widgets/track_player_animation.dart';
 import 'package:breathe_with_me/features/track_player/widgets/track_progress_indicator.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:rxdart/rxdart.dart';
 
 class TrackPlayerPage extends HookConsumerWidget {
   final String trackId;
@@ -34,6 +36,12 @@ class TrackPlayerPage extends HookConsumerWidget {
       body: SafeArea(
         child: Column(
           children: [
+            const Spacer(),
+            TrackPlayerAnimation(
+              isPlayingStream: bloc.stream
+                  .map((event) => !event.isPaused)
+                  .startWith(!bloc.state.isPaused),
+            ),
             const Spacer(),
             Center(
               child: TrackPlayButton(trackId: trackId),

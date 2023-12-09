@@ -51,6 +51,7 @@ dependencies:
   uuid: ^4.2.1
   app_settings: ^5.1.1
   qonversion_flutter: ^7.2.0
+  fast_noise: ^2.0.0
 
 dev_dependencies:
   flutter_test:

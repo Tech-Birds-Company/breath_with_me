@@ -60,6 +60,14 @@ android {
     }
 
     signingConfigs {
+
+        debug {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+
         release {
             keyAlias keystoreProperties['keyAlias']
             keyPassword keystoreProperties['keyPassword']
@@ -69,23 +77,28 @@ android {
     }
 
     buildTypes {
+
+        debug {
+            signingConfig signingConfigs.debug
+        }
+
         release {
             signingConfig signingConfigs.release
         }
     }
 
-    flavorDimensions "env"
+    flavorDimensions "default"
 
     productFlavors {
 
         dev {
-            dimension "env"
+            dimension "default"
             applicationId "com.dobry.breathewithme.develop"
         }
 
         prod {
-            dimension "env"
-            applicationId "com.dobry.breathewithme"
+            dimension "default"
+            applicationId "com.innate.beat.breathewithme"
         }
     }
 }
