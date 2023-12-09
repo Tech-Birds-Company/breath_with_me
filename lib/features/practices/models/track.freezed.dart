@@ -25,6 +25,7 @@ mixin _$Track {
   String get title => throw _privateConstructorUsedError;
   int get duration => throw _privateConstructorUsedError;
   Tutor get tutor => throw _privateConstructorUsedError;
+  String get coverIcon => throw _privateConstructorUsedError;
   @JsonKey(unknownEnumValue: ContentLanguage.unknown)
   ContentLanguage get language => throw _privateConstructorUsedError;
   bool get isPremium => throw _privateConstructorUsedError;
@@ -46,6 +47,7 @@ abstract class $TrackCopyWith<$Res> {
       String title,
       int duration,
       Tutor tutor,
+      String coverIcon,
       @JsonKey(unknownEnumValue: ContentLanguage.unknown)
       ContentLanguage language,
       bool isPremium,
@@ -72,6 +74,7 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
     Object? title = null,
     Object? duration = null,
     Object? tutor = null,
+    Object? coverIcon = null,
     Object? language = null,
     Object? isPremium = null,
     Object? isNew = null,
@@ -97,6 +100,10 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
           ? _value.tutor
           : tutor // ignore: cast_nullable_to_non_nullable
               as Tutor,
+      coverIcon: null == coverIcon
+          ? _value.coverIcon
+          : coverIcon // ignore: cast_nullable_to_non_nullable
+              as String,
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -134,6 +141,7 @@ abstract class _$$TrackImplCopyWith<$Res> implements $TrackCopyWith<$Res> {
       String title,
       int duration,
       Tutor tutor,
+      String coverIcon,
       @JsonKey(unknownEnumValue: ContentLanguage.unknown)
       ContentLanguage language,
       bool isPremium,
@@ -159,6 +167,7 @@ class __$$TrackImplCopyWithImpl<$Res>
     Object? title = null,
     Object? duration = null,
     Object? tutor = null,
+    Object? coverIcon = null,
     Object? language = null,
     Object? isPremium = null,
     Object? isNew = null,
@@ -184,6 +193,10 @@ class __$$TrackImplCopyWithImpl<$Res>
           ? _value.tutor
           : tutor // ignore: cast_nullable_to_non_nullable
               as Tutor,
+      coverIcon: null == coverIcon
+          ? _value.coverIcon
+          : coverIcon // ignore: cast_nullable_to_non_nullable
+              as String,
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -209,6 +222,7 @@ class _$TrackImpl implements _Track {
       required this.title,
       required this.duration,
       required this.tutor,
+      required this.coverIcon,
       @JsonKey(unknownEnumValue: ContentLanguage.unknown)
       required this.language,
       this.isPremium = false,
@@ -228,6 +242,8 @@ class _$TrackImpl implements _Track {
   @override
   final Tutor tutor;
   @override
+  final String coverIcon;
+  @override
   @JsonKey(unknownEnumValue: ContentLanguage.unknown)
   final ContentLanguage language;
   @override
@@ -239,7 +255,7 @@ class _$TrackImpl implements _Track {
 
   @override
   String toString() {
-    return 'Track(id: $id, trackFile: $trackFile, title: $title, duration: $duration, tutor: $tutor, language: $language, isPremium: $isPremium, isNew: $isNew)';
+    return 'Track(id: $id, trackFile: $trackFile, title: $title, duration: $duration, tutor: $tutor, coverIcon: $coverIcon, language: $language, isPremium: $isPremium, isNew: $isNew)';
   }
 
   @override
@@ -254,6 +270,8 @@ class _$TrackImpl implements _Track {
             (identical(other.duration, duration) ||
                 other.duration == duration) &&
             (identical(other.tutor, tutor) || other.tutor == tutor) &&
+            (identical(other.coverIcon, coverIcon) ||
+                other.coverIcon == coverIcon) &&
             (identical(other.language, language) ||
                 other.language == language) &&
             (identical(other.isPremium, isPremium) ||
@@ -264,7 +282,7 @@ class _$TrackImpl implements _Track {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, trackFile, title, duration,
-      tutor, language, isPremium, isNew);
+      tutor, coverIcon, language, isPremium, isNew);
 
   @JsonKey(ignore: true)
   @override
@@ -287,6 +305,7 @@ abstract class _Track implements Track {
       required final String title,
       required final int duration,
       required final Tutor tutor,
+      required final String coverIcon,
       @JsonKey(unknownEnumValue: ContentLanguage.unknown)
       required final ContentLanguage language,
       final bool isPremium,
@@ -304,6 +323,8 @@ abstract class _Track implements Track {
   int get duration;
   @override
   Tutor get tutor;
+  @override
+  String get coverIcon;
   @override
   @JsonKey(unknownEnumValue: ContentLanguage.unknown)
   ContentLanguage get language;

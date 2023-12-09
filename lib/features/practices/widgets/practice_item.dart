@@ -23,13 +23,13 @@ class PracticeItem extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Expanded(
+             Expanded(
               flex: 0,
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  PracticeCover(),
-                  PracticePlayButton(),
+                  PracticeCover(coverUrl: track.coverIcon,),
+                  const PracticePlayButton(),
                 ],
               ),
             ),
