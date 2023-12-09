@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:breathe_with_me/features/practices/models/track.dart';
 import 'package:breathe_with_me/managers/navigation_manager/routes.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -54,12 +55,15 @@ final class NavigationManager {
     },
   );
 
-  void openTrackPlayer(String trackId) {
+  void openTrackPlayer(String trackId, {Track? track}) {
     final uri = Uri(
       path: BWMRoutes.player,
       queryParameters: {'trackId': trackId},
     );
-    router.push(uri.toString());
+    router.push(
+      uri.toString(),
+      extra: track,
+    );
   }
 
   void openLanguageSheet() {

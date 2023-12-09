@@ -8,9 +8,11 @@ import 'package:flutter_animate/flutter_animate.dart';
 
 class TrackPlayerAnimation extends StatefulWidget {
   final Stream<bool> isPlayingStream;
+  final Color? animationColor;
 
   const TrackPlayerAnimation({
     required this.isPlayingStream,
+    this.animationColor,
     super.key,
   });
 
@@ -61,7 +63,7 @@ class TrackPlayerAnimationState extends State<TrackPlayerAnimation>
         builder: (context, _) => CustomPaint(
           painter: _TrackPlayerAnimationPainter(
             progress: _controller.value,
-            animationColor: theme.secondaryColor,
+            animationColor: widget.animationColor ?? theme.secondaryColor,
           ),
         ),
       ),

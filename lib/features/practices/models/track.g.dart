@@ -15,6 +15,7 @@ _$TrackImpl _$$TrackImplFromJson(Map json) => _$TrackImpl(
       coverIcon: json['coverIcon'] as String,
       language: $enumDecode(_$ContentLanguageEnumMap, json['language'],
           unknownValue: ContentLanguage.unknown),
+      animationColor: json['animationColor'] as String?,
       isPremium: json['isPremium'] as bool? ?? false,
       isNew: json['isNew'] as bool? ?? false,
     );
@@ -28,6 +29,7 @@ Map<String, dynamic> _$$TrackImplToJson(_$TrackImpl instance) =>
       'tutor': instance.tutor,
       'coverIcon': instance.coverIcon,
       'language': _$ContentLanguageEnumMap[instance.language]!,
+      'animationColor': instance.animationColor,
       'isPremium': instance.isPremium,
       'isNew': instance.isNew,
     };

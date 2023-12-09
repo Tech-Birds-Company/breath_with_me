@@ -2,6 +2,7 @@ import 'package:breathe_with_me/features/faq/faq_page.dart';
 import 'package:breathe_with_me/features/home/home_page.dart';
 import 'package:breathe_with_me/features/onboarding/create_account_modal_page.dart';
 import 'package:breathe_with_me/features/onboarding/onboarding_page.dart';
+import 'package:breathe_with_me/features/practices/models/track.dart';
 import 'package:breathe_with_me/features/profile/profile_page.dart';
 import 'package:breathe_with_me/features/profile/widgets/language_sheet.dart';
 import 'package:breathe_with_me/features/reminder/reminder_page.dart';
@@ -46,10 +47,8 @@ final class BWMRoutes {
     GoRoute(
       path: BWMRoutes.player,
       builder: (context, state) {
-        final trackId = state.uri.queryParameters['trackId']!;
-        return TrackPlayerPage(
-          trackId: trackId,
-        );
+        final track = state.extra! as Track;
+        return TrackPlayerPage(track: track);
       },
     ),
     GoRoute(

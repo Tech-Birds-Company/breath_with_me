@@ -50,7 +50,7 @@ class PracticesList extends HookConsumerWidget {
                   key: ValueKey(track.id),
                   track: track,
                   onTap: () {
-                    bloc.openTrackPlayer(track.id);
+                    bloc.openTrackPlayerByTrack(track);
                   },
                 );
               },
