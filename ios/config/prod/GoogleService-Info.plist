@@ -3,21 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>847416864961-nru6bh3uoavn8ea82cbm20aboed5m46p.apps.googleusercontent.com</string>
+	<string>807142596957-8v846cl2kn1j89s5pnfr73lqvghv1rch.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.847416864961-nru6bh3uoavn8ea82cbm20aboed5m46p</string>
+	<string>com.googleusercontent.apps.807142596957-8v846cl2kn1j89s5pnfr73lqvghv1rch</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>807142596957-4dfund42uq29d4skkqap9panegukb6u3.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAC0YdD9Gp2DzRcgn_PAHNGPE2jCsJUg3A</string>
+	<string>AIzaSyDC77wINIsWw_B0VyexjpHCMykUJ9etlrE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>847416864961</string>
+	<string>807142596957</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.dobry.breathewithme</string>
 	<key>PROJECT_ID</key>
-	<string>bwithmedev</string>
+	<string>breathwithme-5376b</string>
 	<key>STORAGE_BUCKET</key>
-	<string>bwithmedev.appspot.com</string>
+	<string>breathwithme-5376b.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +31,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:847416864961:ios:a631b5228db0cf4fcb6440</string>
+	<string>1:807142596957:ios:2f7a394f4d21707f6a08b4</string>
+	<key>DATABASE_URL</key>
+	<string>https://breathwithme-5376b-default-rtdb.europe-west1.firebasedatabase.app</string>
 </dict>
 </plist>

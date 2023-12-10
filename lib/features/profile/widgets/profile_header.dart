@@ -13,7 +13,8 @@ class ProfileHeader extends StatelessWidget {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return Row(
       children: [
-        ClipOval(
+        ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(32)),
           child: SizedBox(
             width: 64,
             height: 64,

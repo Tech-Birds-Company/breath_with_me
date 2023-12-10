@@ -1,9 +1,12 @@
+import 'package:breathe_with_me/features/faq/faq_page.dart';
 import 'package:breathe_with_me/features/home/home_page.dart';
 import 'package:breathe_with_me/features/onboarding/create_account_modal_page.dart';
 import 'package:breathe_with_me/features/onboarding/onboarding_page.dart';
+import 'package:breathe_with_me/features/practices/models/track.dart';
 import 'package:breathe_with_me/features/profile/profile_page.dart';
 import 'package:breathe_with_me/features/profile/widgets/language_sheet.dart';
 import 'package:breathe_with_me/features/reminder/reminder_page.dart';
+import 'package:breathe_with_me/features/safety_precautions/safety_precautions_page.dart';
 import 'package:breathe_with_me/features/track_player/track_player_page.dart';
 import 'package:breathe_with_me/managers/navigation_manager/bwm_modal_page.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +22,8 @@ final class BWMRoutes {
   static const createAccount = '/create-account';
   static const reminderPage = '/reminder-page';
   static const languageSheet = '/language-sheet';
+  static const faq = '/faq';
+  static const safetyPrecautions = '/safety-precautions';
 
   static final routes = <RouteBase>[
     GoRoute(
@@ -42,10 +47,8 @@ final class BWMRoutes {
     GoRoute(
       path: BWMRoutes.player,
       builder: (context, state) {
-        final trackId = state.uri.queryParameters['trackId']!;
-        return TrackPlayerPage(
-          trackId: trackId,
-        );
+        final track = state.extra! as Track;
+        return TrackPlayerPage(track: track);
       },
     ),
     GoRoute(
@@ -73,6 +76,25 @@ final class BWMRoutes {
       path: BWMRoutes.reminderPage,
       builder: (context, state) {
         return const ReminderPage();
+      },
+    ),
+    GoRoute(
+      path: BWMRoutes.faq,
+      builder: (context, state) {
+        return const FaqPage();
+      },
+    ),
+    GoRoute(
+      path: BWMRoutes.safetyPrecautions,
+      pageBuilder: (context, state) {
+        return const BWMModalPage(
+          barrierColor: Colors.transparent,
+          useSafeArea: true,
+          enableDrag: false,
+          isDismissible: false,
+          isScrollControlled: true,
+          child: SafetyPrecautionsPage(),
+        );
       },
     ),
   ];

@@ -2,39 +2,37 @@ import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class BWMAppBar extends StatelessWidget implements PreferredSizeWidget {
-  static const double appBarHeight = 112;
+  static const double appBarHeight = 52;
 
-  final String title;
+  final String? title;
+  final Color? backgroundColor;
 
   const BWMAppBar({
-    required this.title,
+    this.title,
+    this.backgroundColor,
     super.key,
   });
 
   @override
-  Size get preferredSize => const Size.fromHeight(appBarHeight);
+  Size get preferredSize =>
+      Size.fromHeight(title == null ? appBarHeight : appBarHeight + 36);
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return SafeArea(
-      child: Container(
-        height: appBarHeight,
-        color: theme.primaryBackground,
+      child: ColoredBox(
+        color: backgroundColor ?? theme.primaryBackground,
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 8,
-            horizontal: 20,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
+                onTap: context.pop,
                 child: Row(
                   children: [
                     Icon(
@@ -52,13 +50,16 @@ class BWMAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 36),
-              Text(
-                title,
-                style: theme.typography.heading.copyWith(
-                  color: theme.primaryText,
+              if (title != null)
+                Padding(
+                  padding: const EdgeInsets.only(top: 36),
+                  child: Text(
+                    title!,
+                    style: theme.typography.heading.copyWith(
+                      color: theme.primaryText,
+                    ),
+                  ),
                 ),
-              ),
             ],
           ),
         ),

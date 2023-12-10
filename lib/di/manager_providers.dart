@@ -48,4 +48,9 @@ final class _ManagerProviders {
   late final pushNotifications = Provider(
     (ref) => PushNotificationsManager(),
   );
+
+  late final subscriptions =
+      Provider<SubscriptionsManager>((ref) => throw UnimplementedError());
+
+  late final sharedPreferences = Provider((ref) => SharedPreferencesManager());
 }

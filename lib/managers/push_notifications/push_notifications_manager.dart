@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:app_settings/app_settings.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -14,7 +12,7 @@ final class PushNotificationsManager {
   Future<bool?> init() {
     return _flutterLocalNotificationsPlugin.initialize(
       const InitializationSettings(
-        android: AndroidInitializationSettings('app_icon'),
+        android: AndroidInitializationSettings('mipmap/ic_launcher'),
         iOS: DarwinInitializationSettings(
           requestAlertPermission: false,
           requestBadgePermission: false,
@@ -95,25 +93,6 @@ final class PushNotificationsManager {
           UILocalNotificationDateInterpretation.absoluteTime,
       androidScheduleMode: AndroidScheduleMode.alarmClock,
     );
-  }
-
-  Future<bool?> requestPermissions() async {
-    if (Platform.isIOS) {
-      return _flutterLocalNotificationsPlugin
-          .resolvePlatformSpecificImplementation<
-              IOSFlutterLocalNotificationsPlugin>()
-          ?.requestPermissions(
-            alert: true,
-            badge: true,
-            sound: true,
-          );
-    } else if (Platform.isAndroid) {
-      return _flutterLocalNotificationsPlugin
-          .resolvePlatformSpecificImplementation<
-              AndroidFlutterLocalNotificationsPlugin>()
-          ?.requestNotificationsPermission();
-    }
-    return null;
   }
 
   Future<void> openPushNotificationsSettings() => AppSettings.openAppSettings(

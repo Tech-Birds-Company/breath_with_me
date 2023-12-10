@@ -1,33 +1,35 @@
-import 'dart:math';
-
-import 'package:breathe_with_me/assets.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PracticeCover extends StatelessWidget {
-  const PracticeCover({super.key});
+final _coverIconDownloadUrl = FutureProvider.family<String, String>(
+  (ref, url) {
+    return FirebaseStorage.instance.refFromURL(url).getDownloadURL();
+  },
+);
 
-  static const _covers = [
-    BWMAssets.blueCover,
-    BWMAssets.emeraldCover,
-    BWMAssets.purpleCover,
-  ];
+class PracticeCover extends ConsumerWidget {
+  final String coverUrl;
+
+  const PracticeCover({
+    required this.coverUrl,
+    super.key,
+  });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final cover = ref.watch(_coverIconDownloadUrl(coverUrl));
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: SizedBox(
         width: 103,
         height: 103,
-        child: Image(
-          image: AssetImage(
-            _covers[Random().nextInt(
-              max(
-                0,
-                _covers.length,
-              ),
-            )],
-          ),
+        child: cover.maybeWhen(
+          data: (url) {
+            return CachedNetworkImage(imageUrl: url);
+          },
+          orElse: () => const SizedBox.shrink(),
         ),
       ),
     );

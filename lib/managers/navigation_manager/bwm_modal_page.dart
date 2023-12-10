@@ -8,6 +8,7 @@ final class BWMModalPage<T> extends Page<T> {
   final double? elevation;
   final bool useSafeArea;
   final bool enableDrag;
+  final bool isDismissible;
 
   const BWMModalPage({
     required this.child,
@@ -17,10 +18,12 @@ final class BWMModalPage<T> extends Page<T> {
     this.elevation,
     this.useSafeArea = false,
     this.enableDrag = true,
+    this.isDismissible = true,
   });
 
   @override
   Route<T> createRoute(BuildContext context) => ModalBottomSheetRoute<T>(
+        isDismissible: isDismissible,
         settings: this,
         builder: (context) => child,
         backgroundColor: backgroundColor,

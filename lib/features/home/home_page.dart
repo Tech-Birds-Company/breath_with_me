@@ -13,9 +13,10 @@ class HomePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final bloc = ref.read(Di.shared.bloc.home);
     useEffect(
       () {
-        ref.read(Di.shared.manager.permissions).handleAppTracking();
+        bloc.init();
         return null;
       },
       const [],

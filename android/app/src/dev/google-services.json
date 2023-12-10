@@ -7,12 +7,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:847416864961:android:aa76eb9fa8c4b98acb6440",
+        "mobilesdk_app_id": "1:847416864961:android:e7a8aa067c6df9e4cb6440",
         "android_client_info": {
-          "package_name": "com.dobry.breathewithme"
+          "package_name": "com.dobry.breathewithme.develop"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "847416864961-mcqs2m0vad4cm5afvib072v0plvdq5ve.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dobry.breathewithme.develop",
+            "certificate_hash": "81ccc77bf412ec71a638fa0abb98bc940fd1b094"
+          }
+        },
         {
           "client_id": "847416864961-hth864tu36o6glhvek8cbldpni3n4hmh.apps.googleusercontent.com",
           "client_type": 3
@@ -31,10 +39,10 @@
               "client_type": 3
             },
             {
-              "client_id": "847416864961-nru6bh3uoavn8ea82cbm20aboed5m46p.apps.googleusercontent.com",
+              "client_id": "847416864961-ecn875f4kj2ocr9tslq9pnbr5ushhshr.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.dobry.breathewithme"
+                "bundle_id": "com.dobry.breathewithme.develop"
               }
             }
           ]

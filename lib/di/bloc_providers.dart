@@ -8,6 +8,14 @@ final class _BlocProviders {
     ),
   );
 
+  late final home = Provider(
+    (ref) => HomeBloc(
+      ref.read(Di.shared.manager.permissions),
+      ref.read(Di.shared.manager.sharedPreferences),
+      ref.read(Di.shared.manager.navigation),
+    ),
+  );
+
   late final trackPlayer = Provider.family<TrackPlayerBloc, String>(
     (ref, trackId) {
       final bloc = TrackPlayerBloc(
@@ -32,6 +40,7 @@ final class _BlocProviders {
     (ref) => ProfileBloc(
       ref.read(Di.shared.manager.navigation),
       ref.read(Di.shared.manager.pushNotifications),
+      ref.read(Di.shared.manager.permissions),
       ref.read(Di.shared.repository.firebaseRemoteConfig),
       ref.read(Di.shared.manager.userManager),
     ),
@@ -46,6 +55,13 @@ final class _BlocProviders {
   late final reminder = Provider.autoDispose(
     (ref) => ReminderBloc(
       ref.read(Di.shared.manager.pushNotifications),
+    ),
+  );
+
+  late final safetyPrecautions = Provider.autoDispose(
+    (ref) => SafetyPrecautionsBloc(
+      ref.read(Di.shared.manager.navigation),
+      ref.read(Di.shared.manager.sharedPreferences),
     ),
   );
 }

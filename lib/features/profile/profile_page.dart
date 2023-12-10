@@ -2,7 +2,6 @@ import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/extensions/widget.dart';
 import 'package:breathe_with_me/features/profile/widgets/profile_header.dart';
-import 'package:breathe_with_me/features/profile/widgets/profile_info_block.dart';
 import 'package:breathe_with_me/features/profile/widgets/profile_menu_button.dart';
 import 'package:breathe_with_me/features/profile/widgets/reminder_profile_item.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
@@ -44,96 +43,35 @@ class ProfilePage extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: CustomScrollView(
                 slivers: [
-                  const ProfileHeader().toSliver,
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(20, 32, 20, 0),
-                    child: ProfileInfoBlock(),
-                  ).toSliver,
-                  Center(
-                    child: Text(
-                      LocaleKeys.profilePremiumFor3Friends.tr(),
-                      style: theme.typography.label.copyWith(
-                        color: theme.fourthColor,
-                      ),
-                    ),
-                  ).toSliver,
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(0, 36, 0, 0),
-                  ).toSliver,
-                  ProfileMenuButton(
+                  const ProfileHeader().toSliver, // TODO(igor): fix
+                  const SizedBox(height: 230).toSliver,
+                  ProfileMenuItem(
                     title: LocaleKeys.profileSettings.tr(),
-                    showArrow: true,
+                    showIndicator: true,
                   ).toSliver,
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 18),
-                    child: Divider(
-                      thickness: 1,
-                      indent: 0,
-                      endIndent: 0,
-                      color: Color(0x995D5D6D), // TODO: Use color from theme
-                    ),
-                  ).toSliver,
-                  ProfileMenuButton(
+                  ProfileMenuItem(
                     title: LocaleKeys.profileLanguage.tr(),
                     subtitle: currentLocale.languageCode.tr(),
-                    showArrow: true,
                     onTap: bloc.openLanguageSheet,
-                  ).toSliver,
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 18),
-                    child: Divider(
-                      thickness: 1,
-                      indent: 0,
-                      endIndent: 0,
-                      color: Color(0x995D5D6D), // TODO: Use color from theme
-                    ),
+                    showIndicator: true,
                   ).toSliver,
                   const ReminderProfileItem().toSliver,
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 18),
-                    child: Divider(
-                      thickness: 1,
-                      indent: 0,
-                      endIndent: 0,
-                      color: Color(0x995D5D6D), // TODO: Use color from theme
-                    ),
-                  ).toSliver,
-                  ProfileMenuButton(
+                  ProfileMenuItem(
                     title: LocaleKeys.profileFAQ.tr(),
-                    showArrow: true,
+                    showIndicator: true,
+                    onTap: bloc.openFaq,
                   ).toSliver,
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 89),
-                  ).toSliver,
-                  ProfileMenuButton(
+                  ProfileMenuItem(
                     title: LocaleKeys.profileChat.tr(),
                     icon: BWMAssets.telegram,
                     onTap: bloc.openCommunityChat,
                   ).toSliver,
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 18),
-                    child: Divider(
-                      thickness: 1,
-                      indent: 0,
-                      endIndent: 0,
-                      color: Color(0x995D5D6D), // TODO: Use color from theme
-                    ),
-                  ).toSliver,
-                  ProfileMenuButton(
+                  ProfileMenuItem(
                     title: LocaleKeys.profileContactUs.tr(),
                     icon: BWMAssets.email,
                     onTap: bloc.onSupportEmail,
                   ).toSliver,
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 18),
-                    child: Divider(
-                      thickness: 1,
-                      indent: 0,
-                      endIndent: 0,
-                      color: Color(0x995D5D6D), // TODO: Use color from theme
-                    ),
-                  ).toSliver,
-                  ProfileMenuButton(
+                  ProfileMenuItem(
                     title: LocaleKeys.profileLogout.tr(),
                     icon: BWMAssets.logout,
                     onTap: bloc.onSignOut,

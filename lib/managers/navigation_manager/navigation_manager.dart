@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:breathe_with_me/features/practices/models/track.dart';
 import 'package:breathe_with_me/managers/navigation_manager/routes.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -43,7 +44,6 @@ final class NavigationManager {
     initialLocation: BWMRoutes.onboarding,
     routes: BWMRoutes.routes,
     redirect: (context, state) {
-      print(state.uri.path);
       final authorized = _userManager.currentUser != null;
       if (authorized) {
         if (state.uri.path == BWMRoutes.onboarding) {
@@ -55,12 +55,15 @@ final class NavigationManager {
     },
   );
 
-  void openTrackPlayer(String trackId) {
+  void openTrackPlayer(String trackId, {Track? track}) {
     final uri = Uri(
       path: BWMRoutes.player,
       queryParameters: {'trackId': trackId},
     );
-    router.push(uri.toString());
+    router.push(
+      uri.toString(),
+      extra: track,
+    );
   }
 
   void openLanguageSheet() {
@@ -70,13 +73,11 @@ final class NavigationManager {
     router.push(BWMRoutes.languageSheet);
   }
 
-  void openReminderPage() {
-    router.push(BWMRoutes.reminderPage);
-  }
+  void openReminderPage() => router.push(BWMRoutes.reminderPage);
 
-  void openProfile() {
-    router.push(BWMRoutes.profile);
-  }
+  void openProfile() => router.push(BWMRoutes.profile);
+
+  void openSafetyPrecautions() => router.push(BWMRoutes.safetyPrecautions);
 
   void openCreateAccount() {
     if (context == null) {
@@ -86,8 +87,14 @@ final class NavigationManager {
     router.push(BWMRoutes.createAccount);
   }
 
-  void replaceHome() {
-    router.pushReplacement(BWMRoutes.home);
+  void openFaq() => router.push(BWMRoutes.faq);
+
+  void replaceHome() => router.pushReplacement(BWMRoutes.home);
+
+  void pop() {
+    if (router.canPop()) {
+      router.pop();
+    }
   }
 
   void popToRoot() {

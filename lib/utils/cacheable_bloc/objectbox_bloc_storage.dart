@@ -9,19 +9,11 @@ final class ObjectBoxBlocStateStorage implements BlocCacheStorage {
 
   ObjectBoxBlocStateStorage(this._box);
 
-  BlocStateEntity? _getBlocStateEntity(String key) {
-    final entity =
-        _box.query(BlocStateEntity_.key.equals(key)).build().findFirst();
-
-    return entity;
-  }
+  BlocStateEntity? _getBlocStateEntity(String key) =>
+      _box.query(BlocStateEntity_.key.equals(key)).build().findFirst();
 
   @override
-  Object? read(String key) {
-    final entity = _getBlocStateEntity(key);
-
-    return entity?.json;
-  }
+  Object? read(String key) => _getBlocStateEntity(key)?.json;
 
   @override
   Future<void> write(String key, Object? value) async {
@@ -45,15 +37,13 @@ final class ObjectBoxBlocStateStorage implements BlocCacheStorage {
   }
 
   @override
-  Stream<Object?> stream(String key) {
-    return _box
-        .query(BlocStateEntity_.key.equals(key))
-        .watch(triggerImmediately: true)
-        .map(
-          (entity) => entity.findFirst()?.json,
-        )
-        .distinct();
-  }
+  Stream<Object?> stream(String key) => _box
+      .query(BlocStateEntity_.key.equals(key))
+      .watch(triggerImmediately: true)
+      .map(
+        (entity) => entity.findFirst()?.json,
+      )
+      .distinct();
 
   @override
   Future<void> delete(String key) async {

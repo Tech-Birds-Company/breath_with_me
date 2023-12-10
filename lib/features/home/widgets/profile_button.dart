@@ -14,7 +14,8 @@ class ProfileButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: ClipOval(
+      child: ClipRRect(
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
         child: SizedBox(
           width: 40,
           height: 40,

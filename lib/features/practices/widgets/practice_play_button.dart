@@ -9,7 +9,8 @@ class PracticePlayButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    return ClipOval(
+    return ClipRRect(
+      borderRadius: const BorderRadius.all(Radius.circular(36.5)),
       child: SizedBox(
         width: 73,
         height: 73,

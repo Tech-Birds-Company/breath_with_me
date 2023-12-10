@@ -13,8 +13,10 @@ class Track with _$Track {
     required String title,
     required int duration,
     required Tutor tutor,
+    required String coverIcon,
     @JsonKey(unknownEnumValue: ContentLanguage.unknown)
     required ContentLanguage language,
+    String? animationColor,
     @Default(false) bool isPremium,
     @Default(false) bool isNew,
   }) = _Track;
