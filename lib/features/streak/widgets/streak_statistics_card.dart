@@ -41,7 +41,7 @@ class StreakStatisticsCard extends StatelessWidget {
                 SvgPicture.asset(
                   BWMAssets.logoIcon,
                   width: 56,
-                )
+                ),
               ],
             ),
             const SizedBox(height: 8),

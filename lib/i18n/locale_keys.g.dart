@@ -1,6 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const appName = 'appName';
   static const appBarBackTitle = 'appBarBackTitle';
   static const onboardingCreateAccount = 'onboardingCreateAccount';
@@ -11,7 +11,8 @@ abstract class  LocaleKeys {
   static const onboardingPage2Subtitle = 'onboardingPage2Subtitle';
   static const onboardingPage3Subtitle = 'onboardingPage3Subtitle';
   static const createAccountHeaderTitle = 'createAccountHeaderTitle';
-  static const createAccountHeaderConjunction = 'createAccountHeaderConjunction';
+  static const createAccountHeaderConjunction =
+      'createAccountHeaderConjunction';
   static const createAccountHeaderSubtitle = 'createAccountHeaderSubtitle';
   static const createAccountHeaderLogin = 'createAccountHeaderLogin';
   static const createAccountContact = 'createAccountContact';
@@ -72,9 +73,11 @@ abstract class  LocaleKeys {
       'safetyPrecautionsWelcomeDescription';
   static const safetyPrecautionsReadNow = 'safetyPrecautionsReadNow';
   static const streakStatisticsCardTitle = 'streakStatisticsCardTitle';
-  static const streakStatisticsCardStreaksCount = 'streakStatisticsCardStreaksCount';
-  static const streakStatisticsCardPracticesCount = 'streakStatisticsCardPracticesCount';
+  static const streakStatisticsCardStreaksCount =
+      'streakStatisticsCardStreaksCount';
+  static const streakStatisticsCardPracticesCount =
+      'streakStatisticsCardPracticesCount';
   static const streakStatisticsCardMinCount = 'streakStatisticsCardMinCount';
-  static const streakStatisticsCardDayMissedCount = 'streakStatisticsCardDayMissedCount';
-
+  static const streakStatisticsCardDayMissedCount =
+      'streakStatisticsCardDayMissedCount';
 }

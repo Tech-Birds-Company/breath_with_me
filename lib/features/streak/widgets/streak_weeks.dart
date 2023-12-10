@@ -34,14 +34,14 @@ class StreakWeeks extends StatelessWidget {
 
       if (currentDay == selectedDay) {
         items.add(_buildItemSelected(currentDay, theme));
-      } else if (currentDay < selectedDay!) {
+      } else if (currentDay < selectedDay) {
         items.add(_buildItemFilled(currentDay, theme));
       } else {
         items.add(_buildItemDefault(currentDay, theme));
       }
 
       if (i < daysInRow - 1) {
-        if (currentDay < selectedDay!) {
+        if (currentDay < selectedDay) {
           items.add(_buildLine(true, theme));
         } else {
           items.add(_buildLine(false, theme));
@@ -124,7 +124,8 @@ class StreakWeeks extends StatelessWidget {
         ),
         child: Text(
           day.toString(),
-          style: theme.typography.bodyMTrue.copyWith(color: const Color(0xFF5D5D6D)),
+          style: theme.typography.bodyMTrue
+              .copyWith(color: const Color(0xFF5D5D6D)),
         ),
       ),
     );
