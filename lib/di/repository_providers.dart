@@ -1,22 +1,23 @@
 part of 'di.dart';
 
 final class _RepositoryProviders {
-  late final firebaseTracks = Provider.autoDispose(
-    (ref) => FirebaseTracksRepository(
-      ref.read(firebaseTutors),
+  late final firebaseTracks = Provider(
+    (ref) => TracksRepositoryImpl(
+      ref.read(Di.shared.manager.user),
       ref.read(Di.shared.manager.database),
+      ref.read(firebaseTutors),
     ),
   );
 
   late final firebaseTutors =
-      Provider.autoDispose((ref) => const FirebaseTutorsRepository());
+      Provider((ref) => const FirebaseTutorsRepository());
 
-  late final firebaseRemoteConfig = Provider.autoDispose(
+  late final firebaseRemoteConfig = Provider(
     (ref) => FirebaseRemoteConfigRepository(
       ref.read(Di.shared.manager.database),
     ),
   );
 
   late final firebaseFaqQuestions =
-      Provider.autoDispose((ref) => const FirebaseFaqQuestionsRepository());
+      Provider((ref) => const FirebaseFaqQuestionsRepository());
 }

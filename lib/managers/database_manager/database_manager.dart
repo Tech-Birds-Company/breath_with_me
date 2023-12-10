@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:breathe_with_me/database/database.dart';
 import 'package:breathe_with_me/database/entities/bloc_state_entity.dart';
 import 'package:breathe_with_me/database/entities/download_track_task_entity.dart';
+import 'package:breathe_with_me/database/entities/liked_tracks_entity.dart';
 import 'package:breathe_with_me/database/entities/remote_config_entity.dart';
 import 'package:breathe_with_me/managers/download_manager/download_task.dart';
 import 'package:breathe_with_me/objectbox.g.dart';
@@ -16,13 +17,13 @@ final class DatabaseManager {
   late final downloadTaskBox = _store.box<DownloadTrackTaskEntity>();
   late final remoteConfigBox = _store.box<RemoteConfigEntity>();
   late final blocStateBox = _store.box<BlocStateEntity>();
+  late final likedTracksBox = _store.box<LikedTracksEntity>();
 
-  Future<DownloadTrackTaskEntity?> getDownloadTask(String taskId) async {
-    return downloadTaskBox
-        .query(DownloadTrackTaskEntity_.taskId.equals(taskId))
-        .build()
-        .findFirstAsync();
-  }
+  Future<DownloadTrackTaskEntity?> getDownloadTask(String taskId) =>
+      downloadTaskBox
+          .query(DownloadTrackTaskEntity_.taskId.equals(taskId))
+          .build()
+          .findFirstAsync();
 
   Future<DownloadTrackTaskEntity> createDownloadTrackTask({
     required DownloadTask task,
@@ -70,24 +71,30 @@ final class DatabaseManager {
     }
   }
 
-  Stream<double> taskProgressStream(String taskId) {
-    return downloadTaskBox
-        .query(DownloadTrackTaskEntity_.taskId.equals(taskId))
-        .watch(triggerImmediately: true)
-        .map(
-      (event) {
-        final task = event.findFirst();
-        if (task != null) {
-          final downloadedBytes = task.downloadedBytes;
-          final totalBytes = task.totalBytes ?? 0;
-          if (totalBytes > 0) {
-            return downloadedBytes / totalBytes;
+  Stream<double> taskProgressStream(String taskId) => downloadTaskBox
+          .query(DownloadTrackTaskEntity_.taskId.equals(taskId))
+          .watch(triggerImmediately: true)
+          .map(
+        (event) {
+          final task = event.findFirst();
+          if (task != null) {
+            final downloadedBytes = task.downloadedBytes;
+            final totalBytes = task.totalBytes ?? 0;
+            if (totalBytes > 0) {
+              return downloadedBytes / totalBytes;
+            }
           }
-        }
-        return 0.0;
-      },
-    ).distinct();
-  }
+          return 0.0;
+        },
+      ).distinct();
+
+  Stream<Set<String>> get likedTracksStream =>
+      likedTracksBox.query().watch(triggerImmediately: true).map(
+        (query) {
+          final entity = query.findFirst();
+          return entity?.likes.toSet() ?? <String>{};
+        },
+      ).distinct();
 
   void dispose() {
     _store.close();

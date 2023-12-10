@@ -11,6 +11,7 @@ final class BWMAssets {
   static const playIcon = '$_icons/play.svg';
   static const pauseIcon = '$_icons/pause.svg';
   static const heartIcon = '$_icons/heart.svg';
+  static const heartIconFilled = '$_icons/heart_filled.svg';
   static const dropdownArrowIcon = '$_icons/dropdown_arrow.svg';
   static const dashaIcon = '$_icons/dasha.png';
   static const arrowDown = '$_icons/arrow_down.svg';

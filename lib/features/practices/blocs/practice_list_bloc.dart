@@ -1,37 +1,34 @@
+import 'dart:async';
+
 import 'package:breathe_with_me/features/practices/models/practice_list_state.dart';
-import 'package:breathe_with_me/features/practices/models/track.dart';
-import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/repositories/tracks_repository.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 
 final class PracticeListBloc extends CacheableBloc<PracticeListState> {
-  final NavigationManager _navigationManager;
   final TracksRepository _tracksRepository;
 
-  PracticeListBloc(
-    this._navigationManager,
-    this._tracksRepository,
-  ) : super(const PracticeListState.loading());
+  PracticeListBloc(this._tracksRepository)
+      : super(const PracticeListState.loading());
 
-  Stream<bool> trackIsDownloadedStream(String trackId) {
-    return _tracksRepository.getTrackIsDownloadedStream(trackId);
+  StreamSubscription<Set<String>>? _firebaseLikedTracksSubscription;
+
+  Future<void> init() async {
+    _firebaseLikedTracksSubscription ??=
+        _tracksRepository.firebaseLikedTracksStream.listen(
+      (event) => _syncLikedTracks(
+        event.toList(),
+      ),
+    );
+    await _loadTracks();
   }
 
-  Future<void> loadTracks() async {
+  Future<void> _syncLikedTracks(List<String> likedTracksFromFirebase) =>
+      _tracksRepository.cacheLikedTracks(likedTracksFromFirebase);
+
+  Future<void> _loadTracks() async {
     final tracks = await _tracksRepository.getTracks();
     emit(PracticeListState.data(tracks));
     await cache();
-  }
-
-  void openTrackPlayerById(String trackId) {
-    _navigationManager.openTrackPlayer(trackId);
-  }
-
-  void openTrackPlayerByTrack(Track track) {
-    _navigationManager.openTrackPlayer(
-      track.id,
-      track: track,
-    );
   }
 
   @override
@@ -42,5 +39,10 @@ final class PracticeListBloc extends CacheableBloc<PracticeListState> {
   @override
   Map<String, dynamic> toJson(PracticeListState state) {
     return state.toJson();
+  }
+
+  void dispose() {
+    _firebaseLikedTracksSubscription?.cancel();
+    _firebaseLikedTracksSubscription = null;
   }
 }

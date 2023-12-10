@@ -2,10 +2,13 @@ part of 'di.dart';
 
 final class _BlocProviders {
   late final practiceList = Provider(
-    (ref) => PracticeListBloc(
-      ref.read(Di.shared.manager.navigation),
-      ref.read(Di.shared.repository.firebaseTracks),
-    ),
+    (ref) {
+      final bloc = PracticeListBloc(
+        ref.read(Di.shared.repository.firebaseTracks),
+      );
+      ref.onDispose(bloc.dispose);
+      return bloc;
+    },
   );
 
   late final home = Provider(
@@ -16,7 +19,7 @@ final class _BlocProviders {
     ),
   );
 
-  late final trackPlayer = Provider.family.autoDispose<TrackPlayerBloc, Track>(
+  late final trackPlayer = Provider.family<TrackPlayerBloc, Track>(
     (ref, trackId) {
       final bloc = TrackPlayerBloc(
         trackId,
@@ -32,7 +35,7 @@ final class _BlocProviders {
   late final onboarding = Provider(
     (ref) => OnboardingBloc(
       ref.read(Di.shared.manager.navigation),
-      ref.read(Di.shared.manager.userManager),
+      ref.read(Di.shared.manager.user),
     ),
   );
 
@@ -42,7 +45,7 @@ final class _BlocProviders {
       ref.read(Di.shared.manager.pushNotifications),
       ref.read(Di.shared.manager.permissions),
       ref.read(Di.shared.repository.firebaseRemoteConfig),
-      ref.read(Di.shared.manager.userManager),
+      ref.read(Di.shared.manager.user),
     ),
   );
 
@@ -52,16 +55,24 @@ final class _BlocProviders {
     ),
   );
 
-  late final reminder = Provider.autoDispose(
+  late final reminder = Provider(
     (ref) => ReminderBloc(
       ref.read(Di.shared.manager.pushNotifications),
     ),
   );
 
-  late final safetyPrecautions = Provider.autoDispose(
+  late final safetyPrecautions = Provider(
     (ref) => SafetyPrecautionsBloc(
       ref.read(Di.shared.manager.navigation),
       ref.read(Di.shared.manager.sharedPreferences),
+    ),
+  );
+
+  late final practice = Provider.family.autoDispose<PracticeBloc, String>(
+    (ref, trackId) => PracticeBloc(
+      trackId,
+      ref.read(Di.shared.repository.firebaseTracks),
+      ref.read(Di.shared.manager.navigation),
     ),
   );
 }
