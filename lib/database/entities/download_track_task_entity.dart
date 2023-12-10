@@ -8,8 +8,6 @@ class DownloadTrackTaskEntity {
   String taskId;
   String url;
   String filename;
-  String tutorNameKey;
-  String trackName;
 
   int downloadedBytes = 0;
   int? totalBytes;
@@ -23,8 +21,6 @@ class DownloadTrackTaskEntity {
     required this.taskId,
     required this.url,
     required this.filename,
-    required this.tutorNameKey,
-    required this.trackName,
     this.downloadedBytes = 0,
     this.totalBytes,
   });

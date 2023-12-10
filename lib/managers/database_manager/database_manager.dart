@@ -29,8 +29,6 @@ final class DatabaseManager {
     required String id,
     required String filename,
     required String url,
-    required String tutorNameKey,
-    required String trackName,
     required int totalBytes,
   }) async {
     final dbEntity = await getDownloadTask(id);
@@ -43,8 +41,6 @@ final class DatabaseManager {
       taskId: id,
       url: url,
       filename: filename,
-      tutorNameKey: tutorNameKey,
-      trackName: trackName,
       totalBytes: totalBytes,
     );
 

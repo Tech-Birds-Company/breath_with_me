@@ -4,93 +4,83 @@
   "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
   "entities": [
     {
-      "id": "2:7122328718598964543",
-      "lastPropertyId": "4:31987012256534505",
+      "id": "1:3668599123320527982",
+      "lastPropertyId": "3:2675233382253411352",
       "name": "BlocStateEntity",
       "properties": [
         {
-          "id": "1:5788823921696499688",
+          "id": "1:1679074344431511129",
           "name": "id",
           "type": 6,
           "flags": 1
         },
         {
-          "id": "3:2205848117698045990",
-          "name": "json",
-          "type": 9
-        },
-        {
-          "id": "4:31987012256534505",
+          "id": "2:7403914866919777721",
           "name": "key",
           "type": 9,
           "flags": 2080,
-          "indexId": "4:5744209523469708764"
+          "indexId": "1:379657838210909860"
+        },
+        {
+          "id": "3:2675233382253411352",
+          "name": "json",
+          "type": 9
         }
       ],
       "relations": []
     },
     {
-      "id": "3:1520315073668077580",
-      "lastPropertyId": "10:1477663148854029096",
+      "id": "2:6103890219043900984",
+      "lastPropertyId": "6:8584594485685084463",
       "name": "DownloadTrackTaskEntity",
       "properties": [
         {
-          "id": "1:6688239300631462190",
+          "id": "1:8069588030321501482",
           "name": "id",
           "type": 6,
           "flags": 1
         },
         {
-          "id": "2:2680563204192860788",
+          "id": "2:8211554727633866950",
           "name": "taskId",
           "type": 9
         },
         {
-          "id": "3:4754970558086022460",
+          "id": "3:5146245730303187585",
           "name": "url",
           "type": 9
         },
         {
-          "id": "6:7067867094891868379",
-          "name": "trackName",
+          "id": "4:9075908384688843332",
+          "name": "filename",
           "type": 9
         },
         {
-          "id": "7:2504329923867089452",
+          "id": "5:2690489101377617518",
           "name": "downloadedBytes",
           "type": 6
         },
         {
-          "id": "8:7823351769199542968",
+          "id": "6:8584594485685084463",
           "name": "totalBytes",
           "type": 6
-        },
-        {
-          "id": "9:5201689941450672282",
-          "name": "tutorNameKey",
-          "type": 9
-        },
-        {
-          "id": "10:1477663148854029096",
-          "name": "filename",
-          "type": 9
         }
       ],
       "relations": []
     },
     {
-      "id": "4:8023868237763278366",
-      "lastPropertyId": "2:6957836496469491890",
+      "id": "3:9202169296533729365",
+      "lastPropertyId": "2:939439220607962960",
       "name": "RemoteConfigEntity",
       "properties": [
         {
-          "id": "1:7143378916413641663",
+          "id": "1:1058503934963432471",
           "name": "id",
           "type": 6,
           "flags": 1
         },
         {
-          "id": "2:6957836496469491890",
+          "id": "2:939439220607962960",
           "name": "json",
           "type": 9
         }
@@ -98,32 +88,15 @@
       "relations": []
     }
   ],
-  "lastEntityId": "4:8023868237763278366",
-  "lastIndexId": "4:5744209523469708764",
+  "lastEntityId": "3:9202169296533729365",
+  "lastIndexId": "1:379657838210909860",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
-  "retiredEntityUids": [
-    3443719293430748280
-  ],
-  "retiredIndexUids": [
-    3843725167060959184,
-    2357976250776051976,
-    604298339150924081
-  ],
-  "retiredPropertyUids": [
-    7502259553311868414,
-    5553752235591540271,
-    2470138575464844556,
-    7796491158390526320,
-    8256646648292446768,
-    3033313459825828610,
-    4630339859809275241,
-    6058418397631871564,
-    6053680223680892832,
-    6594271542272299772
-  ],
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
   "retiredRelationUids": [],
   "version": 1
 }

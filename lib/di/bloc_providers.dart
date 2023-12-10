@@ -16,7 +16,7 @@ final class _BlocProviders {
     ),
   );
 
-  late final trackPlayer = Provider.family<TrackPlayerBloc, String>(
+  late final trackPlayer = Provider.family.autoDispose<TrackPlayerBloc, Track>(
     (ref, trackId) {
       final bloc = TrackPlayerBloc(
         trackId,

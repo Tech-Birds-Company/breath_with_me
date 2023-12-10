@@ -144,8 +144,6 @@ final class TracksDownloaderManager implements DownloaderManager {
       id: task.id,
       url: task.url,
       filename: filename,
-      trackName: task.trackName,
-      tutorNameKey: task.tutorNameKey,
       totalBytes: fileSize,
     );
 

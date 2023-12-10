@@ -22,92 +22,82 @@ export 'package:objectbox/objectbox.dart'; // so that callers only have to impor
 
 final _entities = <ModelEntity>[
   ModelEntity(
-      id: const IdUid(2, 7122328718598964543),
+      id: const IdUid(1, 3668599123320527982),
       name: 'BlocStateEntity',
-      lastPropertyId: const IdUid(4, 31987012256534505),
+      lastPropertyId: const IdUid(3, 2675233382253411352),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 5788823921696499688),
+            id: const IdUid(1, 1679074344431511129),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(3, 2205848117698045990),
-            name: 'json',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(4, 31987012256534505),
+            id: const IdUid(2, 7403914866919777721),
             name: 'key',
             type: 9,
             flags: 2080,
-            indexId: const IdUid(4, 5744209523469708764))
-      ],
-      relations: <ModelRelation>[],
-      backlinks: <ModelBacklink>[]),
-  ModelEntity(
-      id: const IdUid(3, 1520315073668077580),
-      name: 'DownloadTrackTaskEntity',
-      lastPropertyId: const IdUid(10, 1477663148854029096),
-      flags: 0,
-      properties: <ModelProperty>[
+            indexId: const IdUid(1, 379657838210909860)),
         ModelProperty(
-            id: const IdUid(1, 6688239300631462190),
-            name: 'id',
-            type: 6,
-            flags: 1),
-        ModelProperty(
-            id: const IdUid(2, 2680563204192860788),
-            name: 'taskId',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(3, 4754970558086022460),
-            name: 'url',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(6, 7067867094891868379),
-            name: 'trackName',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(7, 2504329923867089452),
-            name: 'downloadedBytes',
-            type: 6,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(8, 7823351769199542968),
-            name: 'totalBytes',
-            type: 6,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(9, 5201689941450672282),
-            name: 'tutorNameKey',
-            type: 9,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(10, 1477663148854029096),
-            name: 'filename',
+            id: const IdUid(3, 2675233382253411352),
+            name: 'json',
             type: 9,
             flags: 0)
       ],
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(4, 8023868237763278366),
-      name: 'RemoteConfigEntity',
-      lastPropertyId: const IdUid(2, 6957836496469491890),
+      id: const IdUid(2, 6103890219043900984),
+      name: 'DownloadTrackTaskEntity',
+      lastPropertyId: const IdUid(6, 8584594485685084463),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 7143378916413641663),
+            id: const IdUid(1, 8069588030321501482),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 6957836496469491890),
+            id: const IdUid(2, 8211554727633866950),
+            name: 'taskId',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(3, 5146245730303187585),
+            name: 'url',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(4, 9075908384688843332),
+            name: 'filename',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(5, 2690489101377617518),
+            name: 'downloadedBytes',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(6, 8584594485685084463),
+            name: 'totalBytes',
+            type: 6,
+            flags: 0)
+      ],
+      relations: <ModelRelation>[],
+      backlinks: <ModelBacklink>[]),
+  ModelEntity(
+      id: const IdUid(3, 9202169296533729365),
+      name: 'RemoteConfigEntity',
+      lastPropertyId: const IdUid(2, 939439220607962960),
+      flags: 0,
+      properties: <ModelProperty>[
+        ModelProperty(
+            id: const IdUid(1, 1058503934963432471),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        ModelProperty(
+            id: const IdUid(2, 939439220607962960),
             name: 'json',
             type: 9,
             flags: 0)
@@ -143,28 +133,13 @@ Future<Store> openStore(
 ModelDefinition getObjectBoxModel() {
   final model = ModelInfo(
       entities: _entities,
-      lastEntityId: const IdUid(4, 8023868237763278366),
-      lastIndexId: const IdUid(4, 5744209523469708764),
+      lastEntityId: const IdUid(3, 9202169296533729365),
+      lastIndexId: const IdUid(1, 379657838210909860),
       lastRelationId: const IdUid(0, 0),
       lastSequenceId: const IdUid(0, 0),
-      retiredEntityUids: const [3443719293430748280],
-      retiredIndexUids: const [
-        3843725167060959184,
-        2357976250776051976,
-        604298339150924081
-      ],
-      retiredPropertyUids: const [
-        7502259553311868414,
-        5553752235591540271,
-        2470138575464844556,
-        7796491158390526320,
-        8256646648292446768,
-        3033313459825828610,
-        4630339859809275241,
-        6058418397631871564,
-        6053680223680892832,
-        6594271542272299772
-      ],
+      retiredEntityUids: const [],
+      retiredIndexUids: const [],
+      retiredPropertyUids: const [],
       retiredRelationUids: const [],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
@@ -180,12 +155,12 @@ ModelDefinition getObjectBoxModel() {
           object.id = id;
         },
         objectToFB: (BlocStateEntity object, fb.Builder fbb) {
-          final jsonOffset = fbb.writeString(object.json);
           final keyOffset = fbb.writeString(object.key);
-          fbb.startTable(5);
+          final jsonOffset = fbb.writeString(object.json);
+          fbb.startTable(4);
           fbb.addInt64(0, object.id);
+          fbb.addOffset(1, keyOffset);
           fbb.addOffset(2, jsonOffset);
-          fbb.addOffset(3, keyOffset);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -193,7 +168,7 @@ ModelDefinition getObjectBoxModel() {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
           final keyParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 10, '');
+              .vTableGet(buffer, rootOffset, 6, '');
           final jsonParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 8, '');
           final object = BlocStateEntity(key: keyParam, json: jsonParam)
@@ -212,18 +187,14 @@ ModelDefinition getObjectBoxModel() {
         objectToFB: (DownloadTrackTaskEntity object, fb.Builder fbb) {
           final taskIdOffset = fbb.writeString(object.taskId);
           final urlOffset = fbb.writeString(object.url);
-          final trackNameOffset = fbb.writeString(object.trackName);
-          final tutorNameKeyOffset = fbb.writeString(object.tutorNameKey);
           final filenameOffset = fbb.writeString(object.filename);
-          fbb.startTable(11);
+          fbb.startTable(7);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, taskIdOffset);
           fbb.addOffset(2, urlOffset);
-          fbb.addOffset(5, trackNameOffset);
-          fbb.addInt64(6, object.downloadedBytes);
-          fbb.addInt64(7, object.totalBytes);
-          fbb.addOffset(8, tutorNameKeyOffset);
-          fbb.addOffset(9, filenameOffset);
+          fbb.addOffset(3, filenameOffset);
+          fbb.addInt64(4, object.downloadedBytes);
+          fbb.addInt64(5, object.totalBytes);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -235,22 +206,15 @@ ModelDefinition getObjectBoxModel() {
           final urlParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 8, '');
           final filenameParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 22, '');
-          final tutorNameKeyParam =
-              const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 20, '');
-          final trackNameParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 14, '');
+              .vTableGet(buffer, rootOffset, 10, '');
           final downloadedBytesParam =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 16, 0);
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 12, 0);
           final totalBytesParam =
-              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 18);
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 14);
           final object = DownloadTrackTaskEntity(
               taskId: taskIdParam,
               url: urlParam,
               filename: filenameParam,
-              tutorNameKey: tutorNameKeyParam,
-              trackName: trackNameParam,
               downloadedBytes: downloadedBytesParam,
               totalBytes: totalBytesParam)
             ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
@@ -294,12 +258,12 @@ class BlocStateEntity_ {
   static final id =
       QueryIntegerProperty<BlocStateEntity>(_entities[0].properties[0]);
 
-  /// see [BlocStateEntity.json]
-  static final json =
-      QueryStringProperty<BlocStateEntity>(_entities[0].properties[1]);
-
   /// see [BlocStateEntity.key]
   static final key =
+      QueryStringProperty<BlocStateEntity>(_entities[0].properties[1]);
+
+  /// see [BlocStateEntity.json]
+  static final json =
       QueryStringProperty<BlocStateEntity>(_entities[0].properties[2]);
 }
 
@@ -317,8 +281,8 @@ class DownloadTrackTaskEntity_ {
   static final url =
       QueryStringProperty<DownloadTrackTaskEntity>(_entities[1].properties[2]);
 
-  /// see [DownloadTrackTaskEntity.trackName]
-  static final trackName =
+  /// see [DownloadTrackTaskEntity.filename]
+  static final filename =
       QueryStringProperty<DownloadTrackTaskEntity>(_entities[1].properties[3]);
 
   /// see [DownloadTrackTaskEntity.downloadedBytes]
@@ -328,14 +292,6 @@ class DownloadTrackTaskEntity_ {
   /// see [DownloadTrackTaskEntity.totalBytes]
   static final totalBytes =
       QueryIntegerProperty<DownloadTrackTaskEntity>(_entities[1].properties[5]);
-
-  /// see [DownloadTrackTaskEntity.tutorNameKey]
-  static final tutorNameKey =
-      QueryStringProperty<DownloadTrackTaskEntity>(_entities[1].properties[6]);
-
-  /// see [DownloadTrackTaskEntity.filename]
-  static final filename =
-      QueryStringProperty<DownloadTrackTaskEntity>(_entities[1].properties[7]);
 }
 
 /// [RemoteConfigEntity] entity fields to define ObjectBox queries.

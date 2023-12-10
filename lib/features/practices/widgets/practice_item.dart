@@ -2,6 +2,7 @@ import 'package:breathe_with_me/features/practices/models/track.dart';
 import 'package:breathe_with_me/features/practices/widgets/practice_cover.dart';
 import 'package:breathe_with_me/features/practices/widgets/practice_info.dart';
 import 'package:breathe_with_me/features/practices/widgets/practice_play_button.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class PracticeItem extends StatelessWidget {
@@ -39,7 +40,7 @@ class PracticeItem extends StatelessWidget {
             Expanded(
               child: PracticeInfo(
                 trackId: track.id,
-                title: track.title,
+                category: track.categoryKey.tr(),
                 duration: track.duration,
                 tutor: track.tutor,
               ),

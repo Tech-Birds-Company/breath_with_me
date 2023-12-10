@@ -1,4 +1,3 @@
-import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/track_player/blocs/track_player_bloc.dart';
 import 'package:breathe_with_me/features/track_player/models/track_player_state.dart';
 import 'package:breathe_with_me/features/track_player/widgets/track_time_label.dart';
@@ -8,17 +7,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class TrackProgressIndicator extends ConsumerWidget {
-  final String trackId;
+  final TrackPlayerBloc _bloc;
 
-  const TrackProgressIndicator({
-    required this.trackId,
-    super.key,
-  });
+  const TrackProgressIndicator(this._bloc, {super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    final bloc = ref.read(Di.shared.bloc.trackPlayer(trackId));
     return LayoutBuilder(
       builder: (context, constraints) {
         return Column(
@@ -40,7 +35,7 @@ class TrackProgressIndicator extends ConsumerWidget {
                       color: theme.secondaryColor,
                       child: BlocSelector<TrackPlayerBloc, TrackPlayerState,
                           double>(
-                        bloc: bloc,
+                        bloc: _bloc,
                         selector: (state) => state.progress ?? 0,
                         builder: (context, progress) {
                           return SizedBox(
@@ -55,7 +50,7 @@ class TrackProgressIndicator extends ConsumerWidget {
                     color: theme.secondaryColor.withOpacity(0.2),
                     child:
                         BlocSelector<TrackPlayerBloc, TrackPlayerState, double>(
-                      bloc: bloc,
+                      bloc: _bloc,
                       selector: (state) => state.downloadProgress,
                       builder: (context, downloadProgress) {
                         return SizedBox(
@@ -70,7 +65,7 @@ class TrackProgressIndicator extends ConsumerWidget {
             ),
             const SizedBox(height: 4),
             BlocSelector<TrackPlayerBloc, TrackPlayerState, (int?, int?)>(
-              bloc: bloc,
+              bloc: _bloc,
               selector: (state) {
                 return (state.currentTimeMs, state.estimatedTimeMs);
               },
