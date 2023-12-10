@@ -1,4 +1,5 @@
 import 'package:breathe_with_me/di/di.dart';
+import 'package:breathe_with_me/features/streak/models/streak_quote_data.dart';
 import 'package:breathe_with_me/features/streak/models/streak_state.dart';
 import 'package:breathe_with_me/features/streak/models/streak_statistics_data.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_list.dart';
@@ -24,10 +25,15 @@ class StreakPage extends ConsumerWidget {
               stream: bloc.stream,
               initialData: const StreakState(
                 selectedDay: 8,
-                statisticsData: StreakStatisticsData(
+                statistics: StreakStatisticsData(
                   streaksCount: 1,
                   practicesCount: 1,
                   minutesCount: 30,
+                ),
+                quote: StreakQuoteData(
+                  quote:
+                      'We cannot breathe in the past or the future. We inhale and exhale always in the present',
+                  author: 'Dasha Chen',
                 ),
               ), // TODO(bestk1ngarthur): Remove mock data
               builder: (context, snapshot) {

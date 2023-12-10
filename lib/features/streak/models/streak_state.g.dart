@@ -8,14 +8,19 @@ part of 'streak_state.dart';
 
 _$StreakStateImpl _$$StreakStateImplFromJson(Map json) => _$StreakStateImpl(
       selectedDay: json['selectedDay'] as int?,
-      statisticsData: json['statisticsData'] == null
+      statistics: json['statistics'] == null
           ? null
           : StreakStatisticsData.fromJson(
-              Map<String, dynamic>.from(json['statisticsData'] as Map)),
+              Map<String, dynamic>.from(json['statistics'] as Map)),
+      quote: json['quote'] == null
+          ? null
+          : StreakQuoteData.fromJson(
+              Map<String, dynamic>.from(json['quote'] as Map)),
     );
 
 Map<String, dynamic> _$$StreakStateImplToJson(_$StreakStateImpl instance) =>
     <String, dynamic>{
       'selectedDay': instance.selectedDay,
-      'statisticsData': instance.statisticsData,
+      'statistics': instance.statistics,
+      'quote': instance.quote,
     };

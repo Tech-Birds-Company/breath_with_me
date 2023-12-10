@@ -1,4 +1,5 @@
 import 'package:breathe_with_me/features/streak/models/streak_state.dart';
+import 'package:breathe_with_me/features/streak/widgets/streak_quote.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_statistics_card.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_weeks.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
@@ -15,6 +16,33 @@ class StreakList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
+
+    final widgets = <Widget>[];
+
+    if (state.statistics != null) {
+      widgets.addAll([
+        StreakStatisticsCard(
+          statisticsData: state.statistics!,
+        ),
+        const SizedBox(height: 24),
+      ]);
+    }
+
+    if (state.selectedDay != null) {
+      widgets.addAll([
+        StreakWeeks(selectedDay: state.selectedDay!),
+        const SizedBox(height: 44),
+      ]);
+    }
+
+    if (state.quote != null) {
+      widgets.addAll([
+        StreakQuote(data: state.quote!),
+        const SizedBox(height: 20),
+        Divider(color: theme.secondaryBackground),
+      ]);
+    }
+
     return ListView(
       children: [
         Padding(
@@ -23,13 +51,7 @@ class StreakList extends StatelessWidget {
             vertical: 60,
           ),
           child: Column(
-            children: [
-              StreakStatisticsCard(
-                statisticsData: state.statisticsData!,
-              ),
-              const SizedBox(height: 24),
-              StreakWeeks(selectedDay: state.selectedDay!),
-            ],
+            children: widgets,
           ),
         ),
       ],

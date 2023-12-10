@@ -21,8 +21,8 @@ StreakState _$StreakStateFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$StreakState {
   int? get selectedDay => throw _privateConstructorUsedError;
-  StreakStatisticsData? get statisticsData =>
-      throw _privateConstructorUsedError;
+  StreakStatisticsData? get statistics => throw _privateConstructorUsedError;
+  StreakQuoteData? get quote => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,9 +36,13 @@ abstract class $StreakStateCopyWith<$Res> {
           StreakState value, $Res Function(StreakState) then) =
       _$StreakStateCopyWithImpl<$Res, StreakState>;
   @useResult
-  $Res call({int? selectedDay, StreakStatisticsData? statisticsData});
+  $Res call(
+      {int? selectedDay,
+      StreakStatisticsData? statistics,
+      StreakQuoteData? quote});
 
-  $StreakStatisticsDataCopyWith<$Res>? get statisticsData;
+  $StreakStatisticsDataCopyWith<$Res>? get statistics;
+  $StreakQuoteDataCopyWith<$Res>? get quote;
 }
 
 /// @nodoc
@@ -55,29 +59,46 @@ class _$StreakStateCopyWithImpl<$Res, $Val extends StreakState>
   @override
   $Res call({
     Object? selectedDay = freezed,
-    Object? statisticsData = freezed,
+    Object? statistics = freezed,
+    Object? quote = freezed,
   }) {
     return _then(_value.copyWith(
       selectedDay: freezed == selectedDay
           ? _value.selectedDay
           : selectedDay // ignore: cast_nullable_to_non_nullable
               as int?,
-      statisticsData: freezed == statisticsData
-          ? _value.statisticsData
-          : statisticsData // ignore: cast_nullable_to_non_nullable
+      statistics: freezed == statistics
+          ? _value.statistics
+          : statistics // ignore: cast_nullable_to_non_nullable
               as StreakStatisticsData?,
+      quote: freezed == quote
+          ? _value.quote
+          : quote // ignore: cast_nullable_to_non_nullable
+              as StreakQuoteData?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $StreakStatisticsDataCopyWith<$Res>? get statisticsData {
-    if (_value.statisticsData == null) {
+  $StreakStatisticsDataCopyWith<$Res>? get statistics {
+    if (_value.statistics == null) {
       return null;
     }
 
-    return $StreakStatisticsDataCopyWith<$Res>(_value.statisticsData!, (value) {
-      return _then(_value.copyWith(statisticsData: value) as $Val);
+    return $StreakStatisticsDataCopyWith<$Res>(_value.statistics!, (value) {
+      return _then(_value.copyWith(statistics: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StreakQuoteDataCopyWith<$Res>? get quote {
+    if (_value.quote == null) {
+      return null;
+    }
+
+    return $StreakQuoteDataCopyWith<$Res>(_value.quote!, (value) {
+      return _then(_value.copyWith(quote: value) as $Val);
     });
   }
 }
@@ -90,10 +111,15 @@ abstract class _$$StreakStateImplCopyWith<$Res>
       __$$StreakStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? selectedDay, StreakStatisticsData? statisticsData});
+  $Res call(
+      {int? selectedDay,
+      StreakStatisticsData? statistics,
+      StreakQuoteData? quote});
 
   @override
-  $StreakStatisticsDataCopyWith<$Res>? get statisticsData;
+  $StreakStatisticsDataCopyWith<$Res>? get statistics;
+  @override
+  $StreakQuoteDataCopyWith<$Res>? get quote;
 }
 
 /// @nodoc
@@ -108,17 +134,22 @@ class __$$StreakStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? selectedDay = freezed,
-    Object? statisticsData = freezed,
+    Object? statistics = freezed,
+    Object? quote = freezed,
   }) {
     return _then(_$StreakStateImpl(
       selectedDay: freezed == selectedDay
           ? _value.selectedDay
           : selectedDay // ignore: cast_nullable_to_non_nullable
               as int?,
-      statisticsData: freezed == statisticsData
-          ? _value.statisticsData
-          : statisticsData // ignore: cast_nullable_to_non_nullable
+      statistics: freezed == statistics
+          ? _value.statistics
+          : statistics // ignore: cast_nullable_to_non_nullable
               as StreakStatisticsData?,
+      quote: freezed == quote
+          ? _value.quote
+          : quote // ignore: cast_nullable_to_non_nullable
+              as StreakQuoteData?,
     ));
   }
 }
@@ -126,7 +157,7 @@ class __$$StreakStateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$StreakStateImpl implements _StreakState {
-  const _$StreakStateImpl({this.selectedDay, this.statisticsData});
+  const _$StreakStateImpl({this.selectedDay, this.statistics, this.quote});
 
   factory _$StreakStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$StreakStateImplFromJson(json);
@@ -134,11 +165,13 @@ class _$StreakStateImpl implements _StreakState {
   @override
   final int? selectedDay;
   @override
-  final StreakStatisticsData? statisticsData;
+  final StreakStatisticsData? statistics;
+  @override
+  final StreakQuoteData? quote;
 
   @override
   String toString() {
-    return 'StreakState(selectedDay: $selectedDay, statisticsData: $statisticsData)';
+    return 'StreakState(selectedDay: $selectedDay, statistics: $statistics, quote: $quote)';
   }
 
   @override
@@ -148,13 +181,14 @@ class _$StreakStateImpl implements _StreakState {
             other is _$StreakStateImpl &&
             (identical(other.selectedDay, selectedDay) ||
                 other.selectedDay == selectedDay) &&
-            (identical(other.statisticsData, statisticsData) ||
-                other.statisticsData == statisticsData));
+            (identical(other.statistics, statistics) ||
+                other.statistics == statistics) &&
+            (identical(other.quote, quote) || other.quote == quote));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, selectedDay, statisticsData);
+  int get hashCode => Object.hash(runtimeType, selectedDay, statistics, quote);
 
   @JsonKey(ignore: true)
   @override
@@ -173,7 +207,8 @@ class _$StreakStateImpl implements _StreakState {
 abstract class _StreakState implements StreakState {
   const factory _StreakState(
       {final int? selectedDay,
-      final StreakStatisticsData? statisticsData}) = _$StreakStateImpl;
+      final StreakStatisticsData? statistics,
+      final StreakQuoteData? quote}) = _$StreakStateImpl;
 
   factory _StreakState.fromJson(Map<String, dynamic> json) =
       _$StreakStateImpl.fromJson;
@@ -181,7 +216,9 @@ abstract class _StreakState implements StreakState {
   @override
   int? get selectedDay;
   @override
-  StreakStatisticsData? get statisticsData;
+  StreakStatisticsData? get statistics;
+  @override
+  StreakQuoteData? get quote;
   @override
   @JsonKey(ignore: true)
   _$$StreakStateImplCopyWith<_$StreakStateImpl> get copyWith =>

@@ -66,7 +66,7 @@ final class BWMTypography extends Typography {
   @override
   TextStyle get heading3 => const TextStyle(
         fontFamily: _fontFamily,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w400,
         fontSize: 20,
         height: 24 / 20,
       );
