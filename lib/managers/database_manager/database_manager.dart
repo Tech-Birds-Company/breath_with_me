@@ -5,6 +5,7 @@ import 'package:breathe_with_me/database/entities/bloc_state_entity.dart';
 import 'package:breathe_with_me/database/entities/download_track_task_entity.dart';
 import 'package:breathe_with_me/database/entities/liked_tracks_entity.dart';
 import 'package:breathe_with_me/database/entities/remote_config_entity.dart';
+import 'package:breathe_with_me/database/entities/secure_image_url_provider_entity.dart';
 import 'package:breathe_with_me/managers/download_manager/download_task.dart';
 import 'package:breathe_with_me/objectbox.g.dart';
 
@@ -18,6 +19,7 @@ final class DatabaseManager {
   late final remoteConfigBox = _store.box<RemoteConfigEntity>();
   late final blocStateBox = _store.box<BlocStateEntity>();
   late final likedTracksBox = _store.box<LikedTracksEntity>();
+  late final secureImageUrlBox = _store.box<SecureImageUrlEntity>();
 
   Future<DownloadTrackTaskEntity?> getDownloadTask(String taskId) =>
       downloadTaskBox
@@ -69,6 +71,29 @@ final class DatabaseManager {
       final entity = RemoteConfigEntity(json: jsonString);
       await remoteConfigBox.putAsync(entity);
     }
+  }
+
+  Future<void> saveSecureUrl(String baseUrl, String secureUrl) async {
+    final entity = await getSecureUrl(baseUrl);
+
+    secureImageUrlBox.putQueued(
+      entity ??
+          SecureImageUrlEntity(
+            baseUrl: baseUrl,
+            secureUrl: secureUrl,
+          )
+        ..baseUrl = baseUrl
+        ..secureUrl = secureUrl,
+      mode: entity == null ? PutMode.insert : PutMode.update,
+    );
+  }
+
+  Future<SecureImageUrlEntity?> getSecureUrl(String baseUrl) async {
+    final entity = await secureImageUrlBox
+        .query(SecureImageUrlEntity_.baseUrl.equals(baseUrl))
+        .build()
+        .findFirstAsync();
+    return entity;
   }
 
   Stream<double> taskProgressStream(String taskId) => downloadTaskBox

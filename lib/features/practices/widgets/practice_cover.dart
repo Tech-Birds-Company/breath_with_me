@@ -1,13 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:breathe_with_me/common/widgets/secure_image.dart';
+import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-final _coverIconDownloadUrl = FutureProvider.family<String, String>(
-  (ref, url) {
-    return FirebaseStorage.instance.refFromURL(url).getDownloadURL();
-  },
-);
 
 class PracticeCover extends ConsumerWidget {
   final String coverUrl;
@@ -19,17 +13,15 @@ class PracticeCover extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final cover = ref.watch(_coverIconDownloadUrl(coverUrl));
+    final theme = Theme.of(context).extension<BWMTheme>()!;
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: SizedBox(
         width: 103,
         height: 103,
-        child: cover.maybeWhen(
-          data: (url) {
-            return CachedNetworkImage(imageUrl: url);
-          },
-          orElse: () => const SizedBox.shrink(),
+        child: SecureCachedImage(
+          baseUrl: coverUrl,
+          loading: ColoredBox(color: theme.secondaryBackground),
         ),
       ),
     );
