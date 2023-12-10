@@ -1,21 +1,8 @@
+import 'package:breathe_with_me/features/streak/models/streak_statistics_data.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-
-class StreakStatisticsData {
-  final int streaksCount;
-  final int? practicesCount;
-  final int? minutesCount;
-  final int? dayMissedCount;
-
-  StreakStatisticsData({
-    required this.streaksCount,
-    required this.practicesCount,
-    required this.minutesCount,
-    required this.dayMissedCount,
-  });
-}
 
 class StreakStatistics extends StatelessWidget {
   final StreakStatisticsData data;

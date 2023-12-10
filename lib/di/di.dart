@@ -8,6 +8,7 @@ import 'package:breathe_with_me/features/practices/models/track.dart';
 import 'package:breathe_with_me/features/profile/blocs/profile_bloc.dart';
 import 'package:breathe_with_me/features/reminder/blocs/reminder_bloc.dart';
 import 'package:breathe_with_me/features/safety_precautions/blocs/safety_precautions_bloc.dart';
+import 'package:breathe_with_me/features/streak/blocs/streak_bloc.dart';
 import 'package:breathe_with_me/features/track_player/blocs/track_player_bloc.dart';
 import 'package:breathe_with_me/managers/audio_manager/track_audio_manger.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';

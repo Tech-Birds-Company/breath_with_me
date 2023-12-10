@@ -64,4 +64,10 @@ final class _BlocProviders {
       ref.read(Di.shared.manager.sharedPreferences),
     ),
   );
+
+  late final streak = Provider(
+    (ref) => StreakBloc(
+      ref.read(Di.shared.manager.navigation),
+    ),
+  );
 }

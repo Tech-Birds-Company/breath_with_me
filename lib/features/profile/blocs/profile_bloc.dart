@@ -56,7 +56,7 @@ final class ProfileBloc extends BlocBase<Object?> {
     _navigationManager.openLanguageSheet();
   }
 
-  void openFaq() => _navigationManager.openFaq();
+  void openFaq() => _navigationManager.openStreak();
 
   Future<void> onSignOut() async {
     await _userManager.signOut();

@@ -7,6 +7,7 @@ import 'package:breathe_with_me/features/profile/profile_page.dart';
 import 'package:breathe_with_me/features/profile/widgets/language_sheet.dart';
 import 'package:breathe_with_me/features/reminder/reminder_page.dart';
 import 'package:breathe_with_me/features/safety_precautions/safety_precautions_page.dart';
+import 'package:breathe_with_me/features/streak/streak_page.dart';
 import 'package:breathe_with_me/features/track_player/track_player_page.dart';
 import 'package:breathe_with_me/managers/navigation_manager/bwm_modal_page.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ final class BWMRoutes {
   static const languageSheet = '/language-sheet';
   static const faq = '/faq';
   static const safetyPrecautions = '/safety-precautions';
+  static const streak = '/streak';
 
   static final routes = <RouteBase>[
     GoRoute(
@@ -94,6 +96,18 @@ final class BWMRoutes {
           isDismissible: false,
           isScrollControlled: true,
           child: SafetyPrecautionsPage(),
+        );
+      },
+    ),
+    GoRoute(
+      path: BWMRoutes.streak,
+      pageBuilder: (context, state) {
+        return const BWMModalPage(
+          barrierColor: Colors.transparent,
+          isScrollControlled: true,
+          useSafeArea: true,
+          enableDrag: false,
+          child: StreakPage(),
         );
       },
     ),

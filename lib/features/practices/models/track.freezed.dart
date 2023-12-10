@@ -21,28 +21,18 @@ Track _$TrackFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Track {
   String get id => throw _privateConstructorUsedError;
-
   String get trackFile => throw _privateConstructorUsedError;
-
   String get categoryKey => throw _privateConstructorUsedError;
-
   int get duration => throw _privateConstructorUsedError;
-
   Tutor get tutor => throw _privateConstructorUsedError;
-
   String get coverIcon => throw _privateConstructorUsedError;
-
   @JsonKey(unknownEnumValue: ContentLanguage.unknown)
   ContentLanguage get language => throw _privateConstructorUsedError;
-
   String? get animationColor => throw _privateConstructorUsedError;
-
   bool get isPremium => throw _privateConstructorUsedError;
-
   bool get isNew => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $TrackCopyWith<Track> get copyWith => throw _privateConstructorUsedError;
 }
@@ -51,7 +41,6 @@ mixin _$Track {
 abstract class $TrackCopyWith<$Res> {
   factory $TrackCopyWith(Track value, $Res Function(Track) then) =
       _$TrackCopyWithImpl<$Res, Track>;
-
   @useResult
   $Res call(
       {String id,
@@ -76,7 +65,6 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -152,7 +140,6 @@ abstract class _$$TrackImplCopyWith<$Res> implements $TrackCopyWith<$Res> {
   factory _$$TrackImplCopyWith(
           _$TrackImpl value, $Res Function(_$TrackImpl) then) =
       __$$TrackImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
@@ -348,35 +335,25 @@ abstract class _Track implements Track {
 
   @override
   String get id;
-
   @override
   String get trackFile;
-
   @override
   String get categoryKey;
-
   @override
   int get duration;
-
   @override
   Tutor get tutor;
-
   @override
   String get coverIcon;
-
   @override
   @JsonKey(unknownEnumValue: ContentLanguage.unknown)
   ContentLanguage get language;
-
   @override
   String? get animationColor;
-
   @override
   bool get isPremium;
-
   @override
   bool get isNew;
-
   @override
   @JsonKey(ignore: true)
   _$$TrackImplCopyWith<_$TrackImpl> get copyWith =>
