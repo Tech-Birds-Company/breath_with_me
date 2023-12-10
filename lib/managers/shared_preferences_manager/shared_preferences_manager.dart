@@ -16,4 +16,8 @@ final class SharedPreferencesManager {
       await _instance!.setBool(SharedPreferencesKeys.safetyPrecautions, true);
     }
   }
+
+  Future<void> clear() async {
+    await _instance?.clear();
+  }
 }

@@ -88,10 +88,11 @@ final class BWMRoutes {
       path: BWMRoutes.safetyPrecautions,
       pageBuilder: (context, state) {
         return const BWMModalPage(
-          barrierColor: Colors.black,
-          isScrollControlled: true,
+          barrierColor: Colors.transparent,
           useSafeArea: true,
           enableDrag: false,
+          isDismissible: false,
+          isScrollControlled: true,
           child: SafetyPrecautionsPage(),
         );
       },

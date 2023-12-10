@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class BWMAppBar extends StatelessWidget implements PreferredSizeWidget {
-  static const double appBarHeight = 85;
+  static const double appBarHeight = 52;
 
   final String? title;
   final Color? backgroundColor;
@@ -18,7 +18,7 @@ class BWMAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize =>
-      Size.fromHeight(title == null ? appBarHeight : appBarHeight + 36 * 2);
+      Size.fromHeight(title == null ? appBarHeight : appBarHeight + 36);
 
   @override
   Widget build(BuildContext context) {
@@ -26,45 +26,41 @@ class BWMAppBar extends StatelessWidget implements PreferredSizeWidget {
     return SafeArea(
       child: ColoredBox(
         color: backgroundColor ?? theme.primaryBackground,
-        child: SizedBox(
-          height: preferredSize.height,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Spacer(),
-                GestureDetector(
-                  onTap: context.pop,
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.arrow_back,
-                        size: 24,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              GestureDetector(
+                onTap: context.pop,
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.arrow_back,
+                      size: 24,
+                      color: theme.green3,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      LocaleKeys.appBarBackTitle.tr(),
+                      style: theme.typography.bodyMTrue.copyWith(
                         color: theme.green3,
                       ),
-                      const SizedBox(width: 8),
-                      Text(
-                        LocaleKeys.appBarBackTitle.tr(),
-                        style: theme.typography.bodyMTrue.copyWith(
-                          color: theme.green3,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                if (title != null)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 36),
-                    child: Text(
-                      title!,
-                      style: theme.typography.heading.copyWith(
-                        color: theme.primaryText,
-                      ),
+              ),
+              if (title != null)
+                Padding(
+                  padding: const EdgeInsets.only(top: 36),
+                  child: Text(
+                    title!,
+                    style: theme.typography.heading.copyWith(
+                      color: theme.primaryText,
                     ),
                   ),
-              ],
-            ),
+                ),
+            ],
           ),
         ),
       ),

@@ -72,5 +72,9 @@
 	"reminderWd6Short": "Сб",
 	"reminderWd7Short": "Вс",
 	"reminderNotificationTitle": "Пора дышать",
-	"reminderNotificationDescription": "Примите удобную позицию и начнем"
+	"reminderNotificationDescription": "Примите удобную позицию и начнем",
+
+	"safetyPrecautionsWelcomeTitle": "Привет, мы рады тебя видеть!",
+	"safetyPrecautionsWelcomeDescription": "Прежде чем продолжить, ознакомься с техникой безопасности и рекомендациями по дыханию",
+	"safetyPrecautionsReadNow": "Читать сейчас"
 }

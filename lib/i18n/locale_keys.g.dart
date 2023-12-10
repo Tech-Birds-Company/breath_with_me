@@ -68,4 +68,8 @@ abstract class LocaleKeys {
   static const reminderNotificationTitle = 'reminderNotificationTitle';
   static const reminderNotificationDescription =
       'reminderNotificationDescription';
+  static const safetyPrecautionsWelcomeTitle = 'safetyPrecautionsWelcomeTitle';
+  static const safetyPrecautionsWelcomeDescription =
+      'safetyPrecautionsWelcomeDescription';
+  static const safetyPrecautionsReadNow = 'safetyPrecautionsReadNow';
 }

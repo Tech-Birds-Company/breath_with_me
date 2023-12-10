@@ -57,4 +57,11 @@ final class _BlocProviders {
       ref.read(Di.shared.manager.pushNotifications),
     ),
   );
+
+  late final safetyPrecautions = Provider.autoDispose(
+    (ref) => SafetyPrecautionsBloc(
+      ref.read(Di.shared.manager.navigation),
+      ref.read(Di.shared.manager.sharedPreferences),
+    ),
+  );
 }

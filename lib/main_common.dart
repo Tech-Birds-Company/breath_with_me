@@ -66,10 +66,11 @@ Future<List<Override>> _setupDependencies({required bool isProduction}) async {
     await playerIconFile.writeAsBytes(bytes.buffer.asUint8List());
   }
 
-  await sharedPrefsManager.init();
   navigationManager.init();
   subscriptionsManager.init();
   remoteConfigManager.init();
+
+  await sharedPrefsManager.init();
   await pushNotificationsManager.init();
   await tracksDownloadManager.validateDownloads();
 

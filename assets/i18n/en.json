@@ -72,5 +72,9 @@
 	"reminderWd6Short": "Sat",
 	"reminderWd7Short": "Sun",
 	"reminderNotificationTitle": "It's time to breathe",
-	"reminderNotificationDescription": "Take a comfortable position and let's start"
+	"reminderNotificationDescription": "Take a comfortable position and let's start",
+
+	"safetyPrecautionsWelcomeTitle": "Hi, we are glad to see you!",
+	"safetyPrecautionsWelcomeDescription": "Before you continue, familiarize yourself with the safety techniques and breathing recommendations",
+	"safetyPrecautionsReadNow": "Read now"
 }
