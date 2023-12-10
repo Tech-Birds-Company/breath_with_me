@@ -16,13 +16,15 @@ class PracticesList extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final bloc = ref.read(Di.shared.bloc.practiceList);
+
     useEffect(
       () {
-        bloc.loadTracks();
-        return null;
+        bloc.init();
+        return bloc.dispose;
       },
       const [],
     );
+
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return BlocBuilder<PracticeListBloc, PracticeListState>(
       bloc: bloc,
@@ -46,12 +48,13 @@ class PracticesList extends HookConsumerWidget {
               },
               itemBuilder: (context, index) {
                 final track = tracks[index];
+                final practiceBloc = ref.read(
+                  Di.shared.bloc.practice(track.id),
+                );
                 return PracticeItem(
                   key: ValueKey(track.id),
                   track: track,
-                  onTap: () {
-                    bloc.openTrackPlayerByTrack(track);
-                  },
+                  onTap: () => practiceBloc.openTrackPlayer(track),
                 );
               },
             );

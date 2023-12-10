@@ -5,7 +5,7 @@ final class _ManagerProviders {
     (ref) => TracksDownloaderManager(ref.read(database)),
   );
 
-  late final trackPlayer = Provider.autoDispose((ref) {
+  late final trackPlayer = Provider((ref) {
     final manager = TrackPlayerManager();
     ref.onDispose(manager.dispose);
     return manager;
@@ -13,7 +13,7 @@ final class _ManagerProviders {
 
   late final navigation = Provider((ref) {
     return NavigationManager(
-      ref.read(Di.shared.manager.userManager),
+      ref.read(Di.shared.manager.user),
     );
   });
 
@@ -23,7 +23,7 @@ final class _ManagerProviders {
     },
   );
 
-  late final audio = Provider.autoDispose(
+  late final audio = Provider(
     (ref) {
       final manager = TrackAudioManager(ref.read(trackPlayer));
       ref.onDispose(manager.dispose);
@@ -31,7 +31,7 @@ final class _ManagerProviders {
     },
   );
 
-  late final userManager = Provider((ref) => FirebaseUserManager());
+  late final user = Provider((ref) => FirebaseUserManager());
 
   late final permissions = Provider((ref) => PermissionsManager());
 
