@@ -21,10 +21,13 @@ Tutor _$TutorFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Tutor {
   String get id => throw _privateConstructorUsedError;
+
   String get tutorNameKey => throw _privateConstructorUsedError;
+
   String get avatarUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $TutorCopyWith<Tutor> get copyWith => throw _privateConstructorUsedError;
 }
@@ -33,6 +36,7 @@ mixin _$Tutor {
 abstract class $TutorCopyWith<$Res> {
   factory $TutorCopyWith(Tutor value, $Res Function(Tutor) then) =
       _$TutorCopyWithImpl<$Res, Tutor>;
+
   @useResult
   $Res call({String id, String tutorNameKey, String avatarUrl});
 }
@@ -44,6 +48,7 @@ class _$TutorCopyWithImpl<$Res, $Val extends Tutor>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -76,6 +81,7 @@ abstract class _$$TutorImplCopyWith<$Res> implements $TutorCopyWith<$Res> {
   factory _$$TutorImplCopyWith(
           _$TutorImpl value, $Res Function(_$TutorImpl) then) =
       __$$TutorImplCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call({String id, String tutorNameKey, String avatarUrl});
@@ -174,10 +180,13 @@ abstract class _Tutor implements Tutor {
 
   @override
   String get id;
+
   @override
   String get tutorNameKey;
+
   @override
   String get avatarUrl;
+
   @override
   @JsonKey(ignore: true)
   _$$TutorImplCopyWith<_$TutorImpl> get copyWith =>

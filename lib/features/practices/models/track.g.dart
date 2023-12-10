@@ -9,7 +9,7 @@ part of 'track.dart';
 _$TrackImpl _$$TrackImplFromJson(Map json) => _$TrackImpl(
       id: json['id'] as String,
       trackFile: json['trackFile'] as String,
-      title: json['title'] as String,
+      categoryKey: json['categoryKey'] as String,
       duration: json['duration'] as int,
       tutor: Tutor.fromJson(Map<String, dynamic>.from(json['tutor'] as Map)),
       coverIcon: json['coverIcon'] as String,
@@ -24,7 +24,7 @@ Map<String, dynamic> _$$TrackImplToJson(_$TrackImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'trackFile': instance.trackFile,
-      'title': instance.title,
+      'categoryKey': instance.categoryKey,
       'duration': instance.duration,
       'tutor': instance.tutor,
       'coverIcon': instance.coverIcon,

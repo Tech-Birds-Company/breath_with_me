@@ -10,13 +10,13 @@ import 'package:flutter_svg/svg.dart';
 
 class PracticeInfo extends StatelessWidget {
   final String trackId;
-  final String title;
+  final String category;
   final int duration;
   final Tutor tutor;
 
   const PracticeInfo({
     required this.trackId,
-    required this.title,
+    required this.category,
     required this.duration,
     required this.tutor,
     super.key,
@@ -34,7 +34,7 @@ class PracticeInfo extends StatelessWidget {
             Expanded(
               flex: 0,
               child: Text(
-                title,
+                category,
                 style: theme.typography.heading2.copyWith(
                   color: theme.primaryText,
                 ),

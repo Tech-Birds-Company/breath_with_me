@@ -1,7 +1,7 @@
 import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
 import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/practices/models/track.dart';
-import 'package:breathe_with_me/features/track_player/widgets/play_button.dart';
+import 'package:breathe_with_me/features/track_player/widgets/track_play_button.dart';
 import 'package:breathe_with_me/features/track_player/widgets/track_player_animation.dart';
 import 'package:breathe_with_me/features/track_player/widgets/track_progress_indicator.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
@@ -22,7 +22,7 @@ class TrackPlayerPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    final bloc = ref.read(Di.shared.bloc.trackPlayer(track.id));
+    final bloc = ref.read(Di.shared.bloc.trackPlayer(track));
 
     useEffect(
       () {
@@ -47,7 +47,7 @@ class TrackPlayerPage extends HookConsumerWidget {
             ),
             const Spacer(),
             Center(
-              child: TrackPlayButton(trackId: track.id),
+              child: TrackPlayButton(bloc),
             ),
             Padding(
               padding: const EdgeInsetsDirectional.only(
@@ -55,7 +55,7 @@ class TrackPlayerPage extends HookConsumerWidget {
                 start: 16,
                 end: 16,
               ),
-              child: TrackProgressIndicator(trackId: track.id),
+              child: TrackProgressIndicator(bloc),
             ),
           ],
         ),

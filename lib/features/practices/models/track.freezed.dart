@@ -21,18 +21,28 @@ Track _$TrackFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Track {
   String get id => throw _privateConstructorUsedError;
+
   String get trackFile => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
+
+  String get categoryKey => throw _privateConstructorUsedError;
+
   int get duration => throw _privateConstructorUsedError;
+
   Tutor get tutor => throw _privateConstructorUsedError;
+
   String get coverIcon => throw _privateConstructorUsedError;
+
   @JsonKey(unknownEnumValue: ContentLanguage.unknown)
   ContentLanguage get language => throw _privateConstructorUsedError;
+
   String? get animationColor => throw _privateConstructorUsedError;
+
   bool get isPremium => throw _privateConstructorUsedError;
+
   bool get isNew => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $TrackCopyWith<Track> get copyWith => throw _privateConstructorUsedError;
 }
@@ -41,11 +51,12 @@ mixin _$Track {
 abstract class $TrackCopyWith<$Res> {
   factory $TrackCopyWith(Track value, $Res Function(Track) then) =
       _$TrackCopyWithImpl<$Res, Track>;
+
   @useResult
   $Res call(
       {String id,
       String trackFile,
-      String title,
+      String categoryKey,
       int duration,
       Tutor tutor,
       String coverIcon,
@@ -65,6 +76,7 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -73,7 +85,7 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
   $Res call({
     Object? id = null,
     Object? trackFile = null,
-    Object? title = null,
+    Object? categoryKey = null,
     Object? duration = null,
     Object? tutor = null,
     Object? coverIcon = null,
@@ -91,9 +103,9 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
           ? _value.trackFile
           : trackFile // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      categoryKey: null == categoryKey
+          ? _value.categoryKey
+          : categoryKey // ignore: cast_nullable_to_non_nullable
               as String,
       duration: null == duration
           ? _value.duration
@@ -140,12 +152,13 @@ abstract class _$$TrackImplCopyWith<$Res> implements $TrackCopyWith<$Res> {
   factory _$$TrackImplCopyWith(
           _$TrackImpl value, $Res Function(_$TrackImpl) then) =
       __$$TrackImplCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call(
       {String id,
       String trackFile,
-      String title,
+      String categoryKey,
       int duration,
       Tutor tutor,
       String coverIcon,
@@ -172,7 +185,7 @@ class __$$TrackImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? trackFile = null,
-    Object? title = null,
+    Object? categoryKey = null,
     Object? duration = null,
     Object? tutor = null,
     Object? coverIcon = null,
@@ -190,9 +203,9 @@ class __$$TrackImplCopyWithImpl<$Res>
           ? _value.trackFile
           : trackFile // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      categoryKey: null == categoryKey
+          ? _value.categoryKey
+          : categoryKey // ignore: cast_nullable_to_non_nullable
               as String,
       duration: null == duration
           ? _value.duration
@@ -232,7 +245,7 @@ class _$TrackImpl implements _Track {
   const _$TrackImpl(
       {required this.id,
       required this.trackFile,
-      required this.title,
+      required this.categoryKey,
       required this.duration,
       required this.tutor,
       required this.coverIcon,
@@ -250,7 +263,7 @@ class _$TrackImpl implements _Track {
   @override
   final String trackFile;
   @override
-  final String title;
+  final String categoryKey;
   @override
   final int duration;
   @override
@@ -271,7 +284,7 @@ class _$TrackImpl implements _Track {
 
   @override
   String toString() {
-    return 'Track(id: $id, trackFile: $trackFile, title: $title, duration: $duration, tutor: $tutor, coverIcon: $coverIcon, language: $language, animationColor: $animationColor, isPremium: $isPremium, isNew: $isNew)';
+    return 'Track(id: $id, trackFile: $trackFile, categoryKey: $categoryKey, duration: $duration, tutor: $tutor, coverIcon: $coverIcon, language: $language, animationColor: $animationColor, isPremium: $isPremium, isNew: $isNew)';
   }
 
   @override
@@ -282,7 +295,8 @@ class _$TrackImpl implements _Track {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.trackFile, trackFile) ||
                 other.trackFile == trackFile) &&
-            (identical(other.title, title) || other.title == title) &&
+            (identical(other.categoryKey, categoryKey) ||
+                other.categoryKey == categoryKey) &&
             (identical(other.duration, duration) ||
                 other.duration == duration) &&
             (identical(other.tutor, tutor) || other.tutor == tutor) &&
@@ -299,8 +313,8 @@ class _$TrackImpl implements _Track {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, trackFile, title, duration,
-      tutor, coverIcon, language, animationColor, isPremium, isNew);
+  int get hashCode => Object.hash(runtimeType, id, trackFile, categoryKey,
+      duration, tutor, coverIcon, language, animationColor, isPremium, isNew);
 
   @JsonKey(ignore: true)
   @override
@@ -320,7 +334,7 @@ abstract class _Track implements Track {
   const factory _Track(
       {required final String id,
       required final String trackFile,
-      required final String title,
+      required final String categoryKey,
       required final int duration,
       required final Tutor tutor,
       required final String coverIcon,
@@ -334,25 +348,35 @@ abstract class _Track implements Track {
 
   @override
   String get id;
+
   @override
   String get trackFile;
+
   @override
-  String get title;
+  String get categoryKey;
+
   @override
   int get duration;
+
   @override
   Tutor get tutor;
+
   @override
   String get coverIcon;
+
   @override
   @JsonKey(unknownEnumValue: ContentLanguage.unknown)
   ContentLanguage get language;
+
   @override
   String? get animationColor;
+
   @override
   bool get isPremium;
+
   @override
   bool get isNew;
+
   @override
   @JsonKey(ignore: true)
   _$$TrackImplCopyWith<_$TrackImpl> get copyWith =>

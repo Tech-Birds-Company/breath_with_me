@@ -10,7 +10,7 @@ class Track with _$Track {
   const factory Track({
     required String id,
     required String trackFile,
-    required String title,
+    required String categoryKey,
     required int duration,
     required Tutor tutor,
     required String coverIcon,
