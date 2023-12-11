@@ -5,6 +5,7 @@ final class BWMAssets {
 
   static const i18n = 'assets/i18n';
   static const _icons = 'assets/icons';
+  static const _shaders = 'assets/shaders';
 
   static const logoIcon = '$_icons/logo.svg';
   static const profileIcon = '$_icons/profile.svg';
@@ -26,4 +27,6 @@ final class BWMAssets {
   static const signAppleIcon = '$_icons/sign_apple.svg';
   static const signGoogleIcon = '$_icons/sign_google.svg';
   static const signMailIcon = '$_icons/sign_mail.svg';
+
+  static const trackPlayerAnimation = '$_shaders/track_player.glsl';
 }

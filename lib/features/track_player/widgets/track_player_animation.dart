@@ -1,10 +1,11 @@
 import 'dart:async';
-import 'dart:math';
+import 'dart:io';
 
+import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
-import 'package:fast_noise/fast_noise.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_shaders/flutter_shaders.dart';
 
 class TrackPlayerAnimation extends StatefulWidget {
   final Stream<bool> isPlayingStream;
@@ -22,118 +23,73 @@ class TrackPlayerAnimation extends StatefulWidget {
 
 class TrackPlayerAnimationState extends State<TrackPlayerAnimation>
     with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-
   StreamSubscription<bool>? _isPlayingSub;
+
+  double _time = 0;
+  bool _isPlaying = false;
+  late Ticker _ticker;
 
   @override
   void initState() {
+    _ticker = Ticker((elapsed) {
+      if (_isPlaying) {
+        _time += 0.05;
+        setState(() {});
+      }
+    });
     super.initState();
     _isPlayingSub ??= widget.isPlayingStream.listen(
-      (state) {
-        if (state) {
-          _controller.loop();
-        } else {
-          _controller.stop();
-        }
-      },
+      (state) => setState(() => _isPlaying = state),
     );
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 7),
-    );
+    _ticker.start();
   }
 
   @override
   void dispose() {
-    _controller.dispose();
     _isPlayingSub?.cancel();
     _isPlayingSub = null;
+    _ticker.dispose();
     super.dispose();
   }
 
   @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context).extension<BWMTheme>()!;
-    return SizedBox(
-      width: 100,
-      height: 100,
-      child: AnimatedBuilder(
-        animation: _controller,
-        builder: (context, _) => CustomPaint(
-          painter: _TrackPlayerAnimationPainter(
-            progress: _controller.value,
-            animationColor: widget.animationColor ?? theme.secondaryColor,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _TrackPlayerAnimationPainter extends CustomPainter {
-  final Color animationColor;
-  final double progress;
-  final noise = PerlinNoise();
-
-  _TrackPlayerAnimationPainter({
-    required this.progress,
-    required this.animationColor,
-  });
-
-  double _radians(double degrees) => degrees * (pi / 180.0);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = animationColor.withOpacity(0.5)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 5.0;
-
-    const baseRadius = 150.0;
-    const noiseScale = 1;
-    final noiseOffset = cos(progress * 2 * pi) * 100 +
-        noise.getNoise2(
-          Random().nextInt(100).toDouble(),
-          Random().nextInt(100).toDouble(),
-        );
-
-    final outerRingPath1 = Path();
-
-    for (var i = 0; i < 360; i++) {
-      final angle = _radians(i.toDouble());
-      final noiseValue = noise.getNoise2(
-        (size.width * noiseScale) * cos(angle) + noiseOffset,
-        (size.height * noiseScale) * sin(angle) + noiseOffset,
+  Widget build(BuildContext context) => ShaderBuilder(
+        (context, shader, child) {
+          final theme = Theme.of(context).extension<BWMTheme>()!;
+          final color = widget.animationColor ?? theme.secondaryColor;
+          return AnimatedSampler(
+            (image, size, canvas) {
+              shader.setFloatUniforms(
+                (value) {
+                  value
+                    ..setFloat(_time)
+                    ..setSize(
+                      Platform.isIOS
+                          ? size
+                          : Size(
+                              size.width / 3,
+                              size.height / 3,
+                            ),
+                    )
+                    ..setFloat(color.red / 255)
+                    ..setFloat(color.green / 255)
+                    ..setFloat(color.blue / 255)
+                    ..setFloat(-1.2);
+                },
+              );
+              canvas.drawRect(
+                Rect.fromCenter(
+                  center: Offset(size.width / 2, size.height / 2),
+                  width: size.width,
+                  height: size.height,
+                ),
+                Paint()..shader = shader,
+              );
+            },
+            child: child!,
+          );
+        },
+        assetKey: BWMAssets.trackPlayerAnimation,
+        child: const SizedBox.expand(),
       );
-      final radius = baseRadius + (noiseValue * 30.0);
-      final x = size.center(Offset.zero).dx + radius * cos(angle);
-      final y = size.center(Offset.zero).dy + radius * sin(angle);
-
-      if (i == 0) {
-        outerRingPath1.moveTo(x, y);
-      } else {
-        outerRingPath1.lineTo(x, y);
-      }
-    }
-
-    outerRingPath1.close();
-    canvas
-      ..drawPath(outerRingPath1, paint)
-      ..drawShadow(
-        outerRingPath1,
-        animationColor,
-        10,
-        true,
-      )
-      ..drawShadow(
-        outerRingPath1,
-        animationColor,
-        50,
-        true,
-      );
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }

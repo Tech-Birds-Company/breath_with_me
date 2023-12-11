@@ -33,32 +33,38 @@ class TrackPlayerPage extends HookConsumerWidget {
     );
 
     return Scaffold(
-      appBar: const BWMAppBar(),
       backgroundColor: theme.primaryBackground,
-      body: SafeArea(
-        child: Column(
-          children: [
-            const Spacer(),
-            TrackPlayerAnimation(
-              isPlayingStream: bloc.stream
-                  .map((event) => !event.isPaused)
-                  .startWith(!bloc.state.isPaused),
-              animationColor: track.animationColor?.toColor(),
-            ),
-            const Spacer(),
-            Center(
-              child: TrackPlayButton(bloc),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.only(
-                top: 16,
-                start: 16,
-                end: 16,
+      body: Stack(
+        children: [
+          TrackPlayerAnimation(
+            isPlayingStream: bloc.stream
+                .map((event) => !event.isPaused)
+                .startWith(!bloc.state.isPaused),
+            animationColor: track.animationColor?.toColor(),
+          ),
+          SafeArea(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TrackPlayButton(bloc),
+                    const SizedBox(height: 16),
+                    TrackProgressIndicator(bloc),
+                  ],
+                ),
               ),
-              child: TrackProgressIndicator(bloc),
             ),
-          ],
-        ),
+          ),
+          const SizedBox(
+            height: 117,
+            child: BWMAppBar(
+              backgroundColor: Colors.transparent,
+            ),
+          ),
+        ],
       ),
     );
   }
