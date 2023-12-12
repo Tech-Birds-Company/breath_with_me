@@ -1,5 +1,5 @@
+import 'package:breathe_with_me/features/tracks/models/track_language.dart';
 import 'package:breathe_with_me/features/tracks/models/tutor.dart';
-import 'package:breathe_with_me/utils/content_language.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'track.freezed.dart';
@@ -14,8 +14,8 @@ class Track with _$Track {
     required int duration,
     required Tutor tutor,
     required String coverIcon,
-    @JsonKey(unknownEnumValue: ContentLanguage.unknown)
-    required ContentLanguage language,
+    @JsonKey(unknownEnumValue: TrackLanguage.unknown)
+    required TrackLanguage language,
     String? animationColor,
     @Default(false) bool isPremium,
     @Default(false) bool isNew,

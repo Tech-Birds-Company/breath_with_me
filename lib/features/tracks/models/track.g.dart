@@ -13,8 +13,8 @@ _$TrackImpl _$$TrackImplFromJson(Map json) => _$TrackImpl(
       duration: json['duration'] as int,
       tutor: Tutor.fromJson(Map<String, dynamic>.from(json['tutor'] as Map)),
       coverIcon: json['coverIcon'] as String,
-      language: $enumDecode(_$ContentLanguageEnumMap, json['language'],
-          unknownValue: ContentLanguage.unknown),
+      language: $enumDecode(_$TrackLanguageEnumMap, json['language'],
+          unknownValue: TrackLanguage.unknown),
       animationColor: json['animationColor'] as String?,
       isPremium: json['isPremium'] as bool? ?? false,
       isNew: json['isNew'] as bool? ?? false,
@@ -28,14 +28,14 @@ Map<String, dynamic> _$$TrackImplToJson(_$TrackImpl instance) =>
       'duration': instance.duration,
       'tutor': instance.tutor,
       'coverIcon': instance.coverIcon,
-      'language': _$ContentLanguageEnumMap[instance.language]!,
+      'language': _$TrackLanguageEnumMap[instance.language]!,
       'animationColor': instance.animationColor,
       'isPremium': instance.isPremium,
       'isNew': instance.isNew,
     };
 
-const _$ContentLanguageEnumMap = {
-  ContentLanguage.ru: 'ru',
-  ContentLanguage.en: 'en',
-  ContentLanguage.unknown: 'unknown',
+const _$TrackLanguageEnumMap = {
+  TrackLanguage.ru: 'ru',
+  TrackLanguage.en: 'en',
+  TrackLanguage.unknown: 'unknown',
 };

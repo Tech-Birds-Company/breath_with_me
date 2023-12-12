@@ -25,8 +25,10 @@ class FaqPage extends ConsumerWidget {
         bloc: bloc,
         builder: (context, state) => state.when(
           data: (questions) => FaqQuestionList(questions: questions),
-          loading: () => const Center(
-            child: CircularProgressIndicator(),
+          loading: () => Center(
+            child: CircularProgressIndicator(
+              color: theme.secondaryColor,
+            ),
           ),
           error: () {
             // TODO(bestK1ngArthur): Show error widget

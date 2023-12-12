@@ -50,16 +50,13 @@ final class DatabaseManager {
     return downloadTaskBox.putAndGetAsync(entity);
   }
 
-  Future<void> deleteDownloadTask(String taskId) {
-    return downloadTaskBox
-        .query(DownloadTrackTaskEntity_.taskId.equals(taskId))
-        .build()
-        .removeAsync();
-  }
+  Future<void> deleteDownloadTask(String taskId) => downloadTaskBox
+      .query(DownloadTrackTaskEntity_.taskId.equals(taskId))
+      .build()
+      .removeAsync();
 
-  Future<RemoteConfigEntity?> getRemoteConfig() {
-    return remoteConfigBox.query().build().findFirstAsync();
-  }
+  Future<RemoteConfigEntity?> getRemoteConfig() =>
+      remoteConfigBox.query().build().findFirstAsync();
 
   Future<void> saveRemoteConfig(Map<String, Object?> json) async {
     final entities = await remoteConfigBox.getAllAsync();
@@ -88,13 +85,13 @@ final class DatabaseManager {
     );
   }
 
-  Future<SecureImageUrlEntity?> getSecureUrl(String baseUrl) async {
-    final entity = await secureImageUrlBox
-        .query(SecureImageUrlEntity_.baseUrl.equals(baseUrl))
-        .build()
-        .findFirstAsync();
-    return entity;
-  }
+  Future<SecureImageUrlEntity?> getSecureUrl(String baseUrl) =>
+      secureImageUrlBox
+          .query(
+            SecureImageUrlEntity_.baseUrl.equals(baseUrl),
+          )
+          .build()
+          .findFirstAsync();
 
   Stream<double> taskProgressStream(String taskId) => downloadTaskBox
           .query(DownloadTrackTaskEntity_.taskId.equals(taskId))
@@ -121,9 +118,7 @@ final class DatabaseManager {
         },
       ).distinct();
 
-  void dispose() {
-    _store.close();
-  }
+  void dispose() => _store.close();
 
   void clearDb() {
     downloadTaskBox.removeAll();

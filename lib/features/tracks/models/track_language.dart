@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-enum ContentLanguage {
+enum TrackLanguage {
   @JsonValue('ru')
   ru,
   @JsonValue('en')
