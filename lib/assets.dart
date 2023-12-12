@@ -28,5 +28,5 @@ final class BWMAssets {
   static const signGoogleIcon = '$_icons/sign_google.svg';
   static const signMailIcon = '$_icons/sign_mail.svg';
 
-  static const trackPlayerAnimation = '$_shaders/track_player.glsl';
+  static const trackPlayerAnimation = '$_shaders/player_animation.glsl';
 }

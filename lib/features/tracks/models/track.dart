@@ -1,4 +1,4 @@
-import 'package:breathe_with_me/features/practices/models/tutor.dart';
+import 'package:breathe_with_me/features/tracks/models/tutor.dart';
 import 'package:breathe_with_me/utils/content_language.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

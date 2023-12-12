@@ -1,25 +1,25 @@
 import 'package:breathe_with_me/assets.dart';
-import 'package:breathe_with_me/features/practices/widgets/practice_filter.dart';
+import 'package:breathe_with_me/features/tracks/widgets/track_filter.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class PracticesFilters extends StatelessWidget {
-  const PracticesFilters({super.key});
+class TracksFilters extends StatelessWidget {
+  const TracksFilters({super.key});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return Row(
       children: [
-        PracticeFilter(
-          filterTitle: LocaleKeys.practiceCategoryAll.tr(),
+        TrackFilter(
+          filterTitle: LocaleKeys.trackCategoryAll.tr(),
         ),
         const SizedBox(width: 8),
-        PracticeFilter(
-          filterTitle: LocaleKeys.practiceLanguageRu.tr(),
+        TrackFilter(
+          filterTitle: LocaleKeys.trackLanguageRu.tr(),
         ),
         const Spacer(),
         SizedBox(

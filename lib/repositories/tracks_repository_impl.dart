@@ -1,7 +1,7 @@
 import 'package:breathe_with_me/constants.dart';
 import 'package:breathe_with_me/database/entities/download_track_task_entity.dart';
 import 'package:breathe_with_me/database/entities/liked_tracks_entity.dart';
-import 'package:breathe_with_me/features/practices/models/track.dart';
+import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/repositories/firebase_tutors_repository.dart';

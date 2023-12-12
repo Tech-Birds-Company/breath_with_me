@@ -1,15 +1,14 @@
-import 'package:breathe_with_me/features/practices/models/track.dart';
-import 'package:breathe_with_me/features/practices/widgets/practice_cover.dart';
-import 'package:breathe_with_me/features/practices/widgets/practice_info.dart';
-import 'package:breathe_with_me/features/practices/widgets/practice_play_button.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:breathe_with_me/features/tracks/models/track.dart';
+import 'package:breathe_with_me/features/tracks/widgets/track_cover.dart';
+import 'package:breathe_with_me/features/tracks/widgets/track_info.dart';
+import 'package:breathe_with_me/features/tracks/widgets/track_play_button.dart';
 import 'package:flutter/material.dart';
 
-class PracticeItem extends StatelessWidget {
+class TrackItem extends StatelessWidget {
   final Track track;
   final VoidCallback onTap;
 
-  const PracticeItem({
+  const TrackItem({
     required this.track,
     required this.onTap,
     super.key,
@@ -29,21 +28,16 @@ class PracticeItem extends StatelessWidget {
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  PracticeCover(
+                  TrackCover(
                     coverUrl: track.coverIcon,
                   ),
-                  const PracticePlayButton(),
+                  const TrackPlayCover(),
                 ],
               ),
             ),
             const SizedBox(width: 20),
             Expanded(
-              child: PracticeInfo(
-                trackId: track.id,
-                category: track.categoryKey.tr(),
-                duration: track.duration,
-                tutor: track.tutor,
-              ),
+              child: TrackInfo(track),
             ),
           ],
         ),

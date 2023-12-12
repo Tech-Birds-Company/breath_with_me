@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'practice_list_state.dart';
+part of 'tracks_list_state.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

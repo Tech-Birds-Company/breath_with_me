@@ -1,9 +1,9 @@
 part of 'di.dart';
 
 final class _BlocProviders {
-  late final practiceList = Provider(
+  late final trackList = Provider(
     (ref) {
-      final bloc = PracticeListBloc(
+      final bloc = TracksListBloc(
         ref.read(Di.shared.repository.firebaseTracks),
       );
       ref.onDispose(bloc.dispose);
@@ -68,9 +68,9 @@ final class _BlocProviders {
     ),
   );
 
-  late final practice = Provider.family<PracticeBloc, String>(
-    (ref, trackId) => PracticeBloc(
-      trackId,
+  late final track = Provider.family<TrackBloc, Track>(
+    (ref, track) => TrackBloc(
+      track,
       ref.read(Di.shared.repository.firebaseTracks),
       ref.read(Di.shared.manager.navigation),
     ),

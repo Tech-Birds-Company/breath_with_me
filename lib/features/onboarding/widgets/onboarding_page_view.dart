@@ -29,10 +29,8 @@ class OnboardingPageView extends HookWidget {
   @override
   Widget build(BuildContext context) {
     useEffect(
-      () {
-        return _pageController.dispose;
-      },
-      [],
+      () => _pageController.dispose,
+      const [],
     );
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return Column(

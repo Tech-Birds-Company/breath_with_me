@@ -1,14 +1,14 @@
 import 'dart:async';
 
-import 'package:breathe_with_me/features/practices/models/practice_list_state.dart';
+import 'package:breathe_with_me/features/tracks/models/tracks_list_state.dart';
 import 'package:breathe_with_me/repositories/tracks_repository.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 
-final class PracticeListBloc extends CacheableBloc<PracticeListState> {
+final class TracksListBloc extends CacheableBloc<TracksListState> {
   final TracksRepository _tracksRepository;
 
-  PracticeListBloc(this._tracksRepository)
-      : super(const PracticeListState.loading());
+  TracksListBloc(this._tracksRepository)
+      : super(const TracksListState.loading());
 
   StreamSubscription<Set<String>>? _firebaseLikedTracksSubscription;
 
@@ -27,19 +27,16 @@ final class PracticeListBloc extends CacheableBloc<PracticeListState> {
 
   Future<void> _loadTracks() async {
     final tracks = await _tracksRepository.getTracks();
-    emit(PracticeListState.data(tracks));
+    emit(TracksListState.data(tracks));
     await cache();
   }
 
   @override
-  PracticeListState fromJson(Map<String, dynamic> json) {
-    return PracticeListState.fromJson(json);
-  }
+  TracksListState fromJson(Map<String, dynamic> json) =>
+      TracksListState.fromJson(json);
 
   @override
-  Map<String, dynamic> toJson(PracticeListState state) {
-    return state.toJson();
-  }
+  Map<String, dynamic> toJson(TracksListState state) => state.toJson();
 
   void dispose() {
     _firebaseLikedTracksSubscription?.cancel();

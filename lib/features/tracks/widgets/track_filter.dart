@@ -3,10 +3,10 @@ import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class PracticeFilter extends StatelessWidget {
+class TrackFilter extends StatelessWidget {
   final String filterTitle;
 
-  const PracticeFilter({
+  const TrackFilter({
     required this.filterTitle,
     super.key,
   });

@@ -1,24 +1,25 @@
 import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/di/di.dart';
+import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class PracticeDownloadIndicator extends ConsumerWidget {
-  final String trackId;
+class TrackDownloadIndicator extends ConsumerWidget {
+  final Track _track;
 
-  const PracticeDownloadIndicator({
-    required this.trackId,
+  const TrackDownloadIndicator(
+    this._track, {
     super.key,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    final bloc = ref.read(Di.shared.bloc.practice(trackId));
+    final bloc = ref.read(Di.shared.bloc.track(_track));
     return StreamBuilder<bool>(
-      stream: bloc.trackIsDownloadedStream(trackId),
+      stream: bloc.trackIsDownloadedStream(),
       initialData: false,
       builder: (context, snapshot) {
         final downloaded = snapshot.requireData;

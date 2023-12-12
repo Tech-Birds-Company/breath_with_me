@@ -1,8 +1,8 @@
 import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/di/di.dart';
-import 'package:breathe_with_me/features/practices/models/tutor.dart';
-import 'package:breathe_with_me/features/practices/widgets/practice_download_indicator.dart';
-import 'package:breathe_with_me/features/practices/widgets/practice_tutor.dart';
+import 'package:breathe_with_me/features/tracks/models/track.dart';
+import 'package:breathe_with_me/features/tracks/widgets/track_download_indicator.dart';
+import 'package:breathe_with_me/features/tracks/widgets/track_tutor.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -10,24 +10,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
-class PracticeInfo extends ConsumerWidget {
-  final String trackId;
-  final String category;
-  final int duration;
-  final Tutor tutor;
+class TrackInfo extends ConsumerWidget {
+  final Track _track;
 
-  const PracticeInfo({
-    required this.trackId,
-    required this.category,
-    required this.duration,
-    required this.tutor,
+  const TrackInfo(
+    this._track, {
     super.key,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    final bloc = ref.read(Di.shared.bloc.practice(trackId));
+    final bloc = ref.read(Di.shared.bloc.track(_track));
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -37,7 +31,7 @@ class PracticeInfo extends ConsumerWidget {
             Expanded(
               flex: 0,
               child: Text(
-                category,
+                _track.categoryKey.tr(),
                 style: theme.typography.heading2.copyWith(
                   color: theme.primaryText,
                 ),
@@ -53,7 +47,7 @@ class PracticeInfo extends ConsumerWidget {
                 icon: Align(
                   alignment: Alignment.topCenter,
                   child: StreamBuilder<bool>(
-                    stream: bloc.trackLikedStream(trackId),
+                    stream: bloc.trackLikedStream(),
                     initialData: false,
                     builder: (context, snapshot) {
                       final isLiked = snapshot.requireData;
@@ -75,9 +69,9 @@ class PracticeInfo extends ConsumerWidget {
         ),
         const SizedBox(height: 4),
         Text(
-          LocaleKeys.practiceDurationTitle.tr(
+          LocaleKeys.trackDurationTitle.tr(
             namedArgs: {
-              'duration': '$duration',
+              'duration': '${_track.duration}',
             },
           ),
           style: theme.typography.bodyM.copyWith(
@@ -88,15 +82,15 @@ class PracticeInfo extends ConsumerWidget {
         Row(
           children: [
             Expanded(
-              child: PracticeTutor(
-                key: ValueKey(tutor.id),
-                tutorAvatarUrl: tutor.avatarUrl,
-                tutorName: tutor.tutorNameKey.tr(),
+              child: TrackTutor(
+                key: ValueKey(_track.tutor.id),
+                tutorAvatarUrl: _track.tutor.avatarUrl,
+                tutorName: _track.tutor.tutorNameKey.tr(),
               ),
             ),
             Expanded(
               flex: 0,
-              child: PracticeDownloadIndicator(trackId: trackId),
+              child: TrackDownloadIndicator(_track),
             ),
           ],
         ),

@@ -3,8 +3,8 @@ import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class PracticePlayButton extends StatelessWidget {
-  const PracticePlayButton({super.key});
+class TrackPlayCover extends StatelessWidget {
+  const TrackPlayCover({super.key});
 
   @override
   Widget build(BuildContext context) {

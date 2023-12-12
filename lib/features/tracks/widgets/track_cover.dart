@@ -1,18 +1,17 @@
 import 'package:breathe_with_me/common/widgets/secure_image.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PracticeCover extends ConsumerWidget {
+class TrackCover extends StatelessWidget {
   final String coverUrl;
 
-  const PracticeCover({
+  const TrackCover({
     required this.coverUrl,
     super.key,
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),

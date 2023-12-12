@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:breathe_with_me/database/entities/download_track_task_entity.dart';
-import 'package:breathe_with_me/features/practices/models/track.dart';
 import 'package:breathe_with_me/features/track_player/models/track_player_state.dart';
+import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/managers/audio_manager/audio_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/downloader_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/track_download_task.dart';

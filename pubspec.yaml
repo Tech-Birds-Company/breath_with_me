@@ -85,4 +85,4 @@ flutter:
         - asset: assets/fonts/Oxygen-Bold.ttf
           weight: 700
   shaders:
-    - assets/shaders/track_player.glsl
+    - assets/shaders/player_animation.glsl
