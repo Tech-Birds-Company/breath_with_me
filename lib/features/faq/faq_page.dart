@@ -17,6 +17,8 @@ class FaqPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     final bloc = ref.read(Di.shared.bloc.faq);
+    final currentLocale = EasyLocalization.of(context)!.locale;
+    bloc.loadQuestions(currentLocale.languageCode);
 
     return Scaffold(
       backgroundColor: theme.primaryBackground,

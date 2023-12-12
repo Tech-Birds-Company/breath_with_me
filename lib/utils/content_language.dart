@@ -7,3 +7,16 @@ enum ContentLanguage {
   en,
   unknown,
 }
+
+class ContentLanguageHelper {
+  static ContentLanguage fromCode(String code) {
+    switch (code) {
+      case 'ru':
+        return ContentLanguage.ru;
+      case 'en':
+        return ContentLanguage.en;
+      default:
+        return ContentLanguage.unknown;
+    }
+  }
+}
