@@ -10,17 +10,12 @@ final class RemoteConfigManager {
 
   StreamSubscription<RemoteConfig>? _remoteConfigSubscription;
 
-  void init() {
-    _remoteConfigSubscription = _firebaseRemoteConfigRepository
-        .remoteConfigStream
-        .listen(_handleRemoteConfigChanges);
-  }
+  void init() => _remoteConfigSubscription = _firebaseRemoteConfigRepository
+      .remoteConfigStream
+      .listen(_handleRemoteConfigChanges);
 
-  void _handleRemoteConfigChanges(RemoteConfig config) {
-    _firebaseRemoteConfigRepository.saveRemoteConfig(config);
-  }
+  void _handleRemoteConfigChanges(RemoteConfig config) =>
+      _firebaseRemoteConfigRepository.saveRemoteConfig(config);
 
-  void dispose() {
-    _remoteConfigSubscription?.cancel();
-  }
+  void dispose() => _remoteConfigSubscription?.cancel();
 }

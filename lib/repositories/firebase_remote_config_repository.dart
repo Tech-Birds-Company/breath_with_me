@@ -27,7 +27,7 @@ final class FirebaseRemoteConfigRepository
 
     final config = snapshotData != null
         ? RemoteConfig.fromJson(snapshotData)
-        : RemoteConfig.defaultConfig;
+        : const RemoteConfig();
 
     await saveRemoteConfig(config);
 
@@ -35,21 +35,17 @@ final class FirebaseRemoteConfigRepository
   }
 
   @override
-  Stream<RemoteConfig> get remoteConfigStream => FirebaseFirestore.instance
-      .doc(_configPath)
-      .snapshots()
-      .map(
+  Stream<RemoteConfig> get remoteConfigStream =>
+      FirebaseFirestore.instance.doc(_configPath).snapshots().map(
         (snapshot) {
           final snapshotData = snapshot.data();
           if (snapshotData != null) {
             return RemoteConfig.fromJson(snapshotData);
           }
 
-          return RemoteConfig.defaultConfig;
+          return const RemoteConfig();
         },
-      )
-      .asBroadcastStream()
-      .distinct();
+      ).distinct();
 
   @override
   Future<void> saveRemoteConfig(RemoteConfig config) =>

@@ -33,16 +33,19 @@ final class ProfileBloc extends BlocBase<Object?> {
 
   Future<void> openCommunityChat() async {
     final config = await _firebaseRemoteConfigRepository.getRemoteConfig();
-    final communityDeeplink = Uri.parse(config.communityDeeplink);
+    final communityDeeplink = Uri.parse(config.socials.communityDeeplink);
+    final communityUrl = Uri.parse(config.socials.communityUrl);
     final canLaunch = await canLaunchUrl(communityDeeplink);
     if (canLaunch) {
       await launchUrl(communityDeeplink);
+    } else {
+      await launchUrl(communityUrl);
     }
   }
 
   Future<void> onSupportEmail() async {
     final config = await _firebaseRemoteConfigRepository.getRemoteConfig();
-    final supportEmailDeeplink = Uri.parse(config.supportEmailDeeplink);
+    final supportEmailDeeplink = Uri.parse(config.socials.supportEmailDeeplink);
     final canLaunch = await canLaunchUrl(supportEmailDeeplink);
     if (canLaunch) {
       await launchUrl(supportEmailDeeplink);

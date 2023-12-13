@@ -7,12 +7,13 @@ part of 'remote_config.dart';
 // **************************************************************************
 
 _$RemoteConfigImpl _$$RemoteConfigImplFromJson(Map json) => _$RemoteConfigImpl(
-      communityDeeplink: json['communityDeeplink'] as String,
-      supportEmailDeeplink: json['supportEmailDeeplink'] as String,
+      socials: json['socials'] == null
+          ? RemoteConfigSocials.defaultSocials
+          : RemoteConfigSocials.fromJson(
+              Map<String, dynamic>.from(json['socials'] as Map)),
     );
 
 Map<String, dynamic> _$$RemoteConfigImplToJson(_$RemoteConfigImpl instance) =>
     <String, dynamic>{
-      'communityDeeplink': instance.communityDeeplink,
-      'supportEmailDeeplink': instance.supportEmailDeeplink,
+      'socials': instance.socials,
     };

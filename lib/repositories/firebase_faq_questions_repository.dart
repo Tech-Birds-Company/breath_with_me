@@ -10,8 +10,9 @@ final class FirebaseFaqQuestionsRepository implements FaqQuestionsRepository {
 
   @override
   Future<List<FaqQuestion>> getQuestions(FaqLanguage language) async {
-    final response =
-        await FirebaseFirestore.instance.collection(FirebaseFaqQuestionsRepository._faqQuestionsCollection).get();
+    final response = await FirebaseFirestore.instance
+        .collection(FirebaseFaqQuestionsRepository._faqQuestionsCollection)
+        .get();
     final questions = <FaqQuestion>[];
 
     for (final doc in response.docs) {
