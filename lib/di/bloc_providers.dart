@@ -5,6 +5,7 @@ final class _BlocProviders {
     (ref) {
       final bloc = TracksListBloc(
         ref.read(Di.shared.repository.firebaseTracks),
+        ref.read(Di.shared.bloc.tracksFilters).stream,
       );
       ref.onDispose(bloc.dispose);
       return bloc;
@@ -75,4 +76,6 @@ final class _BlocProviders {
       ref.read(Di.shared.manager.navigation),
     ),
   );
+
+  late final tracksFilters = Provider((ref) => TracksFiltersBloc());
 }

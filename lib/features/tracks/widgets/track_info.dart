@@ -47,7 +47,7 @@ class TrackInfo extends ConsumerWidget {
                 icon: Align(
                   alignment: Alignment.topCenter,
                   child: StreamBuilder<bool>(
-                    stream: bloc.trackLikedStream(),
+                    stream: bloc.trackLikedStream,
                     initialData: false,
                     builder: (context, snapshot) {
                       final isLiked = snapshot.requireData;

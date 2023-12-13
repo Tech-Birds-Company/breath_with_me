@@ -17,7 +17,7 @@ final class TrackBloc extends BlocBase<Object?> {
   Stream<bool> trackIsDownloadedStream() =>
       _tracksRepository.getTrackIsDownloadedStream(_track.id);
 
-  Stream<bool> trackLikedStream() => _tracksRepository.likedTracksStream
+  Stream<bool> get trackLikedStream => _tracksRepository.likedTracksStream
       .map(
         (likedTracks) => likedTracks.contains(_track.id),
       )
