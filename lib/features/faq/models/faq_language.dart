@@ -8,15 +8,15 @@ enum FaqLanguage {
   unknown,
 }
 
-class ContentLanguageHelper {
-  static ContentLanguage fromCode(String code) {
+class FaqLanguageHelper {
+  static FaqLanguage fromCode(String code) {
     switch (code) {
       case 'ru':
-        return ContentLanguage.ru;
+        return FaqLanguage.ru;
       case 'en':
-        return ContentLanguage.en;
+        return FaqLanguage.en;
       default:
-        return ContentLanguage.unknown;
+        return FaqLanguage.unknown;
     }
   }
 }

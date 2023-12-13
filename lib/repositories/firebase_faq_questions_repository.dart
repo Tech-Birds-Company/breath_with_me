@@ -1,6 +1,6 @@
+import 'package:breathe_with_me/features/faq/models/faq_language.dart';
 import 'package:breathe_with_me/features/faq/models/faq_question.dart';
 import 'package:breathe_with_me/repositories/faq_questions_repository.dart';
-import 'package:breathe_with_me/utils/content_language.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 final class FirebaseFaqQuestionsRepository implements FaqQuestionsRepository {
@@ -9,7 +9,7 @@ final class FirebaseFaqQuestionsRepository implements FaqQuestionsRepository {
   const FirebaseFaqQuestionsRepository();
 
   @override
-  Future<List<FaqQuestion>> getQuestions(ContentLanguage language) async {
+  Future<List<FaqQuestion>> getQuestions(FaqLanguage language) async {
     final response =
         await FirebaseFirestore.instance.collection(FirebaseFaqQuestionsRepository._faqQuestionsCollection).get();
     final questions = <FaqQuestion>[];
