@@ -1,3 +1,4 @@
+import 'package:breathe_with_me/common/widgets/bottom_sheet_notch.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -13,23 +14,13 @@ class LanguageSheet extends StatelessWidget {
       borderRadius: BorderRadius.circular(20),
       child: ColoredBox(
         color: theme.primaryBackground,
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: SafeArea(
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(4),
-                  child: SizedBox(
-                    width: 44,
-                    height: 4,
-                    child: ColoredBox(
-                      color: theme.secondaryBackground,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
+                const BottomSheetNotch(),
                 const _LanguageItem(languageCode: 'en'),
                 Divider(
                   thickness: 1,

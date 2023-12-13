@@ -2,18 +2,22 @@ import 'dart:async';
 
 import 'package:breathe_with_me/features/tracks/models/tracks_filters_state.dart';
 import 'package:breathe_with_me/features/tracks/models/tracks_list_state.dart';
+import 'package:breathe_with_me/managers/database_manager/database_cached_keys.dart';
 import 'package:breathe_with_me/repositories/tracks_repository.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
 final class TracksListBloc extends CacheableBloc<TracksListState> {
   final TracksRepository _tracksRepository;
-  final Stream<TracksFiltersState> _filtersStream;
+  final Stream<TracksFiltersState> _filtersStateStream;
 
   TracksListBloc(
     this._tracksRepository,
-    this._filtersStream,
+    this._filtersStateStream,
   ) : super(const TracksListState.loading());
+
+  @override
+  String get key => DatabaseCachedKeys.cachedTracksKey;
 
   StreamSubscription<Set<String>>? _firebaseLikedTracksSubscription;
   StreamSubscription<(TracksFiltersState, TracksListState?, Set<String>)>?
@@ -26,7 +30,7 @@ final class TracksListBloc extends CacheableBloc<TracksListState> {
         event.toList(),
       ),
     );
-    _filtersSubscription ??= Rx.combineLatest3(_filtersStream,
+    _filtersSubscription ??= Rx.combineLatest3(_filtersStateStream,
         cachedBlocStateStream, _tracksRepository.likedTracksStream, (
       filtersState,
       tracksState,
@@ -45,7 +49,14 @@ final class TracksListBloc extends CacheableBloc<TracksListState> {
           (track) {
             final trackIsLiked = likedTracks.contains(track.id);
             final isLikedFilter = filtersState.likedTracksOnly;
-            return (isLikedFilter && trackIsLiked) || (!isLikedFilter);
+            final selectedCategory = filtersState.selectedCategoryKey;
+            final selectedLanguage = filtersState.selectedLanguageKey;
+
+            return (!isLikedFilter || trackIsLiked) &&
+                (selectedCategory == null ||
+                    track.categoryKey == selectedCategory) &&
+                (selectedLanguage == null ||
+                    track.language.name == selectedLanguage);
           },
         ).toList();
         emit(TracksListState.data(filteredTracks));

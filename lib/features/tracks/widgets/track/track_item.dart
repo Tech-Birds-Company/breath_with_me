@@ -1,7 +1,7 @@
 import 'package:breathe_with_me/features/tracks/models/track.dart';
-import 'package:breathe_with_me/features/tracks/widgets/track_cover.dart';
-import 'package:breathe_with_me/features/tracks/widgets/track_info.dart';
-import 'package:breathe_with_me/features/tracks/widgets/track_play_button.dart';
+import 'package:breathe_with_me/features/tracks/widgets/track/track_cover.dart';
+import 'package:breathe_with_me/features/tracks/widgets/track/track_info.dart';
+import 'package:breathe_with_me/features/tracks/widgets/track/track_play_cover.dart';
 import 'package:flutter/material.dart';
 
 class TrackItem extends StatelessWidget {
@@ -15,11 +15,9 @@ class TrackItem extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: ColoredBox(
-        color: Colors.transparent,
+  Widget build(BuildContext context) => GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: onTap,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -41,7 +39,5 @@ class TrackItem extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
+      );
 }

@@ -1,4 +1,5 @@
 import 'package:breathe_with_me/features/reminder/models/reminder_state.dart';
+import 'package:breathe_with_me/managers/database_manager/database_cached_keys.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 
@@ -7,6 +8,9 @@ final class ReminderBloc extends CacheableBloc<ReminderState> {
 
   ReminderBloc(this._pushNotificationsManager)
       : super(ReminderState.defaultState);
+
+  @override
+  String get key => DatabaseCachedKeys.cachedReminderKey;
 
   void onWeekDaySelected(int weekDay) {
     final selectedWeekDays = Set<int>.from(state.selectedWeekDays);

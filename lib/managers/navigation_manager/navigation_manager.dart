@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:breathe_with_me/features/tracks/filter_type.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/managers/navigation_manager/routes.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
@@ -14,31 +15,30 @@ final class NavigationManager {
 
   BuildContext? get context =>
       router.routerDelegate.navigatorKey.currentContext;
+
   StreamSubscription<User?>? _userSubscription;
 
-  void init() {
-    _userSubscription ??= _userManager.userStream.listen(
-      (user) {
-        if (context == null) {
-          return;
-        }
-        if (user != null) {
-          final routeMatch =
-              router.routerDelegate.currentConfiguration.matches.lastOrNull;
-          final path = routeMatch?.matchedLocation;
-          if (path == null ||
-              path == BWMRoutes.onboarding ||
-              path == BWMRoutes.createAccount) {
-            popToRoot();
-            router.pushReplacement(BWMRoutes.home);
+  void init() => _userSubscription ??= _userManager.userStream.listen(
+        (user) {
+          if (context == null) {
+            return;
           }
-        } else {
-          popToRoot();
-          router.replace<void>(BWMRoutes.onboarding);
-        }
-      },
-    );
-  }
+          if (user != null) {
+            final routeMatch =
+                router.routerDelegate.currentConfiguration.matches.lastOrNull;
+            final path = routeMatch?.matchedLocation;
+            if (path == null ||
+                path == BWMRoutes.onboarding ||
+                path == BWMRoutes.createAccount) {
+              popToRoot();
+              router.pushReplacement(BWMRoutes.home);
+            }
+          } else {
+            popToRoot();
+            router.replace<void>(BWMRoutes.onboarding);
+          }
+        },
+      );
 
   late final router = GoRouter(
     initialLocation: BWMRoutes.onboarding,
@@ -86,6 +86,11 @@ final class NavigationManager {
 
     router.push(BWMRoutes.createAccount);
   }
+
+  Future<void> openFiltersSheet(FilterType filterType) => router.push(
+        BWMRoutes.filtersSheet,
+        extra: filterType,
+      );
 
   void openFaq() => router.push(BWMRoutes.faq);
 

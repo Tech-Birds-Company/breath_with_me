@@ -20,12 +20,12 @@ abstract class LocaleKeys {
   static const tracksTitle = 'tracksTitle';
   static const tracksGuestWelcome = 'tracksGuestWelcome';
   static const tracksHeading = 'tracksHeading';
-  static const trackCategoryTitle = 'trackCategoryTitle';
+  static const tracksFilterReset = 'tracksFilterReset';
   static const trackCategoryAll = 'trackCategoryAll';
   static const trackCategoryRelax = 'trackCategoryRelax';
   static const trackCategoryEnergize = 'trackCategoryEnergize';
   static const trackCategoryBalance = 'trackCategoryBalance';
-  static const trackLanguageTitle = 'trackLanguageTitle';
+  static const trackLanguageAll = 'trackLanguageAll';
   static const trackLanguageEn = 'trackLanguageEn';
   static const trackLanguageRu = 'trackLanguageRu';
   static const trackDurationTitle = 'trackDurationTitle';

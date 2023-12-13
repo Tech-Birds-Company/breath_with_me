@@ -21,4 +21,6 @@ abstract interface class TracksRepository {
   Stream<Set<String>> get likedTracksStream;
 
   Stream<Set<String>> get firebaseLikedTracksStream;
+
+  Stream<List<Track>> get cachedTracksStream;
 }
