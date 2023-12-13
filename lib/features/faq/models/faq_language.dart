@@ -7,3 +7,16 @@ enum FaqLanguage {
   en,
   unknown,
 }
+
+class FaqLanguageHelper {
+  static FaqLanguage fromCode(String code) {
+    switch (code) {
+      case 'ru':
+        return FaqLanguage.ru;
+      case 'en':
+        return FaqLanguage.en;
+      default:
+        return FaqLanguage.unknown;
+    }
+  }
+}
