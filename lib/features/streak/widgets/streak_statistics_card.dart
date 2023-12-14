@@ -24,12 +24,7 @@ class StreakStatisticsCard extends StatelessWidget {
         color: const Color(0xFF111112),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(
-          top: 12,
-          left: 16,
-          bottom: 16,
-          right: 16,
-        ),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
             Row(
