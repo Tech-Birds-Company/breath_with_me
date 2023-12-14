@@ -1,10 +1,10 @@
 import 'package:breathe_with_me/di/di.dart';
-import 'package:breathe_with_me/features/streak/models/streak_quote_data.dart';
+import 'package:breathe_with_me/features/streak/blocs/streak_bloc.dart';
 import 'package:breathe_with_me/features/streak/models/streak_state.dart';
-import 'package:breathe_with_me/features/streak/models/streak_statistics_data.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_list.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class StreakPage extends ConsumerWidget {
@@ -21,28 +21,9 @@ class StreakPage extends ConsumerWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            StreamBuilder(
-              stream: bloc.stream,
-              initialData: const StreakState(
-                selectedDay: 8,
-                statistics: StreakStatisticsData(
-                  streaksCount: 1,
-                  practicesCount: 1,
-                  minutesCount: 30,
-                ),
-                quote: StreakQuoteData(
-                  quote:
-                      'We cannot breathe in the past or the future. We inhale and exhale always in the present',
-                  author: 'Dasha Chen',
-                ),
-              ), // TODO(bestk1ngarthur): Remove mock data
-              builder: (context, snapshot) {
-                if (snapshot.data != null) {
-                  return StreakList(state: snapshot.data!);
-                } else {
-                  return const SizedBox.shrink();
-                }
-              },
+            BlocBuilder<StreakBloc, StreakState>(
+              bloc: bloc,
+              builder: (context, state) => StreakList(state: state),
             ),
             Align(
               alignment: Alignment.topRight,
