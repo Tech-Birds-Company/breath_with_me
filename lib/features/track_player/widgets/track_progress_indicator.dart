@@ -4,15 +4,14 @@ import 'package:breathe_with_me/features/track_player/widgets/track_time_label.d
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class TrackProgressIndicator extends ConsumerWidget {
+class TrackProgressIndicator extends StatelessWidget {
   final TrackPlayerBloc _bloc;
 
   const TrackProgressIndicator(this._bloc, {super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return LayoutBuilder(
       builder: (context, constraints) {

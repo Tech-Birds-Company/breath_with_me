@@ -20,8 +20,7 @@ RemoteConfig _$RemoteConfigFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RemoteConfig {
-  String get communityDeeplink => throw _privateConstructorUsedError;
-  String get supportEmailDeeplink => throw _privateConstructorUsedError;
+  RemoteConfigSocials get socials => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +34,9 @@ abstract class $RemoteConfigCopyWith<$Res> {
           RemoteConfig value, $Res Function(RemoteConfig) then) =
       _$RemoteConfigCopyWithImpl<$Res, RemoteConfig>;
   @useResult
-  $Res call({String communityDeeplink, String supportEmailDeeplink});
+  $Res call({RemoteConfigSocials socials});
+
+  $RemoteConfigSocialsCopyWith<$Res> get socials;
 }
 
 /// @nodoc
@@ -51,19 +52,22 @@ class _$RemoteConfigCopyWithImpl<$Res, $Val extends RemoteConfig>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? communityDeeplink = null,
-    Object? supportEmailDeeplink = null,
+    Object? socials = null,
   }) {
     return _then(_value.copyWith(
-      communityDeeplink: null == communityDeeplink
-          ? _value.communityDeeplink
-          : communityDeeplink // ignore: cast_nullable_to_non_nullable
-              as String,
-      supportEmailDeeplink: null == supportEmailDeeplink
-          ? _value.supportEmailDeeplink
-          : supportEmailDeeplink // ignore: cast_nullable_to_non_nullable
-              as String,
+      socials: null == socials
+          ? _value.socials
+          : socials // ignore: cast_nullable_to_non_nullable
+              as RemoteConfigSocials,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RemoteConfigSocialsCopyWith<$Res> get socials {
+    return $RemoteConfigSocialsCopyWith<$Res>(_value.socials, (value) {
+      return _then(_value.copyWith(socials: value) as $Val);
+    });
   }
 }
 
@@ -75,7 +79,10 @@ abstract class _$$RemoteConfigImplCopyWith<$Res>
       __$$RemoteConfigImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String communityDeeplink, String supportEmailDeeplink});
+  $Res call({RemoteConfigSocials socials});
+
+  @override
+  $RemoteConfigSocialsCopyWith<$Res> get socials;
 }
 
 /// @nodoc
@@ -89,18 +96,13 @@ class __$$RemoteConfigImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? communityDeeplink = null,
-    Object? supportEmailDeeplink = null,
+    Object? socials = null,
   }) {
     return _then(_$RemoteConfigImpl(
-      communityDeeplink: null == communityDeeplink
-          ? _value.communityDeeplink
-          : communityDeeplink // ignore: cast_nullable_to_non_nullable
-              as String,
-      supportEmailDeeplink: null == supportEmailDeeplink
-          ? _value.supportEmailDeeplink
-          : supportEmailDeeplink // ignore: cast_nullable_to_non_nullable
-              as String,
+      socials: null == socials
+          ? _value.socials
+          : socials // ignore: cast_nullable_to_non_nullable
+              as RemoteConfigSocials,
     ));
   }
 }
@@ -108,20 +110,18 @@ class __$$RemoteConfigImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RemoteConfigImpl implements _RemoteConfig {
-  const _$RemoteConfigImpl(
-      {required this.communityDeeplink, required this.supportEmailDeeplink});
+  const _$RemoteConfigImpl({this.socials = RemoteConfigSocials.defaultSocials});
 
   factory _$RemoteConfigImpl.fromJson(Map<String, dynamic> json) =>
       _$$RemoteConfigImplFromJson(json);
 
   @override
-  final String communityDeeplink;
-  @override
-  final String supportEmailDeeplink;
+  @JsonKey()
+  final RemoteConfigSocials socials;
 
   @override
   String toString() {
-    return 'RemoteConfig(communityDeeplink: $communityDeeplink, supportEmailDeeplink: $supportEmailDeeplink)';
+    return 'RemoteConfig(socials: $socials)';
   }
 
   @override
@@ -129,16 +129,12 @@ class _$RemoteConfigImpl implements _RemoteConfig {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RemoteConfigImpl &&
-            (identical(other.communityDeeplink, communityDeeplink) ||
-                other.communityDeeplink == communityDeeplink) &&
-            (identical(other.supportEmailDeeplink, supportEmailDeeplink) ||
-                other.supportEmailDeeplink == supportEmailDeeplink));
+            (identical(other.socials, socials) || other.socials == socials));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, communityDeeplink, supportEmailDeeplink);
+  int get hashCode => Object.hash(runtimeType, socials);
 
   @JsonKey(ignore: true)
   @override
@@ -155,17 +151,14 @@ class _$RemoteConfigImpl implements _RemoteConfig {
 }
 
 abstract class _RemoteConfig implements RemoteConfig {
-  const factory _RemoteConfig(
-      {required final String communityDeeplink,
-      required final String supportEmailDeeplink}) = _$RemoteConfigImpl;
+  const factory _RemoteConfig({final RemoteConfigSocials socials}) =
+      _$RemoteConfigImpl;
 
   factory _RemoteConfig.fromJson(Map<String, dynamic> json) =
       _$RemoteConfigImpl.fromJson;
 
   @override
-  String get communityDeeplink;
-  @override
-  String get supportEmailDeeplink;
+  RemoteConfigSocials get socials;
   @override
   @JsonKey(ignore: true)
   _$$RemoteConfigImplCopyWith<_$RemoteConfigImpl> get copyWith =>

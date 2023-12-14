@@ -85,7 +85,7 @@ Future<List<Override>> _setupDependencies({required bool isProduction}) async {
     Di.shared.manager.remoteConfig.overrideWithValue(remoteConfigManager),
     Di.shared.manager.pushNotifications
         .overrideWithValue(pushNotificationsManager),
-    Di.shared.manager.userManager.overrideWithValue(userManager),
+    Di.shared.manager.user.overrideWithValue(userManager),
     Di.shared.manager.navigation.overrideWithValue(navigationManager),
     Di.shared.manager.subscriptions.overrideWithValue(subscriptionsManager),
     Di.shared.manager.sharedPreferences.overrideWithValue(sharedPrefsManager),

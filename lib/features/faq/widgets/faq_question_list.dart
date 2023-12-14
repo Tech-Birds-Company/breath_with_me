@@ -17,18 +17,15 @@ class FaqQuestionList extends StatelessWidget {
         padding: const EdgeInsets.only(top: 20),
         child: ListView.separated(
           itemCount: questions.length,
-          itemBuilder: (context, index) {
-            return FaqQuestionItem(question: questions[index]);
-          },
-          separatorBuilder: (context, index) {
-            return const Padding(
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              child: Divider(
-                color: Color(0x405D5D6D), // TODO: Use color from theme
-                thickness: 1,
-              ),
-            );
-          },
+          itemBuilder: (context, index) =>
+              FaqQuestionItem(question: questions[index]),
+          separatorBuilder: (context, index) => const Padding(
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            child: Divider(
+              color: Color(0x405D5D6D), // TODO: Use color from theme
+              thickness: 1,
+            ),
+          ),
         ),
       ),
     );

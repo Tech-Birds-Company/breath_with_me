@@ -16,7 +16,9 @@ import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
 import 'database/entities/bloc_state_entity.dart';
 import 'database/entities/download_track_task_entity.dart';
+import 'database/entities/liked_tracks_entity.dart';
 import 'database/entities/remote_config_entity.dart';
+import 'database/entities/secure_image_url_provider_entity.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
@@ -103,6 +105,49 @@ final _entities = <ModelEntity>[
             flags: 0)
       ],
       relations: <ModelRelation>[],
+      backlinks: <ModelBacklink>[]),
+  ModelEntity(
+      id: const IdUid(6, 824565231903327742),
+      name: 'LikedTracksEntity',
+      lastPropertyId: const IdUid(2, 7810193287127215514),
+      flags: 0,
+      properties: <ModelProperty>[
+        ModelProperty(
+            id: const IdUid(1, 1229378124872916179),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        ModelProperty(
+            id: const IdUid(2, 7810193287127215514),
+            name: 'likes',
+            type: 30,
+            flags: 0)
+      ],
+      relations: <ModelRelation>[],
+      backlinks: <ModelBacklink>[]),
+  ModelEntity(
+      id: const IdUid(7, 9095892569454846375),
+      name: 'SecureImageUrlEntity',
+      lastPropertyId: const IdUid(3, 5560228852139019691),
+      flags: 0,
+      properties: <ModelProperty>[
+        ModelProperty(
+            id: const IdUid(1, 2878911527179609414),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        ModelProperty(
+            id: const IdUid(2, 5795716012674352216),
+            name: 'baseUrl',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(3, 5560228852139019691),
+            name: 'secureUrl',
+            type: 9,
+            flags: 0)
+      ],
+      relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[])
 ];
 
@@ -133,13 +178,18 @@ Future<Store> openStore(
 ModelDefinition getObjectBoxModel() {
   final model = ModelInfo(
       entities: _entities,
-      lastEntityId: const IdUid(3, 9202169296533729365),
-      lastIndexId: const IdUid(1, 379657838210909860),
+      lastEntityId: const IdUid(7, 9095892569454846375),
+      lastIndexId: const IdUid(3, 1751915082189870401),
       lastRelationId: const IdUid(0, 0),
       lastSequenceId: const IdUid(0, 0),
-      retiredEntityUids: const [],
+      retiredEntityUids: const [5903533180160748303, 3916112003524532587],
       retiredIndexUids: const [],
-      retiredPropertyUids: const [],
+      retiredPropertyUids: const [
+        7776840511660833783,
+        4314483146059560830,
+        7412447195083719222,
+        5241098407786361804
+      ],
       retiredRelationUids: const [],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
@@ -246,6 +296,67 @@ ModelDefinition getObjectBoxModel() {
             ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
 
           return object;
+        }),
+    LikedTracksEntity: EntityDefinition<LikedTracksEntity>(
+        model: _entities[3],
+        toOneRelations: (LikedTracksEntity object) => [],
+        toManyRelations: (LikedTracksEntity object) => {},
+        getId: (LikedTracksEntity object) => object.id,
+        setId: (LikedTracksEntity object, int id) {
+          object.id = id;
+        },
+        objectToFB: (LikedTracksEntity object, fb.Builder fbb) {
+          final likesOffset = fbb.writeList(
+              object.likes.map(fbb.writeString).toList(growable: false));
+          fbb.startTable(3);
+          fbb.addInt64(0, object.id);
+          fbb.addOffset(1, likesOffset);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+          final likesParam = const fb.ListReader<String>(
+                  fb.StringReader(asciiOptimization: true),
+                  lazy: false)
+              .vTableGet(buffer, rootOffset, 6, []);
+          final idParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+          final object = LikedTracksEntity(likes: likesParam, id: idParam);
+
+          return object;
+        }),
+    SecureImageUrlEntity: EntityDefinition<SecureImageUrlEntity>(
+        model: _entities[4],
+        toOneRelations: (SecureImageUrlEntity object) => [],
+        toManyRelations: (SecureImageUrlEntity object) => {},
+        getId: (SecureImageUrlEntity object) => object.id,
+        setId: (SecureImageUrlEntity object, int id) {
+          object.id = id;
+        },
+        objectToFB: (SecureImageUrlEntity object, fb.Builder fbb) {
+          final baseUrlOffset = fbb.writeString(object.baseUrl);
+          final secureUrlOffset = fbb.writeString(object.secureUrl);
+          fbb.startTable(4);
+          fbb.addInt64(0, object.id);
+          fbb.addOffset(1, baseUrlOffset);
+          fbb.addOffset(2, secureUrlOffset);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+          final baseUrlParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 6, '');
+          final secureUrlParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 8, '');
+          final object = SecureImageUrlEntity(
+              baseUrl: baseUrlParam, secureUrl: secureUrlParam)
+            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+
+          return object;
         })
   };
 
@@ -303,4 +414,30 @@ class RemoteConfigEntity_ {
   /// see [RemoteConfigEntity.json]
   static final json =
       QueryStringProperty<RemoteConfigEntity>(_entities[2].properties[1]);
+}
+
+/// [LikedTracksEntity] entity fields to define ObjectBox queries.
+class LikedTracksEntity_ {
+  /// see [LikedTracksEntity.id]
+  static final id =
+      QueryIntegerProperty<LikedTracksEntity>(_entities[3].properties[0]);
+
+  /// see [LikedTracksEntity.likes]
+  static final likes =
+      QueryStringVectorProperty<LikedTracksEntity>(_entities[3].properties[1]);
+}
+
+/// [SecureImageUrlEntity] entity fields to define ObjectBox queries.
+class SecureImageUrlEntity_ {
+  /// see [SecureImageUrlEntity.id]
+  static final id =
+      QueryIntegerProperty<SecureImageUrlEntity>(_entities[4].properties[0]);
+
+  /// see [SecureImageUrlEntity.baseUrl]
+  static final baseUrl =
+      QueryStringProperty<SecureImageUrlEntity>(_entities[4].properties[1]);
+
+  /// see [SecureImageUrlEntity.secureUrl]
+  static final secureUrl =
+      QueryStringProperty<SecureImageUrlEntity>(_entities[4].properties[2]);
 }

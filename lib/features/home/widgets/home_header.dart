@@ -48,13 +48,13 @@ class _WelcomeTitle extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          LocaleKeys.practicesGuestWelcome.tr(),
+          LocaleKeys.tracksGuestWelcome.tr(),
           style: theme.typography.bodyM.copyWith(
             color: theme.primaryText,
           ),
         ),
         Text(
-          LocaleKeys.practicesHeading.tr(),
+          LocaleKeys.tracksHeading.tr(),
           style: theme.typography.heading.copyWith(
             color: theme.primaryText,
             letterSpacing: 0.4,

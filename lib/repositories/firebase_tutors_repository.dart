@@ -1,4 +1,4 @@
-import 'package:breathe_with_me/features/practices/models/tutor.dart';
+import 'package:breathe_with_me/features/tracks/models/tutor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 final class FirebaseTutorsRepository {

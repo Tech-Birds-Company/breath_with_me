@@ -1,4 +1,4 @@
-import 'package:breathe_with_me/utils/content_language.dart';
+import 'package:breathe_with_me/features/faq/models/faq_language.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'faq_question.freezed.dart';
@@ -10,8 +10,8 @@ class FaqQuestion with _$FaqQuestion {
     required int id,
     required String title,
     required String description,
-    @JsonKey(unknownEnumValue: ContentLanguage.unknown)
-    required ContentLanguage language,
+    @JsonKey(unknownEnumValue: FaqLanguage.unknown)
+    required FaqLanguage language,
   }) = _FaqQuestion;
 
   factory FaqQuestion.fromJson(Map<String, dynamic> json) =>

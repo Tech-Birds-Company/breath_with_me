@@ -14,6 +14,7 @@ class FaqQuestionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return ExpansionTile(
+      key: PageStorageKey(question.id),
       iconColor: theme.green3,
       collapsedIconColor: theme.green3,
       expandedAlignment: Alignment.centerLeft,

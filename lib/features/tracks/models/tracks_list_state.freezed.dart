@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'practice_list_state.dart';
+part of 'tracks_list_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-PracticeListState _$PracticeListStateFromJson(Map<String, dynamic> json) {
+TracksListState _$TracksListStateFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
     case 'data':
       return _Data.fromJson(json);
@@ -24,13 +24,13 @@ PracticeListState _$PracticeListStateFromJson(Map<String, dynamic> json) {
       return _Error.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'runtimeType', 'PracticeListState',
+      throw CheckedFromJsonException(json, 'runtimeType', 'TracksListState',
           'Invalid union type "${json['runtimeType']}"!');
   }
 }
 
 /// @nodoc
-mixin _$PracticeListState {
+mixin _$TracksListState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(List<Track> tracks) data,
@@ -79,16 +79,16 @@ mixin _$PracticeListState {
 }
 
 /// @nodoc
-abstract class $PracticeListStateCopyWith<$Res> {
-  factory $PracticeListStateCopyWith(
-          PracticeListState value, $Res Function(PracticeListState) then) =
-      _$PracticeListStateCopyWithImpl<$Res, PracticeListState>;
+abstract class $TracksListStateCopyWith<$Res> {
+  factory $TracksListStateCopyWith(
+          TracksListState value, $Res Function(TracksListState) then) =
+      _$TracksListStateCopyWithImpl<$Res, TracksListState>;
 }
 
 /// @nodoc
-class _$PracticeListStateCopyWithImpl<$Res, $Val extends PracticeListState>
-    implements $PracticeListStateCopyWith<$Res> {
-  _$PracticeListStateCopyWithImpl(this._value, this._then);
+class _$TracksListStateCopyWithImpl<$Res, $Val extends TracksListState>
+    implements $TracksListStateCopyWith<$Res> {
+  _$TracksListStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -107,7 +107,7 @@ abstract class _$$DataImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$DataImplCopyWithImpl<$Res>
-    extends _$PracticeListStateCopyWithImpl<$Res, _$DataImpl>
+    extends _$TracksListStateCopyWithImpl<$Res, _$DataImpl>
     implements _$$DataImplCopyWith<$Res> {
   __$$DataImplCopyWithImpl(_$DataImpl _value, $Res Function(_$DataImpl) _then)
       : super(_value, _then);
@@ -149,7 +149,7 @@ class _$DataImpl implements _Data {
 
   @override
   String toString() {
-    return 'PracticeListState.data(tracks: $tracks)';
+    return 'TracksListState.data(tracks: $tracks)';
   }
 
   @override
@@ -247,7 +247,7 @@ class _$DataImpl implements _Data {
   }
 }
 
-abstract class _Data implements PracticeListState {
+abstract class _Data implements TracksListState {
   const factory _Data(final List<Track> tracks) = _$DataImpl;
 
   factory _Data.fromJson(Map<String, dynamic> json) = _$DataImpl.fromJson;
@@ -267,7 +267,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$PracticeListStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$TracksListStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -287,7 +287,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'PracticeListState.loading()';
+    return 'TracksListState.loading()';
   }
 
   @override
@@ -376,7 +376,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements PracticeListState {
+abstract class _Loading implements TracksListState {
   const factory _Loading() = _$LoadingImpl;
 
   factory _Loading.fromJson(Map<String, dynamic> json) = _$LoadingImpl.fromJson;
@@ -391,7 +391,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$PracticeListStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$TracksListStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
@@ -411,7 +411,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'PracticeListState.error()';
+    return 'TracksListState.error()';
   }
 
   @override
@@ -500,7 +500,7 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements PracticeListState {
+abstract class _Error implements TracksListState {
   const factory _Error() = _$ErrorImpl;
 
   factory _Error.fromJson(Map<String, dynamic> json) = _$ErrorImpl.fromJson;

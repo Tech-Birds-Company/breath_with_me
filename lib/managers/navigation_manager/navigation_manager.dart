@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:breathe_with_me/features/practices/models/track.dart';
+import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/managers/navigation_manager/routes.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:firebase_auth/firebase_auth.dart';

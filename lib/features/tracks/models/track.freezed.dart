@@ -26,8 +26,8 @@ mixin _$Track {
   int get duration => throw _privateConstructorUsedError;
   Tutor get tutor => throw _privateConstructorUsedError;
   String get coverIcon => throw _privateConstructorUsedError;
-  @JsonKey(unknownEnumValue: ContentLanguage.unknown)
-  ContentLanguage get language => throw _privateConstructorUsedError;
+  @JsonKey(unknownEnumValue: TrackLanguage.unknown)
+  TrackLanguage get language => throw _privateConstructorUsedError;
   String? get animationColor => throw _privateConstructorUsedError;
   bool get isPremium => throw _privateConstructorUsedError;
   bool get isNew => throw _privateConstructorUsedError;
@@ -49,8 +49,7 @@ abstract class $TrackCopyWith<$Res> {
       int duration,
       Tutor tutor,
       String coverIcon,
-      @JsonKey(unknownEnumValue: ContentLanguage.unknown)
-      ContentLanguage language,
+      @JsonKey(unknownEnumValue: TrackLanguage.unknown) TrackLanguage language,
       String? animationColor,
       bool isPremium,
       bool isNew});
@@ -110,7 +109,7 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as ContentLanguage,
+              as TrackLanguage,
       animationColor: freezed == animationColor
           ? _value.animationColor
           : animationColor // ignore: cast_nullable_to_non_nullable
@@ -149,8 +148,7 @@ abstract class _$$TrackImplCopyWith<$Res> implements $TrackCopyWith<$Res> {
       int duration,
       Tutor tutor,
       String coverIcon,
-      @JsonKey(unknownEnumValue: ContentLanguage.unknown)
-      ContentLanguage language,
+      @JsonKey(unknownEnumValue: TrackLanguage.unknown) TrackLanguage language,
       String? animationColor,
       bool isPremium,
       bool isNew});
@@ -209,7 +207,7 @@ class __$$TrackImplCopyWithImpl<$Res>
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as ContentLanguage,
+              as TrackLanguage,
       animationColor: freezed == animationColor
           ? _value.animationColor
           : animationColor // ignore: cast_nullable_to_non_nullable
@@ -236,8 +234,7 @@ class _$TrackImpl implements _Track {
       required this.duration,
       required this.tutor,
       required this.coverIcon,
-      @JsonKey(unknownEnumValue: ContentLanguage.unknown)
-      required this.language,
+      @JsonKey(unknownEnumValue: TrackLanguage.unknown) required this.language,
       this.animationColor,
       this.isPremium = false,
       this.isNew = false});
@@ -258,8 +255,8 @@ class _$TrackImpl implements _Track {
   @override
   final String coverIcon;
   @override
-  @JsonKey(unknownEnumValue: ContentLanguage.unknown)
-  final ContentLanguage language;
+  @JsonKey(unknownEnumValue: TrackLanguage.unknown)
+  final TrackLanguage language;
   @override
   final String? animationColor;
   @override
@@ -325,8 +322,8 @@ abstract class _Track implements Track {
       required final int duration,
       required final Tutor tutor,
       required final String coverIcon,
-      @JsonKey(unknownEnumValue: ContentLanguage.unknown)
-      required final ContentLanguage language,
+      @JsonKey(unknownEnumValue: TrackLanguage.unknown)
+      required final TrackLanguage language,
       final String? animationColor,
       final bool isPremium,
       final bool isNew}) = _$TrackImpl;
@@ -346,8 +343,8 @@ abstract class _Track implements Track {
   @override
   String get coverIcon;
   @override
-  @JsonKey(unknownEnumValue: ContentLanguage.unknown)
-  ContentLanguage get language;
+  @JsonKey(unknownEnumValue: TrackLanguage.unknown)
+  TrackLanguage get language;
   @override
   String? get animationColor;
   @override

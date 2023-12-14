@@ -53,6 +53,7 @@ dependencies:
   qonversion_flutter: ^7.2.0
   fast_noise: ^2.0.0
   shared_preferences: ^2.2.2
+  flutter_shaders: ^0.1.2
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +73,7 @@ flutter:
     - assets/i18n/
     - assets/icons/
     - assets/audio/
+
   fonts:
     - family: Oxygen
       fonts:
@@ -82,3 +84,5 @@ flutter:
         - asset: assets/fonts/Oxygen-Regular.ttf
         - asset: assets/fonts/Oxygen-Bold.ttf
           weight: 700
+  shaders:
+    - assets/shaders/player_animation.glsl

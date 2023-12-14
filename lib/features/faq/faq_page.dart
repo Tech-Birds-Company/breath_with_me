@@ -17,6 +17,8 @@ class FaqPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     final bloc = ref.read(Di.shared.bloc.faq);
+    final currentLocale = EasyLocalization.of(context)!.locale;
+    bloc.loadQuestions(currentLocale.languageCode);
 
     return Scaffold(
       backgroundColor: theme.primaryBackground,
@@ -25,8 +27,10 @@ class FaqPage extends ConsumerWidget {
         bloc: bloc,
         builder: (context, state) => state.when(
           data: (questions) => FaqQuestionList(questions: questions),
-          loading: () => const Center(
-            child: CircularProgressIndicator(),
+          loading: () => Center(
+            child: CircularProgressIndicator(
+              color: theme.secondaryColor,
+            ),
           ),
           error: () {
             // TODO(bestK1ngArthur): Show error widget
