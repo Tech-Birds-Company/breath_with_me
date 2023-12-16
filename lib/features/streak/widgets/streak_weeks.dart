@@ -33,7 +33,9 @@ class StreakWeeks extends StatelessWidget {
                 if (i < daysInRow - 1)
                   Expanded(
                     child: Divider(
-                      color: startDay + i + daysInRow * rowIndex < selectedDay ? theme.green3 : const Color(0xFF5D5D6D),
+                      color: startDay + i + daysInRow * rowIndex < selectedDay
+                          ? theme.green3
+                          : const Color(0xFF5D5D6D),
                       thickness: 1,
                     ),
                   ),

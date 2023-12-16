@@ -22,7 +22,8 @@ final class ProfileBloc extends BlocBase<Object?> {
   ) : super(null);
 
   Future<void> openReminder() async {
-    final permissionGranted = await _permissionsManager.requestPushNotificationsPermissions();
+    final permissionGranted =
+        await _permissionsManager.requestPushNotificationsPermissions();
     if (permissionGranted ?? false) {
       _navigationManager.openReminderPage();
     } else {

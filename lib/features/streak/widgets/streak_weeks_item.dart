@@ -19,10 +19,14 @@ class StreakWeeksItem extends StatelessWidget {
     final decoration = BoxDecoration(
       shape: BoxShape.circle,
       color: type != StreakWeeksItemType.standard ? theme.green3 : null,
-      border: type == StreakWeeksItemType.standard ? Border.all(width: 2, color: const Color(0xFF5D5D6D)) : null,
+      border: type == StreakWeeksItemType.standard
+          ? Border.all(width: 2, color: const Color(0xFF5D5D6D))
+          : null,
     );
 
-    final textColor = type == StreakWeeksItemType.standard ? const Color(0xFF5D5D6D) : Colors.black;
+    final textColor = type == StreakWeeksItemType.standard
+        ? const Color(0xFF5D5D6D)
+        : Colors.black;
     final textWidget = DecoratedBox(
       decoration: decoration,
       child: Center(
