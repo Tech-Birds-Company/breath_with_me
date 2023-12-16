@@ -16,14 +16,12 @@ abstract base class CacheableBloc<State> extends BlocBase<State> {
 
   static BlocCacheStorage? _sharedStorage;
 
-  String get key => '';
-
-  String get _entityName => '$runtimeType$key';
+  String get key;
 
   static set storage(BlocCacheStorage storage) => _sharedStorage ??= storage;
 
   Stream<State?> get cachedBlocStateStream {
-    return _storage.stream(_entityName).map((object) {
+    return _storage.stream(key).map((object) {
       if (object == null) {
         return null;
       }
@@ -41,7 +39,7 @@ abstract base class CacheableBloc<State> extends BlocBase<State> {
   }
 
   Future<void> cache() => _storage.write(
-        _entityName,
+        key,
         toJson(state),
       );
 
@@ -54,7 +52,7 @@ abstract base class CacheableBloc<State> extends BlocBase<State> {
     emit(fromJson(jsonMap));
   }
 
-  Future<void> deleteCache() => _storage.delete(_entityName);
+  Future<void> deleteCache() => _storage.delete(key);
 
   Map<String, dynamic> toJson(State state);
 

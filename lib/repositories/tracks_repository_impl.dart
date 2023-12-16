@@ -165,4 +165,8 @@ final class TracksRepositoryImpl implements TracksRepository {
       });
     }
   }
+
+  @override
+  Stream<List<Track>> get cachedTracksStream =>
+      _databaseManager.cachedTracksStream;
 }

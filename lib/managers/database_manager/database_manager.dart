@@ -6,6 +6,9 @@ import 'package:breathe_with_me/database/entities/download_track_task_entity.dar
 import 'package:breathe_with_me/database/entities/liked_tracks_entity.dart';
 import 'package:breathe_with_me/database/entities/remote_config_entity.dart';
 import 'package:breathe_with_me/database/entities/secure_image_url_provider_entity.dart';
+import 'package:breathe_with_me/features/tracks/models/track.dart';
+import 'package:breathe_with_me/features/tracks/models/tracks_list_state.dart';
+import 'package:breathe_with_me/managers/database_manager/database_cached_keys.dart';
 import 'package:breathe_with_me/managers/download_manager/download_task.dart';
 import 'package:breathe_with_me/objectbox.g.dart';
 
@@ -115,6 +118,27 @@ final class DatabaseManager {
         (query) {
           final entity = query.findFirst();
           return entity?.likes.toSet() ?? <String>{};
+        },
+      ).distinct();
+
+  Stream<List<Track>> get cachedTracksStream => blocStateBox
+          .query(
+            BlocStateEntity_.key.equals(DatabaseCachedKeys.cachedTracksKey),
+          )
+          .watch(triggerImmediately: true)
+          .map(
+        (event) {
+          final entity = event.findFirst();
+          if (entity != null) {
+            final json = jsonDecode(entity.json) as Map<String, dynamic>;
+            final state = TracksListState.fromJson(json);
+            final tracks = state.maybeWhen(
+              data: (tracks) => tracks,
+              orElse: () => <Track>[],
+            );
+            return tracks;
+          }
+          return <Track>[];
         },
       ).distinct();
 

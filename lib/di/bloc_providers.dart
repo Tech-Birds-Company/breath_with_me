@@ -1,10 +1,10 @@
 part of 'di.dart';
 
 final class _BlocProviders {
-  late final trackList = Provider(
+  late final tracksList = Provider(
     (ref) {
       final bloc = TracksListBloc(
-        ref.read(Di.shared.repository.firebaseTracks),
+        ref.read(Di.shared.repository.tracks),
         ref.read(Di.shared.bloc.tracksFilters).stream,
       );
       ref.onDispose(bloc.dispose);
@@ -24,7 +24,7 @@ final class _BlocProviders {
     (ref, trackId) {
       final bloc = TrackPlayerBloc(
         trackId,
-        ref.read(Di.shared.repository.firebaseTracks),
+        ref.read(Di.shared.repository.tracks),
         ref.read(Di.shared.manager.audio),
         ref.read(Di.shared.manager.tracksDownloader),
       );
@@ -72,10 +72,19 @@ final class _BlocProviders {
   late final track = Provider.family<TrackBloc, Track>(
     (ref, track) => TrackBloc(
       track,
-      ref.read(Di.shared.repository.firebaseTracks),
+      ref.read(Di.shared.repository.tracks),
       ref.read(Di.shared.manager.navigation),
     ),
   );
 
-  late final tracksFilters = Provider((ref) => TracksFiltersBloc());
+  late final tracksFilters = Provider(
+    (ref) {
+      final bloc = TracksFiltersBloc(
+        ref.read(Di.shared.repository.tracks),
+        ref.read(Di.shared.manager.navigation),
+      );
+      ref.onDispose(bloc.dispose);
+      return bloc;
+    },
+  );
 }
