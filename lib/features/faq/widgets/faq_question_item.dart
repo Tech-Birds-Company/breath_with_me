@@ -29,7 +29,11 @@ class FaqQuestionItem extends StatelessWidget {
       ),
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 6, left: 20, right: 20),
+          padding: const EdgeInsets.only(
+            top: 6,
+            left: 20,
+            right: 20,
+          ),
           child: Text(
             question.description,
             style: theme.typography.bodyM.copyWith(

@@ -6,15 +6,14 @@ part of 'faq_question.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$FaqQuestionImpl _$$FaqQuestionImplFromJson(Map json) => _$FaqQuestionImpl(
+FaqQuestion _$FaqQuestionFromJson(Map json) => FaqQuestion(
       id: json['id'] as int,
       title: json['title'] as String,
       description: json['description'] as String,
-      language: $enumDecode(_$FaqLanguageEnumMap, json['language'],
-          unknownValue: FaqLanguage.unknown),
+      language: $enumDecode(_$FaqLanguageEnumMap, json['language']),
     );
 
-Map<String, dynamic> _$$FaqQuestionImplToJson(_$FaqQuestionImpl instance) =>
+Map<String, dynamic> _$FaqQuestionToJson(FaqQuestion instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,

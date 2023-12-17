@@ -16,8 +16,12 @@
 	"createAccountHeaderSubtitle":"get access to all practices\nand extended breathing statistics",
 	"createAccountHeaderLogin":"Existing account? Log in",
 	"createAccountContact":"Contact us",
-	"createAccountAgreement":"By clicking a button you accept\nthe Terms and Privacy policy",
-
+	"createAccountAgreement": {
+		"part1": "By clicking \"Create account\" you agree to the ",
+		"privacyPolicyUrl": "privacy policy",
+		"part2": " and ",
+		"termsOfServiceUrl": "terms of service"
+	},
 	"tracksTitle": "Hi, {}",
 	"tracksGuestWelcome": "Hello",
 	"tracksHeading": "Let's breathe",

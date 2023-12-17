@@ -6,6 +6,7 @@ import 'package:breathe_with_me/features/onboarding/widgets/create_account_heade
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -18,6 +19,7 @@ class CreateAccountModalPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final bloc = ref.read(Di.shared.bloc.onboarding);
     final theme = Theme.of(context).extension<BWMTheme>()!;
+    final locale = context.locale;
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
@@ -74,11 +76,41 @@ class CreateAccountModalPage extends ConsumerWidget {
                     horizontal: 20,
                     vertical: 24,
                   ),
-                  child: Text(
-                    LocaleKeys.createAccountAgreement.tr(),
+                  child: RichText(
+                    locale: locale,
                     textAlign: TextAlign.center,
-                    style: theme.typography.footer.copyWith(
-                      color: theme.primaryText.withAlpha(80),
+                    text: TextSpan(
+                      style: theme.typography.footer.copyWith(
+                        color: theme.primaryText.withAlpha(80),
+                      ),
+                      children: [
+                        TextSpan(
+                          text: LocaleKeys.createAccountAgreement_part1.tr(),
+                        ),
+                        TextSpan(
+                          text: LocaleKeys
+                              .createAccountAgreement_privacyPolicyUrl
+                              .tr(),
+                          style: const TextStyle(
+                            decoration: TextDecoration.underline,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = bloc.onOpenPrivacyPolicy,
+                        ),
+                        TextSpan(
+                          text: LocaleKeys.createAccountAgreement_part2.tr(),
+                        ),
+                        TextSpan(
+                          text: LocaleKeys
+                              .createAccountAgreement_termsOfServiceUrl
+                              .tr(),
+                          style: const TextStyle(
+                            decoration: TextDecoration.underline,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = bloc.onOpenTermsOfService,
+                        ),
+                      ],
                     ),
                   ),
                 ),

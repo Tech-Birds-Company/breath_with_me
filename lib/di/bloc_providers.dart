@@ -37,6 +37,7 @@ final class _BlocProviders {
     (ref) => OnboardingBloc(
       ref.read(Di.shared.manager.navigation),
       ref.read(Di.shared.manager.user),
+      ref.read(Di.shared.repository.firebaseRemoteConfig),
     ),
   );
 

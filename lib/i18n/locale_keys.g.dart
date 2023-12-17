@@ -16,6 +16,12 @@ abstract class LocaleKeys {
   static const createAccountHeaderSubtitle = 'createAccountHeaderSubtitle';
   static const createAccountHeaderLogin = 'createAccountHeaderLogin';
   static const createAccountContact = 'createAccountContact';
+  static const createAccountAgreement_part1 = 'createAccountAgreement.part1';
+  static const createAccountAgreement_privacyPolicyUrl =
+      'createAccountAgreement.privacyPolicyUrl';
+  static const createAccountAgreement_part2 = 'createAccountAgreement.part2';
+  static const createAccountAgreement_termsOfServiceUrl =
+      'createAccountAgreement.termsOfServiceUrl';
   static const createAccountAgreement = 'createAccountAgreement';
   static const tracksTitle = 'tracksTitle';
   static const tracksGuestWelcome = 'tracksGuestWelcome';

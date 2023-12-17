@@ -26,7 +26,7 @@ Map<String, dynamic> _$$TrackImplToJson(_$TrackImpl instance) =>
       'trackFile': instance.trackFile,
       'categoryKey': instance.categoryKey,
       'duration': instance.duration,
-      'tutor': instance.tutor,
+      'tutor': instance.tutor.toJson(),
       'coverIcon': instance.coverIcon,
       'language': _$TrackLanguageEnumMap[instance.language]!,
       'animationColor': instance.animationColor,

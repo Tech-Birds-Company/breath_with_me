@@ -17,6 +17,7 @@ class TracksFilters extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    EasyLocalization.of(context);
     final bloc = ref.watch(Di.shared.bloc.tracksFilters);
 
     useEffect(
