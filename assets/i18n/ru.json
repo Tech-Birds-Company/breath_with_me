@@ -81,13 +81,21 @@
 	"safetyPrecautionsWelcomeDescription": "Прежде чем продолжить, ознакомься с техникой безопасности и рекомендациями по дыханию",
 	"safetyPrecautionsReadNow": "Читать сейчас",
 	
-	"signInLogin": "Login",
+	"signInLogin": "Войти",
 	"signInEmail": "Email",
-	"signInPassword": "Password",
-	"signInForgotPass": "Forgot Password",
-	"signInOrSignUp": "or Log in with",
-	"welcomeBack": "Welcome back!",
-	"welcomeBreather": "Welcome, breather!",
-	"confirmPassword": "Confirm Password",
-	"yourName": "Your name"
+	"signInPassword": "Пароль",
+	"signInForgotPass": "Не помню пароль",
+	"signInOrSignUp": "или войти через",
+	"welcomeBack": "Рады тебя видеть!",
+	"welcomeBreather": "Добро пожаловать",
+	"confirmPassword": "Повторить пароль",
+	"yourName": "Имя",
+	"forgotPassSubtitle": "Мы отправим инструкции на указанный email",
+	"resetPassword": "Восстановить пароль",
+	"openEmailApp": "Открыть почту",
+	"checkYourEmailSubtitle": "Письмо с инструкциями по восстановлению пароля уже должно быть у тебя на почте",
+	"checkYourEmail": "Проверь почту!",
+	"forgotPassword": "Восстановление пароля",
+	"forgotPasswordSpamFirst": "Не пришло письмо?  Проверь папку «спам» или попробуй ",
+	"forgotPasswordSpamSecond": "указать другой email"
 }

@@ -16,6 +16,7 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
   final Color gray6;
   final Color gray26;
   final Color red;
+  final Color subtitleText;
 
   const BWMTheme({
     required this.primaryColor,
@@ -32,6 +33,7 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
     required this.gray6,
     required this.gray26,
     required this.red,
+    required this.subtitleText,
   });
 
   @override
@@ -50,6 +52,7 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
     Color? gray6,
     Color? gray26,
     Color? red,
+    Color? subtitleText,
   }) {
     return BWMTheme(
       primaryColor: primaryColor ?? this.primaryColor,
@@ -66,6 +69,7 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
       gray6: gray6 ?? this.gray6,
       gray26: gray26 ?? this.gray26,
       red: red ?? this.red,
+      subtitleText: subtitleText ?? this.subtitleText,
     );
   }
 
@@ -96,6 +100,7 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
       gray6: Color.lerp(gray6, other.gray6, t)!,
       gray26: Color.lerp(gray26, other.gray26, t)!,
       red: Color.lerp(red, other.red, t)!,
+      subtitleText: Color.lerp(subtitleText, other.subtitleText, t)!,
     );
   }
 }

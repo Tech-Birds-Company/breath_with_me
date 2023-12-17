@@ -103,4 +103,12 @@ final class _BlocProviders {
       ref.read(Di.shared.manager.user),
     ),
   );
+
+  late final forgotPassword = Provider.autoDispose(
+    (ref) => ForgotPasswordBloc(
+      ref.read(
+        Di.shared.manager.user,
+      ),
+    ),
+  );
 }

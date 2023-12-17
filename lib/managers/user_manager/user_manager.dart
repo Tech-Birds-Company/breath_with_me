@@ -15,6 +15,8 @@ abstract interface class UserManager {
 
   Future<void> sendEmailVerification();
 
+  Future<void> sendResetPassword(String email);
+
   Stream<User?> get userStream;
 
   User? get currentUser;

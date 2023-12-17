@@ -118,4 +118,6 @@ final class NavigationManager {
   void singUpPage() => router.push(BWMRoutes.signUpPage);
 
   void singInPage() => router.push(BWMRoutes.signInPage);
+
+  void forgotPasswordPage() => router.push(BWMRoutes.forgotPassword);
 }

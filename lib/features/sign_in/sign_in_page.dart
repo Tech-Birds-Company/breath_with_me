@@ -73,15 +73,14 @@ class LoginScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
                 BWMActionButton(
-                  title: LocaleKeys.onboardingCreateAccount.tr(),
+                  title: LocaleKeys.signInLogin.tr(),
                   width: double.infinity,
                   height: 40,
                   onPressed: bloc.signIn,
                 ),
                 const SizedBox(height: 16),
                 TextButton(
-                  onPressed:
-                      () {}, // TODO(musamuss): добавить действия открытия забыли пароль
+                  onPressed: bloc.openForgotPassword,
                   child: Text(
                     LocaleKeys.signInForgotPass.tr(),
                     style: TextStyle(color: theme.secondaryColor),

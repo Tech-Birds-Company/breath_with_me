@@ -1,6 +1,7 @@
 import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/faq/faq_page.dart';
 import 'package:breathe_with_me/features/home/blocs/home_bloc.dart';
+import 'package:breathe_with_me/features/forgot_password/forgot_password_page.dart';
 import 'package:breathe_with_me/features/home/home_page.dart';
 import 'package:breathe_with_me/features/onboarding/create_account_modal_page.dart';
 import 'package:breathe_with_me/features/onboarding/onboarding_page.dart';
@@ -40,6 +41,7 @@ final class BWMRoutes {
   static const filtersSheet = '/filters-sheet';
   static const signInPage = '/sign-in';
   static const signUpPage = '/sign-up';
+  static const forgotPassword = '/forgot-password';
 
   static final routes = <RouteBase>[
     GoRoute(
@@ -176,5 +178,9 @@ final class BWMRoutes {
         ),
       ),
     ),
+    GoRoute(
+      path: BWMRoutes.forgotPassword,
+      builder: (context, state) => const ForgotPasswordPage(),
+    )
   ];
 }
