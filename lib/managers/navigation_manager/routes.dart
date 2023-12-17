@@ -6,6 +6,8 @@ import 'package:breathe_with_me/features/profile/profile_page.dart';
 import 'package:breathe_with_me/features/profile/widgets/language_sheet.dart';
 import 'package:breathe_with_me/features/reminder/reminder_page.dart';
 import 'package:breathe_with_me/features/safety_precautions/safety_precautions_page.dart';
+import 'package:breathe_with_me/features/sign_in/sign_in_page.dart';
+import 'package:breathe_with_me/features/sign_up/sign_up_page.dart';
 import 'package:breathe_with_me/features/track_player/track_player_page.dart';
 import 'package:breathe_with_me/features/tracks/filter_type.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
@@ -27,6 +29,8 @@ final class BWMRoutes {
   static const faq = '/faq';
   static const safetyPrecautions = '/safety-precautions';
   static const filtersSheet = '/filters-sheet';
+  static const signInPage = '/sign-in';
+  static const signUpPage = '/sign-up';
 
   static final routes = <RouteBase>[
     GoRoute(
@@ -105,6 +109,18 @@ final class BWMRoutes {
         isScrollControlled: true,
         child: TracksFilterSheet(state.extra! as FilterType),
       ),
+    ),
+    GoRoute(
+      path: BWMRoutes.signInPage,
+      builder: (context, state) {
+        return const SignInPageWidget();
+      },
+    ),
+    GoRoute(
+      path: BWMRoutes.signUpPage,
+      builder: (context, state) {
+        return const SignUpPage();
+      },
     ),
   ];
 }

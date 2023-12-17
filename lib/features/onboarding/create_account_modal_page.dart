@@ -45,12 +45,8 @@ class CreateAccountModalPage extends ConsumerWidget {
                 CreateAccountHeader(
                   onApplePressed: bloc.signUpWithApple,
                   onGooglePressed: bloc.signUpWithGoogle,
-                  onEmailPressed: () {
-                    // TODO(bestk1ngarthur): code
-                  },
-                  onLoginPressed: () {
-                    // TODO(bestk1ngarthur): code
-                  },
+                  onEmailPressed: bloc.signUpWithEmail,
+                  onLoginPressed: bloc.signIn,
                 ),
                 const Spacer(),
                 TextButton(

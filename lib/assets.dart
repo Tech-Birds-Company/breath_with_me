@@ -29,4 +29,6 @@ final class BWMAssets {
   static const signMailIcon = '$_icons/sign_mail.svg';
 
   static const trackPlayerAnimation = '$_shaders/player_animation.glsl';
+  static const emailIcon = '$_icons/email.svg';
+  static const lockIcon = '$_icons/lock.svg';
 }

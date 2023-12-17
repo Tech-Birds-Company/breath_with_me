@@ -88,4 +88,17 @@ final class _BlocProviders {
       return bloc;
     },
   );
+
+  late final signUp = Provider.autoDispose(
+    (ref) => SignUpBloc(
+      ref.read(Di.shared.manager.user),
+    ),
+  );
+
+  late final signIn = Provider.autoDispose(
+    (ref) => SignInBloc(
+      ref.read(Di.shared.manager.navigation),
+      ref.read(Di.shared.manager.user),
+    ),
+  );
 }
