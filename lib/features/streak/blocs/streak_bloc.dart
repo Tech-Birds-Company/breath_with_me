@@ -18,12 +18,13 @@ final class StreakBloc extends BlocBase<StreakState> {
               minutesCount: 30,
             ),
             quote: StreakQuoteData(
-              quote:
-                  'We cannot breathe in the past or the future. We inhale and exhale always in the present',
+              quote: 'We cannot breathe in the past or the future. We inhale and exhale always in the present',
               author: 'Dasha Chen',
             ),
           ),
         );
 
   void onCloseScreen() => _navigationManager.pop();
+
+  void loadUserRecord() {}
 }
