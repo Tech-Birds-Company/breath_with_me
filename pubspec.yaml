@@ -24,6 +24,8 @@ dependencies:
   firebase_storage: 11.4.0
   firebase_auth: 4.12.0
   cloud_functions: 4.5.2
+  firebase_messaging: 14.7.2
+  firebase_remote_config: 4.3.2
   # ------------------------
   google_sign_in: ^6.1.6
   sign_in_with_apple: ^5.0.0
