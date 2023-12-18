@@ -34,7 +34,7 @@ float noise(vec2 p) {
 
 
 vec3 auroraLayer(vec2 uv, float speed, float intensity, vec3 color) {
-    float t = iTime * speed;
+    float t = iTime * speed / 1.5;
     vec2 scaleXY = vec2(2.0, -2.0);
     vec2 movement = vec2(1.0, 1.0);
     vec2 p = uv * scaleXY + t * movement;
