@@ -1,21 +1,21 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'remote_config_socials.freezed.dart';
 part 'remote_config_socials.g.dart';
 
-@freezed
-class RemoteConfigSocials with _$RemoteConfigSocials {
-  static const defaultSocials = RemoteConfigSocials(
-    communityDeeplink: 'tg://join?invite=2cWPyTpInQVlN2Ji',
-    communityUrl: 'https://t.me/+2cWPyTpInQVlN2Ji',
-    supportEmailDeeplink: 'mailto:support@breathewithme.app',
-  );
-  const factory RemoteConfigSocials({
-    required String communityDeeplink,
-    required String communityUrl,
-    required String supportEmailDeeplink,
-  }) = _RemoteConfigSocials;
+@JsonSerializable()
+class RemoteConfigSocials {
+  final String communityDeeplink;
+  final String communityUrl;
+  final String supportEmailDeeplink;
+
+  const RemoteConfigSocials({
+    this.communityDeeplink = 'tg://join?invite=2cWPyTpInQVlN2Ji',
+    this.communityUrl = 'https://t.me/+2cWPyTpInQVlN2Ji',
+    this.supportEmailDeeplink = 'mailto:support@breathewithme.app',
+  });
 
   factory RemoteConfigSocials.fromJson(Map<String, dynamic> json) =>
       _$RemoteConfigSocialsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RemoteConfigSocialsToJson(this);
 }

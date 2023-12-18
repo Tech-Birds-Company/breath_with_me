@@ -6,7 +6,9 @@ import 'package:breathe_with_me/database/entities/download_track_task_entity.dar
 import 'package:breathe_with_me/database/entities/liked_tracks_entity.dart';
 import 'package:breathe_with_me/database/entities/remote_config_entity.dart';
 import 'package:breathe_with_me/database/entities/secure_image_url_provider_entity.dart';
-import 'package:breathe_with_me/managers/download_manager/download_task.dart';
+import 'package:breathe_with_me/features/tracks/models/track.dart';
+import 'package:breathe_with_me/features/tracks/models/tracks_list_state.dart';
+import 'package:breathe_with_me/managers/database_manager/database_cached_keys.dart';
 import 'package:breathe_with_me/objectbox.g.dart';
 
 final class DatabaseManager {
@@ -28,7 +30,7 @@ final class DatabaseManager {
           .findFirstAsync();
 
   Future<DownloadTrackTaskEntity> createDownloadTrackTask({
-    required DownloadTask task,
+    required String uid,
     required String id,
     required String filename,
     required String url,
@@ -37,10 +39,11 @@ final class DatabaseManager {
     final dbEntity = await getDownloadTask(id);
 
     if (dbEntity != null) {
-      return dbEntity;
+      await downloadTaskBox.removeAsync(dbEntity.id);
     }
 
     final entity = DownloadTrackTaskEntity(
+      uid: uid,
       taskId: id,
       url: url,
       filename: filename,
@@ -118,10 +121,32 @@ final class DatabaseManager {
         },
       ).distinct();
 
-  void dispose() => _store.close();
+  Stream<List<Track>> get cachedTracksStream => blocStateBox
+          .query(
+            BlocStateEntity_.key.equals(DatabaseCachedKeys.cachedTracksKey),
+          )
+          .watch(triggerImmediately: true)
+          .map(
+        (event) {
+          final entity = event.findFirst();
+          if (entity != null) {
+            final json = jsonDecode(entity.json) as Map<String, dynamic>;
+            final state = TracksListState.fromJson(json);
+            final tracks = state.maybeWhen(
+              data: (tracks) => tracks,
+              orElse: () => <Track>[],
+            );
+            return tracks;
+          }
+          return <Track>[];
+        },
+      ).distinct();
 
   void clearDb() {
-    downloadTaskBox.removeAll();
     blocStateBox.removeAll();
+    likedTracksBox.removeAll();
+    secureImageUrlBox.removeAll();
   }
+
+  void dispose() => _store.close();
 }

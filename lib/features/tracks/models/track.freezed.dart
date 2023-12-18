@@ -53,8 +53,6 @@ abstract class $TrackCopyWith<$Res> {
       String? animationColor,
       bool isPremium,
       bool isNew});
-
-  $TutorCopyWith<$Res> get tutor;
 }
 
 /// @nodoc
@@ -124,14 +122,6 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
               as bool,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $TutorCopyWith<$Res> get tutor {
-    return $TutorCopyWith<$Res>(_value.tutor, (value) {
-      return _then(_value.copyWith(tutor: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -152,9 +142,6 @@ abstract class _$$TrackImplCopyWith<$Res> implements $TrackCopyWith<$Res> {
       String? animationColor,
       bool isPremium,
       bool isNew});
-
-  @override
-  $TutorCopyWith<$Res> get tutor;
 }
 
 /// @nodoc

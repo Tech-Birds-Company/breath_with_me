@@ -6,9 +6,13 @@ import 'package:breathe_with_me/features/profile/profile_page.dart';
 import 'package:breathe_with_me/features/profile/widgets/language_sheet.dart';
 import 'package:breathe_with_me/features/reminder/reminder_page.dart';
 import 'package:breathe_with_me/features/safety_precautions/safety_precautions_page.dart';
+import 'package:breathe_with_me/features/sign_in/sign_in_page.dart';
+import 'package:breathe_with_me/features/sign_up/sign_up_page.dart';
 import 'package:breathe_with_me/features/streak/streak_page.dart';
 import 'package:breathe_with_me/features/track_player/track_player_page.dart';
+import 'package:breathe_with_me/features/tracks/filter_type.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
+import 'package:breathe_with_me/features/tracks/widgets/tracks_filters/tracks_filter_sheet.dart';
 import 'package:breathe_with_me/managers/navigation_manager/bwm_modal_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -25,6 +29,9 @@ final class BWMRoutes {
   static const languageSheet = '/language-sheet';
   static const faq = '/faq';
   static const safetyPrecautions = '/safety-precautions';
+  static const filtersSheet = '/filters-sheet';
+  static const signInPage = '/sign-in';
+  static const signUpPage = '/sign-up';
   static const streak = '/streak';
 
   static final routes = <RouteBase>[
@@ -88,15 +95,33 @@ final class BWMRoutes {
     ),
     GoRoute(
       path: BWMRoutes.safetyPrecautions,
-      pageBuilder: (context, state) {
-        return const BWMModalPage(
-          barrierColor: Colors.transparent,
-          useSafeArea: true,
-          enableDrag: false,
-          isDismissible: false,
-          isScrollControlled: true,
-          child: SafetyPrecautionsPage(),
-        );
+      pageBuilder: (context, state) => const BWMModalPage(
+        barrierColor: Colors.transparent,
+        useSafeArea: true,
+        enableDrag: false,
+        isDismissible: false,
+        isScrollControlled: true,
+        child: SafetyPrecautionsPage(),
+      ),
+    ),
+    GoRoute(
+      path: BWMRoutes.filtersSheet,
+      pageBuilder: (context, state) => BWMModalPage(
+        backgroundColor: Colors.transparent,
+        isScrollControlled: true,
+        child: TracksFilterSheet(state.extra! as FilterType),
+      ),
+    ),
+    GoRoute(
+      path: BWMRoutes.signInPage,
+      builder: (context, state) {
+        return const SignInPageWidget();
+      },
+    ),
+    GoRoute(
+      path: BWMRoutes.signUpPage,
+      builder: (context, state) {
+        return const SignUpPage();
       },
     ),
     GoRoute(

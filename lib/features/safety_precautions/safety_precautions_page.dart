@@ -79,7 +79,7 @@ class SafetyPrecautionsPage extends HookConsumerWidget {
                   BWMActionButton(
                     title: LocaleKeys.safetyPrecautionsReadNow.tr(),
                     width: 155,
-                    height: 36,
+                    height: 40,
                     onPressed: bloc.openFaq,
                   ),
                 ],

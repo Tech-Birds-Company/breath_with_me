@@ -10,7 +10,7 @@ class ReminderProfileItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _ = EasyLocalization.of(context)!;
+    EasyLocalization.of(context);
     final profileBloc = ref.read(Di.shared.bloc.profile);
     final reminderBloc = ref.read(Di.shared.bloc.reminder);
     return StreamBuilder<String>(

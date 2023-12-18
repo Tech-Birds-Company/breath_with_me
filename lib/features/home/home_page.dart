@@ -1,8 +1,8 @@
 import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/extensions/widget.dart';
 import 'package:breathe_with_me/features/home/widgets/home_header.dart';
-import 'package:breathe_with_me/features/tracks/widgets/tracks_filters.dart';
-import 'package:breathe_with_me/features/tracks/widgets/tracks_list.dart';
+import 'package:breathe_with_me/features/tracks/widgets/tracks_filters/tracks_filters.dart';
+import 'package:breathe_with_me/features/tracks/widgets/tracks_list/tracks_list.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';

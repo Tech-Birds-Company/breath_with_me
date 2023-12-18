@@ -1,8 +1,8 @@
 import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
-import 'package:breathe_with_me/features/tracks/widgets/track_download_indicator.dart';
-import 'package:breathe_with_me/features/tracks/widgets/track_tutor.dart';
+import 'package:breathe_with_me/features/tracks/widgets/track/track_download_indicator.dart';
+import 'package:breathe_with_me/features/tracks/widgets/track/track_tutor.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';

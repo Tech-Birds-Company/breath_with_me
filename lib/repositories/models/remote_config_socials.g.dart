@@ -6,15 +6,18 @@ part of 'remote_config_socials.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$RemoteConfigSocialsImpl _$$RemoteConfigSocialsImplFromJson(Map json) =>
-    _$RemoteConfigSocialsImpl(
-      communityDeeplink: json['communityDeeplink'] as String,
-      communityUrl: json['communityUrl'] as String,
-      supportEmailDeeplink: json['supportEmailDeeplink'] as String,
+RemoteConfigSocials _$RemoteConfigSocialsFromJson(Map json) =>
+    RemoteConfigSocials(
+      communityDeeplink: json['communityDeeplink'] as String? ??
+          'tg://join?invite=2cWPyTpInQVlN2Ji',
+      communityUrl:
+          json['communityUrl'] as String? ?? 'https://t.me/+2cWPyTpInQVlN2Ji',
+      supportEmailDeeplink: json['supportEmailDeeplink'] as String? ??
+          'mailto:support@breathewithme.app',
     );
 
-Map<String, dynamic> _$$RemoteConfigSocialsImplToJson(
-        _$RemoteConfigSocialsImpl instance) =>
+Map<String, dynamic> _$RemoteConfigSocialsToJson(
+        RemoteConfigSocials instance) =>
     <String, dynamic>{
       'communityDeeplink': instance.communityDeeplink,
       'communityUrl': instance.communityUrl,

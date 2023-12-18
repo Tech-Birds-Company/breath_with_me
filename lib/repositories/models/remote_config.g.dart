@@ -6,14 +6,19 @@ part of 'remote_config.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$RemoteConfigImpl _$$RemoteConfigImplFromJson(Map json) => _$RemoteConfigImpl(
+RemoteConfig _$RemoteConfigFromJson(Map json) => RemoteConfig(
       socials: json['socials'] == null
-          ? RemoteConfigSocials.defaultSocials
+          ? const RemoteConfigSocials()
           : RemoteConfigSocials.fromJson(
               Map<String, dynamic>.from(json['socials'] as Map)),
+      legalDocuments: json['legal_documents'] == null
+          ? const LegalDocuments()
+          : LegalDocuments.fromJson(
+              Map<String, dynamic>.from(json['legal_documents'] as Map)),
     );
 
-Map<String, dynamic> _$$RemoteConfigImplToJson(_$RemoteConfigImpl instance) =>
+Map<String, dynamic> _$RemoteConfigToJson(RemoteConfig instance) =>
     <String, dynamic>{
-      'socials': instance.socials,
+      'socials': instance.socials.toJson(),
+      'legal_documents': instance.legalDocuments.toJson(),
     };

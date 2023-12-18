@@ -1,3 +1,4 @@
+import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/permissions_manager/permissions_manager.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
@@ -12,6 +13,7 @@ final class ProfileBloc extends BlocBase<Object?> {
   final PermissionsManager _permissionsManager;
   final FirebaseRemoteConfigRepository _firebaseRemoteConfigRepository;
   final UserManager _userManager;
+  final DatabaseManager _databaseManager;
 
   ProfileBloc(
     this._navigationManager,
@@ -19,6 +21,7 @@ final class ProfileBloc extends BlocBase<Object?> {
     this._permissionsManager,
     this._firebaseRemoteConfigRepository,
     this._userManager,
+    this._databaseManager,
   ) : super(null);
 
   Future<void> openReminder() async {
@@ -63,5 +66,6 @@ final class ProfileBloc extends BlocBase<Object?> {
 
   Future<void> onSignOut() async {
     await _userManager.signOut();
+    _databaseManager.clearDb();
   }
 }
