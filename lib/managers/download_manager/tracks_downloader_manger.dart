@@ -21,16 +21,19 @@ final class TracksDownloaderManager implements DownloaderManager {
   late final _httpClient = Dio();
 
   @override
-  Future<void> validateDownloads() async {
+  Future<void> validateDownloads(String uid) async {
     final box = _databaseManager.downloadTaskBox;
-    final appDocsDir = await getApplicationDocumentsDirectory();
-    final tracksPath = join(appDocsDir.path, defaultTracksPath);
     final tasks = box.getAll();
     final tasksToDelete = <int>[];
 
     for (final task in tasks) {
       if (task.isCompleted) {
-        final file = File(join(tracksPath, task.taskId, task.filename));
+        final trackPath = await getTrackPath(
+          uid: uid,
+          taskId: task.taskId,
+          filename: task.filename,
+        );
+        final file = File(trackPath);
         final fileNotExists = !file.existsSync();
 
         if (fileNotExists) {
@@ -51,9 +54,8 @@ final class TracksDownloaderManager implements DownloaderManager {
   }
 
   @override
-  Stream<double> taskProgress(String taskId) {
-    return _databaseManager.taskProgressStream(taskId);
-  }
+  Stream<double> taskProgress({required String taskId}) =>
+      _databaseManager.taskProgressStream(taskId);
 
   Future<void> _downloadChunk({
     required DownloadTrackTaskEntity dbEntity,
@@ -119,20 +121,28 @@ final class TracksDownloaderManager implements DownloaderManager {
   }
 
   Future<void> _queueTask(
+    String uid,
     TrackDownloadTask task, {
     int chunksCount = 10,
   }) async {
-    final cacheDir = await getApplicationDocumentsDirectory();
-    final tracksCacheDirPath = join(cacheDir.path, defaultTracksPath);
-    final savePath = join(tracksCacheDirPath, task.id);
-    final saveDir = Directory(savePath);
-
-    if (!saveDir.existsSync()) {
-      await saveDir.create(recursive: true);
-    }
-
     final fileExtension = extension(Uri.parse(task.url).path);
     final filename = '${task.id}$fileExtension';
+
+    final trackDirPath = await getTrackDirPath(
+      uid: uid,
+      taskId: task.id,
+    );
+    final trackDir = Directory(trackDirPath);
+
+    final trackPath = await getTrackPath(
+      uid: uid,
+      taskId: task.id,
+      filename: filename,
+    );
+
+    if (!trackDir.existsSync()) {
+      await trackDir.create(recursive: true);
+    }
 
     final fileSize = await _getFileSize(task.url);
     final chunkSize = (fileSize / chunksCount).ceil();
@@ -140,7 +150,7 @@ final class TracksDownloaderManager implements DownloaderManager {
     final queue = <Future<void>>[];
 
     final dbEntity = await _databaseManager.createDownloadTrackTask(
-      task: task,
+      uid: task.uid,
       id: task.id,
       url: task.url,
       filename: filename,
@@ -154,7 +164,7 @@ final class TracksDownloaderManager implements DownloaderManager {
         endBytesRange = fileSize - 1;
       }
 
-      final chunkFilePath = join(savePath, 'chunk_$i');
+      final chunkFilePath = join(trackDirPath, 'chunk_$i');
       final chunkFile = File(chunkFilePath);
       if (chunkFile.existsSync()) {
         continue;
@@ -171,16 +181,49 @@ final class TracksDownloaderManager implements DownloaderManager {
     }
     await Future.wait(queue);
     await _mergeChunksToFile(
-      filePath: join(savePath, filename),
-      chunkFilesPath: savePath,
+      filePath: trackPath,
+      chunkFilesPath: trackDirPath,
       chunksCount: chunksCount,
     );
   }
 
   @override
-  void queue({required List<DownloadTask> tasks}) {
+  void queue({
+    required List<DownloadTask> tasks,
+  }) {
     for (final task in tasks) {
-      _queueTask(task as TrackDownloadTask);
+      _queueTask(task.uid, task as TrackDownloadTask);
     }
+  }
+
+  @override
+  Future<String> getTrackDirPath({
+    required String uid,
+    required String taskId,
+  }) async {
+    final appDocsDir = await getApplicationDocumentsDirectory();
+    final tracksPath = join(appDocsDir.path, defaultTracksPath);
+    final trackDir = Directory(join(tracksPath, uid, taskId));
+
+    return trackDir.path;
+  }
+
+  @override
+  Future<String> getTrackPath({
+    required String uid,
+    required String taskId,
+    required String filename,
+  }) async {
+    final appDocsDir = await getApplicationDocumentsDirectory();
+    final tracksPath = join(appDocsDir.path, defaultTracksPath);
+    final trackFile = File(
+      join(
+        tracksPath,
+        uid,
+        taskId,
+        filename,
+      ),
+    );
+    return trackFile.path;
   }
 }

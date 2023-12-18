@@ -31,7 +31,7 @@
     },
     {
       "id": "2:6103890219043900984",
-      "lastPropertyId": "6:8584594485685084463",
+      "lastPropertyId": "7:5485759589785327512",
       "name": "DownloadTrackTaskEntity",
       "properties": [
         {
@@ -64,6 +64,11 @@
           "id": "6:8584594485685084463",
           "name": "totalBytes",
           "type": 6
+        },
+        {
+          "id": "7:5485759589785327512",
+          "name": "uid",
+          "type": 9
         }
       ],
       "relations": []

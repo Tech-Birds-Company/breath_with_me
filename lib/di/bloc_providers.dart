@@ -25,6 +25,7 @@ final class _BlocProviders {
       final bloc = TrackPlayerBloc(
         trackId,
         ref.read(Di.shared.repository.tracks),
+        ref.read(Di.shared.manager.user),
         ref.read(Di.shared.manager.audio),
         ref.read(Di.shared.manager.tracksDownloader),
       );
@@ -48,6 +49,7 @@ final class _BlocProviders {
       ref.read(Di.shared.manager.permissions),
       ref.read(Di.shared.repository.firebaseRemoteConfig),
       ref.read(Di.shared.manager.user),
+      ref.read(Di.shared.manager.database),
     ),
   );
 

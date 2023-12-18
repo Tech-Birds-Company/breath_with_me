@@ -72,7 +72,11 @@ Future<List<Override>> _setupDependencies({required bool isProduction}) async {
 
   await sharedPrefsManager.init();
   await pushNotificationsManager.init();
-  await tracksDownloadManager.validateDownloads();
+
+  final uid = userManager.currentUser?.uid;
+  if (uid != null) {
+    await tracksDownloadManager.validateDownloads(uid);
+  }
 
   return [
     Di.shared.manager.database.overrideWith((ref) {

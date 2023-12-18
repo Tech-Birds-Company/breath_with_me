@@ -51,7 +51,7 @@ final _entities = <ModelEntity>[
   ModelEntity(
       id: const IdUid(2, 6103890219043900984),
       name: 'DownloadTrackTaskEntity',
-      lastPropertyId: const IdUid(6, 8584594485685084463),
+      lastPropertyId: const IdUid(7, 5485759589785327512),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
@@ -83,6 +83,11 @@ final _entities = <ModelEntity>[
             id: const IdUid(6, 8584594485685084463),
             name: 'totalBytes',
             type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(7, 5485759589785327512),
+            name: 'uid',
+            type: 9,
             flags: 0)
       ],
       relations: <ModelRelation>[],
@@ -238,19 +243,23 @@ ModelDefinition getObjectBoxModel() {
           final taskIdOffset = fbb.writeString(object.taskId);
           final urlOffset = fbb.writeString(object.url);
           final filenameOffset = fbb.writeString(object.filename);
-          fbb.startTable(7);
+          final uidOffset = fbb.writeString(object.uid);
+          fbb.startTable(8);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, taskIdOffset);
           fbb.addOffset(2, urlOffset);
           fbb.addOffset(3, filenameOffset);
           fbb.addInt64(4, object.downloadedBytes);
           fbb.addInt64(5, object.totalBytes);
+          fbb.addOffset(6, uidOffset);
           fbb.finish(fbb.endTable());
           return object.id;
         },
         objectFromFB: (Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
+          final uidParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 16, '');
           final taskIdParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 6, '');
           final urlParam = const fb.StringReader(asciiOptimization: true)
@@ -262,6 +271,7 @@ ModelDefinition getObjectBoxModel() {
           final totalBytesParam =
               const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 14);
           final object = DownloadTrackTaskEntity(
+              uid: uidParam,
               taskId: taskIdParam,
               url: urlParam,
               filename: filenameParam,
@@ -403,6 +413,10 @@ class DownloadTrackTaskEntity_ {
   /// see [DownloadTrackTaskEntity.totalBytes]
   static final totalBytes =
       QueryIntegerProperty<DownloadTrackTaskEntity>(_entities[1].properties[5]);
+
+  /// see [DownloadTrackTaskEntity.uid]
+  static final uid =
+      QueryStringProperty<DownloadTrackTaskEntity>(_entities[1].properties[6]);
 }
 
 /// [RemoteConfigEntity] entity fields to define ObjectBox queries.
