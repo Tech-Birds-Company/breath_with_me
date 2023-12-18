@@ -47,9 +47,8 @@ class _CategoriesFilter extends StatelessWidget {
   final TracksFiltersBloc _bloc;
 
   const _CategoriesFilter(
-    this._bloc, {
-    super.key,
-  });
+    this._bloc,
+  );
 
   @override
   Widget build(BuildContext context) =>
@@ -70,9 +69,8 @@ class _LanguagesFilter extends StatelessWidget {
   final TracksFiltersBloc _bloc;
 
   const _LanguagesFilter(
-    this._bloc, {
-    super.key,
-  });
+    this._bloc,
+  );
 
   @override
   Widget build(BuildContext context) =>
@@ -93,9 +91,8 @@ class _LikedTracksFilter extends StatelessWidget {
   final TracksFiltersBloc _bloc;
 
   const _LikedTracksFilter(
-    this._bloc, {
-    super.key,
-  });
+    this._bloc,
+  );
 
   @override
   Widget build(BuildContext context) {
