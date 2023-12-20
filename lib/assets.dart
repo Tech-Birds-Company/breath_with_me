@@ -27,6 +27,9 @@ final class BWMAssets {
   static const signAppleIcon = '$_icons/sign_apple.svg';
   static const signGoogleIcon = '$_icons/sign_google.svg';
   static const signMailIcon = '$_icons/sign_mail.svg';
+  static const deleteAccountIcon = '$_icons/delete_account.svg';
+  static const deleteAccountDarkenedIcon =
+      '$_icons/delete_account_darkened.svg';
 
   static const trackPlayerAnimation = '$_shaders/player_animation.glsl';
   static const emailIcon = '$_icons/email.svg';
