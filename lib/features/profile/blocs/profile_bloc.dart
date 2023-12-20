@@ -74,10 +74,12 @@ final class ProfileBloc extends BlocBase<Object?> {
     _databaseManager.clearDb();
   }
 
-  void openDeleteAccountSheet() {
+  void openDeleteAccount() {
     if (_navigationManager.context == null) {
       return;
     }
-    _navigationManager.openDeleteAccountSheet();
+    _navigationManager.openDeleteAccount();
   }
+
+  void deleteAccount() {}
 }

@@ -16,10 +16,13 @@ class DeleteAccountPage extends ConsumerWidget {
     final currentLocale = EasyLocalization.of(context)!.locale;
     final bloc = ref.read(Di.shared.bloc.deleteAccount);
     return Scaffold(
-        backgroundColor: theme.primaryBackground,
-        body: SizedBox(
-          height: 100,
-          width: 100,
-        ));
+      backgroundColor: theme.primaryBackground,
+      body: Center(
+        child: TextButton(
+          child: Text('Cancel'),
+          onPressed: bloc.cancelDeleting,
+        ),
+      ),
+    );
   }
 }

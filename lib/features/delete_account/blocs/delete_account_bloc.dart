@@ -13,4 +13,11 @@ final class DeleteAccountBloc extends BlocBase<Object?> {
     this._userManager,
     this._databaseManager,
   ) : super(null);
+
+  void cancelDeleting() {
+    if (_navigationManager.context == null) {
+      return;
+    }
+    _navigationManager.pop();
+  }
 }
