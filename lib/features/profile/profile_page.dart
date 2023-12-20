@@ -87,6 +87,11 @@ class ProfilePage extends StatelessWidget {
                     icon: BWMAssets.logout,
                     onTap: profileBloc.onSignOut,
                   ).toSliver,
+                  ProfileMenuItem(
+                    title: "Delete account",
+                    icon: BWMAssets.logout,
+                    onTap: bloc.openDeleteAccountSheet,
+                  ).toSliver,
                 ],
               ),
             ),

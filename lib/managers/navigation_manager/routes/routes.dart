@@ -157,6 +157,12 @@ final class BWMRoutes {
         ),
       ),
     ),
+    GoRoute(
+      path: BWMRoutes.deleteAccountPage,
+      builder: (context, state) {
+        return const DeleteAccountPage();
+      },
+    ),
     ...auth.createAuthRoutes(),
   ];
 }

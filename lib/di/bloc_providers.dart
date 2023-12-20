@@ -110,4 +110,12 @@ final class _BlocProviders {
       ref.read(Di.shared.repository.firebaseRemoteConfig),
     ),
   );
+
+  late final deleteAccount = Provider(
+    (ref) => DeleteAccountBloc(
+      ref.read(Di.shared.manager.navigation),
+      ref.read(Di.shared.manager.user),
+      ref.read(Di.shared.manager.database),
+    ),
+  );
 }

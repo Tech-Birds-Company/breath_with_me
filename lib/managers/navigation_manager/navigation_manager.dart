@@ -120,4 +120,11 @@ final class NavigationManager {
   void singInPage() => router.push(BWMRoutes.auth.signIn);
 
   void forgotPasswordPage() => router.push(BWMRoutes.auth.forgotPassword);
+
+  void openDeleteAccountSheet() {
+    if (context == null) {
+      return;
+    }
+    router.push(BWMRoutes.deleteAccountPage);
+  }
 }
