@@ -20,7 +20,6 @@ import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.d
 import 'package:breathe_with_me/managers/permissions_manager/permissions_manager.dart';
 import 'package:breathe_with_me/managers/player_manager/track_player_manager.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
-import 'package:breathe_with_me/managers/remote_config_manager/remote_config_manager.dart';
 import 'package:breathe_with_me/managers/shared_preferences_manager/shared_preferences_manager.dart';
 import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/firebase_user_manager.dart';
