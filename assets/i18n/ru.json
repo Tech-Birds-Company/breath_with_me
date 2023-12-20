@@ -96,6 +96,14 @@
 	"checkYourEmailSubtitle": "Письмо с инструкциями по восстановлению пароля уже должно быть у тебя на почте",
 	"checkYourEmail": "Проверь почту!",
 	"forgotPassword": "Восстановление пароля",
-	"forgotPasswordSpamFirst": "Не пришло письмо?  Проверь папку «спам» или попробуй ",
-	"forgotPasswordSpamSecond": "указать другой email"
+	"forgotPasswordSpamFirst": "Не пришло письмо? Проверь папку «спам» или попробуй ",
+	"forgotPasswordSpamSecond": "указать другой email",
+
+	"deleteAccountTitle": "Удалить аккаунт?",
+	"deleteAccountDescription": "Нам грустно видеть, что ты уходишь. Напоминаем: весь ваш прогресс и собранное время тренировок будут удалены. После удаления его невозможно было восстановить.",
+	"cancel": "Отменить",
+	"deleteAccountButton": "Удалить аккаунт",
+	"deletedAccountTitle": "Ваш аккаунт был удален",
+	"deletedAccountDescription": "Но вы всегда можете начать все сначала и создать новый",
+	"deletedAccountButton": "Приятно знать, спасибо"
 }

@@ -97,5 +97,13 @@
 	"checkYourEmail": "Check you email",
 	"forgotPassword": "Forgot password",
 	"forgotPasswordSpamFirst": "Did not receive the email? Check your spam folder, ",
-	"forgotPasswordSpamSecond": "or try another email address"
+	"forgotPasswordSpamSecond": "or try another email address",
+
+	"deleteAccountTitle": "Delete account?",
+	"deleteAccountDescription": "We are sad to see you go. Kind reminder: all your progress and collected practice time will be deleted. Once deleted, it could not be restored.",
+	"cancel": "Cancel",
+	"deleteAccountButton": "Delete account",
+	"deletedAccountTitle": "Your account has been deleted",
+	"deletedAccountDescription": "But you can always start fresh and create a new one",
+	"deletedAccountButton": "Good to know, thx"
 }
