@@ -80,6 +80,4 @@ final class ProfileBloc extends BlocBase<Object?> {
     }
     _navigationManager.openDeleteAccount();
   }
-
-  void deleteAccount() {}
 }

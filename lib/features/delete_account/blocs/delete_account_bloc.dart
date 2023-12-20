@@ -20,4 +20,6 @@ final class DeleteAccountBloc extends BlocBase<Object?> {
     }
     _navigationManager.pop();
   }
+
+  void deleteAccount() {}
 }
