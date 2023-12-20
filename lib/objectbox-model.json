@@ -74,25 +74,6 @@
       "relations": []
     },
     {
-      "id": "3:9202169296533729365",
-      "lastPropertyId": "2:939439220607962960",
-      "name": "RemoteConfigEntity",
-      "properties": [
-        {
-          "id": "1:1058503934963432471",
-          "name": "id",
-          "type": 6,
-          "flags": 1
-        },
-        {
-          "id": "2:939439220607962960",
-          "name": "json",
-          "type": 9
-        }
-      ],
-      "relations": []
-    },
-    {
       "id": "6:824565231903327742",
       "lastPropertyId": "2:7810193287127215514",
       "name": "LikedTracksEntity",
@@ -144,14 +125,17 @@
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [
     5903533180160748303,
-    3916112003524532587
+    3916112003524532587,
+    9202169296533729365
   ],
   "retiredIndexUids": [],
   "retiredPropertyUids": [
     7776840511660833783,
     4314483146059560830,
     7412447195083719222,
-    5241098407786361804
+    5241098407786361804,
+    1058503934963432471,
+    939439220607962960
   ],
   "retiredRelationUids": [],
   "version": 1

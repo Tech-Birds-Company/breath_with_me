@@ -4,7 +4,6 @@ import 'package:breathe_with_me/database/database.dart';
 import 'package:breathe_with_me/database/entities/bloc_state_entity.dart';
 import 'package:breathe_with_me/database/entities/download_track_task_entity.dart';
 import 'package:breathe_with_me/database/entities/liked_tracks_entity.dart';
-import 'package:breathe_with_me/database/entities/remote_config_entity.dart';
 import 'package:breathe_with_me/database/entities/secure_image_url_provider_entity.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/features/tracks/models/tracks_list_state.dart';
@@ -18,7 +17,6 @@ final class DatabaseManager {
 
   late final _store = _database.store;
   late final downloadTaskBox = _store.box<DownloadTrackTaskEntity>();
-  late final remoteConfigBox = _store.box<RemoteConfigEntity>();
   late final blocStateBox = _store.box<BlocStateEntity>();
   late final likedTracksBox = _store.box<LikedTracksEntity>();
   late final secureImageUrlBox = _store.box<SecureImageUrlEntity>();
@@ -57,21 +55,6 @@ final class DatabaseManager {
       .query(DownloadTrackTaskEntity_.taskId.equals(taskId))
       .build()
       .removeAsync();
-
-  Future<RemoteConfigEntity?> getRemoteConfig() =>
-      remoteConfigBox.query().build().findFirstAsync();
-
-  Future<void> saveRemoteConfig(Map<String, Object?> json) async {
-    final entities = await remoteConfigBox.getAllAsync();
-    final jsonString = jsonEncode(json);
-    if (entities.isNotEmpty) {
-      final updatedEntity = entities.first..json = jsonString;
-      await remoteConfigBox.putAsync(updatedEntity);
-    } else {
-      final entity = RemoteConfigEntity(json: jsonString);
-      await remoteConfigBox.putAsync(entity);
-    }
-  }
 
   Future<void> saveSecureUrl(String baseUrl, String secureUrl) async {
     final entity = await getSecureUrl(baseUrl);
