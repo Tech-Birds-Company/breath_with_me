@@ -35,7 +35,7 @@ class FaqQuestionItem extends StatelessWidget {
             right: 20,
           ),
           child: Text(
-            question.description,
+            question.description.replaceAll(r'\n', '\n'),
             style: theme.typography.bodyM.copyWith(
               color: theme.gray6,
             ),
