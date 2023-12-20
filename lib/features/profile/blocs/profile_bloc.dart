@@ -24,6 +24,11 @@ final class ProfileBloc extends BlocBase<Object?> {
     this._databaseManager,
   ) : super(null);
 
+  String get username {
+    final currentUser = _userManager.currentUser;
+    return currentUser?.displayName ?? '';
+  }
+
   Future<void> openReminder() async {
     final permissionGranted =
         await _permissionsManager.requestPushNotificationsPermissions();
