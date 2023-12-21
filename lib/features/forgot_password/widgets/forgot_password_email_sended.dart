@@ -32,7 +32,7 @@ class ForgotPasswordEmailSendedWidget extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Spacer(flex: 1),
+              const Spacer(),
               SvgPicture.asset(
                 width: 88,
                 height: 88,

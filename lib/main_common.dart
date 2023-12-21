@@ -29,8 +29,9 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 
-Future<ProviderContainer> _setupDependencies(
-    {required bool isProduction}) async {
+Future<ProviderContainer> _setupDependencies({
+  required bool isProduction,
+}) async {
   final database = await BWMDatabase.init();
   final databaseManager = DatabaseManager(database);
 

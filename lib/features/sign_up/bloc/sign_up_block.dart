@@ -14,7 +14,10 @@ class SignUpBloc extends BlocBase<SignUpState> {
     try {
       _validateInput();
       await _userManager.signUpWithEmail(
-          state.name, state.email, state.password);
+        state.name,
+        state.email,
+        state.password,
+      );
       emit(state.copyWith(error: SignUpError.none));
     } on SignUpException catch (e) {
       emit(state.copyWith(error: e.error));

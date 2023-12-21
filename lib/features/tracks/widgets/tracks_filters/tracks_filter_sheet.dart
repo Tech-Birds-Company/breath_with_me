@@ -56,7 +56,6 @@ class _FilterList extends StatelessWidget {
   const _FilterList({
     required this.filterType,
     required this.bloc,
-    super.key,
   });
 
   @override
@@ -92,7 +91,6 @@ class _FilterListItem extends StatelessWidget {
     required this.itemKey,
     required this.bloc,
     required this.filterType,
-    super.key,
   });
 
   @override
@@ -129,7 +127,6 @@ class _ResetButton extends StatelessWidget {
   const _ResetButton({
     required this.filterType,
     required this.bloc,
-    super.key,
   });
 
   @override

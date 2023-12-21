@@ -2,7 +2,7 @@ import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/common/widgets/bwm_action_button.dart';
 import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
 import 'package:breathe_with_me/design/obscured_field.dart';
-import 'package:breathe_with_me/design/sing_In_buttons.dart';
+import 'package:breathe_with_me/design/sing_in_buttons.dart';
 import 'package:breathe_with_me/features/sign_up/bloc/sign_up_block.dart';
 import 'package:breathe_with_me/features/sign_up/models/sign_up_error.dart';
 import 'package:breathe_with_me/features/sign_up/models/sign_up_state.dart';
@@ -89,13 +89,11 @@ class SignUpPage extends StatelessWidget {
                   height: 40,
                   onPressed: bloc.signUpWithEmail,
                 ),
-                BlocBuilder<SignUpBloc, SignUpState>(
+                BlocSelector<SignUpBloc, SignUpState, SignUpError>(
                   bloc: bloc,
-                  buildWhen: (prev, current) {
-                    return prev.error != current.error;
-                  },
-                  builder: (context, state) {
-                    if (state.error != SignUpError.none) {
+                  selector: (state) => state.error,
+                  builder: (context, error) {
+                    if (error != SignUpError.none) {
                       return SizedBox(
                         height: 67,
                         child: Center(

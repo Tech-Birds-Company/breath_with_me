@@ -117,7 +117,7 @@ final class BWMRoutes {
       path: BWMRoutes.reminderPage,
       builder: (context, state) => DependencyProvider(
         provider: Di.shared.bloc.reminder,
-        builder: (context, Dependency) => ReminderPage(bloc: Dependency),
+        builder: (context, dependency) => ReminderPage(bloc: dependency),
       ),
     ),
     GoRoute(
