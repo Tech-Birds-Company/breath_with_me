@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DependecyProvider<T> extends StatelessWidget {
   final ProviderListenable<T> provider;
-  final Widget Function(T dependency) builder;
+  final Widget Function(BuildContext context, T dependency) builder;
 
   const DependecyProvider({
     required this.provider,
@@ -16,6 +16,6 @@ class DependecyProvider<T> extends StatelessWidget {
     final diContainer = ProviderScope.containerOf(context);
     final dependency = diContainer.read(provider);
 
-    return builder(dependency);
+    return builder(context, dependency);
   }
 }

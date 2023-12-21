@@ -39,7 +39,7 @@ final class BWMRoutes {
       path: BWMRoutes.onboarding,
       builder: (BuildContext context, GoRouterState state) => DependecyProvider(
         provider: Di.shared.bloc.onboarding,
-        builder: (dependency) => OnboardingPage(bloc: dependency),
+        builder: (context, dependency) => OnboardingPage(bloc: dependency),
       ),
     ),
     GoRoute(
