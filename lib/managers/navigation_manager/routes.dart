@@ -4,8 +4,10 @@ import 'package:breathe_with_me/features/home/blocs/home_bloc.dart';
 import 'package:breathe_with_me/features/home/home_page.dart';
 import 'package:breathe_with_me/features/onboarding/create_account_modal_page.dart';
 import 'package:breathe_with_me/features/onboarding/onboarding_page.dart';
+import 'package:breathe_with_me/features/profile/blocs/profile_bloc.dart';
 import 'package:breathe_with_me/features/profile/profile_page.dart';
 import 'package:breathe_with_me/features/profile/widgets/language_sheet.dart';
+import 'package:breathe_with_me/features/reminder/blocs/reminder_bloc.dart';
 import 'package:breathe_with_me/features/reminder/reminder_page.dart';
 import 'package:breathe_with_me/features/safety_precautions/safety_precautions_page.dart';
 import 'package:breathe_with_me/features/sign_in/sign_in_page.dart';
@@ -66,7 +68,17 @@ final class BWMRoutes {
     ),
     GoRoute(
       path: BWMRoutes.profile,
-      builder: (context, state) => const ProfilePage(),
+      builder: (context, state) =>
+          MultiDependecyProvider2<ProfileBloc, ReminderBloc>(
+        providers: (
+          Di.shared.bloc.profile,
+          Di.shared.bloc.reminder,
+        ),
+        builder: (context, dependecies) => ProfilePage(
+          profileBloc: dependecies.$1,
+          reminderBloc: dependecies.$2,
+        ),
+      ),
     ),
     GoRoute(
       path: BWMRoutes.player,
@@ -94,7 +106,10 @@ final class BWMRoutes {
     ),
     GoRoute(
       path: BWMRoutes.reminderPage,
-      builder: (context, state) => const ReminderPage(),
+      builder: (context, state) => DependecyProvider(
+        provider: Di.shared.bloc.reminder,
+        builder: (context, dependecy) => ReminderPage(bloc: dependecy),
+      ),
     ),
     GoRoute(
       path: BWMRoutes.faq,
