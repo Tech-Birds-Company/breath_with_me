@@ -106,9 +106,8 @@ final class _BlocProviders {
 
   late final forgotPassword = Provider.autoDispose(
     (ref) => ForgotPasswordBloc(
-      ref.read(
-        Di.shared.manager.user,
-      ),
+      ref.read(Di.shared.manager.user),
+      ref.read(Di.shared.repository.firebaseRemoteConfig),
     ),
   );
 }

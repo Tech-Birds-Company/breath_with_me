@@ -20,7 +20,7 @@ class AuthRoutes {
     return [
       GoRoute(
         path: _signInPath,
-        builder: (context, state) => DependecyProvider(
+        builder: (context, state) => DependencyProvider(
           provider: Di.shared.bloc.signIn,
           builder: (context, dependency) => SignInPageWidget(
             bloc: dependency,
@@ -29,7 +29,7 @@ class AuthRoutes {
       ),
       GoRoute(
         path: _signUpPath,
-        builder: (context, state) => DependecyProvider(
+        builder: (context, state) => DependencyProvider(
           provider: Di.shared.bloc.signUp,
           builder: (context, dependency) => SignUpPage(
             bloc: dependency,
