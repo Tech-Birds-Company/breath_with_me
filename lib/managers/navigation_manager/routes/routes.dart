@@ -1,4 +1,5 @@
 import 'package:breathe_with_me/di/di.dart';
+import 'package:breathe_with_me/features/delete_account/delete_account_page.dart';
 import 'package:breathe_with_me/features/faq/faq_page.dart';
 import 'package:breathe_with_me/features/home/blocs/home_bloc.dart';
 import 'package:breathe_with_me/features/home/home_page.dart';
@@ -37,6 +38,7 @@ final class BWMRoutes {
   static const faq = '/faq';
   static const safetyPrecautions = '/safety-precautions';
   static const filtersSheet = '/filters-sheet';
+  static const deleteAccountPage = '/delete-account';
 
   static const auth = AuthRoutes();
 
