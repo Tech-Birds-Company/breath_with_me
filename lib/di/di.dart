@@ -1,6 +1,7 @@
 library di;
 
 import 'package:breathe_with_me/features/faq/blocs/faq_block.dart';
+import 'package:breathe_with_me/features/forgot_password/bloc/forgot_password_bloc.dart';
 import 'package:breathe_with_me/features/home/blocs/home_bloc.dart';
 import 'package:breathe_with_me/features/onboarding/blocs/onboarding_bloc.dart';
 import 'package:breathe_with_me/features/profile/blocs/profile_bloc.dart';

@@ -10,8 +10,6 @@ import 'package:breathe_with_me/features/profile/widgets/language_sheet.dart';
 import 'package:breathe_with_me/features/reminder/blocs/reminder_bloc.dart';
 import 'package:breathe_with_me/features/reminder/reminder_page.dart';
 import 'package:breathe_with_me/features/safety_precautions/safety_precautions_page.dart';
-import 'package:breathe_with_me/features/sign_in/sign_in_page.dart';
-import 'package:breathe_with_me/features/sign_up/sign_up_page.dart';
 import 'package:breathe_with_me/features/track_player/track_player_page.dart';
 import 'package:breathe_with_me/features/tracks/blocs/tracks_filters_bloc.dart';
 import 'package:breathe_with_me/features/tracks/blocs/tracks_list_bloc.dart';
@@ -20,6 +18,7 @@ import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_filters/tracks_filter_sheet.dart';
 import 'package:breathe_with_me/managers/navigation_manager/bwm_modal_page.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
+import 'package:breathe_with_me/managers/navigation_manager/routes/auth_routes.dart';
 import 'package:breathe_with_me/utils/dependency_provider.dart';
 import 'package:breathe_with_me/utils/multi_dependency_provider.dart';
 import 'package:flutter/material.dart';
@@ -38,8 +37,8 @@ final class BWMRoutes {
   static const faq = '/faq';
   static const safetyPrecautions = '/safety-precautions';
   static const filtersSheet = '/filters-sheet';
-  static const signInPage = '/sign-in';
-  static const signUpPage = '/sign-up';
+
+  static const auth = AuthRoutes();
 
   static final routes = <RouteBase>[
     GoRoute(
@@ -158,23 +157,6 @@ final class BWMRoutes {
         ),
       ),
     ),
-    GoRoute(
-      path: BWMRoutes.signInPage,
-      builder: (context, state) => DependencyProvider(
-        provider: Di.shared.bloc.signIn,
-        builder: (context, dependency) => SignInPageWidget(
-          bloc: dependency,
-        ),
-      ),
-    ),
-    GoRoute(
-      path: BWMRoutes.signUpPage,
-      builder: (context, state) => DependencyProvider(
-        provider: Di.shared.bloc.signUp,
-        builder: (context, dependency) => SignUpPage(
-          bloc: dependency,
-        ),
-      ),
-    ),
+    ...auth.createAuthRoutes(),
   ];
 }
