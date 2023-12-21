@@ -1,3 +1,4 @@
+import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/faq/faq_page.dart';
 import 'package:breathe_with_me/features/home/home_page.dart';
 import 'package:breathe_with_me/features/onboarding/create_account_modal_page.dart';
@@ -13,6 +14,7 @@ import 'package:breathe_with_me/features/tracks/filter_type.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_filters/tracks_filter_sheet.dart';
 import 'package:breathe_with_me/managers/navigation_manager/bwm_modal_page.dart';
+import 'package:breathe_with_me/utils/dependency_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -35,9 +37,10 @@ final class BWMRoutes {
   static final routes = <RouteBase>[
     GoRoute(
       path: BWMRoutes.onboarding,
-      builder: (BuildContext context, GoRouterState state) {
-        return const OnboardingPage();
-      },
+      builder: (BuildContext context, GoRouterState state) => DependecyProvider(
+        provider: Di.shared.bloc.onboarding,
+        builder: (dependency) => OnboardingPage(bloc: dependency),
+      ),
     ),
     GoRoute(
       path: BWMRoutes.home,
