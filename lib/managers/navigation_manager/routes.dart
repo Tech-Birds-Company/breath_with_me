@@ -44,15 +44,11 @@ final class BWMRoutes {
     ),
     GoRoute(
       path: BWMRoutes.home,
-      builder: (context, state) {
-        return const HomePage();
-      },
+      builder: (context, state) => const HomePage(),
     ),
     GoRoute(
       path: BWMRoutes.profile,
-      builder: (context, state) {
-        return const ProfilePage();
-      },
+      builder: (context, state) => const ProfilePage(),
     ),
     GoRoute(
       path: BWMRoutes.player,
@@ -63,36 +59,31 @@ final class BWMRoutes {
     ),
     GoRoute(
       path: BWMRoutes.createAccount,
-      pageBuilder: (context, state) {
-        return const BWMModalPage(
-          barrierColor: Colors.black,
-          isScrollControlled: true,
-          useSafeArea: true,
-          enableDrag: false,
-          child: CreateAccountModalPage(),
-        );
-      },
+      pageBuilder: (context, state) => const BWMModalPage(
+        barrierColor: Colors.black,
+        isScrollControlled: true,
+        useSafeArea: true,
+        enableDrag: false,
+        child: CreateAccountModalPage(),
+      ),
     ),
     GoRoute(
       path: BWMRoutes.languageSheet,
-      pageBuilder: (context, state) {
-        return const BWMModalPage(
-          backgroundColor: Colors.transparent,
-          child: LanguageSheet(),
-        );
-      },
+      pageBuilder: (context, state) => const BWMModalPage(
+        backgroundColor: Colors.transparent,
+        child: LanguageSheet(),
+      ),
     ),
     GoRoute(
       path: BWMRoutes.reminderPage,
-      builder: (context, state) {
-        return const ReminderPage();
-      },
+      builder: (context, state) => const ReminderPage(),
     ),
     GoRoute(
       path: BWMRoutes.faq,
-      builder: (context, state) {
-        return const FaqPage();
-      },
+      builder: (context, state) => DependecyProvider(
+        provider: Di.shared.bloc.faq,
+        builder: (context, dependency) => FaqPage(bloc: dependency),
+      ),
     ),
     GoRoute(
       path: BWMRoutes.safetyPrecautions,
@@ -115,15 +106,11 @@ final class BWMRoutes {
     ),
     GoRoute(
       path: BWMRoutes.signInPage,
-      builder: (context, state) {
-        return const SignInPageWidget();
-      },
+      builder: (context, state) => const SignInPageWidget(),
     ),
     GoRoute(
       path: BWMRoutes.signUpPage,
-      builder: (context, state) {
-        return const SignUpPage();
-      },
+      builder: (context, state) => const SignUpPage(),
     ),
   ];
 }
