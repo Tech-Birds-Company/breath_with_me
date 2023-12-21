@@ -30,6 +30,7 @@ final class BWMAssets {
   static const deleteAccountIcon = '$_icons/delete_account.svg';
   static const deleteAccountDarkenedIcon =
       '$_icons/delete_account_darkened.svg';
+  static const trash = '$_icons/trash.svg';
 
   static const trackPlayerAnimation = '$_shaders/player_animation.glsl';
   static const emailIcon = '$_icons/email.svg';
