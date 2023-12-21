@@ -565,6 +565,7 @@
 				ENABLE_BITCODE = NO;
 				GOOGLE_REVERSE_CLIENT_ID = "com.googleusercontent.apps.807142596957-8v846cl2kn1j89s5pnfr73lqvghv1rch";
 				INFOPLIST_FILE = Runner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -699,6 +700,7 @@
 				ENABLE_BITCODE = NO;
 				GOOGLE_REVERSE_CLIENT_ID = "com.googleusercontent.apps.847416864961-ecn875f4kj2ocr9tslq9pnbr5ushhshr";
 				INFOPLIST_FILE = Runner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -799,6 +801,7 @@
 				ENABLE_BITCODE = NO;
 				GOOGLE_REVERSE_CLIENT_ID = "com.googleusercontent.apps.847416864961-ecn875f4kj2ocr9tslq9pnbr5ushhshr";
 				INFOPLIST_FILE = Runner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -894,6 +897,7 @@
 				ENABLE_BITCODE = NO;
 				GOOGLE_REVERSE_CLIENT_ID = "com.googleusercontent.apps.847416864961-ecn875f4kj2ocr9tslq9pnbr5ushhshr";
 				INFOPLIST_FILE = Runner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1046,6 +1050,7 @@
 				ENABLE_BITCODE = NO;
 				GOOGLE_REVERSE_CLIENT_ID = "com.googleusercontent.apps.807142596957-8v846cl2kn1j89s5pnfr73lqvghv1rch";
 				INFOPLIST_FILE = Runner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1076,6 +1081,7 @@
 				ENABLE_BITCODE = NO;
 				GOOGLE_REVERSE_CLIENT_ID = "com.googleusercontent.apps.807142596957-8v846cl2kn1j89s5pnfr73lqvghv1rch";
 				INFOPLIST_FILE = Runner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
