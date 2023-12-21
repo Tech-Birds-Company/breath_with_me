@@ -1,19 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'legal_documents.dart';
+part of 'remote_config_legal_documents.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-LegalDocuments _$LegalDocumentsFromJson(Map json) => LegalDocuments(
+RemoteConfigLegalDocuments _$RemoteConfigLegalDocumentsFromJson(Map json) =>
+    RemoteConfigLegalDocuments(
       privacyPolicyUrl: json['privacyPolicyUrl'] as String? ??
           'https://breathewithme.app/privacypolicy',
       termsOfServiceUrl: json['termsOfServiceUrl'] as String? ??
-          'https://drive.google.com/file/d/1ESZt6YCUZFP1ZBvis6YjQzqTx0aLTKKj/view',
+          'https://drive.google.com/file/d/1ESZt6YCUZFP1ZBvis6YjQzqTx0aLTKKj',
     );
 
-Map<String, dynamic> _$LegalDocumentsToJson(LegalDocuments instance) =>
+Map<String, dynamic> _$RemoteConfigLegalDocumentsToJson(
+        RemoteConfigLegalDocuments instance) =>
     <String, dynamic>{
       'privacyPolicyUrl': instance.privacyPolicyUrl,
       'termsOfServiceUrl': instance.termsOfServiceUrl,

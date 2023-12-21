@@ -13,9 +13,7 @@ final class _RepositoryProviders {
       Provider((ref) => const FirebaseTutorsRepository());
 
   late final firebaseRemoteConfig = Provider(
-    (ref) => FirebaseRemoteConfigRepository(
-      ref.read(Di.shared.manager.database),
-    ),
+    (ref) => const FirebaseRemoteConfigRepository(),
   );
 
   late final firebaseFaqQuestions =

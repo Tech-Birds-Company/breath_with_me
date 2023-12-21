@@ -12,17 +12,16 @@ import 'package:breathe_with_me/managers/download_manager/tracks_downloader_mang
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/player_manager/track_player_manager.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
-import 'package:breathe_with_me/managers/remote_config_manager/remote_config_manager.dart';
 import 'package:breathe_with_me/managers/shared_preferences_manager/shared_preferences_manager.dart';
 import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager_dev.dart';
 import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager_prod.dart';
 import 'package:breathe_with_me/managers/user_manager/firebase_user_manager.dart';
-import 'package:breathe_with_me/repositories/firebase_remote_config_repository.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/objectbox_bloc_storage.dart';
 import 'package:breathe_with_me/utils/environment.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -38,8 +37,6 @@ Future<List<Override>> _setupDependencies({required bool isProduction}) async {
   CacheableBloc.storage = storage;
 
   final tracksDownloadManager = TracksDownloaderManager(databaseManager);
-  final remoteConfigManager =
-      RemoteConfigManager(FirebaseRemoteConfigRepository(databaseManager));
   final pushNotificationsManager = PushNotificationsManager();
   final userManager = FirebaseUserManager();
   final navigationManager = NavigationManager(userManager);
@@ -68,7 +65,6 @@ Future<List<Override>> _setupDependencies({required bool isProduction}) async {
 
   navigationManager.init();
   subscriptionsManager.init();
-  remoteConfigManager.init();
 
   await sharedPrefsManager.init();
   await pushNotificationsManager.init();
@@ -86,7 +82,6 @@ Future<List<Override>> _setupDependencies({required bool isProduction}) async {
     Di.shared.manager.tracksDownloader.overrideWithValue(tracksDownloadManager),
     Di.shared.manager.trackPlayer.overrideWithValue(playerManager),
     Di.shared.manager.audio.overrideWithValue(trackAudioManager),
-    Di.shared.manager.remoteConfig.overrideWithValue(remoteConfigManager),
     Di.shared.manager.pushNotifications
         .overrideWithValue(pushNotificationsManager),
     Di.shared.manager.user.overrideWithValue(userManager),
@@ -100,6 +95,9 @@ Future<void> mainCommon(Environment env) async {
   WidgetsFlutterBinding.ensureInitialized();
   tz.initializeTimeZones();
   await Firebase.initializeApp();
+
+  await FirebaseRemoteConfig.instance.ensureInitialized();
+  await FirebaseRemoteConfig.instance.fetchAndActivate();
 
   final dependencies =
       await _setupDependencies(isProduction: env == Environment.prod);

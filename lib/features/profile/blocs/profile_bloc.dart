@@ -24,6 +24,11 @@ final class ProfileBloc extends BlocBase<Object?> {
     this._databaseManager,
   ) : super(null);
 
+  String get username {
+    final currentUser = _userManager.currentUser;
+    return currentUser?.displayName ?? '';
+  }
+
   Future<void> openReminder() async {
     final permissionGranted =
         await _permissionsManager.requestPushNotificationsPermissions();
@@ -35,9 +40,9 @@ final class ProfileBloc extends BlocBase<Object?> {
   }
 
   Future<void> openCommunityChat() async {
-    final config = await _firebaseRemoteConfigRepository.getRemoteConfig();
-    final communityDeeplink = Uri.parse(config.socials.communityDeeplink);
-    final communityUrl = Uri.parse(config.socials.communityUrl);
+    final socials = _firebaseRemoteConfigRepository.socials;
+    final communityDeeplink = Uri.parse(socials.communityDeeplink);
+    final communityUrl = Uri.parse(socials.communityUrl);
     final canLaunch = await canLaunchUrl(communityDeeplink);
     if (canLaunch) {
       await launchUrl(communityDeeplink);
@@ -47,8 +52,8 @@ final class ProfileBloc extends BlocBase<Object?> {
   }
 
   Future<void> onSupportEmail() async {
-    final config = await _firebaseRemoteConfigRepository.getRemoteConfig();
-    final supportEmailDeeplink = Uri.parse(config.socials.supportEmailDeeplink);
+    final socials = _firebaseRemoteConfigRepository.socials;
+    final supportEmailDeeplink = Uri.parse(socials.supportEmailDeeplink);
     final canLaunch = await canLaunchUrl(supportEmailDeeplink);
     if (canLaunch) {
       await launchUrl(supportEmailDeeplink);

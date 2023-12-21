@@ -35,16 +35,6 @@ final class _ManagerProviders {
 
   late final permissions = Provider((ref) => PermissionsManager());
 
-  late final remoteConfig = Provider(
-    (ref) {
-      final manager = RemoteConfigManager(
-        ref.read(Di.shared.repository.firebaseRemoteConfig),
-      );
-      ref.onDispose(manager.dispose);
-      return manager;
-    },
-  );
-
   late final pushNotifications = Provider(
     (ref) => PushNotificationsManager(),
   );

@@ -17,7 +17,6 @@ import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 import 'database/entities/bloc_state_entity.dart';
 import 'database/entities/download_track_task_entity.dart';
 import 'database/entities/liked_tracks_entity.dart';
-import 'database/entities/remote_config_entity.dart';
 import 'database/entities/secure_image_url_provider_entity.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
@@ -87,25 +86,6 @@ final _entities = <ModelEntity>[
         ModelProperty(
             id: const IdUid(7, 5485759589785327512),
             name: 'uid',
-            type: 9,
-            flags: 0)
-      ],
-      relations: <ModelRelation>[],
-      backlinks: <ModelBacklink>[]),
-  ModelEntity(
-      id: const IdUid(3, 9202169296533729365),
-      name: 'RemoteConfigEntity',
-      lastPropertyId: const IdUid(2, 939439220607962960),
-      flags: 0,
-      properties: <ModelProperty>[
-        ModelProperty(
-            id: const IdUid(1, 1058503934963432471),
-            name: 'id',
-            type: 6,
-            flags: 1),
-        ModelProperty(
-            id: const IdUid(2, 939439220607962960),
-            name: 'json',
             type: 9,
             flags: 0)
       ],
@@ -187,13 +167,19 @@ ModelDefinition getObjectBoxModel() {
       lastIndexId: const IdUid(3, 1751915082189870401),
       lastRelationId: const IdUid(0, 0),
       lastSequenceId: const IdUid(0, 0),
-      retiredEntityUids: const [5903533180160748303, 3916112003524532587],
+      retiredEntityUids: const [
+        5903533180160748303,
+        3916112003524532587,
+        9202169296533729365
+      ],
       retiredIndexUids: const [],
       retiredPropertyUids: const [
         7776840511660833783,
         4314483146059560830,
         7412447195083719222,
-        5241098407786361804
+        5241098407786361804,
+        1058503934963432471,
+        939439220607962960
       ],
       retiredRelationUids: const [],
       modelVersion: 5,
@@ -281,34 +267,8 @@ ModelDefinition getObjectBoxModel() {
 
           return object;
         }),
-    RemoteConfigEntity: EntityDefinition<RemoteConfigEntity>(
-        model: _entities[2],
-        toOneRelations: (RemoteConfigEntity object) => [],
-        toManyRelations: (RemoteConfigEntity object) => {},
-        getId: (RemoteConfigEntity object) => object.id,
-        setId: (RemoteConfigEntity object, int id) {
-          object.id = id;
-        },
-        objectToFB: (RemoteConfigEntity object, fb.Builder fbb) {
-          final jsonOffset = fbb.writeString(object.json);
-          fbb.startTable(3);
-          fbb.addInt64(0, object.id);
-          fbb.addOffset(1, jsonOffset);
-          fbb.finish(fbb.endTable());
-          return object.id;
-        },
-        objectFromFB: (Store store, ByteData fbData) {
-          final buffer = fb.BufferContext(fbData);
-          final rootOffset = buffer.derefObject(0);
-          final jsonParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 6, '');
-          final object = RemoteConfigEntity(json: jsonParam)
-            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
-
-          return object;
-        }),
     LikedTracksEntity: EntityDefinition<LikedTracksEntity>(
-        model: _entities[3],
+        model: _entities[2],
         toOneRelations: (LikedTracksEntity object) => [],
         toManyRelations: (LikedTracksEntity object) => {},
         getId: (LikedTracksEntity object) => object.id,
@@ -338,7 +298,7 @@ ModelDefinition getObjectBoxModel() {
           return object;
         }),
     SecureImageUrlEntity: EntityDefinition<SecureImageUrlEntity>(
-        model: _entities[4],
+        model: _entities[3],
         toOneRelations: (SecureImageUrlEntity object) => [],
         toManyRelations: (SecureImageUrlEntity object) => {},
         getId: (SecureImageUrlEntity object) => object.id,
@@ -419,39 +379,28 @@ class DownloadTrackTaskEntity_ {
       QueryStringProperty<DownloadTrackTaskEntity>(_entities[1].properties[6]);
 }
 
-/// [RemoteConfigEntity] entity fields to define ObjectBox queries.
-class RemoteConfigEntity_ {
-  /// see [RemoteConfigEntity.id]
-  static final id =
-      QueryIntegerProperty<RemoteConfigEntity>(_entities[2].properties[0]);
-
-  /// see [RemoteConfigEntity.json]
-  static final json =
-      QueryStringProperty<RemoteConfigEntity>(_entities[2].properties[1]);
-}
-
 /// [LikedTracksEntity] entity fields to define ObjectBox queries.
 class LikedTracksEntity_ {
   /// see [LikedTracksEntity.id]
   static final id =
-      QueryIntegerProperty<LikedTracksEntity>(_entities[3].properties[0]);
+      QueryIntegerProperty<LikedTracksEntity>(_entities[2].properties[0]);
 
   /// see [LikedTracksEntity.likes]
   static final likes =
-      QueryStringVectorProperty<LikedTracksEntity>(_entities[3].properties[1]);
+      QueryStringVectorProperty<LikedTracksEntity>(_entities[2].properties[1]);
 }
 
 /// [SecureImageUrlEntity] entity fields to define ObjectBox queries.
 class SecureImageUrlEntity_ {
   /// see [SecureImageUrlEntity.id]
   static final id =
-      QueryIntegerProperty<SecureImageUrlEntity>(_entities[4].properties[0]);
+      QueryIntegerProperty<SecureImageUrlEntity>(_entities[3].properties[0]);
 
   /// see [SecureImageUrlEntity.baseUrl]
   static final baseUrl =
-      QueryStringProperty<SecureImageUrlEntity>(_entities[4].properties[1]);
+      QueryStringProperty<SecureImageUrlEntity>(_entities[3].properties[1]);
 
   /// see [SecureImageUrlEntity.secureUrl]
   static final secureUrl =
-      QueryStringProperty<SecureImageUrlEntity>(_entities[4].properties[2]);
+      QueryStringProperty<SecureImageUrlEntity>(_entities[3].properties[2]);
 }

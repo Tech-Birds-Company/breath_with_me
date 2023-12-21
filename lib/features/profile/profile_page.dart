@@ -43,7 +43,9 @@ class ProfilePage extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: CustomScrollView(
                 slivers: [
-                  const ProfileHeader().toSliver, // TODO(igor): fix
+                  ProfileHeader(
+                    username: bloc.username,
+                  ).toSliver, // TODO(igor): fix
                   const SizedBox(height: 230).toSliver,
                   ProfileMenuItem(
                     title: LocaleKeys.profileSettings.tr(),
