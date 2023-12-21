@@ -2,7 +2,6 @@ import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/common/widgets/bwm_action_button.dart';
 import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
 import 'package:breathe_with_me/design/obscured_field.dart';
-import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/forgot_password/bloc/forgot_password_bloc.dart';
 import 'package:breathe_with_me/features/forgot_password/models/forgot_password_state.dart';
 import 'package:breathe_with_me/features/forgot_password/widgets/forgot_password_email_sended.dart';
@@ -11,16 +10,18 @@ import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ForgotPasswordPage extends ConsumerWidget {
-  const ForgotPasswordPage({super.key});
+class ForgotPasswordPage extends StatelessWidget {
+  final ForgotPasswordBloc bloc;
+
+  const ForgotPasswordPage({
+    required this.bloc,
+    super.key,
+  });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    final bloc = ref.read(Di.shared.bloc.forgotPassword);
-
     return Stack(
       children: [
         Scaffold(
@@ -89,13 +90,11 @@ class ForgotPasswordPage extends ConsumerWidget {
             ),
           ),
         ),
-        BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
+        BlocSelector<ForgotPasswordBloc, ForgotPasswordState, bool>(
           bloc: bloc,
-          buildWhen: (prev, current) {
-            return prev.requestSended != current.requestSended;
-          },
-          builder: (context, state) {
-            if (state.requestSended) {
+          selector: (state) => state.requestSended,
+          builder: (context, requestSended) {
+            if (requestSended) {
               return SizedBox(
                 child: ForgotPasswordEmailSendedWidget(
                   onOpenEmailTap: bloc.openEmailApp,

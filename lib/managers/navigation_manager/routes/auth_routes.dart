@@ -38,7 +38,11 @@ class AuthRoutes {
       ),
       GoRoute(
         path: _forgotPasswordPath,
-        builder: (context, state) => const ForgotPasswordPage(),
+        builder: (context, state) => DependencyProvider(
+          provider: Di.shared.bloc.forgotPassword,
+          builder: (context, dependency) =>
+              ForgotPasswordPage(bloc: dependency),
+        ),
       ),
     ];
   }
