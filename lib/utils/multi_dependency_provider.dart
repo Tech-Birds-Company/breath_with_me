@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MultiDependecyProvider2<T1, T2> extends StatelessWidget {
+class MultiDependencyProvider2<T1, T2> extends StatelessWidget {
   final (
     ProviderListenable<T1>,
     ProviderListenable<T2>,
   ) providers;
   final Widget Function(BuildContext context, (T1, T2) dependencies) builder;
 
-  const MultiDependecyProvider2({
+  const MultiDependencyProvider2({
     required this.providers,
     required this.builder,
     super.key,
@@ -28,7 +28,7 @@ class MultiDependecyProvider2<T1, T2> extends StatelessWidget {
   }
 }
 
-class MultiDependecyProvider3<T1, T2, T3> extends StatelessWidget {
+class MultiDependencyProvider3<T1, T2, T3> extends StatelessWidget {
   final (
     ProviderListenable<T1>,
     ProviderListenable<T2>,
@@ -37,7 +37,7 @@ class MultiDependecyProvider3<T1, T2, T3> extends StatelessWidget {
   final Widget Function(BuildContext context, (T1, T2, T3) dependencies)
       builder;
 
-  const MultiDependecyProvider3({
+  const MultiDependencyProvider3({
     required this.providers,
     required this.builder,
     super.key,
@@ -58,7 +58,7 @@ class MultiDependecyProvider3<T1, T2, T3> extends StatelessWidget {
   }
 }
 
-class MultiDependecyProvider4<T1, T2, T3, T4> extends StatelessWidget {
+class MultiDependencyProvider4<T1, T2, T3, T4> extends StatelessWidget {
   final (
     ProviderListenable<T1>,
     ProviderListenable<T2>,
@@ -68,7 +68,7 @@ class MultiDependecyProvider4<T1, T2, T3, T4> extends StatelessWidget {
   final Widget Function(BuildContext context, (T1, T2, T3, T4) dependencies)
       builder;
 
-  const MultiDependecyProvider4({
+  const MultiDependencyProvider4({
     required this.providers,
     required this.builder,
     super.key,

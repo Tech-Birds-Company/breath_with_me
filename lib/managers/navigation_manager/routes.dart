@@ -44,14 +44,15 @@ final class BWMRoutes {
   static final routes = <RouteBase>[
     GoRoute(
       path: BWMRoutes.onboarding,
-      builder: (BuildContext context, GoRouterState state) => DependecyProvider(
+      builder: (BuildContext context, GoRouterState state) =>
+          DependencyProvider(
         provider: Di.shared.bloc.onboarding,
         builder: (context, dependency) => OnboardingPage(bloc: dependency),
       ),
     ),
     GoRoute(
       path: BWMRoutes.home,
-      builder: (context, state) => MultiDependecyProvider4<HomeBloc,
+      builder: (context, state) => MultiDependencyProvider4<HomeBloc,
           NavigationManager, TracksListBloc, TracksFiltersBloc>(
         providers: (
           Di.shared.bloc.home,
@@ -70,7 +71,7 @@ final class BWMRoutes {
     GoRoute(
       path: BWMRoutes.profile,
       builder: (context, state) =>
-          MultiDependecyProvider2<ProfileBloc, ReminderBloc>(
+          MultiDependencyProvider2<ProfileBloc, ReminderBloc>(
         providers: (
           Di.shared.bloc.profile,
           Di.shared.bloc.reminder,
@@ -85,7 +86,7 @@ final class BWMRoutes {
       path: BWMRoutes.player,
       builder: (context, state) {
         final track = state.extra! as Track;
-        return DependecyProvider(
+        return DependencyProvider(
           provider: Di.shared.bloc.trackPlayer(track),
           builder: (context, dependency) => TrackPlayerPage(bloc: dependency),
         );
@@ -98,7 +99,7 @@ final class BWMRoutes {
         isScrollControlled: true,
         useSafeArea: true,
         enableDrag: false,
-        child: DependecyProvider(
+        child: DependencyProvider(
           provider: Di.shared.bloc.onboarding,
           builder: (context, dependency) => CreateAccountModalPage(
             bloc: dependency,
@@ -115,14 +116,14 @@ final class BWMRoutes {
     ),
     GoRoute(
       path: BWMRoutes.reminderPage,
-      builder: (context, state) => DependecyProvider(
+      builder: (context, state) => DependencyProvider(
         provider: Di.shared.bloc.reminder,
-        builder: (context, dependecy) => ReminderPage(bloc: dependecy),
+        builder: (context, Dependency) => ReminderPage(bloc: Dependency),
       ),
     ),
     GoRoute(
       path: BWMRoutes.faq,
-      builder: (context, state) => DependecyProvider(
+      builder: (context, state) => DependencyProvider(
         provider: Di.shared.bloc.faq,
         builder: (context, dependency) => FaqPage(bloc: dependency),
       ),
@@ -135,7 +136,7 @@ final class BWMRoutes {
         enableDrag: false,
         isDismissible: false,
         isScrollControlled: true,
-        child: DependecyProvider(
+        child: DependencyProvider(
           provider: Di.shared.bloc.safetyPrecautions,
           builder: (context, dependency) => SafetyPrecautionsPage(
             bloc: dependency,
@@ -148,7 +149,7 @@ final class BWMRoutes {
       pageBuilder: (context, state) => BWMModalPage(
         backgroundColor: Colors.transparent,
         isScrollControlled: true,
-        child: DependecyProvider(
+        child: DependencyProvider(
           provider: Di.shared.bloc.tracksFilters,
           builder: (context, dependency) => TracksFilterSheet(
             bloc: dependency,
@@ -159,7 +160,7 @@ final class BWMRoutes {
     ),
     GoRoute(
       path: BWMRoutes.signInPage,
-      builder: (context, state) => DependecyProvider(
+      builder: (context, state) => DependencyProvider(
         provider: Di.shared.bloc.signIn,
         builder: (context, dependency) => SignInPageWidget(
           bloc: dependency,
@@ -168,7 +169,7 @@ final class BWMRoutes {
     ),
     GoRoute(
       path: BWMRoutes.signUpPage,
-      builder: (context, state) => DependecyProvider(
+      builder: (context, state) => DependencyProvider(
         provider: Di.shared.bloc.signUp,
         builder: (context, dependency) => SignUpPage(
           bloc: dependency,

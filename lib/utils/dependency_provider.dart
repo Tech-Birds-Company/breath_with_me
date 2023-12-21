@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DependecyProvider<T> extends StatelessWidget {
+class DependencyProvider<T> extends StatelessWidget {
   final ProviderListenable<T> provider;
   final Widget Function(BuildContext context, T dependency) builder;
 
-  const DependecyProvider({
+  const DependencyProvider({
     required this.provider,
     required this.builder,
     super.key,

@@ -42,7 +42,7 @@ class SecureCachedImage extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => DependecyProvider(
+  Widget build(BuildContext context) => DependencyProvider(
         provider: _secureImageUrlProvider(baseUrl),
         builder: (context, dependency) => dependency.when(
           data: (url) => url != null
