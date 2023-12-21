@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 extension StringHexToColor on String? {
-  Color? toColor() {
+  Color? get toColor {
     if (this == null) {
       return null;
     }

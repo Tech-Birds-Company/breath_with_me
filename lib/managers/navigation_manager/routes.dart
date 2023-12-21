@@ -13,6 +13,8 @@ import 'package:breathe_with_me/features/safety_precautions/safety_precautions_p
 import 'package:breathe_with_me/features/sign_in/sign_in_page.dart';
 import 'package:breathe_with_me/features/sign_up/sign_up_page.dart';
 import 'package:breathe_with_me/features/track_player/track_player_page.dart';
+import 'package:breathe_with_me/features/tracks/blocs/tracks_filters_bloc.dart';
+import 'package:breathe_with_me/features/tracks/blocs/tracks_list_bloc.dart';
 import 'package:breathe_with_me/features/tracks/filter_type.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_filters/tracks_filter_sheet.dart';
@@ -49,21 +51,20 @@ final class BWMRoutes {
     ),
     GoRoute(
       path: BWMRoutes.home,
-      builder: (context, state) =>
-          MultiDependecyProvider2<HomeBloc, NavigationManager>(
+      builder: (context, state) => MultiDependecyProvider4<HomeBloc,
+          NavigationManager, TracksListBloc, TracksFiltersBloc>(
         providers: (
           Di.shared.bloc.home,
           Di.shared.manager.navigation,
+          Di.shared.bloc.tracksList,
+          Di.shared.bloc.tracksFilters,
         ),
-        builder: (context, dependencies) {
-          final bloc = dependencies.$1;
-          final navigationManager = dependencies.$2;
-
-          return HomePage(
-            bloc: bloc,
-            navigationManager: navigationManager,
-          );
-        },
+        builder: (context, dependencies) => HomePage(
+          homeBloc: dependencies.$1,
+          navigationManager: dependencies.$2,
+          tracksListBloc: dependencies.$3,
+          tracksFiltersBloc: dependencies.$4,
+        ),
       ),
     ),
     GoRoute(
@@ -84,17 +85,25 @@ final class BWMRoutes {
       path: BWMRoutes.player,
       builder: (context, state) {
         final track = state.extra! as Track;
-        return TrackPlayerPage(track: track);
+        return DependecyProvider(
+          provider: Di.shared.bloc.trackPlayer(track),
+          builder: (context, dependency) => TrackPlayerPage(bloc: dependency),
+        );
       },
     ),
     GoRoute(
       path: BWMRoutes.createAccount,
-      pageBuilder: (context, state) => const BWMModalPage(
+      pageBuilder: (context, state) => BWMModalPage(
         barrierColor: Colors.black,
         isScrollControlled: true,
         useSafeArea: true,
         enableDrag: false,
-        child: CreateAccountModalPage(),
+        child: DependecyProvider(
+          provider: Di.shared.bloc.onboarding,
+          builder: (context, dependency) => CreateAccountModalPage(
+            bloc: dependency,
+          ),
+        ),
       ),
     ),
     GoRoute(
@@ -120,13 +129,18 @@ final class BWMRoutes {
     ),
     GoRoute(
       path: BWMRoutes.safetyPrecautions,
-      pageBuilder: (context, state) => const BWMModalPage(
+      pageBuilder: (context, state) => BWMModalPage(
         barrierColor: Colors.transparent,
         useSafeArea: true,
         enableDrag: false,
         isDismissible: false,
         isScrollControlled: true,
-        child: SafetyPrecautionsPage(),
+        child: DependecyProvider(
+          provider: Di.shared.bloc.safetyPrecautions,
+          builder: (context, dependency) => SafetyPrecautionsPage(
+            bloc: dependency,
+          ),
+        ),
       ),
     ),
     GoRoute(
@@ -134,16 +148,32 @@ final class BWMRoutes {
       pageBuilder: (context, state) => BWMModalPage(
         backgroundColor: Colors.transparent,
         isScrollControlled: true,
-        child: TracksFilterSheet(state.extra! as FilterType),
+        child: DependecyProvider(
+          provider: Di.shared.bloc.tracksFilters,
+          builder: (context, dependency) => TracksFilterSheet(
+            bloc: dependency,
+            filterType: state.extra! as FilterType,
+          ),
+        ),
       ),
     ),
     GoRoute(
       path: BWMRoutes.signInPage,
-      builder: (context, state) => const SignInPageWidget(),
+      builder: (context, state) => DependecyProvider(
+        provider: Di.shared.bloc.signIn,
+        builder: (context, dependency) => SignInPageWidget(
+          bloc: dependency,
+        ),
+      ),
     ),
     GoRoute(
       path: BWMRoutes.signUpPage,
-      builder: (context, state) => const SignUpPage(),
+      builder: (context, state) => DependecyProvider(
+        provider: Di.shared.bloc.signUp,
+        builder: (context, dependency) => SignUpPage(
+          bloc: dependency,
+        ),
+      ),
     ),
   ];
 }

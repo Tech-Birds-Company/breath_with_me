@@ -1,6 +1,8 @@
 import 'package:breathe_with_me/extensions/widget.dart';
 import 'package:breathe_with_me/features/home/blocs/home_bloc.dart';
 import 'package:breathe_with_me/features/home/widgets/home_header.dart';
+import 'package:breathe_with_me/features/tracks/blocs/tracks_filters_bloc.dart';
+import 'package:breathe_with_me/features/tracks/blocs/tracks_list_bloc.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_filters/tracks_filters.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_list/tracks_list.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
@@ -9,12 +11,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 class HomePage extends HookWidget {
-  final HomeBloc bloc;
+  final HomeBloc homeBloc;
   final NavigationManager navigationManager;
+  final TracksListBloc tracksListBloc;
+  final TracksFiltersBloc tracksFiltersBloc;
 
   const HomePage({
-    required this.bloc,
+    required this.homeBloc,
     required this.navigationManager,
+    required this.tracksListBloc,
+    required this.tracksFiltersBloc,
     super.key,
   });
 
@@ -22,7 +28,7 @@ class HomePage extends HookWidget {
   Widget build(BuildContext context) {
     useEffect(
       () {
-        bloc.init();
+        homeBloc.init();
         return null;
       },
       const [],
@@ -49,14 +55,14 @@ class HomePage extends HookWidget {
             const SizedBox(height: 28).toSliver,
             SliverPadding(
               padding: const EdgeInsetsDirectional.symmetric(horizontal: 12),
-              sliver: const TracksFilters().toSliver,
+              sliver: TracksFilters(bloc: tracksFiltersBloc).toSliver,
             ),
-            const SliverPadding(
-              padding: EdgeInsets.symmetric(
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 20,
                 vertical: 32,
               ),
-              sliver: TracksList(),
+              sliver: TracksList(bloc: tracksListBloc),
             ),
           ],
         ),

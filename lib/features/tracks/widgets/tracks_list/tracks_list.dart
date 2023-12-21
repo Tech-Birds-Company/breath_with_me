@@ -5,18 +5,21 @@ import 'package:breathe_with_me/features/tracks/models/tracks_list_state.dart';
 import 'package:breathe_with_me/features/tracks/widgets/track/track_item.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_list/shimmer_list.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:breathe_with_me/utils/dependency_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class TracksList extends HookConsumerWidget {
-  const TracksList({super.key});
+class TracksList extends HookWidget {
+  final TracksListBloc bloc;
+
+  const TracksList({
+    required this.bloc,
+    super.key,
+  });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final bloc = ref.read(Di.shared.bloc.tracksList);
-
+  Widget build(BuildContext context) {
     useEffect(
       () {
         bloc.init();
@@ -48,13 +51,16 @@ class TracksList extends HookConsumerWidget {
               },
               itemBuilder: (context, index) {
                 final track = tracks[index];
-                final trackBloc = ref.read(
-                  Di.shared.bloc.track(track),
-                );
-                return TrackItem(
-                  key: ValueKey(track.id),
-                  track: track,
-                  onTap: trackBloc.openTrackPlayer,
+                return DependecyProvider(
+                  provider: Di.shared.bloc.track(track),
+                  builder: (context, dependency) => TrackItem(
+                    key: ValueKey(track.id),
+                    track: track,
+                    onTap: dependency.openTrackPlayer,
+                    trackIsDownloadedStream: dependency.trackIsDownloadedStream,
+                    trackIsLikedStream: dependency.trackLikedStream,
+                    onTrackLiked: dependency.onTrackLiked,
+                  ),
                 );
               },
             );
