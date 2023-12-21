@@ -1,20 +1,25 @@
-import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/extensions/widget.dart';
+import 'package:breathe_with_me/features/home/blocs/home_bloc.dart';
 import 'package:breathe_with_me/features/home/widgets/home_header.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_filters/tracks_filters.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_list/tracks_list.dart';
+import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomePage extends HookConsumerWidget {
-  const HomePage({super.key});
+class HomePage extends HookWidget {
+  final HomeBloc bloc;
+  final NavigationManager navigationManager;
+
+  const HomePage({
+    required this.bloc,
+    required this.navigationManager,
+    super.key,
+  });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final bloc = ref.read(Di.shared.bloc.home);
-
+  Widget build(BuildContext context) {
     useEffect(
       () {
         bloc.init();
@@ -24,7 +29,7 @@ class HomePage extends HookConsumerWidget {
     );
 
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    final navigationManager = ref.read(Di.shared.manager.navigation);
+
     return Scaffold(
       backgroundColor: theme.primaryBackground,
       body: SafeArea(

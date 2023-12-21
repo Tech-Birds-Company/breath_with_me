@@ -1,5 +1,6 @@
 import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/faq/faq_page.dart';
+import 'package:breathe_with_me/features/home/blocs/home_bloc.dart';
 import 'package:breathe_with_me/features/home/home_page.dart';
 import 'package:breathe_with_me/features/onboarding/create_account_modal_page.dart';
 import 'package:breathe_with_me/features/onboarding/onboarding_page.dart';
@@ -14,7 +15,9 @@ import 'package:breathe_with_me/features/tracks/filter_type.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_filters/tracks_filter_sheet.dart';
 import 'package:breathe_with_me/managers/navigation_manager/bwm_modal_page.dart';
+import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/utils/dependency_provider.dart';
+import 'package:breathe_with_me/utils/multi_dependency_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -44,7 +47,22 @@ final class BWMRoutes {
     ),
     GoRoute(
       path: BWMRoutes.home,
-      builder: (context, state) => const HomePage(),
+      builder: (context, state) =>
+          MultiDependecyProvider2<HomeBloc, NavigationManager>(
+        providers: (
+          Di.shared.bloc.home,
+          Di.shared.manager.navigation,
+        ),
+        builder: (context, dependencies) {
+          final bloc = dependencies.$1;
+          final navigationManager = dependencies.$2;
+
+          return HomePage(
+            bloc: bloc,
+            navigationManager: navigationManager,
+          );
+        },
+      ),
     ),
     GoRoute(
       path: BWMRoutes.profile,
