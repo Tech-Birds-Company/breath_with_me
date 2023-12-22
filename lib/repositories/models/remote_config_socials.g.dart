@@ -15,11 +15,3 @@ RemoteConfigSocials _$RemoteConfigSocialsFromJson(Map json) =>
       supportEmailDeeplink: json['supportEmailDeeplink'] as String? ??
           'mailto:support@breathewithme.app',
     );
-
-Map<String, dynamic> _$RemoteConfigSocialsToJson(
-        RemoteConfigSocials instance) =>
-    <String, dynamic>{
-      'communityDeeplink': instance.communityDeeplink,
-      'communityUrl': instance.communityUrl,
-      'supportEmailDeeplink': instance.supportEmailDeeplink,
-    };

@@ -23,8 +23,11 @@ class FaqPage extends StatelessWidget {
     bloc.loadQuestions(currentLocale.languageCode);
 
     return Scaffold(
-      backgroundColor: theme.primaryBackground,
-      appBar: BWMAppBar(title: LocaleKeys.profileFaqTitle.tr()),
+      backgroundColor: Colors.black, // TODO(vasidmi): use theme
+      appBar: BWMAppBar(
+        title: LocaleKeys.profileFaqTitle.tr(),
+        backgroundColor: Colors.black, // TODO(vasidmi): use theme
+      ),
       body: BlocBuilder<FaqBloc, FaqState>(
         bloc: bloc,
         builder: (context, state) => state.when(

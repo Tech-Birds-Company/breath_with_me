@@ -1,26 +1,21 @@
+import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/extensions/widget.dart';
 import 'package:breathe_with_me/features/home/blocs/home_bloc.dart';
 import 'package:breathe_with_me/features/home/widgets/home_header.dart';
-import 'package:breathe_with_me/features/tracks/blocs/tracks_filters_bloc.dart';
+import 'package:breathe_with_me/features/premium/blocs/premium_banner_bloc.dart';
 import 'package:breathe_with_me/features/tracks/blocs/tracks_list_bloc.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_filters/tracks_filters.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_list/tracks_list.dart';
-import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
-import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:breathe_with_me/utils/dependency_provider.dart';
+import 'package:breathe_with_me/utils/multi_dependency_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 class HomePage extends HookWidget {
   final HomeBloc homeBloc;
-  final NavigationManager navigationManager;
-  final TracksListBloc tracksListBloc;
-  final TracksFiltersBloc tracksFiltersBloc;
 
   const HomePage({
     required this.homeBloc,
-    required this.navigationManager,
-    required this.tracksListBloc,
-    required this.tracksFiltersBloc,
     super.key,
   });
 
@@ -34,10 +29,8 @@ class HomePage extends HookWidget {
       const [],
     );
 
-    final theme = Theme.of(context).extension<BWMTheme>()!;
-
     return Scaffold(
-      backgroundColor: theme.primaryBackground,
+      backgroundColor: Colors.black, // TODO: use theme
       body: SafeArea(
         bottom: false,
         child: CustomScrollView(
@@ -48,21 +41,38 @@ class HomePage extends HookWidget {
                 start: 24,
                 end: 24,
               ),
-              sliver: HomeHeader(
-                onProfileTap: navigationManager.openProfile,
+              sliver: DependencyProvider(
+                provider: Di.shared.manager.navigation,
+                builder: (context, navigationManager) => HomeHeader(
+                  onProfileTap: navigationManager.openProfile,
+                ),
               ),
             ),
             const SizedBox(height: 28).toSliver,
             SliverPadding(
               padding: const EdgeInsetsDirectional.symmetric(horizontal: 12),
-              sliver: TracksFilters(bloc: tracksFiltersBloc).toSliver,
+              sliver: DependencyProvider(
+                provider: Di.shared.bloc.tracksFilters,
+                builder: (context, tracksFiltersBloc) =>
+                    TracksFilters(bloc: tracksFiltersBloc).toSliver,
+              ),
             ),
             SliverPadding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 20,
                 vertical: 32,
               ),
-              sliver: TracksList(bloc: tracksListBloc),
+              sliver:
+                  MultiDependencyProvider2<TracksListBloc, PremiumBannerBloc>(
+                providers: (
+                  Di.shared.bloc.tracksList,
+                  Di.shared.bloc.premiumBanner
+                ),
+                builder: (context, dependencies) => TracksList(
+                  tracksListBloc: dependencies.$1,
+                  premiumBloc: dependencies.$2,
+                ),
+              ),
             ),
           ],
         ),

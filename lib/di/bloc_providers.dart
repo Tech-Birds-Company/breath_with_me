@@ -124,4 +124,11 @@ final class _BlocProviders {
       ref.read(Di.shared.manager.navigation),
     ),
   );
+
+  late final premiumBanner = Provider(
+    (ref) => PremiumBannerBloc(
+      ref.read(Di.shared.repository.firebaseRemoteConfig),
+      ref.read(Di.shared.manager.navigation),
+    ),
+  );
 }

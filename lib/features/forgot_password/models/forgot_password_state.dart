@@ -10,6 +10,6 @@ class ForgotPasswordState with _$ForgotPasswordState {
     @Default(false) bool requestSended,
   }) = _ForgotPasswordState;
 
-  factory ForgotPasswordState.fromJson(Map<String, Object?> json) =>
+  factory ForgotPasswordState.fromJson(Map<String, dynamic> json) =>
       _$ForgotPasswordStateFromJson(json);
 }

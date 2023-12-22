@@ -6,18 +6,16 @@ final class SubscriptionsManagerDev
   late final Qonversion _qonversion;
 
   @override
-  void init() {
-    _qonversion = Qonversion.initialize(
-      QonversionConfig(
-        '4cbXT9_l8BzrWmpRVski_n3h2O4FOVl6',
-        QLaunchMode.subscriptionManagement,
-        QEnvironment.sandbox,
-        QEntitlementsCacheLifetime.month,
-        null,
-        false,
-      ),
-    );
-  }
+  void init() => _qonversion = Qonversion.initialize(
+        QonversionConfig(
+          '4cbXT9_l8BzrWmpRVski_n3h2O4FOVl6',
+          QLaunchMode.subscriptionManagement,
+          QEnvironment.sandbox,
+          QEntitlementsCacheLifetime.month,
+          null,
+          false,
+        ),
+      );
 
   @override
   Future<Map<String, QProduct>> getProducts() => _qonversion.products();

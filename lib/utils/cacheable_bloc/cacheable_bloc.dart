@@ -44,7 +44,7 @@ abstract base class CacheableBloc<State> extends BlocBase<State> {
       );
 
   Future<void> loadCache() async {
-    final json = _storage.read('$runtimeType$key');
+    final json = _storage.read(key);
     if (json == null) {
       return;
     }

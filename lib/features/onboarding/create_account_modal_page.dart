@@ -115,9 +115,9 @@ class CreateAccountModalPage extends StatelessWidget {
                 ),
               ],
             ),
-            Positioned(
+            PositionedDirectional(
               top: 0,
-              right: 0,
+              end: 0,
               child: ElevatedButton(
                 onPressed: bloc.onCloseCreateAccountModal,
                 style: ElevatedButton.styleFrom(

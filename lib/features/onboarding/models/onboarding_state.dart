@@ -9,6 +9,6 @@ class OnboardingState with _$OnboardingState {
     @Default(false) bool isAppleSignInAvailable,
   }) = _OnboardingState;
 
-  factory OnboardingState.fromJson(Map<String, Object?> json) =>
+  factory OnboardingState.fromJson(Map<String, dynamic> json) =>
       _$OnboardingStateFromJson(json);
 }

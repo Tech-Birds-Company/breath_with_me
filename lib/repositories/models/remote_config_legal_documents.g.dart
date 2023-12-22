@@ -13,10 +13,3 @@ RemoteConfigLegalDocuments _$RemoteConfigLegalDocumentsFromJson(Map json) =>
       termsOfServiceUrl: json['termsOfServiceUrl'] as String? ??
           'https://drive.google.com/file/d/1ESZt6YCUZFP1ZBvis6YjQzqTx0aLTKKj',
     );
-
-Map<String, dynamic> _$RemoteConfigLegalDocumentsToJson(
-        RemoteConfigLegalDocuments instance) =>
-    <String, dynamic>{
-      'privacyPolicyUrl': instance.privacyPolicyUrl,
-      'termsOfServiceUrl': instance.termsOfServiceUrl,
-    };

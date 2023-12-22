@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 
 class TransparentRoute<T> extends PageRoute<T> {
-  
   final int duration;
+  final WidgetBuilder builder;
 
   TransparentRoute({
     required this.builder,
     required RouteSettings settings,
     this.duration = 300,
   }) : super(settings: settings, fullscreenDialog: false);
-
-  final WidgetBuilder builder;
 
   @override
   bool get opaque => false;

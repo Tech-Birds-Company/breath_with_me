@@ -11,11 +11,14 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
   final Color primaryText;
   final Color secondaryText;
   final Color green3;
+  final Color gray2;
   final Color gray3;
   final Color gray4;
+  final Color gray5;
   final Color gray6;
   final Color gray26;
   final Color red;
+  final Color purple2;
   final Color subtitleText;
 
   const BWMTheme({
@@ -28,11 +31,14 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
     required this.primaryText,
     required this.secondaryText,
     required this.green3,
+    required this.gray2,
     required this.gray3,
     required this.gray4,
+    required this.gray5,
     required this.gray6,
     required this.gray26,
     required this.red,
+    required this.purple2,
     required this.subtitleText,
   });
 
@@ -47,11 +53,14 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
     Color? primaryText,
     Color? secondaryText,
     Color? green3,
+    Color? gray2,
     Color? gray3,
     Color? gray4,
+    Color? gray5,
     Color? gray6,
     Color? gray26,
     Color? red,
+    Color? purple2,
     Color? subtitleText,
   }) {
     return BWMTheme(
@@ -64,11 +73,14 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
       primaryText: primaryText ?? this.primaryText,
       secondaryText: secondaryText ?? this.secondaryText,
       green3: green3 ?? this.green3,
+      gray2: gray2 ?? this.gray2,
       gray3: gray3 ?? this.gray3,
       gray4: gray4 ?? this.gray4,
+      gray5: gray5 ?? this.gray5,
       gray6: gray6 ?? this.gray6,
       gray26: gray26 ?? this.gray26,
       red: red ?? this.red,
+      purple2: purple2 ?? this.purple2,
       subtitleText: subtitleText ?? this.subtitleText,
     );
   }
@@ -95,11 +107,14 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
       primaryText: Color.lerp(primaryText, other.primaryText, t)!,
       secondaryText: Color.lerp(secondaryText, other.secondaryText, t)!,
       green3: Color.lerp(green3, other.green3, t)!,
+      gray2: Color.lerp(gray2, other.gray2, t)!,
       gray3: Color.lerp(gray4, other.gray3, t)!,
       gray4: Color.lerp(gray4, other.gray4, t)!,
+      gray5: Color.lerp(gray5, other.gray5, t)!,
       gray6: Color.lerp(gray6, other.gray6, t)!,
       gray26: Color.lerp(gray26, other.gray26, t)!,
       red: Color.lerp(red, other.red, t)!,
+      purple2: Color.lerp(purple2, other.purple2, t)!,
       subtitleText: Color.lerp(subtitleText, other.subtitleText, t)!,
     );
   }

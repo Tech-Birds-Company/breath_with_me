@@ -34,8 +34,11 @@ class ReminderPage extends StatelessWidget {
     final theme = Theme.of(context).extension<BWMTheme>()!;
 
     return Scaffold(
-      appBar: BWMAppBar(title: LocaleKeys.reminderTitle.tr()),
-      backgroundColor: theme.primaryBackground,
+      appBar: BWMAppBar(
+        title: LocaleKeys.reminderTitle.tr(),
+        backgroundColor: Colors.black, // TODO(vasidmi): use theme
+      ),
+      backgroundColor: Colors.black, // TODO(vasidmi): use theme
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
