@@ -1,21 +1,24 @@
 import 'package:breathe_with_me/common/widgets/bottom_sheet_notch.dart';
 import 'package:breathe_with_me/common/widgets/bwm_action_button.dart';
-import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/tracks/blocs/tracks_filters_bloc.dart';
 import 'package:breathe_with_me/features/tracks/filter_type.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class TracksFilterSheet extends ConsumerWidget {
+class TracksFilterSheet extends StatelessWidget {
+  final TracksFiltersBloc bloc;
   final FilterType filterType;
-  const TracksFilterSheet(this.filterType, {super.key});
+
+  const TracksFilterSheet({
+    required this.bloc,
+    required this.filterType,
+    super.key,
+  });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final bloc = ref.watch(Di.shared.bloc.tracksFilters);
+  Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
 
     return ClipRRect(

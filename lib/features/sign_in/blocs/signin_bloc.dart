@@ -27,12 +27,7 @@ final class SignInBloc extends BlocBase<SignInState> {
   }
 
   void openForgotPassword() {
-    // TODO(bestk1ngarthur): Open contact us
-    _openHome();
-  }
-
-  void _openHome() {
-    _navigationManager.replaceHome();
+    _navigationManager.forgotPasswordPage();
   }
 
   void onEmailChange(String text) {

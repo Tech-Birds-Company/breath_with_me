@@ -18,5 +18,6 @@ final class BWMDarkTheme extends BWMTheme {
     super.gray6 = const Color(0xFFBDBDBD),
     super.gray26 = const Color(0xFF262626),
     super.red = const Color(0xFFEB5757),
+    super.subtitleText = const Color(0xFFE0E0E0),
   });
 }

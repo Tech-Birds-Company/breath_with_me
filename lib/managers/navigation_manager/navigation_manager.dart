@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:breathe_with_me/features/tracks/filter_type.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
-import 'package:breathe_with_me/managers/navigation_manager/routes.dart';
+import 'package:breathe_with_me/managers/navigation_manager/routes/routes.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -30,8 +30,8 @@ final class NavigationManager {
             if (path == null ||
                 path == BWMRoutes.onboarding ||
                 path == BWMRoutes.createAccount ||
-                path == BWMRoutes.signInPage ||
-                path == BWMRoutes.signUpPage) {
+                path == BWMRoutes.auth.signIn ||
+                path == BWMRoutes.auth.signUp) {
               popToRoot();
               router.pushReplacement(BWMRoutes.home);
             }
@@ -117,7 +117,9 @@ final class NavigationManager {
     _userSubscription = null;
   }
 
-  void singUpPage() => router.push(BWMRoutes.signUpPage);
+  void singUpPage() => router.push(BWMRoutes.auth.signUp);
 
-  void singInPage() => router.push(BWMRoutes.signInPage);
+  void singInPage() => router.push(BWMRoutes.auth.signIn);
+
+  void forgotPasswordPage() => router.push(BWMRoutes.auth.forgotPassword);
 }

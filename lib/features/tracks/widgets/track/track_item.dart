@@ -6,11 +6,17 @@ import 'package:flutter/material.dart';
 
 class TrackItem extends StatelessWidget {
   final Track track;
+  final Stream<bool> trackIsDownloadedStream;
+  final Stream<bool> trackIsLikedStream;
   final VoidCallback onTap;
+  final VoidCallback onTrackLiked;
 
   const TrackItem({
     required this.track,
+    required this.trackIsDownloadedStream,
+    required this.trackIsLikedStream,
     required this.onTap,
+    required this.onTrackLiked,
     super.key,
   });
 
@@ -35,7 +41,12 @@ class TrackItem extends StatelessWidget {
             ),
             const SizedBox(width: 20),
             Expanded(
-              child: TrackInfo(track),
+              child: TrackInfo(
+                track: track,
+                trackIsDownloadedStream: trackIsDownloadedStream,
+                trackIsLikedStream: trackIsLikedStream,
+                onTrackLiked: onTrackLiked,
+              ),
             ),
           ],
         ),

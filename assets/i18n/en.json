@@ -81,7 +81,7 @@
 	"safetyPrecautionsWelcomeDescription": "Before you continue, familiarize yourself with the safety techniques and breathing recommendations",
 	"safetyPrecautionsReadNow": "Read now",
 	
-	"signInLogin": "Login",
+	"signInLogin": "Log In",
 	"signInEmail": "Email",
 	"signInPassword": "Password",
 	"signInForgotPass": "Forgot Password",
@@ -90,6 +90,14 @@
 	"welcomeBreather": "Welcome, breather!",
 	"confirmPassword": "Confirm Password",
 	"yourName": "Your name",
+	"forgotPassSubtitle": "Please remind us the email associated with your account",
+	"resetPassword": "Reset password",
+	"openEmailApp": "Open email app",
+	"checkYourEmailSubtitle": "Instructions on how to reset your password have been sent.",
+	"checkYourEmail": "Check you email",
+	"forgotPassword": "Forgot password",
+	"forgotPasswordSpamFirst": "Did not receive the email? Check your spam folder, ",
+	"forgotPasswordSpamSecond": "or try another email address",
 
 	"streakStatisticsCardTitle": "You are fantastic",
 	"streakStatisticsCardStreaksCount": "Streaks",

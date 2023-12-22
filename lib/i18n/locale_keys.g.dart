@@ -87,6 +87,14 @@ abstract class LocaleKeys {
   static const welcomeBreather = 'welcomeBreather';
   static const confirmPassword = 'confirmPassword';
   static const yourName = 'yourName';
+  static const forgotPassSubtitle = 'forgotPassSubtitle';
+  static const resetPassword = 'resetPassword';
+  static const openEmailApp = 'openEmailApp';
+  static const checkYourEmailSubtitle = 'checkYourEmailSubtitle';
+  static const checkYourEmail = 'checkYourEmail';
+  static const forgotPassword = 'forgotPassword';
+  static const forgotPasswordSpamFirst = 'forgotPasswordSpamFirst';
+  static const forgotPasswordSpamSecond = 'forgotPasswordSpamSecond';
   static const streakStatisticsCardTitle = 'streakStatisticsCardTitle';
   static const streakStatisticsCardStreaksCount =
       'streakStatisticsCardStreaksCount';

@@ -29,7 +29,9 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 
-Future<List<Override>> _setupDependencies({required bool isProduction}) async {
+Future<ProviderContainer> _setupDependencies({
+  required bool isProduction,
+}) async {
   final database = await BWMDatabase.init();
   final databaseManager = DatabaseManager(database);
 
@@ -74,7 +76,7 @@ Future<List<Override>> _setupDependencies({required bool isProduction}) async {
     await tracksDownloadManager.validateDownloads(uid);
   }
 
-  return [
+  final dependecies = [
     Di.shared.manager.database.overrideWith((ref) {
       ref.onDispose(databaseManager.dispose);
       return databaseManager;
@@ -89,6 +91,7 @@ Future<List<Override>> _setupDependencies({required bool isProduction}) async {
     Di.shared.manager.subscriptions.overrideWithValue(subscriptionsManager),
     Di.shared.manager.sharedPreferences.overrideWithValue(sharedPrefsManager),
   ];
+  return ProviderContainer(overrides: dependecies);
 }
 
 Future<void> mainCommon(Environment env) async {
@@ -99,10 +102,13 @@ Future<void> mainCommon(Environment env) async {
   await FirebaseRemoteConfig.instance.ensureInitialized();
   await FirebaseRemoteConfig.instance.fetchAndActivate();
 
-  final dependencies =
+  final diContainer =
       await _setupDependencies(isProduction: env == Environment.prod);
 
   await EasyLocalization.ensureInitialized();
+
+  final navigationManager = diContainer.read(Di.shared.manager.navigation);
+  final routerConfig = navigationManager.router;
 
   runApp(
     EasyLocalization(
@@ -114,8 +120,10 @@ Future<void> mainCommon(Environment env) async {
         Locale('ru'),
       ],
       child: ProviderScope(
-        overrides: dependencies,
-        child: const BWMApp(),
+        parent: diContainer,
+        child: BWMApp(
+          routerConfig: routerConfig,
+        ),
       ),
     ),
   );
