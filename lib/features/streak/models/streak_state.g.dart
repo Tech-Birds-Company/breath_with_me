@@ -21,6 +21,6 @@ _$StreakStateImpl _$$StreakStateImplFromJson(Map json) => _$StreakStateImpl(
 Map<String, dynamic> _$$StreakStateImplToJson(_$StreakStateImpl instance) =>
     <String, dynamic>{
       'selectedDay': instance.selectedDay,
-      'statistics': instance.statistics,
-      'quote': instance.quote,
+      'statistics': instance.statistics?.toJson(),
+      'quote': instance.quote?.toJson(),
     };
