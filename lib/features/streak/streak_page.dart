@@ -62,7 +62,9 @@ class StreakPage extends HookWidget {
                   },
                   premiumMissed: (statistics, lives) {
                     return StreakPremiumMissed(
-                        statistics: statistics, lives: lives);
+                      statistics: statistics,
+                      lives: lives,
+                    );
                   },
                 );
               },

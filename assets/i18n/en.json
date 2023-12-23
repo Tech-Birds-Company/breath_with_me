@@ -110,5 +110,9 @@
 	"streakLivesFooter": {
 		"one": "You will get {} more live next month",
 		"other": "You will get {} more lives next month"
-	}
+	},
+	"streakMissedDayTitle": "Do you want to restore missed day and save your progress?",
+	"streakMissedDaySubtitle": "You will have one less streak live",
+	"streakMissedDayRestore": "Restore streak",
+	"streakMissedDaySkip": "Skip"
 }
