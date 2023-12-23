@@ -28,6 +28,7 @@ final class _BlocProviders {
         ref.read(Di.shared.manager.user),
         ref.read(Di.shared.manager.audio),
         ref.read(Di.shared.manager.tracksDownloader),
+        ref.read(Di.shared.manager.navigation),
       );
       ref.onDispose(bloc.dispose);
       return bloc;

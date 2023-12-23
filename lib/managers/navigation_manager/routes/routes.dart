@@ -162,9 +162,18 @@ final class BWMRoutes {
     ...auth.createAuthRoutes(),
     GoRoute(
       path: BWMRoutes.streak,
-      builder: (context, state) => DependencyProvider(
-        provider: Di.shared.bloc.streak,
-        builder: (context, dependency) => StreakPage(bloc: dependency),
+      pageBuilder: (context, state) => BWMModalPage(
+        barrierColor: Colors.transparent,
+        useSafeArea: true,
+        enableDrag: false,
+        isDismissible: false,
+        isScrollControlled: true,
+        child: DependencyProvider(
+          provider: Di.shared.bloc.streak,
+          builder: (context, dependency) => StreakPage(
+            bloc: dependency,
+          ),
+        ),
       ),
     ),
   ];

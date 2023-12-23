@@ -11,7 +11,7 @@ final class StreakBloc extends BlocBase<StreakState> {
 
   Future<void> init() async {}
 
-  void onCloseScreen() => _navigationManager.pop();
+  void onCloseScreen() => _navigationManager.popToRoot();
 
   void loadUserRecord() {}
 }
