@@ -18,40 +18,60 @@ class StreakLives extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
 
-    var widgets = <Widget>[];
+    final widgets = <Widget>[];
 
     if (data.showTitle) {
-      widgets.add(
-        Text(
-          LocaleKeys.streakLivesTitle.tr().toUpperCase(),
-          style: theme.typography.label.copyWith(color: theme.gray3),
-        ),
+      widgets.addAll(
+        [
+          Text(
+            LocaleKeys.streakLivesTitle.tr().toUpperCase(),
+            style: theme.typography.label.copyWith(color: theme.gray3),
+          ),
+          const SizedBox(height: 8),
+        ],
       );
     }
 
+    final unavailableLivesCount =
+        data.totalLivesCount - data.availableLivesCount;
     widgets.add(
       Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset(
-            BWMAssets.streakLiveAvailable,
-            width: 26,
-            height: 26,
-          ),
-          SvgPicture.asset(
-            BWMAssets.streakLiveUnavailable,
-            width: 26,
-            height: 26,
-          ),
+          for (var i = 0; i < data.availableLivesCount; i++) ...[
+            SvgPicture.asset(
+              BWMAssets.streakLiveAvailable,
+              width: 26,
+              height: 26,
+            ),
+            if ((i < data.availableLivesCount - 1) ||
+                (unavailableLivesCount > 0))
+              const SizedBox(width: 6),
+          ],
+          for (var i = 0; i < unavailableLivesCount; i++) ...[
+            SvgPicture.asset(
+              BWMAssets.streakLiveUnavailable,
+              width: 26,
+              height: 26,
+            ),
+            if (i < unavailableLivesCount - 1) const SizedBox(width: 6),
+          ],
         ],
       ),
     );
 
     if (data.showFooter) {
-      widgets.add(
-        Text(
-          LocaleKeys.streakLivesFooter.plural(data.totalLivesCount).tr().toUpperCase(),
-          style: theme.typography.bodyM.copyWith(color: theme.gray6),
-        ),
+      widgets.addAll(
+        [
+          const SizedBox(height: 16),
+          Text(
+            LocaleKeys.streakLivesFooter
+                .plural(data.totalLivesCount)
+                .tr()
+                .toUpperCase(),
+            style: theme.typography.label.copyWith(color: theme.gray6),
+          ),
+        ],
       );
     }
 

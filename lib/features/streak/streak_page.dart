@@ -50,7 +50,8 @@ class StreakPage extends HookWidget {
                       quote: quote,
                     );
                   },
-                  premiumStartedOrContinued: (statistics, streaksCount, lives, quote) {
+                  premiumStartedOrContinued:
+                      (statistics, streaksCount, lives, quote) {
                     return StreakPremiumStartedOrContinued(
                       statistics: statistics,
                       streaksCount: streaksCount,

@@ -79,10 +79,12 @@ final class StreakBloc extends BlocBase<StreakState> {
     final timeline = progress.timeline.sorted((a, b) => b.compareTo(a));
 
     var count = 1;
-    var date = DateTime(timeline.first.year, timeline.first.month, timeline.first.day);
+    var date =
+        DateTime(timeline.first.year, timeline.first.month, timeline.first.day);
     for (var i = 1; i < timeline.length; i++) {
       final expectedDate = date.subtract(const Duration(days: 1));
-      final currentDate = DateTime(timeline[i].year, timeline[i].month, timeline[i].day);
+      final currentDate =
+          DateTime(timeline[i].year, timeline[i].month, timeline[i].day);
       if (currentDate == expectedDate) {
         count += 1;
         date = currentDate;
@@ -98,10 +100,12 @@ final class StreakBloc extends BlocBase<StreakState> {
     final timeline = progress.timeline.sorted((a, b) => b.compareTo(a));
 
     var count = 0;
-    var date = DateTime(timeline.first.year, timeline.first.month, timeline.first.day);
+    var date =
+        DateTime(timeline.first.year, timeline.first.month, timeline.first.day);
     for (var i = 1; i < timeline.length; i++) {
       final expectedDate = date.subtract(const Duration(days: 1));
-      final currentDate = DateTime(timeline[i].year, timeline[i].month, timeline[i].day);
+      final currentDate =
+          DateTime(timeline[i].year, timeline[i].month, timeline[i].day);
       if (currentDate != expectedDate) {
         count += 1;
         date = currentDate;

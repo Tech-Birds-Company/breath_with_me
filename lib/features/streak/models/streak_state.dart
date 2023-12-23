@@ -24,5 +24,6 @@ class StreakState with _$StreakState {
     StreakLivesData livesData,
   ) = PremiumMissed;
 
-  factory StreakState.fromJson(Map<String, dynamic> json) => _$StreakStateFromJson(json);
+  factory StreakState.fromJson(Map<String, dynamic> json) =>
+      _$StreakStateFromJson(json);
 }

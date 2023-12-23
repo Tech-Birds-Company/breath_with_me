@@ -12,5 +12,6 @@ class StreakLivesData with _$StreakLivesData {
     required bool showFooter,
   }) = _StreakLivesData;
 
-  factory StreakLivesData.fromJson(Map<String, dynamic> json) => _$StreakLivesDataFromJson(json);
+  factory StreakLivesData.fromJson(Map<String, dynamic> json) =>
+      _$StreakLivesDataFromJson(json);
 }
