@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:breathe_with_me/features/streak/models/streak_quote_data.dart';
+import 'package:breathe_with_me/repositories/models/streak_quote_data.dart';
 
 final class StreaksQuotesRepository {
   const StreaksQuotesRepository();

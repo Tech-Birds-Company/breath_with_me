@@ -1,7 +1,7 @@
-import 'package:breathe_with_me/features/streak/models/streak_quote_data.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_quote.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_weeks.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
+import 'package:breathe_with_me/repositories/models/streak_quote_data.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';

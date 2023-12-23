@@ -1,5 +1,5 @@
-import 'package:breathe_with_me/features/streak/models/streak_quote_data.dart';
 import 'package:breathe_with_me/features/streak/models/streak_statistics_data.dart';
+import 'package:breathe_with_me/repositories/models/streak_quote_data.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'streak_state.freezed.dart';
