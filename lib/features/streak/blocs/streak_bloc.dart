@@ -13,7 +13,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 final class StreakBloc extends BlocBase<StreakState> {
   final Track _track;
-  final bool isPremium = true;
+  final bool _isPremium = true;
+
+  StreaksProgress? _progress;
+  String? _languageCode;
 
   final RemoteConfigRepository _remoteConfigRepository;
   final StreaksProgressRepository _streaksProgressRepository;
@@ -32,6 +35,10 @@ final class StreakBloc extends BlocBase<StreakState> {
   ) : super(const StreakState.loading());
 
   Future<void> init(String languageCode) async {
+    emit(const StreakState.loading());
+
+    _languageCode = languageCode;
+
     final userID = _userManager.currentUser!.uid;
     final monthLivesCount = _remoteConfigRepository.streaks.monthLivesCount;
     final progress = await _streaksProgressRepository.addPractice(
@@ -40,9 +47,10 @@ final class StreakBloc extends BlocBase<StreakState> {
       _track.duration,
       monthLivesCount,
     );
+    _progress = progress;
 
     final StreakState state;
-    if (isPremium) {
+    if (_isPremium) {
       final streaksCount = _getLastStreaksCount(progress);
       final missedDaysCount = _getLastMissedDaysCount(progress);
       if (missedDaysCount == 1) {
@@ -79,7 +87,35 @@ final class StreakBloc extends BlocBase<StreakState> {
     emit(state);
   }
 
-  void onCloseScreen() => _navigationManager.popToRoot();
+  void onCloseTap() => _navigationManager.popToRoot();
+
+  void onRestoreTap() {
+    print('object');
+  }
+
+  void onSkipTap() {
+    if (_progress != null) {
+      final progress = _progress!;
+      final streaksCount = _getLastStreaksCount(progress);
+
+      final state = StreakState.premiumStartedOrContinued(
+        StreakStatisticsData.full(
+          _getLastStreaksCount(progress),
+          progress.practicesCount,
+          progress.minutesCount,
+        ),
+        streaksCount,
+        StreakLivesData(
+          availableLivesCount: progress.livesCount,
+          totalLivesCount: _remoteConfigRepository.streaks.monthLivesCount,
+          showTitle: true,
+          showFooter: progress.livesCount == 0,
+        ),
+        _streaksQuotesRepository.getQuote(_languageCode!),
+      );
+      emit(state);
+    }
+  }
 
   int _getLastStreaksCount(StreaksProgress progress) {
     final timeline = progress.timeline.sorted((a, b) => b.compareTo(a));

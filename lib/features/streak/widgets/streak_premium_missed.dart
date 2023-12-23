@@ -12,9 +12,14 @@ class StreakPremiumMissed extends StatelessWidget {
   final StreakStatisticsData statistics;
   final StreakLivesData lives;
 
+  final VoidCallback onRestoreTap;
+  final VoidCallback onSkipTap;
+
   const StreakPremiumMissed({
     required this.statistics,
     required this.lives,
+    required this.onRestoreTap,
+    required this.onSkipTap,
     super.key,
   });
 
@@ -42,19 +47,19 @@ class StreakPremiumMissed extends StatelessWidget {
           StreakLives(data: lives),
           const SizedBox(height: 36),
           BWMActionButton(
+            onPressed: onRestoreTap,
             title: LocaleKeys.streakMissedDayRestore.tr(),
             width: 200,
             height: 40,
-            onPressed: () {},
           ),
           const SizedBox(height: 8),
           TextButton(
+            onPressed: onSkipTap,
             child: Text(
               LocaleKeys.streakMissedDaySkip.tr(),
               style: theme.typography.bodyMTrue.copyWith(color: theme.gray4),
               textAlign: TextAlign.center,
             ),
-            onPressed: () {},
           ),
         ],
       ),

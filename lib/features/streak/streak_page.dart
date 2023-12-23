@@ -64,6 +64,8 @@ class StreakPage extends HookWidget {
                     return StreakPremiumMissed(
                       statistics: statistics,
                       lives: lives,
+                      onRestoreTap: bloc.onRestoreTap,
+                      onSkipTap: bloc.onSkipTap,
                     );
                   },
                 );
@@ -72,7 +74,7 @@ class StreakPage extends HookWidget {
             Align(
               alignment: Alignment.topRight,
               child: IconButton(
-                onPressed: bloc.onCloseScreen,
+                onPressed: bloc.onCloseTap,
                 icon: Icon(
                   Icons.close,
                   color: theme.primaryColor,
