@@ -1,16 +1,18 @@
 import 'package:breathe_with_me/features/streak/models/streak_quote_data.dart';
+import 'package:breathe_with_me/features/streak/models/streak_statistics_data.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_quote.dart';
+import 'package:breathe_with_me/features/streak/widgets/streak_statistics_card.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_weeks.dart';
-import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class StreakWithoutPremium extends StatelessWidget {
+class StreakPremiumStartedOrContinued extends StatelessWidget {
+  final StreakStatisticsData statistics;
   final int streaksCount;
   final StreakQuoteData quote;
 
-  const StreakWithoutPremium({
+  const StreakPremiumStartedOrContinued({
+    required this.statistics,
     required this.streaksCount,
     required this.quote,
     super.key,
@@ -22,29 +24,11 @@ class StreakWithoutPremium extends StatelessWidget {
 
     final widgets = <Widget>[
       Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 12),
+        padding: const EdgeInsets.symmetric(vertical: 20),
         child: Column(
           children: [
-            Text(
-              LocaleKeys.streakWithoutPremiumTitle.tr().toUpperCase(),
-              style: theme.typography.label.copyWith(color: theme.gray4),
-            ),
-            const SizedBox(height: 4),
-            ShaderMask(
-              shaderCallback: LinearGradient(
-                colors: [theme.green3, theme.gray4],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ).createShader,
-              child: Text(
-                LocaleKeys.streakWithoutPremiumSubtitle
-                    .plural(streaksCount)
-                    .tr()
-                    .toUpperCase(),
-                style: theme.typography.bodyM.copyWith(color: theme.gray4),
-              ),
-            ),
-            const SizedBox(height: 20),
+            StreakStatisticsCard(statisticsData: statistics),
+            const SizedBox(height: 24),
             StreakWeeks(selectedDay: streaksCount),
           ],
         ),

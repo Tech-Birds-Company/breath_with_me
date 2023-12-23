@@ -1,4 +1,5 @@
 import 'package:breathe_with_me/features/streak/models/streak_state.dart';
+import 'package:breathe_with_me/features/streak/models/streak_statistics_data.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
@@ -11,7 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 final class StreakBloc extends BlocBase<StreakState> {
   final Track _track;
-  final bool isPremium = false;
+  final bool isPremium = true;
 
   final RemoteConfigRepository _remoteConfigRepository;
   final StreaksProgressRepository _streaksProgressRepository;
@@ -41,7 +42,21 @@ final class StreakBloc extends BlocBase<StreakState> {
 
     final StreakState state;
     if (isPremium) {
-      state = const StreakState.loading();
+      final missedDaysCount = _getLastMissedDaysCount(progress);
+      if (missedDaysCount > 0) {
+        state = const StreakState.loading();
+      } else {
+        final streaksCount = _getLastStreaksCount(progress);
+        state = StreakState.premiumStartedOrContinued(
+          StreakStatisticsData.full(
+            streaksCount,
+            progress.practicesCount,
+            progress.minutesCount,
+          ),
+          streaksCount,
+          _streaksQuotesRepository.getQuote(languageCode),
+        );
+      }
     } else {
       state = StreakState.withoutPremium(
         _getLastStreaksCount(progress),
@@ -64,6 +79,27 @@ final class StreakBloc extends BlocBase<StreakState> {
       final currentDate =
           DateTime(timeline[i].year, timeline[i].month, timeline[i].day);
       if (currentDate == expectedDate) {
+        count += 1;
+        date = currentDate;
+      } else {
+        break;
+      }
+    }
+
+    return count;
+  }
+
+  int _getLastMissedDaysCount(StreaksProgress progress) {
+    final timeline = progress.timeline.sorted((a, b) => b.compareTo(a));
+
+    var count = 0;
+    var date =
+        DateTime(timeline.first.year, timeline.first.month, timeline.first.day);
+    for (var i = 1; i < timeline.length; i++) {
+      final expectedDate = date.subtract(const Duration(days: 1));
+      final currentDate =
+          DateTime(timeline[i].year, timeline[i].month, timeline[i].day);
+      if (currentDate != expectedDate) {
         count += 1;
         date = currentDate;
       } else {

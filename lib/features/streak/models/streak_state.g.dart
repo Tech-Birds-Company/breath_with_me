@@ -33,9 +33,9 @@ Map<String, dynamic> _$$WithoutPremiumImplToJson(
 _$PremiumStartedOrContinuedImpl _$$PremiumStartedOrContinuedImplFromJson(
         Map json) =>
     _$PremiumStartedOrContinuedImpl(
-      json['selectedDay'] as int,
       StreakStatisticsData.fromJson(
           Map<String, dynamic>.from(json['statistics'] as Map)),
+      json['streaksCount'] as int,
       StreakQuoteData.fromJson(Map<String, dynamic>.from(json['quote'] as Map)),
       $type: json['runtimeType'] as String?,
     );
@@ -43,8 +43,8 @@ _$PremiumStartedOrContinuedImpl _$$PremiumStartedOrContinuedImplFromJson(
 Map<String, dynamic> _$$PremiumStartedOrContinuedImplToJson(
         _$PremiumStartedOrContinuedImpl instance) =>
     <String, dynamic>{
-      'selectedDay': instance.selectedDay,
       'statistics': instance.statistics.toJson(),
+      'streaksCount': instance.streaksCount,
       'quote': instance.quote.toJson(),
       'runtimeType': instance.$type,
     };

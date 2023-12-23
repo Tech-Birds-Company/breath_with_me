@@ -15,8 +15,10 @@ final class StreaksProgressRepository {
     var progress = await _getStreaksProgress(userID, monthLivesCount);
 
     // Add practice minutes to progress
-    progress =
-        progress.copyWith(minutesCount: progress.minutesCount + minutesCount);
+    progress = progress.copyWith(
+      minutesCount: progress.minutesCount + minutesCount,
+      practicesCount: progress.practicesCount + 1,
+    );
 
     // If lives have expired, reset it
     if (progress.livesExpireTimestamp.isBefore(DateTime.now())) {

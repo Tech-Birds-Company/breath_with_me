@@ -13,8 +13,8 @@ class StreakState with _$StreakState {
     StreakQuoteData quote,
   ) = WithoutPremium;
   const factory StreakState.premiumStartedOrContinued(
-    int selectedDay,
     StreakStatisticsData statistics,
+    int streaksCount,
     StreakQuoteData quote,
   ) = _PremiumStartedOrContinued;
   const factory StreakState.premiumMissed() = PremiumMissed;

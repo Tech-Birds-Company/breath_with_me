@@ -1,5 +1,6 @@
 import 'package:breathe_with_me/features/streak/blocs/streak_bloc.dart';
 import 'package:breathe_with_me/features/streak/models/streak_state.dart';
+import 'package:breathe_with_me/features/streak/widgets/streak_premium_started_or_continued.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_without_premium.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -44,13 +45,17 @@ class StreakPage extends HookWidget {
                     );
                   },
                   withoutPremium: (streaksCount, quote) {
-                    return StreakWithoutPro(
+                    return StreakWithoutPremium(
                       streaksCount: streaksCount,
                       quote: quote,
                     );
                   },
-                  premiumStartedOrContinued: (selectedDay, statistics, quote) {
-                    return const Text('proStartedOrContinued');
+                  premiumStartedOrContinued: (statistics, streaksCount, quote) {
+                    return StreakPremiumStartedOrContinued(
+                      statistics: statistics,
+                      streaksCount: streaksCount,
+                      quote: quote,
+                    );
                   },
                   premiumMissed: () {
                     return const Text('proMissed');
