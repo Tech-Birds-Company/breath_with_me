@@ -38,7 +38,10 @@ final class StreaksProgressRepository {
   }
 
   Future<StreaksProgress> restoreStreak(
-      String userID, DateTime timestamp, int monthLivesCount) async {
+    String userID,
+    DateTime timestamp,
+    int monthLivesCount,
+  ) async {
     var progress = await _getStreaksProgress(userID, monthLivesCount);
 
     // Remove live for restore

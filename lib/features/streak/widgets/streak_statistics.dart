@@ -30,7 +30,9 @@ class StreakStatistics extends StatelessWidget {
               const Spacer(),
               StreakStatisticsItem(
                 text: streaksCount.toString(),
-                name: LocaleKeys.streakStatisticsCardStreaksCount.tr(),
+                name: LocaleKeys.streakStatisticsCardStreaksCount
+                    .plural(streaksCount)
+                    .tr(),
                 crossAxisAlignment: CrossAxisAlignment.center,
               ),
               const Spacer(),
@@ -38,7 +40,9 @@ class StreakStatistics extends StatelessWidget {
               const Spacer(),
               StreakStatisticsItem(
                 text: practicesCount.toString(),
-                name: LocaleKeys.streakStatisticsCardPracticesCount.tr(),
+                name: LocaleKeys.streakStatisticsCardPracticesCount
+                    .plural(practicesCount)
+                    .tr(),
                 crossAxisAlignment: CrossAxisAlignment.center,
               ),
               const Spacer(),
@@ -46,7 +50,9 @@ class StreakStatistics extends StatelessWidget {
               const Spacer(),
               StreakStatisticsItem(
                 text: minutesCount.toString(),
-                name: LocaleKeys.streakStatisticsCardMinCount.tr(),
+                name: LocaleKeys.streakStatisticsCardMinCount
+                    .plural(minutesCount)
+                    .tr(),
                 crossAxisAlignment: CrossAxisAlignment.center,
               ),
             ],
@@ -60,7 +66,9 @@ class StreakStatistics extends StatelessWidget {
               const Spacer(),
               StreakStatisticsItem(
                 text: streaksCount.toString(),
-                name: LocaleKeys.streakStatisticsCardStreaksCount.tr(),
+                name: LocaleKeys.streakStatisticsCardStreaksCount
+                    .plural(streaksCount)
+                    .tr(),
                 crossAxisAlignment: CrossAxisAlignment.center,
               ),
               const Spacer(),
@@ -68,7 +76,9 @@ class StreakStatistics extends StatelessWidget {
               const Spacer(),
               StreakStatisticsItem(
                 text: missedDaysCount.toString(),
-                name: LocaleKeys.streakStatisticsCardDayMissedCount.tr(),
+                name: LocaleKeys.streakStatisticsCardDayMissedCount
+                    .plural(missedDaysCount)
+                    .tr(),
                 crossAxisAlignment: CrossAxisAlignment.center,
               ),
               const Spacer(),

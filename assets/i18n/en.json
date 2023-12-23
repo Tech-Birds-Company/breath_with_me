@@ -100,8 +100,14 @@
 	"forgotPasswordSpamSecond": "or try another email address",
 
 	"streakStatisticsCardTitle": "You are fantastic",
-	"streakStatisticsCardStreaksCount": "Streaks",
-	"streakStatisticsCardPracticesCount": "Practices",
+	"streakStatisticsCardStreaksCount": {
+		"one": "Streak",
+		"other": "Streaks"
+	},
+	"streakStatisticsCardPracticesCount": {
+		"one": "Practice",
+		"other": "Practices"
+	},
 	"streakStatisticsCardMinCount": "Min",
 	"streakStatisticsCardDayMissedCount": "Day missed",
 	"streakWithoutPremiumTitle": "You have",

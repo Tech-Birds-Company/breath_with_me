@@ -100,10 +100,33 @@
 	"forgotPasswordSpamSecond": "указать другой email",
 
 	"streakStatisticsCardTitle": "Ты впечатляешь!",
-	"streakStatisticsCardStreaksCount": "Дней подряд",
-	"streakStatisticsCardPracticesCount": "Практики",
-	"streakStatisticsCardMinCount": "Минут",
-	"streakStatisticsCardDayMissedCount": "Дней пропущено",
+	"streakStatisticsCardStreaksCount": {
+		"zero":"Дней подряд",
+		"one": "День подряд",
+		"two": "Дня подряд",
+		"few": "Дня подряд",
+		"many": "Дней подряд",
+		"other": "Дней подряд"
+	},
+	"streakStatisticsCardPracticesCount": {
+		"one": "Практика",
+		"many": "Практик",
+		"other": "Практики"
+	},
+	"streakStatisticsCardMinCount": {
+		"one": "Минута",
+		"few": "Минуты",
+		"many": "Минут",
+		"other": "Минут"
+	},
+	"streakStatisticsCardDayMissedCount": {
+		"zero":"Дней пропущено",
+		"one": "День пропущено",
+		"two": "Дня пропущено",
+		"few": "Дня пропущено",
+		"many": "Дней пропущено",
+		"other": "Дней пропущено"
+	},
 	"streakWithoutPremiumTitle": "Круто! Ты практикуешь уже",
 	"streakWithoutPremiumSubtitle": {
 		"zero":"{} дней подряд",
