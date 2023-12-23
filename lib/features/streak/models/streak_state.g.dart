@@ -15,21 +15,24 @@ Map<String, dynamic> _$$LoadingImplToJson(_$LoadingImpl instance) =>
       'runtimeType': instance.$type,
     };
 
-_$WithoutProImpl _$$WithoutProImplFromJson(Map json) => _$WithoutProImpl(
+_$WithoutPremiumImpl _$$WithoutPremiumImplFromJson(Map json) =>
+    _$WithoutPremiumImpl(
       json['selectedDay'] as int,
       StreakQuoteData.fromJson(Map<String, dynamic>.from(json['quote'] as Map)),
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$WithoutProImplToJson(_$WithoutProImpl instance) =>
+Map<String, dynamic> _$$WithoutPremiumImplToJson(
+        _$WithoutPremiumImpl instance) =>
     <String, dynamic>{
       'selectedDay': instance.selectedDay,
       'quote': instance.quote.toJson(),
       'runtimeType': instance.$type,
     };
 
-_$StartedOrContinuedImpl _$$StartedOrContinuedImplFromJson(Map json) =>
-    _$StartedOrContinuedImpl(
+_$PremiumStartedOrContinuedImpl _$$PremiumStartedOrContinuedImplFromJson(
+        Map json) =>
+    _$PremiumStartedOrContinuedImpl(
       json['selectedDay'] as int,
       StreakStatisticsData.fromJson(
           Map<String, dynamic>.from(json['statistics'] as Map)),
@@ -37,8 +40,8 @@ _$StartedOrContinuedImpl _$$StartedOrContinuedImplFromJson(Map json) =>
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$StartedOrContinuedImplToJson(
-        _$StartedOrContinuedImpl instance) =>
+Map<String, dynamic> _$$PremiumStartedOrContinuedImplToJson(
+        _$PremiumStartedOrContinuedImpl instance) =>
     <String, dynamic>{
       'selectedDay': instance.selectedDay,
       'statistics': instance.statistics.toJson(),
@@ -46,11 +49,12 @@ Map<String, dynamic> _$$StartedOrContinuedImplToJson(
       'runtimeType': instance.$type,
     };
 
-_$MissedImpl _$$MissedImplFromJson(Map json) => _$MissedImpl(
+_$PremiumMissedImpl _$$PremiumMissedImplFromJson(Map json) =>
+    _$PremiumMissedImpl(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$MissedImplToJson(_$MissedImpl instance) =>
+Map<String, dynamic> _$$PremiumMissedImplToJson(_$PremiumMissedImpl instance) =>
     <String, dynamic>{
       'runtimeType': instance.$type,
     };

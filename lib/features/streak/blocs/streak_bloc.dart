@@ -11,7 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 final class StreakBloc extends BlocBase<StreakState> {
   final Track _track;
-  final bool isPro = false;
+  final bool isPremium = false;
 
   final RemoteConfigRepository _remoteConfigRepository;
   final StreaksProgressRepository _streaksProgressRepository;
@@ -38,10 +38,10 @@ final class StreakBloc extends BlocBase<StreakState> {
     );
 
     final StreakState state;
-    if (isPro) {
+    if (isPremium) {
       state = const StreakState.loading();
     } else {
-      state = StreakState.withoutPro(
+      state = StreakState.withoutPremium(
         _getLastStreaksCount(progress),
         const StreakQuoteData(
           quote:

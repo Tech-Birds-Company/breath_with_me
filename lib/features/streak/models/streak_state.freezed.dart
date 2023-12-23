@@ -18,12 +18,12 @@ StreakState _$StreakStateFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
     case 'loading':
       return _Loading.fromJson(json);
-    case 'withoutPro':
-      return WithoutPro.fromJson(json);
-    case 'proStartedOrContinued':
-      return _StartedOrContinued.fromJson(json);
-    case 'proMissed':
-      return Missed.fromJson(json);
+    case 'withoutPremium':
+      return WithoutPremium.fromJson(json);
+    case 'premiumStartedOrContinued':
+      return _PremiumStartedOrContinued.fromJson(json);
+    case 'premiumMissed':
+      return PremiumMissed.fromJson(json);
 
     default:
       throw CheckedFromJsonException(json, 'runtimeType', 'StreakState',
@@ -37,56 +37,59 @@ mixin _$StreakState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(int selectedDay, StreakQuoteData quote)
-        withoutPro,
+        withoutPremium,
     required TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)
-        proStartedOrContinued,
-    required TResult Function() proMissed,
+        premiumStartedOrContinued,
+    required TResult Function() premiumMissed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(int selectedDay, StreakQuoteData quote)? withoutPro,
+    TResult? Function(int selectedDay, StreakQuoteData quote)? withoutPremium,
     TResult? Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
-        proStartedOrContinued,
-    TResult? Function()? proMissed,
+        premiumStartedOrContinued,
+    TResult? Function()? premiumMissed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(int selectedDay, StreakQuoteData quote)? withoutPro,
+    TResult Function(int selectedDay, StreakQuoteData quote)? withoutPremium,
     TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
-        proStartedOrContinued,
-    TResult Function()? proMissed,
+        premiumStartedOrContinued,
+    TResult Function()? premiumMissed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(WithoutPro value) withoutPro,
-    required TResult Function(_StartedOrContinued value) proStartedOrContinued,
-    required TResult Function(Missed value) proMissed,
+    required TResult Function(WithoutPremium value) withoutPremium,
+    required TResult Function(_PremiumStartedOrContinued value)
+        premiumStartedOrContinued,
+    required TResult Function(PremiumMissed value) premiumMissed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
-    TResult? Function(WithoutPro value)? withoutPro,
-    TResult? Function(_StartedOrContinued value)? proStartedOrContinued,
-    TResult? Function(Missed value)? proMissed,
+    TResult? Function(WithoutPremium value)? withoutPremium,
+    TResult? Function(_PremiumStartedOrContinued value)?
+        premiumStartedOrContinued,
+    TResult? Function(PremiumMissed value)? premiumMissed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(WithoutPro value)? withoutPro,
-    TResult Function(_StartedOrContinued value)? proStartedOrContinued,
-    TResult Function(Missed value)? proMissed,
+    TResult Function(WithoutPremium value)? withoutPremium,
+    TResult Function(_PremiumStartedOrContinued value)?
+        premiumStartedOrContinued,
+    TResult Function(PremiumMissed value)? premiumMissed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -158,11 +161,11 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(int selectedDay, StreakQuoteData quote)
-        withoutPro,
+        withoutPremium,
     required TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)
-        proStartedOrContinued,
-    required TResult Function() proMissed,
+        premiumStartedOrContinued,
+    required TResult Function() premiumMissed,
   }) {
     return loading();
   }
@@ -171,11 +174,11 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(int selectedDay, StreakQuoteData quote)? withoutPro,
+    TResult? Function(int selectedDay, StreakQuoteData quote)? withoutPremium,
     TResult? Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
-        proStartedOrContinued,
-    TResult? Function()? proMissed,
+        premiumStartedOrContinued,
+    TResult? Function()? premiumMissed,
   }) {
     return loading?.call();
   }
@@ -184,11 +187,11 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(int selectedDay, StreakQuoteData quote)? withoutPro,
+    TResult Function(int selectedDay, StreakQuoteData quote)? withoutPremium,
     TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
-        proStartedOrContinued,
-    TResult Function()? proMissed,
+        premiumStartedOrContinued,
+    TResult Function()? premiumMissed,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -201,9 +204,10 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(WithoutPro value) withoutPro,
-    required TResult Function(_StartedOrContinued value) proStartedOrContinued,
-    required TResult Function(Missed value) proMissed,
+    required TResult Function(WithoutPremium value) withoutPremium,
+    required TResult Function(_PremiumStartedOrContinued value)
+        premiumStartedOrContinued,
+    required TResult Function(PremiumMissed value) premiumMissed,
   }) {
     return loading(this);
   }
@@ -212,9 +216,10 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
-    TResult? Function(WithoutPro value)? withoutPro,
-    TResult? Function(_StartedOrContinued value)? proStartedOrContinued,
-    TResult? Function(Missed value)? proMissed,
+    TResult? Function(WithoutPremium value)? withoutPremium,
+    TResult? Function(_PremiumStartedOrContinued value)?
+        premiumStartedOrContinued,
+    TResult? Function(PremiumMissed value)? premiumMissed,
   }) {
     return loading?.call(this);
   }
@@ -223,9 +228,10 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(WithoutPro value)? withoutPro,
-    TResult Function(_StartedOrContinued value)? proStartedOrContinued,
-    TResult Function(Missed value)? proMissed,
+    TResult Function(WithoutPremium value)? withoutPremium,
+    TResult Function(_PremiumStartedOrContinued value)?
+        premiumStartedOrContinued,
+    TResult Function(PremiumMissed value)? premiumMissed,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -249,10 +255,10 @@ abstract class _Loading implements StreakState {
 }
 
 /// @nodoc
-abstract class _$$WithoutProImplCopyWith<$Res> {
-  factory _$$WithoutProImplCopyWith(
-          _$WithoutProImpl value, $Res Function(_$WithoutProImpl) then) =
-      __$$WithoutProImplCopyWithImpl<$Res>;
+abstract class _$$WithoutPremiumImplCopyWith<$Res> {
+  factory _$$WithoutPremiumImplCopyWith(_$WithoutPremiumImpl value,
+          $Res Function(_$WithoutPremiumImpl) then) =
+      __$$WithoutPremiumImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int selectedDay, StreakQuoteData quote});
 
@@ -260,11 +266,11 @@ abstract class _$$WithoutProImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$WithoutProImplCopyWithImpl<$Res>
-    extends _$StreakStateCopyWithImpl<$Res, _$WithoutProImpl>
-    implements _$$WithoutProImplCopyWith<$Res> {
-  __$$WithoutProImplCopyWithImpl(
-      _$WithoutProImpl _value, $Res Function(_$WithoutProImpl) _then)
+class __$$WithoutPremiumImplCopyWithImpl<$Res>
+    extends _$StreakStateCopyWithImpl<$Res, _$WithoutPremiumImpl>
+    implements _$$WithoutPremiumImplCopyWith<$Res> {
+  __$$WithoutPremiumImplCopyWithImpl(
+      _$WithoutPremiumImpl _value, $Res Function(_$WithoutPremiumImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -273,7 +279,7 @@ class __$$WithoutProImplCopyWithImpl<$Res>
     Object? selectedDay = null,
     Object? quote = null,
   }) {
-    return _then(_$WithoutProImpl(
+    return _then(_$WithoutPremiumImpl(
       null == selectedDay
           ? _value.selectedDay
           : selectedDay // ignore: cast_nullable_to_non_nullable
@@ -296,12 +302,13 @@ class __$$WithoutProImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$WithoutProImpl implements WithoutPro {
-  const _$WithoutProImpl(this.selectedDay, this.quote, {final String? $type})
-      : $type = $type ?? 'withoutPro';
+class _$WithoutPremiumImpl implements WithoutPremium {
+  const _$WithoutPremiumImpl(this.selectedDay, this.quote,
+      {final String? $type})
+      : $type = $type ?? 'withoutPremium';
 
-  factory _$WithoutProImpl.fromJson(Map<String, dynamic> json) =>
-      _$$WithoutProImplFromJson(json);
+  factory _$WithoutPremiumImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WithoutPremiumImplFromJson(json);
 
   @override
   final int selectedDay;
@@ -313,14 +320,14 @@ class _$WithoutProImpl implements WithoutPro {
 
   @override
   String toString() {
-    return 'StreakState.withoutPro(selectedDay: $selectedDay, quote: $quote)';
+    return 'StreakState.withoutPremium(selectedDay: $selectedDay, quote: $quote)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$WithoutProImpl &&
+            other is _$WithoutPremiumImpl &&
             (identical(other.selectedDay, selectedDay) ||
                 other.selectedDay == selectedDay) &&
             (identical(other.quote, quote) || other.quote == quote));
@@ -333,49 +340,50 @@ class _$WithoutProImpl implements WithoutPro {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$WithoutProImplCopyWith<_$WithoutProImpl> get copyWith =>
-      __$$WithoutProImplCopyWithImpl<_$WithoutProImpl>(this, _$identity);
+  _$$WithoutPremiumImplCopyWith<_$WithoutPremiumImpl> get copyWith =>
+      __$$WithoutPremiumImplCopyWithImpl<_$WithoutPremiumImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(int selectedDay, StreakQuoteData quote)
-        withoutPro,
+        withoutPremium,
     required TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)
-        proStartedOrContinued,
-    required TResult Function() proMissed,
+        premiumStartedOrContinued,
+    required TResult Function() premiumMissed,
   }) {
-    return withoutPro(selectedDay, quote);
+    return withoutPremium(selectedDay, quote);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(int selectedDay, StreakQuoteData quote)? withoutPro,
+    TResult? Function(int selectedDay, StreakQuoteData quote)? withoutPremium,
     TResult? Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
-        proStartedOrContinued,
-    TResult? Function()? proMissed,
+        premiumStartedOrContinued,
+    TResult? Function()? premiumMissed,
   }) {
-    return withoutPro?.call(selectedDay, quote);
+    return withoutPremium?.call(selectedDay, quote);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(int selectedDay, StreakQuoteData quote)? withoutPro,
+    TResult Function(int selectedDay, StreakQuoteData quote)? withoutPremium,
     TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
-        proStartedOrContinued,
-    TResult Function()? proMissed,
+        premiumStartedOrContinued,
+    TResult Function()? premiumMissed,
     required TResult orElse(),
   }) {
-    if (withoutPro != null) {
-      return withoutPro(selectedDay, quote);
+    if (withoutPremium != null) {
+      return withoutPremium(selectedDay, quote);
     }
     return orElse();
   }
@@ -384,66 +392,71 @@ class _$WithoutProImpl implements WithoutPro {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(WithoutPro value) withoutPro,
-    required TResult Function(_StartedOrContinued value) proStartedOrContinued,
-    required TResult Function(Missed value) proMissed,
+    required TResult Function(WithoutPremium value) withoutPremium,
+    required TResult Function(_PremiumStartedOrContinued value)
+        premiumStartedOrContinued,
+    required TResult Function(PremiumMissed value) premiumMissed,
   }) {
-    return withoutPro(this);
+    return withoutPremium(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
-    TResult? Function(WithoutPro value)? withoutPro,
-    TResult? Function(_StartedOrContinued value)? proStartedOrContinued,
-    TResult? Function(Missed value)? proMissed,
+    TResult? Function(WithoutPremium value)? withoutPremium,
+    TResult? Function(_PremiumStartedOrContinued value)?
+        premiumStartedOrContinued,
+    TResult? Function(PremiumMissed value)? premiumMissed,
   }) {
-    return withoutPro?.call(this);
+    return withoutPremium?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(WithoutPro value)? withoutPro,
-    TResult Function(_StartedOrContinued value)? proStartedOrContinued,
-    TResult Function(Missed value)? proMissed,
+    TResult Function(WithoutPremium value)? withoutPremium,
+    TResult Function(_PremiumStartedOrContinued value)?
+        premiumStartedOrContinued,
+    TResult Function(PremiumMissed value)? premiumMissed,
     required TResult orElse(),
   }) {
-    if (withoutPro != null) {
-      return withoutPro(this);
+    if (withoutPremium != null) {
+      return withoutPremium(this);
     }
     return orElse();
   }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$WithoutProImplToJson(
+    return _$$WithoutPremiumImplToJson(
       this,
     );
   }
 }
 
-abstract class WithoutPro implements StreakState {
-  const factory WithoutPro(final int selectedDay, final StreakQuoteData quote) =
-      _$WithoutProImpl;
+abstract class WithoutPremium implements StreakState {
+  const factory WithoutPremium(
+          final int selectedDay, final StreakQuoteData quote) =
+      _$WithoutPremiumImpl;
 
-  factory WithoutPro.fromJson(Map<String, dynamic> json) =
-      _$WithoutProImpl.fromJson;
+  factory WithoutPremium.fromJson(Map<String, dynamic> json) =
+      _$WithoutPremiumImpl.fromJson;
 
   int get selectedDay;
   StreakQuoteData get quote;
   @JsonKey(ignore: true)
-  _$$WithoutProImplCopyWith<_$WithoutProImpl> get copyWith =>
+  _$$WithoutPremiumImplCopyWith<_$WithoutPremiumImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$StartedOrContinuedImplCopyWith<$Res> {
-  factory _$$StartedOrContinuedImplCopyWith(_$StartedOrContinuedImpl value,
-          $Res Function(_$StartedOrContinuedImpl) then) =
-      __$$StartedOrContinuedImplCopyWithImpl<$Res>;
+abstract class _$$PremiumStartedOrContinuedImplCopyWith<$Res> {
+  factory _$$PremiumStartedOrContinuedImplCopyWith(
+          _$PremiumStartedOrContinuedImpl value,
+          $Res Function(_$PremiumStartedOrContinuedImpl) then) =
+      __$$PremiumStartedOrContinuedImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {int selectedDay,
@@ -455,11 +468,12 @@ abstract class _$$StartedOrContinuedImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$StartedOrContinuedImplCopyWithImpl<$Res>
-    extends _$StreakStateCopyWithImpl<$Res, _$StartedOrContinuedImpl>
-    implements _$$StartedOrContinuedImplCopyWith<$Res> {
-  __$$StartedOrContinuedImplCopyWithImpl(_$StartedOrContinuedImpl _value,
-      $Res Function(_$StartedOrContinuedImpl) _then)
+class __$$PremiumStartedOrContinuedImplCopyWithImpl<$Res>
+    extends _$StreakStateCopyWithImpl<$Res, _$PremiumStartedOrContinuedImpl>
+    implements _$$PremiumStartedOrContinuedImplCopyWith<$Res> {
+  __$$PremiumStartedOrContinuedImplCopyWithImpl(
+      _$PremiumStartedOrContinuedImpl _value,
+      $Res Function(_$PremiumStartedOrContinuedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -469,7 +483,7 @@ class __$$StartedOrContinuedImplCopyWithImpl<$Res>
     Object? statistics = null,
     Object? quote = null,
   }) {
-    return _then(_$StartedOrContinuedImpl(
+    return _then(_$PremiumStartedOrContinuedImpl(
       null == selectedDay
           ? _value.selectedDay
           : selectedDay // ignore: cast_nullable_to_non_nullable
@@ -504,13 +518,14 @@ class __$$StartedOrContinuedImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$StartedOrContinuedImpl implements _StartedOrContinued {
-  const _$StartedOrContinuedImpl(this.selectedDay, this.statistics, this.quote,
+class _$PremiumStartedOrContinuedImpl implements _PremiumStartedOrContinued {
+  const _$PremiumStartedOrContinuedImpl(
+      this.selectedDay, this.statistics, this.quote,
       {final String? $type})
-      : $type = $type ?? 'proStartedOrContinued';
+      : $type = $type ?? 'premiumStartedOrContinued';
 
-  factory _$StartedOrContinuedImpl.fromJson(Map<String, dynamic> json) =>
-      _$$StartedOrContinuedImplFromJson(json);
+  factory _$PremiumStartedOrContinuedImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PremiumStartedOrContinuedImplFromJson(json);
 
   @override
   final int selectedDay;
@@ -524,14 +539,14 @@ class _$StartedOrContinuedImpl implements _StartedOrContinued {
 
   @override
   String toString() {
-    return 'StreakState.proStartedOrContinued(selectedDay: $selectedDay, statistics: $statistics, quote: $quote)';
+    return 'StreakState.premiumStartedOrContinued(selectedDay: $selectedDay, statistics: $statistics, quote: $quote)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$StartedOrContinuedImpl &&
+            other is _$PremiumStartedOrContinuedImpl &&
             (identical(other.selectedDay, selectedDay) ||
                 other.selectedDay == selectedDay) &&
             (identical(other.statistics, statistics) ||
@@ -546,50 +561,50 @@ class _$StartedOrContinuedImpl implements _StartedOrContinued {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$StartedOrContinuedImplCopyWith<_$StartedOrContinuedImpl> get copyWith =>
-      __$$StartedOrContinuedImplCopyWithImpl<_$StartedOrContinuedImpl>(
-          this, _$identity);
+  _$$PremiumStartedOrContinuedImplCopyWith<_$PremiumStartedOrContinuedImpl>
+      get copyWith => __$$PremiumStartedOrContinuedImplCopyWithImpl<
+          _$PremiumStartedOrContinuedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(int selectedDay, StreakQuoteData quote)
-        withoutPro,
+        withoutPremium,
     required TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)
-        proStartedOrContinued,
-    required TResult Function() proMissed,
+        premiumStartedOrContinued,
+    required TResult Function() premiumMissed,
   }) {
-    return proStartedOrContinued(selectedDay, statistics, quote);
+    return premiumStartedOrContinued(selectedDay, statistics, quote);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(int selectedDay, StreakQuoteData quote)? withoutPro,
+    TResult? Function(int selectedDay, StreakQuoteData quote)? withoutPremium,
     TResult? Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
-        proStartedOrContinued,
-    TResult? Function()? proMissed,
+        premiumStartedOrContinued,
+    TResult? Function()? premiumMissed,
   }) {
-    return proStartedOrContinued?.call(selectedDay, statistics, quote);
+    return premiumStartedOrContinued?.call(selectedDay, statistics, quote);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(int selectedDay, StreakQuoteData quote)? withoutPro,
+    TResult Function(int selectedDay, StreakQuoteData quote)? withoutPremium,
     TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
-        proStartedOrContinued,
-    TResult Function()? proMissed,
+        premiumStartedOrContinued,
+    TResult Function()? premiumMissed,
     required TResult orElse(),
   }) {
-    if (proStartedOrContinued != null) {
-      return proStartedOrContinued(selectedDay, statistics, quote);
+    if (premiumStartedOrContinued != null) {
+      return premiumStartedOrContinued(selectedDay, statistics, quote);
     }
     return orElse();
   }
@@ -598,100 +613,104 @@ class _$StartedOrContinuedImpl implements _StartedOrContinued {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(WithoutPro value) withoutPro,
-    required TResult Function(_StartedOrContinued value) proStartedOrContinued,
-    required TResult Function(Missed value) proMissed,
+    required TResult Function(WithoutPremium value) withoutPremium,
+    required TResult Function(_PremiumStartedOrContinued value)
+        premiumStartedOrContinued,
+    required TResult Function(PremiumMissed value) premiumMissed,
   }) {
-    return proStartedOrContinued(this);
+    return premiumStartedOrContinued(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
-    TResult? Function(WithoutPro value)? withoutPro,
-    TResult? Function(_StartedOrContinued value)? proStartedOrContinued,
-    TResult? Function(Missed value)? proMissed,
+    TResult? Function(WithoutPremium value)? withoutPremium,
+    TResult? Function(_PremiumStartedOrContinued value)?
+        premiumStartedOrContinued,
+    TResult? Function(PremiumMissed value)? premiumMissed,
   }) {
-    return proStartedOrContinued?.call(this);
+    return premiumStartedOrContinued?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(WithoutPro value)? withoutPro,
-    TResult Function(_StartedOrContinued value)? proStartedOrContinued,
-    TResult Function(Missed value)? proMissed,
+    TResult Function(WithoutPremium value)? withoutPremium,
+    TResult Function(_PremiumStartedOrContinued value)?
+        premiumStartedOrContinued,
+    TResult Function(PremiumMissed value)? premiumMissed,
     required TResult orElse(),
   }) {
-    if (proStartedOrContinued != null) {
-      return proStartedOrContinued(this);
+    if (premiumStartedOrContinued != null) {
+      return premiumStartedOrContinued(this);
     }
     return orElse();
   }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$StartedOrContinuedImplToJson(
+    return _$$PremiumStartedOrContinuedImplToJson(
       this,
     );
   }
 }
 
-abstract class _StartedOrContinued implements StreakState {
-  const factory _StartedOrContinued(
+abstract class _PremiumStartedOrContinued implements StreakState {
+  const factory _PremiumStartedOrContinued(
       final int selectedDay,
       final StreakStatisticsData statistics,
-      final StreakQuoteData quote) = _$StartedOrContinuedImpl;
+      final StreakQuoteData quote) = _$PremiumStartedOrContinuedImpl;
 
-  factory _StartedOrContinued.fromJson(Map<String, dynamic> json) =
-      _$StartedOrContinuedImpl.fromJson;
+  factory _PremiumStartedOrContinued.fromJson(Map<String, dynamic> json) =
+      _$PremiumStartedOrContinuedImpl.fromJson;
 
   int get selectedDay;
   StreakStatisticsData get statistics;
   StreakQuoteData get quote;
   @JsonKey(ignore: true)
-  _$$StartedOrContinuedImplCopyWith<_$StartedOrContinuedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$PremiumStartedOrContinuedImplCopyWith<_$PremiumStartedOrContinuedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$MissedImplCopyWith<$Res> {
-  factory _$$MissedImplCopyWith(
-          _$MissedImpl value, $Res Function(_$MissedImpl) then) =
-      __$$MissedImplCopyWithImpl<$Res>;
+abstract class _$$PremiumMissedImplCopyWith<$Res> {
+  factory _$$PremiumMissedImplCopyWith(
+          _$PremiumMissedImpl value, $Res Function(_$PremiumMissedImpl) then) =
+      __$$PremiumMissedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$MissedImplCopyWithImpl<$Res>
-    extends _$StreakStateCopyWithImpl<$Res, _$MissedImpl>
-    implements _$$MissedImplCopyWith<$Res> {
-  __$$MissedImplCopyWithImpl(
-      _$MissedImpl _value, $Res Function(_$MissedImpl) _then)
+class __$$PremiumMissedImplCopyWithImpl<$Res>
+    extends _$StreakStateCopyWithImpl<$Res, _$PremiumMissedImpl>
+    implements _$$PremiumMissedImplCopyWith<$Res> {
+  __$$PremiumMissedImplCopyWithImpl(
+      _$PremiumMissedImpl _value, $Res Function(_$PremiumMissedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$MissedImpl implements Missed {
-  const _$MissedImpl({final String? $type}) : $type = $type ?? 'proMissed';
+class _$PremiumMissedImpl implements PremiumMissed {
+  const _$PremiumMissedImpl({final String? $type})
+      : $type = $type ?? 'premiumMissed';
 
-  factory _$MissedImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MissedImplFromJson(json);
+  factory _$PremiumMissedImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PremiumMissedImplFromJson(json);
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'StreakState.proMissed()';
+    return 'StreakState.premiumMissed()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$MissedImpl);
+        (other.runtimeType == runtimeType && other is _$PremiumMissedImpl);
   }
 
   @JsonKey(ignore: true)
@@ -703,41 +722,41 @@ class _$MissedImpl implements Missed {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(int selectedDay, StreakQuoteData quote)
-        withoutPro,
+        withoutPremium,
     required TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)
-        proStartedOrContinued,
-    required TResult Function() proMissed,
+        premiumStartedOrContinued,
+    required TResult Function() premiumMissed,
   }) {
-    return proMissed();
+    return premiumMissed();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(int selectedDay, StreakQuoteData quote)? withoutPro,
+    TResult? Function(int selectedDay, StreakQuoteData quote)? withoutPremium,
     TResult? Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
-        proStartedOrContinued,
-    TResult? Function()? proMissed,
+        premiumStartedOrContinued,
+    TResult? Function()? premiumMissed,
   }) {
-    return proMissed?.call();
+    return premiumMissed?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(int selectedDay, StreakQuoteData quote)? withoutPro,
+    TResult Function(int selectedDay, StreakQuoteData quote)? withoutPremium,
     TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
-        proStartedOrContinued,
-    TResult Function()? proMissed,
+        premiumStartedOrContinued,
+    TResult Function()? premiumMissed,
     required TResult orElse(),
   }) {
-    if (proMissed != null) {
-      return proMissed();
+    if (premiumMissed != null) {
+      return premiumMissed();
     }
     return orElse();
   }
@@ -746,49 +765,53 @@ class _$MissedImpl implements Missed {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(WithoutPro value) withoutPro,
-    required TResult Function(_StartedOrContinued value) proStartedOrContinued,
-    required TResult Function(Missed value) proMissed,
+    required TResult Function(WithoutPremium value) withoutPremium,
+    required TResult Function(_PremiumStartedOrContinued value)
+        premiumStartedOrContinued,
+    required TResult Function(PremiumMissed value) premiumMissed,
   }) {
-    return proMissed(this);
+    return premiumMissed(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
-    TResult? Function(WithoutPro value)? withoutPro,
-    TResult? Function(_StartedOrContinued value)? proStartedOrContinued,
-    TResult? Function(Missed value)? proMissed,
+    TResult? Function(WithoutPremium value)? withoutPremium,
+    TResult? Function(_PremiumStartedOrContinued value)?
+        premiumStartedOrContinued,
+    TResult? Function(PremiumMissed value)? premiumMissed,
   }) {
-    return proMissed?.call(this);
+    return premiumMissed?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(WithoutPro value)? withoutPro,
-    TResult Function(_StartedOrContinued value)? proStartedOrContinued,
-    TResult Function(Missed value)? proMissed,
+    TResult Function(WithoutPremium value)? withoutPremium,
+    TResult Function(_PremiumStartedOrContinued value)?
+        premiumStartedOrContinued,
+    TResult Function(PremiumMissed value)? premiumMissed,
     required TResult orElse(),
   }) {
-    if (proMissed != null) {
-      return proMissed(this);
+    if (premiumMissed != null) {
+      return premiumMissed(this);
     }
     return orElse();
   }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$MissedImplToJson(
+    return _$$PremiumMissedImplToJson(
       this,
     );
   }
 }
 
-abstract class Missed implements StreakState {
-  const factory Missed() = _$MissedImpl;
+abstract class PremiumMissed implements StreakState {
+  const factory PremiumMissed() = _$PremiumMissedImpl;
 
-  factory Missed.fromJson(Map<String, dynamic> json) = _$MissedImpl.fromJson;
+  factory PremiumMissed.fromJson(Map<String, dynamic> json) =
+      _$PremiumMissedImpl.fromJson;
 }

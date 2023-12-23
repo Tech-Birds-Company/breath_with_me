@@ -1,6 +1,6 @@
 import 'package:breathe_with_me/features/streak/blocs/streak_bloc.dart';
 import 'package:breathe_with_me/features/streak/models/streak_state.dart';
-import 'package:breathe_with_me/features/streak/widgets/streak_without_pro.dart';
+import 'package:breathe_with_me/features/streak/widgets/streak_without_premium.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,20 +36,20 @@ class StreakPage extends HookWidget {
               builder: (context, state) {
                 return state.when(
                   loading: () {
-                    return const Center(
-                      child: CircularProgressIndicator(),
+                    return Center(
+                      child: CircularProgressIndicator(color: theme.green3),
                     );
                   },
-                  withoutPro: (selectedDay, quote) {
+                  withoutPremium: (selectedDay, quote) {
                     return StreakWithoutPro(
                       selectedDay: selectedDay,
                       quote: quote,
                     );
                   },
-                  proStartedOrContinued: (selectedDay, statistics, quote) {
+                  premiumStartedOrContinued: (selectedDay, statistics, quote) {
                     return const Text('proStartedOrContinued');
                   },
-                  proMissed: () {
+                  premiumMissed: () {
                     return const Text('proMissed');
                   },
                 );
