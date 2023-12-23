@@ -37,7 +37,23 @@ final class StreaksProgressRepository {
     return progress;
   }
 
-  // Future<StreaksProgress> restoreStreak() async {}
+  Future<StreaksProgress> restoreStreak(
+      String userID, DateTime timestamp, int monthLivesCount) async {
+    var progress = await _getStreaksProgress(userID, monthLivesCount);
+
+    // Remove live for restore
+    progress = progress.copyWith(
+      livesCount: progress.livesCount - 1,
+    );
+
+    // If don't have restored streak, add it to timeline
+    if (!_containsTimestampWithSpecificDate(progress.timeline, timestamp)) {
+      progress = progress.copyWith(timeline: [...progress.timeline, timestamp]);
+    }
+
+    await _streaksProgressDoc(userID).set(_jsonFromProgress(progress));
+    return progress;
+  }
 
   Future<StreaksProgress> _getStreaksProgress(
     String userID,
