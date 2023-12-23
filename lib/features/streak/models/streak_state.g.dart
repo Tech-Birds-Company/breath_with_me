@@ -17,7 +17,7 @@ Map<String, dynamic> _$$LoadingImplToJson(_$LoadingImpl instance) =>
 
 _$WithoutPremiumImpl _$$WithoutPremiumImplFromJson(Map json) =>
     _$WithoutPremiumImpl(
-      json['selectedDay'] as int,
+      json['streaksCount'] as int,
       StreakQuoteData.fromJson(Map<String, dynamic>.from(json['quote'] as Map)),
       $type: json['runtimeType'] as String?,
     );
@@ -25,7 +25,7 @@ _$WithoutPremiumImpl _$$WithoutPremiumImplFromJson(Map json) =>
 Map<String, dynamic> _$$WithoutPremiumImplToJson(
         _$WithoutPremiumImpl instance) =>
     <String, dynamic>{
-      'selectedDay': instance.selectedDay,
+      'streaksCount': instance.streaksCount,
       'quote': instance.quote.toJson(),
       'runtimeType': instance.$type,
     };

@@ -43,9 +43,9 @@ class StreakPage extends HookWidget {
                       child: CircularProgressIndicator(color: theme.green3),
                     );
                   },
-                  withoutPremium: (selectedDay, quote) {
+                  withoutPremium: (streaksCount, quote) {
                     return StreakWithoutPro(
-                      selectedDay: selectedDay,
+                      streaksCount: streaksCount,
                       quote: quote,
                     );
                   },

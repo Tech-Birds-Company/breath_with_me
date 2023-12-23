@@ -9,7 +9,7 @@ part 'streak_state.g.dart';
 class StreakState with _$StreakState {
   const factory StreakState.loading() = _Loading;
   const factory StreakState.withoutPremium(
-    int selectedDay,
+    int streaksCount,
     StreakQuoteData quote,
   ) = WithoutPremium;
   const factory StreakState.premiumStartedOrContinued(

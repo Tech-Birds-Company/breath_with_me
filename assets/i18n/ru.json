@@ -103,5 +103,14 @@
 	"streakStatisticsCardStreaksCount": "Дней подряд",
 	"streakStatisticsCardPracticesCount": "Практики",
 	"streakStatisticsCardMinCount": "Минут",
-	"streakStatisticsCardDayMissedCount": "Дней пропущено"
+	"streakStatisticsCardDayMissedCount": "Дней пропущено",
+	"streakWithoutPremiumTitle": "Круто! Ты практикуешь уже",
+	"streakWithoutPremiumSubtitle": {
+		"zero":"{} дней подряд",
+		"one": "{} день подряд",
+		"two": "{} дня подряд",
+		"few": "{} дня подряд",
+		"many": "{} дней подряд",
+		"other": "{} дней подряд"
+	}
 }

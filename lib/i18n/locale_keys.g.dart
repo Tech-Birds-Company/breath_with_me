@@ -103,4 +103,6 @@ abstract class LocaleKeys {
   static const streakStatisticsCardMinCount = 'streakStatisticsCardMinCount';
   static const streakStatisticsCardDayMissedCount =
       'streakStatisticsCardDayMissedCount';
+  static const streakWithoutPremiumTitle = 'streakWithoutPremiumTitle';
+  static const streakWithoutPremiumSubtitle = 'streakWithoutPremiumSubtitle';
 }

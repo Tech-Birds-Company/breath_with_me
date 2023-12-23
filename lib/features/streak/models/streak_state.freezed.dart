@@ -36,7 +36,7 @@ mixin _$StreakState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(int selectedDay, StreakQuoteData quote)
+    required TResult Function(int streaksCount, StreakQuoteData quote)
         withoutPremium,
     required TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)
@@ -47,7 +47,7 @@ mixin _$StreakState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(int selectedDay, StreakQuoteData quote)? withoutPremium,
+    TResult? Function(int streaksCount, StreakQuoteData quote)? withoutPremium,
     TResult? Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
         premiumStartedOrContinued,
@@ -57,7 +57,7 @@ mixin _$StreakState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(int selectedDay, StreakQuoteData quote)? withoutPremium,
+    TResult Function(int streaksCount, StreakQuoteData quote)? withoutPremium,
     TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
         premiumStartedOrContinued,
@@ -160,7 +160,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(int selectedDay, StreakQuoteData quote)
+    required TResult Function(int streaksCount, StreakQuoteData quote)
         withoutPremium,
     required TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)
@@ -174,7 +174,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(int selectedDay, StreakQuoteData quote)? withoutPremium,
+    TResult? Function(int streaksCount, StreakQuoteData quote)? withoutPremium,
     TResult? Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
         premiumStartedOrContinued,
@@ -187,7 +187,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(int selectedDay, StreakQuoteData quote)? withoutPremium,
+    TResult Function(int streaksCount, StreakQuoteData quote)? withoutPremium,
     TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
         premiumStartedOrContinued,
@@ -260,7 +260,7 @@ abstract class _$$WithoutPremiumImplCopyWith<$Res> {
           $Res Function(_$WithoutPremiumImpl) then) =
       __$$WithoutPremiumImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int selectedDay, StreakQuoteData quote});
+  $Res call({int streaksCount, StreakQuoteData quote});
 
   $StreakQuoteDataCopyWith<$Res> get quote;
 }
@@ -276,13 +276,13 @@ class __$$WithoutPremiumImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? selectedDay = null,
+    Object? streaksCount = null,
     Object? quote = null,
   }) {
     return _then(_$WithoutPremiumImpl(
-      null == selectedDay
-          ? _value.selectedDay
-          : selectedDay // ignore: cast_nullable_to_non_nullable
+      null == streaksCount
+          ? _value.streaksCount
+          : streaksCount // ignore: cast_nullable_to_non_nullable
               as int,
       null == quote
           ? _value.quote
@@ -303,7 +303,7 @@ class __$$WithoutPremiumImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$WithoutPremiumImpl implements WithoutPremium {
-  const _$WithoutPremiumImpl(this.selectedDay, this.quote,
+  const _$WithoutPremiumImpl(this.streaksCount, this.quote,
       {final String? $type})
       : $type = $type ?? 'withoutPremium';
 
@@ -311,7 +311,7 @@ class _$WithoutPremiumImpl implements WithoutPremium {
       _$$WithoutPremiumImplFromJson(json);
 
   @override
-  final int selectedDay;
+  final int streaksCount;
   @override
   final StreakQuoteData quote;
 
@@ -320,7 +320,7 @@ class _$WithoutPremiumImpl implements WithoutPremium {
 
   @override
   String toString() {
-    return 'StreakState.withoutPremium(selectedDay: $selectedDay, quote: $quote)';
+    return 'StreakState.withoutPremium(streaksCount: $streaksCount, quote: $quote)';
   }
 
   @override
@@ -328,14 +328,14 @@ class _$WithoutPremiumImpl implements WithoutPremium {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WithoutPremiumImpl &&
-            (identical(other.selectedDay, selectedDay) ||
-                other.selectedDay == selectedDay) &&
+            (identical(other.streaksCount, streaksCount) ||
+                other.streaksCount == streaksCount) &&
             (identical(other.quote, quote) || other.quote == quote));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, selectedDay, quote);
+  int get hashCode => Object.hash(runtimeType, streaksCount, quote);
 
   @JsonKey(ignore: true)
   @override
@@ -348,34 +348,34 @@ class _$WithoutPremiumImpl implements WithoutPremium {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(int selectedDay, StreakQuoteData quote)
+    required TResult Function(int streaksCount, StreakQuoteData quote)
         withoutPremium,
     required TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)
         premiumStartedOrContinued,
     required TResult Function() premiumMissed,
   }) {
-    return withoutPremium(selectedDay, quote);
+    return withoutPremium(streaksCount, quote);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(int selectedDay, StreakQuoteData quote)? withoutPremium,
+    TResult? Function(int streaksCount, StreakQuoteData quote)? withoutPremium,
     TResult? Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
         premiumStartedOrContinued,
     TResult? Function()? premiumMissed,
   }) {
-    return withoutPremium?.call(selectedDay, quote);
+    return withoutPremium?.call(streaksCount, quote);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(int selectedDay, StreakQuoteData quote)? withoutPremium,
+    TResult Function(int streaksCount, StreakQuoteData quote)? withoutPremium,
     TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
         premiumStartedOrContinued,
@@ -383,7 +383,7 @@ class _$WithoutPremiumImpl implements WithoutPremium {
     required TResult orElse(),
   }) {
     if (withoutPremium != null) {
-      return withoutPremium(selectedDay, quote);
+      return withoutPremium(streaksCount, quote);
     }
     return orElse();
   }
@@ -438,13 +438,13 @@ class _$WithoutPremiumImpl implements WithoutPremium {
 
 abstract class WithoutPremium implements StreakState {
   const factory WithoutPremium(
-          final int selectedDay, final StreakQuoteData quote) =
+          final int streaksCount, final StreakQuoteData quote) =
       _$WithoutPremiumImpl;
 
   factory WithoutPremium.fromJson(Map<String, dynamic> json) =
       _$WithoutPremiumImpl.fromJson;
 
-  int get selectedDay;
+  int get streaksCount;
   StreakQuoteData get quote;
   @JsonKey(ignore: true)
   _$$WithoutPremiumImplCopyWith<_$WithoutPremiumImpl> get copyWith =>
@@ -569,7 +569,7 @@ class _$PremiumStartedOrContinuedImpl implements _PremiumStartedOrContinued {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(int selectedDay, StreakQuoteData quote)
+    required TResult Function(int streaksCount, StreakQuoteData quote)
         withoutPremium,
     required TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)
@@ -583,7 +583,7 @@ class _$PremiumStartedOrContinuedImpl implements _PremiumStartedOrContinued {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(int selectedDay, StreakQuoteData quote)? withoutPremium,
+    TResult? Function(int streaksCount, StreakQuoteData quote)? withoutPremium,
     TResult? Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
         premiumStartedOrContinued,
@@ -596,7 +596,7 @@ class _$PremiumStartedOrContinuedImpl implements _PremiumStartedOrContinued {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(int selectedDay, StreakQuoteData quote)? withoutPremium,
+    TResult Function(int streaksCount, StreakQuoteData quote)? withoutPremium,
     TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
         premiumStartedOrContinued,
@@ -721,7 +721,7 @@ class _$PremiumMissedImpl implements PremiumMissed {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(int selectedDay, StreakQuoteData quote)
+    required TResult Function(int streaksCount, StreakQuoteData quote)
         withoutPremium,
     required TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)
@@ -735,7 +735,7 @@ class _$PremiumMissedImpl implements PremiumMissed {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(int selectedDay, StreakQuoteData quote)? withoutPremium,
+    TResult? Function(int streaksCount, StreakQuoteData quote)? withoutPremium,
     TResult? Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
         premiumStartedOrContinued,
@@ -748,7 +748,7 @@ class _$PremiumMissedImpl implements PremiumMissed {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(int selectedDay, StreakQuoteData quote)? withoutPremium,
+    TResult Function(int streaksCount, StreakQuoteData quote)? withoutPremium,
     TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
         premiumStartedOrContinued,

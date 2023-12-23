@@ -103,5 +103,7 @@
 	"streakStatisticsCardStreaksCount": "Streaks",
 	"streakStatisticsCardPracticesCount": "Practices",
 	"streakStatisticsCardMinCount": "Min",
-	"streakStatisticsCardDayMissedCount": "Day missed"
+	"streakStatisticsCardDayMissedCount": "Day missed",
+	"streakWithoutPremiumTitle": "You have",
+	"streakWithoutPremiumSubtitle": "{} day streak"
 }
