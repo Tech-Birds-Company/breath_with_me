@@ -103,4 +103,9 @@ final class FirebaseUserManager implements UserManager {
   Future<void> sendResetPassword(String email) async {
     await _firebaseAuth.sendPasswordResetEmail(email: email);
   }
+
+  @override
+  Future<void> deleteAccount() async {
+    await _firebaseAuth.currentUser?.delete();
+  }
 }
