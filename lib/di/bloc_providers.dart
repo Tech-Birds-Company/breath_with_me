@@ -118,6 +118,7 @@ final class _BlocProviders {
         track,
         ref.read(Di.shared.repository.firebaseRemoteConfig),
         ref.read(Di.shared.repository.firebaseStreaksProgress),
+        ref.read(Di.shared.repository.streaksQuotes),
         ref.read(Di.shared.manager.user),
         ref.read(Di.shared.manager.navigation),
       );

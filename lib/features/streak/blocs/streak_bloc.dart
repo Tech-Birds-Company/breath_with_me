@@ -1,4 +1,3 @@
-import 'package:breathe_with_me/features/streak/models/streak_quote_data.dart';
 import 'package:breathe_with_me/features/streak/models/streak_state.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
@@ -6,6 +5,7 @@ import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/repositories/models/streaks_progress.dart';
 import 'package:breathe_with_me/repositories/remote_config_repository.dart';
 import 'package:breathe_with_me/repositories/streaks_progress_repository.dart';
+import 'package:breathe_with_me/repositories/streaks_quotes_repository.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,6 +15,7 @@ final class StreakBloc extends BlocBase<StreakState> {
 
   final RemoteConfigRepository _remoteConfigRepository;
   final StreaksProgressRepository _streaksProgressRepository;
+  final StreaksQuotesRepository _streaksQuotesRepository;
 
   final UserManager _userManager;
   final NavigationManager _navigationManager;
@@ -23,11 +24,12 @@ final class StreakBloc extends BlocBase<StreakState> {
     this._track,
     this._remoteConfigRepository,
     this._streaksProgressRepository,
+    this._streaksQuotesRepository,
     this._userManager,
     this._navigationManager,
   ) : super(const StreakState.loading());
 
-  Future<void> init() async {
+  Future<void> init(String languageCode) async {
     final userID = _userManager.currentUser!.uid;
     final monthLivesCount = _remoteConfigRepository.streaks.monthLivesCount;
     final progress = await _streaksProgressRepository.addPractice(
@@ -43,11 +45,7 @@ final class StreakBloc extends BlocBase<StreakState> {
     } else {
       state = StreakState.withoutPremium(
         _getLastStreaksCount(progress),
-        const StreakQuoteData(
-          quote:
-              'We cannot breathe in the past or the future. We inhale and exhale always in the present',
-          author: 'Dasha Chen',
-        ),
+        _streaksQuotesRepository.getQuote(languageCode),
       );
     }
     emit(state);
