@@ -65,6 +65,7 @@ class StreakStatistics extends StatelessWidget {
               ),
               const Spacer(),
               divider,
+              const Spacer(),
               StreakStatisticsItem(
                 text: missedDaysCount.toString(),
                 name: LocaleKeys.streakStatisticsCardDayMissedCount.tr(),

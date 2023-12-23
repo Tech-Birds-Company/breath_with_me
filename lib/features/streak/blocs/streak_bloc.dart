@@ -43,11 +43,17 @@ final class StreakBloc extends BlocBase<StreakState> {
 
     final StreakState state;
     if (isPremium) {
+      final streaksCount = _getLastStreaksCount(progress);
       final missedDaysCount = _getLastMissedDaysCount(progress);
       if (missedDaysCount == 1) {
-        state = const StreakState.loading();
+        state = StreakState.premiumMissed(
+          StreakStatisticsData.missed(streaksCount, missedDaysCount),
+          StreakLivesData(
+            availableLivesCount: progress.livesCount,
+            totalLivesCount: _remoteConfigRepository.streaks.monthLivesCount,
+          ),
+        );
       } else {
-        final streaksCount = _getLastStreaksCount(progress);
         state = StreakState.premiumStartedOrContinued(
           StreakStatisticsData.full(
             streaksCount,

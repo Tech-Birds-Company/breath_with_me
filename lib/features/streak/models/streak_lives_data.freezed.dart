@@ -141,8 +141,8 @@ class _$StreakLivesDataImpl implements _StreakLivesData {
   const _$StreakLivesDataImpl(
       {required this.availableLivesCount,
       required this.totalLivesCount,
-      required this.showTitle,
-      required this.showFooter});
+      this.showTitle = false,
+      this.showFooter = false});
 
   factory _$StreakLivesDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$StreakLivesDataImplFromJson(json);
@@ -152,8 +152,10 @@ class _$StreakLivesDataImpl implements _StreakLivesData {
   @override
   final int totalLivesCount;
   @override
+  @JsonKey()
   final bool showTitle;
   @override
+  @JsonKey()
   final bool showFooter;
 
   @override
@@ -200,8 +202,8 @@ abstract class _StreakLivesData implements StreakLivesData {
   const factory _StreakLivesData(
       {required final int availableLivesCount,
       required final int totalLivesCount,
-      required final bool showTitle,
-      required final bool showFooter}) = _$StreakLivesDataImpl;
+      final bool showTitle,
+      final bool showFooter}) = _$StreakLivesDataImpl;
 
   factory _StreakLivesData.fromJson(Map<String, dynamic> json) =
       _$StreakLivesDataImpl.fromJson;

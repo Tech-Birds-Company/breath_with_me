@@ -10,8 +10,8 @@ _$StreakLivesDataImpl _$$StreakLivesDataImplFromJson(Map json) =>
     _$StreakLivesDataImpl(
       availableLivesCount: json['availableLivesCount'] as int,
       totalLivesCount: json['totalLivesCount'] as int,
-      showTitle: json['showTitle'] as bool,
-      showFooter: json['showFooter'] as bool,
+      showTitle: json['showTitle'] as bool? ?? false,
+      showFooter: json['showFooter'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$StreakLivesDataImplToJson(
