@@ -30,7 +30,11 @@ final class StreakBloc extends BlocBase<StreakState> {
     final minutesCount = _track.duration ~/ 60;
     final monthLivesCount = _remoteConfigRepository.streaks.monthLivesCount;
     final progress = await _streaksProgressRepository.addPractice(
-        userID, DateTime.now(), minutesCount, monthLivesCount);
+      userID,
+      DateTime.now(),
+      minutesCount,
+      monthLivesCount,
+    );
 
     final StreakState state;
     if (isPro) {

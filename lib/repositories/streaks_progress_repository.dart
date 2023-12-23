@@ -28,10 +28,10 @@ final class StreaksProgressRepository {
 
     // If don't have streak today, add it to timeline
     if (!_containsTimestampWithSpecificDate(progress.timeline, timestamp)) {
-      progress.timeline.add(timestamp);
+      progress = progress.copyWith(timeline: [...progress.timeline, timestamp]);
     }
 
-    await _streaksProgressDoc(userID).set(progress.toJson());
+    await _streaksProgressDoc(userID).set(_jsonFromProgress(progress));
     return progress;
   }
 
@@ -45,7 +45,7 @@ final class StreaksProgressRepository {
     final json = doc.data();
 
     if (json != null) {
-      return StreaksProgress.fromJson(json);
+      return _progressFromJson(json);
     } else {
       return StreaksProgress(
         livesCount: monthLivesCount,
@@ -82,5 +82,33 @@ final class StreaksProgressRepository {
     } else {
       return DateTime(now.year, now.month + 1);
     }
+  }
+
+  StreaksProgress _progressFromJson(Map<String, dynamic> json) {
+    json['livesExpireTimestamp'] =
+        _stringFromTimestamp(json['livesExpireTimestamp'] as Timestamp);
+    json['timeline'] = (json['timeline'] as List<dynamic>)
+        .map((e) => _stringFromTimestamp(e as Timestamp))
+        .toList();
+    return StreaksProgress.fromJson(json);
+  }
+
+  Map<String, dynamic> _jsonFromProgress(StreaksProgress progress) {
+    final json = progress.toJson();
+    json['livesExpireTimestamp'] =
+        _timestampFromDateTime(progress.livesExpireTimestamp);
+    json['timeline'] = progress.timeline.map(_timestampFromDateTime).toList();
+    return json;
+  }
+
+  String _stringFromTimestamp(Timestamp timestamp) {
+    final dateTime =
+        DateTime.fromMicrosecondsSinceEpoch(timestamp.microsecondsSinceEpoch);
+    return dateTime.toIso8601String();
+  }
+
+  Timestamp _timestampFromDateTime(DateTime dateTime) {
+    return Timestamp.fromMicrosecondsSinceEpoch(
+        dateTime.microsecondsSinceEpoch);
   }
 }

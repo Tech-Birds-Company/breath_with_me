@@ -38,7 +38,7 @@ mixin _$StreakState {
     required TResult Function() loading,
     required TResult Function(int selectedDay, StreakQuoteData quote)
         withoutPro,
-    required TResult Function(int? selectedDay, StreakStatisticsData statistics,
+    required TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)
         proStartedOrContinued,
     required TResult Function() proMissed,
@@ -48,7 +48,7 @@ mixin _$StreakState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(int selectedDay, StreakQuoteData quote)? withoutPro,
-    TResult? Function(int? selectedDay, StreakStatisticsData statistics,
+    TResult? Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
         proStartedOrContinued,
     TResult? Function()? proMissed,
@@ -58,7 +58,7 @@ mixin _$StreakState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(int selectedDay, StreakQuoteData quote)? withoutPro,
-    TResult Function(int? selectedDay, StreakStatisticsData statistics,
+    TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
         proStartedOrContinued,
     TResult Function()? proMissed,
@@ -159,7 +159,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() loading,
     required TResult Function(int selectedDay, StreakQuoteData quote)
         withoutPro,
-    required TResult Function(int? selectedDay, StreakStatisticsData statistics,
+    required TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)
         proStartedOrContinued,
     required TResult Function() proMissed,
@@ -172,7 +172,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(int selectedDay, StreakQuoteData quote)? withoutPro,
-    TResult? Function(int? selectedDay, StreakStatisticsData statistics,
+    TResult? Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
         proStartedOrContinued,
     TResult? Function()? proMissed,
@@ -185,7 +185,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(int selectedDay, StreakQuoteData quote)? withoutPro,
-    TResult Function(int? selectedDay, StreakStatisticsData statistics,
+    TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
         proStartedOrContinued,
     TResult Function()? proMissed,
@@ -342,7 +342,7 @@ class _$WithoutProImpl implements WithoutPro {
     required TResult Function() loading,
     required TResult Function(int selectedDay, StreakQuoteData quote)
         withoutPro,
-    required TResult Function(int? selectedDay, StreakStatisticsData statistics,
+    required TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)
         proStartedOrContinued,
     required TResult Function() proMissed,
@@ -355,7 +355,7 @@ class _$WithoutProImpl implements WithoutPro {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(int selectedDay, StreakQuoteData quote)? withoutPro,
-    TResult? Function(int? selectedDay, StreakStatisticsData statistics,
+    TResult? Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
         proStartedOrContinued,
     TResult? Function()? proMissed,
@@ -368,7 +368,7 @@ class _$WithoutProImpl implements WithoutPro {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(int selectedDay, StreakQuoteData quote)? withoutPro,
-    TResult Function(int? selectedDay, StreakStatisticsData statistics,
+    TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
         proStartedOrContinued,
     TResult Function()? proMissed,
@@ -446,7 +446,7 @@ abstract class _$$StartedOrContinuedImplCopyWith<$Res> {
       __$$StartedOrContinuedImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {int? selectedDay,
+      {int selectedDay,
       StreakStatisticsData statistics,
       StreakQuoteData quote});
 
@@ -465,15 +465,15 @@ class __$$StartedOrContinuedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? selectedDay = freezed,
+    Object? selectedDay = null,
     Object? statistics = null,
     Object? quote = null,
   }) {
     return _then(_$StartedOrContinuedImpl(
-      freezed == selectedDay
+      null == selectedDay
           ? _value.selectedDay
           : selectedDay // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       null == statistics
           ? _value.statistics
           : statistics // ignore: cast_nullable_to_non_nullable
@@ -513,7 +513,7 @@ class _$StartedOrContinuedImpl implements _StartedOrContinued {
       _$$StartedOrContinuedImplFromJson(json);
 
   @override
-  final int? selectedDay;
+  final int selectedDay;
   @override
   final StreakStatisticsData statistics;
   @override
@@ -556,7 +556,7 @@ class _$StartedOrContinuedImpl implements _StartedOrContinued {
     required TResult Function() loading,
     required TResult Function(int selectedDay, StreakQuoteData quote)
         withoutPro,
-    required TResult Function(int? selectedDay, StreakStatisticsData statistics,
+    required TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)
         proStartedOrContinued,
     required TResult Function() proMissed,
@@ -569,7 +569,7 @@ class _$StartedOrContinuedImpl implements _StartedOrContinued {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(int selectedDay, StreakQuoteData quote)? withoutPro,
-    TResult? Function(int? selectedDay, StreakStatisticsData statistics,
+    TResult? Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
         proStartedOrContinued,
     TResult? Function()? proMissed,
@@ -582,7 +582,7 @@ class _$StartedOrContinuedImpl implements _StartedOrContinued {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(int selectedDay, StreakQuoteData quote)? withoutPro,
-    TResult Function(int? selectedDay, StreakStatisticsData statistics,
+    TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
         proStartedOrContinued,
     TResult Function()? proMissed,
@@ -641,14 +641,14 @@ class _$StartedOrContinuedImpl implements _StartedOrContinued {
 
 abstract class _StartedOrContinued implements StreakState {
   const factory _StartedOrContinued(
-      final int? selectedDay,
+      final int selectedDay,
       final StreakStatisticsData statistics,
       final StreakQuoteData quote) = _$StartedOrContinuedImpl;
 
   factory _StartedOrContinued.fromJson(Map<String, dynamic> json) =
       _$StartedOrContinuedImpl.fromJson;
 
-  int? get selectedDay;
+  int get selectedDay;
   StreakStatisticsData get statistics;
   StreakQuoteData get quote;
   @JsonKey(ignore: true)
@@ -704,7 +704,7 @@ class _$MissedImpl implements Missed {
     required TResult Function() loading,
     required TResult Function(int selectedDay, StreakQuoteData quote)
         withoutPro,
-    required TResult Function(int? selectedDay, StreakStatisticsData statistics,
+    required TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)
         proStartedOrContinued,
     required TResult Function() proMissed,
@@ -717,7 +717,7 @@ class _$MissedImpl implements Missed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(int selectedDay, StreakQuoteData quote)? withoutPro,
-    TResult? Function(int? selectedDay, StreakStatisticsData statistics,
+    TResult? Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
         proStartedOrContinued,
     TResult? Function()? proMissed,
@@ -730,7 +730,7 @@ class _$MissedImpl implements Missed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(int selectedDay, StreakQuoteData quote)? withoutPro,
-    TResult Function(int? selectedDay, StreakStatisticsData statistics,
+    TResult Function(int selectedDay, StreakStatisticsData statistics,
             StreakQuoteData quote)?
         proStartedOrContinued,
     TResult Function()? proMissed,

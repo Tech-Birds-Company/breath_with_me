@@ -30,7 +30,7 @@ Map<String, dynamic> _$$WithoutProImplToJson(_$WithoutProImpl instance) =>
 
 _$StartedOrContinuedImpl _$$StartedOrContinuedImplFromJson(Map json) =>
     _$StartedOrContinuedImpl(
-      json['selectedDay'] as int?,
+      json['selectedDay'] as int,
       StreakStatisticsData.fromJson(
           Map<String, dynamic>.from(json['statistics'] as Map)),
       StreakQuoteData.fromJson(Map<String, dynamic>.from(json['quote'] as Map)),
