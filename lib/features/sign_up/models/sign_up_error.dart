@@ -7,5 +7,7 @@ enum SignUpError {
   invalidEmail,
   @JsonValue('passwordMismatch')
   passwordMismatch,
+  @JsonValue('firebaseError')
+  firebaseError,
   none,
 }

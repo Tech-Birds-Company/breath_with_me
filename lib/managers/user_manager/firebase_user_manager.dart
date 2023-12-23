@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:breathe_with_me/managers/user_manager/auth_result.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -73,21 +74,24 @@ final class FirebaseUserManager implements UserManager {
   }
 
   @override
-  Future<User?> signUpWithEmail(
+  Future<AuthResult> signUpWithEmail(
     String name,
     String email,
     String password,
   ) async {
-    final credential =
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
+    try {
+      final credential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      await credential.user?.updateDisplayName(name);
+      await sendEmailVerification();
 
-    await credential.user?.updateDisplayName(name);
-    await sendEmailVerification();
-
-    return credential.user;
+      return AuthResult(user: credential.user);
+    } on FirebaseAuthException catch (error) {
+      return AuthResult(errorMessage: error.message);
+    }
   }
 
   @override

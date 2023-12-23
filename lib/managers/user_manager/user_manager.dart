@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:breathe_with_me/managers/user_manager/auth_result.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract interface class UserManager {
@@ -9,7 +10,11 @@ abstract interface class UserManager {
 
   Future<User?> signInWithApple();
 
-  Future<User?> signUpWithEmail(String name, String email, String password);
+  Future<AuthResult> signUpWithEmail(
+    String name,
+    String email,
+    String password,
+  );
 
   Future<void> signOut();
 

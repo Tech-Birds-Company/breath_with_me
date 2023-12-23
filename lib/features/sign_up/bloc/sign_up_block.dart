@@ -18,13 +18,19 @@ class SignUpBloc extends BlocBase<SignUpState> {
   Future<void> signUpWithEmail() async {
     try {
       _validateInput();
-      await _userManager.signUpWithEmail(
+      final result = await _userManager.signUpWithEmail(
         state.name,
         state.email,
         state.password,
       );
-      emit(state.copyWith(error: SignUpError.none));
-      _navigationManager.successPage();
+
+      if (result.isSuccess) {
+        emit(state.copyWith(error: SignUpError.none));
+        _navigationManager.successPage();
+      } else {
+        emit(state.copyWith(firebaseError: result.errorMessage));
+        emit(state.copyWith(error: SignUpError.firebaseError));
+      }
     } on SignUpException catch (e) {
       emit(state.copyWith(error: e.error));
     }

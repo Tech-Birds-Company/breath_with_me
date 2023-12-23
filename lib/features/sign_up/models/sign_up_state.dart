@@ -12,6 +12,7 @@ class SignUpState with _$SignUpState {
     @Default('') String email,
     @Default('') String password,
     @Default('') String passwordConfirm,
+    String? firebaseError,
   }) = _SignUpState;
   const SignUpState._();
 
@@ -23,6 +24,7 @@ class SignUpState with _$SignUpState {
       SignUpError.emptyName => 'Error: Name field is empty.',
       SignUpError.invalidEmail => 'Error: Email is invalid.',
       SignUpError.passwordMismatch => 'Error: Passwords do not match.',
+      SignUpError.firebaseError => firebaseError ?? '',
       SignUpError.none => ''
     };
   }

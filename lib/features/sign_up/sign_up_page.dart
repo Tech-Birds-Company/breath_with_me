@@ -89,9 +89,9 @@ class SignUpPage extends StatelessWidget {
                   height: 40,
                   onPressed: bloc.signUpWithEmail,
                 ),
-                BlocSelector<SignUpBloc, SignUpState, SignUpError>(
+                BlocSelector<SignUpBloc, SignUpState, (SignUpError, String?)>(
                   bloc: bloc,
-                  selector: (state) => state.error,
+                  selector: (state) => (state.error, state.firebaseError),
                   builder: (context, error) {
                     if (error != SignUpError.none) {
                       return SizedBox(
