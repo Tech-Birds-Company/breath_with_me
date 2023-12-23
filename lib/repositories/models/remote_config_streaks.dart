@@ -8,7 +8,8 @@ class RemoteConfigStreaks {
 
   const RemoteConfigStreaks({this.monthLivesCount = 3});
 
-  factory RemoteConfigStreaks.fromJson(Map<String, dynamic> json) => _$RemoteConfigStreaksFromJson(json);
+  factory RemoteConfigStreaks.fromJson(Map<String, dynamic> json) =>
+      _$RemoteConfigStreaksFromJson(json);
 
   Map<String, dynamic> toJson() => _$RemoteConfigStreaksToJson(this);
 }

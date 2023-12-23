@@ -1,4 +1,4 @@
-import 'package:breathe_with_me/features/streak/models/streaks_progress.dart';
+import 'package:breathe_with_me/repositories/models/streaks_progress.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 final class StreaksProgressRepository {
@@ -15,7 +15,8 @@ final class StreaksProgressRepository {
     var progress = await _getStreaksProgress(userID, monthLivesCount);
 
     // Add practice minutes to progress
-    progress = progress.copyWith(minutesCount: progress.minutesCount + minutesCount);
+    progress =
+        progress.copyWith(minutesCount: progress.minutesCount + minutesCount);
 
     // If lives have expired, reset it
     if (progress.livesExpireTimestamp.isBefore(DateTime.now())) {
@@ -57,7 +58,9 @@ final class StreaksProgressRepository {
   }
 
   DocumentReference<Map<String, dynamic>> _streaksProgressDoc(String userID) {
-    return FirebaseFirestore.instance.collection(StreaksProgressRepository._streaksCollection).doc(userID);
+    return FirebaseFirestore.instance
+        .collection(StreaksProgressRepository._streaksCollection)
+        .doc(userID);
   }
 
   bool _containsTimestampWithSpecificDate(
@@ -65,7 +68,10 @@ final class StreaksProgressRepository {
     DateTime timestamp,
   ) {
     return timeline.any(
-      (current) => current.day == timestamp.day && current.month == timestamp.month && current.year == timestamp.year,
+      (current) =>
+          current.day == timestamp.day &&
+          current.month == timestamp.month &&
+          current.year == timestamp.year,
     );
   }
 

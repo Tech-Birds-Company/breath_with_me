@@ -7,11 +7,17 @@ part 'streak_state.g.dart';
 
 @freezed
 class StreakState with _$StreakState {
-  const factory StreakState({
-    int? selectedDay,
-    StreakStatisticsData? statistics,
-    StreakQuoteData? quote,
-  }) = _StreakState;
+  const factory StreakState.loading() = _Loading;
+  const factory StreakState.withoutPro(
+    int selectedDay,
+    StreakQuoteData quote,
+  ) = WithoutPro;
+  const factory StreakState.proStartedOrContinued(
+    int selectedDay,
+    StreakStatisticsData statistics,
+    StreakQuoteData quote,
+  ) = _StartedOrContinued;
+  const factory StreakState.proMissed() = Missed;
 
   factory StreakState.fromJson(Map<String, dynamic> json) =>
       _$StreakStateFromJson(json);

@@ -6,21 +6,51 @@ part of 'streak_state.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$StreakStateImpl _$$StreakStateImplFromJson(Map json) => _$StreakStateImpl(
-      selectedDay: json['selectedDay'] as int?,
-      statistics: json['statistics'] == null
-          ? null
-          : StreakStatisticsData.fromJson(
-              Map<String, dynamic>.from(json['statistics'] as Map)),
-      quote: json['quote'] == null
-          ? null
-          : StreakQuoteData.fromJson(
-              Map<String, dynamic>.from(json['quote'] as Map)),
+_$LoadingImpl _$$LoadingImplFromJson(Map json) => _$LoadingImpl(
+      $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$StreakStateImplToJson(_$StreakStateImpl instance) =>
+Map<String, dynamic> _$$LoadingImplToJson(_$LoadingImpl instance) =>
+    <String, dynamic>{
+      'runtimeType': instance.$type,
+    };
+
+_$WithoutProImpl _$$WithoutProImplFromJson(Map json) => _$WithoutProImpl(
+      json['selectedDay'] as int,
+      StreakQuoteData.fromJson(Map<String, dynamic>.from(json['quote'] as Map)),
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$WithoutProImplToJson(_$WithoutProImpl instance) =>
     <String, dynamic>{
       'selectedDay': instance.selectedDay,
-      'statistics': instance.statistics?.toJson(),
-      'quote': instance.quote?.toJson(),
+      'quote': instance.quote.toJson(),
+      'runtimeType': instance.$type,
+    };
+
+_$StartedOrContinuedImpl _$$StartedOrContinuedImplFromJson(Map json) =>
+    _$StartedOrContinuedImpl(
+      json['selectedDay'] as int?,
+      StreakStatisticsData.fromJson(
+          Map<String, dynamic>.from(json['statistics'] as Map)),
+      StreakQuoteData.fromJson(Map<String, dynamic>.from(json['quote'] as Map)),
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$StartedOrContinuedImplToJson(
+        _$StartedOrContinuedImpl instance) =>
+    <String, dynamic>{
+      'selectedDay': instance.selectedDay,
+      'statistics': instance.statistics.toJson(),
+      'quote': instance.quote.toJson(),
+      'runtimeType': instance.$type,
+    };
+
+_$MissedImpl _$$MissedImplFromJson(Map json) => _$MissedImpl(
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$MissedImplToJson(_$MissedImpl instance) =>
+    <String, dynamic>{
+      'runtimeType': instance.$type,
     };

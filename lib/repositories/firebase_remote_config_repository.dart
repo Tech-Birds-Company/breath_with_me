@@ -10,7 +10,8 @@ final class FirebaseRemoteConfigRepository implements RemoteConfigRepository {
   const FirebaseRemoteConfigRepository();
 
   @override
-  Map<String, RemoteConfigValue> getAllConfigValues() => FirebaseRemoteConfig.instance.getAll();
+  Map<String, RemoteConfigValue> getAllConfigValues() =>
+      FirebaseRemoteConfig.instance.getAll();
 
   @override
   T getConfigValue<T>(RemoteConfigKey key) {
