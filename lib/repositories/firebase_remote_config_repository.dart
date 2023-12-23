@@ -1,53 +1,34 @@
 import 'dart:convert';
 
-import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
-import 'package:breathe_with_me/repositories/models/remote_config.dart';
+import 'package:breathe_with_me/repositories/models/remote_config_legal_documents.dart';
+import 'package:breathe_with_me/repositories/models/remote_config_socials.dart';
 import 'package:breathe_with_me/repositories/remote_config_repository.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 
-final class FirebaseRemoteConfigRepository
-    implements RemoteConfigRepository<RemoteConfig> {
-  static const _configPath = 'remote_config/config';
-
-  final DatabaseManager _databaseManager;
-
-  const FirebaseRemoteConfigRepository(this._databaseManager);
+final class FirebaseRemoteConfigRepository implements RemoteConfigRepository {
+  const FirebaseRemoteConfigRepository();
 
   @override
-  Future<RemoteConfig> getRemoteConfig() async {
-    final localConfigEntity = await _databaseManager.getRemoteConfig();
-    if (localConfigEntity != null) {
-      final json = jsonDecode(localConfigEntity.json) as Map<String, Object?>;
-      final config = RemoteConfig.fromJson(json);
-      return config;
-    }
+  Map<String, RemoteConfigValue> getAllConfigValues() =>
+      FirebaseRemoteConfig.instance.getAll();
 
-    final snapshot = await FirebaseFirestore.instance.doc(_configPath).get();
-    final snapshotData = snapshot.data();
-
-    final config = snapshotData != null
-        ? RemoteConfig.fromJson(snapshotData)
-        : const RemoteConfig();
-
-    await saveRemoteConfig(config);
-
-    return config;
+  @override
+  T getConfigValue<T>(RemoteConfigKey key) {
+    final value = FirebaseRemoteConfig.instance.getValue(key.name);
+    return value as T;
   }
 
   @override
-  Stream<RemoteConfig> get remoteConfigStream =>
-      FirebaseFirestore.instance.doc(_configPath).snapshots().map(
-        (snapshot) {
-          final snapshotData = snapshot.data();
-          if (snapshotData != null) {
-            return RemoteConfig.fromJson(snapshotData);
-          }
-
-          return const RemoteConfig();
-        },
-      ).distinct();
+  RemoteConfigLegalDocuments get legalDocuments {
+    final value = FirebaseRemoteConfig.instance.getValue('legalDocuments');
+    final json = jsonDecode(value.asString()) as Map<String, dynamic>;
+    return RemoteConfigLegalDocuments.fromJson(json);
+  }
 
   @override
-  Future<void> saveRemoteConfig(RemoteConfig config) =>
-      _databaseManager.saveRemoteConfig(config.toJson());
+  RemoteConfigSocials get socials {
+    final value = FirebaseRemoteConfig.instance.getValue('socials');
+    final json = jsonDecode(value.asString()) as Map<String, dynamic>;
+    return RemoteConfigSocials.fromJson(json);
+  }
 }

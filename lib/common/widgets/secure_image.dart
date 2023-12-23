@@ -1,4 +1,5 @@
 import 'package:breathe_with_me/di/di.dart';
+import 'package:breathe_with_me/utils/dependency_provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,7 @@ final _secureImageUrlProvider = FutureProvider.family<String?, String>(
   },
 );
 
-class SecureCachedImage extends ConsumerWidget {
+class SecureCachedImage extends StatelessWidget {
   final String baseUrl;
   final Widget loading;
 
@@ -41,15 +42,14 @@ class SecureCachedImage extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final url = ref.watch(_secureImageUrlProvider(baseUrl));
-
-    return url.when(
-      data: (url) => url != null
-          ? CachedNetworkImage(imageUrl: url)
-          : const SizedBox.shrink(),
-      loading: () => loading,
-      error: (error, stackTrace) => const SizedBox.shrink(),
-    );
-  }
+  Widget build(BuildContext context) => DependencyProvider(
+        provider: _secureImageUrlProvider(baseUrl),
+        builder: (context, dependency) => dependency.when(
+          data: (url) => url != null
+              ? CachedNetworkImage(imageUrl: url)
+              : const SizedBox.shrink(),
+          loading: () => loading,
+          error: (error, stackTrace) => const SizedBox.shrink(),
+        ),
+      );
 }

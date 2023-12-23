@@ -29,9 +29,13 @@ class FaqQuestionItem extends StatelessWidget {
       ),
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 6, left: 20, right: 20),
+          padding: const EdgeInsets.only(
+            top: 6,
+            left: 20,
+            right: 20,
+          ),
           child: Text(
-            question.description,
+            question.description.replaceAll(r'\n', '\n'),
             style: theme.typography.bodyM.copyWith(
               color: theme.gray6,
             ),

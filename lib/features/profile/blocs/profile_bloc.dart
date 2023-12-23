@@ -1,3 +1,4 @@
+import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/permissions_manager/permissions_manager.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
@@ -12,6 +13,7 @@ final class ProfileBloc extends BlocBase<Object?> {
   final PermissionsManager _permissionsManager;
   final FirebaseRemoteConfigRepository _firebaseRemoteConfigRepository;
   final UserManager _userManager;
+  final DatabaseManager _databaseManager;
 
   ProfileBloc(
     this._navigationManager,
@@ -19,7 +21,13 @@ final class ProfileBloc extends BlocBase<Object?> {
     this._permissionsManager,
     this._firebaseRemoteConfigRepository,
     this._userManager,
+    this._databaseManager,
   ) : super(null);
+
+  String get username {
+    final currentUser = _userManager.currentUser;
+    return currentUser?.displayName ?? '';
+  }
 
   Future<void> openReminder() async {
     final permissionGranted =
@@ -32,9 +40,9 @@ final class ProfileBloc extends BlocBase<Object?> {
   }
 
   Future<void> openCommunityChat() async {
-    final config = await _firebaseRemoteConfigRepository.getRemoteConfig();
-    final communityDeeplink = Uri.parse(config.socials.communityDeeplink);
-    final communityUrl = Uri.parse(config.socials.communityUrl);
+    final socials = _firebaseRemoteConfigRepository.socials;
+    final communityDeeplink = Uri.parse(socials.communityDeeplink);
+    final communityUrl = Uri.parse(socials.communityUrl);
     final canLaunch = await canLaunchUrl(communityDeeplink);
     if (canLaunch) {
       await launchUrl(communityDeeplink);
@@ -44,8 +52,8 @@ final class ProfileBloc extends BlocBase<Object?> {
   }
 
   Future<void> onSupportEmail() async {
-    final config = await _firebaseRemoteConfigRepository.getRemoteConfig();
-    final supportEmailDeeplink = Uri.parse(config.socials.supportEmailDeeplink);
+    final socials = _firebaseRemoteConfigRepository.socials;
+    final supportEmailDeeplink = Uri.parse(socials.supportEmailDeeplink);
     final canLaunch = await canLaunchUrl(supportEmailDeeplink);
     if (canLaunch) {
       await launchUrl(supportEmailDeeplink);
@@ -63,5 +71,6 @@ final class ProfileBloc extends BlocBase<Object?> {
 
   Future<void> onSignOut() async {
     await _userManager.signOut();
+    _databaseManager.clearDb();
   }
 }

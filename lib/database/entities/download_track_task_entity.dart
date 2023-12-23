@@ -5,6 +5,7 @@ class DownloadTrackTaskEntity {
   @Id()
   int id = 0;
 
+  String uid;
   String taskId;
   String url;
   String filename;
@@ -18,6 +19,7 @@ class DownloadTrackTaskEntity {
   }
 
   DownloadTrackTaskEntity({
+    required this.uid,
     required this.taskId,
     required this.url,
     required this.filename,

@@ -1,7 +1,18 @@
-abstract interface class RemoteConfigRepository<T> {
-  Future<T> getRemoteConfig();
+import 'package:breathe_with_me/repositories/models/remote_config_legal_documents.dart';
+import 'package:breathe_with_me/repositories/models/remote_config_socials.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 
-  Stream<T> get remoteConfigStream;
+enum RemoteConfigKey {
+  socials('socials'),
+  legalDocuments('legalDocuments');
 
-  Future<void> saveRemoteConfig(T config);
+  final String name;
+  const RemoteConfigKey(this.name);
+}
+
+abstract interface class RemoteConfigRepository {
+  Map<String, RemoteConfigValue> getAllConfigValues();
+  T getConfigValue<T>(RemoteConfigKey key);
+  RemoteConfigSocials get socials;
+  RemoteConfigLegalDocuments get legalDocuments;
 }

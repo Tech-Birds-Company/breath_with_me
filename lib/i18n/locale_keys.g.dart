@@ -16,16 +16,22 @@ abstract class LocaleKeys {
   static const createAccountHeaderSubtitle = 'createAccountHeaderSubtitle';
   static const createAccountHeaderLogin = 'createAccountHeaderLogin';
   static const createAccountContact = 'createAccountContact';
+  static const createAccountAgreement_part1 = 'createAccountAgreement.part1';
+  static const createAccountAgreement_privacyPolicyUrl =
+      'createAccountAgreement.privacyPolicyUrl';
+  static const createAccountAgreement_part2 = 'createAccountAgreement.part2';
+  static const createAccountAgreement_termsOfServiceUrl =
+      'createAccountAgreement.termsOfServiceUrl';
   static const createAccountAgreement = 'createAccountAgreement';
   static const tracksTitle = 'tracksTitle';
   static const tracksGuestWelcome = 'tracksGuestWelcome';
   static const tracksHeading = 'tracksHeading';
-  static const trackCategoryTitle = 'trackCategoryTitle';
+  static const tracksFilterReset = 'tracksFilterReset';
   static const trackCategoryAll = 'trackCategoryAll';
   static const trackCategoryRelax = 'trackCategoryRelax';
   static const trackCategoryEnergize = 'trackCategoryEnergize';
   static const trackCategoryBalance = 'trackCategoryBalance';
-  static const trackLanguageTitle = 'trackLanguageTitle';
+  static const trackLanguageAll = 'trackLanguageAll';
   static const trackLanguageEn = 'trackLanguageEn';
   static const trackLanguageRu = 'trackLanguageRu';
   static const trackDurationTitle = 'trackDurationTitle';
@@ -72,6 +78,23 @@ abstract class LocaleKeys {
   static const safetyPrecautionsWelcomeDescription =
       'safetyPrecautionsWelcomeDescription';
   static const safetyPrecautionsReadNow = 'safetyPrecautionsReadNow';
+  static const signInLogin = 'signInLogin';
+  static const signInEmail = 'signInEmail';
+  static const signInPassword = 'signInPassword';
+  static const signInForgotPass = 'signInForgotPass';
+  static const signInOrSignUp = 'signInOrSignUp';
+  static const welcomeBack = 'welcomeBack';
+  static const welcomeBreather = 'welcomeBreather';
+  static const confirmPassword = 'confirmPassword';
+  static const yourName = 'yourName';
+  static const forgotPassSubtitle = 'forgotPassSubtitle';
+  static const resetPassword = 'resetPassword';
+  static const openEmailApp = 'openEmailApp';
+  static const checkYourEmailSubtitle = 'checkYourEmailSubtitle';
+  static const checkYourEmail = 'checkYourEmail';
+  static const forgotPassword = 'forgotPassword';
+  static const forgotPasswordSpamFirst = 'forgotPasswordSpamFirst';
+  static const forgotPasswordSpamSecond = 'forgotPasswordSpamSecond';
   static const streakStatisticsCardTitle = 'streakStatisticsCardTitle';
   static const streakStatisticsCardStreaksCount =
       'streakStatisticsCardStreaksCount';

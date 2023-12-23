@@ -1,7 +1,7 @@
 part of 'di.dart';
 
 final class _RepositoryProviders {
-  late final firebaseTracks = Provider(
+  late final tracks = Provider(
     (ref) => TracksRepositoryImpl(
       ref.read(Di.shared.manager.user),
       ref.read(Di.shared.manager.database),
@@ -13,9 +13,7 @@ final class _RepositoryProviders {
       Provider((ref) => const FirebaseTutorsRepository());
 
   late final firebaseRemoteConfig = Provider(
-    (ref) => FirebaseRemoteConfigRepository(
-      ref.read(Di.shared.manager.database),
-    ),
+    (ref) => const FirebaseRemoteConfigRepository(),
   );
 
   late final firebaseFaqQuestions =

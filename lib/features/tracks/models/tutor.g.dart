@@ -6,14 +6,13 @@ part of 'tutor.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TutorImpl _$$TutorImplFromJson(Map json) => _$TutorImpl(
+Tutor _$TutorFromJson(Map json) => Tutor(
       id: json['id'] as String,
       tutorNameKey: json['tutorNameKey'] as String,
       avatarUrl: json['avatarUrl'] as String,
     );
 
-Map<String, dynamic> _$$TutorImplToJson(_$TutorImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$TutorToJson(Tutor instance) => <String, dynamic>{
       'id': instance.id,
       'tutorNameKey': instance.tutorNameKey,
       'avatarUrl': instance.avatarUrl,

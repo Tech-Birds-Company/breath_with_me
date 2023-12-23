@@ -1,10 +1,10 @@
 part of 'di.dart';
 
 final class _BlocProviders {
-  late final trackList = Provider(
+  late final tracksList = Provider(
     (ref) {
       final bloc = TracksListBloc(
-        ref.read(Di.shared.repository.firebaseTracks),
+        ref.read(Di.shared.repository.tracks),
         ref.read(Di.shared.bloc.tracksFilters).stream,
       );
       ref.onDispose(bloc.dispose);
@@ -24,7 +24,8 @@ final class _BlocProviders {
     (ref, trackId) {
       final bloc = TrackPlayerBloc(
         trackId,
-        ref.read(Di.shared.repository.firebaseTracks),
+        ref.read(Di.shared.repository.tracks),
+        ref.read(Di.shared.manager.user),
         ref.read(Di.shared.manager.audio),
         ref.read(Di.shared.manager.tracksDownloader),
       );
@@ -37,6 +38,7 @@ final class _BlocProviders {
     (ref) => OnboardingBloc(
       ref.read(Di.shared.manager.navigation),
       ref.read(Di.shared.manager.user),
+      ref.read(Di.shared.repository.firebaseRemoteConfig),
     ),
   );
 
@@ -47,6 +49,7 @@ final class _BlocProviders {
       ref.read(Di.shared.manager.permissions),
       ref.read(Di.shared.repository.firebaseRemoteConfig),
       ref.read(Di.shared.manager.user),
+      ref.read(Di.shared.manager.database),
     ),
   );
 
@@ -72,12 +75,41 @@ final class _BlocProviders {
   late final track = Provider.family<TrackBloc, Track>(
     (ref, track) => TrackBloc(
       track,
-      ref.read(Di.shared.repository.firebaseTracks),
+      ref.read(Di.shared.repository.tracks),
       ref.read(Di.shared.manager.navigation),
     ),
   );
 
-  late final tracksFilters = Provider((ref) => TracksFiltersBloc());
+  late final tracksFilters = Provider(
+    (ref) {
+      final bloc = TracksFiltersBloc(
+        ref.read(Di.shared.repository.tracks),
+        ref.read(Di.shared.manager.navigation),
+      );
+      ref.onDispose(bloc.dispose);
+      return bloc;
+    },
+  );
+
+  late final signUp = Provider.autoDispose(
+    (ref) => SignUpBloc(
+      ref.read(Di.shared.manager.user),
+    ),
+  );
+
+  late final signIn = Provider.autoDispose(
+    (ref) => SignInBloc(
+      ref.read(Di.shared.manager.navigation),
+      ref.read(Di.shared.manager.user),
+    ),
+  );
+
+  late final forgotPassword = Provider.autoDispose(
+    (ref) => ForgotPasswordBloc(
+      ref.read(Di.shared.manager.user),
+      ref.read(Di.shared.repository.firebaseRemoteConfig),
+    ),
+  );
 
   late final streak = Provider(
     (ref) => StreakBloc(

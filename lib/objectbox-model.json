@@ -31,7 +31,7 @@
     },
     {
       "id": "2:6103890219043900984",
-      "lastPropertyId": "6:8584594485685084463",
+      "lastPropertyId": "7:5485759589785327512",
       "name": "DownloadTrackTaskEntity",
       "properties": [
         {
@@ -64,24 +64,10 @@
           "id": "6:8584594485685084463",
           "name": "totalBytes",
           "type": 6
-        }
-      ],
-      "relations": []
-    },
-    {
-      "id": "3:9202169296533729365",
-      "lastPropertyId": "2:939439220607962960",
-      "name": "RemoteConfigEntity",
-      "properties": [
-        {
-          "id": "1:1058503934963432471",
-          "name": "id",
-          "type": 6,
-          "flags": 1
         },
         {
-          "id": "2:939439220607962960",
-          "name": "json",
+          "id": "7:5485759589785327512",
+          "name": "uid",
           "type": 9
         }
       ],
@@ -139,14 +125,17 @@
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [
     5903533180160748303,
-    3916112003524532587
+    3916112003524532587,
+    9202169296533729365
   ],
   "retiredIndexUids": [],
   "retiredPropertyUids": [
     7776840511660833783,
     4314483146059560830,
     7412447195083719222,
-    5241098407786361804
+    5241098407786361804,
+    1058503934963432471,
+    939439220607962960
   ],
   "retiredRelationUids": [],
   "version": 1

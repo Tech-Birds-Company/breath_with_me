@@ -86,11 +86,9 @@ final class TracksRepositoryImpl implements TracksRepository {
   }
 
   @override
-  Stream<bool> getTrackIsDownloadedStream(String trackId) {
-    return _databaseManager
-        .taskProgressStream(trackId)
-        .map((progress) => progress == 1.0);
-  }
+  Stream<bool> getTrackIsDownloadedStream(String trackId) => _databaseManager
+      .taskProgressStream(trackId)
+      .map((progress) => progress == 1.0);
 
   @override
   Future<void> deleteTrackDownloadTask(String taskId) =>
@@ -165,4 +163,8 @@ final class TracksRepositoryImpl implements TracksRepository {
       });
     }
   }
+
+  @override
+  Stream<List<Track>> get cachedTracksStream =>
+      _databaseManager.cachedTracksStream;
 }

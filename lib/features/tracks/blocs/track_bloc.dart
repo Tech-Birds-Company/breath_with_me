@@ -14,7 +14,7 @@ final class TrackBloc extends BlocBase<Object?> {
     this._navigationManager,
   ) : super(null);
 
-  Stream<bool> trackIsDownloadedStream() =>
+  Stream<bool> get trackIsDownloadedStream =>
       _tracksRepository.getTrackIsDownloadedStream(_track.id);
 
   Stream<bool> get trackLikedStream => _tracksRepository.likedTracksStream

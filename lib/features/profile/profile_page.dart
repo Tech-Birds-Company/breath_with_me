@@ -1,23 +1,29 @@
 import 'package:breathe_with_me/assets.dart';
-import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/extensions/widget.dart';
+import 'package:breathe_with_me/features/profile/blocs/profile_bloc.dart';
 import 'package:breathe_with_me/features/profile/widgets/profile_header.dart';
 import 'package:breathe_with_me/features/profile/widgets/profile_menu_button.dart';
 import 'package:breathe_with_me/features/profile/widgets/reminder_profile_item.dart';
+import 'package:breathe_with_me/features/reminder/blocs/reminder_bloc.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ProfilePage extends ConsumerWidget {
-  const ProfilePage({super.key});
+class ProfilePage extends StatelessWidget {
+  final ProfileBloc profileBloc;
+  final ReminderBloc reminderBloc;
+
+  const ProfilePage({
+    required this.profileBloc,
+    required this.reminderBloc,
+    super.key,
+  });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     final currentLocale = EasyLocalization.of(context)!.locale;
-    final bloc = ref.read(Di.shared.bloc.profile);
     return Scaffold(
       backgroundColor: theme.primaryBackground,
       body: Stack(
@@ -43,7 +49,9 @@ class ProfilePage extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: CustomScrollView(
                 slivers: [
-                  const ProfileHeader().toSliver, // TODO(igor): fix
+                  ProfileHeader(
+                    username: profileBloc.username,
+                  ).toSliver, // TODO(igor): fix
                   const SizedBox(height: 230).toSliver,
                   ProfileMenuItem(
                     title: LocaleKeys.profileSettings.tr(),
@@ -52,29 +60,32 @@ class ProfilePage extends ConsumerWidget {
                   ProfileMenuItem(
                     title: LocaleKeys.profileLanguage.tr(),
                     subtitle: currentLocale.languageCode.tr(),
-                    onTap: bloc.openLanguageSheet,
+                    onTap: profileBloc.openLanguageSheet,
                     showIndicator: true,
                   ).toSliver,
-                  const ReminderProfileItem().toSliver,
+                  ReminderProfileItem(
+                    cachedBlocStateStream: reminderBloc.cachedBlocStateStream,
+                    onOpenReminder: profileBloc.openReminder,
+                  ).toSliver,
                   ProfileMenuItem(
                     title: LocaleKeys.profileFAQ.tr(),
                     showIndicator: true,
-                    onTap: bloc.openFaq,
+                    onTap: profileBloc.openFaq,
                   ).toSliver,
                   ProfileMenuItem(
                     title: LocaleKeys.profileChat.tr(),
                     icon: BWMAssets.telegram,
-                    onTap: bloc.openCommunityChat,
+                    onTap: profileBloc.openCommunityChat,
                   ).toSliver,
                   ProfileMenuItem(
                     title: LocaleKeys.profileContactUs.tr(),
                     icon: BWMAssets.email,
-                    onTap: bloc.onSupportEmail,
+                    onTap: profileBloc.onSupportEmail,
                   ).toSliver,
                   ProfileMenuItem(
                     title: LocaleKeys.profileLogout.tr(),
                     icon: BWMAssets.logout,
-                    onTap: bloc.onSignOut,
+                    onTap: profileBloc.onSignOut,
                   ).toSliver,
                 ],
               ),

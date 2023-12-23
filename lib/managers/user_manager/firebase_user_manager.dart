@@ -93,8 +93,14 @@ final class FirebaseUserManager implements UserManager {
   @override
   Future<void> signOut() => _firebaseAuth.signOut();
 
+  // TODO(musamuss): кажется что надо сделать приватным
   @override
   Future<void> sendEmailVerification() async {
     await _firebaseAuth.currentUser?.sendEmailVerification();
+  }
+
+  @override
+  Future<void> sendResetPassword(String email) async {
+    await _firebaseAuth.sendPasswordResetEmail(email: email);
   }
 }

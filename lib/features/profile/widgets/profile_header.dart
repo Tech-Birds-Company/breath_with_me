@@ -6,7 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ProfileHeader extends StatelessWidget {
-  const ProfileHeader({super.key});
+  final String username;
+
+  const ProfileHeader({
+    required this.username,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,29 +41,33 @@ class ProfileHeader extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 20),
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Julia',
-              style: theme.typography.heading2.copyWith(
-                color: theme.primaryText,
+        Expanded(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                username,
+                style: theme.typography.heading2.copyWith(
+                  color: theme.primaryText,
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
-            ),
-            Text(
-              LocaleKeys.profilePremiumStatus.tr(),
-              style: theme.typography.labelM.copyWith(
-                color: const Color(0xffbb6bd9), // TODO: Use color from theme
+              Text(
+                LocaleKeys.profilePremiumStatus.tr(),
+                style: theme.typography.labelM.copyWith(
+                  color: const Color(0xffbb6bd9), // TODO: Use color from theme
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
-            ),
-            Text(
-              'Until 1 Feb 2023',
-              style: theme.typography.label.copyWith(
-                color: theme.fourthColor,
+              Text(
+                'Until 1 Feb 2023',
+                style: theme.typography.label.copyWith(
+                  color: theme.fourthColor,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ],
     );

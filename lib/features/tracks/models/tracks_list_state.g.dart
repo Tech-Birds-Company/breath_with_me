@@ -15,7 +15,7 @@ _$DataImpl _$$DataImplFromJson(Map json) => _$DataImpl(
 
 Map<String, dynamic> _$$DataImplToJson(_$DataImpl instance) =>
     <String, dynamic>{
-      'tracks': instance.tracks,
+      'tracks': instance.tracks.map((e) => e.toJson()).toList(),
       'runtimeType': instance.$type,
     };
 
