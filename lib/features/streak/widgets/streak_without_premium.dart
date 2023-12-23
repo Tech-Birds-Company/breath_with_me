@@ -17,8 +17,14 @@ class StreakWithoutPro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final widgets = <Widget>[
-      StreakWeeks(selectedDay: selectedDay),
-      StreakQuote(data: quote),
+      Padding(
+        padding: const EdgeInsets.only(bottom: 16),
+        child: StreakWeeks(selectedDay: selectedDay),
+      ),
+      Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        child: StreakQuote(data: quote),
+      ),
     ];
 
     final theme = Theme.of(context).extension<BWMTheme>()!;
