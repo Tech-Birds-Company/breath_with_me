@@ -1,4 +1,6 @@
+import 'package:breathe_with_me/features/streak/models/streak_lives_data.dart';
 import 'package:breathe_with_me/features/streak/models/streak_statistics_data.dart';
+import 'package:breathe_with_me/features/streak/widgets/streak_lives.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_quote.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_statistics_card.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_weeks.dart';
@@ -9,11 +11,13 @@ import 'package:flutter/material.dart';
 class StreakPremiumStartedOrContinued extends StatelessWidget {
   final StreakStatisticsData statistics;
   final int streaksCount;
+  final StreakLivesData lives;
   final StreakQuoteData quote;
 
   const StreakPremiumStartedOrContinued({
     required this.statistics,
     required this.streaksCount,
+    required this.lives,
     required this.quote,
     super.key,
   });
@@ -30,6 +34,8 @@ class StreakPremiumStartedOrContinued extends StatelessWidget {
             StreakStatisticsCard(statisticsData: statistics),
             const SizedBox(height: 24),
             StreakWeeks(selectedDay: streaksCount),
+            const SizedBox(height: 24),
+            StreakLives(data: lives),
           ],
         ),
       ),

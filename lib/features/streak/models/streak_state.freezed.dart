@@ -39,9 +39,11 @@ mixin _$StreakState {
     required TResult Function(int streaksCount, StreakQuoteData quote)
         withoutPremium,
     required TResult Function(StreakStatisticsData statistics, int streaksCount,
-            StreakQuoteData quote)
+            StreakLivesData livesData, StreakQuoteData quote)
         premiumStartedOrContinued,
-    required TResult Function() premiumMissed,
+    required TResult Function(
+            StreakStatisticsData statistics, StreakLivesData livesData)
+        premiumMissed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -49,9 +51,11 @@ mixin _$StreakState {
     TResult? Function()? loading,
     TResult? Function(int streaksCount, StreakQuoteData quote)? withoutPremium,
     TResult? Function(StreakStatisticsData statistics, int streaksCount,
-            StreakQuoteData quote)?
+            StreakLivesData livesData, StreakQuoteData quote)?
         premiumStartedOrContinued,
-    TResult? Function()? premiumMissed,
+    TResult? Function(
+            StreakStatisticsData statistics, StreakLivesData livesData)?
+        premiumMissed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,9 +63,11 @@ mixin _$StreakState {
     TResult Function()? loading,
     TResult Function(int streaksCount, StreakQuoteData quote)? withoutPremium,
     TResult Function(StreakStatisticsData statistics, int streaksCount,
-            StreakQuoteData quote)?
+            StreakLivesData livesData, StreakQuoteData quote)?
         premiumStartedOrContinued,
-    TResult Function()? premiumMissed,
+    TResult Function(
+            StreakStatisticsData statistics, StreakLivesData livesData)?
+        premiumMissed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -163,9 +169,11 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(int streaksCount, StreakQuoteData quote)
         withoutPremium,
     required TResult Function(StreakStatisticsData statistics, int streaksCount,
-            StreakQuoteData quote)
+            StreakLivesData livesData, StreakQuoteData quote)
         premiumStartedOrContinued,
-    required TResult Function() premiumMissed,
+    required TResult Function(
+            StreakStatisticsData statistics, StreakLivesData livesData)
+        premiumMissed,
   }) {
     return loading();
   }
@@ -176,9 +184,11 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? loading,
     TResult? Function(int streaksCount, StreakQuoteData quote)? withoutPremium,
     TResult? Function(StreakStatisticsData statistics, int streaksCount,
-            StreakQuoteData quote)?
+            StreakLivesData livesData, StreakQuoteData quote)?
         premiumStartedOrContinued,
-    TResult? Function()? premiumMissed,
+    TResult? Function(
+            StreakStatisticsData statistics, StreakLivesData livesData)?
+        premiumMissed,
   }) {
     return loading?.call();
   }
@@ -189,9 +199,11 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? loading,
     TResult Function(int streaksCount, StreakQuoteData quote)? withoutPremium,
     TResult Function(StreakStatisticsData statistics, int streaksCount,
-            StreakQuoteData quote)?
+            StreakLivesData livesData, StreakQuoteData quote)?
         premiumStartedOrContinued,
-    TResult Function()? premiumMissed,
+    TResult Function(
+            StreakStatisticsData statistics, StreakLivesData livesData)?
+        premiumMissed,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -351,9 +363,11 @@ class _$WithoutPremiumImpl implements WithoutPremium {
     required TResult Function(int streaksCount, StreakQuoteData quote)
         withoutPremium,
     required TResult Function(StreakStatisticsData statistics, int streaksCount,
-            StreakQuoteData quote)
+            StreakLivesData livesData, StreakQuoteData quote)
         premiumStartedOrContinued,
-    required TResult Function() premiumMissed,
+    required TResult Function(
+            StreakStatisticsData statistics, StreakLivesData livesData)
+        premiumMissed,
   }) {
     return withoutPremium(streaksCount, quote);
   }
@@ -364,9 +378,11 @@ class _$WithoutPremiumImpl implements WithoutPremium {
     TResult? Function()? loading,
     TResult? Function(int streaksCount, StreakQuoteData quote)? withoutPremium,
     TResult? Function(StreakStatisticsData statistics, int streaksCount,
-            StreakQuoteData quote)?
+            StreakLivesData livesData, StreakQuoteData quote)?
         premiumStartedOrContinued,
-    TResult? Function()? premiumMissed,
+    TResult? Function(
+            StreakStatisticsData statistics, StreakLivesData livesData)?
+        premiumMissed,
   }) {
     return withoutPremium?.call(streaksCount, quote);
   }
@@ -377,9 +393,11 @@ class _$WithoutPremiumImpl implements WithoutPremium {
     TResult Function()? loading,
     TResult Function(int streaksCount, StreakQuoteData quote)? withoutPremium,
     TResult Function(StreakStatisticsData statistics, int streaksCount,
-            StreakQuoteData quote)?
+            StreakLivesData livesData, StreakQuoteData quote)?
         premiumStartedOrContinued,
-    TResult Function()? premiumMissed,
+    TResult Function(
+            StreakStatisticsData statistics, StreakLivesData livesData)?
+        premiumMissed,
     required TResult orElse(),
   }) {
     if (withoutPremium != null) {
@@ -461,9 +479,11 @@ abstract class _$$PremiumStartedOrContinuedImplCopyWith<$Res> {
   $Res call(
       {StreakStatisticsData statistics,
       int streaksCount,
+      StreakLivesData livesData,
       StreakQuoteData quote});
 
   $StreakStatisticsDataCopyWith<$Res> get statistics;
+  $StreakLivesDataCopyWith<$Res> get livesData;
   $StreakQuoteDataCopyWith<$Res> get quote;
 }
 
@@ -481,6 +501,7 @@ class __$$PremiumStartedOrContinuedImplCopyWithImpl<$Res>
   $Res call({
     Object? statistics = null,
     Object? streaksCount = null,
+    Object? livesData = null,
     Object? quote = null,
   }) {
     return _then(_$PremiumStartedOrContinuedImpl(
@@ -492,6 +513,10 @@ class __$$PremiumStartedOrContinuedImplCopyWithImpl<$Res>
           ? _value.streaksCount
           : streaksCount // ignore: cast_nullable_to_non_nullable
               as int,
+      null == livesData
+          ? _value.livesData
+          : livesData // ignore: cast_nullable_to_non_nullable
+              as StreakLivesData,
       null == quote
           ? _value.quote
           : quote // ignore: cast_nullable_to_non_nullable
@@ -509,6 +534,14 @@ class __$$PremiumStartedOrContinuedImplCopyWithImpl<$Res>
 
   @override
   @pragma('vm:prefer-inline')
+  $StreakLivesDataCopyWith<$Res> get livesData {
+    return $StreakLivesDataCopyWith<$Res>(_value.livesData, (value) {
+      return _then(_value.copyWith(livesData: value));
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $StreakQuoteDataCopyWith<$Res> get quote {
     return $StreakQuoteDataCopyWith<$Res>(_value.quote, (value) {
       return _then(_value.copyWith(quote: value));
@@ -520,7 +553,7 @@ class __$$PremiumStartedOrContinuedImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PremiumStartedOrContinuedImpl implements _PremiumStartedOrContinued {
   const _$PremiumStartedOrContinuedImpl(
-      this.statistics, this.streaksCount, this.quote,
+      this.statistics, this.streaksCount, this.livesData, this.quote,
       {final String? $type})
       : $type = $type ?? 'premiumStartedOrContinued';
 
@@ -532,6 +565,8 @@ class _$PremiumStartedOrContinuedImpl implements _PremiumStartedOrContinued {
   @override
   final int streaksCount;
   @override
+  final StreakLivesData livesData;
+  @override
   final StreakQuoteData quote;
 
   @JsonKey(name: 'runtimeType')
@@ -539,7 +574,7 @@ class _$PremiumStartedOrContinuedImpl implements _PremiumStartedOrContinued {
 
   @override
   String toString() {
-    return 'StreakState.premiumStartedOrContinued(statistics: $statistics, streaksCount: $streaksCount, quote: $quote)';
+    return 'StreakState.premiumStartedOrContinued(statistics: $statistics, streaksCount: $streaksCount, livesData: $livesData, quote: $quote)';
   }
 
   @override
@@ -551,12 +586,15 @@ class _$PremiumStartedOrContinuedImpl implements _PremiumStartedOrContinued {
                 other.statistics == statistics) &&
             (identical(other.streaksCount, streaksCount) ||
                 other.streaksCount == streaksCount) &&
+            (identical(other.livesData, livesData) ||
+                other.livesData == livesData) &&
             (identical(other.quote, quote) || other.quote == quote));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, statistics, streaksCount, quote);
+  int get hashCode =>
+      Object.hash(runtimeType, statistics, streaksCount, livesData, quote);
 
   @JsonKey(ignore: true)
   @override
@@ -572,11 +610,14 @@ class _$PremiumStartedOrContinuedImpl implements _PremiumStartedOrContinued {
     required TResult Function(int streaksCount, StreakQuoteData quote)
         withoutPremium,
     required TResult Function(StreakStatisticsData statistics, int streaksCount,
-            StreakQuoteData quote)
+            StreakLivesData livesData, StreakQuoteData quote)
         premiumStartedOrContinued,
-    required TResult Function() premiumMissed,
+    required TResult Function(
+            StreakStatisticsData statistics, StreakLivesData livesData)
+        premiumMissed,
   }) {
-    return premiumStartedOrContinued(statistics, streaksCount, quote);
+    return premiumStartedOrContinued(
+        statistics, streaksCount, livesData, quote);
   }
 
   @override
@@ -585,11 +626,14 @@ class _$PremiumStartedOrContinuedImpl implements _PremiumStartedOrContinued {
     TResult? Function()? loading,
     TResult? Function(int streaksCount, StreakQuoteData quote)? withoutPremium,
     TResult? Function(StreakStatisticsData statistics, int streaksCount,
-            StreakQuoteData quote)?
+            StreakLivesData livesData, StreakQuoteData quote)?
         premiumStartedOrContinued,
-    TResult? Function()? premiumMissed,
+    TResult? Function(
+            StreakStatisticsData statistics, StreakLivesData livesData)?
+        premiumMissed,
   }) {
-    return premiumStartedOrContinued?.call(statistics, streaksCount, quote);
+    return premiumStartedOrContinued?.call(
+        statistics, streaksCount, livesData, quote);
   }
 
   @override
@@ -598,13 +642,16 @@ class _$PremiumStartedOrContinuedImpl implements _PremiumStartedOrContinued {
     TResult Function()? loading,
     TResult Function(int streaksCount, StreakQuoteData quote)? withoutPremium,
     TResult Function(StreakStatisticsData statistics, int streaksCount,
-            StreakQuoteData quote)?
+            StreakLivesData livesData, StreakQuoteData quote)?
         premiumStartedOrContinued,
-    TResult Function()? premiumMissed,
+    TResult Function(
+            StreakStatisticsData statistics, StreakLivesData livesData)?
+        premiumMissed,
     required TResult orElse(),
   }) {
     if (premiumStartedOrContinued != null) {
-      return premiumStartedOrContinued(statistics, streaksCount, quote);
+      return premiumStartedOrContinued(
+          statistics, streaksCount, livesData, quote);
     }
     return orElse();
   }
@@ -661,6 +708,7 @@ abstract class _PremiumStartedOrContinued implements StreakState {
   const factory _PremiumStartedOrContinued(
       final StreakStatisticsData statistics,
       final int streaksCount,
+      final StreakLivesData livesData,
       final StreakQuoteData quote) = _$PremiumStartedOrContinuedImpl;
 
   factory _PremiumStartedOrContinued.fromJson(Map<String, dynamic> json) =
@@ -668,6 +716,7 @@ abstract class _PremiumStartedOrContinued implements StreakState {
 
   StreakStatisticsData get statistics;
   int get streaksCount;
+  StreakLivesData get livesData;
   StreakQuoteData get quote;
   @JsonKey(ignore: true)
   _$$PremiumStartedOrContinuedImplCopyWith<_$PremiumStartedOrContinuedImpl>
@@ -679,6 +728,11 @@ abstract class _$$PremiumMissedImplCopyWith<$Res> {
   factory _$$PremiumMissedImplCopyWith(
           _$PremiumMissedImpl value, $Res Function(_$PremiumMissedImpl) then) =
       __$$PremiumMissedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({StreakStatisticsData statistics, StreakLivesData livesData});
+
+  $StreakStatisticsDataCopyWith<$Res> get statistics;
+  $StreakLivesDataCopyWith<$Res> get livesData;
 }
 
 /// @nodoc
@@ -688,34 +742,85 @@ class __$$PremiumMissedImplCopyWithImpl<$Res>
   __$$PremiumMissedImplCopyWithImpl(
       _$PremiumMissedImpl _value, $Res Function(_$PremiumMissedImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? statistics = null,
+    Object? livesData = null,
+  }) {
+    return _then(_$PremiumMissedImpl(
+      null == statistics
+          ? _value.statistics
+          : statistics // ignore: cast_nullable_to_non_nullable
+              as StreakStatisticsData,
+      null == livesData
+          ? _value.livesData
+          : livesData // ignore: cast_nullable_to_non_nullable
+              as StreakLivesData,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StreakStatisticsDataCopyWith<$Res> get statistics {
+    return $StreakStatisticsDataCopyWith<$Res>(_value.statistics, (value) {
+      return _then(_value.copyWith(statistics: value));
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StreakLivesDataCopyWith<$Res> get livesData {
+    return $StreakLivesDataCopyWith<$Res>(_value.livesData, (value) {
+      return _then(_value.copyWith(livesData: value));
+    });
+  }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$PremiumMissedImpl implements PremiumMissed {
-  const _$PremiumMissedImpl({final String? $type})
+  const _$PremiumMissedImpl(this.statistics, this.livesData,
+      {final String? $type})
       : $type = $type ?? 'premiumMissed';
 
   factory _$PremiumMissedImpl.fromJson(Map<String, dynamic> json) =>
       _$$PremiumMissedImplFromJson(json);
+
+  @override
+  final StreakStatisticsData statistics;
+  @override
+  final StreakLivesData livesData;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'StreakState.premiumMissed()';
+    return 'StreakState.premiumMissed(statistics: $statistics, livesData: $livesData)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$PremiumMissedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$PremiumMissedImpl &&
+            (identical(other.statistics, statistics) ||
+                other.statistics == statistics) &&
+            (identical(other.livesData, livesData) ||
+                other.livesData == livesData));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, statistics, livesData);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PremiumMissedImplCopyWith<_$PremiumMissedImpl> get copyWith =>
+      __$$PremiumMissedImplCopyWithImpl<_$PremiumMissedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -724,11 +829,13 @@ class _$PremiumMissedImpl implements PremiumMissed {
     required TResult Function(int streaksCount, StreakQuoteData quote)
         withoutPremium,
     required TResult Function(StreakStatisticsData statistics, int streaksCount,
-            StreakQuoteData quote)
+            StreakLivesData livesData, StreakQuoteData quote)
         premiumStartedOrContinued,
-    required TResult Function() premiumMissed,
+    required TResult Function(
+            StreakStatisticsData statistics, StreakLivesData livesData)
+        premiumMissed,
   }) {
-    return premiumMissed();
+    return premiumMissed(statistics, livesData);
   }
 
   @override
@@ -737,11 +844,13 @@ class _$PremiumMissedImpl implements PremiumMissed {
     TResult? Function()? loading,
     TResult? Function(int streaksCount, StreakQuoteData quote)? withoutPremium,
     TResult? Function(StreakStatisticsData statistics, int streaksCount,
-            StreakQuoteData quote)?
+            StreakLivesData livesData, StreakQuoteData quote)?
         premiumStartedOrContinued,
-    TResult? Function()? premiumMissed,
+    TResult? Function(
+            StreakStatisticsData statistics, StreakLivesData livesData)?
+        premiumMissed,
   }) {
-    return premiumMissed?.call();
+    return premiumMissed?.call(statistics, livesData);
   }
 
   @override
@@ -750,13 +859,15 @@ class _$PremiumMissedImpl implements PremiumMissed {
     TResult Function()? loading,
     TResult Function(int streaksCount, StreakQuoteData quote)? withoutPremium,
     TResult Function(StreakStatisticsData statistics, int streaksCount,
-            StreakQuoteData quote)?
+            StreakLivesData livesData, StreakQuoteData quote)?
         premiumStartedOrContinued,
-    TResult Function()? premiumMissed,
+    TResult Function(
+            StreakStatisticsData statistics, StreakLivesData livesData)?
+        premiumMissed,
     required TResult orElse(),
   }) {
     if (premiumMissed != null) {
-      return premiumMissed();
+      return premiumMissed(statistics, livesData);
     }
     return orElse();
   }
@@ -810,8 +921,15 @@ class _$PremiumMissedImpl implements PremiumMissed {
 }
 
 abstract class PremiumMissed implements StreakState {
-  const factory PremiumMissed() = _$PremiumMissedImpl;
+  const factory PremiumMissed(final StreakStatisticsData statistics,
+      final StreakLivesData livesData) = _$PremiumMissedImpl;
 
   factory PremiumMissed.fromJson(Map<String, dynamic> json) =
       _$PremiumMissedImpl.fromJson;
+
+  StreakStatisticsData get statistics;
+  StreakLivesData get livesData;
+  @JsonKey(ignore: true)
+  _$$PremiumMissedImplCopyWith<_$PremiumMissedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

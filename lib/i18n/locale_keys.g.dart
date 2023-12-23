@@ -1,6 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class LocaleKeys {
+abstract class  LocaleKeys {
   static const appName = 'appName';
   static const appBarBackTitle = 'appBarBackTitle';
   static const onboardingCreateAccount = 'onboardingCreateAccount';
@@ -11,17 +11,14 @@ abstract class LocaleKeys {
   static const onboardingPage2Subtitle = 'onboardingPage2Subtitle';
   static const onboardingPage3Subtitle = 'onboardingPage3Subtitle';
   static const createAccountHeaderTitle = 'createAccountHeaderTitle';
-  static const createAccountHeaderConjunction =
-      'createAccountHeaderConjunction';
+  static const createAccountHeaderConjunction = 'createAccountHeaderConjunction';
   static const createAccountHeaderSubtitle = 'createAccountHeaderSubtitle';
   static const createAccountHeaderLogin = 'createAccountHeaderLogin';
   static const createAccountContact = 'createAccountContact';
   static const createAccountAgreement_part1 = 'createAccountAgreement.part1';
-  static const createAccountAgreement_privacyPolicyUrl =
-      'createAccountAgreement.privacyPolicyUrl';
+  static const createAccountAgreement_privacyPolicyUrl = 'createAccountAgreement.privacyPolicyUrl';
   static const createAccountAgreement_part2 = 'createAccountAgreement.part2';
-  static const createAccountAgreement_termsOfServiceUrl =
-      'createAccountAgreement.termsOfServiceUrl';
+  static const createAccountAgreement_termsOfServiceUrl = 'createAccountAgreement.termsOfServiceUrl';
   static const createAccountAgreement = 'createAccountAgreement';
   static const tracksTitle = 'tracksTitle';
   static const tracksGuestWelcome = 'tracksGuestWelcome';
@@ -72,11 +69,9 @@ abstract class LocaleKeys {
   static const reminderWd6Short = 'reminderWd6Short';
   static const reminderWd7Short = 'reminderWd7Short';
   static const reminderNotificationTitle = 'reminderNotificationTitle';
-  static const reminderNotificationDescription =
-      'reminderNotificationDescription';
+  static const reminderNotificationDescription = 'reminderNotificationDescription';
   static const safetyPrecautionsWelcomeTitle = 'safetyPrecautionsWelcomeTitle';
-  static const safetyPrecautionsWelcomeDescription =
-      'safetyPrecautionsWelcomeDescription';
+  static const safetyPrecautionsWelcomeDescription = 'safetyPrecautionsWelcomeDescription';
   static const safetyPrecautionsReadNow = 'safetyPrecautionsReadNow';
   static const signInLogin = 'signInLogin';
   static const signInEmail = 'signInEmail';
@@ -96,13 +91,13 @@ abstract class LocaleKeys {
   static const forgotPasswordSpamFirst = 'forgotPasswordSpamFirst';
   static const forgotPasswordSpamSecond = 'forgotPasswordSpamSecond';
   static const streakStatisticsCardTitle = 'streakStatisticsCardTitle';
-  static const streakStatisticsCardStreaksCount =
-      'streakStatisticsCardStreaksCount';
-  static const streakStatisticsCardPracticesCount =
-      'streakStatisticsCardPracticesCount';
+  static const streakStatisticsCardStreaksCount = 'streakStatisticsCardStreaksCount';
+  static const streakStatisticsCardPracticesCount = 'streakStatisticsCardPracticesCount';
   static const streakStatisticsCardMinCount = 'streakStatisticsCardMinCount';
-  static const streakStatisticsCardDayMissedCount =
-      'streakStatisticsCardDayMissedCount';
+  static const streakStatisticsCardDayMissedCount = 'streakStatisticsCardDayMissedCount';
   static const streakWithoutPremiumTitle = 'streakWithoutPremiumTitle';
   static const streakWithoutPremiumSubtitle = 'streakWithoutPremiumSubtitle';
+  static const streakLivesTitle = 'streakLivesTitle';
+  static const streakLivesFooter = 'streakLivesFooter';
+
 }

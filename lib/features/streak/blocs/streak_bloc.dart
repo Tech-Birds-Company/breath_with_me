@@ -1,3 +1,4 @@
+import 'package:breathe_with_me/features/streak/models/streak_lives_data.dart';
 import 'package:breathe_with_me/features/streak/models/streak_state.dart';
 import 'package:breathe_with_me/features/streak/models/streak_statistics_data.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
@@ -43,7 +44,7 @@ final class StreakBloc extends BlocBase<StreakState> {
     final StreakState state;
     if (isPremium) {
       final missedDaysCount = _getLastMissedDaysCount(progress);
-      if (missedDaysCount > 0) {
+      if (missedDaysCount == 1) {
         state = const StreakState.loading();
       } else {
         final streaksCount = _getLastStreaksCount(progress);
@@ -54,6 +55,12 @@ final class StreakBloc extends BlocBase<StreakState> {
             progress.minutesCount,
           ),
           streaksCount,
+          StreakLivesData(
+            availableLivesCount: progress.livesCount,
+            totalLivesCount: _remoteConfigRepository.streaks.monthLivesCount,
+            showTitle: true,
+            showFooter: progress.livesCount == 0,
+          ),
           _streaksQuotesRepository.getQuote(languageCode),
         );
       }
@@ -72,12 +79,10 @@ final class StreakBloc extends BlocBase<StreakState> {
     final timeline = progress.timeline.sorted((a, b) => b.compareTo(a));
 
     var count = 1;
-    var date =
-        DateTime(timeline.first.year, timeline.first.month, timeline.first.day);
+    var date = DateTime(timeline.first.year, timeline.first.month, timeline.first.day);
     for (var i = 1; i < timeline.length; i++) {
       final expectedDate = date.subtract(const Duration(days: 1));
-      final currentDate =
-          DateTime(timeline[i].year, timeline[i].month, timeline[i].day);
+      final currentDate = DateTime(timeline[i].year, timeline[i].month, timeline[i].day);
       if (currentDate == expectedDate) {
         count += 1;
         date = currentDate;
@@ -93,12 +98,10 @@ final class StreakBloc extends BlocBase<StreakState> {
     final timeline = progress.timeline.sorted((a, b) => b.compareTo(a));
 
     var count = 0;
-    var date =
-        DateTime(timeline.first.year, timeline.first.month, timeline.first.day);
+    var date = DateTime(timeline.first.year, timeline.first.month, timeline.first.day);
     for (var i = 1; i < timeline.length; i++) {
       final expectedDate = date.subtract(const Duration(days: 1));
-      final currentDate =
-          DateTime(timeline[i].year, timeline[i].month, timeline[i].day);
+      final currentDate = DateTime(timeline[i].year, timeline[i].month, timeline[i].day);
       if (currentDate != expectedDate) {
         count += 1;
         date = currentDate;
