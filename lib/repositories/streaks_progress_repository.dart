@@ -109,6 +109,7 @@ final class StreaksProgressRepository {
 
   Timestamp _timestampFromDateTime(DateTime dateTime) {
     return Timestamp.fromMicrosecondsSinceEpoch(
-        dateTime.microsecondsSinceEpoch);
+      dateTime.microsecondsSinceEpoch,
+    );
   }
 }
