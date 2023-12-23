@@ -162,19 +162,22 @@ final class BWMRoutes {
     ...auth.createAuthRoutes(),
     GoRoute(
       path: BWMRoutes.streak,
-      pageBuilder: (context, state) => BWMModalPage(
-        barrierColor: Colors.transparent,
-        useSafeArea: true,
-        enableDrag: false,
-        isDismissible: false,
-        isScrollControlled: true,
-        child: DependencyProvider(
-          provider: Di.shared.bloc.streak,
-          builder: (context, dependency) => StreakPage(
-            bloc: dependency,
+      pageBuilder: (context, state) {
+        final track = state.extra! as Track;
+        return BWMModalPage(
+          barrierColor: Colors.transparent,
+          useSafeArea: true,
+          enableDrag: false,
+          isDismissible: false,
+          isScrollControlled: true,
+          child: DependencyProvider(
+            provider: Di.shared.bloc.streak(track),
+            builder: (context, dependency) => StreakPage(
+              bloc: dependency,
+            ),
           ),
-        ),
-      ),
+        );
+      },
     ),
   ];
 }

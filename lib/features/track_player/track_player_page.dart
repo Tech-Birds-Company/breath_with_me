@@ -48,8 +48,9 @@ class TrackPlayerPage extends HookWidget {
                   children: [
                     TrackPlayerButton(bloc),
                     TextButton(
-                        onPressed: bloc.onFinishTap,
-                        child: const Text('FINISH')),
+                      onPressed: bloc.onFinishTap,
+                      child: const Text('FINISH'),
+                    ),
                     const SizedBox(height: 16),
                     TrackProgressIndicator(bloc),
                   ],

@@ -4,8 +4,9 @@ import 'package:breathe_with_me/features/streak/widgets/streak_without_pro.dart'
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class StreakPage extends StatelessWidget {
+class StreakPage extends HookWidget {
   final StreakBloc bloc;
 
   const StreakPage({
@@ -15,6 +16,14 @@ class StreakPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    useEffect(
+      () {
+        bloc.init();
+        return null;
+      },
+      const [],
+    );
+
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return Scaffold(
       backgroundColor: theme.primaryBackground,

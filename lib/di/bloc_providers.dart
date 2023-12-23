@@ -112,9 +112,16 @@ final class _BlocProviders {
     ),
   );
 
-  late final streak = Provider(
-    (ref) => StreakBloc(
-      ref.read(Di.shared.manager.navigation),
-    ),
+  late final streak = Provider.family<StreakBloc, Track>(
+    (ref, track) {
+      final bloc = StreakBloc(
+        track,
+        ref.read(Di.shared.repository.firebaseRemoteConfig),
+        ref.read(Di.shared.repository.firebaseStreaksProgress),
+        ref.read(Di.shared.manager.user),
+        ref.read(Di.shared.manager.navigation),
+      );
+      return bloc;
+    },
   );
 }
