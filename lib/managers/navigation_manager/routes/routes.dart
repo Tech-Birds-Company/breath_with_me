@@ -161,9 +161,10 @@ final class BWMRoutes {
     ),
     GoRoute(
       path: BWMRoutes.deleteAccountPage,
-      builder: (context, state) {
-        return const DeleteAccountPage();
-      },
+      builder: (context, state) => DependencyProvider(
+        provider: Di.shared.bloc.deleteAccount,
+        builder: (context, dependency) => DeleteAccountPage(bloc: dependency),
+      ),
     ),
     ...auth.createAuthRoutes(),
   ];

@@ -121,10 +121,5 @@ final class NavigationManager {
 
   void forgotPasswordPage() => router.push(BWMRoutes.auth.forgotPassword);
 
-  void openDeleteAccount() {
-    if (context == null) {
-      return;
-    }
-    router.push(BWMRoutes.deleteAccountPage);
-  }
+  void openDeleteAccount() => router.push(BWMRoutes.deleteAccountPage);
 }

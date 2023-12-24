@@ -115,7 +115,6 @@ final class _BlocProviders {
     (ref) => DeleteAccountBloc(
       ref.read(Di.shared.manager.navigation),
       ref.read(Di.shared.manager.user),
-      ref.read(Di.shared.manager.database),
     ),
   );
 }
