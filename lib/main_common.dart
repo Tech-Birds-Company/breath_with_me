@@ -17,7 +17,7 @@ import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_man
 import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager_prod.dart';
 import 'package:breathe_with_me/managers/user_manager/firebase_user_manager.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
-import 'package:breathe_with_me/utils/cacheable_bloc/objectbox_bloc_storage.dart';
+import 'package:breathe_with_me/utils/cacheable_bloc/isar_bloc_storage.dart';
 import 'package:breathe_with_me/utils/environment.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -32,10 +32,11 @@ import 'package:timezone/data/latest_all.dart' as tz;
 Future<ProviderContainer> _setupDependencies({
   required bool isProduction,
 }) async {
-  final database = await BWMDatabase.init();
+  final database = BWMDatabase();
+  await database.init();
   final databaseManager = DatabaseManager(database);
 
-  final storage = ObjectBoxBlocStateStorage(databaseManager.blocStateBox);
+  final storage = IsarBlocStateStorage(databaseManager);
   CacheableBloc.storage = storage;
 
   final tracksDownloadManager = TracksDownloaderManager(databaseManager);

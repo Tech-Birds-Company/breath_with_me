@@ -71,6 +71,6 @@ final class ProfileBloc extends BlocBase<Object?> {
 
   Future<void> onSignOut() async {
     await _userManager.signOut();
-    _databaseManager.clearDb();
+    await _databaseManager.clearDb();
   }
 }
