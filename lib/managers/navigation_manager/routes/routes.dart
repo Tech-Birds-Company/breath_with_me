@@ -22,6 +22,7 @@ import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.d
 import 'package:breathe_with_me/managers/navigation_manager/routes/auth_routes.dart';
 import 'package:breathe_with_me/utils/dependency_provider.dart';
 import 'package:breathe_with_me/utils/multi_dependency_provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -164,6 +165,7 @@ final class BWMRoutes {
       path: BWMRoutes.streak,
       pageBuilder: (context, state) {
         final track = state.extra! as Track;
+        final locale = EasyLocalization.of(context)!.locale;
         return BWMModalPage(
           barrierColor: Colors.transparent,
           useSafeArea: true,
@@ -171,7 +173,9 @@ final class BWMRoutes {
           isDismissible: false,
           isScrollControlled: true,
           child: DependencyProvider(
-            provider: Di.shared.bloc.streak(track),
+            provider: Di.shared.bloc.streak(
+              (track, locale),
+            ),
             builder: (context, dependency) => StreakPage(
               bloc: dependency,
             ),

@@ -31,6 +31,7 @@ import 'package:breathe_with_me/repositories/firebase_tutors_repository.dart';
 import 'package:breathe_with_me/repositories/streaks_progress_repository.dart';
 import 'package:breathe_with_me/repositories/streaks_quotes_repository.dart';
 import 'package:breathe_with_me/repositories/tracks_repository_impl.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 part 'bloc_providers.dart';

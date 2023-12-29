@@ -9,14 +9,16 @@ import 'package:breathe_with_me/repositories/remote_config_repository.dart';
 import 'package:breathe_with_me/repositories/streaks_progress_repository.dart';
 import 'package:breathe_with_me/repositories/streaks_quotes_repository.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 final class StreakBloc extends BlocBase<StreakState> {
   final Track _track;
+  final Locale _locale;
+
   final bool _isPremium = true;
 
   StreaksProgress? _progress;
-  late String _languageCode;
 
   final RemoteConfigRepository _remoteConfigRepository;
   final StreaksProgressRepository _streaksProgressRepository;
@@ -27,6 +29,7 @@ final class StreakBloc extends BlocBase<StreakState> {
 
   StreakBloc(
     this._track,
+    this._locale,
     this._remoteConfigRepository,
     this._streaksProgressRepository,
     this._streaksQuotesRepository,
@@ -34,10 +37,9 @@ final class StreakBloc extends BlocBase<StreakState> {
     this._navigationManager,
   ) : super(const StreakState.loading());
 
-  Future<void> init(String languageCode) async {
+  Future<void> init() async {
     emit(const StreakState.loading());
 
-    _languageCode = languageCode;
     _progress = await _streaksProgressRepository.addPractice(
       _userManager.currentUser!.uid,
       DateTime.now(),
@@ -78,7 +80,7 @@ final class StreakBloc extends BlocBase<StreakState> {
           showTitle: true,
           showFooter: progress.livesCount == 0,
         ),
-        _streaksQuotesRepository.getQuote(_languageCode),
+        _streaksQuotesRepository.getQuote(_locale.languageCode),
       );
       emit(state);
     }
@@ -114,13 +116,13 @@ final class StreakBloc extends BlocBase<StreakState> {
               showTitle: true,
               showFooter: progress.livesCount == 0,
             ),
-            _streaksQuotesRepository.getQuote(_languageCode),
+            _streaksQuotesRepository.getQuote(_locale.languageCode),
           );
         }
       } else {
         state = StreakState.withoutPremium(
           _getLastStreaksCount(progress),
-          _streaksQuotesRepository.getQuote(_languageCode),
+          _streaksQuotesRepository.getQuote(_locale.languageCode),
         );
       }
       emit(state);

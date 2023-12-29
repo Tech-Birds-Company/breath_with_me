@@ -112,10 +112,11 @@ final class _BlocProviders {
     ),
   );
 
-  late final streak = Provider.family<StreakBloc, Track>(
-    (ref, track) {
+  late final streak = Provider.family<StreakBloc, (Track, Locale)>(
+    (ref, input) {
       final bloc = StreakBloc(
-        track,
+        input.$1,
+        input.$2,
         ref.read(Di.shared.repository.firebaseRemoteConfig),
         ref.read(Di.shared.repository.firebaseStreaksProgress),
         ref.read(Di.shared.repository.streaksQuotes),
