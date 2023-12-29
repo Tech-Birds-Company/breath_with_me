@@ -95,4 +95,12 @@ abstract class LocaleKeys {
   static const forgotPassword = 'forgotPassword';
   static const forgotPasswordSpamFirst = 'forgotPasswordSpamFirst';
   static const forgotPasswordSpamSecond = 'forgotPasswordSpamSecond';
+  static const streakStatisticsCardTitle = 'streakStatisticsCardTitle';
+  static const streakStatisticsCardStreaksCount =
+      'streakStatisticsCardStreaksCount';
+  static const streakStatisticsCardPracticesCount =
+      'streakStatisticsCardPracticesCount';
+  static const streakStatisticsCardMinCount = 'streakStatisticsCardMinCount';
+  static const streakStatisticsCardDayMissedCount =
+      'streakStatisticsCardDayMissedCount';
 }

@@ -97,5 +97,11 @@
 	"checkYourEmail": "Check you email",
 	"forgotPassword": "Forgot password",
 	"forgotPasswordSpamFirst": "Did not receive the email? Check your spam folder, ",
-	"forgotPasswordSpamSecond": "or try another email address"
+	"forgotPasswordSpamSecond": "or try another email address",
+
+	"streakStatisticsCardTitle": "You are fantastic",
+	"streakStatisticsCardStreaksCount": "Streaks",
+	"streakStatisticsCardPracticesCount": "Practices",
+	"streakStatisticsCardMinCount": "Min",
+	"streakStatisticsCardDayMissedCount": "Day missed"
 }

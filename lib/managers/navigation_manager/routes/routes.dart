@@ -10,6 +10,7 @@ import 'package:breathe_with_me/features/profile/widgets/language_sheet.dart';
 import 'package:breathe_with_me/features/reminder/blocs/reminder_bloc.dart';
 import 'package:breathe_with_me/features/reminder/reminder_page.dart';
 import 'package:breathe_with_me/features/safety_precautions/safety_precautions_page.dart';
+import 'package:breathe_with_me/features/streak/streak_page.dart';
 import 'package:breathe_with_me/features/track_player/track_player_page.dart';
 import 'package:breathe_with_me/features/tracks/blocs/tracks_filters_bloc.dart';
 import 'package:breathe_with_me/features/tracks/blocs/tracks_list_bloc.dart';
@@ -37,6 +38,7 @@ final class BWMRoutes {
   static const faq = '/faq';
   static const safetyPrecautions = '/safety-precautions';
   static const filtersSheet = '/filters-sheet';
+  static const streak = '/streak';
 
   static const auth = AuthRoutes();
 
@@ -158,5 +160,12 @@ final class BWMRoutes {
       ),
     ),
     ...auth.createAuthRoutes(),
+    GoRoute(
+      path: BWMRoutes.streak,
+      builder: (context, state) => DependencyProvider(
+        provider: Di.shared.bloc.streak,
+        builder: (context, dependency) => StreakPage(bloc: dependency),
+      ),
+    ),
   ];
 }

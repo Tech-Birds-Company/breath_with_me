@@ -96,6 +96,8 @@ final class NavigationManager {
 
   void openFaq() => router.push(BWMRoutes.faq);
 
+  void openStreak() => router.push(BWMRoutes.streak);
+
   void replaceHome() => router.pushReplacement(BWMRoutes.home);
 
   void pop() {
