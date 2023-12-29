@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:ui';
 
-import 'package:breathe_with_me/database/entities/download_track_task_entity.dart';
+import 'package:breathe_with_me/database/schemas/download_track_task_schema.dart';
 import 'package:breathe_with_me/features/track_player/models/track_player_state.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/managers/audio_manager/audio_manager.dart';
@@ -63,7 +63,7 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
     _navigationManager.openStreak(_track);
   }
 
-  Future<void> _handleOfflinePlay(DownloadTrackTaskEntity task) async {
+  Future<void> _handleOfflinePlay(DownloadTrackTask task) async {
     final trackPath = await _downloaderManager.getTrackPath(
       uid: task.uid,
       taskId: task.taskId,

@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:breathe_with_me/database/entities/download_track_task_entity.dart';
+import 'package:breathe_with_me/database/schemas/download_track_task_schema.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/download_task.dart';
 import 'package:breathe_with_me/managers/download_manager/downloader_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/track_download_task.dart';
-import 'package:breathe_with_me/objectbox.g.dart';
 import 'package:dio/dio.dart';
+import 'package:isar/isar.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -22,11 +22,12 @@ final class TracksDownloaderManager implements DownloaderManager {
 
   @override
   Future<void> validateDownloads(String uid) async {
-    final box = _databaseManager.downloadTaskBox;
-    final tasks = box.getAll();
+    final tasks =
+        await _databaseManager.downloadTrackTasksCollection.where().findAll();
     final tasksToDelete = <int>[];
 
     for (final task in tasks) {
+      final taskId = task.id;
       if (task.isCompleted) {
         final trackPath = await getTrackPath(
           uid: uid,
@@ -37,7 +38,10 @@ final class TracksDownloaderManager implements DownloaderManager {
         final fileNotExists = !file.existsSync();
 
         if (fileNotExists) {
-          tasksToDelete.add(task.id);
+          if (taskId != null) {
+            tasksToDelete.add(taskId);
+          }
+
           continue;
         }
 
@@ -45,12 +49,17 @@ final class TracksDownloaderManager implements DownloaderManager {
 
         if (fileCorrupted) {
           await file.delete();
-          tasksToDelete.add(task.id);
+          if (taskId != null) {
+            tasksToDelete.add(taskId);
+          }
         }
       }
     }
 
-    await box.removeManyAsync(tasksToDelete);
+    await _databaseManager.db.writeTxn(
+      () => _databaseManager.downloadTrackTasksCollection
+          .deleteAll(tasksToDelete),
+    );
   }
 
   @override
@@ -58,7 +67,7 @@ final class TracksDownloaderManager implements DownloaderManager {
       _databaseManager.taskProgressStream(taskId);
 
   Future<void> _downloadChunk({
-    required DownloadTrackTaskEntity dbEntity,
+    required DownloadTrackTask dbEntity,
     required String chunkFilePath,
     required int startBytesRange,
     required int endBytesRange,
@@ -76,9 +85,10 @@ final class TracksDownloaderManager implements DownloaderManager {
     final length = response.data!.length;
     dbEntity.downloadedBytes += length;
 
-    _databaseManager.downloadTaskBox.putQueued(
-      dbEntity,
-      mode: PutMode.update,
+    await _databaseManager.db.writeTxn(
+      () => _databaseManager.downloadTrackTasksCollection.put(
+        dbEntity,
+      ),
     );
 
     final chunkFile = File(chunkFilePath);

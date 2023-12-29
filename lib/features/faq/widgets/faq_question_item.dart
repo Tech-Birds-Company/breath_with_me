@@ -16,6 +16,7 @@ class FaqQuestionItem extends StatelessWidget {
     return ExpansionTile(
       key: PageStorageKey(question.id),
       iconColor: theme.green3,
+      shape: LinearBorder.none,
       collapsedIconColor: theme.green3,
       expandedAlignment: Alignment.centerLeft,
       title: Padding(

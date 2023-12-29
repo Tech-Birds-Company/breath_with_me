@@ -1,24 +1,24 @@
-import 'package:objectbox/objectbox.dart';
+import 'package:isar/isar.dart';
 
-@Entity()
-class DownloadTrackTaskEntity {
-  @Id()
-  int id = 0;
+part 'download_track_task_schema.g.dart';
 
-  String uid;
+@collection
+final class DownloadTrackTask {
+  Id? id;
+  @Index(unique: true, replace: true, type: IndexType.hash)
   String taskId;
+  String uid;
   String url;
   String filename;
-
   int downloadedBytes = 0;
   int? totalBytes;
 
-  @Transient()
+  @Ignore()
   bool get isCompleted {
     return downloadedBytes == totalBytes;
   }
 
-  DownloadTrackTaskEntity({
+  DownloadTrackTask({
     required this.uid,
     required this.taskId,
     required this.url,
