@@ -10,9 +10,3 @@ RemoteConfigStreaks _$RemoteConfigStreaksFromJson(Map json) =>
     RemoteConfigStreaks(
       monthLivesCount: json['monthLivesCount'] as int? ?? 3,
     );
-
-Map<String, dynamic> _$RemoteConfigStreaksToJson(
-        RemoteConfigStreaks instance) =>
-    <String, dynamic>{
-      'monthLivesCount': instance.monthLivesCount,
-    };

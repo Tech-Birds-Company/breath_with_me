@@ -1,3 +1,4 @@
+import 'package:breathe_with_me/features/streak/models/streak_content_state.dart';
 import 'package:breathe_with_me/features/streak/models/streak_lives_data.dart';
 import 'package:breathe_with_me/features/streak/models/streak_state.dart';
 import 'package:breathe_with_me/features/streak/models/streak_statistics_data.dart';
@@ -18,8 +19,6 @@ final class StreakBloc extends BlocBase<StreakState> {
 
   final bool _isPremium = true;
 
-  StreaksProgress? _progress;
-
   final RemoteConfigRepository _remoteConfigRepository;
   final StreaksProgressRepository _streaksProgressRepository;
   final StreaksQuotesRepository _streaksQuotesRepository;
@@ -35,39 +34,39 @@ final class StreakBloc extends BlocBase<StreakState> {
     this._streaksQuotesRepository,
     this._userManager,
     this._navigationManager,
-  ) : super(const StreakState.loading());
+  ) : super(const StreakState(null, StreakContentState.loading()));
 
   Future<void> init() async {
-    emit(const StreakState.loading());
+    emit(const StreakState(null, StreakContentState.loading()));
 
-    _progress = await _streaksProgressRepository.addPractice(
+    final progress = await _streaksProgressRepository.addPractice(
       _userManager.currentUser!.uid,
       DateTime.now(),
       _track.duration,
       _remoteConfigRepository.streaks.monthLivesCount,
     );
-
-    showState();
+    final contentState = getContentState(progress);
+    emit(StreakState(progress, contentState));
   }
 
   void onCloseTap() => _navigationManager.popToRoot();
 
   Future<void> onRestoreTap() async {
     final restoredDate = DateTime.now().subtract(const Duration(days: 1));
-    _progress = await _streaksProgressRepository.restoreStreak(
+    final progress = await _streaksProgressRepository.restoreStreak(
       _userManager.currentUser!.uid,
       restoredDate,
       _remoteConfigRepository.streaks.monthLivesCount,
     );
-    showState();
+    final contentState = getContentState(progress);
+    emit(StreakState(progress, contentState));
   }
 
   void onSkipTap() {
-    if (_progress != null) {
-      final progress = _progress!;
+    final progress = state.progress;
+    if (progress != null) {
       final streaksCount = _getLastStreaksCount(progress);
-
-      final state = StreakState.premiumStartedOrContinued(
+      final contentState = StreakContentState.premiumStartedOrContinued(
         StreakStatisticsData.full(
           _getLastStreaksCount(progress),
           progress.practicesCount,
@@ -82,51 +81,47 @@ final class StreakBloc extends BlocBase<StreakState> {
         ),
         _streaksQuotesRepository.getQuote(_locale.languageCode),
       );
-      emit(state);
+      emit(StreakState(progress, contentState));
     }
   }
 
-  void showState() {
-    if (_progress != null) {
-      final progress = _progress!;
-
-      final StreakState state;
-      if (_isPremium) {
-        final streaksCount = _getLastStreaksCount(progress);
-        final missedDaysCount = _getLastMissedDaysCount(progress);
-        if ((missedDaysCount == 1) && (progress.livesCount > 0)) {
-          state = StreakState.premiumMissed(
-            StreakStatisticsData.missed(streaksCount, missedDaysCount),
-            StreakLivesData(
-              availableLivesCount: progress.livesCount,
-              totalLivesCount: _remoteConfigRepository.streaks.monthLivesCount,
-            ),
-          );
-        } else {
-          state = StreakState.premiumStartedOrContinued(
-            StreakStatisticsData.full(
-              streaksCount,
-              progress.practicesCount,
-              progress.minutesCount,
-            ),
-            streaksCount,
-            StreakLivesData(
-              availableLivesCount: progress.livesCount,
-              totalLivesCount: _remoteConfigRepository.streaks.monthLivesCount,
-              showTitle: true,
-              showFooter: progress.livesCount == 0,
-            ),
-            _streaksQuotesRepository.getQuote(_locale.languageCode),
-          );
-        }
+  StreakContentState getContentState(StreaksProgress progress) {
+    final StreakContentState state;
+    if (_isPremium) {
+      final streaksCount = _getLastStreaksCount(progress);
+      final missedDaysCount = _getLastMissedDaysCount(progress);
+      if ((missedDaysCount == 1) && (progress.livesCount > 0)) {
+        state = StreakContentState.premiumMissed(
+          StreakStatisticsData.missed(streaksCount, missedDaysCount),
+          StreakLivesData(
+            availableLivesCount: progress.livesCount,
+            totalLivesCount: _remoteConfigRepository.streaks.monthLivesCount,
+          ),
+        );
       } else {
-        state = StreakState.withoutPremium(
-          _getLastStreaksCount(progress),
+        state = StreakContentState.premiumStartedOrContinued(
+          StreakStatisticsData.full(
+            streaksCount,
+            progress.practicesCount,
+            progress.minutesCount,
+          ),
+          streaksCount,
+          StreakLivesData(
+            availableLivesCount: progress.livesCount,
+            totalLivesCount: _remoteConfigRepository.streaks.monthLivesCount,
+            showTitle: true,
+            showFooter: progress.livesCount == 0,
+          ),
           _streaksQuotesRepository.getQuote(_locale.languageCode),
         );
       }
-      emit(state);
+    } else {
+      state = StreakContentState.withoutPremium(
+        _getLastStreaksCount(progress),
+        _streaksQuotesRepository.getQuote(_locale.languageCode),
+      );
     }
+    return state;
   }
 
   int _getLastStreaksCount(StreaksProgress progress) {

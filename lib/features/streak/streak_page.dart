@@ -37,7 +37,7 @@ class StreakPage extends HookWidget {
             BlocBuilder<StreakBloc, StreakState>(
               bloc: bloc,
               builder: (context, state) {
-                return state.when(
+                return state.contentState.when(
                   loading: () {
                     return Center(
                       child: CircularProgressIndicator(color: theme.green3),
