@@ -1,117 +1,105 @@
 import 'dart:convert';
 
 import 'package:breathe_with_me/database/database.dart';
-import 'package:breathe_with_me/database/entities/bloc_state_entity.dart';
-import 'package:breathe_with_me/database/entities/download_track_task_entity.dart';
-import 'package:breathe_with_me/database/entities/liked_tracks_entity.dart';
-import 'package:breathe_with_me/database/entities/secure_image_url_provider_entity.dart';
+import 'package:breathe_with_me/database/schemas/bloc_state_schema.dart';
+import 'package:breathe_with_me/database/schemas/download_track_task_schema.dart';
+import 'package:breathe_with_me/database/schemas/liked_track_schema.dart';
+import 'package:breathe_with_me/database/schemas/secure_image_url_schema.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/features/tracks/models/tracks_list_state.dart';
 import 'package:breathe_with_me/managers/database_manager/database_cached_keys.dart';
-import 'package:breathe_with_me/objectbox.g.dart';
+import 'package:isar/isar.dart';
 
 final class DatabaseManager {
   final BWMDatabase _database;
 
   DatabaseManager(this._database);
 
-  late final _store = _database.store;
-  late final downloadTaskBox = _store.box<DownloadTrackTaskEntity>();
-  late final blocStateBox = _store.box<BlocStateEntity>();
-  late final likedTracksBox = _store.box<LikedTracksEntity>();
-  late final secureImageUrlBox = _store.box<SecureImageUrlEntity>();
+  late final db = _database.instance;
 
-  Future<DownloadTrackTaskEntity?> getDownloadTask(String taskId) =>
-      downloadTaskBox
-          .query(DownloadTrackTaskEntity_.taskId.equals(taskId))
-          .build()
-          .findFirstAsync();
+  late final blocStateCollection = db.blocStates;
+  late final likedTracksCollection = db.likedTracks;
+  late final downloadTrackTasksCollection = db.downloadTrackTasks;
 
-  Future<DownloadTrackTaskEntity> createDownloadTrackTask({
+  Future<DownloadTrackTask?> getDownloadTask(String taskId) =>
+      downloadTrackTasksCollection.getByTaskId(taskId);
+
+  Future<DownloadTrackTask> createDownloadTrackTask({
     required String uid,
     required String id,
     required String filename,
     required String url,
     required int totalBytes,
   }) async {
-    final dbEntity = await getDownloadTask(id);
-
-    if (dbEntity != null) {
-      await downloadTaskBox.removeAsync(dbEntity.id);
-    }
-
-    final entity = DownloadTrackTaskEntity(
+    final task = DownloadTrackTask(
       uid: uid,
       taskId: id,
-      url: url,
       filename: filename,
+      url: url,
       totalBytes: totalBytes,
     );
-
-    return downloadTaskBox.putAndGetAsync(entity);
+    await db.writeTxn(
+      () => downloadTrackTasksCollection.putByTaskId(task),
+    );
+    return task;
   }
 
-  Future<void> deleteDownloadTask(String taskId) => downloadTaskBox
-      .query(DownloadTrackTaskEntity_.taskId.equals(taskId))
-      .build()
-      .removeAsync();
+  Future<void> deleteDownloadTask(String taskId) =>
+      downloadTrackTasksCollection.deleteByTaskId(taskId);
 
   Future<void> saveSecureUrl(String baseUrl, String secureUrl) async {
-    final entity = await getSecureUrl(baseUrl);
-
-    secureImageUrlBox.putQueued(
-      entity ??
-          SecureImageUrlEntity(
-            baseUrl: baseUrl,
-            secureUrl: secureUrl,
-          )
-        ..baseUrl = baseUrl
-        ..secureUrl = secureUrl,
-      mode: entity == null ? PutMode.insert : PutMode.update,
+    final secureUrlModel =
+        SecureImageUrl(baseUrl: baseUrl, secureUrl: secureUrl);
+    await db.writeTxn(
+      () async => db.secureImageUrls.putByBaseUrl(secureUrlModel),
     );
   }
 
-  Future<SecureImageUrlEntity?> getSecureUrl(String baseUrl) =>
-      secureImageUrlBox
-          .query(
-            SecureImageUrlEntity_.baseUrl.equals(baseUrl),
-          )
-          .build()
-          .findFirstAsync();
+  Future<SecureImageUrl?> getSecureUrl(String baseUrl) =>
+      db.secureImageUrls.getByBaseUrl(baseUrl);
 
-  Stream<double> taskProgressStream(String taskId) => downloadTaskBox
-          .query(DownloadTrackTaskEntity_.taskId.equals(taskId))
-          .watch(triggerImmediately: true)
+  Stream<double> taskProgressStream(String taskId) =>
+      downloadTrackTasksCollection
+          .where()
+          .taskIdEqualTo(taskId)
+          .watch(
+            fireImmediately: true,
+          )
           .map(
         (event) {
-          final task = event.findFirst();
-          if (task != null) {
-            final downloadedBytes = task.downloadedBytes;
-            final totalBytes = task.totalBytes ?? 0;
-            if (totalBytes > 0) {
-              return downloadedBytes / totalBytes;
-            }
+          final task = event.firstOrNull;
+          if (task == null) {
+            return 0.0;
+          }
+          final downloadedBytes = task.downloadedBytes;
+          final totalBytes = task.totalBytes ?? 0;
+          if (totalBytes > 0) {
+            return downloadedBytes / totalBytes;
           }
           return 0.0;
         },
       ).distinct();
 
-  Stream<Set<String>> get likedTracksStream =>
-      likedTracksBox.query().watch(triggerImmediately: true).map(
-        (query) {
-          final entity = query.findFirst();
-          return entity?.likes.toSet() ?? <String>{};
-        },
-      ).distinct();
+  Stream<Set<String>> get likedTracksStream => likedTracksCollection
+      .where()
+      .build()
+      .watch(fireImmediately: true)
+      .map(
+        (items) => items
+            .map(
+              (it) => it.trackId,
+            )
+            .toSet(),
+      )
+      .distinct();
 
-  Stream<List<Track>> get cachedTracksStream => blocStateBox
-          .query(
-            BlocStateEntity_.key.equals(DatabaseCachedKeys.cachedTracksKey),
-          )
-          .watch(triggerImmediately: true)
+  Stream<List<Track>> get cachedTracksStream => blocStateCollection
+          .where()
+          .keyEqualTo(DatabaseCachedKeys.cachedTracksKey)
+          .watch(fireImmediately: true)
           .map(
         (event) {
-          final entity = event.findFirst();
+          final entity = event.firstOrNull;
           if (entity != null) {
             final json = jsonDecode(entity.json) as Map<String, dynamic>;
             final state = TracksListState.fromJson(json);
@@ -125,11 +113,13 @@ final class DatabaseManager {
         },
       ).distinct();
 
-  void clearDb() {
-    blocStateBox.removeAll();
-    likedTracksBox.removeAll();
-    secureImageUrlBox.removeAll();
-  }
+  Future<void> clearDb() => db.writeTxn(
+        () async {
+          await blocStateCollection.clear();
+          await likedTracksCollection.clear();
+          await db.secureImageUrls.clear();
+        },
+      );
 
-  void dispose() => _store.close();
+  void dispose() => db.close();
 }

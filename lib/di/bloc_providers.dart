@@ -111,4 +111,10 @@ final class _BlocProviders {
       ref.read(Di.shared.repository.firebaseRemoteConfig),
     ),
   );
+
+  late final streak = Provider(
+    (ref) => StreakBloc(
+      ref.read(Di.shared.manager.navigation),
+    ),
+  );
 }

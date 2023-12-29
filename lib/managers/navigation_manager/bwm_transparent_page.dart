@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TransparentRoute<T> extends PageRoute<T> {
-  int duration;
+  
+  final int duration;
 
   TransparentRoute({
     required this.builder,
@@ -27,8 +28,11 @@ class TransparentRoute<T> extends PageRoute<T> {
   String? get barrierLabel => null;
 
   @override
-  Widget buildPage(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation) {
+  Widget buildPage(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+  ) {
     final result = builder(context);
     return FadeTransition(
       opacity: Tween<double>(begin: 0, end: 1).animate(animation),
@@ -43,19 +47,17 @@ class TransparentRoute<T> extends PageRoute<T> {
 
 final class TransparentPage<T> extends Page<T> {
   final Widget child;
-  int duration;
+  final int duration;
 
-  TransparentPage({
+  const TransparentPage({
     required this.child,
     this.duration = 300,
   });
 
   @override
-  Route<T> createRoute(BuildContext context) {
-    return TransparentRoute(
-      duration: duration,
-      builder: (context) => child,
-      settings: this,
-    );
-  }
+  Route<T> createRoute(BuildContext context) => TransparentRoute(
+        duration: duration,
+        builder: (context) => child,
+        settings: this,
+      );
 }

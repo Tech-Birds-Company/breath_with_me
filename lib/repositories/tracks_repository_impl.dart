@@ -1,6 +1,6 @@
 import 'package:breathe_with_me/constants.dart';
-import 'package:breathe_with_me/database/entities/download_track_task_entity.dart';
-import 'package:breathe_with_me/database/entities/liked_tracks_entity.dart';
+import 'package:breathe_with_me/database/schemas/download_track_task_schema.dart';
+import 'package:breathe_with_me/database/schemas/liked_track_schema.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
@@ -8,7 +8,6 @@ import 'package:breathe_with_me/repositories/firebase_tutors_repository.dart';
 import 'package:breathe_with_me/repositories/tracks_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:objectbox/objectbox.dart';
 
 final class TracksRepositoryImpl implements TracksRepository {
   final UserManager _userManager;
@@ -70,7 +69,7 @@ final class TracksRepositoryImpl implements TracksRepository {
   }
 
   @override
-  Future<DownloadTrackTaskEntity?> getTrackDownloadTask(String trackId) async {
+  Future<DownloadTrackTask?> getTrackDownloadTask(String trackId) async {
     final entity = await _databaseManager.getDownloadTask(trackId);
 
     return entity;
@@ -124,18 +123,19 @@ final class TracksRepositoryImpl implements TracksRepository {
   }
 
   @override
-  Future<void> cacheLikedTracks(List<String> likedTracks) async {
-    final entities = await _databaseManager.likedTracksBox.getAllAsync();
-    final entity = entities.firstOrNull;
-    _databaseManager.likedTracksBox.putQueued(
-      entity ??
-          LikedTracksEntity(
-            likes: likedTracks,
-          )
-        ..likes = likedTracks,
-      mode: entity == null ? PutMode.insert : PutMode.update,
-    );
-  }
+  Future<void> cacheLikedTracks(List<String> likedTracks) async =>
+      _databaseManager.db.writeTxn(
+        () async {
+          await _databaseManager.likedTracksCollection.clear();
+          await _databaseManager.likedTracksCollection.putAll(
+            likedTracks
+                .map(
+                  (trackId) => LikedTrack(trackId: trackId),
+                )
+                .toList(),
+          );
+        },
+      );
 
   @override
   Future<void> updateLikes(String trackId) async {
@@ -149,18 +149,24 @@ final class TracksRepositoryImpl implements TracksRepository {
       }
       final likes = (data[_likesField] as List<Object?>).cast<String>().toSet();
       if (likes.contains(trackId)) {
-        await docReference.update({
-          _likesField: FieldValue.arrayRemove([trackId]),
-        });
+        await docReference.update(
+          {
+            _likesField: FieldValue.arrayRemove([trackId]),
+          },
+        );
       } else {
-        await docReference.update({
-          _likesField: FieldValue.arrayUnion([trackId]),
-        });
+        await docReference.update(
+          {
+            _likesField: FieldValue.arrayUnion([trackId]),
+          },
+        );
       }
     } else {
-      await docReference.set({
-        _likesField: [trackId],
-      });
+      await docReference.set(
+        {
+          _likesField: [trackId],
+        },
+      );
     }
   }
 
