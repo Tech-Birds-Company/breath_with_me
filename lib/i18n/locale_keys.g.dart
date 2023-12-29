@@ -35,6 +35,7 @@ abstract class LocaleKeys {
   static const trackLanguageEn = 'trackLanguageEn';
   static const trackLanguageRu = 'trackLanguageRu';
   static const trackDurationTitle = 'trackDurationTitle';
+  static const trackFinishButton = 'trackFinishButton';
   static const tutorJacksonNameKey = 'tutorJacksonNameKey';
   static const tutorDashaNameKey = 'tutorDashaNameKey';
   static const tutorJohnnyNameKey = 'tutorJohnnyNameKey';
