@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'remote_config_streaks.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class RemoteConfigStreaks {
   final int monthLivesCount;
 
@@ -10,6 +10,4 @@ class RemoteConfigStreaks {
 
   factory RemoteConfigStreaks.fromJson(Map<String, dynamic> json) =>
       _$RemoteConfigStreaksFromJson(json);
-
-  Map<String, dynamic> toJson() => _$RemoteConfigStreaksToJson(this);
 }
