@@ -94,6 +94,7 @@ final class _BlocProviders {
   late final signUp = Provider.autoDispose(
     (ref) => SignUpBloc(
       ref.read(Di.shared.manager.user),
+      ref.read(Di.shared.manager.navigation),
     ),
   );
 

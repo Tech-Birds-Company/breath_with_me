@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TransparentRoute<T> extends PageRoute<T> {
+  
   final int duration;
 
   TransparentRoute({

@@ -2,13 +2,18 @@ import 'package:breathe_with_me/extensions/string.dart';
 import 'package:breathe_with_me/features/sign_up/models/sign_up_error.dart';
 import 'package:breathe_with_me/features/sign_up/models/sign_up_state.dart';
 import 'package:breathe_with_me/features/sign_up/models/sing_up_exception.dart';
+import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpBloc extends BlocBase<SignUpState> {
   final UserManager _userManager;
+  final NavigationManager _navigationManager;
 
-  SignUpBloc(this._userManager) : super(const SignUpState());
+  SignUpBloc(
+    this._userManager,
+    this._navigationManager,
+  ) : super(const SignUpState());
 
   Future<void> signUpWithEmail() async {
     try {
@@ -19,6 +24,7 @@ class SignUpBloc extends BlocBase<SignUpState> {
         state.password,
       );
       emit(state.copyWith(error: SignUpError.none));
+      _navigationManager.successPage();
     } on SignUpException catch (e) {
       emit(state.copyWith(error: e.error));
     }
