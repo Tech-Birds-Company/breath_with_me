@@ -103,5 +103,7 @@
 	"streakStatisticsCardStreaksCount": "Дней подряд",
 	"streakStatisticsCardPracticesCount": "Практики",
 	"streakStatisticsCardMinCount": "Минут",
-	"streakStatisticsCardDayMissedCount": "Дней пропущено"
+	"streakStatisticsCardDayMissedCount": "Дней пропущено",
+
+	"accountSetting": "Настройки аккаунта"
 }

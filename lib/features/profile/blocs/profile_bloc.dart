@@ -73,4 +73,6 @@ final class ProfileBloc extends BlocBase<Object?> {
     await _userManager.signOut();
     await _databaseManager.clearDb();
   }
+
+  void openProfileSettings() => _navigationManager.openProfileSettings();
 }

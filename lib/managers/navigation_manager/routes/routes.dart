@@ -7,6 +7,7 @@ import 'package:breathe_with_me/features/onboarding/onboarding_page.dart';
 import 'package:breathe_with_me/features/profile/blocs/profile_bloc.dart';
 import 'package:breathe_with_me/features/profile/profile_page.dart';
 import 'package:breathe_with_me/features/profile/widgets/language_sheet.dart';
+import 'package:breathe_with_me/features/profile_settings/account_settings_page.dart';
 import 'package:breathe_with_me/features/reminder/blocs/reminder_bloc.dart';
 import 'package:breathe_with_me/features/reminder/reminder_page.dart';
 import 'package:breathe_with_me/features/safety_precautions/safety_precautions_page.dart';
@@ -39,6 +40,7 @@ final class BWMRoutes {
   static const safetyPrecautions = '/safety-precautions';
   static const filtersSheet = '/filters-sheet';
   static const streak = '/streak';
+  static const profileSettings = '/profile-settings';
 
   static const auth = AuthRoutes();
 
@@ -165,6 +167,13 @@ final class BWMRoutes {
       builder: (context, state) => DependencyProvider(
         provider: Di.shared.bloc.streak,
         builder: (context, dependency) => StreakPage(bloc: dependency),
+      ),
+    ),
+    GoRoute(
+      path: BWMRoutes.profileSettings,
+      builder: (context, state) => DependencyProvider(
+        provider: Di.shared.bloc.profileSettings,
+        builder: (context, dependency) => AccountSettingsPage(bloc: dependency),
       ),
     ),
   ];

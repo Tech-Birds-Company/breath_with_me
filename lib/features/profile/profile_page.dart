@@ -55,6 +55,7 @@ class ProfilePage extends StatelessWidget {
                   const SizedBox(height: 230).toSliver,
                   ProfileMenuItem(
                     title: LocaleKeys.profileSettings.tr(),
+                    onTap: profileBloc.openProfileSettings,
                     showIndicator: true,
                   ).toSliver,
                   ProfileMenuItem(

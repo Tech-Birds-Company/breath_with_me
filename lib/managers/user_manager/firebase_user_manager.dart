@@ -103,4 +103,11 @@ final class FirebaseUserManager implements UserManager {
   Future<void> sendResetPassword(String email) async {
     await _firebaseAuth.sendPasswordResetEmail(email: email);
   }
+
+  @override
+  Future<void> updateAccountSettings(String name, String email) async {
+    final currentUser = _firebaseAuth.currentUser;
+    await currentUser?.updateDisplayName(name);
+    await currentUser?.updateEmail(email);
+  }
 }
