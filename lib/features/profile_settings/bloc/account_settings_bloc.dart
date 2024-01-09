@@ -12,8 +12,8 @@ final class AccountSettingsBloc extends BlocBase<AccountSettingsState> {
     this._navigationManager,
   ) : super(
           AccountSettingsState(
-            name: _userManager.currentUser!.displayName!,
-            email: _userManager.currentUser!.email!,
+            name: _userManager.currentUser?.displayName ?? '',
+            email: _userManager.currentUser?.email ?? '',
           ),
         );
 
