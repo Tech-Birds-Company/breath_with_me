@@ -3,7 +3,7 @@ import 'package:breathe_with_me/common/widgets/bwm_action_button.dart';
 import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
 import 'package:breathe_with_me/design/obscured_field.dart';
 import 'package:breathe_with_me/design/sing_in_buttons.dart';
-import 'package:breathe_with_me/features/sign_up/bloc/sign_up_block.dart';
+import 'package:breathe_with_me/features/sign_up/bloc/sign_up_bloc.dart';
 import 'package:breathe_with_me/features/sign_up/models/sign_up_error.dart';
 import 'package:breathe_with_me/features/sign_up/models/sign_up_state.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
@@ -89,18 +89,18 @@ class SignUpPage extends StatelessWidget {
                   height: 40,
                   onPressed: bloc.signUpWithEmail,
                 ),
-                BlocSelector<SignUpBloc, SignUpState, (SignUpError, String?)>(
+                BlocSelector<SignUpBloc, SignUpState, SignUpError?>(
                   bloc: bloc,
-                  selector: (state) => (state.error, state.firebaseError),
+                  selector: (state) => state.error,
                   builder: (context, error) {
-                    if (error != SignUpError.none) {
+                    if (error case final errorMessage?) {
                       return SizedBox(
                         height: 67,
                         child: Center(
                           child: Padding(
                             padding: const EdgeInsets.only(top: 10),
                             child: Text(
-                              bloc.state.errorMessage,
+                              errorMessage.errorMessage,
                               style: theme.typography.footer
                                   .copyWith(color: theme.red),
                             ),

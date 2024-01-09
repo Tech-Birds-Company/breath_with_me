@@ -20,12 +20,11 @@ SignUpState _$SignUpStateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SignUpState {
-  SignUpError get error => throw _privateConstructorUsedError;
+  SignUpError? get error => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   String get passwordConfirm => throw _privateConstructorUsedError;
-  String? get firebaseError => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,12 +39,13 @@ abstract class $SignUpStateCopyWith<$Res> {
       _$SignUpStateCopyWithImpl<$Res, SignUpState>;
   @useResult
   $Res call(
-      {SignUpError error,
+      {SignUpError? error,
       String name,
       String email,
       String password,
-      String passwordConfirm,
-      String? firebaseError});
+      String passwordConfirm});
+
+  $SignUpErrorCopyWith<$Res>? get error;
 }
 
 /// @nodoc
@@ -61,18 +61,17 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = null,
+    Object? error = freezed,
     Object? name = null,
     Object? email = null,
     Object? password = null,
     Object? passwordConfirm = null,
-    Object? firebaseError = freezed,
   }) {
     return _then(_value.copyWith(
-      error: null == error
+      error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as SignUpError,
+              as SignUpError?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -89,11 +88,19 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
           ? _value.passwordConfirm
           : passwordConfirm // ignore: cast_nullable_to_non_nullable
               as String,
-      firebaseError: freezed == firebaseError
-          ? _value.firebaseError
-          : firebaseError // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SignUpErrorCopyWith<$Res>? get error {
+    if (_value.error == null) {
+      return null;
+    }
+
+    return $SignUpErrorCopyWith<$Res>(_value.error!, (value) {
+      return _then(_value.copyWith(error: value) as $Val);
+    });
   }
 }
 
@@ -106,12 +113,14 @@ abstract class _$$SignUpStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {SignUpError error,
+      {SignUpError? error,
       String name,
       String email,
       String password,
-      String passwordConfirm,
-      String? firebaseError});
+      String passwordConfirm});
+
+  @override
+  $SignUpErrorCopyWith<$Res>? get error;
 }
 
 /// @nodoc
@@ -125,18 +134,17 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = null,
+    Object? error = freezed,
     Object? name = null,
     Object? email = null,
     Object? password = null,
     Object? passwordConfirm = null,
-    Object? firebaseError = freezed,
   }) {
     return _then(_$SignUpStateImpl(
-      error: null == error
+      error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as SignUpError,
+              as SignUpError?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -153,32 +161,25 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
           ? _value.passwordConfirm
           : passwordConfirm // ignore: cast_nullable_to_non_nullable
               as String,
-      firebaseError: freezed == firebaseError
-          ? _value.firebaseError
-          : firebaseError // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$SignUpStateImpl extends _SignUpState {
-  const _$SignUpStateImpl(
-      {this.error = SignUpError.none,
+class _$SignUpStateImpl implements _SignUpState {
+  _$SignUpStateImpl(
+      {this.error,
       this.name = '',
       this.email = '',
       this.password = '',
-      this.passwordConfirm = '',
-      this.firebaseError})
-      : super._();
+      this.passwordConfirm = ''});
 
   factory _$SignUpStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$SignUpStateImplFromJson(json);
 
   @override
-  @JsonKey()
-  final SignUpError error;
+  final SignUpError? error;
   @override
   @JsonKey()
   final String name;
@@ -191,12 +192,10 @@ class _$SignUpStateImpl extends _SignUpState {
   @override
   @JsonKey()
   final String passwordConfirm;
-  @override
-  final String? firebaseError;
 
   @override
   String toString() {
-    return 'SignUpState(error: $error, name: $name, email: $email, password: $password, passwordConfirm: $passwordConfirm, firebaseError: $firebaseError)';
+    return 'SignUpState(error: $error, name: $name, email: $email, password: $password, passwordConfirm: $passwordConfirm)';
   }
 
   @override
@@ -210,15 +209,13 @@ class _$SignUpStateImpl extends _SignUpState {
             (identical(other.password, password) ||
                 other.password == password) &&
             (identical(other.passwordConfirm, passwordConfirm) ||
-                other.passwordConfirm == passwordConfirm) &&
-            (identical(other.firebaseError, firebaseError) ||
-                other.firebaseError == firebaseError));
+                other.passwordConfirm == passwordConfirm));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, error, name, email, password,
-      passwordConfirm, firebaseError);
+  int get hashCode =>
+      Object.hash(runtimeType, error, name, email, password, passwordConfirm);
 
   @JsonKey(ignore: true)
   @override
@@ -234,21 +231,19 @@ class _$SignUpStateImpl extends _SignUpState {
   }
 }
 
-abstract class _SignUpState extends SignUpState {
-  const factory _SignUpState(
-      {final SignUpError error,
+abstract class _SignUpState implements SignUpState {
+  factory _SignUpState(
+      {final SignUpError? error,
       final String name,
       final String email,
       final String password,
-      final String passwordConfirm,
-      final String? firebaseError}) = _$SignUpStateImpl;
-  const _SignUpState._() : super._();
+      final String passwordConfirm}) = _$SignUpStateImpl;
 
   factory _SignUpState.fromJson(Map<String, dynamic> json) =
       _$SignUpStateImpl.fromJson;
 
   @override
-  SignUpError get error;
+  SignUpError? get error;
   @override
   String get name;
   @override
@@ -257,8 +252,6 @@ abstract class _SignUpState extends SignUpState {
   String get password;
   @override
   String get passwordConfirm;
-  @override
-  String? get firebaseError;
   @override
   @JsonKey(ignore: true)
   _$$SignUpStateImplCopyWith<_$SignUpStateImpl> get copyWith =>

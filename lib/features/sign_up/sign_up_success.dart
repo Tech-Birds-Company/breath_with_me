@@ -59,37 +59,39 @@ class SighUpSuccess extends StatelessWidget {
                 ),
               ),
             ),
-            ColoredBox(
-              color: Colors.black.withOpacity(0.4),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const Spacer(),
-                  SvgPicture.asset(
-                    width: 88,
-                    height: 88,
-                    BWMAssets.heartIcon,
-                    colorFilter: ColorFilter.mode(
-                      theme.gray4,
-                      BlendMode.srcIn,
-                    ),
-                  ),
-                  const SizedBox(height: 28),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 90),
-                    child: Text(
-                      'Account is created successfully',
-                      textAlign: TextAlign.center,
-                      style: theme.typography.heading2.copyWith(
-                        color: theme.primaryColor,
-                        decoration: TextDecoration.none,
+            IgnorePointer(
+              child: ColoredBox(
+                color: Colors.black.withOpacity(0.4),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Spacer(),
+                    SvgPicture.asset(
+                      width: 88,
+                      height: 88,
+                      BWMAssets.heartIcon,
+                      colorFilter: ColorFilter.mode(
+                        theme.gray4,
+                        BlendMode.srcIn,
                       ),
                     ),
-                  ),
-                  const Spacer(
-                    flex: 3,
-                  ),
-                ],
+                    const SizedBox(height: 28),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 90),
+                      child: Text(
+                        'Account is created successfully',
+                        textAlign: TextAlign.center,
+                        style: theme.typography.heading2.copyWith(
+                          color: theme.primaryColor,
+                          decoration: TextDecoration.none,
+                        ),
+                      ),
+                    ),
+                    const Spacer(
+                      flex: 3,
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

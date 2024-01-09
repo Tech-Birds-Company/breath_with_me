@@ -13,7 +13,7 @@ class SignUpBloc extends BlocBase<SignUpState> {
   SignUpBloc(
     this._userManager,
     this._navigationManager,
-  ) : super(const SignUpState());
+  ) : super(SignUpState());
 
   Future<void> signUpWithEmail() async {
     try {
@@ -25,11 +25,14 @@ class SignUpBloc extends BlocBase<SignUpState> {
       );
 
       if (result.isSuccess) {
-        emit(state.copyWith(error: SignUpError.none));
+        emit(state.copyWith(error: null));
         _navigationManager.successPage();
       } else {
-        emit(state.copyWith(firebaseError: result.errorMessage));
-        emit(state.copyWith(error: SignUpError.firebaseError));
+        emit(
+          state.copyWith(
+            error: SignUpError.firebase(result.errorMessage ?? ''),
+          ),
+        );
       }
     } on SignUpException catch (e) {
       emit(state.copyWith(error: e.error));
@@ -55,12 +58,29 @@ class SignUpBloc extends BlocBase<SignUpState> {
       emit(state.copyWith(passwordConfirm: passwordConfirm));
 
   void _validateInput() {
-    if (state.name.isEmpty) throw const SignUpException(SignUpError.emptyName);
+    if (state.name.isEmpty) {
+      throw const SignUpException(
+        SignUpError.emptyName(),
+      );
+    }
     if (!state.email.isValidEmail) {
-      throw const SignUpException(SignUpError.invalidEmail);
+      throw const SignUpException(
+        SignUpError.invalidEmail(),
+      );
     }
     if (state.password != state.passwordConfirm) {
-      throw const SignUpException(SignUpError.passwordMismatch);
+      throw const SignUpException(
+        SignUpError.passwordMismatch(),
+      );
     }
   }
+}
+
+extension SignUpErrorExtension on SignUpError {
+  String get errorMessage => when(
+        emptyName: () => 'Error: Name field is empty.',
+        invalidEmail: () => 'Error: Email is invalid.',
+        passwordMismatch: () => 'Error: Passwords do not match.',
+        firebase: (message) => message,
+      );
 }
