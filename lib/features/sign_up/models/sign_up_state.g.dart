@@ -7,8 +7,10 @@ part of 'sign_up_state.dart';
 // **************************************************************************
 
 _$SignUpStateImpl _$$SignUpStateImplFromJson(Map json) => _$SignUpStateImpl(
-      error: $enumDecodeNullable(_$SignUpErrorEnumMap, json['error']) ??
-          SignUpError.none,
+      error: json['error'] == null
+          ? null
+          : SignUpError.fromJson(
+              Map<String, Object?>.from(json['error'] as Map)),
       name: json['name'] as String? ?? '',
       email: json['email'] as String? ?? '',
       password: json['password'] as String? ?? '',
@@ -17,16 +19,9 @@ _$SignUpStateImpl _$$SignUpStateImplFromJson(Map json) => _$SignUpStateImpl(
 
 Map<String, dynamic> _$$SignUpStateImplToJson(_$SignUpStateImpl instance) =>
     <String, dynamic>{
-      'error': _$SignUpErrorEnumMap[instance.error]!,
+      'error': instance.error?.toJson(),
       'name': instance.name,
       'email': instance.email,
       'password': instance.password,
       'passwordConfirm': instance.passwordConfirm,
     };
-
-const _$SignUpErrorEnumMap = {
-  SignUpError.emptyName: 'emptyName',
-  SignUpError.invalidEmail: 'invalidEmail',
-  SignUpError.passwordMismatch: 'passwordMismatch',
-  SignUpError.none: 'none',
-};

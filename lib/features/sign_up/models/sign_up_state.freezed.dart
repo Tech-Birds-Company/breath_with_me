@@ -20,7 +20,7 @@ SignUpState _$SignUpStateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SignUpState {
-  SignUpError get error => throw _privateConstructorUsedError;
+  SignUpError? get error => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
@@ -39,11 +39,13 @@ abstract class $SignUpStateCopyWith<$Res> {
       _$SignUpStateCopyWithImpl<$Res, SignUpState>;
   @useResult
   $Res call(
-      {SignUpError error,
+      {SignUpError? error,
       String name,
       String email,
       String password,
       String passwordConfirm});
+
+  $SignUpErrorCopyWith<$Res>? get error;
 }
 
 /// @nodoc
@@ -59,17 +61,17 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = null,
+    Object? error = freezed,
     Object? name = null,
     Object? email = null,
     Object? password = null,
     Object? passwordConfirm = null,
   }) {
     return _then(_value.copyWith(
-      error: null == error
+      error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as SignUpError,
+              as SignUpError?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -88,6 +90,18 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
               as String,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SignUpErrorCopyWith<$Res>? get error {
+    if (_value.error == null) {
+      return null;
+    }
+
+    return $SignUpErrorCopyWith<$Res>(_value.error!, (value) {
+      return _then(_value.copyWith(error: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -99,11 +113,14 @@ abstract class _$$SignUpStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {SignUpError error,
+      {SignUpError? error,
       String name,
       String email,
       String password,
       String passwordConfirm});
+
+  @override
+  $SignUpErrorCopyWith<$Res>? get error;
 }
 
 /// @nodoc
@@ -117,17 +134,17 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = null,
+    Object? error = freezed,
     Object? name = null,
     Object? email = null,
     Object? password = null,
     Object? passwordConfirm = null,
   }) {
     return _then(_$SignUpStateImpl(
-      error: null == error
+      error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as SignUpError,
+              as SignUpError?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -150,21 +167,19 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SignUpStateImpl extends _SignUpState {
-  const _$SignUpStateImpl(
-      {this.error = SignUpError.none,
+class _$SignUpStateImpl implements _SignUpState {
+  _$SignUpStateImpl(
+      {this.error,
       this.name = '',
       this.email = '',
       this.password = '',
-      this.passwordConfirm = ''})
-      : super._();
+      this.passwordConfirm = ''});
 
   factory _$SignUpStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$SignUpStateImplFromJson(json);
 
   @override
-  @JsonKey()
-  final SignUpError error;
+  final SignUpError? error;
   @override
   @JsonKey()
   final String name;
@@ -216,20 +231,19 @@ class _$SignUpStateImpl extends _SignUpState {
   }
 }
 
-abstract class _SignUpState extends SignUpState {
-  const factory _SignUpState(
-      {final SignUpError error,
+abstract class _SignUpState implements SignUpState {
+  factory _SignUpState(
+      {final SignUpError? error,
       final String name,
       final String email,
       final String password,
       final String passwordConfirm}) = _$SignUpStateImpl;
-  const _SignUpState._() : super._();
 
   factory _SignUpState.fromJson(Map<String, dynamic> json) =
       _$SignUpStateImpl.fromJson;
 
   @override
-  SignUpError get error;
+  SignUpError? get error;
   @override
   String get name;
   @override

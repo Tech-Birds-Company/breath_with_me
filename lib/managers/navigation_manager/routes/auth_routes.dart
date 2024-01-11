@@ -4,9 +4,7 @@ import 'package:breathe_with_me/features/sign_in/sign_in_page.dart';
 import 'package:breathe_with_me/features/sign_up/sign_up_page.dart';
 import 'package:breathe_with_me/features/sign_up/sign_up_success.dart';
 import 'package:breathe_with_me/managers/navigation_manager/bwm_transparent_page.dart';
-import 'package:breathe_with_me/managers/navigation_manager/bwm_modal_page.dart';
 import 'package:breathe_with_me/utils/dependency_provider.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class AuthRoutes {

@@ -101,6 +101,7 @@ final class NavigationManager {
   void replaceHome() => router.pushReplacement(BWMRoutes.home);
 
   void pop() {
+    print('pop');
     if (router.canPop()) {
       router.pop();
     }
