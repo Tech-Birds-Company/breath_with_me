@@ -5,6 +5,7 @@ import 'package:breathe_with_me/features/forgot_password/bloc/forgot_password_bl
 import 'package:breathe_with_me/features/home/blocs/home_bloc.dart';
 import 'package:breathe_with_me/features/onboarding/blocs/onboarding_bloc.dart';
 import 'package:breathe_with_me/features/profile/blocs/profile_bloc.dart';
+import 'package:breathe_with_me/features/profile_settings/bloc/account_settings_bloc.dart';
 import 'package:breathe_with_me/features/reminder/blocs/reminder_bloc.dart';
 import 'package:breathe_with_me/features/safety_precautions/blocs/safety_precautions_bloc.dart';
 import 'package:breathe_with_me/features/sign_in/blocs/signin_bloc.dart';

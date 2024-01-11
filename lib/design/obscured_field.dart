@@ -6,12 +6,14 @@ class ObscuredField extends StatefulWidget {
   final String hintText;
   final String prefixIcon;
   final bool enableObscuredTextToggle;
+  final String? defaultValue;
   final void Function(String text) textChange;
 
   const ObscuredField({
     required this.hintText,
     required this.prefixIcon,
     required this.textChange,
+    this.defaultValue,
     this.enableObscuredTextToggle = false,
     super.key,
   });
@@ -22,11 +24,12 @@ class ObscuredField extends StatefulWidget {
 
 class ObscuredFieldState extends State<ObscuredField> {
   var _isObscured = true;
-  late final _controller = TextEditingController();
+  late final TextEditingController _controller;
 
   @override
   void initState() {
     super.initState();
+    _controller = TextEditingController(text: widget.defaultValue);
     _controller.addListener(_onControllerChanged);
   }
 

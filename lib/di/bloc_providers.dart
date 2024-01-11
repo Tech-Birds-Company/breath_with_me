@@ -117,4 +117,11 @@ final class _BlocProviders {
       ref.read(Di.shared.manager.navigation),
     ),
   );
+
+  late final profileSettings = Provider.autoDispose(
+    (ref) => AccountSettingsBloc(
+      ref.read(Di.shared.manager.user),
+      ref.read(Di.shared.manager.navigation),
+    ),
+  );
 }
