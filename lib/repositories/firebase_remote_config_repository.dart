@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:breathe_with_me/repositories/models/remote_config_legal_documents.dart';
 import 'package:breathe_with_me/repositories/models/remote_config_socials.dart';
+import 'package:breathe_with_me/repositories/models/remote_config_streaks.dart';
 import 'package:breathe_with_me/repositories/remote_config_repository.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 
@@ -30,5 +31,12 @@ final class FirebaseRemoteConfigRepository implements RemoteConfigRepository {
     final value = FirebaseRemoteConfig.instance.getValue('socials');
     final json = jsonDecode(value.asString()) as Map<String, dynamic>;
     return RemoteConfigSocials.fromJson(json);
+  }
+
+  @override
+  RemoteConfigStreaks get streaks {
+    final value = FirebaseRemoteConfig.instance.getValue('streaks');
+    final json = jsonDecode(value.asString()) as Map<String, dynamic>;
+    return RemoteConfigStreaks.fromJson(json);
   }
 }

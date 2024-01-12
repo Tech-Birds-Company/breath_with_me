@@ -18,4 +18,9 @@ final class _RepositoryProviders {
 
   late final firebaseFaqQuestions =
       Provider((ref) => const FirebaseFaqQuestionsRepository());
+
+  late final firebaseStreaksProgress =
+      Provider((ref) => const StreaksProgressRepository());
+
+  late final streaksQuotes = Provider((ref) => const StreaksQuotesRepository());
 }

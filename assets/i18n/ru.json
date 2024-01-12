@@ -34,6 +34,7 @@
 	"trackLanguageEn": "Английский",
 	"trackLanguageRu": "Русский",
 	"trackDurationTitle": "{duration} мин",
+	"trackFinishButton": "Закончить",
 
 	"tutorJacksonNameKey": "Джексон",
 	"tutorDashaNameKey": "Даша",
@@ -100,10 +101,52 @@
 	"forgotPasswordSpamSecond": "указать другой email",
 
 	"streakStatisticsCardTitle": "Ты впечатляешь!",
-	"streakStatisticsCardStreaksCount": "Дней подряд",
-	"streakStatisticsCardPracticesCount": "Практики",
-	"streakStatisticsCardMinCount": "Минут",
-	"streakStatisticsCardDayMissedCount": "Дней пропущено",
+	"streakStatisticsCardStreaksCount": {
+		"zero":"Дней подряд",
+		"one": "День подряд",
+		"two": "Дня подряд",
+		"few": "Дня подряд",
+		"many": "Дней подряд",
+		"other": "Дней подряд"
+	},
+	"streakStatisticsCardPracticesCount": {
+		"one": "Практика",
+		"many": "Практик",
+		"other": "Практики"
+	},
+	"streakStatisticsCardMinCount": {
+		"one": "Минута",
+		"few": "Минуты",
+		"many": "Минут",
+		"other": "Минут"
+	},
+	"streakStatisticsCardDayMissedCount": {
+		"zero":"Дней пропущено",
+		"one": "День пропущено",
+		"two": "Дня пропущено",
+		"few": "Дня пропущено",
+		"many": "Дней пропущено",
+		"other": "Дней пропущено"
+	},
+	"streakWithoutPremiumTitle": "Круто! Ты практикуешь уже",
+	"streakWithoutPremiumSubtitle": {
+		"zero":"{} дней подряд",
+		"one": "{} день подряд",
+		"two": "{} дня подряд",
+		"few": "{} дня подряд",
+		"many": "{} дней подряд",
+		"other": "{} дней подряд"
+	},
+	"streakLivesTitle": "Восстановление прогресса",
+	"streakLivesFooter": {
+		"one": "Вы получите ещё {} жизнь в следующем месяце",
+		"two": "Вы получите ещё {} жизни в следующем месяце",
+		"other": "Вы получите ещё {} жизней в следующем месяце"
+	},
+	"streakMissedDayTitle": "Вы уверены, что хотите восстановить пропущенный день и сохранить прогресс?",
+	"streakMissedDaySubtitle": "У вас будет на одну жизнь меньше",
+	"streakMissedDayRestore": "Восстановить прогресс",
+	"streakMissedDaySkip": "Пропустить",
 
 	"accountSetting": "Настройки аккаунта"
 }
