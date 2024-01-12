@@ -3,9 +3,7 @@ import 'package:breathe_with_me/features/track_player/blocs/track_player_bloc.da
 import 'package:breathe_with_me/features/track_player/widgets/track_player_animation.dart';
 import 'package:breathe_with_me/features/track_player/widgets/track_player_button.dart';
 import 'package:breathe_with_me/features/track_player/widgets/track_progress_indicator.dart';
-import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:rxdart/rxdart.dart';
@@ -49,10 +47,6 @@ class TrackPlayerPage extends HookWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     TrackPlayerButton(bloc),
-                    TextButton(
-                      onPressed: bloc.onFinishTap,
-                      child: Text(LocaleKeys.trackFinishButton.tr()),
-                    ), // TODO: Add button design from figma
                     const SizedBox(height: 16),
                     TrackProgressIndicator(bloc),
                   ],

@@ -7,16 +7,20 @@ part of 'streak_state.dart';
 // **************************************************************************
 
 _$StreakStateImpl _$$StreakStateImplFromJson(Map json) => _$StreakStateImpl(
-      json['progress'] == null
+      selectedDay: json['selectedDay'] as int?,
+      statistics: json['statistics'] == null
           ? null
-          : StreaksProgress.fromJson(
-              Map<String, dynamic>.from(json['progress'] as Map)),
-      StreakContentState.fromJson(
-          Map<String, dynamic>.from(json['contentState'] as Map)),
+          : StreakStatisticsData.fromJson(
+              Map<String, dynamic>.from(json['statistics'] as Map)),
+      quote: json['quote'] == null
+          ? null
+          : StreakQuoteData.fromJson(
+              Map<String, dynamic>.from(json['quote'] as Map)),
     );
 
 Map<String, dynamic> _$$StreakStateImplToJson(_$StreakStateImpl instance) =>
     <String, dynamic>{
-      'progress': instance.progress?.toJson(),
-      'contentState': instance.contentState.toJson(),
+      'selectedDay': instance.selectedDay,
+      'statistics': instance.statistics,
+      'quote': instance.quote,
     };

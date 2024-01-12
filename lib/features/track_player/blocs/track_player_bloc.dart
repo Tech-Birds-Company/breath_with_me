@@ -8,7 +8,6 @@ import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/managers/audio_manager/audio_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/downloader_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/track_download_task.dart';
-import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/repositories/tracks_repository.dart';
 import 'package:breathe_with_me/utils/string_hex_to_color.dart';
@@ -22,7 +21,6 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   final UserManager _userManager;
   final AudioManager _audioManager;
   final DownloaderManager _downloaderManager;
-  final NavigationManager _navigationManager;
 
   TrackPlayerBloc(
     this._track,
@@ -30,7 +28,6 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
     this._userManager,
     this._audioManager,
     this._downloaderManager,
-    this._navigationManager,
   ) : super(TrackPlayerState.initialState);
 
   Color? get animationColor => _track.animationColor.toColor;
@@ -56,11 +53,6 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
     } else {
       await _handleOnlinePlay();
     }
-  }
-
-  void onFinishTap() {
-    _audioManager.stop();
-    _navigationManager.openStreak(_track);
   }
 
   Future<void> _handleOfflinePlay(DownloadTrackTask task) async {
