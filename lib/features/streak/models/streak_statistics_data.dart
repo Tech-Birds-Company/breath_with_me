@@ -5,15 +5,12 @@ part 'streak_statistics_data.g.dart';
 
 @freezed
 class StreakStatisticsData with _$StreakStatisticsData {
-  const factory StreakStatisticsData.full(
-    int streaksCount,
-    int practicesCount,
-    int minutesCount,
-  ) = _Full;
-  const factory StreakStatisticsData.missed(
-    int streaksCount,
-    int missedDaysCount,
-  ) = _Missed;
+  const factory StreakStatisticsData({
+    @Default(0) int streaksCount,
+    int? practicesCount,
+    int? minutesCount,
+    int? dayMissedCount,
+  }) = _StreakStatisticsData;
 
   factory StreakStatisticsData.fromJson(Map<String, dynamic> json) =>
       _$StreakStatisticsDataFromJson(json);

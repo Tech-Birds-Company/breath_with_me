@@ -34,7 +34,6 @@
 	"trackLanguageEn": "En",
 	"trackLanguageRu": "Ru",
 	"trackDurationTitle": "{duration} min",
-	"trackFinishButton": "Finish",
 
 	"tutorJacksonNameKey": "Jackson",
 	"tutorDashaNameKey": "Dasha",
@@ -101,27 +100,10 @@
 	"forgotPasswordSpamSecond": "or try another email address",
 
 	"streakStatisticsCardTitle": "You are fantastic",
-	"streakStatisticsCardStreaksCount": {
-		"one": "Streak",
-		"other": "Streaks"
-	},
-	"streakStatisticsCardPracticesCount": {
-		"one": "Practice",
-		"other": "Practices"
-	},
+	"streakStatisticsCardStreaksCount": "Streaks",
+	"streakStatisticsCardPracticesCount": "Practices",
 	"streakStatisticsCardMinCount": "Min",
 	"streakStatisticsCardDayMissedCount": "Day missed",
-	"streakWithoutPremiumTitle": "You have",
-	"streakWithoutPremiumSubtitle": "{} day streak",
-	"streakLivesTitle": "Monthly streak lives",
-	"streakLivesFooter": {
-		"one": "You will get {} more live next month",
-		"other": "You will get {} more lives next month"
-	},
-	"streakMissedDayTitle": "Do you want to restore missed day and save your progress?",
-	"streakMissedDaySubtitle": "You will have one less streak live",
-	"streakMissedDayRestore": "Restore streak",
-	"streakMissedDaySkip": "Skip",
 
 	"accountSetting": "Account settings"
 }

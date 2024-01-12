@@ -1,4 +1,4 @@
-import 'package:breathe_with_me/repositories/models/streak_quote_data.dart';
+import 'package:breathe_with_me/features/streak/models/streak_quote_data.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
 
