@@ -15,16 +15,66 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 StreakStatisticsData _$StreakStatisticsDataFromJson(Map<String, dynamic> json) {
-  return _StreakStatisticsData.fromJson(json);
+  switch (json['runtimeType']) {
+    case 'full':
+      return _Full.fromJson(json);
+    case 'missed':
+      return _Missed.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(
+          json,
+          'runtimeType',
+          'StreakStatisticsData',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
 }
 
 /// @nodoc
 mixin _$StreakStatisticsData {
   int get streaksCount => throw _privateConstructorUsedError;
-  int? get practicesCount => throw _privateConstructorUsedError;
-  int? get minutesCount => throw _privateConstructorUsedError;
-  int? get dayMissedCount => throw _privateConstructorUsedError;
-
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            int streaksCount, int practicesCount, int minutesCount)
+        full,
+    required TResult Function(int streaksCount, int missedDaysCount) missed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int streaksCount, int practicesCount, int minutesCount)?
+        full,
+    TResult? Function(int streaksCount, int missedDaysCount)? missed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int streaksCount, int practicesCount, int minutesCount)?
+        full,
+    TResult Function(int streaksCount, int missedDaysCount)? missed,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Full value) full,
+    required TResult Function(_Missed value) missed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Full value)? full,
+    TResult? Function(_Missed value)? missed,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Full value)? full,
+    TResult Function(_Missed value)? missed,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $StreakStatisticsDataCopyWith<StreakStatisticsData> get copyWith =>
@@ -37,11 +87,7 @@ abstract class $StreakStatisticsDataCopyWith<$Res> {
           $Res Function(StreakStatisticsData) then) =
       _$StreakStatisticsDataCopyWithImpl<$Res, StreakStatisticsData>;
   @useResult
-  $Res call(
-      {int streaksCount,
-      int? practicesCount,
-      int? minutesCount,
-      int? dayMissedCount});
+  $Res call({int streaksCount});
 }
 
 /// @nodoc
@@ -59,166 +105,364 @@ class _$StreakStatisticsDataCopyWithImpl<$Res,
   @override
   $Res call({
     Object? streaksCount = null,
-    Object? practicesCount = freezed,
-    Object? minutesCount = freezed,
-    Object? dayMissedCount = freezed,
   }) {
     return _then(_value.copyWith(
       streaksCount: null == streaksCount
           ? _value.streaksCount
           : streaksCount // ignore: cast_nullable_to_non_nullable
               as int,
-      practicesCount: freezed == practicesCount
-          ? _value.practicesCount
-          : practicesCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      minutesCount: freezed == minutesCount
-          ? _value.minutesCount
-          : minutesCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      dayMissedCount: freezed == dayMissedCount
-          ? _value.dayMissedCount
-          : dayMissedCount // ignore: cast_nullable_to_non_nullable
-              as int?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$StreakStatisticsDataImplCopyWith<$Res>
+abstract class _$$FullImplCopyWith<$Res>
     implements $StreakStatisticsDataCopyWith<$Res> {
-  factory _$$StreakStatisticsDataImplCopyWith(_$StreakStatisticsDataImpl value,
-          $Res Function(_$StreakStatisticsDataImpl) then) =
-      __$$StreakStatisticsDataImplCopyWithImpl<$Res>;
+  factory _$$FullImplCopyWith(
+          _$FullImpl value, $Res Function(_$FullImpl) then) =
+      __$$FullImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int streaksCount,
-      int? practicesCount,
-      int? minutesCount,
-      int? dayMissedCount});
+  $Res call({int streaksCount, int practicesCount, int minutesCount});
 }
 
 /// @nodoc
-class __$$StreakStatisticsDataImplCopyWithImpl<$Res>
-    extends _$StreakStatisticsDataCopyWithImpl<$Res, _$StreakStatisticsDataImpl>
-    implements _$$StreakStatisticsDataImplCopyWith<$Res> {
-  __$$StreakStatisticsDataImplCopyWithImpl(_$StreakStatisticsDataImpl _value,
-      $Res Function(_$StreakStatisticsDataImpl) _then)
+class __$$FullImplCopyWithImpl<$Res>
+    extends _$StreakStatisticsDataCopyWithImpl<$Res, _$FullImpl>
+    implements _$$FullImplCopyWith<$Res> {
+  __$$FullImplCopyWithImpl(_$FullImpl _value, $Res Function(_$FullImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? streaksCount = null,
-    Object? practicesCount = freezed,
-    Object? minutesCount = freezed,
-    Object? dayMissedCount = freezed,
+    Object? practicesCount = null,
+    Object? minutesCount = null,
   }) {
-    return _then(_$StreakStatisticsDataImpl(
-      streaksCount: null == streaksCount
+    return _then(_$FullImpl(
+      null == streaksCount
           ? _value.streaksCount
           : streaksCount // ignore: cast_nullable_to_non_nullable
               as int,
-      practicesCount: freezed == practicesCount
+      null == practicesCount
           ? _value.practicesCount
           : practicesCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      minutesCount: freezed == minutesCount
+              as int,
+      null == minutesCount
           ? _value.minutesCount
           : minutesCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      dayMissedCount: freezed == dayMissedCount
-          ? _value.dayMissedCount
-          : dayMissedCount // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$StreakStatisticsDataImpl implements _StreakStatisticsData {
-  const _$StreakStatisticsDataImpl(
-      {this.streaksCount = 0,
-      this.practicesCount,
-      this.minutesCount,
-      this.dayMissedCount});
+class _$FullImpl implements _Full {
+  const _$FullImpl(this.streaksCount, this.practicesCount, this.minutesCount,
+      {final String? $type})
+      : $type = $type ?? 'full';
 
-  factory _$StreakStatisticsDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$StreakStatisticsDataImplFromJson(json);
+  factory _$FullImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FullImplFromJson(json);
 
   @override
-  @JsonKey()
   final int streaksCount;
   @override
-  final int? practicesCount;
+  final int practicesCount;
   @override
-  final int? minutesCount;
-  @override
-  final int? dayMissedCount;
+  final int minutesCount;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
-    return 'StreakStatisticsData(streaksCount: $streaksCount, practicesCount: $practicesCount, minutesCount: $minutesCount, dayMissedCount: $dayMissedCount)';
+    return 'StreakStatisticsData.full(streaksCount: $streaksCount, practicesCount: $practicesCount, minutesCount: $minutesCount)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$StreakStatisticsDataImpl &&
+            other is _$FullImpl &&
             (identical(other.streaksCount, streaksCount) ||
                 other.streaksCount == streaksCount) &&
             (identical(other.practicesCount, practicesCount) ||
                 other.practicesCount == practicesCount) &&
             (identical(other.minutesCount, minutesCount) ||
-                other.minutesCount == minutesCount) &&
-            (identical(other.dayMissedCount, dayMissedCount) ||
-                other.dayMissedCount == dayMissedCount));
+                other.minutesCount == minutesCount));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, streaksCount, practicesCount, minutesCount, dayMissedCount);
+  int get hashCode =>
+      Object.hash(runtimeType, streaksCount, practicesCount, minutesCount);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$StreakStatisticsDataImplCopyWith<_$StreakStatisticsDataImpl>
-      get copyWith =>
-          __$$StreakStatisticsDataImplCopyWithImpl<_$StreakStatisticsDataImpl>(
-              this, _$identity);
+  _$$FullImplCopyWith<_$FullImpl> get copyWith =>
+      __$$FullImplCopyWithImpl<_$FullImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            int streaksCount, int practicesCount, int minutesCount)
+        full,
+    required TResult Function(int streaksCount, int missedDaysCount) missed,
+  }) {
+    return full(streaksCount, practicesCount, minutesCount);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int streaksCount, int practicesCount, int minutesCount)?
+        full,
+    TResult? Function(int streaksCount, int missedDaysCount)? missed,
+  }) {
+    return full?.call(streaksCount, practicesCount, minutesCount);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int streaksCount, int practicesCount, int minutesCount)?
+        full,
+    TResult Function(int streaksCount, int missedDaysCount)? missed,
+    required TResult orElse(),
+  }) {
+    if (full != null) {
+      return full(streaksCount, practicesCount, minutesCount);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Full value) full,
+    required TResult Function(_Missed value) missed,
+  }) {
+    return full(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Full value)? full,
+    TResult? Function(_Missed value)? missed,
+  }) {
+    return full?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Full value)? full,
+    TResult Function(_Missed value)? missed,
+    required TResult orElse(),
+  }) {
+    if (full != null) {
+      return full(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$StreakStatisticsDataImplToJson(
+    return _$$FullImplToJson(
       this,
     );
   }
 }
 
-abstract class _StreakStatisticsData implements StreakStatisticsData {
-  const factory _StreakStatisticsData(
-      {final int streaksCount,
-      final int? practicesCount,
-      final int? minutesCount,
-      final int? dayMissedCount}) = _$StreakStatisticsDataImpl;
+abstract class _Full implements StreakStatisticsData {
+  const factory _Full(final int streaksCount, final int practicesCount,
+      final int minutesCount) = _$FullImpl;
 
-  factory _StreakStatisticsData.fromJson(Map<String, dynamic> json) =
-      _$StreakStatisticsDataImpl.fromJson;
+  factory _Full.fromJson(Map<String, dynamic> json) = _$FullImpl.fromJson;
 
   @override
   int get streaksCount;
-  @override
-  int? get practicesCount;
-  @override
-  int? get minutesCount;
-  @override
-  int? get dayMissedCount;
+  int get practicesCount;
+  int get minutesCount;
   @override
   @JsonKey(ignore: true)
-  _$$StreakStatisticsDataImplCopyWith<_$StreakStatisticsDataImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$FullImplCopyWith<_$FullImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MissedImplCopyWith<$Res>
+    implements $StreakStatisticsDataCopyWith<$Res> {
+  factory _$$MissedImplCopyWith(
+          _$MissedImpl value, $Res Function(_$MissedImpl) then) =
+      __$$MissedImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int streaksCount, int missedDaysCount});
+}
+
+/// @nodoc
+class __$$MissedImplCopyWithImpl<$Res>
+    extends _$StreakStatisticsDataCopyWithImpl<$Res, _$MissedImpl>
+    implements _$$MissedImplCopyWith<$Res> {
+  __$$MissedImplCopyWithImpl(
+      _$MissedImpl _value, $Res Function(_$MissedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? streaksCount = null,
+    Object? missedDaysCount = null,
+  }) {
+    return _then(_$MissedImpl(
+      null == streaksCount
+          ? _value.streaksCount
+          : streaksCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == missedDaysCount
+          ? _value.missedDaysCount
+          : missedDaysCount // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$MissedImpl implements _Missed {
+  const _$MissedImpl(this.streaksCount, this.missedDaysCount,
+      {final String? $type})
+      : $type = $type ?? 'missed';
+
+  factory _$MissedImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MissedImplFromJson(json);
+
+  @override
+  final int streaksCount;
+  @override
+  final int missedDaysCount;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'StreakStatisticsData.missed(streaksCount: $streaksCount, missedDaysCount: $missedDaysCount)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MissedImpl &&
+            (identical(other.streaksCount, streaksCount) ||
+                other.streaksCount == streaksCount) &&
+            (identical(other.missedDaysCount, missedDaysCount) ||
+                other.missedDaysCount == missedDaysCount));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, streaksCount, missedDaysCount);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MissedImplCopyWith<_$MissedImpl> get copyWith =>
+      __$$MissedImplCopyWithImpl<_$MissedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            int streaksCount, int practicesCount, int minutesCount)
+        full,
+    required TResult Function(int streaksCount, int missedDaysCount) missed,
+  }) {
+    return missed(streaksCount, missedDaysCount);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int streaksCount, int practicesCount, int minutesCount)?
+        full,
+    TResult? Function(int streaksCount, int missedDaysCount)? missed,
+  }) {
+    return missed?.call(streaksCount, missedDaysCount);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int streaksCount, int practicesCount, int minutesCount)?
+        full,
+    TResult Function(int streaksCount, int missedDaysCount)? missed,
+    required TResult orElse(),
+  }) {
+    if (missed != null) {
+      return missed(streaksCount, missedDaysCount);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Full value) full,
+    required TResult Function(_Missed value) missed,
+  }) {
+    return missed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Full value)? full,
+    TResult? Function(_Missed value)? missed,
+  }) {
+    return missed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Full value)? full,
+    TResult Function(_Missed value)? missed,
+    required TResult orElse(),
+  }) {
+    if (missed != null) {
+      return missed(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$MissedImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Missed implements StreakStatisticsData {
+  const factory _Missed(final int streaksCount, final int missedDaysCount) =
+      _$MissedImpl;
+
+  factory _Missed.fromJson(Map<String, dynamic> json) = _$MissedImpl.fromJson;
+
+  @override
+  int get streaksCount;
+  int get missedDaysCount;
+  @override
+  @JsonKey(ignore: true)
+  _$$MissedImplCopyWith<_$MissedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

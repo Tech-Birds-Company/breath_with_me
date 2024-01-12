@@ -21,11 +21,11 @@ class StreakStatisticsItem extends StatelessWidget {
       children: [
         Text(
           text,
-          style: theme.typography.titleExtra.copyWith(color: theme.gray6),
+          style: theme.typography.titleExtra.copyWith(color: theme.gray4),
         ),
         Text(
           name,
-          style: theme.typography.label.copyWith(color: theme.gray4),
+          style: theme.typography.label.copyWith(color: theme.gray6),
         ),
       ],
     );

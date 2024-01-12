@@ -22,61 +22,70 @@ class StreakStatistics extends StatelessWidget {
       thickness: 1,
     );
 
-    final widgets = <Widget>[
-      const Spacer(),
-      StreakStatisticsItem(
-        text: data.streaksCount.toString(),
-        name: LocaleKeys.streakStatisticsCardStreaksCount.tr(),
-        crossAxisAlignment: CrossAxisAlignment.center,
-      ),
-    ];
-
-    if (data.practicesCount != null) {
-      widgets.addAll(
-        [
-          const Spacer(),
-          divider,
-          const Spacer(),
-          StreakStatisticsItem(
-            text: data.practicesCount.toString(),
-            name: LocaleKeys.streakStatisticsCardPracticesCount.tr(),
-            crossAxisAlignment: CrossAxisAlignment.center,
+    return data.when(
+      full: (streaksCount, practicesCount, minutesCount) {
+        return IntrinsicHeight(
+          child: Row(
+            children: [
+              const Spacer(),
+              StreakStatisticsItem(
+                text: streaksCount.toString(),
+                name: LocaleKeys.streakStatisticsCardStreaksCount
+                    .plural(streaksCount)
+                    .tr(),
+                crossAxisAlignment: CrossAxisAlignment.center,
+              ),
+              const Spacer(),
+              divider,
+              const Spacer(),
+              StreakStatisticsItem(
+                text: practicesCount.toString(),
+                name: LocaleKeys.streakStatisticsCardPracticesCount
+                    .plural(practicesCount)
+                    .tr(),
+                crossAxisAlignment: CrossAxisAlignment.center,
+              ),
+              const Spacer(),
+              divider,
+              const Spacer(),
+              StreakStatisticsItem(
+                text: minutesCount.toString(),
+                name: LocaleKeys.streakStatisticsCardMinCount
+                    .plural(minutesCount)
+                    .tr(),
+                crossAxisAlignment: CrossAxisAlignment.center,
+              ),
+            ],
           ),
-        ],
-      );
-    }
-
-    if (data.minutesCount != null) {
-      widgets.addAll(
-        [
-          const Spacer(),
-          divider,
-          const Spacer(),
-          StreakStatisticsItem(
-            text: data.minutesCount.toString(),
-            name: LocaleKeys.streakStatisticsCardMinCount.tr(),
-            crossAxisAlignment: CrossAxisAlignment.center,
+        );
+      },
+      missed: (streaksCount, missedDaysCount) {
+        return IntrinsicHeight(
+          child: Row(
+            children: [
+              const Spacer(),
+              StreakStatisticsItem(
+                text: streaksCount.toString(),
+                name: LocaleKeys.streakStatisticsCardStreaksCount
+                    .plural(streaksCount)
+                    .tr(),
+                crossAxisAlignment: CrossAxisAlignment.center,
+              ),
+              const Spacer(),
+              divider,
+              const Spacer(),
+              StreakStatisticsItem(
+                text: missedDaysCount.toString(),
+                name: LocaleKeys.streakStatisticsCardDayMissedCount
+                    .plural(missedDaysCount)
+                    .tr(),
+                crossAxisAlignment: CrossAxisAlignment.center,
+              ),
+              const Spacer(),
+            ],
           ),
-        ],
-      );
-    }
-
-    if (data.dayMissedCount != null) {
-      widgets.addAll(
-        [
-          const Spacer(),
-          divider,
-          const Spacer(),
-          StreakStatisticsItem(
-            text: data.dayMissedCount.toString(),
-            name: LocaleKeys.streakStatisticsCardDayMissedCount.tr(),
-            crossAxisAlignment: CrossAxisAlignment.center,
-          ),
-          const Spacer(),
-        ],
-      );
-    }
-
-    return IntrinsicHeight(child: Row(children: widgets));
+        );
+      },
+    );
   }
 }
