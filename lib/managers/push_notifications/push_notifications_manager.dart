@@ -67,7 +67,7 @@ final class PushNotificationsManager {
         presentAlert: true,
         presentBadge: true,
         presentSound: true,
-        badgeNumber: 1,
+        badgeNumber: 0,
         threadIdentifier: 'bwm_practice_reminder',
       ),
       android: AndroidNotificationDetails(

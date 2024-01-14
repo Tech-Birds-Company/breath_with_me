@@ -1,6 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const appName = 'appName';
   static const appBarBackTitle = 'appBarBackTitle';
   static const onboardingCreateAccount = 'onboardingCreateAccount';
@@ -11,14 +11,17 @@ abstract class  LocaleKeys {
   static const onboardingPage2Subtitle = 'onboardingPage2Subtitle';
   static const onboardingPage3Subtitle = 'onboardingPage3Subtitle';
   static const createAccountHeaderTitle = 'createAccountHeaderTitle';
-  static const createAccountHeaderConjunction = 'createAccountHeaderConjunction';
+  static const createAccountHeaderConjunction =
+      'createAccountHeaderConjunction';
   static const createAccountHeaderSubtitle = 'createAccountHeaderSubtitle';
   static const createAccountHeaderLogin = 'createAccountHeaderLogin';
   static const createAccountContact = 'createAccountContact';
   static const createAccountAgreement_part1 = 'createAccountAgreement.part1';
-  static const createAccountAgreement_privacyPolicyUrl = 'createAccountAgreement.privacyPolicyUrl';
+  static const createAccountAgreement_privacyPolicyUrl =
+      'createAccountAgreement.privacyPolicyUrl';
   static const createAccountAgreement_part2 = 'createAccountAgreement.part2';
-  static const createAccountAgreement_termsOfServiceUrl = 'createAccountAgreement.termsOfServiceUrl';
+  static const createAccountAgreement_termsOfServiceUrl =
+      'createAccountAgreement.termsOfServiceUrl';
   static const createAccountAgreement = 'createAccountAgreement';
   static const tracksTitle = 'tracksTitle';
   static const tracksGuestWelcome = 'tracksGuestWelcome';
@@ -42,13 +45,9 @@ abstract class  LocaleKeys {
   static const profileFAQ = 'profileFAQ';
   static const profileChat = 'profileChat';
   static const profileContactUs = 'profileContactUs';
-  static const profilePremiumFor3Friends = 'profilePremiumFor3Friends';
-  static const profilePremiumStatus = 'profilePremiumStatus';
   static const profileProgress = 'profileProgress';
   static const profileStreak = 'profileStreak';
-  static const profileGetPremium = 'profileGetPremium';
   static const profileTotalFriends = 'profileTotalFriends';
-  static const profileFriendsUntilPremium = 'profileFriendsUntilPremium';
   static const profileFaqTitle = 'profileFaqTitle';
   static const profileLogout = 'profileLogout';
   static const reminderTitle = 'reminderTitle';
@@ -69,9 +68,11 @@ abstract class  LocaleKeys {
   static const reminderWd6Short = 'reminderWd6Short';
   static const reminderWd7Short = 'reminderWd7Short';
   static const reminderNotificationTitle = 'reminderNotificationTitle';
-  static const reminderNotificationDescription = 'reminderNotificationDescription';
+  static const reminderNotificationDescription =
+      'reminderNotificationDescription';
   static const safetyPrecautionsWelcomeTitle = 'safetyPrecautionsWelcomeTitle';
-  static const safetyPrecautionsWelcomeDescription = 'safetyPrecautionsWelcomeDescription';
+  static const safetyPrecautionsWelcomeDescription =
+      'safetyPrecautionsWelcomeDescription';
   static const safetyPrecautionsReadNow = 'safetyPrecautionsReadNow';
   static const signInLogin = 'signInLogin';
   static const signInEmail = 'signInEmail';
@@ -91,10 +92,39 @@ abstract class  LocaleKeys {
   static const forgotPasswordSpamFirst = 'forgotPasswordSpamFirst';
   static const forgotPasswordSpamSecond = 'forgotPasswordSpamSecond';
   static const streakStatisticsCardTitle = 'streakStatisticsCardTitle';
-  static const streakStatisticsCardStreaksCount = 'streakStatisticsCardStreaksCount';
-  static const streakStatisticsCardPracticesCount = 'streakStatisticsCardPracticesCount';
+  static const streakStatisticsCardStreaksCount =
+      'streakStatisticsCardStreaksCount';
+  static const streakStatisticsCardPracticesCount =
+      'streakStatisticsCardPracticesCount';
   static const streakStatisticsCardMinCount = 'streakStatisticsCardMinCount';
-  static const streakStatisticsCardDayMissedCount = 'streakStatisticsCardDayMissedCount';
+  static const streakStatisticsCardDayMissedCount =
+      'streakStatisticsCardDayMissedCount';
   static const accountSetting = 'accountSetting';
-
+  static const premium_premium = 'premium.premium';
+  static const premium_goPremium = 'premium.goPremium';
+  static const premium_extendedStats = 'premium.extendedStats';
+  static const premium_restoreStreaks = 'premium.restoreStreaks';
+  static const premium_backgroundMode = 'premium.backgroundMode';
+  static const premium_learnMore = 'premium.learnMore';
+  static const premium_buyPremium = 'premium.buyPremium';
+  static const premium_paywall_selectTariffTitle =
+      'premium.paywall.selectTariffTitle';
+  static const premium_paywall_3MonthsTitle = 'premium.paywall.3MonthsTitle';
+  static const premium_paywall_1MonthTitle = 'premium.paywall.1MonthTitle';
+  static const premium_paywall_trialDescription =
+      'premium.paywall.trialDescription';
+  static const premium_paywall_subscriptionWeek =
+      'premium.paywall.subscriptionWeek';
+  static const premium_paywall_subscriptionMonth =
+      'premium.paywall.subscriptionMonth';
+  static const premium_paywall_subscription3Months =
+      'premium.paywall.subscription3Months';
+  static const premium_paywall_subscription6months =
+      'premium.paywall.subscription6months';
+  static const premium_paywall_subscriptionAnnual =
+      'premium.paywall.subscriptionAnnual';
+  static const premium_paywall_subscriptionLifeTime =
+      'premium.paywall.subscriptionLifeTime';
+  static const premium_paywall = 'premium.paywall';
+  static const premium = 'premium';
 }

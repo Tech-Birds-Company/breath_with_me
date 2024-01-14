@@ -1,3 +1,3 @@
-final class SharedPreferencesKeys {
+abstract final class SharedPreferencesKeys {
   static const String safetyPrecautions = 'safety_precautions';
 }

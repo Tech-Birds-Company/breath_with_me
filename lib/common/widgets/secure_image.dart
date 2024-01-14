@@ -1,37 +1,40 @@
 import 'package:breathe_with_me/di/di.dart';
-import 'package:breathe_with_me/utils/dependency_provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final _secureImageUrlProvider = FutureProvider.family<String?, String>(
-  (ref, baseUrl) async {
+final _secureImageUrlProvider = StreamProvider.family<String, String>(
+  (ref, baseUrl) async* {
     final databaseManager = ref.read(Di.shared.manager.database);
+
+    final entity = await databaseManager.getSecureUrl(baseUrl);
+    final dbUrl = entity?.secureUrl;
+    if (dbUrl != null) {
+      yield dbUrl;
+    }
+
     final downloadUrlFuture = Future(
-      () async {
-        final secureUrl =
-            await FirebaseStorage.instance.refFromURL(baseUrl).getDownloadURL();
-        return secureUrl;
-      },
+      FirebaseStorage.instance.refFromURL(baseUrl).getDownloadURL,
     ).timeout(
-      const Duration(seconds: 1),
-      onTimeout: () {
-        throw Exception('Timeout');
-      },
+      10.seconds,
+      onTimeout: () => throw Exception('Timeout'),
     );
+
     try {
       final secureUrl = await downloadUrlFuture;
+      yield secureUrl;
       await databaseManager.saveSecureUrl(baseUrl, secureUrl);
-      return secureUrl;
-    } on Exception {
-      final entity = await databaseManager.getSecureUrl(baseUrl);
-      return entity?.secureUrl;
+    } catch (_) {
+      if (dbUrl != null) {
+        yield dbUrl;
+      }
     }
   },
 );
 
-class SecureCachedImage extends StatelessWidget {
+class SecureCachedImage extends ConsumerWidget {
   final String baseUrl;
   final Widget loading;
 
@@ -42,14 +45,16 @@ class SecureCachedImage extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => DependencyProvider(
-        provider: _secureImageUrlProvider(baseUrl),
-        builder: (context, dependency) => dependency.when(
-          data: (url) => url != null
-              ? CachedNetworkImage(imageUrl: url)
-              : const SizedBox.shrink(),
-          loading: () => loading,
-          error: (error, stackTrace) => const SizedBox.shrink(),
-        ),
-      );
+  Widget build(BuildContext context, WidgetRef ref) {
+    final imageUrl = ref.watch(_secureImageUrlProvider(baseUrl));
+
+    return imageUrl.when(
+      data: (url) => CachedNetworkImage(
+        imageUrl: url,
+        cacheKey: url,
+      ),
+      loading: () => loading,
+      error: (error, stackTrace) => const SizedBox.shrink(),
+    );
+  }
 }

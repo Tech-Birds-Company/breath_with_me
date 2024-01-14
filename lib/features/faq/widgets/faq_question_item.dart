@@ -30,10 +30,10 @@ class FaqQuestionItem extends StatelessWidget {
       ),
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(
+          padding: const EdgeInsetsDirectional.only(
             top: 6,
-            left: 20,
-            right: 20,
+            start: 20,
+            end: 20,
           ),
           child: Text(
             question.description.replaceAll(r'\n', '\n'),

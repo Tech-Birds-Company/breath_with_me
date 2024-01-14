@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'remote_config_socials.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class RemoteConfigSocials {
   final String communityDeeplink;
   final String communityUrl;
@@ -16,6 +16,4 @@ class RemoteConfigSocials {
 
   factory RemoteConfigSocials.fromJson(Map<String, dynamic> json) =>
       _$RemoteConfigSocialsFromJson(json);
-
-  Map<String, dynamic> toJson() => _$RemoteConfigSocialsToJson(this);
 }

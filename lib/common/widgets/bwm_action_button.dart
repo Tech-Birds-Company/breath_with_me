@@ -4,14 +4,20 @@ import 'package:flutter/material.dart';
 class BWMActionButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final String title;
-  final double width;
-  final double height;
+  final double? width;
+  final double? height;
+  final Color? borderColor;
+  final Color? overlayColor;
+  final Color? textColor;
 
   const BWMActionButton({
     required this.title,
-    required this.width,
-    required this.height,
+    this.width,
+    this.height,
     this.onPressed,
+    this.borderColor,
+    this.overlayColor,
+    this.textColor,
     super.key,
   });
 
@@ -22,7 +28,7 @@ class BWMActionButton extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: theme.green3,
+          color: borderColor ?? theme.green3,
         ),
       ),
       child: SizedBox(
@@ -31,14 +37,14 @@ class BWMActionButton extends StatelessWidget {
         child: TextButton(
           style: ButtonStyle(
             overlayColor: MaterialStateProperty.all(
-              theme.green3.withOpacity(0.3),
+              overlayColor ?? theme.green3.withOpacity(0.3),
             ),
           ),
           onPressed: onPressed,
           child: Text(
             title,
             style: theme.typography.bodyM.copyWith(
-              color: theme.green3,
+              color: textColor ?? theme.green3,
             ),
           ),
         ),

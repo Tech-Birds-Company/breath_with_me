@@ -2,6 +2,7 @@ import 'package:breathe_with_me/constants.dart';
 import 'package:breathe_with_me/database/schemas/download_track_task_schema.dart';
 import 'package:breathe_with_me/database/schemas/liked_track_schema.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
+import 'package:breathe_with_me/features/tracks/models/track_language.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/repositories/firebase_tutors_repository.dart';
@@ -39,7 +40,6 @@ final class TracksRepositoryImpl implements TracksRepository {
       ...data,
       'tutor': tutor.toJson(),
     };
-
     return Track.fromJson(trackJson);
   }
 
@@ -65,7 +65,9 @@ final class TracksRepositoryImpl implements TracksRepository {
       tracks.add(track);
     }
 
-    return tracks;
+    return tracks
+        .where((track) => track.language != TrackLanguage.unknown)
+        .toList();
   }
 
   @override
