@@ -76,7 +76,10 @@ class PremiumPaywall extends StatelessWidget {
                               BWMAssets.checkmark,
                               height: 10,
                               width: 10,
-                              color: theme.purple2,
+                              colorFilter: ColorFilter.mode(
+                                theme.purple2,
+                                BlendMode.srcIn,
+                              ),
                             ),
                             const SizedBox(width: 8),
                             Expanded(
