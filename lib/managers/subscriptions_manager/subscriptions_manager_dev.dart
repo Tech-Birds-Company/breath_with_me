@@ -11,7 +11,7 @@ final class SubscriptionsManagerDev
           '4cbXT9_l8BzrWmpRVski_n3h2O4FOVl6',
           QLaunchMode.subscriptionManagement,
           QEnvironment.sandbox,
-          QEntitlementsCacheLifetime.month,
+          QEntitlementsCacheLifetime.week,
           null,
           false,
         ),

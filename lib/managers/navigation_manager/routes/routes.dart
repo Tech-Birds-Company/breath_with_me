@@ -157,10 +157,10 @@ abstract final class BWMRoutes {
           isScrollControlled: true,
           enableDrag: false,
           child: DependencyProvider(
-            provider: Di.shared.manager.subscriptions,
+            provider: Di.shared.bloc.premiumPaywall,
             builder: (context, dependency) => PremiumPaywall(
               topInset: topInset,
-              subscriptionsManager: dependency,
+              bloc: dependency,
             ),
           ),
         );

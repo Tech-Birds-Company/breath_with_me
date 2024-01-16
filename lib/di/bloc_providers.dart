@@ -131,4 +131,11 @@ final class _BlocProviders {
       ref.read(Di.shared.manager.navigation),
     ),
   );
+
+  late final premiumPaywall = Provider(
+    (ref) => PremiumPaywallBloc(
+      ref.read(Di.shared.manager.subscriptions),
+      ref.read(Di.shared.manager.navigation),
+    ),
+  );
 }

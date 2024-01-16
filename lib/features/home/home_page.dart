@@ -30,7 +30,7 @@ class HomePage extends HookWidget {
     );
 
     return Scaffold(
-      backgroundColor: Colors.black, // TODO: use theme
+      backgroundColor: Colors.black, // TODO(vasidmi): use theme
       body: SafeArea(
         bottom: false,
         child: CustomScrollView(

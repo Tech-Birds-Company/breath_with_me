@@ -4,7 +4,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class PremiumPaywallButton extends StatelessWidget {
-  const PremiumPaywallButton({super.key});
+  final bool isProcessing;
+  final VoidCallback? onPressed;
+
+  const PremiumPaywallButton({
+    this.onPressed,
+    this.isProcessing = false,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,20 +27,24 @@ class PremiumPaywallButton extends StatelessWidget {
             child: TextButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(
-                  theme.purple2,
+                  theme.purple2.withOpacity(onPressed != null ? 1 : 0.3),
                 ),
                 foregroundColor: MaterialStateProperty.all(
-                  theme.primaryText,
+                  theme.primaryText.withOpacity(onPressed != null ? 1 : 0.5),
                 ),
                 overlayColor: MaterialStateProperty.all(
                   theme.primaryText.withOpacity(0.1),
                 ),
               ),
-              onPressed: () {},
-              child: Text(
-                LocaleKeys.premium_buyPremium.tr(),
-                style: theme.typography.bodyMTrue,
-              ),
+              onPressed: isProcessing ? null : onPressed,
+              child: isProcessing
+                  ? const CircularProgressIndicator.adaptive(
+                      backgroundColor: Colors.white,
+                    )
+                  : Text(
+                      LocaleKeys.premium_buyPremium.tr(),
+                      style: theme.typography.bodyMTrue,
+                    ),
             ),
           ),
         ),
