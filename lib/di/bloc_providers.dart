@@ -60,7 +60,7 @@ final class _BlocProviders {
     ),
   );
 
-  late final reminder = Provider(
+  late final reminder = Provider.autoDispose(
     (ref) => ReminderBloc(
       ref.read(Di.manager.pushNotifications),
     ),
