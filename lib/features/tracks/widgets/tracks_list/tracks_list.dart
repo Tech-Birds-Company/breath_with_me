@@ -79,7 +79,7 @@ class TracksList extends HookWidget {
                     : index;
                 final track = tracks[adjustedIndex];
                 return DependencyProvider(
-                  provider: Di.shared.bloc.track(track),
+                  provider: Di.bloc.track(track),
                   builder: (context, dependency) => TrackItem(
                     key: ValueKey(track.id),
                     track: track,

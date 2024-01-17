@@ -1,6 +1,10 @@
 part of 'di.dart';
 
 final class _ManagerProviders {
+  _ManagerProviders() {
+    print('manager providers initialized');
+  }
+
   late final tracksDownloader = Provider(
     (ref) => TracksDownloaderManager(ref.read(database)),
   );
@@ -13,7 +17,7 @@ final class _ManagerProviders {
 
   late final navigation = Provider((ref) {
     return NavigationManager(
-      ref.read(Di.shared.manager.user),
+      ref.read(Di.manager.user),
     );
   });
 

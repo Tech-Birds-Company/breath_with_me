@@ -80,19 +80,18 @@ Future<ProviderContainer> _setupDependencies({
   }
 
   final dependencies = [
-    Di.shared.manager.database.overrideWith((ref) {
+    Di.manager.database.overrideWith((ref) {
       ref.onDispose(databaseManager.dispose);
       return databaseManager;
     }),
-    Di.shared.manager.tracksDownloader.overrideWithValue(tracksDownloadManager),
-    Di.shared.manager.trackPlayer.overrideWithValue(playerManager),
-    Di.shared.manager.audio.overrideWithValue(trackAudioManager),
-    Di.shared.manager.pushNotifications
-        .overrideWithValue(pushNotificationsManager),
-    Di.shared.manager.user.overrideWithValue(userManager),
-    Di.shared.manager.navigation.overrideWithValue(navigationManager),
-    Di.shared.manager.subscriptions.overrideWithValue(subscriptionsManager),
-    Di.shared.manager.sharedPreferences.overrideWithValue(sharedPrefsManager),
+    Di.manager.tracksDownloader.overrideWithValue(tracksDownloadManager),
+    Di.manager.trackPlayer.overrideWithValue(playerManager),
+    Di.manager.audio.overrideWithValue(trackAudioManager),
+    Di.manager.pushNotifications.overrideWithValue(pushNotificationsManager),
+    Di.manager.user.overrideWithValue(userManager),
+    Di.manager.navigation.overrideWithValue(navigationManager),
+    Di.manager.subscriptions.overrideWithValue(subscriptionsManager),
+    Di.manager.sharedPreferences.overrideWithValue(sharedPrefsManager),
   ];
 
   return ProviderContainer(overrides: dependencies);
@@ -115,7 +114,7 @@ Future<void> mainCommon(Environment env) async {
 
   final diContainer =
       await _setupDependencies(isProduction: env == Environment.prod);
-  final navigationManager = diContainer.read(Di.shared.manager.navigation);
+  final navigationManager = diContainer.read(Di.manager.navigation);
   final routerConfig = navigationManager.router;
 
   runApp(

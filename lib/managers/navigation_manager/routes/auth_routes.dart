@@ -27,7 +27,7 @@ class AuthRoutes {
         GoRoute(
           path: _signInPath,
           builder: (context, state) => DependencyProvider(
-            provider: Di.shared.bloc.signIn,
+            provider: Di.bloc.signIn,
             builder: (context, dependency) => SignInPageWidget(
               bloc: dependency,
             ),
@@ -36,7 +36,7 @@ class AuthRoutes {
         GoRoute(
           path: _signUpPath,
           builder: (context, state) => DependencyProvider(
-            provider: Di.shared.bloc.signUp,
+            provider: Di.bloc.signUp,
             builder: (context, dependency) => SignUpPage(
               bloc: dependency,
             ),
@@ -45,7 +45,7 @@ class AuthRoutes {
         GoRoute(
           path: _forgotPasswordPath,
           builder: (context, state) => DependencyProvider(
-            provider: Di.shared.bloc.forgotPassword,
+            provider: Di.bloc.forgotPassword,
             builder: (context, dependency) =>
                 ForgotPasswordPage(bloc: dependency),
           ),
@@ -54,7 +54,7 @@ class AuthRoutes {
           path: _successSignUp,
           pageBuilder: (context, state) => TransparentPage(
             child: DependencyProvider(
-              provider: Di.shared.manager.navigation,
+              provider: Di.manager.navigation,
               builder: (context, dependency) => SighUpSuccess(
                 navigationManager: dependency,
               ),
@@ -65,7 +65,7 @@ class AuthRoutes {
           path: _successSignUp,
           pageBuilder: (context, state) => TransparentPage(
             child: DependencyProvider(
-              provider: Di.shared.manager.navigation,
+              provider: Di.manager.navigation,
               builder: (context, dependency) => SighUpSuccess(
                 navigationManager: dependency,
               ),

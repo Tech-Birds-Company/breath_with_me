@@ -47,14 +47,14 @@ abstract final class BWMRoutes {
       path: BWMRoutes.onboarding,
       builder: (BuildContext context, GoRouterState state) =>
           DependencyProvider(
-        provider: Di.shared.bloc.onboarding,
+        provider: Di.bloc.onboarding,
         builder: (context, dependency) => OnboardingPage(bloc: dependency),
       ),
     ),
     GoRoute(
       path: BWMRoutes.home,
       builder: (context, state) => DependencyProvider(
-        provider: Di.shared.bloc.home,
+        provider: Di.bloc.home,
         builder: (context, dependency) => HomePage(homeBloc: dependency),
       ),
     ),
@@ -63,8 +63,8 @@ abstract final class BWMRoutes {
       builder: (context, state) =>
           MultiDependencyProvider2<ProfileBloc, ReminderBloc>(
         providers: (
-          Di.shared.bloc.profile,
-          Di.shared.bloc.reminder,
+          Di.bloc.profile,
+          Di.bloc.reminder,
         ),
         builder: (context, dependencies) => ProfilePage(
           profileBloc: dependencies.$1,
@@ -77,7 +77,7 @@ abstract final class BWMRoutes {
       builder: (context, state) {
         final track = state.extra! as Track;
         return DependencyProvider(
-          provider: Di.shared.bloc.trackPlayer(track),
+          provider: Di.bloc.trackPlayer(track),
           builder: (context, dependency) => TrackPlayerPage(bloc: dependency),
         );
       },
@@ -90,7 +90,7 @@ abstract final class BWMRoutes {
         useSafeArea: true,
         enableDrag: false,
         child: DependencyProvider(
-          provider: Di.shared.bloc.onboarding,
+          provider: Di.bloc.onboarding,
           builder: (context, dependency) => CreateAccountModalPage(
             bloc: dependency,
           ),
@@ -107,14 +107,14 @@ abstract final class BWMRoutes {
     GoRoute(
       path: BWMRoutes.reminderPage,
       builder: (context, state) => DependencyProvider(
-        provider: Di.shared.bloc.reminder,
+        provider: Di.bloc.reminder,
         builder: (context, dependency) => ReminderPage(bloc: dependency),
       ),
     ),
     GoRoute(
       path: BWMRoutes.faq,
       builder: (context, state) => DependencyProvider(
-        provider: Di.shared.bloc.faq,
+        provider: Di.bloc.faq,
         builder: (context, dependency) => FaqPage(bloc: dependency),
       ),
     ),
@@ -127,7 +127,7 @@ abstract final class BWMRoutes {
         isDismissible: false,
         isScrollControlled: true,
         child: DependencyProvider(
-          provider: Di.shared.bloc.safetyPrecautions,
+          provider: Di.bloc.safetyPrecautions,
           builder: (context, dependency) => SafetyPrecautionsPage(
             bloc: dependency,
           ),
@@ -140,7 +140,7 @@ abstract final class BWMRoutes {
         backgroundColor: Colors.transparent,
         isScrollControlled: true,
         child: DependencyProvider(
-          provider: Di.shared.bloc.tracksFilters,
+          provider: Di.bloc.tracksFilters,
           builder: (context, dependency) => TracksFilterSheet(
             bloc: dependency,
             filterType: state.extra! as FilterType,
@@ -158,7 +158,7 @@ abstract final class BWMRoutes {
           isScrollControlled: true,
           enableDrag: false,
           child: DependencyProvider(
-            provider: Di.shared.bloc.premiumPaywall,
+            provider: Di.bloc.premiumPaywall,
             builder: (context, dependency) => PremiumPaywall(
               topInset: topInset,
               bloc: dependency,
@@ -179,7 +179,7 @@ abstract final class BWMRoutes {
           isDismissible: false,
           isScrollControlled: true,
           child: DependencyProvider(
-            provider: Di.shared.bloc.streak(
+            provider: Di.bloc.streak(
               (track, locale),
             ),
             builder: (context, dependency) => StreakPage(
@@ -192,7 +192,7 @@ abstract final class BWMRoutes {
     GoRoute(
       path: BWMRoutes.profileSettings,
       builder: (context, state) => DependencyProvider(
-        provider: Di.shared.bloc.profileSettings,
+        provider: Di.bloc.profileSettings,
         builder: (context, dependency) => AccountSettingsPage(bloc: dependency),
       ),
     ),

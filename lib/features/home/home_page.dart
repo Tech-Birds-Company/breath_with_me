@@ -42,7 +42,7 @@ class HomePage extends HookWidget {
                 end: 24,
               ),
               sliver: DependencyProvider(
-                provider: Di.shared.manager.navigation,
+                provider: Di.manager.navigation,
                 builder: (context, navigationManager) => HomeHeader(
                   onProfileTap: navigationManager.openProfile,
                 ),
@@ -52,7 +52,7 @@ class HomePage extends HookWidget {
             SliverPadding(
               padding: const EdgeInsetsDirectional.symmetric(horizontal: 12),
               sliver: DependencyProvider(
-                provider: Di.shared.bloc.tracksFilters,
+                provider: Di.bloc.tracksFilters,
                 builder: (context, tracksFiltersBloc) =>
                     TracksFilters(bloc: tracksFiltersBloc).toSliver,
               ),
@@ -64,10 +64,7 @@ class HomePage extends HookWidget {
               ),
               sliver:
                   MultiDependencyProvider2<TracksListBloc, PremiumBannerBloc>(
-                providers: (
-                  Di.shared.bloc.tracksList,
-                  Di.shared.bloc.premiumBanner
-                ),
+                providers: (Di.bloc.tracksList, Di.bloc.premiumBanner),
                 builder: (context, dependencies) => TracksList(
                   tracksListBloc: dependencies.$1,
                   premiumBloc: dependencies.$2,

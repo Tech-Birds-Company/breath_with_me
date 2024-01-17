@@ -41,12 +41,8 @@ part 'bloc_providers.dart';
 part 'manager_providers.dart';
 part 'repository_providers.dart';
 
-final class Di {
-  Di._();
-
-  static final shared = Di._();
-
-  late final manager = _ManagerProviders();
-  late final bloc = _BlocProviders();
-  late final repository = _RepositoryProviders();
+abstract final class Di {
+  static final manager = _ManagerProviders();
+  static final bloc = _BlocProviders();
+  static final repository = _RepositoryProviders();
 }
