@@ -14,9 +14,7 @@ final class DownloadTrackTask {
   int? totalBytes;
 
   @Ignore()
-  bool get isCompleted {
-    return downloadedBytes == totalBytes;
-  }
+  bool get isCompleted => downloadedBytes == totalBytes;
 
   DownloadTrackTask({
     required this.uid,

@@ -11,11 +11,11 @@ final class _ManagerProviders {
     return manager;
   });
 
-  late final navigation = Provider((ref) {
-    return NavigationManager(
+  late final navigation = Provider(
+    (ref) => NavigationManager(
       ref.read(Di.manager.user),
-    );
-  });
+    ),
+  );
 
   late final database = Provider<DatabaseManager>(
     (ref) {

@@ -62,28 +62,27 @@ class BWMTheme extends ThemeExtension<BWMTheme> {
     Color? red,
     Color? purple2,
     Color? subtitleText,
-  }) {
-    return BWMTheme(
-      primaryColor: primaryColor ?? this.primaryColor,
-      secondaryColor: secondaryColor ?? this.secondaryColor,
-      fourthColor: fourthColor ?? this.fourthColor,
-      fifthColor: fifthColor ?? this.fifthColor,
-      primaryBackground: primaryBackground ?? this.primaryBackground,
-      secondaryBackground: secondaryBackground ?? this.secondaryBackground,
-      primaryText: primaryText ?? this.primaryText,
-      secondaryText: secondaryText ?? this.secondaryText,
-      green3: green3 ?? this.green3,
-      gray2: gray2 ?? this.gray2,
-      gray3: gray3 ?? this.gray3,
-      gray4: gray4 ?? this.gray4,
-      gray5: gray5 ?? this.gray5,
-      gray6: gray6 ?? this.gray6,
-      gray26: gray26 ?? this.gray26,
-      red: red ?? this.red,
-      purple2: purple2 ?? this.purple2,
-      subtitleText: subtitleText ?? this.subtitleText,
-    );
-  }
+  }) =>
+      BWMTheme(
+        primaryColor: primaryColor ?? this.primaryColor,
+        secondaryColor: secondaryColor ?? this.secondaryColor,
+        fourthColor: fourthColor ?? this.fourthColor,
+        fifthColor: fifthColor ?? this.fifthColor,
+        primaryBackground: primaryBackground ?? this.primaryBackground,
+        secondaryBackground: secondaryBackground ?? this.secondaryBackground,
+        primaryText: primaryText ?? this.primaryText,
+        secondaryText: secondaryText ?? this.secondaryText,
+        green3: green3 ?? this.green3,
+        gray2: gray2 ?? this.gray2,
+        gray3: gray3 ?? this.gray3,
+        gray4: gray4 ?? this.gray4,
+        gray5: gray5 ?? this.gray5,
+        gray6: gray6 ?? this.gray6,
+        gray26: gray26 ?? this.gray26,
+        red: red ?? this.red,
+        purple2: purple2 ?? this.purple2,
+        subtitleText: subtitleText ?? this.subtitleText,
+      );
 
   BWMTypography get typography => BWMTypography();
 

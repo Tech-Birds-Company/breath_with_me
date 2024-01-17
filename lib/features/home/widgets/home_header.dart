@@ -16,26 +16,24 @@ class HomeHeader extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return SliverMainAxisGroup(
-      slivers: [
-        Row(
-          children: [
-            SvgPicture.asset(
-              BWMAssets.logoIcon,
-              width: 111,
-            ),
-            const Spacer(),
-            ProfileButton(
-              onTap: onProfileTap,
-            ),
-          ],
-        ).toSliver(),
-        const SizedBox(height: 24).toSliver(),
-        const _WelcomeTitle().toSliver(),
-      ],
-    );
-  }
+  Widget build(BuildContext context) => SliverMainAxisGroup(
+        slivers: [
+          Row(
+            children: [
+              SvgPicture.asset(
+                BWMAssets.logoIcon,
+                width: 111,
+              ),
+              const Spacer(),
+              ProfileButton(
+                onTap: onProfileTap,
+              ),
+            ],
+          ).toSliver(),
+          const SizedBox(height: 24).toSliver(),
+          const _WelcomeTitle().toSliver(),
+        ],
+      );
 }
 
 class _WelcomeTitle extends StatelessWidget {

@@ -20,15 +20,15 @@ abstract base class CacheableBloc<State> extends BlocBase<State> {
 
   static set storage(BlocCacheStorage storage) => _sharedStorage ??= storage;
 
-  Stream<State?> get cachedBlocStateStream {
-    return _storage.stream(key).map((object) {
-      if (object == null) {
-        return null;
-      }
-      final jsonMap = jsonDecode(object as String) as Map<String, dynamic>;
-      return fromJson(jsonMap);
-    });
-  }
+  Stream<State?> get cachedBlocStateStream => _storage.stream(key).map(
+        (object) {
+          if (object == null) {
+            return null;
+          }
+          final jsonMap = jsonDecode(object as String) as Map<String, dynamic>;
+          return fromJson(jsonMap);
+        },
+      );
 
   BlocCacheStorage get _storage {
     if (_sharedStorage == null) {
