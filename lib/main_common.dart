@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:audio_service/audio_service.dart';
@@ -24,6 +25,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -77,7 +79,7 @@ Future<ProviderContainer> _setupDependencies({
     await tracksDownloadManager.validateDownloads(uid);
   }
 
-  final dependecies = [
+  final dependencies = [
     Di.shared.manager.database.overrideWith((ref) {
       ref.onDispose(databaseManager.dispose);
       return databaseManager;
@@ -92,22 +94,27 @@ Future<ProviderContainer> _setupDependencies({
     Di.shared.manager.subscriptions.overrideWithValue(subscriptionsManager),
     Di.shared.manager.sharedPreferences.overrideWithValue(sharedPrefsManager),
   ];
-  return ProviderContainer(overrides: dependecies);
+
+  return ProviderContainer(overrides: dependencies);
 }
 
 Future<void> mainCommon(Environment env) async {
   WidgetsFlutterBinding.ensureInitialized();
   tz.initializeTimeZones();
   await Firebase.initializeApp();
+  await EasyLocalization.ensureInitialized();
 
   await FirebaseRemoteConfig.instance.ensureInitialized();
+  await FirebaseRemoteConfig.instance.setConfigSettings(
+    RemoteConfigSettings(
+      fetchTimeout: 10.seconds,
+      minimumFetchInterval: 12.minutes,
+    ),
+  );
   await FirebaseRemoteConfig.instance.fetchAndActivate();
 
   final diContainer =
       await _setupDependencies(isProduction: env == Environment.prod);
-
-  await EasyLocalization.ensureInitialized();
-
   final navigationManager = diContainer.read(Di.shared.manager.navigation);
   final routerConfig = navigationManager.router;
 

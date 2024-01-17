@@ -1,8 +1,6 @@
 import 'package:breathe_with_me/constants.dart';
 
-final class BWMAssets {
-  const BWMAssets._();
-
+abstract final class BWMAssets {
   static const i18n = 'assets/i18n';
   static const _icons = 'assets/icons';
   static const _shaders = 'assets/shaders';
@@ -27,6 +25,7 @@ final class BWMAssets {
   static const signAppleIcon = '$_icons/sign_apple.svg';
   static const signGoogleIcon = '$_icons/sign_google.svg';
   static const signMailIcon = '$_icons/sign_mail.svg';
+  static const premiumBannerIcon = '$_icons/premium_banner_icon.png';
 
   static const trackPlayerAnimation = '$_shaders/player_animation.glsl';
   static const emailIcon = '$_icons/email.svg';

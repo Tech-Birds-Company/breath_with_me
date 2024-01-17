@@ -11,8 +11,11 @@ class AuthRoutes {
   const AuthRoutes();
 
   String get signIn => _signInPath;
+
   String get signUp => _signUpPath;
+
   String get forgotPassword => _forgotPasswordPath;
+
   String get successSignUp => _successSignUp;
 
   static const _signInPath = '/sign-in';
@@ -20,47 +23,54 @@ class AuthRoutes {
   static const _forgotPasswordPath = '/forgot-password';
   static const _successSignUp = '/success-sign-up';
 
-  List<GoRoute> createAuthRoutes() {
-    return [
-      GoRoute(
-        path: _signInPath,
-        builder: (context, state) => DependencyProvider(
-          provider: Di.shared.bloc.signIn,
-          builder: (context, dependency) => SignInPageWidget(
-            bloc: dependency,
+  List<GoRoute> createAuthRoutes() => [
+        GoRoute(
+          path: _signInPath,
+          builder: (context, state) => DependencyProvider(
+            provider: Di.shared.bloc.signIn,
+            builder: (context, dependency) => SignInPageWidget(
+              bloc: dependency,
+            ),
           ),
         ),
-      ),
-      GoRoute(
-        path: _signUpPath,
-        builder: (context, state) => DependencyProvider(
-          provider: Di.shared.bloc.signUp,
-          builder: (context, dependency) => SignUpPage(
-            bloc: dependency,
+        GoRoute(
+          path: _signUpPath,
+          builder: (context, state) => DependencyProvider(
+            provider: Di.shared.bloc.signUp,
+            builder: (context, dependency) => SignUpPage(
+              bloc: dependency,
+            ),
           ),
         ),
-      ),
-      GoRoute(
-        path: _forgotPasswordPath,
-        builder: (context, state) => DependencyProvider(
-          provider: Di.shared.bloc.forgotPassword,
-          builder: (context, dependency) =>
-              ForgotPasswordPage(bloc: dependency),
+        GoRoute(
+          path: _forgotPasswordPath,
+          builder: (context, state) => DependencyProvider(
+            provider: Di.shared.bloc.forgotPassword,
+            builder: (context, dependency) =>
+                ForgotPasswordPage(bloc: dependency),
+          ),
         ),
-      ),
-      GoRoute(
-        path: _successSignUp,
-        pageBuilder: (context, state) {
-          return TransparentPage(
+        GoRoute(
+          path: _successSignUp,
+          pageBuilder: (context, state) => TransparentPage(
             child: DependencyProvider(
               provider: Di.shared.manager.navigation,
               builder: (context, dependency) => SighUpSuccess(
                 navigationManager: dependency,
               ),
             ),
-          );
-        },
-      ),
-    ];
-  }
+          ),
+        ),
+        GoRoute(
+          path: _successSignUp,
+          pageBuilder: (context, state) => TransparentPage(
+            child: DependencyProvider(
+              provider: Di.shared.manager.navigation,
+              builder: (context, dependency) => SighUpSuccess(
+                navigationManager: dependency,
+              ),
+            ),
+          ),
+        ),
+      ];
 }

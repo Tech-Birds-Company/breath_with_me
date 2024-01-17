@@ -35,7 +35,11 @@ class SighUpSuccess extends StatelessWidget {
                         const Color(0xFF3B0B58).withOpacity(0.75),
                         const Color(0xFF000000),
                       ],
-                      stops: [0.0, 0.5, 1.0],
+                      stops: const [
+                        0.0,
+                        0.5,
+                        1.0,
+                      ],
                       center: const Alignment(0, -0.25),
                       radius: 1,
                     ),

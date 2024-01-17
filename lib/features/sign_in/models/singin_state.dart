@@ -10,6 +10,6 @@ class SignInState with _$SignInState {
     @Default('') String password,
   }) = _SignInState;
 
-  factory SignInState.fromJson(Map<String, Object?> json) =>
+  factory SignInState.fromJson(Map<String, dynamic> json) =>
       _$SignInStateFromJson(json);
 }

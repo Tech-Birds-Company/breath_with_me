@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'reminder_state.freezed.dart';
-
 part 'reminder_state.g.dart';
 
 @freezed

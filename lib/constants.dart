@@ -1,6 +1,4 @@
-final class BWMConstants {
-  const BWMConstants._();
-
+abstract final class BWMConstants {
   static const appIconFilename = 'app_icon.png';
   static const tracksCollection = 'tracks_v2';
   static const androidNotificationChannelId =

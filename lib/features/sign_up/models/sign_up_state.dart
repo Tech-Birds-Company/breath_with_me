@@ -14,6 +14,6 @@ class SignUpState with _$SignUpState {
     @Default('') String passwordConfirm,
   }) = _SignUpState;
 
-  factory SignUpState.fromJson(Map<String, Object?> json) =>
+  factory SignUpState.fromJson(Map<String, dynamic> json) =>
       _$SignUpStateFromJson(json);
 }

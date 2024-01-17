@@ -48,13 +48,8 @@
 	"profileFAQ": "FAQ",
 	"profileChat": "Community chat",
 	"profileContactUs": "Contact us",
-	"profilePremiumFor3Friends": "a month of free premium for every 3 friends",
-	"profilePremiumStatus": "PREMIUM ACCOUNT",
 	"profileProgress": "Extended statistics of your breathing progress",
 	"profileStreak": "Ability to restore your practice streak 3 times",
-	"profileGetPremium": "Go Premium",
-	"profileTotalFriends": "Friends joined",
-	"profileFriendsUntilPremium": "Joined friends until free premium",
 	"profileFaqTitle": "FAQ",
 	"profileLogout": "Log out",
 
@@ -81,7 +76,7 @@
 	"safetyPrecautionsWelcomeTitle": "Hi, we are glad to see you!",
 	"safetyPrecautionsWelcomeDescription": "Before you continue, familiarize yourself with the safety techniques and breathing recommendations",
 	"safetyPrecautionsReadNow": "Read now",
-	
+
 	"signInLogin": "Log In",
 	"signInEmail": "Email",
 	"signInPassword": "Password",
@@ -123,5 +118,27 @@
 	"streakMissedDayRestore": "Restore streak",
 	"streakMissedDaySkip": "Skip",
 
-	"accountSetting": "Account settings"
+	"accountSetting": "Account settings",
+
+	"premium": {
+		"premium": "Premium",
+		"goPremium": "Go Premium",
+		"extendedStats": "Extended statistics of your progress",
+		"restoreStreaks": "Ability to restore your practice streak",
+		"backgroundMode": "Background mode",
+		"learnMore": "Learn more",
+		"buyPremium": "Buy Premium",
+		"paywall": {
+			"selectTariffTitle": "Select tariff",
+			"3MonthsTitle": "3 months",
+			"1MonthTitle": "1 month",
+			"trialDescription": "7 days free trial",
+			"subscriptionWeek": "7 days",
+			"subscriptionMonth": "1 month",
+			"subscription3Months": "3 months",
+			"subscription6months": "6 months",
+			"subscriptionAnnual": "Annual",
+			"subscriptionLifeTime": "Lifetime"
+		}
+	}
 }

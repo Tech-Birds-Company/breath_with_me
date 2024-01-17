@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'remote_config_legal_documents.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class RemoteConfigLegalDocuments {
   final String privacyPolicyUrl;
   final String termsOfServiceUrl;
@@ -15,6 +15,4 @@ class RemoteConfigLegalDocuments {
 
   factory RemoteConfigLegalDocuments.fromJson(Map<String, dynamic> json) =>
       _$RemoteConfigLegalDocumentsFromJson(json);
-
-  Map<String, dynamic> toJson() => _$RemoteConfigLegalDocumentsToJson(this);
 }

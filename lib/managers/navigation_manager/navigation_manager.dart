@@ -102,8 +102,17 @@ final class NavigationManager {
 
   void replaceHome() => router.pushReplacement(BWMRoutes.home);
 
+  void singUpPage() => router.push(BWMRoutes.auth.signUp);
+
+  void singInPage() => router.push(BWMRoutes.auth.signIn);
+
+  void successPage() => router.push(BWMRoutes.auth.successSignUp);
+
+  void forgotPasswordPage() => router.push(BWMRoutes.auth.forgotPassword);
+
+  void openPremiumPaywall() => router.push(BWMRoutes.premiumPaywall);
+
   void pop() {
-    print('pop');
     if (router.canPop()) {
       router.pop();
     }
@@ -119,12 +128,4 @@ final class NavigationManager {
     _userSubscription?.cancel();
     _userSubscription = null;
   }
-
-  void singUpPage() => router.push(BWMRoutes.auth.signUp);
-
-  void singInPage() => router.push(BWMRoutes.auth.signIn);
-
-  void forgotPasswordPage() => router.push(BWMRoutes.auth.forgotPassword);
-
-  void successPage() => router.push(BWMRoutes.auth.successSignUp);
 }

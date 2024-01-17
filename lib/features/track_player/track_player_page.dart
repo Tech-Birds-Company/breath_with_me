@@ -5,6 +5,7 @@ import 'package:breathe_with_me/features/track_player/widgets/track_player_butto
 import 'package:breathe_with_me/features/track_player/widgets/track_progress_indicator.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:breathe_with_me/utils/string_hex_to_color.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -38,7 +39,7 @@ class TrackPlayerPage extends HookWidget {
             isPlayingStream: bloc.stream
                 .map((event) => !event.isPaused)
                 .startWith(!bloc.state.isPaused),
-            animationColor: bloc.animationColor,
+            animationColor: bloc.track.animationColor.toColor,
           ),
           SafeArea(
             child: Align(

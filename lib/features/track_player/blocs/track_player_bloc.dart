@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:breathe_with_me/database/schemas/download_track_task_schema.dart';
 import 'package:breathe_with_me/features/track_player/models/track_player_state.dart';
@@ -11,7 +10,6 @@ import 'package:breathe_with_me/managers/download_manager/track_download_task.da
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/repositories/tracks_repository.dart';
-import 'package:breathe_with_me/utils/string_hex_to_color.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
@@ -33,7 +31,7 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
     this._navigationManager,
   ) : super(TrackPlayerState.initialState);
 
-  Color? get animationColor => _track.animationColor.toColor;
+  Track get track => _track;
   StreamSubscription<PlayerState>? _playerStateSub;
   StreamSubscription<(int?, double, int?)>? _playerProgressSub;
   StreamSubscription<double>? _downloadProgressSub;

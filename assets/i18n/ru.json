@@ -48,13 +48,9 @@
 	"profileFAQ": "FAQ",
 	"profileChat": "Сообщество",
 	"profileContactUs": "Свяжитесь с нами",
-	"profilePremiumFor3Friends": "месяц бесплатного премиума за каждых 3 друзей",
-	"profilePremiumStatus": "ПРЕМИУМ АККАУНТ",
 	"profileProgress": "Расширенная статистика вашего прогресса дыхания",
 	"profileStreak": "Возможность восстановить серию практик 3 раза",
-	"profileGetPremium": "Получить премиум",
 	"profileTotalFriends": "Друзей присоединилось",
-	"profileFriendsUntilPremium": "Присоединившихся друзей до бесплатного премиума",
 	"profileFaqTitle": "FAQ",
 	"profileLogout": "Выйти",
 
@@ -148,5 +144,27 @@
 	"streakMissedDayRestore": "Восстановить прогресс",
 	"streakMissedDaySkip": "Пропустить",
 
-	"accountSetting": "Настройки аккаунта"
+	"accountSetting": "Настройки аккаунта",
+
+	"premium": {
+		"premium": "Премиум",
+		"goPremium": "Оформи премиум",
+		"extendedStats": "Расширенная статистика вашего прогресса",
+		"restoreStreaks": "Возможность восстановить серию практик",
+		"backgroundMode": "Фоновый режим",
+		"learnMore": "Узнать больше",
+		"buyPremium": "Оформить премиум",
+		"paywall": {
+			"selectTariffTitle": "Выберите тариф",
+			"3MonthsTitle": "3 месяца",
+			"1MonthTitle": "1 месяц",
+			"trialDescription": "Первые 7 дней бесплатно",
+			"subscriptionWeek": "7 дней",
+			"subscriptionMonth": "1 месяц",
+			"subscription3Months": "3 месяца",
+			"subscription6months": "6 месяцев",
+			"subscriptionAnnual": "1 год",
+			"subscriptionLifeTime": "Навсегда"
+		}
+	}
 }
