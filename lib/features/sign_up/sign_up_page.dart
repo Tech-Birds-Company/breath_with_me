@@ -1,8 +1,8 @@
 import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/common/widgets/bwm_action_button.dart';
 import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
-import 'package:breathe_with_me/design/obscured_field.dart';
-import 'package:breathe_with_me/design/sing_in_buttons.dart';
+import 'package:breathe_with_me/common/widgets/obscured_field.dart';
+import 'package:breathe_with_me/common/widgets/sing_in_buttons.dart';
 import 'package:breathe_with_me/features/sign_up/bloc/sign_up_bloc.dart';
 import 'package:breathe_with_me/features/sign_up/models/sign_up_error.dart';
 import 'package:breathe_with_me/features/sign_up/models/sign_up_state.dart';

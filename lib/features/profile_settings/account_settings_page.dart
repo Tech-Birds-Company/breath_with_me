@@ -1,7 +1,7 @@
 import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/common/widgets/bwm_action_button.dart';
 import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
-import 'package:breathe_with_me/design/obscured_field.dart';
+import 'package:breathe_with_me/common/widgets/obscured_field.dart';
 import 'package:breathe_with_me/features/profile_settings/bloc/account_settings_bloc.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
