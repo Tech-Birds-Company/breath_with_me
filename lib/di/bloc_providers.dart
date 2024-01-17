@@ -28,6 +28,7 @@ final class _BlocProviders {
         ref.read(Di.shared.manager.user),
         ref.read(Di.shared.manager.audio),
         ref.read(Di.shared.manager.tracksDownloader),
+        ref.read(Di.shared.manager.navigation),
       );
       ref.onDispose(bloc.dispose);
       return bloc;
@@ -112,10 +113,19 @@ final class _BlocProviders {
     ),
   );
 
-  late final streak = Provider(
-    (ref) => StreakBloc(
-      ref.read(Di.shared.manager.navigation),
-    ),
+  late final streak = Provider.family<StreakBloc, (Track, Locale)>(
+    (ref, input) {
+      final bloc = StreakBloc(
+        input.$1,
+        input.$2,
+        ref.read(Di.shared.repository.firebaseRemoteConfig),
+        ref.read(Di.shared.repository.firebaseStreaksProgress),
+        ref.read(Di.shared.repository.streaksQuotes),
+        ref.read(Di.shared.manager.user),
+        ref.read(Di.shared.manager.navigation),
+      );
+      return bloc;
+    },
   );
 
   late final profileSettings = Provider.autoDispose(

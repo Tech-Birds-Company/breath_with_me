@@ -1,6 +1,7 @@
 import 'package:breathe_with_me/repositories/models/remote_config_legal_documents.dart';
 import 'package:breathe_with_me/repositories/models/remote_config_premium.dart';
 import 'package:breathe_with_me/repositories/models/remote_config_socials.dart';
+import 'package:breathe_with_me/repositories/models/remote_config_streaks.dart';
 
 enum RemoteConfigKey {
   socials('socials'),
@@ -15,4 +16,5 @@ abstract interface class RemoteConfigRepository {
   RemoteConfigSocials get socials;
   RemoteConfigLegalDocuments get legalDocuments;
   RemoteConfigPremium get premium;
+  RemoteConfigStreaks get streaks;
 }

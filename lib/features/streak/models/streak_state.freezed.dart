@@ -20,9 +20,8 @@ StreakState _$StreakStateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$StreakState {
-  int? get selectedDay => throw _privateConstructorUsedError;
-  StreakStatisticsData? get statistics => throw _privateConstructorUsedError;
-  StreakQuoteData? get quote => throw _privateConstructorUsedError;
+  StreaksProgress? get progress => throw _privateConstructorUsedError;
+  StreakContentState get contentState => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,13 +35,10 @@ abstract class $StreakStateCopyWith<$Res> {
           StreakState value, $Res Function(StreakState) then) =
       _$StreakStateCopyWithImpl<$Res, StreakState>;
   @useResult
-  $Res call(
-      {int? selectedDay,
-      StreakStatisticsData? statistics,
-      StreakQuoteData? quote});
+  $Res call({StreaksProgress? progress, StreakContentState contentState});
 
-  $StreakStatisticsDataCopyWith<$Res>? get statistics;
-  $StreakQuoteDataCopyWith<$Res>? get quote;
+  $StreaksProgressCopyWith<$Res>? get progress;
+  $StreakContentStateCopyWith<$Res> get contentState;
 }
 
 /// @nodoc
@@ -58,47 +54,38 @@ class _$StreakStateCopyWithImpl<$Res, $Val extends StreakState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? selectedDay = freezed,
-    Object? statistics = freezed,
-    Object? quote = freezed,
+    Object? progress = freezed,
+    Object? contentState = null,
   }) {
     return _then(_value.copyWith(
-      selectedDay: freezed == selectedDay
-          ? _value.selectedDay
-          : selectedDay // ignore: cast_nullable_to_non_nullable
-              as int?,
-      statistics: freezed == statistics
-          ? _value.statistics
-          : statistics // ignore: cast_nullable_to_non_nullable
-              as StreakStatisticsData?,
-      quote: freezed == quote
-          ? _value.quote
-          : quote // ignore: cast_nullable_to_non_nullable
-              as StreakQuoteData?,
+      progress: freezed == progress
+          ? _value.progress
+          : progress // ignore: cast_nullable_to_non_nullable
+              as StreaksProgress?,
+      contentState: null == contentState
+          ? _value.contentState
+          : contentState // ignore: cast_nullable_to_non_nullable
+              as StreakContentState,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $StreakStatisticsDataCopyWith<$Res>? get statistics {
-    if (_value.statistics == null) {
+  $StreaksProgressCopyWith<$Res>? get progress {
+    if (_value.progress == null) {
       return null;
     }
 
-    return $StreakStatisticsDataCopyWith<$Res>(_value.statistics!, (value) {
-      return _then(_value.copyWith(statistics: value) as $Val);
+    return $StreaksProgressCopyWith<$Res>(_value.progress!, (value) {
+      return _then(_value.copyWith(progress: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $StreakQuoteDataCopyWith<$Res>? get quote {
-    if (_value.quote == null) {
-      return null;
-    }
-
-    return $StreakQuoteDataCopyWith<$Res>(_value.quote!, (value) {
-      return _then(_value.copyWith(quote: value) as $Val);
+  $StreakContentStateCopyWith<$Res> get contentState {
+    return $StreakContentStateCopyWith<$Res>(_value.contentState, (value) {
+      return _then(_value.copyWith(contentState: value) as $Val);
     });
   }
 }
@@ -111,15 +98,12 @@ abstract class _$$StreakStateImplCopyWith<$Res>
       __$$StreakStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int? selectedDay,
-      StreakStatisticsData? statistics,
-      StreakQuoteData? quote});
+  $Res call({StreaksProgress? progress, StreakContentState contentState});
 
   @override
-  $StreakStatisticsDataCopyWith<$Res>? get statistics;
+  $StreaksProgressCopyWith<$Res>? get progress;
   @override
-  $StreakQuoteDataCopyWith<$Res>? get quote;
+  $StreakContentStateCopyWith<$Res> get contentState;
 }
 
 /// @nodoc
@@ -133,23 +117,18 @@ class __$$StreakStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? selectedDay = freezed,
-    Object? statistics = freezed,
-    Object? quote = freezed,
+    Object? progress = freezed,
+    Object? contentState = null,
   }) {
     return _then(_$StreakStateImpl(
-      selectedDay: freezed == selectedDay
-          ? _value.selectedDay
-          : selectedDay // ignore: cast_nullable_to_non_nullable
-              as int?,
-      statistics: freezed == statistics
-          ? _value.statistics
-          : statistics // ignore: cast_nullable_to_non_nullable
-              as StreakStatisticsData?,
-      quote: freezed == quote
-          ? _value.quote
-          : quote // ignore: cast_nullable_to_non_nullable
-              as StreakQuoteData?,
+      freezed == progress
+          ? _value.progress
+          : progress // ignore: cast_nullable_to_non_nullable
+              as StreaksProgress?,
+      null == contentState
+          ? _value.contentState
+          : contentState // ignore: cast_nullable_to_non_nullable
+              as StreakContentState,
     ));
   }
 }
@@ -157,21 +136,19 @@ class __$$StreakStateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$StreakStateImpl implements _StreakState {
-  const _$StreakStateImpl({this.selectedDay, this.statistics, this.quote});
+  const _$StreakStateImpl(this.progress, this.contentState);
 
   factory _$StreakStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$StreakStateImplFromJson(json);
 
   @override
-  final int? selectedDay;
+  final StreaksProgress? progress;
   @override
-  final StreakStatisticsData? statistics;
-  @override
-  final StreakQuoteData? quote;
+  final StreakContentState contentState;
 
   @override
   String toString() {
-    return 'StreakState(selectedDay: $selectedDay, statistics: $statistics, quote: $quote)';
+    return 'StreakState(progress: $progress, contentState: $contentState)';
   }
 
   @override
@@ -179,16 +156,15 @@ class _$StreakStateImpl implements _StreakState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StreakStateImpl &&
-            (identical(other.selectedDay, selectedDay) ||
-                other.selectedDay == selectedDay) &&
-            (identical(other.statistics, statistics) ||
-                other.statistics == statistics) &&
-            (identical(other.quote, quote) || other.quote == quote));
+            (identical(other.progress, progress) ||
+                other.progress == progress) &&
+            (identical(other.contentState, contentState) ||
+                other.contentState == contentState));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, selectedDay, statistics, quote);
+  int get hashCode => Object.hash(runtimeType, progress, contentState);
 
   @JsonKey(ignore: true)
   @override
@@ -205,20 +181,16 @@ class _$StreakStateImpl implements _StreakState {
 }
 
 abstract class _StreakState implements StreakState {
-  const factory _StreakState(
-      {final int? selectedDay,
-      final StreakStatisticsData? statistics,
-      final StreakQuoteData? quote}) = _$StreakStateImpl;
+  const factory _StreakState(final StreaksProgress? progress,
+      final StreakContentState contentState) = _$StreakStateImpl;
 
   factory _StreakState.fromJson(Map<String, dynamic> json) =
       _$StreakStateImpl.fromJson;
 
   @override
-  int? get selectedDay;
+  StreaksProgress? get progress;
   @override
-  StreakStatisticsData? get statistics;
-  @override
-  StreakQuoteData? get quote;
+  StreakContentState get contentState;
   @override
   @JsonKey(ignore: true)
   _$$StreakStateImplCopyWith<_$StreakStateImpl> get copyWith =>

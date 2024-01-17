@@ -35,6 +35,7 @@ abstract class LocaleKeys {
   static const trackLanguageEn = 'trackLanguageEn';
   static const trackLanguageRu = 'trackLanguageRu';
   static const trackDurationTitle = 'trackDurationTitle';
+  static const trackFinishButton = 'trackFinishButton';
   static const tutorJacksonNameKey = 'tutorJacksonNameKey';
   static const tutorDashaNameKey = 'tutorDashaNameKey';
   static const tutorJohnnyNameKey = 'tutorJohnnyNameKey';
@@ -99,6 +100,14 @@ abstract class LocaleKeys {
   static const streakStatisticsCardMinCount = 'streakStatisticsCardMinCount';
   static const streakStatisticsCardDayMissedCount =
       'streakStatisticsCardDayMissedCount';
+  static const streakWithoutPremiumTitle = 'streakWithoutPremiumTitle';
+  static const streakWithoutPremiumSubtitle = 'streakWithoutPremiumSubtitle';
+  static const streakLivesTitle = 'streakLivesTitle';
+  static const streakLivesFooter = 'streakLivesFooter';
+  static const streakMissedDayTitle = 'streakMissedDayTitle';
+  static const streakMissedDaySubtitle = 'streakMissedDaySubtitle';
+  static const streakMissedDayRestore = 'streakMissedDayRestore';
+  static const streakMissedDaySkip = 'streakMissedDaySkip';
   static const accountSetting = 'accountSetting';
   static const premium_premium = 'premium.premium';
   static const premium_goPremium = 'premium.goPremium';
