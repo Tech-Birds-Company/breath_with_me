@@ -30,9 +30,9 @@ class HomeHeader extends StatelessWidget {
               onTap: onProfileTap,
             ),
           ],
-        ).toSliver,
-        const SizedBox(height: 24).toSliver,
-        const _WelcomeTitle().toSliver,
+        ).toSliver(),
+        const SizedBox(height: 24).toSliver(),
+        const _WelcomeTitle().toSliver(),
       ],
     );
   }

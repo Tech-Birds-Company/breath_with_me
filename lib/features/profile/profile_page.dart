@@ -51,43 +51,43 @@ class ProfilePage extends StatelessWidget {
                 slivers: [
                   ProfileHeader(
                     username: profileBloc.username,
-                  ).toSliver, // TODO(igor): fix
-                  const SizedBox(height: 230).toSliver,
+                  ).toSliver(), // TODO(igor): fix
+                  const SizedBox(height: 230).toSliver(),
                   ProfileMenuItem(
                     title: LocaleKeys.profileSettings.tr(),
                     onTap: profileBloc.openProfileSettings,
                     showIndicator: true,
-                  ).toSliver,
+                  ).toSliver(),
                   ProfileMenuItem(
                     title: LocaleKeys.profileLanguage.tr(),
                     subtitle: currentLocale.languageCode.tr(),
                     onTap: profileBloc.openLanguageSheet,
                     showIndicator: true,
-                  ).toSliver,
+                  ).toSliver(),
                   ReminderProfileItem(
                     cachedBlocStateStream: reminderBloc.cachedBlocStateStream,
                     onOpenReminder: profileBloc.openReminder,
-                  ).toSliver,
+                  ).toSliver(),
                   ProfileMenuItem(
                     title: LocaleKeys.profileFAQ.tr(),
                     showIndicator: true,
                     onTap: profileBloc.openFaq,
-                  ).toSliver,
+                  ).toSliver(),
                   ProfileMenuItem(
                     title: LocaleKeys.profileChat.tr(),
                     icon: BWMAssets.telegram,
                     onTap: profileBloc.openCommunityChat,
-                  ).toSliver,
+                  ).toSliver(),
                   ProfileMenuItem(
                     title: LocaleKeys.profileContactUs.tr(),
                     icon: BWMAssets.email,
                     onTap: profileBloc.onSupportEmail,
-                  ).toSliver,
+                  ).toSliver(),
                   ProfileMenuItem(
                     title: LocaleKeys.profileLogout.tr(),
                     icon: BWMAssets.logout,
                     onTap: profileBloc.onSignOut,
-                  ).toSliver,
+                  ).toSliver(),
                 ],
               ),
             ),

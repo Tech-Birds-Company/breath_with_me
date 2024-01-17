@@ -48,13 +48,13 @@ class HomePage extends HookWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 28).toSliver,
+            const SizedBox(height: 28).toSliver(),
             SliverPadding(
               padding: const EdgeInsetsDirectional.symmetric(horizontal: 12),
               sliver: DependencyProvider(
                 provider: Di.bloc.tracksFilters,
                 builder: (context, tracksFiltersBloc) =>
-                    TracksFilters(bloc: tracksFiltersBloc).toSliver,
+                    TracksFilters(bloc: tracksFiltersBloc).toSliver(),
               ),
             ),
             SliverPadding(

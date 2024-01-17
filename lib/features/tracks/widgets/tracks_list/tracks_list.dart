@@ -97,7 +97,7 @@ class TracksList extends HookWidget {
           return const ShimmerList();
         },
         error: () {
-          return const SizedBox.shrink().toSliver;
+          return const SizedBox.shrink().toSliver();
         },
       ),
     );
