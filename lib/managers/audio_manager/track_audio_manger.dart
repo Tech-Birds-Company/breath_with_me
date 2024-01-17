@@ -60,23 +60,16 @@ final class TrackAudioManager extends AudioManager {
       return (currentMs, progress, estimatedMs);
     }).startWith((0, 0, 0));
 
-    onPlayerStateChanged ??= audioPlayer.playerStateStream.map((state) {
-      if (!state.playing) {
+    onPlayerStateChanged ??= audioPlayer.playerStateStream.map(
+      (state) {
         playbackState.add(
           playbackState.value.copyWith(
-            playing: false,
+            playing: state.playing,
           ),
         );
-      } else {
-        playbackState.add(
-          playbackState.value.copyWith(
-            playing: true,
-          ),
-        );
-      }
-
-      return state;
-    });
+        return state;
+      },
+    );
   }
 
   @override

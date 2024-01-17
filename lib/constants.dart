@@ -5,4 +5,5 @@ abstract final class BWMConstants {
       'bwm_androidNotificationChannelId';
   static const androidNotificationChannelName =
       'bwm_androidNotificationChannelName';
+  static const trackPlayerFinishThreshold = 0.8;
 }

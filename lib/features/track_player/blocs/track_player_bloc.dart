@@ -56,7 +56,7 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
     }
   }
 
-  void onFinishTap() {
+  void onTrackFinish() {
     _audioManager.stop();
     _navigationManager.openStreak(_track);
   }
@@ -126,27 +126,29 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
     _downloaderManager.queue(tasks: [downloadTask]);
   }
 
-  void _subscribeToPlayerState() {
-    _playerStateSub ??= _audioManager.onPlayerStateChanged?.listen(
-      (playerState) => emit(
-        state.copyWith(isPaused: !playerState.playing),
-      ),
-    );
-  }
-
-  void _subscribeToPlayerProgress() {
-    _playerProgressSub ??= _audioManager.progressStream?.listen((event) {
-      final (currentTimeMs, progress, estimatedMs) = event;
-
-      emit(
-        state.copyWith(
-          currentTimeMs: currentTimeMs,
-          progress: progress,
-          estimatedTimeMs: estimatedMs,
-        ),
+  void _subscribeToPlayerState() =>
+      _playerStateSub ??= _audioManager.onPlayerStateChanged?.listen(
+        (playerState) {
+          emit(state.copyWith(isPaused: !playerState.playing));
+          if (playerState.processingState == ProcessingState.completed) {
+            onTrackFinish();
+          }
+        },
       );
-    });
-  }
+
+  void _subscribeToPlayerProgress() =>
+      _playerProgressSub ??= _audioManager.progressStream?.listen(
+        (event) {
+          final (currentTimeMs, progress, estimatedMs) = event;
+          emit(
+            state.copyWith(
+              currentTimeMs: currentTimeMs,
+              progress: progress,
+              estimatedTimeMs: estimatedMs,
+            ),
+          );
+        },
+      );
 
   void _subscribeToDownloadProgress(String taskId) {
     _downloadProgressStream ??= _downloaderManager.taskProgress(taskId: taskId);

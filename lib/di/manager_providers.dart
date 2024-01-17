@@ -1,10 +1,6 @@
 part of 'di.dart';
 
 final class _ManagerProviders {
-  _ManagerProviders() {
-    print('manager providers initialized');
-  }
-
   late final tracksDownloader = Provider(
     (ref) => TracksDownloaderManager(ref.read(database)),
   );
