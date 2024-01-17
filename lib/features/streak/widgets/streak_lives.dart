@@ -40,7 +40,7 @@ class StreakLives extends StatelessWidget {
         children: [
           for (var i = 0; i < data.availableLivesCount; i++) ...[
             SvgPicture.asset(
-              BWMAssets.streakLiveAvailable,
+              BWMAssets.streakLifeAvailable,
               width: 26,
               height: 26,
             ),
@@ -50,7 +50,7 @@ class StreakLives extends StatelessWidget {
           ],
           for (var i = 0; i < unavailableLivesCount; i++) ...[
             SvgPicture.asset(
-              BWMAssets.streakLiveUnavailable,
+              BWMAssets.streakLifeUnavailable,
               width: 26,
               height: 26,
             ),

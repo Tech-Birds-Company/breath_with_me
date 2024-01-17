@@ -31,6 +31,6 @@ abstract final class BWMAssets {
   static const emailIcon = '$_icons/email.svg';
   static const lockIcon = '$_icons/lock.svg';
 
-  static const streakLiveAvailable = '$_icons/live_available.svg';
-  static const streakLiveUnavailable = '$_icons/live_unavailable.svg';
+  static const streakLifeAvailable = '$_icons/life_available.svg';
+  static const streakLifeUnavailable = '$_icons/life_unavailable.svg';
 }
