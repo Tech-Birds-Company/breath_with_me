@@ -48,7 +48,7 @@ class ProfileMenuItem extends StatelessWidget {
                     ),
                   )
                 : null,
-            horizontalTitleGap: 12,
+            horizontalTitleGap: 16,
             contentPadding: EdgeInsets.zero,
             leading: icon != null
                 ? SizedBox(

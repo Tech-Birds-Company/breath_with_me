@@ -46,13 +46,13 @@ class ProfilePage extends StatelessWidget {
           ),
           SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: CustomScrollView(
                 slivers: [
                   ProfileHeader(
                     username: profileBloc.username,
-                  ).toSliver(), // TODO(igor): fix
-                  const SizedBox(height: 230).toSliver(),
+                  ).toSliver(),
+                  const SizedBox(height: 96).toSliver(),
                   ProfileMenuItem(
                     title: LocaleKeys.profileSettings.tr(),
                     onTap: profileBloc.openProfileSettings,
