@@ -39,7 +39,6 @@ class StreakWithoutPremium extends StatelessWidget {
               child: Text(
                 LocaleKeys.streakWithoutPremiumSubtitle
                     .plural(streaksCount)
-                    .tr()
                     .toUpperCase(),
                 style: theme.typography.bodyM.copyWith(color: theme.gray4),
               ),
