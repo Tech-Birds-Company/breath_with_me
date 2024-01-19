@@ -14,4 +14,8 @@ RemoteConfigPremium _$RemoteConfigPremiumFromJson(Map json) =>
           json['premiumBannerTracksEnabled'] as bool? ?? false,
       premiumLandingEnabled: json['premiumLandingEnabled'] as bool? ?? false,
       premiumLandingUrl: json['premiumLandingUrl'] as String? ?? '',
+      paywall: json['paywall'] == null
+          ? const RemoteConfigPremiumPaywall()
+          : RemoteConfigPremiumPaywall.fromJson(
+              Map<String, dynamic>.from(json['paywall'] as Map)),
     );

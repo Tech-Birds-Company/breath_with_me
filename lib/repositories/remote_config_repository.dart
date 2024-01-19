@@ -1,7 +1,7 @@
-import 'package:breathe_with_me/repositories/models/remote_config_legal_documents.dart';
-import 'package:breathe_with_me/repositories/models/remote_config_premium.dart';
-import 'package:breathe_with_me/repositories/models/remote_config_socials.dart';
-import 'package:breathe_with_me/repositories/models/remote_config_streaks.dart';
+import 'package:breathe_with_me/repositories/models/remote_config/remote_config_legal_documents.dart';
+import 'package:breathe_with_me/repositories/models/remote_config/remote_config_premium.dart';
+import 'package:breathe_with_me/repositories/models/remote_config/remote_config_socials.dart';
+import 'package:breathe_with_me/repositories/models/remote_config/remote_config_streaks.dart';
 
 enum RemoteConfigKey {
   socials('socials'),
@@ -9,12 +9,16 @@ enum RemoteConfigKey {
   premium('premium');
 
   final String key;
+
   const RemoteConfigKey(this.key);
 }
 
 abstract interface class RemoteConfigRepository {
   RemoteConfigSocials get socials;
+
   RemoteConfigLegalDocuments get legalDocuments;
+
   RemoteConfigPremium get premium;
+
   RemoteConfigStreaks get streaks;
 }

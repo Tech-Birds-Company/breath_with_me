@@ -145,6 +145,7 @@ final class _BlocProviders {
   late final premiumPaywall = Provider(
     (ref) => PremiumPaywallBloc(
       ref.read(Di.manager.subscriptions),
+      ref.read(Di.repository.firebaseRemoteConfig),
       ref.read(Di.manager.navigation),
     ),
   );
