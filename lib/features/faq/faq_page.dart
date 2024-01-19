@@ -37,10 +37,14 @@ class FaqPage extends StatelessWidget {
               color: theme.secondaryColor,
             ),
           ),
-          error: () {
-            // TODO(bestK1ngArthur): Show error widget
-            return const Text('Error');
-          },
+          error: () => Center(
+            child: Text(
+              LocaleKeys.networkErrorText.tr(),
+              style: theme.typography.bodyMTrue.copyWith(
+                color: theme.gray4,
+              ),
+            ),
+          ),
         ),
       ),
     );

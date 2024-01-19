@@ -136,4 +136,5 @@ abstract class LocaleKeys {
       'premium.paywall.subscriptionLifeTime';
   static const premium_paywall = 'premium.paywall';
   static const premium = 'premium';
+  static const networkErrorText = 'networkErrorText';
 }

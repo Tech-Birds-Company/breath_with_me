@@ -140,5 +140,7 @@
 			"subscriptionAnnual": "Annual",
 			"subscriptionLifeTime": "Lifetime"
 		}
-	}
+	},
+
+	"networkErrorText": "Network error"
 }

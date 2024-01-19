@@ -19,7 +19,7 @@ class FaqQuestionList extends StatelessWidget {
             itemBuilder: (context, index) =>
                 FaqQuestionItem(question: questions[index]),
             separatorBuilder: (context, index) => const Padding(
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              padding: EdgeInsets.symmetric(horizontal: 20),
               child: Divider(
                 color: Color(0x405D5D6D), // TODO: Use color from theme
                 thickness: 1,
