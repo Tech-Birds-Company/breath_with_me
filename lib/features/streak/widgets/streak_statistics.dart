@@ -31,8 +31,7 @@ class StreakStatistics extends StatelessWidget {
               StreakStatisticsItem(
                 text: streaksCount.toString(),
                 name: LocaleKeys.streakStatisticsCardStreaksCount
-                    .plural(streaksCount)
-                    .tr(),
+                    .plural(streaksCount),
                 crossAxisAlignment: CrossAxisAlignment.center,
               ),
               const Spacer(),
@@ -41,8 +40,7 @@ class StreakStatistics extends StatelessWidget {
               StreakStatisticsItem(
                 text: practicesCount.toString(),
                 name: LocaleKeys.streakStatisticsCardPracticesCount
-                    .plural(practicesCount)
-                    .tr(),
+                    .plural(practicesCount),
                 crossAxisAlignment: CrossAxisAlignment.center,
               ),
               const Spacer(),
@@ -51,8 +49,7 @@ class StreakStatistics extends StatelessWidget {
               StreakStatisticsItem(
                 text: minutesCount.toString(),
                 name: LocaleKeys.streakStatisticsCardMinCount
-                    .plural(minutesCount)
-                    .tr(),
+                    .plural(minutesCount),
                 crossAxisAlignment: CrossAxisAlignment.center,
               ),
             ],
@@ -67,8 +64,7 @@ class StreakStatistics extends StatelessWidget {
               StreakStatisticsItem(
                 text: streaksCount.toString(),
                 name: LocaleKeys.streakStatisticsCardStreaksCount
-                    .plural(streaksCount)
-                    .tr(),
+                    .plural(streaksCount),
                 crossAxisAlignment: CrossAxisAlignment.center,
               ),
               const Spacer(),
@@ -77,8 +73,7 @@ class StreakStatistics extends StatelessWidget {
               StreakStatisticsItem(
                 text: missedDaysCount.toString(),
                 name: LocaleKeys.streakStatisticsCardDayMissedCount
-                    .plural(missedDaysCount)
-                    .tr(),
+                    .plural(missedDaysCount),
                 crossAxisAlignment: CrossAxisAlignment.center,
               ),
               const Spacer(),

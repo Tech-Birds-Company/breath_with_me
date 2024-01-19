@@ -67,7 +67,6 @@ class StreakLives extends StatelessWidget {
           Text(
             LocaleKeys.streakLivesFooter
                 .plural(data.totalLivesCount)
-                .tr()
                 .toUpperCase(),
             style: theme.typography.label.copyWith(color: theme.gray6),
           ),
