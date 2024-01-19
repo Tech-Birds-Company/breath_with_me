@@ -166,5 +166,7 @@
 			"subscriptionAnnual": "1 год",
 			"subscriptionLifeTime": "Навсегда"
 		}
-	}
+	},
+
+	"networkErrorText": "Ошибка сети"
 }
