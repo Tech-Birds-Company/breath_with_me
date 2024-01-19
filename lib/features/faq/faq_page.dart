@@ -1,5 +1,5 @@
 import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
-import 'package:breathe_with_me/features/faq/blocs/faq_block.dart';
+import 'package:breathe_with_me/features/faq/blocs/faq_bloc.dart';
 import 'package:breathe_with_me/features/faq/models/faq_state.dart';
 import 'package:breathe_with_me/features/faq/widgets/faq_question_list.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
