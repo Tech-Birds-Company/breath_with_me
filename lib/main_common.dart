@@ -25,7 +25,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -106,8 +105,8 @@ Future<void> mainCommon(Environment env) async {
   await FirebaseRemoteConfig.instance.ensureInitialized();
   await FirebaseRemoteConfig.instance.setConfigSettings(
     RemoteConfigSettings(
-      fetchTimeout: 10.seconds,
-      minimumFetchInterval: 12.minutes,
+      fetchTimeout: const Duration(seconds: 10),
+      minimumFetchInterval: const Duration(minutes: 12),
     ),
   );
   await FirebaseRemoteConfig.instance.fetchAndActivate();

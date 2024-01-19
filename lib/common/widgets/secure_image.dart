@@ -2,7 +2,6 @@ import 'package:breathe_with_me/di/di.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final _secureImageUrlProvider = StreamProvider.family<String, String>(
@@ -18,7 +17,7 @@ final _secureImageUrlProvider = StreamProvider.family<String, String>(
     final downloadUrlFuture = Future(
       FirebaseStorage.instance.refFromURL(baseUrl).getDownloadURL,
     ).timeout(
-      10.seconds,
+      const Duration(seconds: 10),
       onTimeout: () => throw Exception('Timeout'),
     );
 

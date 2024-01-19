@@ -1,7 +1,6 @@
 import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 
 class TrackFilter extends StatefulWidget {
@@ -66,7 +65,7 @@ class _TrackFilterState extends State<TrackFilter> {
                 const SizedBox(width: 8),
                 AnimatedRotation(
                   turns: _turns,
-                  duration: 300.milliseconds,
+                  duration: const Duration(milliseconds: 300),
                   curve: Curves.ease,
                   child: SvgPicture.asset(
                     BWMAssets.dropdownArrowIcon,

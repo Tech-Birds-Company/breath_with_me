@@ -105,8 +105,8 @@ class _ShimmerPlaceholder extends StatelessWidget {
           onPlay: (controller) => controller.repeat(),
         )
         .shimmer(
-          delay: 700.milliseconds,
-          duration: 700.milliseconds,
+          delay: const Duration(milliseconds: 700),
+          duration: const Duration(milliseconds: 700),
           color: theme.primaryBackground.withOpacity(0.2),
         );
   }
