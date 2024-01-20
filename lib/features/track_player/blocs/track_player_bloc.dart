@@ -8,27 +8,31 @@ import 'package:breathe_with_me/managers/audio_manager/audio_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/downloader_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/track_download_task.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
+import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/repositories/tracks_repository.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
 
 final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   final Track _track;
+  final AudioManager _audioManager;
   final TracksRepository _tracksRepository;
   final UserManager _userManager;
-  final AudioManager _audioManager;
   final DownloaderManager _downloaderManager;
   final NavigationManager _navigationManager;
+  final SubscriptionsManager _subscriptionManager;
 
   TrackPlayerBloc(
     this._track,
+    this._audioManager,
     this._tracksRepository,
     this._userManager,
-    this._audioManager,
     this._downloaderManager,
     this._navigationManager,
+    this._subscriptionManager,
   ) : super(TrackPlayerState.initialState);
 
   Track get track => _track;
@@ -36,11 +40,20 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   StreamSubscription<(int?, double, int?)>? _playerProgressSub;
   StreamSubscription<double>? _downloadProgressSub;
   Stream<double>? _downloadProgressStream;
+  AppLifecycleListener? _appLifecycleListener;
 
   void _initSubscriptions() {
     _subscribeToPlayerState();
     _subscribeToPlayerProgress();
     _subscribeToDownloadProgress(_track.id);
+    if (!_subscriptionManager.premiumEnabled) {
+      _appLifecycleListener = AppLifecycleListener(
+        onPause: () {
+          _audioManager.pause();
+          _navigationManager.openPremiumPaywall();
+        },
+      );
+    }
   }
 
   Future<void> init() async {
@@ -183,6 +196,8 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
 
   void dispose() {
     _cancelSubscriptions();
+    _appLifecycleListener?.dispose();
+    _appLifecycleListener = null;
     _audioManager.dispose();
   }
 }

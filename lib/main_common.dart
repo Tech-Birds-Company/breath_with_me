@@ -40,22 +40,25 @@ Future<ProviderContainer> _setupDependencies({
   final storage = IsarBlocStateStorage(databaseManager);
   CacheableBloc.storage = storage;
 
-  final tracksDownloadManager = TracksDownloaderManager(databaseManager);
-  final pushNotificationsManager = PushNotificationsManager();
-  final userManager = FirebaseUserManager();
-  final navigationManager = NavigationManager(userManager);
-  final subscriptionsManager =
-      isProduction ? SubscriptionsManagerProd() : SubscriptionsManagerDev();
-  final playerManager = TrackPlayerManager();
   final trackAudioManager = await AudioService.init(
-    builder: () => TrackAudioManager(playerManager),
+    builder: () => TrackAudioManager(TrackPlayerManager()),
     config: const AudioServiceConfig(
       androidNotificationChannelId: BWMConstants.androidNotificationChannelId,
       androidNotificationChannelName:
           BWMConstants.androidNotificationChannelName,
     ),
   );
+  final tracksDownloadManager = TracksDownloaderManager(databaseManager);
+
+  final subscriptionsManager =
+      isProduction ? SubscriptionsManagerProd() : SubscriptionsManagerDev();
+  await subscriptionsManager.configure();
+
+  final userManager = FirebaseUserManager(subscriptionsManager);
+
   final sharedPrefsManager = SharedPreferencesManager();
+
+  final pushNotificationsManager = PushNotificationsManager();
 
   final appDocumentsDir = await getApplicationDocumentsDirectory();
   final playerIconFile = File(
@@ -67,30 +70,29 @@ Future<ProviderContainer> _setupDependencies({
     await playerIconFile.writeAsBytes(bytes.buffer.asUint8List());
   }
 
-  navigationManager.init();
-  subscriptionsManager.init();
-
-  await sharedPrefsManager.init();
-  await pushNotificationsManager.init();
+  final navigationManager = NavigationManager(userManager)..init();
 
   final uid = userManager.currentUser?.uid;
   if (uid != null) {
     await tracksDownloadManager.validateDownloads(uid);
   }
 
+  await sharedPrefsManager.init();
+  await pushNotificationsManager.init();
+
   final dependencies = [
     Di.manager.database.overrideWith((ref) {
       ref.onDispose(databaseManager.dispose);
       return databaseManager;
     }),
-    Di.manager.tracksDownloader.overrideWithValue(tracksDownloadManager),
-    Di.manager.trackPlayer.overrideWithValue(playerManager),
+    Di.manager.subscriptions.overrideWith((ref) {
+      ref.onDispose(subscriptionsManager.dispose);
+      return subscriptionsManager;
+    }),
     Di.manager.audio.overrideWithValue(trackAudioManager),
-    Di.manager.pushNotifications.overrideWithValue(pushNotificationsManager),
-    Di.manager.user.overrideWithValue(userManager),
-    Di.manager.navigation.overrideWithValue(navigationManager),
-    Di.manager.subscriptions.overrideWithValue(subscriptionsManager),
     Di.manager.sharedPreferences.overrideWithValue(sharedPrefsManager),
+    Di.manager.pushNotifications.overrideWithValue(pushNotificationsManager),
+    Di.manager.navigation.overrideWithValue(navigationManager),
   ];
 
   return ProviderContainer(overrides: dependencies);

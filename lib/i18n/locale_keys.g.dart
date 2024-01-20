@@ -53,6 +53,9 @@ abstract class LocaleKeys {
   static const profileTotalFriends = 'profileTotalFriends';
   static const profileFaqTitle = 'profileFaqTitle';
   static const profileLogout = 'profileLogout';
+  static const profileBaseAccountType = 'profileBaseAccountType';
+  static const profilePremiumAccountType = 'profilePremiumAccountType';
+  static const profilePremiumExpires = 'profilePremiumExpires';
   static const reminderTitle = 'reminderTitle';
   static const reminderDisabled = 'reminderDisabled';
   static const reminderSaveButtonTitle = 'reminderSaveButtonTitle';
@@ -120,22 +123,16 @@ abstract class LocaleKeys {
   static const premium_buyPremium = 'premium.buyPremium';
   static const premium_paywall_selectTariffTitle =
       'premium.paywall.selectTariffTitle';
-  static const premium_paywall_3MonthsTitle = 'premium.paywall.3MonthsTitle';
-  static const premium_paywall_1MonthTitle = 'premium.paywall.1MonthTitle';
   static const premium_paywall_trialDescription =
       'premium.paywall.trialDescription';
-  static const premium_paywall_subscriptionWeek =
-      'premium.paywall.subscriptionWeek';
-  static const premium_paywall_subscriptionMonth =
-      'premium.paywall.subscriptionMonth';
-  static const premium_paywall_subscription3Months =
-      'premium.paywall.subscription3Months';
-  static const premium_paywall_subscription6months =
-      'premium.paywall.subscription6months';
-  static const premium_paywall_subscriptionAnnual =
-      'premium.paywall.subscriptionAnnual';
-  static const premium_paywall_subscriptionLifeTime =
-      'premium.paywall.subscriptionLifeTime';
+  static const premium_paywall_subscriptionPeriod_W =
+      'premium.paywall.subscriptionPeriod.W';
+  static const premium_paywall_subscriptionPeriod_M =
+      'premium.paywall.subscriptionPeriod.M';
+  static const premium_paywall_subscriptionPeriod_Y =
+      'premium.paywall.subscriptionPeriod.Y';
+  static const premium_paywall_subscriptionPeriod =
+      'premium.paywall.subscriptionPeriod';
   static const premium_paywall = 'premium.paywall';
   static const premium = 'premium';
   static const networkErrorText = 'networkErrorText';

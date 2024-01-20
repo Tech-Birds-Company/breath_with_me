@@ -18,7 +18,7 @@ final class TrackPlayerManager extends PlayerManager {
     audioSession?.interruptionEventStream.listen(_handleInteractions);
   }
 
-  void _handleInteractions(AudioInterruptionEvent event) => pause();
+  Future<void> _handleInteractions(AudioInterruptionEvent event) => pause();
 
   @override
   Future<void> play() async {

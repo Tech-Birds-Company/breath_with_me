@@ -14,6 +14,7 @@ final class BWMDarkTheme extends BWMTheme {
     super.primaryText = const Color(0xFFFFFFFF),
     super.secondaryText = const Color(0xFF828282),
     super.green3 = const Color(0xFF6FCF97),
+    super.gray1 = const Color(0xFF333333),
     super.gray2 = const Color(0xFF4F4F4F),
     super.gray3 = const Color(0xFF828282),
     super.gray4 = const Color(0xFFF2F2F2),

@@ -1,4 +1,6 @@
-class TimeFormatter {
+import 'package:easy_localization/easy_localization.dart';
+
+class DateTimeFormatter {
   static String formatMilliseconds(int milliseconds) {
     final seconds = (milliseconds / 1000).truncate();
     final minutes = (seconds / 60).truncate();
@@ -13,5 +15,12 @@ class TimeFormatter {
     } else {
       return '$minutesStr:$secondsStr';
     }
+  }
+
+  static String convertDateToLocalizedText(String dateString, String locale) {
+    final date = DateTime.parse(dateString);
+    final dateFormat = DateFormat('d MMM yyyy', locale);
+
+    return dateFormat.format(date);
   }
 }
