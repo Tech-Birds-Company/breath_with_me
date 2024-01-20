@@ -40,24 +40,30 @@ class PremiumPaywallProduct extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: theme.typography.bodyMTrue.copyWith(
-                      color: theme.primaryColor,
-                    ),
-                  ),
-                  if (description != null)
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     Text(
-                      description!,
-                      style: theme.typography.footer.copyWith(
+                      title,
+                      style: theme.typography.bodyMTrue.copyWith(
                         color: theme.primaryColor,
                       ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                     ),
-                ],
+                    if (description != null)
+                      Text(
+                        description!,
+                        style: theme.typography.footer.copyWith(
+                          color: theme.primaryColor,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                  ],
+                ),
               ),
               Text(
                 price,

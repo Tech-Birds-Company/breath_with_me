@@ -2,8 +2,8 @@ import 'package:breathe_with_me/features/premium/models/premium_paywall_state.da
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
 import 'package:breathe_with_me/repositories/remote_config_repository.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qonversion_flutter/qonversion_flutter.dart';
 
 final class PremiumPaywallBloc extends BlocBase<PremiumPaywallState> {
   final SubscriptionsManager _subscriptionsManager;
@@ -17,10 +17,11 @@ final class PremiumPaywallBloc extends BlocBase<PremiumPaywallState> {
   ) : super(const PremiumPaywallState.loading());
 
   Future<void> init() async {
-    final subscriptions =
-        await _subscriptionsManager.getProducts() as Map<String, QProduct>;
     final configSubscriptions =
-        _remoteConfigRepository.premium.paywall.subscriptions.toSet();
+        _remoteConfigRepository.premium.paywall.subscriptions;
+
+    final subscriptions =
+        await _subscriptionsManager.getProducts(configSubscriptions);
 
     if (configSubscriptions.isNotEmpty) {
       subscriptions
@@ -31,7 +32,7 @@ final class PremiumPaywallBloc extends BlocBase<PremiumPaywallState> {
       PremiumPaywallState.data(
         subscriptions: subscriptions,
         selectedSubscriptionId:
-            subscriptions.entries.firstOrNull?.value.qonversionId,
+            subscriptions.entries.firstOrNull?.value.identifier,
       ),
     );
   }
@@ -52,11 +53,13 @@ final class PremiumPaywallBloc extends BlocBase<PremiumPaywallState> {
         if (state.selectedSubscriptionId != null) {
           emit(state.copyWith(premiumPurchaseProcessing: true));
           try {
-            await _subscriptionsManager.purchase(state.selectedSubscriptionId!);
-          } on QPurchaseException catch (_, __) {
+            await _subscriptionsManager
+                .purchase(state.subscriptions[state.selectedSubscriptionId]!);
+          } on PlatformException {
             // TODO(vasidmi): handle error
           } finally {
             emit(state.copyWith(premiumPurchaseProcessing: false));
+            _navigationManager.pop();
           }
         }
       },

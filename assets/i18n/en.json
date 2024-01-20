@@ -53,6 +53,9 @@
 	"profileStreak": "Ability to restore your practice streak 3 times",
 	"profileFaqTitle": "FAQ",
 	"profileLogout": "Log out",
+	"profileBaseAccountType": "Base account",
+	"profilePremiumAccountType": "Premium account",
+	"profilePremiumExpires": "till {}",
 
 	"reminderTitle": "Reminder",
 	"reminderDisabled": "Off",
@@ -131,17 +134,22 @@
 		"buyPremium": "Buy Premium",
 		"paywall": {
 			"selectTariffTitle": "Select tariff",
-			"3MonthsTitle": "3 months",
-			"1MonthTitle": "1 month",
 			"trialDescription": "7 days free trial",
-			"subscriptionWeek": "7 days",
-			"subscriptionMonth": "1 month",
-			"subscription3Months": "3 months",
-			"subscription6months": "6 months",
-			"subscriptionAnnual": "12 months",
-			"subscriptionLifeTime": "Lifetime"
+			"subscriptionPeriod": {
+				"W": {
+					"one": "{} week",
+					"other": "{} weeks"
+				},
+				"M": {
+					"one": "{} month",
+					"other": "{} months"
+				},
+				"Y": {
+					"one": "{} month",
+					"other": "{} months"
+				}
+			}
 		}
 	},
-
 	"networkErrorText": "Network error"
 }

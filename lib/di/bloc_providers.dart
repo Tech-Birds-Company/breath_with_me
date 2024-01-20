@@ -24,9 +24,9 @@ final class _BlocProviders {
     (ref, trackId) {
       final bloc = TrackPlayerBloc(
         trackId,
+        ref.read(Di.manager.audio),
         ref.read(Di.repository.tracks),
         ref.read(Di.manager.user),
-        ref.read(Di.manager.audio),
         ref.read(Di.manager.tracksDownloader),
         ref.read(Di.manager.navigation),
       );
@@ -51,6 +51,7 @@ final class _BlocProviders {
       ref.read(Di.repository.firebaseRemoteConfig),
       ref.read(Di.manager.user),
       ref.read(Di.manager.database),
+      ref.read(Di.manager.subscriptions),
     ),
   );
 
@@ -113,7 +114,7 @@ final class _BlocProviders {
     ),
   );
 
-  late final streak = Provider.family<StreakBloc, (Track, Locale)>(
+  late final streak = Provider.family.autoDispose<StreakBloc, (Track, Locale)>(
     (ref, input) {
       final bloc = StreakBloc(
         input.$1,
@@ -123,6 +124,7 @@ final class _BlocProviders {
         ref.read(Di.repository.streaksQuotes),
         ref.read(Di.manager.user),
         ref.read(Di.manager.navigation),
+        ref.read(Di.manager.subscriptions),
       );
       return bloc;
     },
@@ -135,9 +137,10 @@ final class _BlocProviders {
     ),
   );
 
-  late final premiumBanner = Provider(
+  late final premiumBanner = Provider.autoDispose(
     (ref) => PremiumBannerBloc(
       ref.read(Di.repository.firebaseRemoteConfig),
+      ref.read(Di.manager.subscriptions),
       ref.read(Di.manager.navigation),
     ),
   );

@@ -2,6 +2,7 @@ import 'package:breathe_with_me/managers/database_manager/database_manager.dart'
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/permissions_manager/permissions_manager.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
+import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/repositories/firebase_remote_config_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +15,7 @@ final class ProfileBloc extends BlocBase<Object?> {
   final FirebaseRemoteConfigRepository _firebaseRemoteConfigRepository;
   final UserManager _userManager;
   final DatabaseManager _databaseManager;
+  final SubscriptionsManager _subscriptionsManager;
 
   ProfileBloc(
     this._navigationManager,
@@ -22,12 +24,18 @@ final class ProfileBloc extends BlocBase<Object?> {
     this._firebaseRemoteConfigRepository,
     this._userManager,
     this._databaseManager,
+    this._subscriptionsManager,
   ) : super(null);
 
   String get username {
     final currentUser = _userManager.currentUser;
     return currentUser?.displayName ?? '';
   }
+
+  bool get premiumEnabled => _subscriptionsManager.premiumEnabled;
+
+  String? get premiumEndDate => _subscriptionsManager
+      .customerInfo?.entitlements.active.values.firstOrNull?.expirationDate;
 
   Future<void> openReminder() async {
     final permissionGranted =

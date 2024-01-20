@@ -4,6 +4,7 @@ import 'package:breathe_with_me/features/streak/models/streak_state.dart';
 import 'package:breathe_with_me/features/streak/models/streak_statistics_data.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
+import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/repositories/models/streaks_progress.dart';
 import 'package:breathe_with_me/repositories/remote_config_repository.dart';
@@ -17,14 +18,13 @@ final class StreakBloc extends BlocBase<StreakState> {
   final Track _track;
   final Locale _locale;
 
-  final bool _isPremium = true;
-
   final RemoteConfigRepository _remoteConfigRepository;
   final StreaksProgressRepository _streaksProgressRepository;
   final StreaksQuotesRepository _streaksQuotesRepository;
 
   final UserManager _userManager;
   final NavigationManager _navigationManager;
+  final SubscriptionsManager _subscriptionManager;
 
   StreakBloc(
     this._track,
@@ -34,7 +34,10 @@ final class StreakBloc extends BlocBase<StreakState> {
     this._streaksQuotesRepository,
     this._userManager,
     this._navigationManager,
+    this._subscriptionManager,
   ) : super(const StreakState(null, StreakContentState.loading()));
+
+  bool get _premiumEnabled => _subscriptionManager.premiumEnabled;
 
   Future<void> init() async {
     emit(const StreakState(null, StreakContentState.loading()));
@@ -87,7 +90,7 @@ final class StreakBloc extends BlocBase<StreakState> {
 
   StreakContentState getContentState(StreaksProgress progress) {
     final StreakContentState state;
-    if (_isPremium) {
+    if (_premiumEnabled) {
       final streaksCount = _getLastStreaksCount(progress);
       final missedDaysCount = _getLastMissedDaysCount(progress);
       if ((missedDaysCount == 1) && (progress.livesCount > 0)) {

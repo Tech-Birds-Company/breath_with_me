@@ -18,6 +18,13 @@ final class NavigationManager {
 
   StreamSubscription<User?>? _userSubscription;
 
+  late final _redirectRoutes = {
+    BWMRoutes.onboarding,
+    BWMRoutes.createAccount,
+    BWMRoutes.auth.signIn,
+    BWMRoutes.auth.signUp,
+  };
+
   void init() => _userSubscription ??= _userManager.userStream.listen(
         (user) {
           if (context == null) {
@@ -27,11 +34,7 @@ final class NavigationManager {
             final routeMatch =
                 router.routerDelegate.currentConfiguration.matches.lastOrNull;
             final path = routeMatch?.matchedLocation;
-            if (path == null ||
-                path == BWMRoutes.onboarding ||
-                path == BWMRoutes.createAccount ||
-                path == BWMRoutes.auth.signIn ||
-                path == BWMRoutes.auth.signUp) {
+            if (path == null || _redirectRoutes.contains(path)) {
               popToRoot();
               router.pushReplacement(BWMRoutes.home);
             }
@@ -48,7 +51,7 @@ final class NavigationManager {
     redirect: (context, state) {
       final authorized = _userManager.currentUser != null;
       if (authorized) {
-        if (state.uri.path == BWMRoutes.onboarding) {
+        if (_redirectRoutes.contains(state.uri.path)) {
           return BWMRoutes.home;
         }
       }

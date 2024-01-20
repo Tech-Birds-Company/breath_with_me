@@ -16,7 +16,6 @@ final class DatabaseManager {
   DatabaseManager(this._database);
 
   late final db = _database.instance;
-
   late final blocStateCollection = db.blocStates;
   late final likedTracksCollection = db.likedTracks;
   late final downloadTrackTasksCollection = db.downloadTrackTasks;
