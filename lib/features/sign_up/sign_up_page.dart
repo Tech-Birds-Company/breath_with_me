@@ -101,7 +101,8 @@ class SignUpPage extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 10),
                             child: Text(
                               errorMessage.errorMessage,
-                              style: theme.typography.footer.copyWith(color: theme.red),
+                              style: theme.typography.footer
+                                  .copyWith(color: theme.red),
                             ),
                           ),
                         ),
