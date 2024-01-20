@@ -84,7 +84,7 @@ class SignUpPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 BWMActionButton(
-                  title: LocaleKeys.onboardingCreateAccount.tr(),
+                  title: LocaleKeys.createAccountSignUpButtonTitle.tr(),
                   width: double.infinity,
                   height: 40,
                   onPressed: bloc.signUpWithEmail,
@@ -101,8 +101,7 @@ class SignUpPage extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 10),
                             child: Text(
                               errorMessage.errorMessage,
-                              style: theme.typography.footer
-                                  .copyWith(color: theme.red),
+                              style: theme.typography.footer.copyWith(color: theme.red),
                             ),
                           ),
                         ),
