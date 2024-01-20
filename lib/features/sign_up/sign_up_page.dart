@@ -84,7 +84,7 @@ class SignUpPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 BWMActionButton(
-                  title: LocaleKeys.onboardingCreateAccount.tr(),
+                  title: LocaleKeys.createAccountSignUpButtonTitle.tr(),
                   width: double.infinity,
                   height: 40,
                   onPressed: bloc.signUpWithEmail,

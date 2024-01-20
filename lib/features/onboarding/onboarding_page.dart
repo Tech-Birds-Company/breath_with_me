@@ -17,7 +17,7 @@ class OnboardingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return Scaffold(
-      backgroundColor: theme.primaryBackground,
+      backgroundColor: theme.darkBackground,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

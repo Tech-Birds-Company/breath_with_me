@@ -36,9 +36,9 @@ class ReminderPage extends StatelessWidget {
     return Scaffold(
       appBar: BWMAppBar(
         title: LocaleKeys.reminderTitle.tr(),
-        backgroundColor: Colors.black, // TODO(vasidmi): use theme
+        backgroundColor: theme.darkBackground,
       ),
-      backgroundColor: Colors.black, // TODO(vasidmi): use theme
+      backgroundColor: theme.darkBackground,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),

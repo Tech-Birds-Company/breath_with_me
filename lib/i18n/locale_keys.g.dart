@@ -3,13 +3,13 @@
 abstract class LocaleKeys {
   static const appName = 'appName';
   static const appBarBackTitle = 'appBarBackTitle';
-  static const onboardingCreateAccount = 'onboardingCreateAccount';
   static const onboardingPage1Title = 'onboardingPage1Title';
   static const onboardingPage2Title = 'onboardingPage2Title';
   static const onboardingPage3Title = 'onboardingPage3Title';
   static const onboardingPage1Subtitle = 'onboardingPage1Subtitle';
   static const onboardingPage2Subtitle = 'onboardingPage2Subtitle';
   static const onboardingPage3Subtitle = 'onboardingPage3Subtitle';
+  static const onboardingButtonTitle = 'onboardingButtonTitle';
   static const createAccountHeaderTitle = 'createAccountHeaderTitle';
   static const createAccountHeaderConjunction =
       'createAccountHeaderConjunction';
@@ -23,6 +23,8 @@ abstract class LocaleKeys {
   static const createAccountAgreement_termsOfServiceUrl =
       'createAccountAgreement.termsOfServiceUrl';
   static const createAccountAgreement = 'createAccountAgreement';
+  static const createAccountSignUpButtonTitle =
+      'createAccountSignUpButtonTitle';
   static const tracksTitle = 'tracksTitle';
   static const tracksGuestWelcome = 'tracksGuestWelcome';
   static const tracksHeading = 'tracksHeading';
