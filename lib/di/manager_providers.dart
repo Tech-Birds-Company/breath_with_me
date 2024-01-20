@@ -1,20 +1,22 @@
 part of 'di.dart';
 
 final class _ManagerProviders {
-  late final tracksDownloader = Provider(
+  late final audio = Provider<AudioManager>(
+    (_) => throw UnimplementedError(),
+  );
+
+  late final tracksDownloader = Provider.autoDispose(
     (ref) => TracksDownloaderManager(ref.read(database)),
   );
 
-  late final trackPlayer = Provider((ref) {
-    final manager = TrackPlayerManager();
-    ref.onDispose(manager.dispose);
-    return manager;
-  });
-
   late final navigation = Provider(
-    (ref) => NavigationManager(
-      ref.read(Di.manager.user),
-    ),
+    (ref) {
+      final manager = NavigationManager(
+        ref.read(Di.manager.user),
+      );
+      ref.onDispose(manager.dispose);
+      return manager;
+    },
   );
 
   late final database = Provider<DatabaseManager>(
@@ -23,17 +25,13 @@ final class _ManagerProviders {
     },
   );
 
-  late final audio = Provider(
-    (ref) {
-      final manager = TrackAudioManager(ref.read(trackPlayer));
-      ref.onDispose(manager.dispose);
-      return manager;
-    },
+  late final user = Provider.autoDispose(
+    (ref) => FirebaseUserManager(
+      ref.read(Di.manager.subscriptions),
+    ),
   );
 
-  late final user = Provider((ref) => FirebaseUserManager());
-
-  late final permissions = Provider((ref) => PermissionsManager());
+  late final permissions = Provider.autoDispose((ref) => PermissionsManager());
 
   late final pushNotifications = Provider(
     (ref) => PushNotificationsManager(),

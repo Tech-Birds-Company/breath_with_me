@@ -51,6 +51,8 @@ class ProfilePage extends StatelessWidget {
                 slivers: [
                   ProfileHeader(
                     username: profileBloc.username,
+                    premiumEnabled: profileBloc.premiumEnabled,
+                    premiumEndDate: profileBloc.premiumEndDate,
                   ).toSliver(),
                   const SizedBox(height: 96).toSliver(),
                   ProfileMenuItem(

@@ -12,7 +12,7 @@ final class _RepositoryProviders {
   late final firebaseTutors =
       Provider((ref) => const FirebaseTutorsRepository());
 
-  late final firebaseRemoteConfig = Provider(
+  late final firebaseRemoteConfig = Provider.autoDispose(
     (ref) => const FirebaseRemoteConfigRepository(),
   );
 
