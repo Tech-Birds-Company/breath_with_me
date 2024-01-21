@@ -16,17 +16,17 @@ import 'package:just_audio/just_audio.dart';
 
 final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   final Track _track;
+  final AudioManager _audioManager;
   final TracksRepository _tracksRepository;
   final UserManager _userManager;
-  final AudioManager _audioManager;
   final DownloaderManager _downloaderManager;
   final NavigationManager _navigationManager;
 
   TrackPlayerBloc(
     this._track,
+    this._audioManager,
     this._tracksRepository,
     this._userManager,
-    this._audioManager,
     this._downloaderManager,
     this._navigationManager,
   ) : super(TrackPlayerState.initialState);

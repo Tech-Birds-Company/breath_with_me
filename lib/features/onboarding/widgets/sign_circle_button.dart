@@ -1,4 +1,5 @@
 import 'package:breathe_with_me/assets.dart';
+import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -26,12 +27,13 @@ class SignCircleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).extension<BWMTheme>()!;
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         fixedSize: const Size(54, 54),
         shape: const CircleBorder(),
-        backgroundColor: Colors.white,
+        backgroundColor: theme.primaryColor,
       ),
       child: SvgPicture.asset(
         provider.iconName,

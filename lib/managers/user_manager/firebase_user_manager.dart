@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/auth_result.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,6 +8,10 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 final class FirebaseUserManager implements UserManager {
+  final SubscriptionsManager _subscriptionManager;
+
+  FirebaseUserManager(this._subscriptionManager);
+
   late final _firebaseAuth = FirebaseAuth.instance;
 
   @override
@@ -14,7 +19,14 @@ final class FirebaseUserManager implements UserManager {
 
   @override
   Stream<User?> get userStream =>
-      _firebaseAuth.userChanges().asBroadcastStream().distinct();
+      _firebaseAuth.userChanges().distinct().asyncMap(
+        (user) async {
+          if (user != null) {
+            await _subscriptionManager.login(user.uid);
+          }
+          return user;
+        },
+      );
 
   @override
   Future<User?> signInWithEmail(String email, String password) async {

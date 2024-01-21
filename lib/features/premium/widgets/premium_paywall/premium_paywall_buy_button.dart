@@ -38,8 +38,8 @@ class PremiumPaywallButton extends StatelessWidget {
               ),
               onPressed: isProcessing ? null : onPressed,
               child: isProcessing
-                  ? const CircularProgressIndicator.adaptive(
-                      backgroundColor: Colors.white,
+                  ? CircularProgressIndicator.adaptive(
+                      backgroundColor: theme.primaryColor,
                     )
                   : Text(
                       LocaleKeys.premium_buyPremium.tr(),

@@ -4,12 +4,12 @@ import 'package:breathe_with_me/features/streak/models/streak_state.dart';
 import 'package:breathe_with_me/features/streak/models/streak_statistics_data.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
+import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/repositories/models/streaks_progress.dart';
 import 'package:breathe_with_me/repositories/remote_config_repository.dart';
 import 'package:breathe_with_me/repositories/streaks_progress_repository.dart';
 import 'package:breathe_with_me/repositories/streaks_quotes_repository.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,14 +17,13 @@ final class StreakBloc extends BlocBase<StreakState> {
   final Track _track;
   final Locale _locale;
 
-  final bool _isPremium = true;
-
   final RemoteConfigRepository _remoteConfigRepository;
   final StreaksProgressRepository _streaksProgressRepository;
   final StreaksQuotesRepository _streaksQuotesRepository;
 
   final UserManager _userManager;
   final NavigationManager _navigationManager;
+  final SubscriptionsManager _subscriptionManager;
 
   StreakBloc(
     this._track,
@@ -34,7 +33,10 @@ final class StreakBloc extends BlocBase<StreakState> {
     this._streaksQuotesRepository,
     this._userManager,
     this._navigationManager,
+    this._subscriptionManager,
   ) : super(const StreakState(null, StreakContentState.loading()));
+
+  bool get _premiumEnabled => _subscriptionManager.premiumEnabled;
 
   Future<void> init() async {
     emit(const StreakState(null, StreakContentState.loading()));
@@ -65,10 +67,10 @@ final class StreakBloc extends BlocBase<StreakState> {
   void onSkipTap() {
     final progress = state.progress;
     if (progress != null) {
-      final streaksCount = _getLastStreaksCount(progress);
+      final streaksCount = progress.lastStreaksCount;
       final contentState = StreakContentState.premiumStartedOrContinued(
         StreakStatisticsData.full(
-          _getLastStreaksCount(progress),
+          progress.lastStreaksCount,
           progress.practicesCount,
           progress.minutesCount,
         ),
@@ -87,9 +89,9 @@ final class StreakBloc extends BlocBase<StreakState> {
 
   StreakContentState getContentState(StreaksProgress progress) {
     final StreakContentState state;
-    if (_isPremium) {
-      final streaksCount = _getLastStreaksCount(progress);
-      final missedDaysCount = _getLastMissedDaysCount(progress);
+    if (_premiumEnabled) {
+      final streaksCount = progress.lastStreaksCount;
+      final missedDaysCount = progress.lastMissedDaysCount;
       if ((missedDaysCount == 1) && (progress.livesCount > 0)) {
         state = StreakContentState.premiumMissed(
           StreakStatisticsData.missed(streaksCount, missedDaysCount),
@@ -117,52 +119,10 @@ final class StreakBloc extends BlocBase<StreakState> {
       }
     } else {
       state = StreakContentState.withoutPremium(
-        _getLastStreaksCount(progress),
+        progress.lastStreaksCount,
         _streaksQuotesRepository.getQuote(_locale.languageCode),
       );
     }
     return state;
-  }
-
-  int _getLastStreaksCount(StreaksProgress progress) {
-    final timeline = progress.timeline.sorted((a, b) => b.compareTo(a));
-
-    var count = 1;
-    var date =
-        DateTime(timeline.first.year, timeline.first.month, timeline.first.day);
-    for (var i = 1; i < timeline.length; i++) {
-      final expectedDate = date.subtract(const Duration(days: 1));
-      final currentDate =
-          DateTime(timeline[i].year, timeline[i].month, timeline[i].day);
-      if (currentDate == expectedDate) {
-        count += 1;
-        date = currentDate;
-      } else {
-        break;
-      }
-    }
-
-    return count;
-  }
-
-  int _getLastMissedDaysCount(StreaksProgress progress) {
-    final timeline = progress.timeline.sorted((a, b) => b.compareTo(a));
-
-    var count = 0;
-    var date =
-        DateTime(timeline.first.year, timeline.first.month, timeline.first.day);
-    for (var i = 1; i < timeline.length; i++) {
-      final expectedDate = date.subtract(const Duration(days: 1));
-      final currentDate =
-          DateTime(timeline[i].year, timeline[i].month, timeline[i].day);
-      if (currentDate != expectedDate) {
-        count += 1;
-        date = currentDate;
-      } else {
-        break;
-      }
-    }
-
-    return count;
   }
 }

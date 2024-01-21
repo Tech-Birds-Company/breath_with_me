@@ -12,7 +12,7 @@ class StreakContentState with _$StreakContentState {
   const factory StreakContentState.withoutPremium(
     int streaksCount,
     StreakQuoteData quote,
-  ) = WithoutPremium;
+  ) = _WithoutPremium;
   const factory StreakContentState.premiumStartedOrContinued(
     StreakStatisticsData statistics,
     int streaksCount,
@@ -22,7 +22,7 @@ class StreakContentState with _$StreakContentState {
   const factory StreakContentState.premiumMissed(
     StreakStatisticsData statistics,
     StreakLivesData livesData,
-  ) = PremiumMissed;
+  ) = _PremiumMissed;
 
   factory StreakContentState.fromJson(Map<String, dynamic> json) =>
       _$StreakContentStateFromJson(json);

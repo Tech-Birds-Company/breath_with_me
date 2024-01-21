@@ -1,5 +1,5 @@
 import 'package:breathe_with_me/assets.dart';
-import 'package:breathe_with_me/extensions/q_product_duration.dart';
+import 'package:breathe_with_me/extensions/string.dart';
 import 'package:breathe_with_me/features/premium/blocs/premium_paywall_bloc.dart';
 import 'package:breathe_with_me/features/premium/models/premium_paywall_state.dart';
 import 'package:breathe_with_me/features/premium/premium_constants.dart';
@@ -56,16 +56,27 @@ class PremiumPaywall extends HookWidget {
                       BWMAssets.logoIcon,
                       height: 53,
                     ),
-                    Align(
-                      alignment: AlignmentDirectional.topEnd,
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.close_rounded,
-                          color: theme.primaryColor,
-                        ),
-                        splashRadius: 20,
-                        onPressed: bloc.onClosePaywall,
+                    BlocSelector<PremiumPaywallBloc, PremiumPaywallState, bool>(
+                      bloc: bloc,
+                      selector: (state) => state.maybeMap(
+                        data: (state) => !state.premiumPurchaseProcessing,
+                        orElse: () => true,
                       ),
+                      builder: (context, isVisible) {
+                        return isVisible
+                            ? Align(
+                                alignment: AlignmentDirectional.topEnd,
+                                child: IconButton(
+                                  icon: Icon(
+                                    Icons.close_rounded,
+                                    color: theme.primaryColor,
+                                  ),
+                                  splashRadius: 20,
+                                  onPressed: bloc.onClosePaywall,
+                                ),
+                              )
+                            : const SizedBox.shrink();
+                      },
                     ),
                   ],
                 ),
@@ -121,30 +132,30 @@ class PremiumPaywall extends HookWidget {
                   bloc: bloc,
                   builder: (context, state) => state.map(
                     data: (state) => Column(
-                      children: state.subscriptions.entries
-                          .map(
-                            (e) => Padding(
-                              padding: const EdgeInsets.only(
-                                bottom: 16,
-                              ),
-                              child: PremiumPaywallProduct(
-                                productId: e.value.qonversionId,
-                                title: e.value.duration.localizedDuration,
-                                description: LocaleKeys
-                                    .premium_paywall_trialDescription
-                                    .tr(),
-                                price: e.value.prettyPrice ?? '',
-                                selected: e.value.qonversionId ==
-                                    state.selectedSubscriptionId,
-                                onPressed: bloc.onSubscriptionSelected,
-                              ),
+                      children: state.subscriptions.entries.map(
+                        (e) {
+                          return Padding(
+                            padding: const EdgeInsets.only(
+                              bottom: 16,
                             ),
-                          )
-                          .toList(),
+                            child: PremiumPaywallProduct(
+                              productId: e.value.identifier,
+                              title: e.value.subscriptionPeriod.periodToText,
+                              description: LocaleKeys
+                                  .premium_paywall_trialDescription
+                                  .tr(),
+                              price: e.value.priceString,
+                              selected: e.value.identifier ==
+                                  state.selectedSubscriptionId,
+                              onPressed: bloc.onSubscriptionSelected,
+                            ),
+                          );
+                        },
+                      ).toList(),
                     ),
-                    loading: (_) => const Center(
+                    loading: (_) => Center(
                       child: CircularProgressIndicator.adaptive(
-                        backgroundColor: Colors.white,
+                        backgroundColor: theme.primaryColor,
                       ),
                     ),
                     error: (_) => const SizedBox.shrink(),

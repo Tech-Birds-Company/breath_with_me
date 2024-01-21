@@ -14,8 +14,7 @@ import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.d
 import 'package:breathe_with_me/managers/player_manager/track_player_manager.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
 import 'package:breathe_with_me/managers/shared_preferences_manager/shared_preferences_manager.dart';
-import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager_dev.dart';
-import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager_prod.dart';
+import 'package:breathe_with_me/managers/subscriptions_manager/bwm_subscriptions_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/firebase_user_manager.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/isar_bloc_storage.dart';
@@ -41,21 +40,19 @@ Future<ProviderContainer> _setupDependencies({
   CacheableBloc.storage = storage;
 
   final tracksDownloadManager = TracksDownloaderManager(databaseManager);
-  final pushNotificationsManager = PushNotificationsManager();
-  final userManager = FirebaseUserManager();
-  final navigationManager = NavigationManager(userManager);
-  final subscriptionsManager =
-      isProduction ? SubscriptionsManagerProd() : SubscriptionsManagerDev();
-  final playerManager = TrackPlayerManager();
-  final trackAudioManager = await AudioService.init(
-    builder: () => TrackAudioManager(playerManager),
-    config: const AudioServiceConfig(
-      androidNotificationChannelId: BWMConstants.androidNotificationChannelId,
-      androidNotificationChannelName:
-          BWMConstants.androidNotificationChannelName,
-    ),
+
+  final subscriptionsManager = BWMSubscriptionsManager(
+    isProduction
+        ? BWMConstants.revenueCatApiKeyProd
+        : BWMConstants.revenueCatApiKeyDev,
   );
+  await subscriptionsManager.configure();
+
+  final userManager = FirebaseUserManager(subscriptionsManager);
+
   final sharedPrefsManager = SharedPreferencesManager();
+
+  final pushNotificationsManager = PushNotificationsManager();
 
   final appDocumentsDir = await getApplicationDocumentsDirectory();
   final playerIconFile = File(
@@ -67,30 +64,43 @@ Future<ProviderContainer> _setupDependencies({
     await playerIconFile.writeAsBytes(bytes.buffer.asUint8List());
   }
 
-  navigationManager.init();
-  subscriptionsManager.init();
+  final navigationManager = NavigationManager(userManager)..init();
 
-  await sharedPrefsManager.init();
-  await pushNotificationsManager.init();
+  final trackAudioManager = await AudioService.init(
+    builder: () => TrackAudioManager(
+      TrackPlayerManager(
+        subscriptionsManager,
+        navigationManager,
+      ),
+    ),
+    config: const AudioServiceConfig(
+      androidNotificationChannelId: BWMConstants.androidNotificationChannelId,
+      androidNotificationChannelName:
+          BWMConstants.androidNotificationChannelName,
+    ),
+  );
 
   final uid = userManager.currentUser?.uid;
   if (uid != null) {
     await tracksDownloadManager.validateDownloads(uid);
   }
 
+  await sharedPrefsManager.init();
+  await pushNotificationsManager.init();
+
   final dependencies = [
     Di.manager.database.overrideWith((ref) {
       ref.onDispose(databaseManager.dispose);
       return databaseManager;
     }),
-    Di.manager.tracksDownloader.overrideWithValue(tracksDownloadManager),
-    Di.manager.trackPlayer.overrideWithValue(playerManager),
+    Di.manager.subscriptions.overrideWith((ref) {
+      ref.onDispose(subscriptionsManager.dispose);
+      return subscriptionsManager;
+    }),
     Di.manager.audio.overrideWithValue(trackAudioManager),
-    Di.manager.pushNotifications.overrideWithValue(pushNotificationsManager),
-    Di.manager.user.overrideWithValue(userManager),
-    Di.manager.navigation.overrideWithValue(navigationManager),
-    Di.manager.subscriptions.overrideWithValue(subscriptionsManager),
     Di.manager.sharedPreferences.overrideWithValue(sharedPrefsManager),
+    Di.manager.pushNotifications.overrideWithValue(pushNotificationsManager),
+    Di.manager.navigation.overrideWithValue(navigationManager),
   ];
 
   return ProviderContainer(overrides: dependencies);

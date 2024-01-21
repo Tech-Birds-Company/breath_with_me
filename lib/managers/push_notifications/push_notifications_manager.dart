@@ -9,21 +9,19 @@ final class PushNotificationsManager {
   late final _flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
-  Future<bool?> init() {
-    return _flutterLocalNotificationsPlugin.initialize(
-      const InitializationSettings(
-        android: AndroidInitializationSettings('mipmap/ic_launcher'),
-        iOS: DarwinInitializationSettings(
-          requestAlertPermission: false,
-          requestBadgePermission: false,
-          requestSoundPermission: false,
-          onDidReceiveLocalNotification: _onLocalMessage,
+  Future<bool?> init() => _flutterLocalNotificationsPlugin.initialize(
+        const InitializationSettings(
+          android: AndroidInitializationSettings('mipmap/ic_launcher'),
+          iOS: DarwinInitializationSettings(
+            requestAlertPermission: false,
+            requestBadgePermission: false,
+            requestSoundPermission: false,
+            onDidReceiveLocalNotification: _onLocalMessage,
+          ),
         ),
-      ),
-      onDidReceiveBackgroundNotificationResponse: _onBackgroundMessage,
-      onDidReceiveNotificationResponse: _onMessage,
-    );
-  }
+        onDidReceiveBackgroundNotificationResponse: _onBackgroundMessage,
+        onDidReceiveNotificationResponse: _onMessage,
+      );
 
   DateTime _scheduleNextWeekday(int weekday, int hour, int minute) {
     final now = DateTime.now().toLocal();

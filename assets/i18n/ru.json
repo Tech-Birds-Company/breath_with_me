@@ -54,6 +54,10 @@
 	"profileTotalFriends": "Друзей присоединилось",
 	"profileFaqTitle": "FAQ",
 	"profileLogout": "Выйти",
+	"profileBaseAccountType": "Базовый аккаунт",
+	"profilePremiumAccountType": "Премиум аккаунт",
+	"profilePremiumExpires": "до {}",
+	"profilePremiumOfferButton": "Получить премиум",
 
 	"reminderTitle": "Напоминания",
 	"reminderDisabled": "Выключено",
@@ -157,15 +161,33 @@
 		"buyPremium": "Оформить премиум",
 		"paywall": {
 			"selectTariffTitle": "Выберите тариф",
-			"3MonthsTitle": "3 месяца",
-			"1MonthTitle": "1 месяц",
 			"trialDescription": "Первые 7 дней бесплатно",
-			"subscriptionWeek": "7 дней",
-			"subscriptionMonth": "1 месяц",
-			"subscription3Months": "3 месяца",
-			"subscription6months": "6 месяцев",
-			"subscriptionAnnual": "12 месяцев",
-			"subscriptionLifeTime": "Навсегда"
+			"subscriptionPeriod": {
+				"W": {
+					"zero":"{} недель",
+					"one": "{} неделя",
+					"two": "{} недели",
+					"few": "{} недели",
+					"many": "{} недель",
+					"other": "{} недель"
+				},
+				"M": {
+					"zero":"{} месяцев",
+					"one": "{} месяц",
+					"two": "{} месяца",
+					"few": "{} месяца",
+					"many": "{} месяцев",
+					"other": "{} месяцев"
+				},
+				"Y": {
+					"zero":"{} месяцев",
+					"one": "{} месяц",
+					"two": "{} месяца",
+					"few": "{} месяца",
+					"many": "{} месяцев",
+					"other": "{} месяцев"
+				}
+			}
 		}
 	},
 

@@ -31,7 +31,7 @@ class CreateAccountHeader extends StatelessWidget {
             Text(
               LocaleKeys.createAccountHeaderTitle.tr().toUpperCase(),
               style: theme.typography.heading.copyWith(
-                color: Colors.white,
+                color: theme.primaryColor,
                 letterSpacing: 0.6,
               ),
             ),
@@ -59,7 +59,7 @@ class CreateAccountHeader extends StatelessWidget {
             Text(
               LocaleKeys.createAccountHeaderConjunction.tr(),
               style: theme.typography.bodyM.copyWith(
-                color: Colors.white,
+                color: theme.primaryColor,
               ),
             ),
             const SizedBox(height: 12),
@@ -67,7 +67,7 @@ class CreateAccountHeader extends StatelessWidget {
               LocaleKeys.createAccountHeaderSubtitle.tr().toUpperCase(),
               textAlign: TextAlign.center,
               style: theme.typography.bodyMTrue.copyWith(
-                color: Colors.white,
+                color: theme.primaryColor,
                 height: 1.8,
               ),
             ),
