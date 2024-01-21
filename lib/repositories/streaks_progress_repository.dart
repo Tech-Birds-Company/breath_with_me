@@ -12,6 +12,7 @@ final class StreaksProgressRepository {
     int minutesCount,
     int monthLivesCount,
   ) async {
+    final utcTimestamp = timestamp.toUtc();
     var progress = await _getStreaksProgress(userID, monthLivesCount);
 
     // Add practice minutes to progress
@@ -21,7 +22,7 @@ final class StreaksProgressRepository {
     );
 
     // If lives have expired, reset it
-    if (progress.livesExpireTimestamp.isBefore(DateTime.now())) {
+    if (progress.livesExpireTimestamp.isBefore(DateTime.now().toUtc())) {
       progress = progress.copyWith(
         livesCount: monthLivesCount,
         livesExpireTimestamp: _nextMonthTimestamp(),
@@ -29,8 +30,9 @@ final class StreaksProgressRepository {
     }
 
     // If don't have streak today, add it to timeline
-    if (!_containsTimestampWithSpecificDate(progress.timeline, timestamp)) {
-      progress = progress.copyWith(timeline: [...progress.timeline, timestamp]);
+    if (!_containsTimestampWithSpecificDate(progress.timeline, utcTimestamp)) {
+      progress =
+          progress.copyWith(timeline: [...progress.timeline, utcTimestamp]);
     }
 
     await _streaksProgressDoc(userID).set(_jsonFromProgress(progress));
@@ -42,6 +44,7 @@ final class StreaksProgressRepository {
     DateTime timestamp,
     int monthLivesCount,
   ) async {
+    final utcTimestamp = timestamp.toUtc();
     var progress = await _getStreaksProgress(userID, monthLivesCount);
 
     // Remove live for restore
@@ -50,8 +53,9 @@ final class StreaksProgressRepository {
     );
 
     // If don't have restored streak, add it to timeline
-    if (!_containsTimestampWithSpecificDate(progress.timeline, timestamp)) {
-      progress = progress.copyWith(timeline: [...progress.timeline, timestamp]);
+    if (!_containsTimestampWithSpecificDate(progress.timeline, utcTimestamp)) {
+      progress =
+          progress.copyWith(timeline: [...progress.timeline, utcTimestamp]);
     }
 
     await _streaksProgressDoc(userID).set(_jsonFromProgress(progress));
@@ -97,7 +101,7 @@ final class StreaksProgressRepository {
   }
 
   DateTime _nextMonthTimestamp() {
-    final now = DateTime.now();
+    final now = DateTime.now().toUtc();
     if (now.month == 12) {
       return DateTime(now.year + 1);
     } else {
