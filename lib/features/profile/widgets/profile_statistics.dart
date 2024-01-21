@@ -23,7 +23,7 @@ class ProfileStatistics extends StatelessWidget {
     final theme = Theme.of(context).extension<BWMTheme>()!;
 
     return state.when(
-      empty: () => const SizedBox(),
+      empty: () => const SizedBox.shrink(),
       premiumOffer: () => Padding(
         padding: const EdgeInsets.only(top: 32),
         child: DecoratedBox(
