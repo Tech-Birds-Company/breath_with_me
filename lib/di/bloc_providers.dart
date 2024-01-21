@@ -29,7 +29,6 @@ final class _BlocProviders {
         ref.read(Di.manager.user),
         ref.read(Di.manager.tracksDownloader),
         ref.read(Di.manager.navigation),
-        ref.read(Di.manager.subscriptions),
       );
       ref.onDispose(bloc.dispose);
       return bloc;
