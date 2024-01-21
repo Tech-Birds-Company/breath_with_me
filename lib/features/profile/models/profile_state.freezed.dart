@@ -20,7 +20,7 @@ ProfileState _$ProfileStateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProfileState {
-  StreakStatisticsData? get statistics => throw _privateConstructorUsedError;
+  ProfileStatisticsState get statistics => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,9 +34,9 @@ abstract class $ProfileStateCopyWith<$Res> {
           ProfileState value, $Res Function(ProfileState) then) =
       _$ProfileStateCopyWithImpl<$Res, ProfileState>;
   @useResult
-  $Res call({StreakStatisticsData? statistics});
+  $Res call({ProfileStatisticsState statistics});
 
-  $StreakStatisticsDataCopyWith<$Res>? get statistics;
+  $ProfileStatisticsStateCopyWith<$Res> get statistics;
 }
 
 /// @nodoc
@@ -52,24 +52,20 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? statistics = freezed,
+    Object? statistics = null,
   }) {
     return _then(_value.copyWith(
-      statistics: freezed == statistics
+      statistics: null == statistics
           ? _value.statistics
           : statistics // ignore: cast_nullable_to_non_nullable
-              as StreakStatisticsData?,
+              as ProfileStatisticsState,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $StreakStatisticsDataCopyWith<$Res>? get statistics {
-    if (_value.statistics == null) {
-      return null;
-    }
-
-    return $StreakStatisticsDataCopyWith<$Res>(_value.statistics!, (value) {
+  $ProfileStatisticsStateCopyWith<$Res> get statistics {
+    return $ProfileStatisticsStateCopyWith<$Res>(_value.statistics, (value) {
       return _then(_value.copyWith(statistics: value) as $Val);
     });
   }
@@ -83,10 +79,10 @@ abstract class _$$ProfileStateImplCopyWith<$Res>
       __$$ProfileStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({StreakStatisticsData? statistics});
+  $Res call({ProfileStatisticsState statistics});
 
   @override
-  $StreakStatisticsDataCopyWith<$Res>? get statistics;
+  $ProfileStatisticsStateCopyWith<$Res> get statistics;
 }
 
 /// @nodoc
@@ -100,13 +96,13 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? statistics = freezed,
+    Object? statistics = null,
   }) {
     return _then(_$ProfileStateImpl(
-      freezed == statistics
+      null == statistics
           ? _value.statistics
           : statistics // ignore: cast_nullable_to_non_nullable
-              as StreakStatisticsData?,
+              as ProfileStatisticsState,
     ));
   }
 }
@@ -120,7 +116,7 @@ class _$ProfileStateImpl implements _ProfileState {
       _$$ProfileStateImplFromJson(json);
 
   @override
-  final StreakStatisticsData? statistics;
+  final ProfileStatisticsState statistics;
 
   @override
   String toString() {
@@ -155,14 +151,14 @@ class _$ProfileStateImpl implements _ProfileState {
 }
 
 abstract class _ProfileState implements ProfileState {
-  const factory _ProfileState(final StreakStatisticsData? statistics) =
+  const factory _ProfileState(final ProfileStatisticsState statistics) =
       _$ProfileStateImpl;
 
   factory _ProfileState.fromJson(Map<String, dynamic> json) =
       _$ProfileStateImpl.fromJson;
 
   @override
-  StreakStatisticsData? get statistics;
+  ProfileStatisticsState get statistics;
   @override
   @JsonKey(ignore: true)
   _$$ProfileStateImplCopyWith<_$ProfileStateImpl> get copyWith =>

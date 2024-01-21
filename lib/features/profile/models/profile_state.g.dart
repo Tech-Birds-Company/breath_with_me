@@ -7,13 +7,11 @@ part of 'profile_state.dart';
 // **************************************************************************
 
 _$ProfileStateImpl _$$ProfileStateImplFromJson(Map json) => _$ProfileStateImpl(
-      json['statistics'] == null
-          ? null
-          : StreakStatisticsData.fromJson(
-              Map<String, dynamic>.from(json['statistics'] as Map)),
+      ProfileStatisticsState.fromJson(
+          Map<String, dynamic>.from(json['statistics'] as Map)),
     );
 
 Map<String, dynamic> _$$ProfileStateImplToJson(_$ProfileStateImpl instance) =>
     <String, dynamic>{
-      'statistics': instance.statistics?.toJson(),
+      'statistics': instance.statistics.toJson(),
     };

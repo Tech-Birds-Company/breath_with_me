@@ -4,9 +4,9 @@ import 'package:breathe_with_me/features/profile/blocs/profile_bloc.dart';
 import 'package:breathe_with_me/features/profile/models/profile_state.dart';
 import 'package:breathe_with_me/features/profile/widgets/profile_header.dart';
 import 'package:breathe_with_me/features/profile/widgets/profile_menu_button.dart';
+import 'package:breathe_with_me/features/profile/widgets/profile_statistics.dart';
 import 'package:breathe_with_me/features/profile/widgets/reminder_profile_item.dart';
 import 'package:breathe_with_me/features/reminder/blocs/reminder_bloc.dart';
-import 'package:breathe_with_me/features/streak/widgets/streak_statistics.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -69,13 +69,10 @@ class ProfilePage extends HookWidget {
                   ).toSliver(),
                   BlocBuilder<ProfileBloc, ProfileState>(
                     bloc: profileBloc,
-                    builder: (context, state) {
-                      return state.statistics != null
-                          ? StreakStatistics(data: state.statistics!)
-                          : const SizedBox();
-                    },
+                    builder: (context, state) =>
+                        ProfileStatistics(state: state.statistics),
                   ).toSliver(),
-                  const SizedBox(height: 96).toSliver(),
+                  const SizedBox(height: 24).toSliver(),
                   ProfileMenuItem(
                     title: LocaleKeys.profileSettings.tr(),
                     onTap: profileBloc.openProfileSettings,

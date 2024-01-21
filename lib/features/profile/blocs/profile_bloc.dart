@@ -1,4 +1,5 @@
 import 'package:breathe_with_me/features/profile/models/profile_state.dart';
+import 'package:breathe_with_me/features/profile/models/profile_statistics_state.dart';
 import 'package:breathe_with_me/features/streak/models/streak_statistics_data.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
@@ -30,7 +31,7 @@ final class ProfileBloc extends BlocBase<ProfileState> {
     this._databaseManager,
     this._subscriptionsManager,
     this._streaksProgressRepository,
-  ) : super(const ProfileState(null));
+  ) : super(const ProfileState(ProfileStatisticsState.empty()));
 
   String get username {
     final currentUser = _userManager.currentUser;
@@ -42,7 +43,7 @@ final class ProfileBloc extends BlocBase<ProfileState> {
   String? get premiumEndDate =>
       _subscriptionsManager.customerInfo?.latestExpirationDate;
 
-  Future<void> loadStatistics() async {
+  Future<void> updateStatistics() async {
     final userID = _userManager.currentUser?.uid;
     if (userID != null) {
       final monthLivesCount =
@@ -54,9 +55,13 @@ final class ProfileBloc extends BlocBase<ProfileState> {
         streaksProgress.practicesCount,
         streaksProgress.minutesCount,
       );
-      emit(ProfileState(streakStatistics));
+      emit(
+        ProfileState(
+          ProfileStatisticsState.streakStatistics(streakStatistics),
+        ),
+      );
     } else {
-      emit(const ProfileState(null));
+      emit(const ProfileState(ProfileStatisticsState.empty()));
     }
   }
 

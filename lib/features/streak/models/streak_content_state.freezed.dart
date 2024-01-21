@@ -19,11 +19,11 @@ StreakContentState _$StreakContentStateFromJson(Map<String, dynamic> json) {
     case 'loading':
       return _Loading.fromJson(json);
     case 'withoutPremium':
-      return WithoutPremium.fromJson(json);
+      return _WithoutPremium.fromJson(json);
     case 'premiumStartedOrContinued':
       return _PremiumStartedOrContinued.fromJson(json);
     case 'premiumMissed':
-      return PremiumMissed.fromJson(json);
+      return _PremiumMissed.fromJson(json);
 
     default:
       throw CheckedFromJsonException(json, 'runtimeType', 'StreakContentState',
@@ -74,28 +74,28 @@ mixin _$StreakContentState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(WithoutPremium value) withoutPremium,
+    required TResult Function(_WithoutPremium value) withoutPremium,
     required TResult Function(_PremiumStartedOrContinued value)
         premiumStartedOrContinued,
-    required TResult Function(PremiumMissed value) premiumMissed,
+    required TResult Function(_PremiumMissed value) premiumMissed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
-    TResult? Function(WithoutPremium value)? withoutPremium,
+    TResult? Function(_WithoutPremium value)? withoutPremium,
     TResult? Function(_PremiumStartedOrContinued value)?
         premiumStartedOrContinued,
-    TResult? Function(PremiumMissed value)? premiumMissed,
+    TResult? Function(_PremiumMissed value)? premiumMissed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(WithoutPremium value)? withoutPremium,
+    TResult Function(_WithoutPremium value)? withoutPremium,
     TResult Function(_PremiumStartedOrContinued value)?
         premiumStartedOrContinued,
-    TResult Function(PremiumMissed value)? premiumMissed,
+    TResult Function(_PremiumMissed value)? premiumMissed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -216,10 +216,10 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(WithoutPremium value) withoutPremium,
+    required TResult Function(_WithoutPremium value) withoutPremium,
     required TResult Function(_PremiumStartedOrContinued value)
         premiumStartedOrContinued,
-    required TResult Function(PremiumMissed value) premiumMissed,
+    required TResult Function(_PremiumMissed value) premiumMissed,
   }) {
     return loading(this);
   }
@@ -228,10 +228,10 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
-    TResult? Function(WithoutPremium value)? withoutPremium,
+    TResult? Function(_WithoutPremium value)? withoutPremium,
     TResult? Function(_PremiumStartedOrContinued value)?
         premiumStartedOrContinued,
-    TResult? Function(PremiumMissed value)? premiumMissed,
+    TResult? Function(_PremiumMissed value)? premiumMissed,
   }) {
     return loading?.call(this);
   }
@@ -240,10 +240,10 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(WithoutPremium value)? withoutPremium,
+    TResult Function(_WithoutPremium value)? withoutPremium,
     TResult Function(_PremiumStartedOrContinued value)?
         premiumStartedOrContinued,
-    TResult Function(PremiumMissed value)? premiumMissed,
+    TResult Function(_PremiumMissed value)? premiumMissed,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -314,7 +314,7 @@ class __$$WithoutPremiumImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$WithoutPremiumImpl implements WithoutPremium {
+class _$WithoutPremiumImpl implements _WithoutPremium {
   const _$WithoutPremiumImpl(this.streaksCount, this.quote,
       {final String? $type})
       : $type = $type ?? 'withoutPremium';
@@ -410,10 +410,10 @@ class _$WithoutPremiumImpl implements WithoutPremium {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(WithoutPremium value) withoutPremium,
+    required TResult Function(_WithoutPremium value) withoutPremium,
     required TResult Function(_PremiumStartedOrContinued value)
         premiumStartedOrContinued,
-    required TResult Function(PremiumMissed value) premiumMissed,
+    required TResult Function(_PremiumMissed value) premiumMissed,
   }) {
     return withoutPremium(this);
   }
@@ -422,10 +422,10 @@ class _$WithoutPremiumImpl implements WithoutPremium {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
-    TResult? Function(WithoutPremium value)? withoutPremium,
+    TResult? Function(_WithoutPremium value)? withoutPremium,
     TResult? Function(_PremiumStartedOrContinued value)?
         premiumStartedOrContinued,
-    TResult? Function(PremiumMissed value)? premiumMissed,
+    TResult? Function(_PremiumMissed value)? premiumMissed,
   }) {
     return withoutPremium?.call(this);
   }
@@ -434,10 +434,10 @@ class _$WithoutPremiumImpl implements WithoutPremium {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(WithoutPremium value)? withoutPremium,
+    TResult Function(_WithoutPremium value)? withoutPremium,
     TResult Function(_PremiumStartedOrContinued value)?
         premiumStartedOrContinued,
-    TResult Function(PremiumMissed value)? premiumMissed,
+    TResult Function(_PremiumMissed value)? premiumMissed,
     required TResult orElse(),
   }) {
     if (withoutPremium != null) {
@@ -454,12 +454,12 @@ class _$WithoutPremiumImpl implements WithoutPremium {
   }
 }
 
-abstract class WithoutPremium implements StreakContentState {
-  const factory WithoutPremium(
+abstract class _WithoutPremium implements StreakContentState {
+  const factory _WithoutPremium(
           final int streaksCount, final StreakQuoteData quote) =
       _$WithoutPremiumImpl;
 
-  factory WithoutPremium.fromJson(Map<String, dynamic> json) =
+  factory _WithoutPremium.fromJson(Map<String, dynamic> json) =
       _$WithoutPremiumImpl.fromJson;
 
   int get streaksCount;
@@ -661,10 +661,10 @@ class _$PremiumStartedOrContinuedImpl implements _PremiumStartedOrContinued {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(WithoutPremium value) withoutPremium,
+    required TResult Function(_WithoutPremium value) withoutPremium,
     required TResult Function(_PremiumStartedOrContinued value)
         premiumStartedOrContinued,
-    required TResult Function(PremiumMissed value) premiumMissed,
+    required TResult Function(_PremiumMissed value) premiumMissed,
   }) {
     return premiumStartedOrContinued(this);
   }
@@ -673,10 +673,10 @@ class _$PremiumStartedOrContinuedImpl implements _PremiumStartedOrContinued {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
-    TResult? Function(WithoutPremium value)? withoutPremium,
+    TResult? Function(_WithoutPremium value)? withoutPremium,
     TResult? Function(_PremiumStartedOrContinued value)?
         premiumStartedOrContinued,
-    TResult? Function(PremiumMissed value)? premiumMissed,
+    TResult? Function(_PremiumMissed value)? premiumMissed,
   }) {
     return premiumStartedOrContinued?.call(this);
   }
@@ -685,10 +685,10 @@ class _$PremiumStartedOrContinuedImpl implements _PremiumStartedOrContinued {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(WithoutPremium value)? withoutPremium,
+    TResult Function(_WithoutPremium value)? withoutPremium,
     TResult Function(_PremiumStartedOrContinued value)?
         premiumStartedOrContinued,
-    TResult Function(PremiumMissed value)? premiumMissed,
+    TResult Function(_PremiumMissed value)? premiumMissed,
     required TResult orElse(),
   }) {
     if (premiumStartedOrContinued != null) {
@@ -781,7 +781,7 @@ class __$$PremiumMissedImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PremiumMissedImpl implements PremiumMissed {
+class _$PremiumMissedImpl implements _PremiumMissed {
   const _$PremiumMissedImpl(this.statistics, this.livesData,
       {final String? $type})
       : $type = $type ?? 'premiumMissed';
@@ -877,10 +877,10 @@ class _$PremiumMissedImpl implements PremiumMissed {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(WithoutPremium value) withoutPremium,
+    required TResult Function(_WithoutPremium value) withoutPremium,
     required TResult Function(_PremiumStartedOrContinued value)
         premiumStartedOrContinued,
-    required TResult Function(PremiumMissed value) premiumMissed,
+    required TResult Function(_PremiumMissed value) premiumMissed,
   }) {
     return premiumMissed(this);
   }
@@ -889,10 +889,10 @@ class _$PremiumMissedImpl implements PremiumMissed {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
-    TResult? Function(WithoutPremium value)? withoutPremium,
+    TResult? Function(_WithoutPremium value)? withoutPremium,
     TResult? Function(_PremiumStartedOrContinued value)?
         premiumStartedOrContinued,
-    TResult? Function(PremiumMissed value)? premiumMissed,
+    TResult? Function(_PremiumMissed value)? premiumMissed,
   }) {
     return premiumMissed?.call(this);
   }
@@ -901,10 +901,10 @@ class _$PremiumMissedImpl implements PremiumMissed {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(WithoutPremium value)? withoutPremium,
+    TResult Function(_WithoutPremium value)? withoutPremium,
     TResult Function(_PremiumStartedOrContinued value)?
         premiumStartedOrContinued,
-    TResult Function(PremiumMissed value)? premiumMissed,
+    TResult Function(_PremiumMissed value)? premiumMissed,
     required TResult orElse(),
   }) {
     if (premiumMissed != null) {
@@ -921,11 +921,11 @@ class _$PremiumMissedImpl implements PremiumMissed {
   }
 }
 
-abstract class PremiumMissed implements StreakContentState {
-  const factory PremiumMissed(final StreakStatisticsData statistics,
+abstract class _PremiumMissed implements StreakContentState {
+  const factory _PremiumMissed(final StreakStatisticsData statistics,
       final StreakLivesData livesData) = _$PremiumMissedImpl;
 
-  factory PremiumMissed.fromJson(Map<String, dynamic> json) =
+  factory _PremiumMissed.fromJson(Map<String, dynamic> json) =
       _$PremiumMissedImpl.fromJson;
 
   StreakStatisticsData get statistics;
