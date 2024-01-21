@@ -69,8 +69,10 @@ class ProfilePage extends HookWidget {
                   ).toSliver(),
                   BlocBuilder<ProfileBloc, ProfileState>(
                     bloc: profileBloc,
-                    builder: (context, state) =>
-                        ProfileStatistics(state: state.statistics),
+                    builder: (context, state) => ProfileStatistics(
+                      state: state.statistics,
+                      onPremiumButtonPressed: profileBloc.openPremiumPaywall,
+                    ),
                   ).toSliver(),
                   const SizedBox(height: 24).toSliver(),
                   ProfileMenuItem(

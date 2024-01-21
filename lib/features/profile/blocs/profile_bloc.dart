@@ -115,4 +115,6 @@ final class ProfileBloc extends BlocBase<ProfileState> {
   }
 
   void openProfileSettings() => _navigationManager.openProfileSettings();
+
+  void openPremiumPaywall() => _navigationManager.openPremiumPaywall();
 }
