@@ -12,7 +12,7 @@ final class StreaksProgressRepository {
     int minutesCount,
     int monthLivesCount,
   ) async {
-    var progress = await _getStreaksProgress(userID, monthLivesCount);
+    var progress = await getStreaksProgress(userID, monthLivesCount);
 
     // Add practice minutes to progress
     progress = progress.copyWith(
@@ -42,7 +42,7 @@ final class StreaksProgressRepository {
     DateTime timestamp,
     int monthLivesCount,
   ) async {
-    var progress = await _getStreaksProgress(userID, monthLivesCount);
+    var progress = await getStreaksProgress(userID, monthLivesCount);
 
     // Remove live for restore
     progress = progress.copyWith(
@@ -58,7 +58,7 @@ final class StreaksProgressRepository {
     return progress;
   }
 
-  Future<StreaksProgress> _getStreaksProgress(
+  Future<StreaksProgress> getStreaksProgress(
     String userID,
     int monthLivesCount,
   ) async {

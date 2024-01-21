@@ -53,6 +53,7 @@ final class _BlocProviders {
       ref.read(Di.manager.user),
       ref.read(Di.manager.database),
       ref.read(Di.manager.subscriptions),
+      ref.read(Di.repository.firebaseStreaksProgress),
     ),
   );
 

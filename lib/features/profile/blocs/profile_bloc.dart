@@ -1,3 +1,5 @@
+import 'package:breathe_with_me/features/profile/models/profile_state.dart';
+import 'package:breathe_with_me/features/streak/models/streak_statistics_data.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/permissions_manager/permissions_manager.dart';
@@ -5,10 +7,11 @@ import 'package:breathe_with_me/managers/push_notifications/push_notifications_m
 import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/repositories/firebase_remote_config_repository.dart';
+import 'package:breathe_with_me/repositories/streaks_progress_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-final class ProfileBloc extends BlocBase<Object?> {
+final class ProfileBloc extends BlocBase<ProfileState> {
   final NavigationManager _navigationManager;
   final PushNotificationsManager _pushNotificationsManager;
   final PermissionsManager _permissionsManager;
@@ -16,6 +19,7 @@ final class ProfileBloc extends BlocBase<Object?> {
   final UserManager _userManager;
   final DatabaseManager _databaseManager;
   final SubscriptionsManager _subscriptionsManager;
+  final StreaksProgressRepository _streaksProgressRepository;
 
   ProfileBloc(
     this._navigationManager,
@@ -25,7 +29,8 @@ final class ProfileBloc extends BlocBase<Object?> {
     this._userManager,
     this._databaseManager,
     this._subscriptionsManager,
-  ) : super(null);
+    this._streaksProgressRepository,
+  ) : super(const ProfileState(null));
 
   String get username {
     final currentUser = _userManager.currentUser;
@@ -36,6 +41,24 @@ final class ProfileBloc extends BlocBase<Object?> {
 
   String? get premiumEndDate =>
       _subscriptionsManager.customerInfo?.latestExpirationDate;
+
+  Future<void> loadStatistics() async {
+    final userID = _userManager.currentUser?.uid;
+    if (userID != null) {
+      final monthLivesCount =
+          _firebaseRemoteConfigRepository.streaks.monthLivesCount;
+      final streaksProgress = await _streaksProgressRepository
+          .getStreaksProgress(userID, monthLivesCount);
+      final streakStatistics = StreakStatisticsData.full(
+        0,
+        streaksProgress.practicesCount,
+        streaksProgress.minutesCount,
+      );
+      emit(ProfileState(streakStatistics));
+    } else {
+      emit(const ProfileState(null));
+    }
+  }
 
   Future<void> openReminder() async {
     final permissionGranted =
