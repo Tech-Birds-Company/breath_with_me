@@ -47,10 +47,13 @@ class ProfileStatistics extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 10),
-                    Text(
-                      LocaleKeys.profilePremiumOffer1.tr(),
-                      style: theme.typography.bodyS
-                          .copyWith(color: theme.primaryText),
+                    Expanded(
+                      child: Text(
+                        LocaleKeys.profilePremiumOffer1.tr(),
+                        maxLines: 2,
+                        style: theme.typography.bodyS
+                            .copyWith(color: theme.primaryText),
+                      ),
                     ),
                   ],
                 ),
@@ -67,10 +70,13 @@ class ProfileStatistics extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 10),
-                    Text(
-                      LocaleKeys.profilePremiumOffer2.tr(),
-                      style: theme.typography.bodyS
-                          .copyWith(color: theme.primaryText),
+                    Expanded(
+                      child: Text(
+                        LocaleKeys.profilePremiumOffer2.tr(),
+                        maxLines: 2,
+                        style: theme.typography.bodyS
+                            .copyWith(color: theme.primaryText),
+                      ),
                     ),
                   ],
                 ),

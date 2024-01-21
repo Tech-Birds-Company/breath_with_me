@@ -1,4 +1,5 @@
 import 'package:breathe_with_me/assets.dart';
+import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
 import 'package:breathe_with_me/extensions/widget.dart';
 import 'package:breathe_with_me/features/profile/blocs/profile_bloc.dart';
 import 'package:breathe_with_me/features/profile/models/profile_state.dart';
@@ -59,9 +60,10 @@ class ProfilePage extends HookWidget {
           ),
           SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: CustomScrollView(
                 slivers: [
+                  const SizedBox(height: 68).toSliver(),
                   ProfileHeader(
                     username: profileBloc.username,
                     premiumEnabled: profileBloc.premiumEnabled,
@@ -112,6 +114,12 @@ class ProfilePage extends HookWidget {
                   ).toSliver(),
                 ],
               ),
+            ),
+          ),
+          const SizedBox(
+            height: 117,
+            child: BWMAppBar(
+              backgroundColor: Colors.transparent,
             ),
           ),
         ],
