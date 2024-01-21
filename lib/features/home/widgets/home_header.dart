@@ -1,6 +1,6 @@
 import 'package:breathe_with_me/assets.dart';
+import 'package:breathe_with_me/common/widgets/profile_button.dart';
 import 'package:breathe_with_me/extensions/widget.dart';
-import 'package:breathe_with_me/features/home/widgets/profile_button.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -27,6 +27,7 @@ class HomeHeader extends StatelessWidget {
               const Spacer(),
               ProfileButton(
                 onTap: onProfileTap,
+                size: 40,
               ),
             ],
           ).toSliver(),

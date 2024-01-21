@@ -56,16 +56,27 @@ class PremiumPaywall extends HookWidget {
                       BWMAssets.logoIcon,
                       height: 53,
                     ),
-                    Align(
-                      alignment: AlignmentDirectional.topEnd,
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.close_rounded,
-                          color: theme.primaryColor,
-                        ),
-                        splashRadius: 20,
-                        onPressed: bloc.onClosePaywall,
+                    BlocSelector<PremiumPaywallBloc, PremiumPaywallState, bool>(
+                      bloc: bloc,
+                      selector: (state) => state.maybeMap(
+                        data: (state) => !state.premiumPurchaseProcessing,
+                        orElse: () => true,
                       ),
+                      builder: (context, isVisible) {
+                        return isVisible
+                            ? Align(
+                                alignment: AlignmentDirectional.topEnd,
+                                child: IconButton(
+                                  icon: Icon(
+                                    Icons.close_rounded,
+                                    color: theme.primaryColor,
+                                  ),
+                                  splashRadius: 20,
+                                  onPressed: bloc.onClosePaywall,
+                                ),
+                              )
+                            : const SizedBox.shrink();
+                      },
                     ),
                   ],
                 ),

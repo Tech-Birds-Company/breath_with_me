@@ -9,9 +9,9 @@ class PremiumPaywallState with _$PremiumPaywallState {
     required Map<String, StoreProduct> subscriptions,
     String? selectedSubscriptionId,
     @Default(false) bool premiumPurchaseProcessing,
-  }) = _PremiumPaywallData;
+  }) = PremiumPaywallData;
 
-  const factory PremiumPaywallState.loading() = _PremiumPaywallLoading;
+  const factory PremiumPaywallState.loading() = PremiumPaywallLoading;
 
-  const factory PremiumPaywallState.error() = _PremiumPaywallError;
+  const factory PremiumPaywallState.error() = PremiumPaywallError;
 }

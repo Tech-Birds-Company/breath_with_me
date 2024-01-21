@@ -37,15 +37,25 @@ final class PremiumPaywallBloc extends BlocBase<PremiumPaywallState> {
     );
   }
 
-  void onSubscriptionSelected(String id) => emit(
-        state.maybeMap(
-          data: (state) => PremiumPaywallState.data(
-            subscriptions: state.subscriptions,
-            selectedSubscriptionId: id,
-          ),
-          orElse: () => state,
+  void onSubscriptionSelected(String id) {
+    if (state is! PremiumPaywallData) {
+      return;
+    } else {
+      final currentState = state as PremiumPaywallData;
+      if (currentState.premiumPurchaseProcessing) {
+        return;
+      }
+    }
+    emit(
+      state.maybeMap(
+        data: (state) => PremiumPaywallState.data(
+          subscriptions: state.subscriptions,
+          selectedSubscriptionId: id,
         ),
-      );
+        orElse: () => state,
+      ),
+    );
+  }
 
   void onBuyPremium() {
     state.mapOrNull(
