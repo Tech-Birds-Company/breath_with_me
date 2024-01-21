@@ -46,20 +46,24 @@ final class ProfileBloc extends BlocBase<ProfileState> {
   Future<void> updateStatistics() async {
     final userID = _userManager.currentUser?.uid;
     if (userID != null) {
-      final monthLivesCount =
-          _firebaseRemoteConfigRepository.streaks.monthLivesCount;
-      final streaksProgress = await _streaksProgressRepository
-          .getStreaksProgress(userID, monthLivesCount);
-      final streakStatistics = StreakStatisticsData.full(
-        0,
-        streaksProgress.practicesCount,
-        streaksProgress.minutesCount,
-      );
-      emit(
-        ProfileState(
-          ProfileStatisticsState.streakStatistics(streakStatistics),
-        ),
-      );
+      if (premiumEnabled) {
+        final monthLivesCount =
+            _firebaseRemoteConfigRepository.streaks.monthLivesCount;
+        final streaksProgress = await _streaksProgressRepository
+            .getStreaksProgress(userID, monthLivesCount);
+        final streakStatistics = StreakStatisticsData.full(
+          streaksProgress.lastStreaksCount,
+          streaksProgress.practicesCount,
+          streaksProgress.minutesCount,
+        );
+        emit(
+          ProfileState(
+            ProfileStatisticsState.streakStatistics(streakStatistics),
+          ),
+        );
+      } else {
+        emit(const ProfileState(ProfileStatisticsState.premiumOffer()));
+      }
     } else {
       emit(const ProfileState(ProfileStatisticsState.empty()));
     }
