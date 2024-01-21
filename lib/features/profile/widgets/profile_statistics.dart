@@ -1,5 +1,6 @@
 import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/common/widgets/bwm_action_button.dart';
+import 'package:breathe_with_me/features/premium/premium_constants.dart';
 import 'package:breathe_with_me/features/profile/models/profile_statistics_state.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_statistics.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
@@ -35,52 +36,33 @@ class ProfileStatistics extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      BWMAssets.checkmark,
-                      height: 16,
-                      width: 16,
-                      colorFilter: ColorFilter.mode(
-                        theme.primaryText,
-                        BlendMode.srcIn,
-                      ),
+                for (final offer in PremiumConstants.premiumOffers)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 3),
+                    child: Row(
+                      children: [
+                        SvgPicture.asset(
+                          BWMAssets.checkmark,
+                          height: 16,
+                          width: 16,
+                          colorFilter: ColorFilter.mode(
+                            theme.primaryText,
+                            BlendMode.srcIn,
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            offer.tr(),
+                            maxLines: 2,
+                            style: theme.typography.bodyS
+                                .copyWith(color: theme.primaryText),
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Text(
-                        LocaleKeys.profilePremiumOffer1.tr(),
-                        maxLines: 2,
-                        style: theme.typography.bodyS
-                            .copyWith(color: theme.primaryText),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 6),
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      BWMAssets.checkmark,
-                      height: 16,
-                      width: 16,
-                      colorFilter: ColorFilter.mode(
-                        theme.primaryText,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Text(
-                        LocaleKeys.profilePremiumOffer2.tr(),
-                        maxLines: 2,
-                        style: theme.typography.bodyS
-                            .copyWith(color: theme.primaryText),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 22),
+                  ),
+                const SizedBox(height: 20),
                 BWMActionButton(
                   title: LocaleKeys.profilePremiumOfferButton.tr(),
                   width: double.infinity,

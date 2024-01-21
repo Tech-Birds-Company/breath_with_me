@@ -56,8 +56,6 @@
 	"profileBaseAccountType": "Base account",
 	"profilePremiumAccountType": "Premium account",
 	"profilePremiumExpires": "till {}",
-	"profilePremiumOffer1": "Extended statistics of your breathing progress",
-	"profilePremiumOffer2": "Ability to restore your practice streak 3 times",
 	"profilePremiumOfferButton": "Go premium",
 
 	"reminderTitle": "Reminder",
