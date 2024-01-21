@@ -14,8 +14,7 @@ import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.d
 import 'package:breathe_with_me/managers/player_manager/track_player_manager.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
 import 'package:breathe_with_me/managers/shared_preferences_manager/shared_preferences_manager.dart';
-import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager_dev.dart';
-import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager_prod.dart';
+import 'package:breathe_with_me/managers/subscriptions_manager/bwm_subscriptions_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/firebase_user_manager.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/isar_bloc_storage.dart';
@@ -40,18 +39,13 @@ Future<ProviderContainer> _setupDependencies({
   final storage = IsarBlocStateStorage(databaseManager);
   CacheableBloc.storage = storage;
 
-  final trackAudioManager = await AudioService.init(
-    builder: () => TrackAudioManager(TrackPlayerManager()),
-    config: const AudioServiceConfig(
-      androidNotificationChannelId: BWMConstants.androidNotificationChannelId,
-      androidNotificationChannelName:
-          BWMConstants.androidNotificationChannelName,
-    ),
-  );
   final tracksDownloadManager = TracksDownloaderManager(databaseManager);
 
-  final subscriptionsManager =
-      isProduction ? SubscriptionsManagerProd() : SubscriptionsManagerDev();
+  final subscriptionsManager = BWMSubscriptionsManager(
+    isProduction
+        ? BWMConstants.revenueCatApiKeyProd
+        : BWMConstants.revenueCatApiKeyDev,
+  );
   await subscriptionsManager.configure();
 
   final userManager = FirebaseUserManager(subscriptionsManager);
@@ -71,6 +65,20 @@ Future<ProviderContainer> _setupDependencies({
   }
 
   final navigationManager = NavigationManager(userManager)..init();
+
+  final trackAudioManager = await AudioService.init(
+    builder: () => TrackAudioManager(
+      TrackPlayerManager(
+        subscriptionsManager,
+        navigationManager,
+      ),
+    ),
+    config: const AudioServiceConfig(
+      androidNotificationChannelId: BWMConstants.androidNotificationChannelId,
+      androidNotificationChannelName:
+          BWMConstants.androidNotificationChannelName,
+    ),
+  );
 
   final uid = userManager.currentUser?.uid;
   if (uid != null) {

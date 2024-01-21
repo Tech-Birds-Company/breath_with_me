@@ -40,8 +40,8 @@ final class ProfileBloc extends BlocBase<ProfileState> {
 
   bool get premiumEnabled => _subscriptionsManager.premiumEnabled;
 
-  String? get premiumEndDate =>
-      _subscriptionsManager.customerInfo?.latestExpirationDate;
+  String? get premiumEndDate => _subscriptionsManager
+      .customerInfo?.entitlements.active.values.firstOrNull?.expirationDate;
 
   Future<void> updateStatistics() async {
     final userID = _userManager.currentUser?.uid;

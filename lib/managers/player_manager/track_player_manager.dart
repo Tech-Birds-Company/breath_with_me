@@ -1,15 +1,42 @@
 import 'dart:async';
 
 import 'package:audio_session/audio_session.dart';
+import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/player_manager/player_manager.dart';
+import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:just_audio/just_audio.dart';
 
 final class TrackPlayerManager extends PlayerManager {
+  final SubscriptionsManager _subscriptionsManager;
+  final NavigationManager _navigationManager;
+
+  TrackPlayerManager(
+    this._subscriptionsManager,
+    this._navigationManager,
+  );
+
+  AppLifecycleListener? _appLifecycleListener;
+  AppLifecycleState? _appLifecycleState;
+
   @override
   Future<void> init(AudioSource source) async {
     await _setupAudioSession();
     audioPlayer ??= AudioPlayer();
     await audioPlayer!.setAudioSource(source);
+    if (!_subscriptionsManager.premiumEnabled) {
+      _setupLifecycleListener();
+    }
+  }
+
+  void _setupLifecycleListener() {
+    _appLifecycleListener ??= AppLifecycleListener(
+      onStateChange: (state) => _appLifecycleState = state,
+      onPause: () {
+        pause();
+        _navigationManager.openPremiumPaywall();
+      },
+    );
   }
 
   Future<void> _setupAudioSession() async {
@@ -22,6 +49,10 @@ final class TrackPlayerManager extends PlayerManager {
 
   @override
   Future<void> play() async {
+    final premiumEnabled = _subscriptionsManager.premiumEnabled;
+    if (!premiumEnabled && _appLifecycleState == AppLifecycleState.paused) {
+      return;
+    }
     final source = audioPlayer?.audioSource;
     if (source != null) {
       if (await audioSession?.setActive(true) ?? false) {
@@ -40,5 +71,13 @@ final class TrackPlayerManager extends PlayerManager {
   Future<void> stop() async {
     await audioPlayer?.stop();
     await audioSession?.setActive(false);
+  }
+
+  @override
+  Future<void> dispose() async {
+    await super.dispose();
+    _appLifecycleListener?.dispose();
+    _appLifecycleListener = null;
+    _appLifecycleState = null;
   }
 }
