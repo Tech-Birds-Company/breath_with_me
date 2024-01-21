@@ -123,8 +123,6 @@ Future<void> mainCommon(Environment env) async {
 
   final diContainer =
       await _setupDependencies(isProduction: env == Environment.prod);
-  final navigationManager = diContainer.read(Di.manager.navigation);
-  final routerConfig = navigationManager.router;
 
   runApp(
     EasyLocalization(
@@ -137,9 +135,7 @@ Future<void> mainCommon(Environment env) async {
       ],
       child: ProviderScope(
         parent: diContainer,
-        child: BWMApp(
-          routerConfig: routerConfig,
-        ),
+        child: const BWMApp(),
       ),
     ),
   );
