@@ -52,6 +52,7 @@ class StreakStatistics extends StatelessWidget {
                     .plural(minutesCount),
                 crossAxisAlignment: CrossAxisAlignment.center,
               ),
+              const Spacer(),
             ],
           ),
         );
