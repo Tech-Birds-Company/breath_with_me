@@ -28,6 +28,8 @@ class HomeHeader extends StatelessWidget {
               ProfileButton(
                 onTap: onProfileTap,
                 size: 40,
+                iconWidth: 18.56,
+                iconHeight: 20.99,
               ),
             ],
           ).toSliver(),

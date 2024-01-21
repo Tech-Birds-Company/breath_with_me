@@ -57,7 +57,7 @@ class PremiumBannerTracks extends StatelessWidget {
                             height: 36,
                             textColor: theme.primaryColor,
                             borderColor: theme.gray5,
-                            overlayColor: Colors.white.withOpacity(0.2),
+                            overlayColor: theme.primaryColor.withOpacity(0.2),
                             onPressed: onLearnMore,
                           ),
                         ],
@@ -80,7 +80,7 @@ class PremiumBannerTracks extends StatelessWidget {
                       ),
                     ),
                     child: IconButton(
-                      color: Colors.white,
+                      color: theme.primaryColor,
                       onPressed: onBannerHide,
                       icon: const Icon(Icons.close),
                       highlightColor: Colors.transparent,

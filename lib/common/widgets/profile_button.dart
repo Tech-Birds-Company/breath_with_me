@@ -8,9 +8,13 @@ import 'package:flutter_svg/svg.dart';
 class ProfileButton extends StatelessWidget {
   final VoidCallback? onTap;
   final double size;
+  final double iconWidth;
+  final double iconHeight;
 
   const ProfileButton({
     required this.size,
+    required this.iconWidth,
+    required this.iconHeight,
     this.onTap,
     super.key,
   });
@@ -31,11 +35,12 @@ class ProfileButton extends StatelessWidget {
                   width: size,
                   height: size,
                   child: ColoredBox(
-                    color: premiumEnabled ? theme.purple2 : theme.gray6,
+                    color: premiumEnabled ? theme.purple2 : theme.primaryColor,
                     child: Center(
                       child: SvgPicture.asset(
                         BWMAssets.profileIcon,
-                        fit: BoxFit.cover,
+                        width: iconWidth,
+                        height: iconHeight,
                         colorFilter: ColorFilter.mode(
                           premiumEnabled ? theme.primaryColor : theme.gray1,
                           BlendMode.srcIn,

@@ -23,7 +23,11 @@ class ProfileHeader extends StatelessWidget {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return Row(
       children: [
-        const ProfileButton(size: 64),
+        const ProfileButton(
+          size: 64,
+          iconWidth: 28,
+          iconHeight: 30,
+        ),
         const SizedBox(width: 20),
         Expanded(
           child: Column(

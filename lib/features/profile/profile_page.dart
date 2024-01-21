@@ -59,67 +59,70 @@ class ProfilePage extends HookWidget {
             ),
           ),
           SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: CustomScrollView(
-                slivers: [
-                  const SizedBox(height: 68).toSliver(),
-                  ProfileHeader(
-                    username: profileBloc.username,
-                    premiumEnabled: profileBloc.premiumEnabled,
-                    premiumEndDate: profileBloc.premiumEndDate,
-                  ).toSliver(),
-                  BlocBuilder<ProfileBloc, ProfileState>(
-                    bloc: profileBloc,
-                    builder: (context, state) => ProfileStatistics(
-                      state: state.statistics,
-                      onPremiumButtonPressed: profileBloc.openPremiumPaywall,
-                    ),
-                  ).toSliver(),
-                  const SizedBox(height: 24).toSliver(),
-                  ProfileMenuItem(
-                    title: LocaleKeys.profileSettings.tr(),
-                    onTap: profileBloc.openProfileSettings,
-                    showIndicator: true,
-                  ).toSliver(),
-                  ProfileMenuItem(
-                    title: LocaleKeys.profileLanguage.tr(),
-                    subtitle: currentLocale.languageCode.tr(),
-                    onTap: profileBloc.openLanguageSheet,
-                    showIndicator: true,
-                  ).toSliver(),
-                  ReminderProfileItem(
-                    cachedBlocStateStream: reminderBloc.cachedBlocStateStream,
-                    onOpenReminder: profileBloc.openReminder,
-                  ).toSliver(),
-                  ProfileMenuItem(
-                    title: LocaleKeys.profileFAQ.tr(),
-                    showIndicator: true,
-                    onTap: profileBloc.openFaq,
-                  ).toSliver(),
-                  ProfileMenuItem(
-                    title: LocaleKeys.profileChat.tr(),
-                    icon: BWMAssets.telegram,
-                    onTap: profileBloc.openCommunityChat,
-                  ).toSliver(),
-                  ProfileMenuItem(
-                    title: LocaleKeys.profileContactUs.tr(),
-                    icon: BWMAssets.email,
-                    onTap: profileBloc.onSupportEmail,
-                  ).toSliver(),
-                  ProfileMenuItem(
-                    title: LocaleKeys.profileLogout.tr(),
-                    icon: BWMAssets.logout,
-                    onTap: profileBloc.onSignOut,
-                  ).toSliver(),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 117,
-            child: BWMAppBar(
-              backgroundColor: Colors.transparent,
+            child: CustomScrollView(
+              slivers: [
+                const BWMAppBar(
+                  backgroundColor: Colors.transparent,
+                ).toSliver(),
+                const SizedBox(height: 32).toSliver(),
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  sliver: SliverMainAxisGroup(
+                    slivers: [
+                      ProfileHeader(
+                        username: profileBloc.username,
+                        premiumEnabled: profileBloc.premiumEnabled,
+                        premiumEndDate: profileBloc.premiumEndDate,
+                      ).toSliver(),
+                      BlocBuilder<ProfileBloc, ProfileState>(
+                        bloc: profileBloc,
+                        builder: (context, state) => ProfileStatistics(
+                          state: state.statistics,
+                          onPremiumButtonPressed:
+                              profileBloc.openPremiumPaywall,
+                        ),
+                      ).toSliver(),
+                      const SizedBox(height: 24).toSliver(),
+                      ProfileMenuItem(
+                        title: LocaleKeys.profileSettings.tr(),
+                        onTap: profileBloc.openProfileSettings,
+                        showIndicator: true,
+                      ).toSliver(),
+                      ProfileMenuItem(
+                        title: LocaleKeys.profileLanguage.tr(),
+                        subtitle: currentLocale.languageCode.tr(),
+                        onTap: profileBloc.openLanguageSheet,
+                        showIndicator: true,
+                      ).toSliver(),
+                      ReminderProfileItem(
+                        cachedBlocStateStream:
+                            reminderBloc.cachedBlocStateStream,
+                        onOpenReminder: profileBloc.openReminder,
+                      ).toSliver(),
+                      ProfileMenuItem(
+                        title: LocaleKeys.profileFAQ.tr(),
+                        showIndicator: true,
+                        onTap: profileBloc.openFaq,
+                      ).toSliver(),
+                      ProfileMenuItem(
+                        title: LocaleKeys.profileChat.tr(),
+                        icon: BWMAssets.telegram,
+                        onTap: profileBloc.openCommunityChat,
+                      ).toSliver(),
+                      ProfileMenuItem(
+                        title: LocaleKeys.profileContactUs.tr(),
+                        icon: BWMAssets.email,
+                        onTap: profileBloc.onSupportEmail,
+                      ).toSliver(),
+                      ProfileMenuItem(
+                        title: LocaleKeys.profileLogout.tr(),
+                        icon: BWMAssets.logout,
+                        onTap: profileBloc.onSignOut,
+                      ).toSliver(),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ],

@@ -19,7 +19,7 @@ class TrackPlayCover extends StatelessWidget {
             color: theme.fifthColor.withOpacity(0.20),
             boxShadow: [
               BoxShadow(
-                color: Colors.white.withOpacity(0.12),
+                color: theme.primaryColor.withOpacity(0.12),
                 blurRadius: 20,
                 offset: const Offset(
                   -2,

@@ -153,9 +153,9 @@ class PremiumPaywall extends HookWidget {
                         },
                       ).toList(),
                     ),
-                    loading: (_) => const Center(
+                    loading: (_) => Center(
                       child: CircularProgressIndicator.adaptive(
-                        backgroundColor: Colors.white,
+                        backgroundColor: theme.primaryColor,
                       ),
                     ),
                     error: (_) => const SizedBox.shrink(),
