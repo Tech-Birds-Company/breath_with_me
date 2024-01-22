@@ -1,7 +1,7 @@
 part of 'di.dart';
 
 final class _RepositoryProviders {
-  late final tracks = Provider(
+  late final tracks = Provider.autoDispose(
     (ref) => TracksRepositoryImpl(
       ref.read(Di.manager.user),
       ref.read(Di.manager.database),
@@ -17,10 +17,11 @@ final class _RepositoryProviders {
   );
 
   late final firebaseFaqQuestions =
-      Provider((ref) => const FirebaseFaqQuestionsRepository());
+      Provider.autoDispose((ref) => const FirebaseFaqQuestionsRepository());
 
   late final firebaseStreaksProgress =
-      Provider((ref) => const StreaksProgressRepository());
+      Provider.autoDispose((ref) => const StreaksProgressRepository());
 
-  late final streaksQuotes = Provider((ref) => const StreaksQuotesRepository());
+  late final streaksQuotes =
+      Provider.autoDispose((ref) => const StreaksQuotesRepository());
 }

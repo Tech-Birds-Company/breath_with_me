@@ -29,15 +29,16 @@ final class TrackPlayerManager extends PlayerManager {
     }
   }
 
-  void _setupLifecycleListener() {
-    _appLifecycleListener ??= AppLifecycleListener(
-      onStateChange: (state) => _appLifecycleState = state,
-      onPause: () {
-        pause();
-        _navigationManager.openPremiumPaywall();
-      },
-    );
-  }
+  void _setupLifecycleListener() =>
+      _appLifecycleListener ??= AppLifecycleListener(
+        onStateChange: (state) => _appLifecycleState = state,
+        onPause: () {
+          if (audioPlayer?.playing ?? false) {
+            _navigationManager.openPremiumPaywall();
+          }
+          pause();
+        },
+      );
 
   Future<void> _setupAudioSession() async {
     audioSession = await AudioSession.instance;

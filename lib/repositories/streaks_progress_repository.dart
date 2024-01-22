@@ -82,23 +82,21 @@ final class StreaksProgressRepository {
     }
   }
 
-  DocumentReference<Map<String, dynamic>> _streaksProgressDoc(String userID) {
-    return FirebaseFirestore.instance
-        .collection(StreaksProgressRepository._streaksCollection)
-        .doc(userID);
-  }
+  DocumentReference<Map<String, dynamic>> _streaksProgressDoc(String userId) =>
+      FirebaseFirestore.instance
+          .collection(StreaksProgressRepository._streaksCollection)
+          .doc(userId);
 
   bool _containsTimestampWithSpecificDate(
     List<DateTime> timeline,
     DateTime timestamp,
-  ) {
-    return timeline.any(
-      (current) =>
-          current.day == timestamp.day &&
-          current.month == timestamp.month &&
-          current.year == timestamp.year,
-    );
-  }
+  ) =>
+      timeline.any(
+        (current) =>
+            current.day == timestamp.day &&
+            current.month == timestamp.month &&
+            current.year == timestamp.year,
+      );
 
   DateTime _nextMonthTimestamp() {
     final now = DateTime.now().toUtc();
@@ -132,9 +130,8 @@ final class StreaksProgressRepository {
     return dateTime.toIso8601String();
   }
 
-  Timestamp _timestampFromDateTime(DateTime dateTime) {
-    return Timestamp.fromMicrosecondsSinceEpoch(
-      dateTime.microsecondsSinceEpoch,
-    );
-  }
+  Timestamp _timestampFromDateTime(DateTime dateTime) =>
+      Timestamp.fromMicrosecondsSinceEpoch(
+        dateTime.microsecondsSinceEpoch,
+      );
 }
