@@ -39,7 +39,7 @@ final class _BlocProviders {
     (ref) => OnboardingBloc(
       ref.read(Di.manager.navigation),
       ref.read(Di.manager.user),
-      ref.read(Di.repository.firebaseRemoteConfig),
+      ref.read(Di.manager.deeplink),
     ),
   );
 
@@ -53,6 +53,7 @@ final class _BlocProviders {
       ref.read(Di.manager.database),
       ref.read(Di.manager.subscriptions),
       ref.read(Di.repository.firebaseStreaksProgress),
+      ref.read(Di.manager.deeplink),
     ),
   );
 
@@ -111,7 +112,7 @@ final class _BlocProviders {
   late final forgotPassword = Provider.autoDispose(
     (ref) => ForgotPasswordBloc(
       ref.read(Di.manager.user),
-      ref.read(Di.repository.firebaseRemoteConfig),
+      ref.read(Di.manager.deeplink),
     ),
   );
 

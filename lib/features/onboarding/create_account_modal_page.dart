@@ -57,9 +57,7 @@ class CreateAccountModalPage extends StatelessWidget {
                     shape: const StadiumBorder(),
                     backgroundColor: const Color(0x24BDD6E9),
                   ),
-                  onPressed: () {
-                    // TODO(bestk1ngarthur): code
-                  },
+                  onPressed: bloc.onOpenContactUs,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text(

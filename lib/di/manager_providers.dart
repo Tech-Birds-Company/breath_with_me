@@ -41,4 +41,10 @@ final class _ManagerProviders {
       Provider<SubscriptionsManager>((ref) => throw UnimplementedError());
 
   late final sharedPreferences = Provider((ref) => SharedPreferencesManager());
+
+  late final deeplink = Provider(
+    (ref) => DeeplinkManager(
+      ref.read(Di.repository.firebaseRemoteConfig),
+    ),
+  );
 }

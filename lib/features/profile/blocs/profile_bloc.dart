@@ -2,6 +2,7 @@ import 'package:breathe_with_me/features/profile/models/profile_state.dart';
 import 'package:breathe_with_me/features/profile/models/profile_statistics_state.dart';
 import 'package:breathe_with_me/features/streak/models/streak_statistics_data.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
+import 'package:breathe_with_me/managers/deeplink_manager/deeplink_manager.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/permissions_manager/permissions_manager.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
@@ -10,7 +11,6 @@ import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/repositories/firebase_remote_config_repository.dart';
 import 'package:breathe_with_me/repositories/streaks_progress_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 final class ProfileBloc extends BlocBase<ProfileState> {
   final NavigationManager _navigationManager;
@@ -21,6 +21,7 @@ final class ProfileBloc extends BlocBase<ProfileState> {
   final DatabaseManager _databaseManager;
   final SubscriptionsManager _subscriptionsManager;
   final StreaksProgressRepository _streaksProgressRepository;
+  final DeeplinkManager _deepLinkManager;
 
   ProfileBloc(
     this._navigationManager,
@@ -31,6 +32,7 @@ final class ProfileBloc extends BlocBase<ProfileState> {
     this._databaseManager,
     this._subscriptionsManager,
     this._streaksProgressRepository,
+    this._deepLinkManager,
   ) : super(const ProfileState(ProfileStatisticsState.empty()));
 
   String get username {
@@ -79,26 +81,9 @@ final class ProfileBloc extends BlocBase<ProfileState> {
     }
   }
 
-  Future<void> openCommunityChat() async {
-    final socials = _firebaseRemoteConfigRepository.socials;
-    final communityDeeplink = Uri.parse(socials.communityDeeplink);
-    final communityUrl = Uri.parse(socials.communityUrl);
-    final canLaunch = await canLaunchUrl(communityDeeplink);
-    if (canLaunch) {
-      await launchUrl(communityDeeplink);
-    } else {
-      await launchUrl(communityUrl);
-    }
-  }
+  Future<void> openCommunityChat() => _deepLinkManager.openCommunityChat();
 
-  Future<void> onSupportEmail() async {
-    final socials = _firebaseRemoteConfigRepository.socials;
-    final supportEmailDeeplink = Uri.parse(socials.supportEmailDeeplink);
-    final canLaunch = await canLaunchUrl(supportEmailDeeplink);
-    if (canLaunch) {
-      await launchUrl(supportEmailDeeplink);
-    }
-  }
+  Future<void> onSupportEmail() => _deepLinkManager.onComposeEmail();
 
   void openLanguageSheet() {
     if (_navigationManager.context == null) {
@@ -109,12 +94,12 @@ final class ProfileBloc extends BlocBase<ProfileState> {
 
   void openFaq() => _navigationManager.openFaq();
 
+  void openProfileSettings() => _navigationManager.openProfileSettings();
+
+  void openPremiumPaywall() => _navigationManager.openPremiumPaywall();
+
   Future<void> onSignOut() async {
     await _userManager.signOut();
     await _databaseManager.clearDb();
   }
-
-  void openProfileSettings() => _navigationManager.openProfileSettings();
-
-  void openPremiumPaywall() => _navigationManager.openPremiumPaywall();
 }

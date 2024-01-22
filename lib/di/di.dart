@@ -20,6 +20,7 @@ import 'package:breathe_with_me/features/tracks/blocs/tracks_list_bloc.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/managers/audio_manager/audio_manager.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
+import 'package:breathe_with_me/managers/deeplink_manager/deeplink_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/tracks_downloader_manger.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/permissions_manager/permissions_manager.dart';
