@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:breathe_with_me/features/profile/models/profile_state.dart';
 import 'package:breathe_with_me/features/profile/models/profile_statistics_state.dart';
 import 'package:breathe_with_me/features/streak/models/streak_statistics_data.dart';
@@ -40,34 +42,54 @@ final class ProfileBloc extends BlocBase<ProfileState> {
     return currentUser?.displayName ?? '';
   }
 
-  bool get premiumEnabled => _subscriptionsManager.premiumEnabled;
+  Stream<bool> get premiumEnabledStream =>
+      _subscriptionsManager.premiumEnabledStream;
+
+  bool get _premiumEnabled => _subscriptionsManager.premiumEnabled;
 
   String? get premiumEndDate => _subscriptionsManager
       .customerInfo?.entitlements.active.values.firstOrNull?.expirationDate;
 
-  Future<void> updateStatistics() async {
-    final userID = _userManager.currentUser?.uid;
-    if (userID != null) {
-      if (premiumEnabled) {
-        final monthLivesCount =
-            _firebaseRemoteConfigRepository.streaks.monthLivesCount;
-        final streaksProgress = await _streaksProgressRepository
-            .getStreaksProgress(userID, monthLivesCount);
-        final streakStatistics = StreakStatisticsData.full(
-          streaksProgress.lastStreaksCount,
-          streaksProgress.practicesCount,
-          streaksProgress.minutesCount,
-        );
-        emit(
-          ProfileState(
-            ProfileStatisticsState.streakStatistics(streakStatistics),
-          ),
-        );
-      } else {
-        emit(const ProfileState(ProfileStatisticsState.premiumOffer()));
-      }
+  StreamSubscription<bool>? _premiumEnabledSubscription;
+
+  Future<void> init() async {
+    await _updateStatistics();
+    _premiumEnabledSubscription ??= premiumEnabledStream.listen(
+      (_) => _updateStatistics(),
+    );
+  }
+
+  Future<void> _updateStatistics() async {
+    final userId = _userManager.currentUser?.uid;
+    if (userId == null) {
+      emit(
+        const ProfileState(
+          ProfileStatisticsState.empty(),
+        ),
+      );
+      return;
+    }
+    if (_premiumEnabled) {
+      final monthLivesCount =
+          _firebaseRemoteConfigRepository.streaks.monthLivesCount;
+      final streaksProgress = await _streaksProgressRepository
+          .getStreaksProgress(userId, monthLivesCount);
+      final streakStatistics = StreakStatisticsData.full(
+        streaksProgress.lastStreaksCount,
+        streaksProgress.practicesCount,
+        streaksProgress.minutesCount,
+      );
+      emit(
+        ProfileState(
+          ProfileStatisticsState.streakStatistics(streakStatistics),
+        ),
+      );
     } else {
-      emit(const ProfileState(ProfileStatisticsState.empty()));
+      emit(
+        const ProfileState(
+          ProfileStatisticsState.premiumOffer(),
+        ),
+      );
     }
   }
 
@@ -101,5 +123,10 @@ final class ProfileBloc extends BlocBase<ProfileState> {
   Future<void> onSignOut() async {
     await _userManager.signOut();
     await _databaseManager.clearDb();
+  }
+
+  void dispose() {
+    _premiumEnabledSubscription?.cancel();
+    _premiumEnabledSubscription = null;
   }
 }

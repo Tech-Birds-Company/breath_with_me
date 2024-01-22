@@ -29,8 +29,8 @@ class ProfilePage extends HookWidget {
   Widget build(BuildContext context) {
     useEffect(
       () {
-        profileBloc.updateStatistics();
-        return null;
+        profileBloc.init();
+        return profileBloc.dispose;
       },
       const [],
     );
@@ -69,10 +69,17 @@ class ProfilePage extends HookWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   sliver: SliverMainAxisGroup(
                     slivers: [
-                      ProfileHeader(
-                        username: profileBloc.username,
-                        premiumEnabled: profileBloc.premiumEnabled,
-                        premiumEndDate: profileBloc.premiumEndDate,
+                      StreamBuilder<bool>(
+                        stream: profileBloc.premiumEnabledStream,
+                        initialData: false,
+                        builder: (context, snapshot) {
+                          final premiumEnabled = snapshot.requireData;
+                          return ProfileHeader(
+                            username: profileBloc.username,
+                            premiumEnabled: premiumEnabled,
+                            premiumEndDate: profileBloc.premiumEndDate,
+                          );
+                        },
                       ).toSliver(),
                       BlocBuilder<ProfileBloc, ProfileState>(
                         bloc: profileBloc,

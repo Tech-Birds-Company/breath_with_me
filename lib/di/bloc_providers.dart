@@ -44,17 +44,21 @@ final class _BlocProviders {
   );
 
   late final profile = Provider(
-    (ref) => ProfileBloc(
-      ref.read(Di.manager.navigation),
-      ref.read(Di.manager.pushNotifications),
-      ref.read(Di.manager.permissions),
-      ref.read(Di.repository.firebaseRemoteConfig),
-      ref.read(Di.manager.user),
-      ref.read(Di.manager.database),
-      ref.read(Di.manager.subscriptions),
-      ref.read(Di.repository.firebaseStreaksProgress),
-      ref.read(Di.manager.deeplink),
-    ),
+    (ref) {
+      final bloc = ProfileBloc(
+        ref.read(Di.manager.navigation),
+        ref.read(Di.manager.pushNotifications),
+        ref.read(Di.manager.permissions),
+        ref.read(Di.repository.firebaseRemoteConfig),
+        ref.read(Di.manager.user),
+        ref.read(Di.manager.database),
+        ref.read(Di.manager.subscriptions),
+        ref.read(Di.repository.firebaseStreaksProgress),
+        ref.read(Di.manager.deeplink),
+      );
+      ref.onDispose(bloc.dispose);
+      return bloc;
+    },
   );
 
   late final faq = Provider(
