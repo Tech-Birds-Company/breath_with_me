@@ -129,7 +129,13 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   void _subscribeToPlayerState() =>
       _playerStateSub ??= _audioManager.onPlayerStateChanged?.listen(
         (playerState) {
-          emit(state.copyWith(isPaused: !playerState.playing));
+          emit(
+            state.copyWith(
+              playerInitialized:
+                  playerState.processingState == ProcessingState.ready,
+              isPaused: !playerState.playing,
+            ),
+          );
           if (playerState.processingState == ProcessingState.completed) {
             onTrackFinish();
           }

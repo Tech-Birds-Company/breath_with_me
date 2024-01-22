@@ -13,10 +13,18 @@ class TrackPlayerButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      BlocSelector<TrackPlayerBloc, TrackPlayerState, bool>(
+      BlocBuilder<TrackPlayerBloc, TrackPlayerState>(
         bloc: bloc,
-        selector: (state) => state.isPaused,
-        builder: (context, isPaused) {
+        buildWhen: (previous, current) {
+          final pauseChanged = previous.isPaused != current.isPaused;
+          final isInitializedChanged =
+              previous.playerInitialized != current.playerInitialized;
+          return pauseChanged || isInitializedChanged;
+        },
+        builder: (context, state) {
+          if (!state.playerInitialized) {
+            return const SizedBox.shrink();
+          }
           final theme = Theme.of(context).extension<BWMTheme>()!;
           return SizedBox(
             width: 95,
@@ -28,7 +36,7 @@ class TrackPlayerButton extends StatelessWidget {
                   .withOpacity(0.12), // TODO(vasidmi): update theme
               child: Center(
                 child: SvgPicture.asset(
-                  isPaused ? BWMAssets.playIcon : BWMAssets.pauseIcon,
+                  state.isPaused ? BWMAssets.playIcon : BWMAssets.pauseIcon,
                   colorFilter: ColorFilter.mode(
                     theme.primaryColor,
                     BlendMode.srcIn,
