@@ -9,19 +9,23 @@ final class _RepositoryProviders {
     ),
   );
 
-  late final firebaseTutors =
-      Provider((ref) => const FirebaseTutorsRepository());
+  late final firebaseTutors = Provider(
+    (ref) => const FirebaseTutorsRepository(),
+  );
 
   late final firebaseRemoteConfig = Provider.autoDispose(
     (ref) => const FirebaseRemoteConfigRepository(),
   );
 
-  late final firebaseFaqQuestions =
-      Provider.autoDispose((ref) => const FirebaseFaqQuestionsRepository());
+  late final firebaseFaqQuestions = Provider.autoDispose(
+    (ref) => const FirebaseFaqQuestionsRepository(),
+  );
 
-  late final firebaseStreaksProgress =
-      Provider.autoDispose((ref) => const StreaksProgressRepository());
+  late final firebaseStreaksProgress = Provider.autoDispose(
+    (ref) => const StreaksProgressRepositoryImpl(),
+  );
 
-  late final streaksQuotes =
-      Provider.autoDispose((ref) => const StreaksQuotesRepository());
+  late final streaksQuotes = Provider.autoDispose(
+    (ref) => const StreaksQuotesRepository(),
+  );
 }
