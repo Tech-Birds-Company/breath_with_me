@@ -151,7 +151,7 @@ class __$$StreaksProgressImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$StreaksProgressImpl extends _StreaksProgress {
-  const _$StreaksProgressImpl(
+  _$StreaksProgressImpl(
       {required this.livesCount,
       required this.livesExpireTimestamp,
       required this.minutesCount,
@@ -226,13 +226,13 @@ class _$StreaksProgressImpl extends _StreaksProgress {
 }
 
 abstract class _StreaksProgress extends StreaksProgress {
-  const factory _StreaksProgress(
+  factory _StreaksProgress(
       {required final int livesCount,
       required final DateTime livesExpireTimestamp,
       required final int minutesCount,
       required final int practicesCount,
       required final List<DateTime> timeline}) = _$StreaksProgressImpl;
-  const _StreaksProgress._() : super._();
+  _StreaksProgress._() : super._();
 
   factory _StreaksProgress.fromJson(Map<String, dynamic> json) =
       _$StreaksProgressImpl.fromJson;

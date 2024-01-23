@@ -75,7 +75,7 @@ final class ProfileBloc extends BlocBase<ProfileState> {
       final streaksProgress = await _streaksProgressRepository
           .getStreaksProgress(userId, monthLivesCount);
       final streakStatistics = StreakStatisticsData.full(
-        streaksProgress.lastStreaksCount,
+        streaksProgress.streaksCount,
         streaksProgress.practicesCount,
         streaksProgress.minutesCount,
       );

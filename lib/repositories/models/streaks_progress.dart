@@ -6,7 +6,7 @@ part 'streaks_progress.g.dart';
 
 @freezed
 class StreaksProgress with _$StreaksProgress {
-  const factory StreaksProgress({
+  factory StreaksProgress({
     required int livesCount,
     required DateTime livesExpireTimestamp,
     required int minutesCount,
@@ -14,18 +14,31 @@ class StreaksProgress with _$StreaksProgress {
     required List<DateTime> timeline,
   }) = _StreaksProgress;
 
-  const StreaksProgress._();
+  StreaksProgress._();
 
-  int get lastStreaksCount {
-    final timeline = this.timeline.sorted((a, b) => b.compareTo(a));
+  late final _sortedTimeline = timeline.sorted(
+    (a, b) => b.compareTo(a),
+  );
+
+  int get streaksCount {
+    if (_sortedTimeline.isEmpty) {
+      return 0;
+    }
 
     var count = 1;
-    var date =
-        DateTime(timeline.first.year, timeline.first.month, timeline.first.day);
-    for (var i = 1; i < timeline.length; i++) {
+    var date = DateTime(
+      _sortedTimeline.first.year,
+      _sortedTimeline.first.month,
+      _sortedTimeline.first.day,
+    );
+
+    for (var i = 1; i < _sortedTimeline.length; i++) {
       final expectedDate = date.subtract(const Duration(days: 1));
-      final currentDate =
-          DateTime(timeline[i].year, timeline[i].month, timeline[i].day);
+      final currentDate = DateTime(
+        _sortedTimeline[i].year,
+        _sortedTimeline[i].month,
+        _sortedTimeline[i].day,
+      );
       if (currentDate == expectedDate) {
         count += 1;
         date = currentDate;
@@ -37,16 +50,25 @@ class StreaksProgress with _$StreaksProgress {
     return count;
   }
 
-  int get lastMissedDaysCount {
-    final timeline = this.timeline.sorted((a, b) => b.compareTo(a));
+  int get missedDaysCount {
+    if (_sortedTimeline.isEmpty) {
+      return 0;
+    }
 
     var count = 0;
-    var date =
-        DateTime(timeline.first.year, timeline.first.month, timeline.first.day);
-    for (var i = 1; i < timeline.length; i++) {
+    var date = DateTime(
+      _sortedTimeline.first.year,
+      _sortedTimeline.first.month,
+      _sortedTimeline.first.day,
+    );
+
+    for (var i = 1; i < _sortedTimeline.length; i++) {
       final expectedDate = date.subtract(const Duration(days: 1));
-      final currentDate =
-          DateTime(timeline[i].year, timeline[i].month, timeline[i].day);
+      final currentDate = DateTime(
+        _sortedTimeline[i].year,
+        _sortedTimeline[i].month,
+        _sortedTimeline[i].day,
+      );
       if (currentDate != expectedDate) {
         count += 1;
         date = currentDate;

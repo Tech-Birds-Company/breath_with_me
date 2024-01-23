@@ -6,19 +6,22 @@ final class StreaksProgressRepository {
 
   const StreaksProgressRepository();
 
-  Future<StreaksProgress> addPractice(
-    String userID,
+  Future<StreaksProgress> _updateStreaksProgress(
+    String userId,
     DateTime timestamp,
     int minutesCount,
     int monthLivesCount,
+    bool isRestore,
   ) async {
     final utcTimestamp = timestamp.toUtc();
-    var progress = await getStreaksProgress(userID, monthLivesCount);
+    var progress = await getStreaksProgress(userId, monthLivesCount);
 
-    // Add practice minutes to progress
+    // Add practice minutes to progress or remove live for restore
     progress = progress.copyWith(
       minutesCount: progress.minutesCount + minutesCount,
-      practicesCount: progress.practicesCount + 1,
+      practicesCount:
+          isRestore ? progress.practicesCount : progress.practicesCount + 1,
+      livesCount: isRestore ? progress.livesCount - 1 : progress.livesCount,
     );
 
     // If lives have expired, reset it
@@ -35,38 +38,42 @@ final class StreaksProgressRepository {
           progress.copyWith(timeline: [...progress.timeline, utcTimestamp]);
     }
 
-    await _streaksProgressDoc(userID).set(_jsonFromProgress(progress));
+    await _streaksProgressDoc(userId).set(_jsonFromProgress(progress));
     return progress;
   }
+
+  Future<StreaksProgress> addPractice(
+    String userId,
+    DateTime timestamp,
+    int minutesCount,
+    int monthLivesCount,
+  ) =>
+      _updateStreaksProgress(
+        userId,
+        timestamp,
+        minutesCount,
+        monthLivesCount,
+        false,
+      );
 
   Future<StreaksProgress> restoreStreak(
-    String userID,
+    String userId,
     DateTime timestamp,
     int monthLivesCount,
-  ) async {
-    final utcTimestamp = timestamp.toUtc();
-    var progress = await getStreaksProgress(userID, monthLivesCount);
-
-    // Remove live for restore
-    progress = progress.copyWith(
-      livesCount: progress.livesCount - 1,
-    );
-
-    // If don't have restored streak, add it to timeline
-    if (!_containsTimestampWithSpecificDate(progress.timeline, utcTimestamp)) {
-      progress =
-          progress.copyWith(timeline: [...progress.timeline, utcTimestamp]);
-    }
-
-    await _streaksProgressDoc(userID).set(_jsonFromProgress(progress));
-    return progress;
-  }
+  ) =>
+      _updateStreaksProgress(
+        userId,
+        timestamp,
+        0,
+        monthLivesCount,
+        true,
+      );
 
   Future<StreaksProgress> getStreaksProgress(
-    String userID,
+    String userId,
     int monthLivesCount,
   ) async {
-    final doc = await _streaksProgressDoc(userID).get();
+    final doc = await _streaksProgressDoc(userId).get();
     final json = doc.data();
 
     if (json != null) {
@@ -124,14 +131,9 @@ final class StreaksProgressRepository {
     return json;
   }
 
-  String _stringFromTimestamp(Timestamp timestamp) {
-    final dateTime =
-        DateTime.fromMicrosecondsSinceEpoch(timestamp.microsecondsSinceEpoch);
-    return dateTime.toIso8601String();
-  }
+  String _stringFromTimestamp(Timestamp timestamp) =>
+      timestamp.toDate().toIso8601String();
 
   Timestamp _timestampFromDateTime(DateTime dateTime) =>
-      Timestamp.fromMicrosecondsSinceEpoch(
-        dateTime.microsecondsSinceEpoch,
-      );
+      Timestamp.fromDate(dateTime);
 }

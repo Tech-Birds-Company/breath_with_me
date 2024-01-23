@@ -67,10 +67,10 @@ final class StreakBloc extends BlocBase<StreakState> {
   void onSkipTap() {
     final progress = state.progress;
     if (progress != null) {
-      final streaksCount = progress.lastStreaksCount;
+      final streaksCount = progress.streaksCount;
       final contentState = StreakContentState.premiumStartedOrContinued(
         StreakStatisticsData.full(
-          progress.lastStreaksCount,
+          progress.streaksCount,
           progress.practicesCount,
           progress.minutesCount,
         ),
@@ -90,8 +90,8 @@ final class StreakBloc extends BlocBase<StreakState> {
   StreakContentState getContentState(StreaksProgress progress) {
     final StreakContentState state;
     if (_premiumEnabled) {
-      final streaksCount = progress.lastStreaksCount;
-      final missedDaysCount = progress.lastMissedDaysCount;
+      final streaksCount = progress.streaksCount;
+      final missedDaysCount = progress.missedDaysCount;
       if ((missedDaysCount == 1) && (progress.livesCount > 0)) {
         state = StreakContentState.premiumMissed(
           StreakStatisticsData.missed(streaksCount, missedDaysCount),
@@ -119,7 +119,7 @@ final class StreakBloc extends BlocBase<StreakState> {
       }
     } else {
       state = StreakContentState.withoutPremium(
-        progress.lastStreaksCount,
+        progress.streaksCount,
         _streaksQuotesRepository.getQuote(_locale.languageCode),
       );
     }
