@@ -13,7 +13,7 @@ class SafetyPrecautionsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    final bloc = ref.read(Di.bloc.safetyPrecautions);
+    final bloc = ref.watch(Di.bloc.safetyPrecautions);
 
     useEffect(
       () => bloc.setSafetyPrecautionsShowed,

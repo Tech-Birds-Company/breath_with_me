@@ -17,9 +17,9 @@ class ProfilePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final profileBloc = ref.read(Di.bloc.profile);
+    final profileBloc = ref.watch(Di.bloc.profile);
     final streakBloc = ref.watch(Di.bloc.streak);
-    final reminderBloc = ref.read(Di.bloc.reminder);
+    final reminderBloc = ref.watch(Di.bloc.reminder);
 
     final theme = Theme.of(context).extension<BWMTheme>()!;
     final currentLocale = EasyLocalization.of(context)!.locale;

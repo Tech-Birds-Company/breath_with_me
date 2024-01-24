@@ -12,7 +12,7 @@ class SighUpSuccess extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final navigationManager = ref.read(Di.manager.navigation);
+    final navigationManager = ref.watch(Di.manager.navigation);
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return Scaffold(
       backgroundColor: Colors.transparent,

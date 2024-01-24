@@ -21,7 +21,7 @@ class ProfileButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final manager = ref.read(Di.manager.subscriptions);
+    final manager = ref.watch(Di.manager.subscriptions);
     return GestureDetector(
       onTap: onTap,
       child: ClipOval(

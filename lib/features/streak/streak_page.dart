@@ -17,7 +17,7 @@ class StreakPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    final bloc = ref.read(Di.bloc.streak);
+    final bloc = ref.watch(Di.bloc.streak);
     return Scaffold(
       backgroundColor: theme.primaryBackground,
       body: SafeArea(

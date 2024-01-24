@@ -11,7 +11,7 @@ class OnboardingPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final bloc = ref.read(Di.bloc.onboarding);
+    final bloc = ref.watch(Di.bloc.onboarding);
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return Scaffold(
       backgroundColor: theme.darkBackground,

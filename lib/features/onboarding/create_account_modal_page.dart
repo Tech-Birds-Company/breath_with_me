@@ -16,7 +16,7 @@ class CreateAccountModalPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    final bloc = ref.read(Di.bloc.onboarding);
+    final bloc = ref.watch(Di.bloc.onboarding);
     final locale = context.locale;
     return Scaffold(
       backgroundColor: Colors.black,

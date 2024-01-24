@@ -11,7 +11,7 @@ class HomePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final navigationManager = ref.read(Di.manager.navigation);
+    final navigationManager = ref.watch(Di.manager.navigation);
 
     return Scaffold(
       backgroundColor: Colors.black, // TODO(vasidmi): use theme

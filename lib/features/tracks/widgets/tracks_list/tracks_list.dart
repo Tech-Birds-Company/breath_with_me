@@ -22,7 +22,7 @@ class TracksList extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tracksListBloc = ref.watch(Di.bloc.tracksList);
-    final premiumBannerBloc = ref.read(Di.bloc.premiumBanner);
+    final premiumBannerBloc = ref.watch(Di.bloc.premiumBanner);
 
     useEffect(
       () => tracksListBloc.dispose,
@@ -104,7 +104,7 @@ class _TrackItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final bloc = ref.read(Di.bloc.track(_track));
+    final bloc = ref.watch(Di.bloc.track(_track));
     return TrackItem(
       track: _track,
       onTap: bloc.openTrackPlayer,

@@ -12,12 +12,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
 class TracksFilters extends ConsumerWidget {
-  const TracksFilters({
-    super.key,
-  });
+  const TracksFilters({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    EasyLocalization.of(context);
     final bloc = ref.watch(Di.bloc.tracksFilters);
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,

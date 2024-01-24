@@ -14,7 +14,7 @@ class AccountSettingsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final bloc = ref.read(Di.bloc.accountSettings);
+    final bloc = ref.watch(Di.bloc.accountSettings);
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return Stack(
       children: [

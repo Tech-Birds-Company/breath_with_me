@@ -15,7 +15,7 @@ class FaqPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final bloc = ref.read(Di.bloc.faq);
+    final bloc = ref.watch(Di.bloc.faq);
     final theme = Theme.of(context).extension<BWMTheme>()!;
     final currentLocale = EasyLocalization.of(context)!.locale;
     bloc.loadQuestions(currentLocale.languageCode);

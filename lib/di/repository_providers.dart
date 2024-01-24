@@ -3,13 +3,13 @@ part of 'di.dart';
 final class _RepositoryProviders {
   late final tracks = Provider.autoDispose(
     (ref) => TracksRepositoryImpl(
-      ref.read(Di.manager.user),
-      ref.read(Di.manager.database),
-      ref.read(firebaseTutors),
+      ref.watch(Di.manager.user),
+      ref.watch(Di.manager.database),
+      ref.watch(firebaseTutors),
     ),
   );
 
-  late final firebaseTutors = Provider(
+  late final firebaseTutors = Provider.autoDispose(
     (ref) => const FirebaseTutorsRepository(),
   );
 
@@ -24,7 +24,7 @@ final class _RepositoryProviders {
   late final firebaseStreaksProgress = Provider.autoDispose(
     (ref) => StreakProgressRepositoryV2(
       FirebaseFirestore.instance,
-      ref.read(Di.repository.firebaseRemoteConfig),
+      ref.watch(Di.repository.firebaseRemoteConfig),
     ),
   );
 

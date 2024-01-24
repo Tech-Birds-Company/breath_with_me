@@ -4,7 +4,7 @@ final class _BlocProviders {
   late final tracksList = Provider.autoDispose(
     (ref) {
       final bloc = TracksListBloc(
-        ref.read(Di.repository.tracks),
+        ref.watch(Di.repository.tracks),
         ref.watch(Di.bloc.tracksFilters),
       )..init();
       ref.onDispose(bloc.dispose);
@@ -12,11 +12,11 @@ final class _BlocProviders {
     },
   );
 
-  late final home = Provider(
+  late final home = Provider.autoDispose(
     (ref) => HomeBloc(
-      ref.read(Di.manager.permissions),
-      ref.read(Di.manager.sharedPreferences),
-      ref.read(Di.manager.navigation),
+      ref.watch(Di.manager.permissions),
+      ref.watch(Di.manager.sharedPreferences),
+      ref.watch(Di.manager.navigation),
     )..init(),
   );
 
@@ -24,75 +24,75 @@ final class _BlocProviders {
     (ref, trackId) {
       final bloc = TrackPlayerBloc(
         trackId,
-        ref.read(Di.manager.audio),
-        ref.read(Di.repository.tracks),
-        ref.read(Di.manager.user),
-        ref.read(Di.manager.tracksDownloader),
-        ref.read(Di.manager.streakProgress),
-        ref.read(Di.manager.navigation),
+        ref.watch(Di.manager.audio),
+        ref.watch(Di.repository.tracks),
+        ref.watch(Di.manager.user),
+        ref.watch(Di.manager.tracksDownloader),
+        ref.watch(Di.manager.streakProgress),
+        ref.watch(Di.manager.navigation),
       )..init();
       ref.onDispose(bloc.dispose);
       return bloc;
     },
   );
 
-  late final onboarding = Provider(
+  late final onboarding = Provider.autoDispose(
     (ref) => OnboardingBloc(
-      ref.read(Di.manager.navigation),
-      ref.read(Di.manager.user),
-      ref.read(Di.manager.deeplink),
+      ref.watch(Di.manager.navigation),
+      ref.watch(Di.manager.user),
+      ref.watch(Di.manager.deeplink),
     ),
   );
 
-  late final profile = Provider(
+  late final profile = Provider.autoDispose(
     (ref) {
       final bloc = ProfileBloc(
-        ref.read(Di.manager.navigation),
-        ref.read(Di.manager.pushNotifications),
-        ref.read(Di.manager.permissions),
-        ref.read(Di.manager.user),
-        ref.read(Di.manager.database),
-        ref.read(Di.manager.subscriptions),
-        ref.read(Di.manager.deeplink),
+        ref.watch(Di.manager.navigation),
+        ref.watch(Di.manager.pushNotifications),
+        ref.watch(Di.manager.permissions),
+        ref.watch(Di.manager.user),
+        ref.watch(Di.manager.database),
+        ref.watch(Di.manager.subscriptions),
+        ref.watch(Di.manager.deeplink),
       );
       ref.onDispose(bloc.dispose);
       return bloc;
     },
   );
 
-  late final faq = Provider(
+  late final faq = Provider.autoDispose(
     (ref) => FaqBloc(
-      ref.read(Di.repository.firebaseFaqQuestions),
+      ref.watch(Di.repository.firebaseFaqQuestions),
     ),
   );
 
   late final reminder = Provider.autoDispose(
     (ref) => ReminderBloc(
-      ref.read(Di.manager.pushNotifications),
+      ref.watch(Di.manager.pushNotifications),
     ),
   );
 
-  late final safetyPrecautions = Provider(
+  late final safetyPrecautions = Provider.autoDispose(
     (ref) => SafetyPrecautionsBloc(
-      ref.read(Di.manager.navigation),
-      ref.read(Di.manager.sharedPreferences),
+      ref.watch(Di.manager.navigation),
+      ref.watch(Di.manager.sharedPreferences),
     ),
   );
 
   late final track = Provider.family.autoDispose<TrackBloc, Track>(
     (ref, track) => TrackBloc(
       track,
-      ref.read(Di.repository.tracks),
-      ref.read(Di.manager.user),
-      ref.read(Di.manager.navigation),
+      ref.watch(Di.repository.tracks),
+      ref.watch(Di.manager.user),
+      ref.watch(Di.manager.navigation),
     ),
   );
 
   late final tracksFilters = Provider.autoDispose(
     (ref) {
       final bloc = TracksFiltersBloc(
-        ref.read(Di.repository.tracks),
-        ref.read(Di.manager.navigation),
+        ref.watch(Di.repository.tracks),
+        ref.watch(Di.manager.navigation),
       )..init();
       ref.onDispose(bloc.dispose);
       return bloc;
@@ -101,32 +101,32 @@ final class _BlocProviders {
 
   late final signUp = Provider.autoDispose(
     (ref) => SignUpBloc(
-      ref.read(Di.manager.user),
-      ref.read(Di.manager.navigation),
+      ref.watch(Di.manager.user),
+      ref.watch(Di.manager.navigation),
     ),
   );
 
   late final signIn = Provider.autoDispose(
     (ref) => SignInBloc(
-      ref.read(Di.manager.navigation),
-      ref.read(Di.manager.user),
+      ref.watch(Di.manager.navigation),
+      ref.watch(Di.manager.user),
     ),
   );
 
   late final forgotPassword = Provider.autoDispose(
     (ref) => ForgotPasswordBloc(
-      ref.read(Di.manager.user),
-      ref.read(Di.manager.deeplink),
+      ref.watch(Di.manager.user),
+      ref.watch(Di.manager.deeplink),
     ),
   );
 
   late final streak = Provider.autoDispose(
     (ref) {
       final bloc = StreakBloc(
-        ref.read(Di.manager.streakProgress),
-        ref.read(Di.manager.subscriptions),
-        ref.read(Di.manager.navigation),
-      );
+        ref.watch(Di.manager.streakProgress),
+        ref.watch(Di.manager.subscriptions),
+        ref.watch(Di.manager.navigation),
+      )..init();
       ref.onDispose(bloc.dispose);
       return bloc;
     },
@@ -134,24 +134,24 @@ final class _BlocProviders {
 
   late final accountSettings = Provider.autoDispose(
     (ref) => AccountSettingsBloc(
-      ref.read(Di.manager.user),
-      ref.read(Di.manager.navigation),
+      ref.watch(Di.manager.user),
+      ref.watch(Di.manager.navigation),
     ),
   );
 
   late final premiumBanner = Provider.autoDispose(
     (ref) => PremiumBannerBloc(
-      ref.read(Di.repository.firebaseRemoteConfig),
-      ref.read(Di.manager.subscriptions),
-      ref.read(Di.manager.navigation),
-    ),
+      ref.watch(Di.repository.firebaseRemoteConfig),
+      ref.watch(Di.manager.subscriptions),
+      ref.watch(Di.manager.navigation),
+    )..init(),
   );
 
-  late final premiumPaywall = Provider(
+  late final premiumPaywall = Provider.autoDispose(
     (ref) => PremiumPaywallBloc(
-      ref.read(Di.manager.subscriptions),
-      ref.read(Di.repository.firebaseRemoteConfig),
-      ref.read(Di.manager.navigation),
+      ref.watch(Di.manager.subscriptions),
+      ref.watch(Di.repository.firebaseRemoteConfig),
+      ref.watch(Di.manager.navigation),
     )..init(),
   );
 }

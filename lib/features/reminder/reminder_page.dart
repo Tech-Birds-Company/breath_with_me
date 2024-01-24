@@ -29,7 +29,7 @@ class ReminderPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    final bloc = ref.read(Di.bloc.reminder);
+    final bloc = ref.watch(Di.bloc.reminder);
 
     return Scaffold(
       appBar: BWMAppBar(

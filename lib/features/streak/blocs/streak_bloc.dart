@@ -16,14 +16,12 @@ final class StreakBloc extends BlocBase<StreakState> {
     this._streakProgressManager,
     this._subscriptionsManager,
     this._navigationManager,
-  ) : super(const StreakState.loading(premiumEnabled: false)) {
-    _init();
-  }
+  ) : super(const StreakState.loading(premiumEnabled: false));
 
   StreamSubscription<bool>? _premiumSubscription;
   StreamSubscription<StreakProgressV2>? _streakProgressSubscription;
 
-  Future<void> _init() async {
+  Future<void> init() async {
     emit(state.copyWith(premiumEnabled: _subscriptionsManager.premiumEnabled));
     _premiumSubscription ??= _subscriptionsManager.premiumEnabledStream.listen(
       (premiumEnabled) {
