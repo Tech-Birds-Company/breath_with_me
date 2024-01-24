@@ -99,7 +99,12 @@ Future<ProviderContainer> _setupDependencies({
       ref.onDispose(subscriptionsManager.dispose);
       return subscriptionsManager;
     }),
-    Di.manager.audio.overrideWithValue(trackAudioManager),
+    Di.manager.audio.overrideWith(
+      (ref) {
+        ref.onDispose(trackAudioManager.dispose);
+        return trackAudioManager;
+      },
+    ),
     Di.manager.sharedPreferences.overrideWithValue(sharedPrefsManager),
     Di.manager.pushNotifications.overrideWithValue(pushNotificationsManager),
     Di.manager.navigation.overrideWithValue(navigationManager),

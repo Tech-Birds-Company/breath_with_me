@@ -11,7 +11,10 @@ class StreakProgressManager {
   final String _userId;
   final StreakProgressRepositoryV2 _streaksProgressRepository;
 
-  StreakProgressManager(this._userId, this._streaksProgressRepository);
+  StreakProgressManager(
+    this._userId,
+    this._streaksProgressRepository,
+  );
 
   Stream<StreakProgressV2> get stream =>
       _streaksProgressRepository.getStreakProgressStream(_userId);

@@ -119,7 +119,7 @@ final class _BlocProviders {
     ),
   );
 
-  late final streak = Provider(
+  late final streak = Provider.autoDispose(
     (ref) {
       final bloc = StreakBloc(
         ref.read(Di.manager.streakProgress),
