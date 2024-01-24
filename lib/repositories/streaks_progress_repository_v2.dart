@@ -1,17 +1,20 @@
 import 'package:breathe_with_me/repositories/models/streak_progress_v2.dart';
+import 'package:breathe_with_me/repositories/remote_config_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class StreakProgressRepositoryV2 {
   static const _collection = 'streaks';
 
-  final FirebaseFirestore firestore;
+  final FirebaseFirestore _firestore;
+  final RemoteConfigRepository _remoteConfig;
 
   StreakProgressRepositoryV2(
-    this.firestore,
+    this._firestore,
+    this._remoteConfig,
   );
 
-  late final _streakCollection = firestore.collection(_collection);
-  late final _defaultTotalLives = 3;
+  late final _streakCollection = _firestore.collection(_collection);
+  late final _defaultTotalLives = _remoteConfig.streaks.monthLivesCount;
 
   Stream<StreakProgressV2> getStreakProgressStream(String userId) =>
       _streakCollection.doc(userId).snapshots().distinct().map(

@@ -1,11 +1,30 @@
 import 'package:breathe_with_me/managers/streak_progress_manager/streak_progress_manager.dart';
+import 'package:breathe_with_me/repositories/models/remote_config/remote_config_legal_documents.dart';
+import 'package:breathe_with_me/repositories/models/remote_config/remote_config_premium.dart';
+import 'package:breathe_with_me/repositories/models/remote_config/remote_config_socials.dart';
+import 'package:breathe_with_me/repositories/models/remote_config/remote_config_streaks.dart';
 import 'package:breathe_with_me/repositories/models/streak_progress_v2.dart';
+import 'package:breathe_with_me/repositories/remote_config_repository.dart';
 import 'package:breathe_with_me/repositories/streaks_progress_repository_v2.dart';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+final class MockRemoteConfig implements RemoteConfigRepository {
+  @override
+  RemoteConfigLegalDocuments get legalDocuments => throw UnimplementedError();
+
+  @override
+  RemoteConfigPremium get premium => throw UnimplementedError();
+
+  @override
+  RemoteConfigSocials get socials => throw UnimplementedError();
+
+  @override
+  RemoteConfigStreaks get streaks => const RemoteConfigStreaks();
+}
+
 final class MockStreaksProgressRepository extends StreakProgressRepositoryV2 {
-  MockStreaksProgressRepository(super.firestore);
+  MockStreaksProgressRepository(super.firestore, super.remoteConfig);
 }
 
 final class MockStreakProgressManager extends StreakProgressManager {
@@ -13,7 +32,6 @@ final class MockStreakProgressManager extends StreakProgressManager {
     super.userId,
     super.streaksProgressRepository,
   );
-  int get defaultTotalLives => 3;
 }
 
 void main() {
@@ -22,13 +40,17 @@ void main() {
     () {
       late MockStreaksProgressRepository streaksProgressRepository;
       late MockStreakProgressManager streakProgressManager;
-
+      late final mockRemoteConfig = MockRemoteConfig();
       const userId = 'bwm_test_user_id';
 
       setUp(
         () async {
           final firestore = FakeFirebaseFirestore();
-          streaksProgressRepository = MockStreaksProgressRepository(firestore);
+
+          streaksProgressRepository = MockStreaksProgressRepository(
+            firestore,
+            mockRemoteConfig,
+          );
           streakProgressManager = MockStreakProgressManager(
             userId,
             streaksProgressRepository,
@@ -59,7 +81,10 @@ void main() {
           );
 
           expect(progress.utcTimeline.length, 1);
-          expect(progress.totalLives, streakProgressManager.defaultTotalLives);
+          expect(
+            progress.totalLives,
+            mockRemoteConfig.streaks.monthLivesCount,
+          );
           expect(progress.totalMinutes, 15);
           expect(progress.totalStreak, 1);
           expect(progress.totalMissedDays, 0);
@@ -101,7 +126,10 @@ void main() {
           );
 
           expect(progress.utcTimeline.length, 3);
-          expect(progress.totalLives, streakProgressManager.defaultTotalLives);
+          expect(
+            progress.totalLives,
+            mockRemoteConfig.streaks.monthLivesCount,
+          );
           expect(progress.totalMinutes, 38);
           expect(progress.totalStreak, 3);
         },
@@ -159,7 +187,10 @@ void main() {
           );
 
           expect(progress.utcTimeline.length, 8);
-          expect(progress.totalLives, streakProgressManager.defaultTotalLives);
+          expect(
+            progress.totalLives,
+            mockRemoteConfig.streaks.monthLivesCount,
+          );
           expect(
             progress.totalMinutes,
             68,
@@ -192,7 +223,10 @@ void main() {
           );
 
           expect(progress.utcTimeline.length, 4);
-          expect(progress.totalLives, streakProgressManager.defaultTotalLives);
+          expect(
+            progress.totalLives,
+            mockRemoteConfig.streaks.monthLivesCount,
+          );
           expect(progress.totalMinutes, 48);
           expect(progress.totalStreak, 1);
 
@@ -202,7 +236,7 @@ void main() {
           expect(restoredProgress.utcTimeline.length, 3);
           expect(
             restoredProgress.totalLives,
-            streakProgressManager.defaultTotalLives - 1,
+            progress.totalLives - 1,
           );
           expect(restoredProgress.totalMinutes, 48);
           expect(restoredProgress.totalStreak, 3);

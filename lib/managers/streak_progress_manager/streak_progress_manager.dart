@@ -116,8 +116,11 @@ class StreakProgressManager {
 
     for (var i = 1; i < uniqueDays.length; i++) {
       final currentDate = uniqueDays[i];
-      final expectedNextDay =
-          DateTime(lastDate.year, lastDate.month, lastDate.day + 1);
+      final expectedNextDay = DateTime(
+        lastDate.year,
+        lastDate.month,
+        lastDate.day + 1,
+      );
 
       if (_isSameDay(currentDate, expectedNextDay)) {
         currentStreak++;
