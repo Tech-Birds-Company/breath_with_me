@@ -1,18 +1,18 @@
 import 'dart:ui';
 
 import 'package:breathe_with_me/assets.dart';
-import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
+import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
-class SighUpSuccess extends StatelessWidget {
-  final NavigationManager navigationManager;
-
-  const SighUpSuccess({required this.navigationManager, super.key});
+class SighUpSuccess extends ConsumerWidget {
+  const SighUpSuccess({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final navigationManager = ref.watch(Di.manager.navigation);
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return Scaffold(
       backgroundColor: Colors.transparent,

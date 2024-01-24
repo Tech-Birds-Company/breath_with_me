@@ -1,5 +1,5 @@
 import 'package:breathe_with_me/assets.dart';
-import 'package:breathe_with_me/features/streak/models/streak_statistics_data.dart';
+import 'package:breathe_with_me/features/streak/blocs/streak_bloc.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_statistics.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
@@ -8,10 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class StreakStatisticsCard extends StatelessWidget {
-  final StreakStatisticsData statisticsData;
+  final StreakBloc bloc;
 
   const StreakStatisticsCard({
-    required this.statisticsData,
+    required this.bloc,
     super.key,
   });
 
@@ -41,7 +41,10 @@ class StreakStatisticsCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 8),
-            StreakStatistics(data: statisticsData),
+            StreakStatistics(
+              bloc: bloc,
+              useMissingDays: true,
+            ),
           ],
         ),
       ),

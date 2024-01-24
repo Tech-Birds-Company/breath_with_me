@@ -26,15 +26,16 @@ import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.d
 import 'package:breathe_with_me/managers/permissions_manager/permissions_manager.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
 import 'package:breathe_with_me/managers/shared_preferences_manager/shared_preferences_manager.dart';
+import 'package:breathe_with_me/managers/streak_progress_manager/streak_progress_manager.dart';
 import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/firebase_user_manager.dart';
 import 'package:breathe_with_me/repositories/firebase_faq_questions_repository.dart';
 import 'package:breathe_with_me/repositories/firebase_remote_config_repository.dart';
 import 'package:breathe_with_me/repositories/firebase_tutors_repository.dart';
-import 'package:breathe_with_me/repositories/streaks_progress_repository.dart';
+import 'package:breathe_with_me/repositories/streaks_progress_repository_v2.dart';
 import 'package:breathe_with_me/repositories/streaks_quotes_repository.dart';
 import 'package:breathe_with_me/repositories/tracks_repository_impl.dart';
-import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 part 'bloc_providers.dart';

@@ -1,14 +1,11 @@
-import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/faq/faq_page.dart';
 import 'package:breathe_with_me/features/home/home_page.dart';
 import 'package:breathe_with_me/features/onboarding/create_account_modal_page.dart';
 import 'package:breathe_with_me/features/onboarding/onboarding_page.dart';
 import 'package:breathe_with_me/features/premium/widgets/premium_paywall/premium_paywall.dart';
-import 'package:breathe_with_me/features/profile/blocs/profile_bloc.dart';
 import 'package:breathe_with_me/features/profile/profile_page.dart';
 import 'package:breathe_with_me/features/profile/widgets/language_sheet.dart';
 import 'package:breathe_with_me/features/profile_settings/account_settings_page.dart';
-import 'package:breathe_with_me/features/reminder/blocs/reminder_bloc.dart';
 import 'package:breathe_with_me/features/reminder/reminder_page.dart';
 import 'package:breathe_with_me/features/safety_precautions/safety_precautions_page.dart';
 import 'package:breathe_with_me/features/streak/streak_page.dart';
@@ -18,9 +15,6 @@ import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_filters/tracks_filter_sheet.dart';
 import 'package:breathe_with_me/managers/navigation_manager/bwm_modal_page.dart';
 import 'package:breathe_with_me/managers/navigation_manager/routes/auth_routes.dart';
-import 'package:breathe_with_me/utils/dependency_provider.dart';
-import 'package:breathe_with_me/utils/multi_dependency_provider.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -46,55 +40,31 @@ abstract final class BWMRoutes {
     GoRoute(
       path: BWMRoutes.onboarding,
       builder: (BuildContext context, GoRouterState state) =>
-          DependencyProvider(
-        provider: Di.bloc.onboarding,
-        builder: (context, dependency) => OnboardingPage(bloc: dependency),
-      ),
+          const OnboardingPage(),
     ),
     GoRoute(
       path: BWMRoutes.home,
-      builder: (context, state) => DependencyProvider(
-        provider: Di.bloc.home,
-        builder: (context, dependency) => HomePage(homeBloc: dependency),
-      ),
+      builder: (context, state) => const HomePage(),
     ),
     GoRoute(
       path: BWMRoutes.profile,
-      builder: (context, state) =>
-          MultiDependencyProvider2<ProfileBloc, ReminderBloc>(
-        providers: (
-          Di.bloc.profile,
-          Di.bloc.reminder,
-        ),
-        builder: (context, dependencies) => ProfilePage(
-          profileBloc: dependencies.$1,
-          reminderBloc: dependencies.$2,
-        ),
-      ),
+      builder: (context, state) => const ProfilePage(),
     ),
     GoRoute(
       path: BWMRoutes.player,
       builder: (context, state) {
         final track = state.extra! as Track;
-        return DependencyProvider(
-          provider: Di.bloc.trackPlayer(track),
-          builder: (context, dependency) => TrackPlayerPage(bloc: dependency),
-        );
+        return TrackPlayerPage(track);
       },
     ),
     GoRoute(
       path: BWMRoutes.createAccount,
-      pageBuilder: (context, state) => BWMModalPage(
+      pageBuilder: (context, state) => const BWMModalPage(
         barrierColor: Colors.black,
         isScrollControlled: true,
         useSafeArea: true,
         enableDrag: false,
-        child: DependencyProvider(
-          provider: Di.bloc.onboarding,
-          builder: (context, dependency) => CreateAccountModalPage(
-            bloc: dependency,
-          ),
-        ),
+        child: CreateAccountModalPage(),
       ),
     ),
     GoRoute(
@@ -106,32 +76,21 @@ abstract final class BWMRoutes {
     ),
     GoRoute(
       path: BWMRoutes.reminderPage,
-      builder: (context, state) => DependencyProvider(
-        provider: Di.bloc.reminder,
-        builder: (context, dependency) => ReminderPage(bloc: dependency),
-      ),
+      builder: (context, state) => const ReminderPage(),
     ),
     GoRoute(
       path: BWMRoutes.faq,
-      builder: (context, state) => DependencyProvider(
-        provider: Di.bloc.faq,
-        builder: (context, dependency) => FaqPage(bloc: dependency),
-      ),
+      builder: (context, state) => const FaqPage(),
     ),
     GoRoute(
       path: BWMRoutes.safetyPrecautions,
-      pageBuilder: (context, state) => BWMModalPage(
+      pageBuilder: (context, state) => const BWMModalPage(
         barrierColor: Colors.transparent,
         useSafeArea: true,
         enableDrag: false,
         isDismissible: false,
         isScrollControlled: true,
-        child: DependencyProvider(
-          provider: Di.bloc.safetyPrecautions,
-          builder: (context, dependency) => SafetyPrecautionsPage(
-            bloc: dependency,
-          ),
-        ),
+        child: SafetyPrecautionsPage(),
       ),
     ),
     GoRoute(
@@ -139,12 +98,8 @@ abstract final class BWMRoutes {
       pageBuilder: (context, state) => BWMModalPage(
         backgroundColor: Colors.transparent,
         isScrollControlled: true,
-        child: DependencyProvider(
-          provider: Di.bloc.tracksFilters,
-          builder: (context, dependency) => TracksFilterSheet(
-            bloc: dependency,
-            filterType: state.extra! as FilterType,
-          ),
+        child: TracksFilterSheet(
+          filterType: state.extra! as FilterType,
         ),
       ),
     ),
@@ -157,44 +112,24 @@ abstract final class BWMRoutes {
           isDismissible: false,
           isScrollControlled: true,
           enableDrag: false,
-          child: DependencyProvider(
-            provider: Di.bloc.premiumPaywall,
-            builder: (context, dependency) => PremiumPaywall(
-              topInset: topInset,
-              bloc: dependency,
-            ),
-          ),
+          child: PremiumPaywall(topInset: topInset),
         );
       },
     ),
     GoRoute(
       path: BWMRoutes.streak,
-      pageBuilder: (context, state) {
-        final track = state.extra! as Track;
-        final locale = EasyLocalization.of(context)!.locale;
-        return BWMModalPage(
-          barrierColor: Colors.transparent,
-          useSafeArea: true,
-          enableDrag: false,
-          isDismissible: false,
-          isScrollControlled: true,
-          child: DependencyProvider(
-            provider: Di.bloc.streak(
-              (track, locale),
-            ),
-            builder: (context, dependency) => StreakPage(
-              bloc: dependency,
-            ),
-          ),
-        );
-      },
+      pageBuilder: (context, state) => const BWMModalPage(
+        barrierColor: Colors.transparent,
+        useSafeArea: true,
+        enableDrag: false,
+        isDismissible: false,
+        isScrollControlled: true,
+        child: StreakPage(),
+      ),
     ),
     GoRoute(
       path: BWMRoutes.profileSettings,
-      builder: (context, state) => DependencyProvider(
-        provider: Di.bloc.profileSettings,
-        builder: (context, dependency) => AccountSettingsPage(bloc: dependency),
-      ),
+      builder: (context, state) => const AccountSettingsPage(),
     ),
   ];
 }

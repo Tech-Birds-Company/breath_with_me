@@ -13,9 +13,7 @@ final class PremiumBannerBloc extends BlocBase<PremiumBannerState> {
     this._remoteConfigRepository,
     this._subscriptionsManager,
     this._navigationManager,
-  ) : super(const PremiumBannerState()) {
-    init();
-  }
+  ) : super(const PremiumBannerState());
 
   bool get premiumBannerEnabled {
     final premiumEnabled = _subscriptionsManager.premiumEnabled;

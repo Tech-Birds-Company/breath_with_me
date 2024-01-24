@@ -1,5 +1,6 @@
 import 'package:breathe_with_me/common/widgets/bwm_action_button.dart';
 import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
+import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/reminder/blocs/reminder_bloc.dart';
 import 'package:breathe_with_me/features/reminder/models/reminder_state.dart';
 import 'package:breathe_with_me/features/reminder/widgets/time_picker.dart';
@@ -9,15 +10,11 @@ import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rxdart/rxdart.dart';
 
-class ReminderPage extends StatelessWidget {
-  final ReminderBloc bloc;
-
-  const ReminderPage({
-    required this.bloc,
-    super.key,
-  });
+class ReminderPage extends ConsumerWidget {
+  const ReminderPage({super.key});
 
   static const _weekDays = [
     DateTime.monday,
@@ -30,8 +27,9 @@ class ReminderPage extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
+    final bloc = ref.watch(Di.bloc.reminder);
 
     return Scaffold(
       appBar: BWMAppBar(

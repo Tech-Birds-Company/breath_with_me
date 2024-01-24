@@ -60,11 +60,8 @@ final class NavigationManager {
     },
   );
 
-  void openTrackPlayer(String trackId, {Track? track}) {
-    final uri = Uri(
-      path: BWMRoutes.player,
-      queryParameters: {'trackId': trackId},
-    );
+  void openTrackPlayer(Track track) {
+    final uri = Uri(path: BWMRoutes.player);
     router.push(
       uri.toString(),
       extra: track,
@@ -101,7 +98,7 @@ final class NavigationManager {
 
   void openFaq() => router.push(BWMRoutes.faq);
 
-  void openStreak(Track track) => router.push(BWMRoutes.streak, extra: track);
+  void openStreak() => router.push(BWMRoutes.streak);
 
   void replaceHome() => router.pushReplacement(BWMRoutes.home);
 

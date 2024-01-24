@@ -8,6 +8,7 @@ import 'package:breathe_with_me/managers/audio_manager/audio_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/downloader_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/track_download_task.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
+import 'package:breathe_with_me/managers/streak_progress_manager/streak_progress_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/repositories/tracks_repository.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -20,6 +21,7 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   final TracksRepository _tracksRepository;
   final UserManager _userManager;
   final DownloaderManager _downloaderManager;
+  final StreakProgressManager _streakProgressManager;
   final NavigationManager _navigationManager;
 
   TrackPlayerBloc(
@@ -28,6 +30,7 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
     this._tracksRepository,
     this._userManager,
     this._downloaderManager,
+    this._streakProgressManager,
     this._navigationManager,
   ) : super(TrackPlayerState.initialState);
 
@@ -37,15 +40,30 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   StreamSubscription<double>? _downloadProgressSub;
   Stream<double>? _downloadProgressStream;
 
-  void _initSubscriptions() {
+  void _initPlayerSubscriptions() {
     _subscribeToPlayerState();
     _subscribeToPlayerProgress();
-    _subscribeToDownloadProgress(_track.id);
+  }
+
+  void _initDownloadProgressSubscription(TrackDownloadTask task) {
+    _downloadProgressStream ??= _downloaderManager.taskProgress(task: task);
+    _downloadProgressSub ??= _downloadProgressStream?.listen(
+      (progress) {
+        emit(state.copyWith(downloadProgress: progress));
+      },
+    );
   }
 
   Future<void> init() async {
-    final trackDownloadTask =
-        await _tracksRepository.getTrackDownloadTask(_track.id);
+    final userId = _userManager.currentUser!.uid;
+    final task = TrackDownloadTask(
+      trackId: track.id,
+      userId: userId,
+      url: '',
+    );
+    final trackDownloadTask = await _tracksRepository.getTrackDownloadTask(
+      taskId: task.taskId,
+    );
 
     final canPlayOffline = trackDownloadTask?.isCompleted ?? false;
 
@@ -56,14 +74,8 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
     }
   }
 
-  void onTrackFinish() {
-    _audioManager.stop();
-    _navigationManager.openStreak(_track);
-  }
-
   Future<void> _handleOfflinePlay(DownloadTrackTask task) async {
     final trackPath = await _downloaderManager.getTrackPath(
-      uid: task.uid,
       taskId: task.taskId,
       filename: task.filename,
     );
@@ -72,7 +84,7 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
     if (localTrackFile.existsSync()) {
       await _initPlayerWithLocalFile(localFile: localTrackFile);
     } else {
-      await _tracksRepository.deleteTrackDownloadTask(_track.id);
+      await _tracksRepository.deleteTrackDownloadTask(taskId: task.taskId);
       await _handleOnlinePlay();
     }
   }
@@ -95,7 +107,16 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
       title: _track.categoryKey.tr(),
       artist: _track.tutor.tutorNameKey.tr(),
     );
-    _initSubscriptions();
+    _initPlayerSubscriptions();
+
+    final userId = _userManager.currentUser!.uid;
+    _initDownloadProgressSubscription(
+      TrackDownloadTask(
+        trackId: _track.id,
+        userId: userId,
+        url: '',
+      ),
+    );
     await _audioManager.play();
   }
 
@@ -110,7 +131,12 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
       title: categoryKey.tr(),
       artist: tutorNameKey.tr(),
     );
-    _initSubscriptions();
+    _initPlayerSubscriptions();
+
+    final userId = _userManager.currentUser!.uid;
+    _initDownloadProgressSubscription(
+      TrackDownloadTask(trackId: _track.id, userId: userId, url: url),
+    );
     await _audioManager.play();
   }
 
@@ -119,11 +145,20 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
     if (uid == null) return;
 
     final downloadTask = TrackDownloadTask(
-      uid: _userManager.currentUser!.uid,
-      id: _track.id,
+      trackId: _track.id,
+      userId: _userManager.currentUser!.uid,
       url: url,
     );
     _downloaderManager.queue(tasks: [downloadTask]);
+  }
+
+  Future<void> onTrackFinish() async {
+    await _audioManager.stop();
+    await _streakProgressManager.addStreakData(
+      minutes: track.duration,
+      date: DateTime.now(),
+    );
+    _navigationManager.openStreak();
   }
 
   void _subscribeToPlayerState() =>
@@ -155,15 +190,6 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
           );
         },
       );
-
-  void _subscribeToDownloadProgress(String taskId) {
-    _downloadProgressStream ??= _downloaderManager.taskProgress(taskId: taskId);
-    _downloadProgressSub ??= _downloadProgressStream?.listen(
-      (progress) {
-        emit(state.copyWith(downloadProgress: progress));
-      },
-    );
-  }
 
   Future<void> onTogglePlay() async {
     final isPaused = !state.isPaused;

@@ -7,7 +7,7 @@ import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/constants.dart';
 import 'package:breathe_with_me/database/database.dart';
 import 'package:breathe_with_me/di/di.dart';
-import 'package:breathe_with_me/managers/audio_manager/track_audio_manger.dart';
+import 'package:breathe_with_me/managers/audio_manager/track_audio_manager.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/tracks_downloader_manger.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
@@ -99,7 +99,12 @@ Future<ProviderContainer> _setupDependencies({
       ref.onDispose(subscriptionsManager.dispose);
       return subscriptionsManager;
     }),
-    Di.manager.audio.overrideWithValue(trackAudioManager),
+    Di.manager.audio.overrideWith(
+      (ref) {
+        ref.onDispose(trackAudioManager.dispose);
+        return trackAudioManager;
+      },
+    ),
     Di.manager.sharedPreferences.overrideWithValue(sharedPrefsManager),
     Di.manager.pushNotifications.overrideWithValue(pushNotificationsManager),
     Di.manager.navigation.overrideWithValue(navigationManager),
@@ -134,6 +139,7 @@ Future<void> mainCommon(Environment env) async {
 
   final diContainer =
       await _setupDependencies(isProduction: env == Environment.prod);
+  final router = diContainer.read(Di.manager.navigation).router;
 
   runApp(
     EasyLocalization(
@@ -146,7 +152,7 @@ Future<void> mainCommon(Environment env) async {
       ],
       child: ProviderScope(
         parent: diContainer,
-        child: const BWMApp(),
+        child: BWMApp(router),
       ),
     ),
   );

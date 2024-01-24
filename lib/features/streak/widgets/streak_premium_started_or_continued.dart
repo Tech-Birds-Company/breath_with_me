@@ -1,47 +1,45 @@
-import 'package:breathe_with_me/features/streak/models/streak_lives_data.dart';
-import 'package:breathe_with_me/features/streak/models/streak_statistics_data.dart';
-import 'package:breathe_with_me/features/streak/widgets/streak_lives.dart';
+import 'package:breathe_with_me/features/streak/blocs/streak_bloc.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_quote.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_statistics_card.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_weeks.dart';
-import 'package:breathe_with_me/repositories/models/streak_quote_data.dart';
+import 'package:breathe_with_me/repositories/streaks_quotes_repository.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class StreakPremiumStartedOrContinued extends StatelessWidget {
-  final StreakStatisticsData statistics;
-  final int streaksCount;
-  final StreakLivesData lives;
-  final StreakQuoteData quote;
+  final StreakBloc bloc;
 
   const StreakPremiumStartedOrContinued({
-    required this.statistics,
-    required this.streaksCount,
-    required this.lives,
-    required this.quote,
+    required this.bloc,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-
+    final locale = EasyLocalization.of(context)!.locale;
     final widgets = <Widget>[
       Padding(
         padding: const EdgeInsets.symmetric(vertical: 20),
         child: Column(
           children: [
-            StreakStatisticsCard(statisticsData: statistics),
+            StreakStatisticsCard(bloc: bloc),
             const SizedBox(height: 24),
-            StreakWeeks(selectedDay: streaksCount),
-            const SizedBox(height: 24),
-            StreakLives(data: lives),
+            StreakWeeks(
+              selectedDay: bloc.state.maybeWhen(
+                data: (state, _, __) => state.totalStreak,
+                orElse: () => 0,
+              ),
+            ),
           ],
         ),
       ),
       Padding(
         padding: const EdgeInsets.symmetric(vertical: 20),
-        child: StreakQuote(data: quote),
+        child: StreakQuote(
+          data: const StreaksQuotesRepository().getQuote(locale.languageCode),
+        ),
       ),
     ];
 

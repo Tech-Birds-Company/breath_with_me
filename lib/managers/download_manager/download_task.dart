@@ -1,11 +1,13 @@
 base class DownloadTask {
-  final String uid;
-  final String id;
+  final String userId;
+  final String trackId;
   final String url;
 
   const DownloadTask({
-    required this.uid,
-    required this.id,
+    required this.userId,
+    required this.trackId,
     required this.url,
   });
+
+  String get taskId => '${userId}_$trackId';
 }

@@ -4,32 +4,28 @@ import 'package:breathe_with_me/features/premium/blocs/premium_banner_bloc.dart'
 import 'package:breathe_with_me/features/premium/models/premium_banner_state.dart';
 import 'package:breathe_with_me/features/premium/widgets/premium_banner_tracks.dart';
 import 'package:breathe_with_me/features/tracks/blocs/tracks_list_bloc.dart';
+import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/features/tracks/models/tracks_list_state.dart';
 import 'package:breathe_with_me/features/tracks/widgets/track/track_item.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_list/shimmer_list.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
-import 'package:breathe_with_me/utils/dependency_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class TracksList extends HookWidget {
-  final TracksListBloc tracksListBloc;
-  final PremiumBannerBloc premiumBloc;
-
+class TracksList extends HookConsumerWidget {
   const TracksList({
-    required this.tracksListBloc,
-    required this.premiumBloc,
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final tracksListBloc = ref.watch(Di.bloc.tracksList);
+    final premiumBannerBloc = ref.watch(Di.bloc.premiumBanner);
+
     useEffect(
-      () {
-        tracksListBloc.init();
-        return tracksListBloc.dispose;
-      },
+      () => tracksListBloc.dispose,
       const [],
     );
 
@@ -38,9 +34,9 @@ class TracksList extends HookWidget {
       bloc: tracksListBloc,
       builder: (context, tracksListState) => tracksListState.when(
         data: (tracks) => BlocBuilder<PremiumBannerBloc, PremiumBannerState>(
-          bloc: premiumBloc,
+          bloc: premiumBannerBloc,
           builder: (context, premiumBannerState) {
-            final premiumBannerEnabled = premiumBloc.premiumBannerEnabled;
+            final premiumBannerEnabled = premiumBannerBloc.premiumBannerEnabled;
             final itemsCount = tracks.length + (premiumBannerEnabled ? 1 : 0);
             return SliverList.separated(
               itemCount: itemsCount,
@@ -61,13 +57,14 @@ class TracksList extends HookWidget {
                         )) {
                   return BlocSelector<PremiumBannerBloc, PremiumBannerState,
                       bool>(
-                    bloc: premiumBloc,
+                    bloc: premiumBannerBloc,
                     selector: (state) => state.premiumBannerTracksWasHidden,
                     builder: (context, premiumBannerIsHidden) =>
                         PremiumBannerTracks(
                       premiumBannerIsHidden: premiumBannerIsHidden,
-                      onBannerHide: premiumBloc.onUserHidePremiumBanner,
-                      onLearnMore: premiumBloc.onUserLearnMoreAboutPremium,
+                      onBannerHide: premiumBannerBloc.onUserHidePremiumBanner,
+                      onLearnMore:
+                          premiumBannerBloc.onUserLearnMoreAboutPremium,
                     ),
                   );
                 }
@@ -78,16 +75,9 @@ class TracksList extends HookWidget {
                             : 0)
                     : index;
                 final track = tracks[adjustedIndex];
-                return DependencyProvider(
-                  provider: Di.bloc.track(track),
-                  builder: (context, dependency) => TrackItem(
-                    key: ValueKey(track.id),
-                    track: track,
-                    onTap: dependency.openTrackPlayer,
-                    trackIsDownloadedStream: dependency.trackIsDownloadedStream,
-                    trackIsLikedStream: dependency.trackLikedStream,
-                    onTrackLiked: dependency.onTrackLiked,
-                  ),
+                return _TrackItem(
+                  track,
+                  key: ValueKey(track.id),
                 );
               },
             );
@@ -100,6 +90,27 @@ class TracksList extends HookWidget {
           return const SizedBox.shrink().toSliver();
         },
       ),
+    );
+  }
+}
+
+class _TrackItem extends ConsumerWidget {
+  final Track _track;
+
+  const _TrackItem(
+    this._track, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bloc = ref.watch(Di.bloc.track(_track));
+    return TrackItem(
+      track: _track,
+      onTap: bloc.openTrackPlayer,
+      trackIsDownloadedStream: bloc.trackIsDownloadedStream,
+      trackIsLikedStream: bloc.trackLikedStream,
+      onTrackLiked: bloc.onTrackLiked,
     );
   }
 }
