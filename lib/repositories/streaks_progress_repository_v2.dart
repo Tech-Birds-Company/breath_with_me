@@ -42,7 +42,7 @@ class StreakProgressRepositoryV2 {
   Future<StreakProgressV2> getUserStreakProgress(String userId) async {
     final doc = await _streakCollection.doc(userId).get();
     if (doc.exists) {
-      return StreakProgressV2.fromJson(doc.data()!);
+      return StreakProgressV2.fromJson(doc.data() ?? {});
     } else {
       final progress = StreakProgressV2(
         totalLives: _defaultTotalLives,

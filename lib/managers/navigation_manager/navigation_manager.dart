@@ -60,11 +60,8 @@ final class NavigationManager {
     },
   );
 
-  void openTrackPlayer(String trackId, {Track? track}) {
-    final uri = Uri(
-      path: BWMRoutes.player,
-      queryParameters: {'trackId': trackId},
-    );
+  void openTrackPlayer(Track track) {
+    final uri = Uri(path: BWMRoutes.player);
     router.push(
       uri.toString(),
       extra: track,

@@ -1,11 +1,12 @@
 import 'package:breathe_with_me/common/widgets/bwm_action_button.dart';
 import 'package:breathe_with_me/features/streak/blocs/streak_bloc.dart';
-import 'package:breathe_with_me/features/streak/widgets/streak_lives.dart';
+import 'package:breathe_with_me/features/streak/models/streak_state.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_statistics_card.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StreakPremiumMissed extends StatelessWidget {
   final StreakBloc bloc;
@@ -39,14 +40,27 @@ class StreakPremiumMissed extends StatelessWidget {
             style: theme.typography.bodyS.copyWith(color: theme.primaryText),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 24),
-          const StreakLives(),
-          const SizedBox(height: 36),
-          BWMActionButton(
-            onPressed: onRestoreTap,
-            title: LocaleKeys.streakMissedDayRestore.tr(),
-            width: 200,
-            height: 40,
+          BlocSelector<StreakBloc, StreakState, int>(
+            bloc: bloc,
+            selector: (state) => state.maybeMap(
+              data: (state) => state.streakProgressV2.totalLives,
+              orElse: () => 0,
+            ),
+            builder: (context, totalLives) {
+              if (totalLives > 0) {
+                return Padding(
+                  padding: const EdgeInsets.only(top: 36),
+                  child: BWMActionButton(
+                    onPressed: onRestoreTap,
+                    title: LocaleKeys.streakMissedDayRestore.tr(),
+                    width: 200,
+                    height: 40,
+                  ),
+                );
+              } else {
+                return const SizedBox.shrink();
+              }
+            },
           ),
           const SizedBox(height: 8),
           TextButton(

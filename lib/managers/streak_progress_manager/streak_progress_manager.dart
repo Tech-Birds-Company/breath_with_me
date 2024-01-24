@@ -28,9 +28,9 @@ class StreakProgressManager {
         await _streaksProgressRepository.getUserStreakProgress(_userId);
 
     final currentTimeline = currentProgress.utcTimeline;
-    final missedDays = currentTimeline.isEmpty
-        ? 0
-        : utcDate.difference(currentTimeline.last).inDays;
+    final missedDays = _calculateMissedDays(
+      [...currentTimeline, utcDate]..sort(),
+    );
     final newTimeline = [...currentProgress.utcTimeline, utcDate];
     final sortedTimeline = newTimeline..sort();
 
@@ -166,6 +166,29 @@ class StreakProgressManager {
       }
       return mostRecentStreak;
     }
+  }
+
+  int _calculateMissedDays(List<DateTime> sortedDates) {
+    // Check if the list is empty or has only one date
+    if (sortedDates.length <= 1) {
+      return 0;
+    }
+
+    var missedDays = 0;
+
+    // Iterate through the dates, starting from the second date
+    for (var i = 1; i < sortedDates.length; i++) {
+      // Calculate the difference in days between the current date and the previous date
+      final differenceInDays =
+          sortedDates[i].difference(sortedDates[i - 1]).inDays;
+
+      // If the difference is more than one day, add the missed days (difference - 1)
+      if (differenceInDays > 1) {
+        missedDays += differenceInDays - 1;
+      }
+    }
+
+    return missedDays;
   }
 
   bool _isSameDay(DateTime date1, DateTime date2) =>

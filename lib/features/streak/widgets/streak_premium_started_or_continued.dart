@@ -1,5 +1,4 @@
 import 'package:breathe_with_me/features/streak/blocs/streak_bloc.dart';
-import 'package:breathe_with_me/features/streak/widgets/streak_lives.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_quote.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_statistics_card.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_weeks.dart';
@@ -29,12 +28,10 @@ class StreakPremiumStartedOrContinued extends StatelessWidget {
             const SizedBox(height: 24),
             StreakWeeks(
               selectedDay: bloc.state.maybeWhen(
-                data: (state, _) => state.totalStreak,
+                data: (state, _, __) => state.totalStreak,
                 orElse: () => 0,
               ),
             ),
-            const SizedBox(height: 24),
-            const StreakLives(),
           ],
         ),
       ),

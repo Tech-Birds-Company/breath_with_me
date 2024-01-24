@@ -35,9 +35,9 @@ class StreakPage extends ConsumerWidget {
                   error: (_) => Center(
                     child: CircularProgressIndicator(color: theme.green3),
                   ),
-                  data: (progress, premiumEnabled) {
+                  data: (progress, premiumEnabled, useMissingDays) {
                     if (premiumEnabled) {
-                      if (progress.totalMissedDays > 0) {
+                      if (progress.totalMissedDays > 0 && useMissingDays) {
                         return StreakPremiumMissed(
                           bloc: bloc,
                           onRestoreTap: bloc.onRestoreTap,

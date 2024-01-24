@@ -35,6 +35,10 @@ final class StreakBloc extends BlocBase<StreakState> {
           StreakState.data(
             streakProgress,
             premiumEnabled: _subscriptionsManager.premiumEnabled,
+            useMissingDays: state.maybeMap(
+              data: (state) => state.useMissingDays,
+              orElse: () => false,
+            ),
           ),
         );
       },
@@ -44,15 +48,34 @@ final class StreakBloc extends BlocBase<StreakState> {
       StreakState.data(
         progress,
         premiumEnabled: state.premiumEnabled,
+        useMissingDays: true,
       ),
     );
   }
 
   void onCloseTap() => _navigationManager.popToRoot();
 
-  Future<void> onRestoreTap() async {}
+  Future<void> onRestoreTap() async {
+    final progress = await _streakProgressManager.restoreUserStreakProgress();
+    emit(
+      StreakState.data(
+        premiumEnabled: state.premiumEnabled,
+        progress.copyWith(totalMissedDays: 0),
+        useMissingDays: false,
+      ),
+    );
+  }
 
-  void onSkipTap() {}
+  void onSkipTap() {
+    if (state is! StreakData) return;
+    emit(
+      StreakState.data(
+        (state as StreakData).streakProgressV2,
+        premiumEnabled: state.premiumEnabled,
+        useMissingDays: false,
+      ),
+    );
+  }
 
   void dispose() {
     _premiumSubscription?.cancel();

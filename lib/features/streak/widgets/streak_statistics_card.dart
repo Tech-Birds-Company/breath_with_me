@@ -41,7 +41,10 @@ class StreakStatisticsCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 8),
-            StreakStatistics(bloc: bloc),
+            StreakStatistics(
+              bloc: bloc,
+              useMissingDays: true,
+            ),
           ],
         ),
       ),

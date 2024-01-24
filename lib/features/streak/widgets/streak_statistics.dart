@@ -9,9 +9,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StreakStatistics extends StatelessWidget {
   final StreakBloc bloc;
+  final bool useMissingDays;
 
   const StreakStatistics({
     required this.bloc,
+    required this.useMissingDays,
     super.key,
   });
 
@@ -27,9 +29,9 @@ class StreakStatistics extends StatelessWidget {
           return state.when(
             loading: (_) => const SizedBox.shrink(),
             error: (_) => const SizedBox.shrink(),
-            data: (progress, premiumEnabled) {
+            data: (progress, premiumEnabled, _) {
               final hasMissedDays = progress.totalMissedDays > 0;
-              if (hasMissedDays) {
+              if (hasMissedDays && useMissingDays && _) {
                 return IntrinsicHeight(
                   child: Row(
                     children: [

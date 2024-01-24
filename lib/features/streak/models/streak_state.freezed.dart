@@ -20,8 +20,8 @@ mixin _$StreakState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool premiumEnabled) loading,
-    required TResult Function(
-            StreakProgressV2 streakProgressV2, bool premiumEnabled)
+    required TResult Function(StreakProgressV2 streakProgressV2,
+            bool premiumEnabled, bool useMissingDays)
         data,
     required TResult Function(bool premiumEnabled) error,
   }) =>
@@ -29,7 +29,8 @@ mixin _$StreakState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool premiumEnabled)? loading,
-    TResult? Function(StreakProgressV2 streakProgressV2, bool premiumEnabled)?
+    TResult? Function(StreakProgressV2 streakProgressV2, bool premiumEnabled,
+            bool useMissingDays)?
         data,
     TResult? Function(bool premiumEnabled)? error,
   }) =>
@@ -37,7 +38,8 @@ mixin _$StreakState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool premiumEnabled)? loading,
-    TResult Function(StreakProgressV2 streakProgressV2, bool premiumEnabled)?
+    TResult Function(StreakProgressV2 streakProgressV2, bool premiumEnabled,
+            bool useMissingDays)?
         data,
     TResult Function(bool premiumEnabled)? error,
     required TResult orElse(),
@@ -45,23 +47,23 @@ mixin _$StreakState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_StreakLoading value) loading,
-    required TResult Function(_StreakData value) data,
-    required TResult Function(_StreakError value) error,
+    required TResult Function(StreakLoading value) loading,
+    required TResult Function(StreakData value) data,
+    required TResult Function(StreakError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_StreakLoading value)? loading,
-    TResult? Function(_StreakData value)? data,
-    TResult? Function(_StreakError value)? error,
+    TResult? Function(StreakLoading value)? loading,
+    TResult? Function(StreakData value)? data,
+    TResult? Function(StreakError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_StreakLoading value)? loading,
-    TResult Function(_StreakData value)? data,
-    TResult Function(_StreakError value)? error,
+    TResult Function(StreakLoading value)? loading,
+    TResult Function(StreakData value)? data,
+    TResult Function(StreakError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -139,7 +141,7 @@ class __$$StreakLoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$StreakLoadingImpl implements _StreakLoading {
+class _$StreakLoadingImpl implements StreakLoading {
   const _$StreakLoadingImpl({required this.premiumEnabled});
 
   @override
@@ -172,8 +174,8 @@ class _$StreakLoadingImpl implements _StreakLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool premiumEnabled) loading,
-    required TResult Function(
-            StreakProgressV2 streakProgressV2, bool premiumEnabled)
+    required TResult Function(StreakProgressV2 streakProgressV2,
+            bool premiumEnabled, bool useMissingDays)
         data,
     required TResult Function(bool premiumEnabled) error,
   }) {
@@ -184,7 +186,8 @@ class _$StreakLoadingImpl implements _StreakLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool premiumEnabled)? loading,
-    TResult? Function(StreakProgressV2 streakProgressV2, bool premiumEnabled)?
+    TResult? Function(StreakProgressV2 streakProgressV2, bool premiumEnabled,
+            bool useMissingDays)?
         data,
     TResult? Function(bool premiumEnabled)? error,
   }) {
@@ -195,7 +198,8 @@ class _$StreakLoadingImpl implements _StreakLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool premiumEnabled)? loading,
-    TResult Function(StreakProgressV2 streakProgressV2, bool premiumEnabled)?
+    TResult Function(StreakProgressV2 streakProgressV2, bool premiumEnabled,
+            bool useMissingDays)?
         data,
     TResult Function(bool premiumEnabled)? error,
     required TResult orElse(),
@@ -209,9 +213,9 @@ class _$StreakLoadingImpl implements _StreakLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_StreakLoading value) loading,
-    required TResult Function(_StreakData value) data,
-    required TResult Function(_StreakError value) error,
+    required TResult Function(StreakLoading value) loading,
+    required TResult Function(StreakData value) data,
+    required TResult Function(StreakError value) error,
   }) {
     return loading(this);
   }
@@ -219,9 +223,9 @@ class _$StreakLoadingImpl implements _StreakLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_StreakLoading value)? loading,
-    TResult? Function(_StreakData value)? data,
-    TResult? Function(_StreakError value)? error,
+    TResult? Function(StreakLoading value)? loading,
+    TResult? Function(StreakData value)? data,
+    TResult? Function(StreakError value)? error,
   }) {
     return loading?.call(this);
   }
@@ -229,9 +233,9 @@ class _$StreakLoadingImpl implements _StreakLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_StreakLoading value)? loading,
-    TResult Function(_StreakData value)? data,
-    TResult Function(_StreakError value)? error,
+    TResult Function(StreakLoading value)? loading,
+    TResult Function(StreakData value)? data,
+    TResult Function(StreakError value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -241,8 +245,8 @@ class _$StreakLoadingImpl implements _StreakLoading {
   }
 }
 
-abstract class _StreakLoading implements StreakState {
-  const factory _StreakLoading({required final bool premiumEnabled}) =
+abstract class StreakLoading implements StreakState {
+  const factory StreakLoading({required final bool premiumEnabled}) =
       _$StreakLoadingImpl;
 
   @override
@@ -261,7 +265,10 @@ abstract class _$$StreakDataImplCopyWith<$Res>
       __$$StreakDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({StreakProgressV2 streakProgressV2, bool premiumEnabled});
+  $Res call(
+      {StreakProgressV2 streakProgressV2,
+      bool premiumEnabled,
+      bool useMissingDays});
 
   $StreakProgressV2CopyWith<$Res> get streakProgressV2;
 }
@@ -279,6 +286,7 @@ class __$$StreakDataImplCopyWithImpl<$Res>
   $Res call({
     Object? streakProgressV2 = null,
     Object? premiumEnabled = null,
+    Object? useMissingDays = null,
   }) {
     return _then(_$StreakDataImpl(
       null == streakProgressV2
@@ -288,6 +296,10 @@ class __$$StreakDataImplCopyWithImpl<$Res>
       premiumEnabled: null == premiumEnabled
           ? _value.premiumEnabled
           : premiumEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      useMissingDays: null == useMissingDays
+          ? _value.useMissingDays
+          : useMissingDays // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -303,17 +315,20 @@ class __$$StreakDataImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$StreakDataImpl implements _StreakData {
-  const _$StreakDataImpl(this.streakProgressV2, {required this.premiumEnabled});
+class _$StreakDataImpl implements StreakData {
+  const _$StreakDataImpl(this.streakProgressV2,
+      {required this.premiumEnabled, required this.useMissingDays});
 
   @override
   final StreakProgressV2 streakProgressV2;
   @override
   final bool premiumEnabled;
+  @override
+  final bool useMissingDays;
 
   @override
   String toString() {
-    return 'StreakState.data(streakProgressV2: $streakProgressV2, premiumEnabled: $premiumEnabled)';
+    return 'StreakState.data(streakProgressV2: $streakProgressV2, premiumEnabled: $premiumEnabled, useMissingDays: $useMissingDays)';
   }
 
   @override
@@ -324,12 +339,14 @@ class _$StreakDataImpl implements _StreakData {
             (identical(other.streakProgressV2, streakProgressV2) ||
                 other.streakProgressV2 == streakProgressV2) &&
             (identical(other.premiumEnabled, premiumEnabled) ||
-                other.premiumEnabled == premiumEnabled));
+                other.premiumEnabled == premiumEnabled) &&
+            (identical(other.useMissingDays, useMissingDays) ||
+                other.useMissingDays == useMissingDays));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, streakProgressV2, premiumEnabled);
+  int get hashCode => Object.hash(
+      runtimeType, streakProgressV2, premiumEnabled, useMissingDays);
 
   @JsonKey(ignore: true)
   @override
@@ -341,36 +358,38 @@ class _$StreakDataImpl implements _StreakData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool premiumEnabled) loading,
-    required TResult Function(
-            StreakProgressV2 streakProgressV2, bool premiumEnabled)
+    required TResult Function(StreakProgressV2 streakProgressV2,
+            bool premiumEnabled, bool useMissingDays)
         data,
     required TResult Function(bool premiumEnabled) error,
   }) {
-    return data(streakProgressV2, premiumEnabled);
+    return data(streakProgressV2, premiumEnabled, useMissingDays);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool premiumEnabled)? loading,
-    TResult? Function(StreakProgressV2 streakProgressV2, bool premiumEnabled)?
+    TResult? Function(StreakProgressV2 streakProgressV2, bool premiumEnabled,
+            bool useMissingDays)?
         data,
     TResult? Function(bool premiumEnabled)? error,
   }) {
-    return data?.call(streakProgressV2, premiumEnabled);
+    return data?.call(streakProgressV2, premiumEnabled, useMissingDays);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool premiumEnabled)? loading,
-    TResult Function(StreakProgressV2 streakProgressV2, bool premiumEnabled)?
+    TResult Function(StreakProgressV2 streakProgressV2, bool premiumEnabled,
+            bool useMissingDays)?
         data,
     TResult Function(bool premiumEnabled)? error,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(streakProgressV2, premiumEnabled);
+      return data(streakProgressV2, premiumEnabled, useMissingDays);
     }
     return orElse();
   }
@@ -378,9 +397,9 @@ class _$StreakDataImpl implements _StreakData {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_StreakLoading value) loading,
-    required TResult Function(_StreakData value) data,
-    required TResult Function(_StreakError value) error,
+    required TResult Function(StreakLoading value) loading,
+    required TResult Function(StreakData value) data,
+    required TResult Function(StreakError value) error,
   }) {
     return data(this);
   }
@@ -388,9 +407,9 @@ class _$StreakDataImpl implements _StreakData {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_StreakLoading value)? loading,
-    TResult? Function(_StreakData value)? data,
-    TResult? Function(_StreakError value)? error,
+    TResult? Function(StreakLoading value)? loading,
+    TResult? Function(StreakData value)? data,
+    TResult? Function(StreakError value)? error,
   }) {
     return data?.call(this);
   }
@@ -398,9 +417,9 @@ class _$StreakDataImpl implements _StreakData {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_StreakLoading value)? loading,
-    TResult Function(_StreakData value)? data,
-    TResult Function(_StreakError value)? error,
+    TResult Function(StreakLoading value)? loading,
+    TResult Function(StreakData value)? data,
+    TResult Function(StreakError value)? error,
     required TResult orElse(),
   }) {
     if (data != null) {
@@ -410,13 +429,15 @@ class _$StreakDataImpl implements _StreakData {
   }
 }
 
-abstract class _StreakData implements StreakState {
-  const factory _StreakData(final StreakProgressV2 streakProgressV2,
-      {required final bool premiumEnabled}) = _$StreakDataImpl;
+abstract class StreakData implements StreakState {
+  const factory StreakData(final StreakProgressV2 streakProgressV2,
+      {required final bool premiumEnabled,
+      required final bool useMissingDays}) = _$StreakDataImpl;
 
   StreakProgressV2 get streakProgressV2;
   @override
   bool get premiumEnabled;
+  bool get useMissingDays;
   @override
   @JsonKey(ignore: true)
   _$$StreakDataImplCopyWith<_$StreakDataImpl> get copyWith =>
@@ -458,7 +479,7 @@ class __$$StreakErrorImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$StreakErrorImpl implements _StreakError {
+class _$StreakErrorImpl implements StreakError {
   const _$StreakErrorImpl({required this.premiumEnabled});
 
   @override
@@ -491,8 +512,8 @@ class _$StreakErrorImpl implements _StreakError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool premiumEnabled) loading,
-    required TResult Function(
-            StreakProgressV2 streakProgressV2, bool premiumEnabled)
+    required TResult Function(StreakProgressV2 streakProgressV2,
+            bool premiumEnabled, bool useMissingDays)
         data,
     required TResult Function(bool premiumEnabled) error,
   }) {
@@ -503,7 +524,8 @@ class _$StreakErrorImpl implements _StreakError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool premiumEnabled)? loading,
-    TResult? Function(StreakProgressV2 streakProgressV2, bool premiumEnabled)?
+    TResult? Function(StreakProgressV2 streakProgressV2, bool premiumEnabled,
+            bool useMissingDays)?
         data,
     TResult? Function(bool premiumEnabled)? error,
   }) {
@@ -514,7 +536,8 @@ class _$StreakErrorImpl implements _StreakError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool premiumEnabled)? loading,
-    TResult Function(StreakProgressV2 streakProgressV2, bool premiumEnabled)?
+    TResult Function(StreakProgressV2 streakProgressV2, bool premiumEnabled,
+            bool useMissingDays)?
         data,
     TResult Function(bool premiumEnabled)? error,
     required TResult orElse(),
@@ -528,9 +551,9 @@ class _$StreakErrorImpl implements _StreakError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_StreakLoading value) loading,
-    required TResult Function(_StreakData value) data,
-    required TResult Function(_StreakError value) error,
+    required TResult Function(StreakLoading value) loading,
+    required TResult Function(StreakData value) data,
+    required TResult Function(StreakError value) error,
   }) {
     return error(this);
   }
@@ -538,9 +561,9 @@ class _$StreakErrorImpl implements _StreakError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_StreakLoading value)? loading,
-    TResult? Function(_StreakData value)? data,
-    TResult? Function(_StreakError value)? error,
+    TResult? Function(StreakLoading value)? loading,
+    TResult? Function(StreakData value)? data,
+    TResult? Function(StreakError value)? error,
   }) {
     return error?.call(this);
   }
@@ -548,9 +571,9 @@ class _$StreakErrorImpl implements _StreakError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_StreakLoading value)? loading,
-    TResult Function(_StreakData value)? data,
-    TResult Function(_StreakError value)? error,
+    TResult Function(StreakLoading value)? loading,
+    TResult Function(StreakData value)? data,
+    TResult Function(StreakError value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -560,8 +583,8 @@ class _$StreakErrorImpl implements _StreakError {
   }
 }
 
-abstract class _StreakError implements StreakState {
-  const factory _StreakError({required final bool premiumEnabled}) =
+abstract class StreakError implements StreakState {
+  const factory StreakError({required final bool premiumEnabled}) =
       _$StreakErrorImpl;
 
   @override

@@ -7,14 +7,15 @@ part 'streak_state.freezed.dart';
 class StreakState with _$StreakState {
   const factory StreakState.loading({
     required bool premiumEnabled,
-  }) = _StreakLoading;
+  }) = StreakLoading;
 
   const factory StreakState.data(
     StreakProgressV2 streakProgressV2, {
     required bool premiumEnabled,
-  }) = _StreakData;
+    required bool useMissingDays,
+  }) = StreakData;
 
   const factory StreakState.error({
     required bool premiumEnabled,
-  }) = _StreakError;
+  }) = StreakError;
 }

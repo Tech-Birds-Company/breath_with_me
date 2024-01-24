@@ -36,10 +36,7 @@ final class TrackBloc extends BlocBase<Object?> {
       )
       .distinct();
 
-  void openTrackPlayer() => _navigationManager.openTrackPlayer(
-        _track.id,
-        track: _track,
-      );
+  void openTrackPlayer() => _navigationManager.openTrackPlayer(_track);
 
   Future<void> onTrackLiked() => _tracksRepository.updateLikes(_track.id);
 }

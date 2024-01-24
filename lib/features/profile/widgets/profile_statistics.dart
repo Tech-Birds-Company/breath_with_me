@@ -25,12 +25,11 @@ class ProfileStatistics extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return BlocBuilder<StreakBloc, StreakState>(
-      buildWhen: (previous, current) => previous != current,
       bloc: bloc,
       builder: (context, state) => state.when(
         error: (_) => const SizedBox.shrink(),
         loading: (_) => const SizedBox.shrink(),
-        data: (progress, premiumEnabled) {
+        data: (progress, premiumEnabled, _) {
           if (premiumEnabled) {
             return Padding(
               padding: const EdgeInsets.only(top: 32),
@@ -41,7 +40,7 @@ class ProfileStatistics extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(16),
-                  child: StreakStatistics(bloc: bloc),
+                  child: StreakStatistics(bloc: bloc, useMissingDays: false),
                 ),
               ),
             );
