@@ -1,12 +1,12 @@
 part of 'di.dart';
 
 final class _BlocProviders {
-  late final tracksList = Provider(
+  late final tracksList = Provider.autoDispose(
     (ref) {
       final bloc = TracksListBloc(
         ref.read(Di.repository.tracks),
-        ref.read(Di.bloc.tracksFilters).stream,
-      );
+        ref.watch(Di.bloc.tracksFilters),
+      )..init();
       ref.onDispose(bloc.dispose);
       return bloc;
     },
@@ -17,10 +17,10 @@ final class _BlocProviders {
       ref.read(Di.manager.permissions),
       ref.read(Di.manager.sharedPreferences),
       ref.read(Di.manager.navigation),
-    ),
+    )..init(),
   );
 
-  late final trackPlayer = Provider.family<TrackPlayerBloc, Track>(
+  late final trackPlayer = Provider.family.autoDispose<TrackPlayerBloc, Track>(
     (ref, trackId) {
       final bloc = TrackPlayerBloc(
         trackId,
@@ -30,7 +30,7 @@ final class _BlocProviders {
         ref.read(Di.manager.tracksDownloader),
         ref.read(Di.manager.streakProgress),
         ref.read(Di.manager.navigation),
-      );
+      )..init();
       ref.onDispose(bloc.dispose);
       return bloc;
     },
@@ -79,7 +79,7 @@ final class _BlocProviders {
     ),
   );
 
-  late final track = Provider.family<TrackBloc, Track>(
+  late final track = Provider.family.autoDispose<TrackBloc, Track>(
     (ref, track) => TrackBloc(
       track,
       ref.read(Di.repository.tracks),
@@ -88,12 +88,12 @@ final class _BlocProviders {
     ),
   );
 
-  late final tracksFilters = Provider(
+  late final tracksFilters = Provider.autoDispose(
     (ref) {
       final bloc = TracksFiltersBloc(
         ref.read(Di.repository.tracks),
         ref.read(Di.manager.navigation),
-      );
+      )..init();
       ref.onDispose(bloc.dispose);
       return bloc;
     },
@@ -132,7 +132,7 @@ final class _BlocProviders {
     },
   );
 
-  late final profileSettings = Provider.autoDispose(
+  late final accountSettings = Provider.autoDispose(
     (ref) => AccountSettingsBloc(
       ref.read(Di.manager.user),
       ref.read(Di.manager.navigation),
@@ -152,6 +152,6 @@ final class _BlocProviders {
       ref.read(Di.manager.subscriptions),
       ref.read(Di.repository.firebaseRemoteConfig),
       ref.read(Di.manager.navigation),
-    ),
+    )..init(),
   );
 }

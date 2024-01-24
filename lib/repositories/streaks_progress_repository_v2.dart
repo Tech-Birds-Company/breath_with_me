@@ -16,19 +16,20 @@ class StreakProgressRepositoryV2 {
   late final _streakCollection = _firestore.collection(_collection);
   late final _defaultTotalLives = _remoteConfig.streaks.monthLivesCount;
 
-  Stream<StreakProgressV2> getStreakProgressStream(String userId) =>
-      _streakCollection.doc(userId).snapshots().distinct().map(
-        (snapshot) {
-          if (snapshot.exists) {
-            return StreakProgressV2.fromJson(snapshot.data()!);
-          } else {
-            return StreakProgressV2(
-              totalLives: _defaultTotalLives,
-              utcTimeline: [],
-            );
-          }
-        },
-      );
+  Stream<StreakProgressV2> getStreakProgressStream(String userId) {
+    return _streakCollection.doc(userId).snapshots().distinct().map(
+      (snapshot) {
+        if (snapshot.exists) {
+          return StreakProgressV2.fromJson(snapshot.data()!);
+        } else {
+          return StreakProgressV2(
+            totalLives: _defaultTotalLives,
+            utcTimeline: [],
+          );
+        }
+      },
+    );
+  }
 
   Future<StreakProgressV2> setUserProgressData(
     String userId,

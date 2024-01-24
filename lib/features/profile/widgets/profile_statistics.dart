@@ -25,6 +25,7 @@ class ProfileStatistics extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return BlocBuilder<StreakBloc, StreakState>(
+      buildWhen: (previous, current) => previous != current,
       bloc: bloc,
       builder: (context, state) => state.when(
         error: (_) => const SizedBox.shrink(),

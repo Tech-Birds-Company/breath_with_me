@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:breathe_with_me/features/tracks/blocs/tracks_filters_bloc.dart';
 import 'package:breathe_with_me/features/tracks/models/tracks_filters_state.dart';
 import 'package:breathe_with_me/features/tracks/models/tracks_list_state.dart';
 import 'package:breathe_with_me/managers/database_manager/database_cached_keys.dart';
@@ -9,11 +10,11 @@ import 'package:rxdart/rxdart.dart';
 
 final class TracksListBloc extends CacheableBloc<TracksListState> {
   final TracksRepository _tracksRepository;
-  final Stream<TracksFiltersState> _filtersStateStream;
+  final TracksFiltersBloc _tracksFiltersBloc;
 
   TracksListBloc(
     this._tracksRepository,
-    this._filtersStateStream,
+    this._tracksFiltersBloc,
   ) : super(const TracksListState.loading());
 
   @override
@@ -30,7 +31,7 @@ final class TracksListBloc extends CacheableBloc<TracksListState> {
         event.toList(),
       ),
     );
-    _filtersSubscription ??= Rx.combineLatest3(_filtersStateStream,
+    _filtersSubscription ??= Rx.combineLatest3(_tracksFiltersBloc.stream,
         cachedBlocStateStream, _tracksRepository.likedTracksStream, (
       filtersState,
       tracksState,

@@ -32,12 +32,14 @@ final class StreakBloc extends BlocBase<StreakState> {
     );
 
     _streakProgressSubscription ??= _streakProgressManager.stream.listen(
-      (streakProgress) => emit(
-        StreakState.data(
-          streakProgress,
-          premiumEnabled: _subscriptionsManager.premiumEnabled,
-        ),
-      ),
+      (streakProgress) {
+        emit(
+          StreakState.data(
+            streakProgress,
+            premiumEnabled: _subscriptionsManager.premiumEnabled,
+          ),
+        );
+      },
     );
     final progress = await _streakProgressManager.getUserStreakProgress();
     emit(
