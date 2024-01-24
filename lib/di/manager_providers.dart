@@ -49,14 +49,9 @@ final class _ManagerProviders {
   );
 
   late final streakProgress = Provider(
-    (ref) {
-      final userId = ref.read(Di.manager.user).currentUser!.uid;
-      final manager = StreakProgressManager(
-        userId,
-        ref.read(Di.repository.firebaseStreaksProgress),
-      );
-      ref.onDispose(manager.dispose);
-      return manager;
-    },
+    (ref) => StreakProgressManager(
+      ref.read(Di.manager.user).currentUser!.uid,
+      ref.read(Di.repository.firebaseStreaksProgress),
+    ),
   );
 }

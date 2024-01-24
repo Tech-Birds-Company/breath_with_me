@@ -15,31 +15,14 @@ class StreakProgressManager {
 
   Stream<StreakProgressV2> get stream =>
       _streaksProgressRepository.getStreakProgressStream(_userId);
-  StreamSubscription<StreakProgressV2>? _streakProgressSubscription;
-  StreakProgressV2? _streakProgressV2;
-
-  StreakProgressV2? get streakProgressV2 => _streakProgressV2;
-
-  Future<void> init() async {
-    if (_streakProgressV2 == null) {
-      await _streaksProgressRepository.getUserStreakProgress(_userId);
-    }
-    _streakProgressSubscription ??= stream.listen(
-      (streakProgress) {
-        _streakProgressV2 = streakProgress;
-      },
-    );
-  }
 
   Future<StreakProgressV2> addStreakData({
     required int minutes,
     required DateTime date,
   }) async {
     final utcDate = date.utc;
-    final currentProgress = streakProgressV2;
-    if (currentProgress == null) {
-      throw Exception('[ADD] Streak progress is not initialized');
-    }
+    final currentProgress =
+        await _streaksProgressRepository.getUserStreakProgress(_userId);
 
     final currentTimeline = currentProgress.utcTimeline;
     final missedDays = currentTimeline.isEmpty
@@ -65,18 +48,14 @@ class StreakProgressManager {
   }
 
   Future<StreakProgressV2> getUserStreakProgress() async {
-    if (streakProgressV2 == null) {
-      throw Exception('[GET] Streak progress is not initialized');
-    }
-
-    return streakProgressV2!;
+    final progress =
+        await _streaksProgressRepository.getUserStreakProgress(_userId);
+    return progress;
   }
 
   Future<StreakProgressV2> restoreUserStreakProgress() async {
-    final currentProgress = streakProgressV2;
-    if (currentProgress == null) {
-      throw Exception('[RESTORE] Streak progress is not initialized');
-    }
+    final currentProgress =
+        await _streaksProgressRepository.getUserStreakProgress(_userId);
 
     final currentStreak = currentProgress.totalStreak;
     final currentTimelineLength = currentProgress.utcTimeline.length;
@@ -187,10 +166,4 @@ class StreakProgressManager {
       date1.year == date2.year &&
       date1.month == date2.month &&
       date1.day == date2.day;
-
-  void dispose() {
-    _streakProgressV2 = null;
-    _streakProgressSubscription?.cancel();
-    _streakProgressSubscription = null;
-  }
 }

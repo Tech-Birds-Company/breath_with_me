@@ -11,6 +11,7 @@ import 'package:breathe_with_me/features/profile_settings/account_settings_page.
 import 'package:breathe_with_me/features/reminder/blocs/reminder_bloc.dart';
 import 'package:breathe_with_me/features/reminder/reminder_page.dart';
 import 'package:breathe_with_me/features/safety_precautions/safety_precautions_page.dart';
+import 'package:breathe_with_me/features/streak/blocs/streak_bloc.dart';
 import 'package:breathe_with_me/features/streak/streak_page.dart';
 import 'package:breathe_with_me/features/track_player/track_player_page.dart';
 import 'package:breathe_with_me/features/tracks/filter_type.dart';
@@ -60,14 +61,16 @@ abstract final class BWMRoutes {
     GoRoute(
       path: BWMRoutes.profile,
       builder: (context, state) =>
-          MultiDependencyProvider2<ProfileBloc, ReminderBloc>(
+          MultiDependencyProvider3<ProfileBloc, StreakBloc, ReminderBloc>(
         providers: (
           Di.bloc.profile,
+          Di.bloc.streak,
           Di.bloc.reminder,
         ),
         builder: (context, dependencies) => ProfilePage(
           profileBloc: dependencies.$1,
-          reminderBloc: dependencies.$2,
+          streakBloc: dependencies.$2,
+          reminderBloc: dependencies.$3,
         ),
       ),
     ),

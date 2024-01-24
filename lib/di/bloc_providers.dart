@@ -120,11 +120,15 @@ final class _BlocProviders {
   );
 
   late final streak = Provider(
-    (ref) => StreakBloc(
-      ref.read(Di.manager.streakProgress),
-      ref.read(Di.manager.subscriptions),
-      ref.read(Di.manager.navigation),
-    ),
+    (ref) {
+      final bloc = StreakBloc(
+        ref.read(Di.manager.streakProgress),
+        ref.read(Di.manager.subscriptions),
+        ref.read(Di.manager.navigation),
+      );
+      ref.onDispose(bloc.dispose);
+      return bloc;
+    },
   );
 
   late final profileSettings = Provider.autoDispose(

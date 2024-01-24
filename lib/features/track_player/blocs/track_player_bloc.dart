@@ -47,7 +47,6 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   }
 
   Future<void> init() async {
-    await _streakProgressManager.init();
     final trackDownloadTask =
         await _tracksRepository.getTrackDownloadTask(_track.id);
 

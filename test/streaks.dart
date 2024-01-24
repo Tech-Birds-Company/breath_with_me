@@ -58,7 +58,7 @@ void main() {
             ),
           );
 
-          expect(progress.utcTimeline.length, 3);
+          expect(progress.utcTimeline.length, 1);
           expect(progress.totalLives, streakProgressManager.defaultTotalLives);
           expect(progress.totalMinutes, 15);
           expect(progress.totalStreak, 1);
@@ -100,7 +100,7 @@ void main() {
             ),
           );
 
-          expect(progress.utcTimeline.length, 5);
+          expect(progress.utcTimeline.length, 3);
           expect(progress.totalLives, streakProgressManager.defaultTotalLives);
           expect(progress.totalMinutes, 38);
           expect(progress.totalStreak, 3);

@@ -29,7 +29,7 @@ class StreakPremiumStartedOrContinued extends StatelessWidget {
             const SizedBox(height: 24),
             StreakWeeks(
               selectedDay: bloc.state.maybeWhen(
-                data: (state) => state.totalStreak,
+                data: (state, _) => state.totalStreak,
                 orElse: () => 0,
               ),
             ),

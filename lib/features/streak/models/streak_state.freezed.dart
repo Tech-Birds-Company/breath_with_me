@@ -16,25 +16,30 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$StreakState {
+  bool get premiumEnabled => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(StreakProgressV2 streakProgressV2) data,
-    required TResult Function() error,
+    required TResult Function(bool premiumEnabled) loading,
+    required TResult Function(
+            StreakProgressV2 streakProgressV2, bool premiumEnabled)
+        data,
+    required TResult Function(bool premiumEnabled) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(StreakProgressV2 streakProgressV2)? data,
-    TResult? Function()? error,
+    TResult? Function(bool premiumEnabled)? loading,
+    TResult? Function(StreakProgressV2 streakProgressV2, bool premiumEnabled)?
+        data,
+    TResult? Function(bool premiumEnabled)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(StreakProgressV2 streakProgressV2)? data,
-    TResult Function()? error,
+    TResult Function(bool premiumEnabled)? loading,
+    TResult Function(StreakProgressV2 streakProgressV2, bool premiumEnabled)?
+        data,
+    TResult Function(bool premiumEnabled)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -60,6 +65,10 @@ mixin _$StreakState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $StreakStateCopyWith<StreakState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -67,6 +76,8 @@ abstract class $StreakStateCopyWith<$Res> {
   factory $StreakStateCopyWith(
           StreakState value, $Res Function(StreakState) then) =
       _$StreakStateCopyWithImpl<$Res, StreakState>;
+  @useResult
+  $Res call({bool premiumEnabled});
 }
 
 /// @nodoc
@@ -78,13 +89,30 @@ class _$StreakStateCopyWithImpl<$Res, $Val extends StreakState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? premiumEnabled = null,
+  }) {
+    return _then(_value.copyWith(
+      premiumEnabled: null == premiumEnabled
+          ? _value.premiumEnabled
+          : premiumEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$StreakLoadingImplCopyWith<$Res> {
+abstract class _$$StreakLoadingImplCopyWith<$Res>
+    implements $StreakStateCopyWith<$Res> {
   factory _$$StreakLoadingImplCopyWith(
           _$StreakLoadingImpl value, $Res Function(_$StreakLoadingImpl) then) =
       __$$StreakLoadingImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool premiumEnabled});
 }
 
 /// @nodoc
@@ -94,57 +122,86 @@ class __$$StreakLoadingImplCopyWithImpl<$Res>
   __$$StreakLoadingImplCopyWithImpl(
       _$StreakLoadingImpl _value, $Res Function(_$StreakLoadingImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? premiumEnabled = null,
+  }) {
+    return _then(_$StreakLoadingImpl(
+      premiumEnabled: null == premiumEnabled
+          ? _value.premiumEnabled
+          : premiumEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$StreakLoadingImpl implements _StreakLoading {
-  const _$StreakLoadingImpl();
+  const _$StreakLoadingImpl({required this.premiumEnabled});
+
+  @override
+  final bool premiumEnabled;
 
   @override
   String toString() {
-    return 'StreakState.loading()';
+    return 'StreakState.loading(premiumEnabled: $premiumEnabled)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$StreakLoadingImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$StreakLoadingImpl &&
+            (identical(other.premiumEnabled, premiumEnabled) ||
+                other.premiumEnabled == premiumEnabled));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, premiumEnabled);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$StreakLoadingImplCopyWith<_$StreakLoadingImpl> get copyWith =>
+      __$$StreakLoadingImplCopyWithImpl<_$StreakLoadingImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(StreakProgressV2 streakProgressV2) data,
-    required TResult Function() error,
+    required TResult Function(bool premiumEnabled) loading,
+    required TResult Function(
+            StreakProgressV2 streakProgressV2, bool premiumEnabled)
+        data,
+    required TResult Function(bool premiumEnabled) error,
   }) {
-    return loading();
+    return loading(premiumEnabled);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(StreakProgressV2 streakProgressV2)? data,
-    TResult? Function()? error,
+    TResult? Function(bool premiumEnabled)? loading,
+    TResult? Function(StreakProgressV2 streakProgressV2, bool premiumEnabled)?
+        data,
+    TResult? Function(bool premiumEnabled)? error,
   }) {
-    return loading?.call();
+    return loading?.call(premiumEnabled);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(StreakProgressV2 streakProgressV2)? data,
-    TResult Function()? error,
+    TResult Function(bool premiumEnabled)? loading,
+    TResult Function(StreakProgressV2 streakProgressV2, bool premiumEnabled)?
+        data,
+    TResult Function(bool premiumEnabled)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading();
+      return loading(premiumEnabled);
     }
     return orElse();
   }
@@ -185,16 +242,26 @@ class _$StreakLoadingImpl implements _StreakLoading {
 }
 
 abstract class _StreakLoading implements StreakState {
-  const factory _StreakLoading() = _$StreakLoadingImpl;
+  const factory _StreakLoading({required final bool premiumEnabled}) =
+      _$StreakLoadingImpl;
+
+  @override
+  bool get premiumEnabled;
+  @override
+  @JsonKey(ignore: true)
+  _$$StreakLoadingImplCopyWith<_$StreakLoadingImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$StreakDataImplCopyWith<$Res> {
+abstract class _$$StreakDataImplCopyWith<$Res>
+    implements $StreakStateCopyWith<$Res> {
   factory _$$StreakDataImplCopyWith(
           _$StreakDataImpl value, $Res Function(_$StreakDataImpl) then) =
       __$$StreakDataImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({StreakProgressV2 streakProgressV2});
+  $Res call({StreakProgressV2 streakProgressV2, bool premiumEnabled});
 
   $StreakProgressV2CopyWith<$Res> get streakProgressV2;
 }
@@ -211,12 +278,17 @@ class __$$StreakDataImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? streakProgressV2 = null,
+    Object? premiumEnabled = null,
   }) {
     return _then(_$StreakDataImpl(
       null == streakProgressV2
           ? _value.streakProgressV2
           : streakProgressV2 // ignore: cast_nullable_to_non_nullable
               as StreakProgressV2,
+      premiumEnabled: null == premiumEnabled
+          ? _value.premiumEnabled
+          : premiumEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
@@ -232,14 +304,16 @@ class __$$StreakDataImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$StreakDataImpl implements _StreakData {
-  const _$StreakDataImpl(this.streakProgressV2);
+  const _$StreakDataImpl(this.streakProgressV2, {required this.premiumEnabled});
 
   @override
   final StreakProgressV2 streakProgressV2;
+  @override
+  final bool premiumEnabled;
 
   @override
   String toString() {
-    return 'StreakState.data(streakProgressV2: $streakProgressV2)';
+    return 'StreakState.data(streakProgressV2: $streakProgressV2, premiumEnabled: $premiumEnabled)';
   }
 
   @override
@@ -248,11 +322,14 @@ class _$StreakDataImpl implements _StreakData {
         (other.runtimeType == runtimeType &&
             other is _$StreakDataImpl &&
             (identical(other.streakProgressV2, streakProgressV2) ||
-                other.streakProgressV2 == streakProgressV2));
+                other.streakProgressV2 == streakProgressV2) &&
+            (identical(other.premiumEnabled, premiumEnabled) ||
+                other.premiumEnabled == premiumEnabled));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, streakProgressV2);
+  int get hashCode =>
+      Object.hash(runtimeType, streakProgressV2, premiumEnabled);
 
   @JsonKey(ignore: true)
   @override
@@ -263,33 +340,37 @@ class _$StreakDataImpl implements _StreakData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(StreakProgressV2 streakProgressV2) data,
-    required TResult Function() error,
+    required TResult Function(bool premiumEnabled) loading,
+    required TResult Function(
+            StreakProgressV2 streakProgressV2, bool premiumEnabled)
+        data,
+    required TResult Function(bool premiumEnabled) error,
   }) {
-    return data(streakProgressV2);
+    return data(streakProgressV2, premiumEnabled);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(StreakProgressV2 streakProgressV2)? data,
-    TResult? Function()? error,
+    TResult? Function(bool premiumEnabled)? loading,
+    TResult? Function(StreakProgressV2 streakProgressV2, bool premiumEnabled)?
+        data,
+    TResult? Function(bool premiumEnabled)? error,
   }) {
-    return data?.call(streakProgressV2);
+    return data?.call(streakProgressV2, premiumEnabled);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(StreakProgressV2 streakProgressV2)? data,
-    TResult Function()? error,
+    TResult Function(bool premiumEnabled)? loading,
+    TResult Function(StreakProgressV2 streakProgressV2, bool premiumEnabled)?
+        data,
+    TResult Function(bool premiumEnabled)? error,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(streakProgressV2);
+      return data(streakProgressV2, premiumEnabled);
     }
     return orElse();
   }
@@ -330,20 +411,27 @@ class _$StreakDataImpl implements _StreakData {
 }
 
 abstract class _StreakData implements StreakState {
-  const factory _StreakData(final StreakProgressV2 streakProgressV2) =
-      _$StreakDataImpl;
+  const factory _StreakData(final StreakProgressV2 streakProgressV2,
+      {required final bool premiumEnabled}) = _$StreakDataImpl;
 
   StreakProgressV2 get streakProgressV2;
+  @override
+  bool get premiumEnabled;
+  @override
   @JsonKey(ignore: true)
   _$$StreakDataImplCopyWith<_$StreakDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$StreakErrorImplCopyWith<$Res> {
+abstract class _$$StreakErrorImplCopyWith<$Res>
+    implements $StreakStateCopyWith<$Res> {
   factory _$$StreakErrorImplCopyWith(
           _$StreakErrorImpl value, $Res Function(_$StreakErrorImpl) then) =
       __$$StreakErrorImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool premiumEnabled});
 }
 
 /// @nodoc
@@ -353,57 +441,86 @@ class __$$StreakErrorImplCopyWithImpl<$Res>
   __$$StreakErrorImplCopyWithImpl(
       _$StreakErrorImpl _value, $Res Function(_$StreakErrorImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? premiumEnabled = null,
+  }) {
+    return _then(_$StreakErrorImpl(
+      premiumEnabled: null == premiumEnabled
+          ? _value.premiumEnabled
+          : premiumEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$StreakErrorImpl implements _StreakError {
-  const _$StreakErrorImpl();
+  const _$StreakErrorImpl({required this.premiumEnabled});
+
+  @override
+  final bool premiumEnabled;
 
   @override
   String toString() {
-    return 'StreakState.error()';
+    return 'StreakState.error(premiumEnabled: $premiumEnabled)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$StreakErrorImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$StreakErrorImpl &&
+            (identical(other.premiumEnabled, premiumEnabled) ||
+                other.premiumEnabled == premiumEnabled));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, premiumEnabled);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$StreakErrorImplCopyWith<_$StreakErrorImpl> get copyWith =>
+      __$$StreakErrorImplCopyWithImpl<_$StreakErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(StreakProgressV2 streakProgressV2) data,
-    required TResult Function() error,
+    required TResult Function(bool premiumEnabled) loading,
+    required TResult Function(
+            StreakProgressV2 streakProgressV2, bool premiumEnabled)
+        data,
+    required TResult Function(bool premiumEnabled) error,
   }) {
-    return error();
+    return error(premiumEnabled);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(StreakProgressV2 streakProgressV2)? data,
-    TResult? Function()? error,
+    TResult? Function(bool premiumEnabled)? loading,
+    TResult? Function(StreakProgressV2 streakProgressV2, bool premiumEnabled)?
+        data,
+    TResult? Function(bool premiumEnabled)? error,
   }) {
-    return error?.call();
+    return error?.call(premiumEnabled);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(StreakProgressV2 streakProgressV2)? data,
-    TResult Function()? error,
+    TResult Function(bool premiumEnabled)? loading,
+    TResult Function(StreakProgressV2 streakProgressV2, bool premiumEnabled)?
+        data,
+    TResult Function(bool premiumEnabled)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error();
+      return error(premiumEnabled);
     }
     return orElse();
   }
@@ -444,5 +561,13 @@ class _$StreakErrorImpl implements _StreakError {
 }
 
 abstract class _StreakError implements StreakState {
-  const factory _StreakError() = _$StreakErrorImpl;
+  const factory _StreakError({required final bool premiumEnabled}) =
+      _$StreakErrorImpl;
+
+  @override
+  bool get premiumEnabled;
+  @override
+  @JsonKey(ignore: true)
+  _$$StreakErrorImplCopyWith<_$StreakErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

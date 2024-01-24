@@ -16,21 +16,44 @@ class StreakStatistics extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<StreakBloc, StreakState>(
-      bloc: bloc,
-      builder: (context, state) {
-        final theme = Theme.of(context).extension<BWMTheme>()!;
-        final divider = VerticalDivider(
-          color: theme.gray6.withOpacity(0.12),
-          thickness: 1,
-        );
-        return state.when(
-          loading: () => const SizedBox.shrink(),
-          error: () => const SizedBox.shrink(),
-          data: (progress) {
-            final hasMissedDays = progress.totalMissedDays > 0;
-            if (hasMissedDays) {
+  Widget build(BuildContext context) => BlocBuilder<StreakBloc, StreakState>(
+        bloc: bloc,
+        builder: (context, state) {
+          final theme = Theme.of(context).extension<BWMTheme>()!;
+          final divider = VerticalDivider(
+            color: theme.gray6.withOpacity(0.12),
+            thickness: 1,
+          );
+          return state.when(
+            loading: (_) => const SizedBox.shrink(),
+            error: (_) => const SizedBox.shrink(),
+            data: (progress, premiumEnabled) {
+              final hasMissedDays = progress.totalMissedDays > 0;
+              if (hasMissedDays) {
+                return IntrinsicHeight(
+                  child: Row(
+                    children: [
+                      const Spacer(),
+                      StreakStatisticsItem(
+                        text: progress.totalStreak.toString(),
+                        name: LocaleKeys.streakStatisticsCardStreaksCount
+                            .plural(progress.totalStreak),
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                      ),
+                      const Spacer(),
+                      divider,
+                      const Spacer(),
+                      StreakStatisticsItem(
+                        text: progress.totalMissedDays.toString(),
+                        name: LocaleKeys.streakStatisticsCardDayMissedCount
+                            .plural(progress.totalMissedDays),
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                );
+              }
               return IntrinsicHeight(
                 child: Row(
                   children: [
@@ -45,51 +68,26 @@ class StreakStatistics extends StatelessWidget {
                     divider,
                     const Spacer(),
                     StreakStatisticsItem(
-                      text: progress.totalMissedDays.toString(),
-                      name: LocaleKeys.streakStatisticsCardDayMissedCount
-                          .plural(progress.totalMissedDays),
+                      text: progress.totalPractices.toString(),
+                      name: LocaleKeys.streakStatisticsCardPracticesCount
+                          .plural(progress.totalPractices),
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                    ),
+                    const Spacer(),
+                    divider,
+                    const Spacer(),
+                    StreakStatisticsItem(
+                      text: progress.totalMinutes.toString(),
+                      name: LocaleKeys.streakStatisticsCardMinCount
+                          .plural(progress.totalMinutes),
                       crossAxisAlignment: CrossAxisAlignment.center,
                     ),
                     const Spacer(),
                   ],
                 ),
               );
-            }
-            return IntrinsicHeight(
-              child: Row(
-                children: [
-                  const Spacer(),
-                  StreakStatisticsItem(
-                    text: progress.totalStreak.toString(),
-                    name: LocaleKeys.streakStatisticsCardStreaksCount
-                        .plural(progress.totalStreak),
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                  ),
-                  const Spacer(),
-                  divider,
-                  const Spacer(),
-                  StreakStatisticsItem(
-                    text: progress.totalPractices.toString(),
-                    name: LocaleKeys.streakStatisticsCardPracticesCount
-                        .plural(progress.totalPractices),
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                  ),
-                  const Spacer(),
-                  divider,
-                  const Spacer(),
-                  StreakStatisticsItem(
-                    text: progress.totalMinutes.toString(),
-                    name: LocaleKeys.streakStatisticsCardMinCount
-                        .plural(progress.totalMinutes),
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                  ),
-                  const Spacer(),
-                ],
-              ),
-            );
-          },
-        );
-      },
-    );
-  }
+            },
+          );
+        },
+      );
 }

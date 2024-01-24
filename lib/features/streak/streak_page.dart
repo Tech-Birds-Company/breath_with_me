@@ -8,9 +8,8 @@ import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
-class StreakPage extends HookWidget {
+class StreakPage extends StatelessWidget {
   final StreakBloc bloc;
 
   const StreakPage({
@@ -20,16 +19,7 @@ class StreakPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    useEffect(
-      () {
-        bloc.init();
-        return null;
-      },
-      const [],
-    );
-
     final theme = Theme.of(context).extension<BWMTheme>()!;
-
     return Scaffold(
       backgroundColor: theme.primaryBackground,
       body: SafeArea(
@@ -41,14 +31,14 @@ class StreakPage extends HookWidget {
               builder: (context, state) {
                 final locale = EasyLocalization.of(context)!.locale;
                 return state.when(
-                  loading: () => Center(
+                  loading: (_) => Center(
                     child: CircularProgressIndicator(color: theme.green3),
                   ),
-                  error: () => Center(
+                  error: (_) => Center(
                     child: CircularProgressIndicator(color: theme.green3),
                   ),
-                  data: (progress) {
-                    if (bloc.premiumEnabled) {
+                  data: (progress, premiumEnabled) {
+                    if (premiumEnabled) {
                       if (progress.totalMissedDays > 0) {
                         return StreakPremiumMissed(
                           bloc: bloc,
