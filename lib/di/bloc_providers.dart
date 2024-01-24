@@ -83,6 +83,7 @@ final class _BlocProviders {
     (ref, track) => TrackBloc(
       track,
       ref.read(Di.repository.tracks),
+      ref.read(Di.manager.user),
       ref.read(Di.manager.navigation),
     ),
   );

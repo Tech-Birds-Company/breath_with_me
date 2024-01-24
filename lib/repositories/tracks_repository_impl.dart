@@ -71,8 +71,10 @@ final class TracksRepositoryImpl implements TracksRepository {
   }
 
   @override
-  Future<DownloadTrackTask?> getTrackDownloadTask(String trackId) async {
-    final entity = await _databaseManager.getDownloadTask(trackId);
+  Future<DownloadTrackTask?> getTrackDownloadTask({
+    required String taskId,
+  }) async {
+    final entity = await _databaseManager.getDownloadTask(taskId);
 
     return entity;
   }
@@ -87,12 +89,13 @@ final class TracksRepositoryImpl implements TracksRepository {
   }
 
   @override
-  Stream<bool> getTrackIsDownloadedStream(String trackId) => _databaseManager
-      .taskProgressStream(trackId)
-      .map((progress) => progress == 1.0);
+  Stream<bool> getTrackIsDownloadedStream({required String taskId}) =>
+      _databaseManager
+          .taskProgressStream(taskId: taskId)
+          .map((progress) => progress == 1.0);
 
   @override
-  Future<void> deleteTrackDownloadTask(String taskId) =>
+  Future<void> deleteTrackDownloadTask({required String taskId}) =>
       _databaseManager.deleteDownloadTask(taskId);
 
   @override
