@@ -28,6 +28,7 @@ final class _BlocProviders {
         ref.read(Di.repository.tracks),
         ref.read(Di.manager.user),
         ref.read(Di.manager.tracksDownloader),
+        ref.read(Di.manager.streakProgress),
         ref.read(Di.manager.navigation),
       );
       ref.onDispose(bloc.dispose);
@@ -49,11 +50,9 @@ final class _BlocProviders {
         ref.read(Di.manager.navigation),
         ref.read(Di.manager.pushNotifications),
         ref.read(Di.manager.permissions),
-        ref.read(Di.repository.firebaseRemoteConfig),
         ref.read(Di.manager.user),
         ref.read(Di.manager.database),
         ref.read(Di.manager.subscriptions),
-        ref.read(Di.repository.firebaseStreaksProgress),
         ref.read(Di.manager.deeplink),
       );
       ref.onDispose(bloc.dispose);
@@ -120,20 +119,12 @@ final class _BlocProviders {
     ),
   );
 
-  late final streak = Provider.family.autoDispose<StreakBloc, (Track, Locale)>(
-    (ref, input) {
-      final bloc = StreakBloc(
-        input.$1,
-        input.$2,
-        ref.read(Di.repository.firebaseRemoteConfig),
-        ref.read(Di.repository.firebaseStreaksProgress),
-        ref.read(Di.repository.streaksQuotes),
-        ref.read(Di.manager.user),
-        ref.read(Di.manager.navigation),
-        ref.read(Di.manager.subscriptions),
-      );
-      return bloc;
-    },
+  late final streak = Provider(
+    (ref) => StreakBloc(
+      ref.read(Di.manager.streakProgress),
+      ref.read(Di.manager.subscriptions),
+      ref.read(Di.manager.navigation),
+    ),
   );
 
   late final profileSettings = Provider.autoDispose(

@@ -8,6 +8,7 @@ import 'package:breathe_with_me/managers/audio_manager/audio_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/downloader_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/track_download_task.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
+import 'package:breathe_with_me/managers/streak_progress_manager/streak_progress_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/repositories/tracks_repository.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -20,6 +21,7 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   final TracksRepository _tracksRepository;
   final UserManager _userManager;
   final DownloaderManager _downloaderManager;
+  final StreakProgressManager _streakProgressManager;
   final NavigationManager _navigationManager;
 
   TrackPlayerBloc(
@@ -28,6 +30,7 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
     this._tracksRepository,
     this._userManager,
     this._downloaderManager,
+    this._streakProgressManager,
     this._navigationManager,
   ) : super(TrackPlayerState.initialState);
 
@@ -44,6 +47,7 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   }
 
   Future<void> init() async {
+    await _streakProgressManager.init();
     final trackDownloadTask =
         await _tracksRepository.getTrackDownloadTask(_track.id);
 
@@ -54,11 +58,6 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
     } else {
       await _handleOnlinePlay();
     }
-  }
-
-  void onTrackFinish() {
-    _audioManager.stop();
-    _navigationManager.openStreak(_track);
   }
 
   Future<void> _handleOfflinePlay(DownloadTrackTask task) async {
@@ -124,6 +123,15 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
       url: url,
     );
     _downloaderManager.queue(tasks: [downloadTask]);
+  }
+
+  Future<void> onTrackFinish() async {
+    await _audioManager.stop();
+    await _streakProgressManager.addStreakData(
+      minutes: track.duration,
+      date: DateTime.now(),
+    );
+    _navigationManager.openStreak();
   }
 
   void _subscribeToPlayerState() =>

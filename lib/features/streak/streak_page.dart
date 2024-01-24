@@ -3,7 +3,9 @@ import 'package:breathe_with_me/features/streak/models/streak_state.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_premium_missed.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_premium_started_or_continued.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_without_premium.dart';
+import 'package:breathe_with_me/repositories/streaks_quotes_repository.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -37,34 +39,32 @@ class StreakPage extends HookWidget {
             BlocBuilder<StreakBloc, StreakState>(
               bloc: bloc,
               builder: (context, state) {
-                return state.contentState.when(
-                  loading: () {
-                    return Center(
-                      child: CircularProgressIndicator(color: theme.green3),
-                    );
-                  },
-                  withoutPremium: (streaksCount, quote) {
-                    return StreakWithoutPremium(
-                      streaksCount: streaksCount,
-                      quote: quote,
-                    );
-                  },
-                  premiumStartedOrContinued:
-                      (statistics, streaksCount, lives, quote) {
-                    return StreakPremiumStartedOrContinued(
-                      statistics: statistics,
-                      streaksCount: streaksCount,
-                      lives: lives,
-                      quote: quote,
-                    );
-                  },
-                  premiumMissed: (statistics, lives) {
-                    return StreakPremiumMissed(
-                      statistics: statistics,
-                      lives: lives,
-                      onRestoreTap: bloc.onRestoreTap,
-                      onSkipTap: bloc.onSkipTap,
-                    );
+                final locale = EasyLocalization.of(context)!.locale;
+                return state.when(
+                  loading: () => Center(
+                    child: CircularProgressIndicator(color: theme.green3),
+                  ),
+                  error: () => Center(
+                    child: CircularProgressIndicator(color: theme.green3),
+                  ),
+                  data: (progress) {
+                    if (bloc.premiumEnabled) {
+                      if (progress.totalMissedDays > 0) {
+                        return StreakPremiumMissed(
+                          bloc: bloc,
+                          onRestoreTap: bloc.onRestoreTap,
+                          onSkipTap: bloc.onSkipTap,
+                        );
+                      } else {
+                        return StreakPremiumStartedOrContinued(bloc: bloc);
+                      }
+                    } else {
+                      return StreakWithoutPremium(
+                        streaksCount: progress.totalStreak,
+                        quote: const StreaksQuotesRepository()
+                            .getQuote(locale.languageCode),
+                      );
+                    }
                   },
                 );
               },

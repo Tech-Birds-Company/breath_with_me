@@ -26,6 +26,7 @@ dependencies:
   cloud_functions: 4.5.2
   firebase_messaging: 14.7.2
   firebase_remote_config: 4.3.2
+  fake_cloud_firestore: 2.4.6
   # ------------------------
   google_sign_in: ^6.2.1
   sign_in_with_apple: ^5.0.0

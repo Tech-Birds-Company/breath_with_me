@@ -22,7 +22,7 @@ final class _RepositoryProviders {
   );
 
   late final firebaseStreaksProgress = Provider.autoDispose(
-    (ref) => const StreaksProgressRepositoryImpl(),
+    (ref) => StreakProgressRepositoryV2(FirebaseFirestore.instance),
   );
 
   late final streaksQuotes = Provider.autoDispose(

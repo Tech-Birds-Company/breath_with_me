@@ -47,4 +47,16 @@ final class _ManagerProviders {
       ref.read(Di.repository.firebaseRemoteConfig),
     ),
   );
+
+  late final streakProgress = Provider(
+    (ref) {
+      final userId = ref.read(Di.manager.user).currentUser!.uid;
+      final manager = StreakProgressManager(
+        userId,
+        ref.read(Di.repository.firebaseStreaksProgress),
+      );
+      ref.onDispose(manager.dispose);
+      return manager;
+    },
+  );
 }

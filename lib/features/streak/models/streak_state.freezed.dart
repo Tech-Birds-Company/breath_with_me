@@ -14,18 +14,51 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-StreakState _$StreakStateFromJson(Map<String, dynamic> json) {
-  return _StreakState.fromJson(json);
-}
-
 /// @nodoc
 mixin _$StreakState {
-  StreaksProgress? get progress => throw _privateConstructorUsedError;
-  StreakContentState get contentState => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $StreakStateCopyWith<StreakState> get copyWith =>
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(StreakProgressV2 streakProgressV2) data,
+    required TResult Function() error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(StreakProgressV2 streakProgressV2)? data,
+    TResult? Function()? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(StreakProgressV2 streakProgressV2)? data,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_StreakLoading value) loading,
+    required TResult Function(_StreakData value) data,
+    required TResult Function(_StreakError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_StreakLoading value)? loading,
+    TResult? Function(_StreakData value)? data,
+    TResult? Function(_StreakError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_StreakLoading value)? loading,
+    TResult Function(_StreakData value)? data,
+    TResult Function(_StreakError value)? error,
+    required TResult orElse(),
+  }) =>
       throw _privateConstructorUsedError;
 }
 
@@ -34,11 +67,6 @@ abstract class $StreakStateCopyWith<$Res> {
   factory $StreakStateCopyWith(
           StreakState value, $Res Function(StreakState) then) =
       _$StreakStateCopyWithImpl<$Res, StreakState>;
-  @useResult
-  $Res call({StreaksProgress? progress, StreakContentState contentState});
-
-  $StreaksProgressCopyWith<$Res>? get progress;
-  $StreakContentStateCopyWith<$Res> get contentState;
 }
 
 /// @nodoc
@@ -50,149 +78,371 @@ class _$StreakStateCopyWithImpl<$Res, $Val extends StreakState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
 
-  @pragma('vm:prefer-inline')
+/// @nodoc
+abstract class _$$StreakLoadingImplCopyWith<$Res> {
+  factory _$$StreakLoadingImplCopyWith(
+          _$StreakLoadingImpl value, $Res Function(_$StreakLoadingImpl) then) =
+      __$$StreakLoadingImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$StreakLoadingImplCopyWithImpl<$Res>
+    extends _$StreakStateCopyWithImpl<$Res, _$StreakLoadingImpl>
+    implements _$$StreakLoadingImplCopyWith<$Res> {
+  __$$StreakLoadingImplCopyWithImpl(
+      _$StreakLoadingImpl _value, $Res Function(_$StreakLoadingImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$StreakLoadingImpl implements _StreakLoading {
+  const _$StreakLoadingImpl();
+
   @override
-  $Res call({
-    Object? progress = freezed,
-    Object? contentState = null,
+  String toString() {
+    return 'StreakState.loading()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$StreakLoadingImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(StreakProgressV2 streakProgressV2) data,
+    required TResult Function() error,
   }) {
-    return _then(_value.copyWith(
-      progress: freezed == progress
-          ? _value.progress
-          : progress // ignore: cast_nullable_to_non_nullable
-              as StreaksProgress?,
-      contentState: null == contentState
-          ? _value.contentState
-          : contentState // ignore: cast_nullable_to_non_nullable
-              as StreakContentState,
-    ) as $Val);
+    return loading();
   }
 
   @override
-  @pragma('vm:prefer-inline')
-  $StreaksProgressCopyWith<$Res>? get progress {
-    if (_value.progress == null) {
-      return null;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(StreakProgressV2 streakProgressV2)? data,
+    TResult? Function()? error,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(StreakProgressV2 streakProgressV2)? data,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
     }
-
-    return $StreaksProgressCopyWith<$Res>(_value.progress!, (value) {
-      return _then(_value.copyWith(progress: value) as $Val);
-    });
+    return orElse();
   }
 
   @override
-  @pragma('vm:prefer-inline')
-  $StreakContentStateCopyWith<$Res> get contentState {
-    return $StreakContentStateCopyWith<$Res>(_value.contentState, (value) {
-      return _then(_value.copyWith(contentState: value) as $Val);
-    });
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_StreakLoading value) loading,
+    required TResult Function(_StreakData value) data,
+    required TResult Function(_StreakError value) error,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_StreakLoading value)? loading,
+    TResult? Function(_StreakData value)? data,
+    TResult? Function(_StreakError value)? error,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_StreakLoading value)? loading,
+    TResult Function(_StreakData value)? data,
+    TResult Function(_StreakError value)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
   }
 }
 
+abstract class _StreakLoading implements StreakState {
+  const factory _StreakLoading() = _$StreakLoadingImpl;
+}
+
 /// @nodoc
-abstract class _$$StreakStateImplCopyWith<$Res>
-    implements $StreakStateCopyWith<$Res> {
-  factory _$$StreakStateImplCopyWith(
-          _$StreakStateImpl value, $Res Function(_$StreakStateImpl) then) =
-      __$$StreakStateImplCopyWithImpl<$Res>;
-  @override
+abstract class _$$StreakDataImplCopyWith<$Res> {
+  factory _$$StreakDataImplCopyWith(
+          _$StreakDataImpl value, $Res Function(_$StreakDataImpl) then) =
+      __$$StreakDataImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({StreaksProgress? progress, StreakContentState contentState});
+  $Res call({StreakProgressV2 streakProgressV2});
 
-  @override
-  $StreaksProgressCopyWith<$Res>? get progress;
-  @override
-  $StreakContentStateCopyWith<$Res> get contentState;
+  $StreakProgressV2CopyWith<$Res> get streakProgressV2;
 }
 
 /// @nodoc
-class __$$StreakStateImplCopyWithImpl<$Res>
-    extends _$StreakStateCopyWithImpl<$Res, _$StreakStateImpl>
-    implements _$$StreakStateImplCopyWith<$Res> {
-  __$$StreakStateImplCopyWithImpl(
-      _$StreakStateImpl _value, $Res Function(_$StreakStateImpl) _then)
+class __$$StreakDataImplCopyWithImpl<$Res>
+    extends _$StreakStateCopyWithImpl<$Res, _$StreakDataImpl>
+    implements _$$StreakDataImplCopyWith<$Res> {
+  __$$StreakDataImplCopyWithImpl(
+      _$StreakDataImpl _value, $Res Function(_$StreakDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? progress = freezed,
-    Object? contentState = null,
+    Object? streakProgressV2 = null,
   }) {
-    return _then(_$StreakStateImpl(
-      freezed == progress
-          ? _value.progress
-          : progress // ignore: cast_nullable_to_non_nullable
-              as StreaksProgress?,
-      null == contentState
-          ? _value.contentState
-          : contentState // ignore: cast_nullable_to_non_nullable
-              as StreakContentState,
+    return _then(_$StreakDataImpl(
+      null == streakProgressV2
+          ? _value.streakProgressV2
+          : streakProgressV2 // ignore: cast_nullable_to_non_nullable
+              as StreakProgressV2,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StreakProgressV2CopyWith<$Res> get streakProgressV2 {
+    return $StreakProgressV2CopyWith<$Res>(_value.streakProgressV2, (value) {
+      return _then(_value.copyWith(streakProgressV2: value));
+    });
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$StreakStateImpl implements _StreakState {
-  const _$StreakStateImpl(this.progress, this.contentState);
 
-  factory _$StreakStateImpl.fromJson(Map<String, dynamic> json) =>
-      _$$StreakStateImplFromJson(json);
+class _$StreakDataImpl implements _StreakData {
+  const _$StreakDataImpl(this.streakProgressV2);
 
   @override
-  final StreaksProgress? progress;
-  @override
-  final StreakContentState contentState;
+  final StreakProgressV2 streakProgressV2;
 
   @override
   String toString() {
-    return 'StreakState(progress: $progress, contentState: $contentState)';
+    return 'StreakState.data(streakProgressV2: $streakProgressV2)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$StreakStateImpl &&
-            (identical(other.progress, progress) ||
-                other.progress == progress) &&
-            (identical(other.contentState, contentState) ||
-                other.contentState == contentState));
+            other is _$StreakDataImpl &&
+            (identical(other.streakProgressV2, streakProgressV2) ||
+                other.streakProgressV2 == streakProgressV2));
   }
 
-  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, progress, contentState);
+  int get hashCode => Object.hash(runtimeType, streakProgressV2);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$StreakStateImplCopyWith<_$StreakStateImpl> get copyWith =>
-      __$$StreakStateImplCopyWithImpl<_$StreakStateImpl>(this, _$identity);
+  _$$StreakDataImplCopyWith<_$StreakDataImpl> get copyWith =>
+      __$$StreakDataImplCopyWithImpl<_$StreakDataImpl>(this, _$identity);
 
   @override
-  Map<String, dynamic> toJson() {
-    return _$$StreakStateImplToJson(
-      this,
-    );
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(StreakProgressV2 streakProgressV2) data,
+    required TResult Function() error,
+  }) {
+    return data(streakProgressV2);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(StreakProgressV2 streakProgressV2)? data,
+    TResult? Function()? error,
+  }) {
+    return data?.call(streakProgressV2);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(StreakProgressV2 streakProgressV2)? data,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (data != null) {
+      return data(streakProgressV2);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_StreakLoading value) loading,
+    required TResult Function(_StreakData value) data,
+    required TResult Function(_StreakError value) error,
+  }) {
+    return data(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_StreakLoading value)? loading,
+    TResult? Function(_StreakData value)? data,
+    TResult? Function(_StreakError value)? error,
+  }) {
+    return data?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_StreakLoading value)? loading,
+    TResult Function(_StreakData value)? data,
+    TResult Function(_StreakError value)? error,
+    required TResult orElse(),
+  }) {
+    if (data != null) {
+      return data(this);
+    }
+    return orElse();
   }
 }
 
-abstract class _StreakState implements StreakState {
-  const factory _StreakState(final StreaksProgress? progress,
-      final StreakContentState contentState) = _$StreakStateImpl;
+abstract class _StreakData implements StreakState {
+  const factory _StreakData(final StreakProgressV2 streakProgressV2) =
+      _$StreakDataImpl;
 
-  factory _StreakState.fromJson(Map<String, dynamic> json) =
-      _$StreakStateImpl.fromJson;
-
-  @override
-  StreaksProgress? get progress;
-  @override
-  StreakContentState get contentState;
-  @override
+  StreakProgressV2 get streakProgressV2;
   @JsonKey(ignore: true)
-  _$$StreakStateImplCopyWith<_$StreakStateImpl> get copyWith =>
+  _$$StreakDataImplCopyWith<_$StreakDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$StreakErrorImplCopyWith<$Res> {
+  factory _$$StreakErrorImplCopyWith(
+          _$StreakErrorImpl value, $Res Function(_$StreakErrorImpl) then) =
+      __$$StreakErrorImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$StreakErrorImplCopyWithImpl<$Res>
+    extends _$StreakStateCopyWithImpl<$Res, _$StreakErrorImpl>
+    implements _$$StreakErrorImplCopyWith<$Res> {
+  __$$StreakErrorImplCopyWithImpl(
+      _$StreakErrorImpl _value, $Res Function(_$StreakErrorImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$StreakErrorImpl implements _StreakError {
+  const _$StreakErrorImpl();
+
+  @override
+  String toString() {
+    return 'StreakState.error()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$StreakErrorImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(StreakProgressV2 streakProgressV2) data,
+    required TResult Function() error,
+  }) {
+    return error();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(StreakProgressV2 streakProgressV2)? data,
+    TResult? Function()? error,
+  }) {
+    return error?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(StreakProgressV2 streakProgressV2)? data,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_StreakLoading value) loading,
+    required TResult Function(_StreakData value) data,
+    required TResult Function(_StreakError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_StreakLoading value)? loading,
+    TResult? Function(_StreakData value)? data,
+    TResult? Function(_StreakError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_StreakLoading value)? loading,
+    TResult Function(_StreakData value)? data,
+    TResult Function(_StreakError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _StreakError implements StreakState {
+  const factory _StreakError() = _$StreakErrorImpl;
 }

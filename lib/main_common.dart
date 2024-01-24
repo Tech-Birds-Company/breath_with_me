@@ -7,7 +7,7 @@ import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/constants.dart';
 import 'package:breathe_with_me/database/database.dart';
 import 'package:breathe_with_me/di/di.dart';
-import 'package:breathe_with_me/managers/audio_manager/track_audio_manger.dart';
+import 'package:breathe_with_me/managers/audio_manager/track_audio_manager.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/tracks_downloader_manger.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';

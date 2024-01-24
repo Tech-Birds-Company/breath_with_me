@@ -2,17 +2,14 @@ import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
 import 'package:breathe_with_me/extensions/widget.dart';
 import 'package:breathe_with_me/features/profile/blocs/profile_bloc.dart';
-import 'package:breathe_with_me/features/profile/models/profile_state.dart';
 import 'package:breathe_with_me/features/profile/widgets/profile_header.dart';
 import 'package:breathe_with_me/features/profile/widgets/profile_menu_button.dart';
-import 'package:breathe_with_me/features/profile/widgets/profile_statistics.dart';
 import 'package:breathe_with_me/features/profile/widgets/reminder_profile_item.dart';
 import 'package:breathe_with_me/features/reminder/blocs/reminder_bloc.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 class ProfilePage extends HookWidget {
@@ -28,10 +25,7 @@ class ProfilePage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     useEffect(
-      () {
-        profileBloc.init();
-        return profileBloc.dispose;
-      },
+      () => profileBloc.dispose,
       const [],
     );
 
@@ -81,14 +75,14 @@ class ProfilePage extends HookWidget {
                           );
                         },
                       ).toSliver(),
-                      BlocBuilder<ProfileBloc, ProfileState>(
-                        bloc: profileBloc,
-                        builder: (context, state) => ProfileStatistics(
-                          state: state.statistics,
-                          onPremiumButtonPressed:
-                              profileBloc.openPremiumPaywall,
-                        ),
-                      ).toSliver(),
+                      // BlocBuilder<ProfileBloc, ProfileState>(
+                      //   bloc: profileBloc,
+                      //   builder: (context, state) => ProfileStatistics(
+                      //     state: state.statistics,
+                      //     onPremiumButtonPressed:
+                      //         profileBloc.openPremiumPaywall,
+                      //   ),
+                      // ).toSliver(),
                       const SizedBox(height: 24).toSliver(),
                       ProfileMenuItem(
                         title: LocaleKeys.profileSettings.tr(),
