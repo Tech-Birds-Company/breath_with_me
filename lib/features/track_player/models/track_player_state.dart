@@ -7,7 +7,6 @@ class TrackPlayerState with _$TrackPlayerState {
   static const initialState = TrackPlayerState();
 
   const factory TrackPlayerState({
-    @Default(false) bool playerInitialized,
     @Default(true) bool isPaused,
     @Default(0) double downloadProgress,
     int? currentTimeMs,

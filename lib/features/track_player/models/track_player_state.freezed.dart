@@ -16,7 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TrackPlayerState {
-  bool get playerInitialized => throw _privateConstructorUsedError;
   bool get isPaused => throw _privateConstructorUsedError;
   double get downloadProgress => throw _privateConstructorUsedError;
   int? get currentTimeMs => throw _privateConstructorUsedError;
@@ -35,8 +34,7 @@ abstract class $TrackPlayerStateCopyWith<$Res> {
       _$TrackPlayerStateCopyWithImpl<$Res, TrackPlayerState>;
   @useResult
   $Res call(
-      {bool playerInitialized,
-      bool isPaused,
+      {bool isPaused,
       double downloadProgress,
       int? currentTimeMs,
       int? estimatedTimeMs,
@@ -56,7 +54,6 @@ class _$TrackPlayerStateCopyWithImpl<$Res, $Val extends TrackPlayerState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? playerInitialized = null,
     Object? isPaused = null,
     Object? downloadProgress = null,
     Object? currentTimeMs = freezed,
@@ -64,10 +61,6 @@ class _$TrackPlayerStateCopyWithImpl<$Res, $Val extends TrackPlayerState>
     Object? progress = freezed,
   }) {
     return _then(_value.copyWith(
-      playerInitialized: null == playerInitialized
-          ? _value.playerInitialized
-          : playerInitialized // ignore: cast_nullable_to_non_nullable
-              as bool,
       isPaused: null == isPaused
           ? _value.isPaused
           : isPaused // ignore: cast_nullable_to_non_nullable
@@ -101,8 +94,7 @@ abstract class _$$TrackPlayerStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool playerInitialized,
-      bool isPaused,
+      {bool isPaused,
       double downloadProgress,
       int? currentTimeMs,
       int? estimatedTimeMs,
@@ -120,7 +112,6 @@ class __$$TrackPlayerStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? playerInitialized = null,
     Object? isPaused = null,
     Object? downloadProgress = null,
     Object? currentTimeMs = freezed,
@@ -128,10 +119,6 @@ class __$$TrackPlayerStateImplCopyWithImpl<$Res>
     Object? progress = freezed,
   }) {
     return _then(_$TrackPlayerStateImpl(
-      playerInitialized: null == playerInitialized
-          ? _value.playerInitialized
-          : playerInitialized // ignore: cast_nullable_to_non_nullable
-              as bool,
       isPaused: null == isPaused
           ? _value.isPaused
           : isPaused // ignore: cast_nullable_to_non_nullable
@@ -160,16 +147,12 @@ class __$$TrackPlayerStateImplCopyWithImpl<$Res>
 
 class _$TrackPlayerStateImpl implements _TrackPlayerState {
   const _$TrackPlayerStateImpl(
-      {this.playerInitialized = false,
-      this.isPaused = true,
+      {this.isPaused = true,
       this.downloadProgress = 0,
       this.currentTimeMs,
       this.estimatedTimeMs,
       this.progress});
 
-  @override
-  @JsonKey()
-  final bool playerInitialized;
   @override
   @JsonKey()
   final bool isPaused;
@@ -185,7 +168,7 @@ class _$TrackPlayerStateImpl implements _TrackPlayerState {
 
   @override
   String toString() {
-    return 'TrackPlayerState(playerInitialized: $playerInitialized, isPaused: $isPaused, downloadProgress: $downloadProgress, currentTimeMs: $currentTimeMs, estimatedTimeMs: $estimatedTimeMs, progress: $progress)';
+    return 'TrackPlayerState(isPaused: $isPaused, downloadProgress: $downloadProgress, currentTimeMs: $currentTimeMs, estimatedTimeMs: $estimatedTimeMs, progress: $progress)';
   }
 
   @override
@@ -193,8 +176,6 @@ class _$TrackPlayerStateImpl implements _TrackPlayerState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TrackPlayerStateImpl &&
-            (identical(other.playerInitialized, playerInitialized) ||
-                other.playerInitialized == playerInitialized) &&
             (identical(other.isPaused, isPaused) ||
                 other.isPaused == isPaused) &&
             (identical(other.downloadProgress, downloadProgress) ||
@@ -208,8 +189,8 @@ class _$TrackPlayerStateImpl implements _TrackPlayerState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, playerInitialized, isPaused,
-      downloadProgress, currentTimeMs, estimatedTimeMs, progress);
+  int get hashCode => Object.hash(runtimeType, isPaused, downloadProgress,
+      currentTimeMs, estimatedTimeMs, progress);
 
   @JsonKey(ignore: true)
   @override
@@ -221,15 +202,12 @@ class _$TrackPlayerStateImpl implements _TrackPlayerState {
 
 abstract class _TrackPlayerState implements TrackPlayerState {
   const factory _TrackPlayerState(
-      {final bool playerInitialized,
-      final bool isPaused,
+      {final bool isPaused,
       final double downloadProgress,
       final int? currentTimeMs,
       final int? estimatedTimeMs,
       final double? progress}) = _$TrackPlayerStateImpl;
 
-  @override
-  bool get playerInitialized;
   @override
   bool get isPaused;
   @override

@@ -1,4 +1,5 @@
 import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
+import 'package:breathe_with_me/constants.dart';
 import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/track_player/blocs/track_player_bloc.dart';
 import 'package:breathe_with_me/features/track_player/models/track_player_state.dart';
@@ -44,8 +45,9 @@ class TrackPlayerPage extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: BlocSelector<TrackPlayerBloc, TrackPlayerState, bool>(
                   bloc: bloc,
-                  selector: (state) => (state.progress ?? 0.0) >= 0.0001,
-                  // BWMConstants.trackPlayerFinishThreshold,
+                  selector: (state) =>
+                      (state.progress ?? 0.0) >=
+                      BWMConstants.trackPlayerFinishThreshold,
                   builder: (context, canBeFinished) => Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [

@@ -135,7 +135,11 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
 
     final userId = _userManager.currentUser!.uid;
     _initDownloadProgressSubscription(
-      TrackDownloadTask(trackId: _track.id, userId: userId, url: url),
+      TrackDownloadTask(
+        trackId: _track.id,
+        userId: userId,
+        url: url,
+      ),
     );
     await _audioManager.play();
   }
@@ -158,19 +162,15 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
       minutes: track.duration,
       date: DateTime.now(),
     );
-    _navigationManager.openStreak();
+    _navigationManager
+      ..pop()
+      ..openStreak();
   }
 
   void _subscribeToPlayerState() =>
       _playerStateSub ??= _audioManager.onPlayerStateChanged?.listen(
         (playerState) {
-          emit(
-            state.copyWith(
-              playerInitialized:
-                  playerState.processingState == ProcessingState.ready,
-              isPaused: !playerState.playing,
-            ),
-          );
+          emit(state.copyWith(isPaused: !playerState.playing));
           if (playerState.processingState == ProcessingState.completed) {
             onTrackFinish();
           }
