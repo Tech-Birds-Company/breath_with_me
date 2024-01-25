@@ -45,8 +45,12 @@ Future<ProviderContainer> _setupDependencies({
 
   final subscriptionsManager = BWMSubscriptionsManager(
     isProduction
-        ? BWMConstants.revenueCatApiKeyProd
-        : BWMConstants.revenueCatApiKeyDev,
+        ? Platform.isIOS
+            ? BWMConstants.revenueCatApiKeyiOSProd
+            : '' // TODO android prod key
+        : Platform.isIOS
+            ? BWMConstants.revenueCatApiKeyiOSDev
+            : BWMConstants.revenueCatApiKeyAndroidDev,
   );
   await subscriptionsManager.configure();
 

@@ -8,7 +8,8 @@ abstract final class BWMConstants {
   static const trackPlayerFinishThreshold = 0.8;
 
   // RevenueCat ------------------------------
-  static const revenueCatApiKeyDev = 'appl_bKRMZpNDZwTkkKDiiSahjGlSvmc';
-  static const revenueCatApiKeyProd = 'appl_lNhJPKaKyDMySQoWNJFWtzOiGEw';
-  //------------------------------------------
+  static const revenueCatApiKeyiOSDev = 'appl_bKRMZpNDZwTkkKDiiSahjGlSvmc';
+  static const revenueCatApiKeyAndroidDev = 'goog_MGDBLkAVyoIHaqFyEtjunNjAnvF';
+  static const revenueCatApiKeyiOSProd = 'appl_lNhJPKaKyDMySQoWNJFWtzOiGEw';
+//------------------------------------------
 }
