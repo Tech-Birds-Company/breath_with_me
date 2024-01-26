@@ -5,7 +5,7 @@ abstract final class BWMConstants {
       'bwm_androidNotificationChannelId';
   static const androidNotificationChannelName =
       'bwm_androidNotificationChannelName';
-  static const trackPlayerFinishThreshold = 0.00001;
+  static const trackPlayerFinishThreshold = 0.8;
 
   // RevenueCat ------------------------------
   static const revenueCatApiKeyiOSDev = 'appl_bKRMZpNDZwTkkKDiiSahjGlSvmc';
