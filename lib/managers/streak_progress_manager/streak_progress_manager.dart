@@ -43,6 +43,7 @@ class StreakProgressManager {
       totalMinutes: currentProgress.totalMinutes + minutes,
       totalMissedDays: missedDays,
       utcTimeline: {...currentProgress.utcTimeline, utcDate}.toList(),
+      utcLivesExpireDateTime: currentProgress.utcLivesExpireDateTime,
     );
 
     final updatedProgress = await _streaksProgressRepository
@@ -53,6 +54,19 @@ class StreakProgressManager {
   Future<StreakProgressV2> getUserStreakProgress() async {
     final progress =
         await _streaksProgressRepository.getUserStreakProgress(_userId);
+
+    if (progress.utcLivesExpireDateTime == null) {
+      await _streaksProgressRepository.refillTotalLives(
+        _userId,
+        _nextUtcExpireDateTime,
+      );
+    } else if (progress.utcLivesExpireDateTime!.isBefore(DateTime.now().utc)) {
+      await _streaksProgressRepository.refillTotalLives(
+        _userId,
+        _nextUtcExpireDateTime,
+      );
+    }
+
     return progress;
   }
 
@@ -187,4 +201,13 @@ class StreakProgressManager {
       date1.year == date2.year &&
       date1.month == date2.month &&
       date1.day == date2.day;
+
+  DateTime get _nextUtcExpireDateTime {
+    final now = DateTime.now().toUtc();
+    if (now.month == 12) {
+      return DateTime(now.year + 1);
+    } else {
+      return DateTime(now.year, now.month + 1);
+    }
+  }
 }

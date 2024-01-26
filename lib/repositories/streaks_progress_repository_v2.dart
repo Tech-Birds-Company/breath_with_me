@@ -53,6 +53,19 @@ class StreakProgressRepositoryV2 {
     }
   }
 
+  Future<StreakProgressV2> refillTotalLives(
+    String userId,
+    DateTime nextUtcExpireDateTime,
+  ) async {
+    final currentProgress = await getUserStreakProgress(userId);
+    final refilledProgress = currentProgress.copyWith(
+      totalLives: _defaultTotalLives,
+      utcLivesExpireDateTime: nextUtcExpireDateTime,
+    );
+    await _setUserStreak(userId, refilledProgress);
+    return refilledProgress;
+  }
+
   Future<void> _setUserStreak(
     String userId,
     StreakProgressV2 streakProgressV2,

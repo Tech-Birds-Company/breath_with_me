@@ -12,6 +12,7 @@ class StreakProgressV2 with _$StreakProgressV2 {
     @Default(0) int totalMinutes,
     @Default(0) int totalMissedDays,
     @Default([]) List<DateTime> utcTimeline,
+    @Default(null) DateTime? utcLivesExpireDateTime,
   }) = _StreakProgressV2;
 
   const StreakProgressV2._();

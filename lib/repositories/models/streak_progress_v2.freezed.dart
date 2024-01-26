@@ -26,6 +26,7 @@ mixin _$StreakProgressV2 {
   int get totalMinutes => throw _privateConstructorUsedError;
   int get totalMissedDays => throw _privateConstructorUsedError;
   List<DateTime> get utcTimeline => throw _privateConstructorUsedError;
+  DateTime? get utcLivesExpireDateTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +46,8 @@ abstract class $StreakProgressV2CopyWith<$Res> {
       int totalLives,
       int totalMinutes,
       int totalMissedDays,
-      List<DateTime> utcTimeline});
+      List<DateTime> utcTimeline,
+      DateTime? utcLivesExpireDateTime});
 }
 
 /// @nodoc
@@ -67,6 +69,7 @@ class _$StreakProgressV2CopyWithImpl<$Res, $Val extends StreakProgressV2>
     Object? totalMinutes = null,
     Object? totalMissedDays = null,
     Object? utcTimeline = null,
+    Object? utcLivesExpireDateTime = freezed,
   }) {
     return _then(_value.copyWith(
       totalStreak: null == totalStreak
@@ -93,6 +96,10 @@ class _$StreakProgressV2CopyWithImpl<$Res, $Val extends StreakProgressV2>
           ? _value.utcTimeline
           : utcTimeline // ignore: cast_nullable_to_non_nullable
               as List<DateTime>,
+      utcLivesExpireDateTime: freezed == utcLivesExpireDateTime
+          ? _value.utcLivesExpireDateTime
+          : utcLivesExpireDateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -111,7 +118,8 @@ abstract class _$$StreakProgressV2ImplCopyWith<$Res>
       int totalLives,
       int totalMinutes,
       int totalMissedDays,
-      List<DateTime> utcTimeline});
+      List<DateTime> utcTimeline,
+      DateTime? utcLivesExpireDateTime});
 }
 
 /// @nodoc
@@ -131,6 +139,7 @@ class __$$StreakProgressV2ImplCopyWithImpl<$Res>
     Object? totalMinutes = null,
     Object? totalMissedDays = null,
     Object? utcTimeline = null,
+    Object? utcLivesExpireDateTime = freezed,
   }) {
     return _then(_$StreakProgressV2Impl(
       totalStreak: null == totalStreak
@@ -157,6 +166,10 @@ class __$$StreakProgressV2ImplCopyWithImpl<$Res>
           ? _value._utcTimeline
           : utcTimeline // ignore: cast_nullable_to_non_nullable
               as List<DateTime>,
+      utcLivesExpireDateTime: freezed == utcLivesExpireDateTime
+          ? _value.utcLivesExpireDateTime
+          : utcLivesExpireDateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -170,7 +183,8 @@ class _$StreakProgressV2Impl extends _StreakProgressV2 {
       this.totalLives = 0,
       this.totalMinutes = 0,
       this.totalMissedDays = 0,
-      final List<DateTime> utcTimeline = const []})
+      final List<DateTime> utcTimeline = const [],
+      this.utcLivesExpireDateTime = null})
       : _utcTimeline = utcTimeline,
         super._();
 
@@ -202,8 +216,12 @@ class _$StreakProgressV2Impl extends _StreakProgressV2 {
   }
 
   @override
+  @JsonKey()
+  final DateTime? utcLivesExpireDateTime;
+
+  @override
   String toString() {
-    return 'StreakProgressV2(totalStreak: $totalStreak, totalPractices: $totalPractices, totalLives: $totalLives, totalMinutes: $totalMinutes, totalMissedDays: $totalMissedDays, utcTimeline: $utcTimeline)';
+    return 'StreakProgressV2(totalStreak: $totalStreak, totalPractices: $totalPractices, totalLives: $totalLives, totalMinutes: $totalMinutes, totalMissedDays: $totalMissedDays, utcTimeline: $utcTimeline, utcLivesExpireDateTime: $utcLivesExpireDateTime)';
   }
 
   @override
@@ -222,7 +240,9 @@ class _$StreakProgressV2Impl extends _StreakProgressV2 {
             (identical(other.totalMissedDays, totalMissedDays) ||
                 other.totalMissedDays == totalMissedDays) &&
             const DeepCollectionEquality()
-                .equals(other._utcTimeline, _utcTimeline));
+                .equals(other._utcTimeline, _utcTimeline) &&
+            (identical(other.utcLivesExpireDateTime, utcLivesExpireDateTime) ||
+                other.utcLivesExpireDateTime == utcLivesExpireDateTime));
   }
 
   @JsonKey(ignore: true)
@@ -234,7 +254,8 @@ class _$StreakProgressV2Impl extends _StreakProgressV2 {
       totalLives,
       totalMinutes,
       totalMissedDays,
-      const DeepCollectionEquality().hash(_utcTimeline));
+      const DeepCollectionEquality().hash(_utcTimeline),
+      utcLivesExpireDateTime);
 
   @JsonKey(ignore: true)
   @override
@@ -258,7 +279,8 @@ abstract class _StreakProgressV2 extends StreakProgressV2 {
       final int totalLives,
       final int totalMinutes,
       final int totalMissedDays,
-      final List<DateTime> utcTimeline}) = _$StreakProgressV2Impl;
+      final List<DateTime> utcTimeline,
+      final DateTime? utcLivesExpireDateTime}) = _$StreakProgressV2Impl;
   const _StreakProgressV2._() : super._();
 
   factory _StreakProgressV2.fromJson(Map<String, dynamic> json) =
@@ -276,6 +298,8 @@ abstract class _StreakProgressV2 extends StreakProgressV2 {
   int get totalMissedDays;
   @override
   List<DateTime> get utcTimeline;
+  @override
+  DateTime? get utcLivesExpireDateTime;
   @override
   @JsonKey(ignore: true)
   _$$StreakProgressV2ImplCopyWith<_$StreakProgressV2Impl> get copyWith =>
