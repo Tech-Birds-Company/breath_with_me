@@ -14,7 +14,7 @@ class StreakProgressRepositoryV2 {
   );
 
   late final _streakCollection = _firestore.collection(_collection);
-  late final _defaultTotalLives = _remoteConfig.streaks.monthLivesCount;
+  late final defaultTotalLives = _remoteConfig.streaks.monthLivesCount;
 
   Stream<StreakProgressV2> getStreakProgressStream(String userId) {
     return _streakCollection.doc(userId).snapshots().distinct().map(
@@ -23,7 +23,7 @@ class StreakProgressRepositoryV2 {
           return StreakProgressV2.fromJson(snapshot.data()!);
         } else {
           return StreakProgressV2(
-            totalLives: _defaultTotalLives,
+            totalLives: defaultTotalLives,
             utcTimeline: [],
           );
         }
@@ -45,25 +45,12 @@ class StreakProgressRepositoryV2 {
       return StreakProgressV2.fromJson(doc.data() ?? {});
     } else {
       final progress = StreakProgressV2(
-        totalLives: _defaultTotalLives,
+        totalLives: defaultTotalLives,
         utcTimeline: [],
       );
       await _setUserStreak(userId, progress);
       return progress;
     }
-  }
-
-  Future<StreakProgressV2> refillTotalLives(
-    String userId,
-    DateTime nextUtcExpireDateTime,
-  ) async {
-    final currentProgress = await getUserStreakProgress(userId);
-    final refilledProgress = currentProgress.copyWith(
-      totalLives: _defaultTotalLives,
-      utcLivesExpireDateTime: nextUtcExpireDateTime,
-    );
-    await _setUserStreak(userId, refilledProgress);
-    return refilledProgress;
   }
 
   Future<void> _setUserStreak(

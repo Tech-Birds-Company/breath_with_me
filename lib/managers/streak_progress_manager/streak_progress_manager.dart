@@ -17,7 +17,12 @@ class StreakProgressManager {
   );
 
   Stream<StreakProgressV2> get stream =>
-      _streaksProgressRepository.getStreakProgressStream(_userId);
+      _streaksProgressRepository.getStreakProgressStream(_userId).asyncMap(
+        (progress) async {
+          await _validateUserProgress(progress);
+          return progress;
+        },
+      );
 
   Future<StreakProgressV2> addStreakData({
     required int minutes,
@@ -36,36 +41,23 @@ class StreakProgressManager {
 
     final updatedStreak = _calculateStreak(sortedTimeline);
 
-    final newProgress = StreakProgressV2(
+    final newProgress = currentProgress.copyWith(
       totalStreak: updatedStreak,
       totalPractices: currentProgress.totalPractices + 1,
-      totalLives: currentProgress.totalLives,
       totalMinutes: currentProgress.totalMinutes + minutes,
       totalMissedDays: missedDays,
       utcTimeline: {...currentProgress.utcTimeline, utcDate}.toList(),
-      utcLivesExpireDateTime: currentProgress.utcLivesExpireDateTime,
     );
 
     final updatedProgress = await _streaksProgressRepository
         .setUserProgressData(_userId, newProgress);
+
     return updatedProgress;
   }
 
   Future<StreakProgressV2> getUserStreakProgress() async {
-    var progress =
+    final progress =
         await _streaksProgressRepository.getUserStreakProgress(_userId);
-
-    if (progress.utcLivesExpireDateTime == null) {
-      progress = await _streaksProgressRepository.refillTotalLives(
-        _userId,
-        _nextUtcExpireDateTime,
-      );
-    } else if (progress.utcLivesExpireDateTime!.isBefore(DateTime.now().utc)) {
-      progress = await _streaksProgressRepository.refillTotalLives(
-        _userId,
-        _nextUtcExpireDateTime,
-      );
-    }
 
     return progress;
   }
@@ -102,7 +94,41 @@ class StreakProgressManager {
       _userId,
       restoredProgress,
     );
+
     return restoredProgress;
+  }
+
+  Future<StreakProgressV2> _validateUserProgress(
+    StreakProgressV2 progress,
+  ) async {
+    var validatedProgress = progress;
+    final livesExpireDate = progress.utcLivesExpireDateTime;
+    final now = DateTime.now().utc;
+
+    final shouldResetExpire = (livesExpireDate?.isBefore(now) ?? false) ||
+        progress.totalLives == _streaksProgressRepository.defaultTotalLives;
+    final shouldSetExpire = progress.utcLivesExpireDateTime == null &&
+        progress.totalLives < _streaksProgressRepository.defaultTotalLives;
+
+    validatedProgress = progress.copyWith(
+      totalLives: shouldResetExpire
+          ? _streaksProgressRepository.defaultTotalLives
+          : progress.totalLives,
+      utcLivesExpireDateTime: shouldResetExpire
+          ? null
+          : shouldSetExpire
+              ? now.add(const Duration(days: 30))
+              : progress.utcLivesExpireDateTime,
+    );
+
+    if (validatedProgress != progress) {
+      await _streaksProgressRepository.setUserProgressData(
+        _userId,
+        validatedProgress,
+      );
+    }
+
+    return validatedProgress;
   }
 
   int _calculateStreak(List<DateTime> sortedTimeline) {
@@ -201,13 +227,4 @@ class StreakProgressManager {
       date1.year == date2.year &&
       date1.month == date2.month &&
       date1.day == date2.day;
-
-  DateTime get _nextUtcExpireDateTime {
-    final now = DateTime.now().toUtc();
-    if (now.month == 12) {
-      return DateTime(now.year + 1);
-    } else {
-      return DateTime(now.year, now.month + 1);
-    }
-  }
 }

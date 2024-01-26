@@ -184,7 +184,7 @@ class _$StreakProgressV2Impl extends _StreakProgressV2 {
       this.totalMinutes = 0,
       this.totalMissedDays = 0,
       final List<DateTime> utcTimeline = const [],
-      this.utcLivesExpireDateTime = null})
+      this.utcLivesExpireDateTime})
       : _utcTimeline = utcTimeline,
         super._();
 
@@ -216,7 +216,6 @@ class _$StreakProgressV2Impl extends _StreakProgressV2 {
   }
 
   @override
-  @JsonKey()
   final DateTime? utcLivesExpireDateTime;
 
   @override
