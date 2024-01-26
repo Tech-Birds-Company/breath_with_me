@@ -17,6 +17,9 @@ _$StreakProgressV2Impl _$$StreakProgressV2ImplFromJson(Map json) =>
               ?.map((e) => DateTime.parse(e as String))
               .toList() ??
           const [],
+      utcLivesExpireDateTime: json['utcLivesExpireDateTime'] == null
+          ? null
+          : DateTime.parse(json['utcLivesExpireDateTime'] as String),
     );
 
 Map<String, dynamic> _$$StreakProgressV2ImplToJson(
@@ -29,4 +32,6 @@ Map<String, dynamic> _$$StreakProgressV2ImplToJson(
       'totalMissedDays': instance.totalMissedDays,
       'utcTimeline':
           instance.utcTimeline.map((e) => e.toIso8601String()).toList(),
+      'utcLivesExpireDateTime':
+          instance.utcLivesExpireDateTime?.toIso8601String(),
     };
