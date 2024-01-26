@@ -199,47 +199,73 @@ void main() {
         },
       );
 
-      test(
-        'Restore progress',
-        () async {
-          final dateNow = DateTime.now();
-          late StreakProgressV2 progress;
-          progress = await streakProgressManager.addStreakData(
-            minutes: 3,
-            date: dateNow,
-          );
-          progress = await streakProgressManager.addStreakData(
-            minutes: 18,
-            date: dateNow.add(const Duration(days: 1)),
-          );
-          progress = await streakProgressManager.addStreakData(
-            minutes: 17,
-            date: dateNow.add(const Duration(days: 2)),
-          );
-          // skip 3 days
-          progress = await streakProgressManager.addStreakData(
-            minutes: 10,
-            date: dateNow.add(const Duration(days: 6)),
-          );
+      group(
+        'Restore',
+        () {
+          test('Simple restore', () async {
+            final initialDate = DateTime.utc(2024, 1, 20);
+            late StreakProgressV2 progress;
+            progress = await streakProgressManager.addStreakData(
+              minutes: 3,
+              date: initialDate,
+            );
+            expect(progress.totalPractices, 1);
+            expect(progress.totalStreak, 1);
+            expect(progress.totalMissedDays, 0);
+            final secondDate = initialDate.add(const Duration(days: 2));
+            progress = await streakProgressManager.addStreakData(
+              minutes: 8,
+              date: secondDate,
+            );
+            expect(progress.totalPractices, 2);
+            expect(progress.totalStreak, 1);
+            expect(progress.totalMissedDays, 1);
+            progress = await streakProgressManager.restoreUserStreakProgress();
+            expect(progress.totalStreak, 3);
+          });
+          test(
+            'Restore progress',
+            () async {
+              final dateNow = DateTime.now();
+              late StreakProgressV2 progress;
+              progress = await streakProgressManager.addStreakData(
+                minutes: 3,
+                date: dateNow,
+              );
+              progress = await streakProgressManager.addStreakData(
+                minutes: 18,
+                date: dateNow.add(const Duration(days: 1)),
+              );
+              progress = await streakProgressManager.addStreakData(
+                minutes: 17,
+                date: dateNow.add(const Duration(days: 2)),
+              );
+              // skip 3 days
+              progress = await streakProgressManager.addStreakData(
+                minutes: 10,
+                date: dateNow.add(const Duration(days: 6)),
+              );
 
-          expect(progress.utcTimeline.length, 4);
-          expect(
-            progress.totalLives,
-            mockRemoteConfig.streaks.monthLivesCount,
-          );
-          expect(progress.totalMinutes, 48);
-          expect(progress.totalStreak, 1);
+              expect(progress.utcTimeline.length, 4);
+              expect(
+                progress.totalLives,
+                mockRemoteConfig.streaks.monthLivesCount,
+              );
+              expect(progress.totalMinutes, 48);
+              expect(progress.totalStreak, 1);
 
-          final restoredProgress =
-              await streakProgressManager.restoreUserStreakProgress();
+              final restoredProgress =
+                  await streakProgressManager.restoreUserStreakProgress();
 
-          expect(restoredProgress.utcTimeline.length, 3);
-          expect(
-            restoredProgress.totalLives,
-            progress.totalLives - 1,
+              expect(restoredProgress.utcTimeline.length, 3);
+              expect(
+                restoredProgress.totalLives,
+                0,
+              );
+              expect(restoredProgress.totalMinutes, 48);
+              expect(restoredProgress.totalStreak, 7);
+            },
           );
-          expect(restoredProgress.totalMinutes, 48);
-          expect(restoredProgress.totalStreak, 3);
         },
       );
     },

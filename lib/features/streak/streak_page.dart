@@ -35,6 +35,7 @@ class StreakPage extends ConsumerWidget {
                       onRestoreTap: bloc.onRestoreTap,
                       onSkipTap: bloc.onSkipTap,
                       totalLives: state.progress.totalLives,
+                      totalMissedDays: state.progress.totalMissedDays,
                     );
                   } else {
                     return StreakPremiumStartedOrContinued(

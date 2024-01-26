@@ -8,11 +8,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class StreakPremiumMissed extends ConsumerWidget {
   final int totalLives;
+  final int totalMissedDays;
   final VoidCallback onRestoreTap;
   final VoidCallback onSkipTap;
 
   const StreakPremiumMissed({
     required this.totalLives,
+    required this.totalMissedDays,
     required this.onRestoreTap,
     required this.onSkipTap,
     super.key,
@@ -38,7 +40,7 @@ class StreakPremiumMissed extends ConsumerWidget {
             style: theme.typography.bodyS.copyWith(color: theme.primaryText),
             textAlign: TextAlign.center,
           ),
-          if (totalLives > 0)
+          if (totalLives >= totalMissedDays)
             Padding(
               padding: const EdgeInsets.only(top: 36, bottom: 8),
               child: BWMActionButton(

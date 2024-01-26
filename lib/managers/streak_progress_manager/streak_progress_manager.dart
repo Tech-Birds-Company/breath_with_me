@@ -59,44 +59,36 @@ class StreakProgressManager {
   Future<StreakProgressV2> restoreUserStreakProgress() async {
     final currentProgress =
         await _streaksProgressRepository.getUserStreakProgress(_userId);
+    final totalStreak = currentProgress.totalStreak;
+    final totalLives = currentProgress.totalLives;
+    final totalMissedDays = currentProgress.totalMissedDays;
 
-    final currentStreak = currentProgress.totalStreak;
+    if (totalLives < totalMissedDays) {
+      return currentProgress;
+    }
+
     final currentTimelineLength = currentProgress.utcTimeline.length;
-
-    if (currentStreak > currentTimelineLength) {
-      return currentProgress;
-    }
-
-    if (currentProgress.totalLives < 1) {
-      return currentProgress;
-    }
-
     final sortedTimeline = [...currentProgress.utcTimeline]..sort();
-
     final oldTimeline =
-        sortedTimeline.sublist(0, currentTimelineLength - currentStreak);
+        sortedTimeline.sublist(0, currentTimelineLength - totalStreak);
     final oldStreak = _calculateStreak(oldTimeline);
-
-    if (oldStreak <= currentStreak) {
-      return currentProgress;
-    }
-
     final newTimeline = <DateTime>[];
     final lastDate = sortedTimeline.last;
     for (var i = 0; i < oldStreak; i++) {
       newTimeline.add(lastDate.subtract(Duration(days: i)));
     }
 
-    final newProgress = StreakProgressV2(
-      totalStreak: oldStreak,
-      totalPractices: currentProgress.totalPractices,
-      totalLives: currentProgress.totalLives - 1,
-      totalMinutes: currentProgress.totalMinutes,
-      utcTimeline: newTimeline.toSet().toList(),
+    final restoredProgress = currentProgress.copyWith(
+      totalMissedDays: 0,
+      totalLives: totalLives - totalMissedDays,
+      totalStreak: oldStreak + totalMissedDays + totalStreak,
+      utcTimeline: newTimeline,
     );
-    final updatedProgress =
-        _streaksProgressRepository.setUserProgressData(_userId, newProgress);
-    return updatedProgress;
+    await _streaksProgressRepository.setUserProgressData(
+      _userId,
+      restoredProgress,
+    );
+    return restoredProgress;
   }
 
   int _calculateStreak(List<DateTime> sortedTimeline) {
