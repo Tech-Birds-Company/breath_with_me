@@ -52,16 +52,16 @@ class StreakProgressManager {
   }
 
   Future<StreakProgressV2> getUserStreakProgress() async {
-    final progress =
+    var progress =
         await _streaksProgressRepository.getUserStreakProgress(_userId);
 
     if (progress.utcLivesExpireDateTime == null) {
-      await _streaksProgressRepository.refillTotalLives(
+      progress = await _streaksProgressRepository.refillTotalLives(
         _userId,
         _nextUtcExpireDateTime,
       );
     } else if (progress.utcLivesExpireDateTime!.isBefore(DateTime.now().utc)) {
-      await _streaksProgressRepository.refillTotalLives(
+      progress = await _streaksProgressRepository.refillTotalLives(
         _userId,
         _nextUtcExpireDateTime,
       );
