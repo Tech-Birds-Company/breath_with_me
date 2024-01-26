@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/deeplink_manager/deeplink_manager.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/permissions_manager/permissions_manager.dart';
@@ -14,7 +13,6 @@ final class ProfileBloc extends BlocBase<Object?> {
   final PushNotificationsManager _pushNotificationsManager;
   final PermissionsManager _permissionsManager;
   final UserManager _userManager;
-  final DatabaseManager _databaseManager;
   final SubscriptionsManager _subscriptionsManager;
   final DeeplinkManager _deepLinkManager;
 
@@ -23,7 +21,6 @@ final class ProfileBloc extends BlocBase<Object?> {
     this._pushNotificationsManager,
     this._permissionsManager,
     this._userManager,
-    this._databaseManager,
     this._subscriptionsManager,
     this._deepLinkManager,
   ) : super(null);
@@ -32,6 +29,8 @@ final class ProfileBloc extends BlocBase<Object?> {
     final currentUser = _userManager.currentUser;
     return currentUser?.displayName ?? '';
   }
+
+  bool get premiumEnabled => _subscriptionsManager.premiumEnabled;
 
   Stream<bool> get premiumEnabledStream =>
       _subscriptionsManager.premiumEnabledStream;
@@ -70,7 +69,6 @@ final class ProfileBloc extends BlocBase<Object?> {
 
   Future<void> onSignOut() async {
     await _userManager.signOut();
-    await _databaseManager.clearDb();
   }
 
   void dispose() {

@@ -5,17 +5,8 @@ part 'streak_state.freezed.dart';
 
 @freezed
 class StreakState with _$StreakState {
-  const factory StreakState.loading({
-    required bool premiumEnabled,
-  }) = StreakLoading;
-
-  const factory StreakState.data(
-    StreakProgressV2 streakProgressV2, {
-    required bool premiumEnabled,
-    required bool useMissingDays,
-  }) = StreakData;
-
-  const factory StreakState.error({
-    required bool premiumEnabled,
-  }) = StreakError;
+  const factory StreakState({
+    @Default(StreakProgressV2()) StreakProgressV2 progress,
+    @Default(false) bool ignoreMissingDays,
+  }) = _StreakState;
 }

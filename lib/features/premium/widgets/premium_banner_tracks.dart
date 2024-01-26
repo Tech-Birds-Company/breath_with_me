@@ -8,12 +8,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class PremiumBannerTracks extends StatelessWidget {
-  final bool premiumBannerIsHidden;
   final VoidCallback onBannerHide;
   final VoidCallback onLearnMore;
 
   const PremiumBannerTracks({
-    required this.premiumBannerIsHidden,
     required this.onBannerHide,
     required this.onLearnMore,
     super.key,
@@ -22,74 +20,71 @@ class PremiumBannerTracks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-
-    return premiumBannerIsHidden
-        ? const SizedBox.shrink()
-        : SizedBox(
-            width: double.infinity,
-            child: Stack(
-              children: [
-                Row(
+    return SizedBox(
+      width: double.infinity,
+      child: Stack(
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          PremiumBadge(
-                            text: LocaleKeys.premium_goPremium.tr(),
-                          ),
-                          const SizedBox(height: 12),
-                          for (final offer in PremiumConstants.premiumOffers)
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 4),
-                              child: Text(
-                                '• ${offer.tr()}',
-                                style: theme.typography.bodyS.copyWith(
-                                  color: theme.gray6,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                maxLines: 2,
-                              ),
-                            ),
-                          const SizedBox(height: 32),
-                          BWMActionButton(
-                            title: LocaleKeys.premium_learnMore.tr(),
-                            height: 36,
-                            textColor: theme.primaryColor,
-                            borderColor: theme.gray5,
-                            overlayColor: theme.primaryColor.withOpacity(0.2),
-                            onPressed: onLearnMore,
-                          ),
-                        ],
-                      ),
+                    PremiumBadge(
+                      text: LocaleKeys.premium_goPremium.tr(),
                     ),
-                    const Image(
-                      image: AssetImage(BWMAssets.premiumBannerIcon),
+                    const SizedBox(height: 12),
+                    for (final offer in PremiumConstants.premiumOffers)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        child: Text(
+                          '• ${offer.tr()}',
+                          style: theme.typography.bodyS.copyWith(
+                            color: theme.gray6,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          maxLines: 2,
+                        ),
+                      ),
+                    const SizedBox(height: 32),
+                    BWMActionButton(
+                      title: LocaleKeys.premium_learnMore.tr(),
+                      height: 36,
+                      textColor: theme.primaryColor,
+                      borderColor: theme.gray5,
+                      overlayColor: theme.primaryColor.withOpacity(0.2),
+                      onPressed: onLearnMore,
                     ),
                   ],
                 ),
-                Positioned.directional(
-                  textDirection: Directionality.of(context),
-                  top: 0,
-                  end: 0,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: theme.primaryBackground.withOpacity(0.7),
-                      borderRadius: const BorderRadiusDirectional.only(
-                        bottomStart: Radius.circular(8),
-                      ),
-                    ),
-                    child: IconButton(
-                      color: theme.primaryColor,
-                      onPressed: onBannerHide,
-                      icon: const Icon(Icons.close),
-                      highlightColor: Colors.transparent,
-                      splashColor: Colors.transparent,
-                    ),
-                  ),
+              ),
+              const Image(
+                image: AssetImage(BWMAssets.premiumBannerIcon),
+              ),
+            ],
+          ),
+          Positioned.directional(
+            textDirection: Directionality.of(context),
+            top: 0,
+            end: 0,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: theme.primaryBackground.withOpacity(0.7),
+                borderRadius: const BorderRadiusDirectional.only(
+                  bottomStart: Radius.circular(8),
                 ),
-              ],
+              ),
+              child: IconButton(
+                color: theme.primaryColor,
+                onPressed: onBannerHide,
+                icon: const Icon(Icons.close),
+                highlightColor: Colors.transparent,
+                splashColor: Colors.transparent,
+              ),
             ),
-          );
+          ),
+        ],
+      ),
+    );
   }
 }

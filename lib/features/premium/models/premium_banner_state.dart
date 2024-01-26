@@ -8,5 +8,6 @@ class PremiumBannerState with _$PremiumBannerState {
     @Default(0) int premiumBannerTracksPosition,
     @Default(false) bool premiumBannerTracksEnabled,
     @Default(false) bool premiumBannerTracksWasHidden,
+    @Default(false) bool premiumEnabled,
   }) = _PremiumBannerState;
 }

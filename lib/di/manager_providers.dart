@@ -25,15 +25,18 @@ final class _ManagerProviders {
     },
   );
 
-  late final user = Provider.autoDispose(
+  late final user = Provider(
     (ref) => FirebaseUserManager(
       ref.watch(Di.manager.subscriptions),
+      ref.watch(Di.manager.database),
     ),
   );
 
-  late final permissions = Provider.autoDispose((ref) => PermissionsManager());
+  late final permissions = Provider(
+    (ref) => PermissionsManager(),
+  );
 
-  late final pushNotifications = Provider.autoDispose(
+  late final pushNotifications = Provider(
     (ref) => PushNotificationsManager(),
   );
 
@@ -42,7 +45,7 @@ final class _ManagerProviders {
 
   late final sharedPreferences = Provider((ref) => SharedPreferencesManager());
 
-  late final deeplink = Provider.autoDispose(
+  late final deeplink = Provider(
     (ref) => DeeplinkManager(
       ref.watch(Di.repository.firebaseRemoteConfig),
     ),

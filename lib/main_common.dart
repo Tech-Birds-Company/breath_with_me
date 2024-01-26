@@ -19,6 +19,7 @@ import 'package:breathe_with_me/managers/user_manager/firebase_user_manager.dart
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/isar_bloc_storage.dart';
 import 'package:breathe_with_me/utils/environment.dart';
+import 'package:breathe_with_me/utils/logger.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -31,7 +32,7 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 
-Future<ProviderContainer> _setupDependencies({
+Future<List<Override>> _setupDependencies({
   required bool isProduction,
 }) async {
   final database = BWMDatabase();
@@ -54,7 +55,10 @@ Future<ProviderContainer> _setupDependencies({
   );
   await subscriptionsManager.configure();
 
-  final userManager = FirebaseUserManager(subscriptionsManager);
+  final userManager = FirebaseUserManager(
+    subscriptionsManager,
+    databaseManager,
+  );
 
   final sharedPrefsManager = SharedPreferencesManager();
 
@@ -114,7 +118,7 @@ Future<ProviderContainer> _setupDependencies({
     Di.manager.navigation.overrideWithValue(navigationManager),
   ];
 
-  return ProviderContainer(overrides: dependencies);
+  return dependencies;
 }
 
 void _setupCrashlytics() {
@@ -141,23 +145,61 @@ Future<void> mainCommon(Environment env) async {
   );
   await FirebaseRemoteConfig.instance.fetchAndActivate();
 
-  final diContainer =
+  final dependencies =
       await _setupDependencies(isProduction: env == Environment.prod);
-  final router = diContainer.read(Di.manager.navigation).router;
 
   runApp(
-    EasyLocalization(
-      useOnlyLangCode: true,
-      path: BWMAssets.i18n,
-      fallbackLocale: const Locale('en'),
-      supportedLocales: const [
-        Locale('en'),
-        Locale('ru'),
+    ProviderScope(
+      overrides: dependencies,
+      observers: [
+        _Logger(),
       ],
-      child: ProviderScope(
-        parent: diContainer,
-        child: BWMApp(router),
+      child: EasyLocalization(
+        useOnlyLangCode: true,
+        path: BWMAssets.i18n,
+        fallbackLocale: const Locale('en'),
+        supportedLocales: const [
+          Locale('en'),
+          Locale('ru'),
+        ],
+        child: Consumer(
+          builder: (context, ref, _) {
+            final router = ref.watch(Di.manager.navigation).router;
+            return BWMApp(router);
+          },
+        ),
       ),
     ),
   );
+}
+
+final class _Logger extends ProviderObserver {
+  final _providers = <int, ProviderBase<Object?>>{};
+
+  @override
+  void didAddProvider(
+    ProviderBase<Object?> provider,
+    Object? value,
+    ProviderContainer container,
+  ) {
+    logger.i(
+      '[RIVERPOD]: didAddProvider: ${provider.name ?? provider.runtimeType}',
+      stackTrace: StackTrace.empty,
+    );
+    _providers[provider.hashCode] = provider;
+    logger.i('[RIVERPOD]: ${_providers.length} providers alive');
+  }
+
+  @override
+  void didDisposeProvider(
+    ProviderBase<Object?> provider,
+    ProviderContainer container,
+  ) {
+    logger.w(
+      '[RIVERPOD] didDisposeProvider: ${provider.name ?? provider.runtimeType}',
+      stackTrace: StackTrace.empty,
+    );
+    _providers.remove(provider.hashCode);
+    logger.i('[RIVERPOD]: ${_providers.length} providers alive');
+  }
 }

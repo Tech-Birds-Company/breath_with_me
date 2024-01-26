@@ -16,40 +16,29 @@ final class StreakBloc extends BlocBase<StreakState> {
     this._streakProgressManager,
     this._subscriptionsManager,
     this._navigationManager,
-  ) : super(const StreakState.loading(premiumEnabled: false));
+  ) : super(const StreakState());
 
-  StreamSubscription<bool>? _premiumSubscription;
+  bool get isPremiumEnabled => _subscriptionsManager.premiumEnabled;
+
   StreamSubscription<StreakProgressV2>? _streakProgressSubscription;
 
   Future<void> init() async {
-    emit(state.copyWith(premiumEnabled: _subscriptionsManager.premiumEnabled));
-    _premiumSubscription ??= _subscriptionsManager.premiumEnabledStream.listen(
-      (premiumEnabled) {
-        emit(state.copyWith(premiumEnabled: premiumEnabled));
-      },
+    final progress = await _streakProgressManager.getUserStreakProgress();
+    emit(
+      state.copyWith(progress: progress),
     );
+    _setupStreakProgressSubscription();
+  }
 
+  void _setupStreakProgressSubscription() {
     _streakProgressSubscription ??= _streakProgressManager.stream.listen(
       (streakProgress) {
         emit(
-          StreakState.data(
-            streakProgress,
-            premiumEnabled: _subscriptionsManager.premiumEnabled,
-            useMissingDays: state.maybeMap(
-              data: (state) => state.useMissingDays,
-              orElse: () => false,
-            ),
+          state.copyWith(
+            progress: streakProgress,
           ),
         );
       },
-    );
-    final progress = await _streakProgressManager.getUserStreakProgress();
-    emit(
-      StreakState.data(
-        progress,
-        premiumEnabled: state.premiumEnabled,
-        useMissingDays: true,
-      ),
     );
   }
 
@@ -58,29 +47,18 @@ final class StreakBloc extends BlocBase<StreakState> {
   Future<void> onRestoreTap() async {
     final progress = await _streakProgressManager.restoreUserStreakProgress();
     emit(
-      StreakState.data(
-        premiumEnabled: state.premiumEnabled,
-        progress.copyWith(totalMissedDays: 0),
-        useMissingDays: false,
-      ),
+      state.copyWith(progress: progress),
     );
   }
 
   void onSkipTap() {
-    if (state is! StreakData) return;
     emit(
-      StreakState.data(
-        (state as StreakData).streakProgressV2,
-        premiumEnabled: state.premiumEnabled,
-        useMissingDays: false,
-      ),
+      state.copyWith(ignoreMissingDays: true),
     );
   }
 
   void dispose() {
-    _premiumSubscription?.cancel();
     _streakProgressSubscription?.cancel();
-    _premiumSubscription = null;
     _streakProgressSubscription = null;
   }
 }

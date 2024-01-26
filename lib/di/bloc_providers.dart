@@ -51,7 +51,6 @@ final class _BlocProviders {
         ref.watch(Di.manager.pushNotifications),
         ref.watch(Di.manager.permissions),
         ref.watch(Di.manager.user),
-        ref.watch(Di.manager.database),
         ref.watch(Di.manager.subscriptions),
         ref.watch(Di.manager.deeplink),
       );
@@ -140,11 +139,15 @@ final class _BlocProviders {
   );
 
   late final premiumBanner = Provider.autoDispose(
-    (ref) => PremiumBannerBloc(
-      ref.watch(Di.repository.firebaseRemoteConfig),
-      ref.watch(Di.manager.subscriptions),
-      ref.watch(Di.manager.navigation),
-    )..init(),
+    (ref) {
+      final bloc = PremiumBannerBloc(
+        ref.watch(Di.repository.firebaseRemoteConfig),
+        ref.watch(Di.manager.subscriptions),
+        ref.watch(Di.manager.navigation),
+      )..init();
+      ref.onDispose(bloc.dispose);
+      return bloc;
+    },
   );
 
   late final premiumPaywall = Provider.autoDispose(

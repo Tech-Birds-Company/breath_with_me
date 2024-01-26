@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/auth_result.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
@@ -9,8 +10,12 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 final class FirebaseUserManager implements UserManager {
   final SubscriptionsManager _subscriptionManager;
+  final DatabaseManager _databaseManager;
 
-  FirebaseUserManager(this._subscriptionManager);
+  FirebaseUserManager(
+    this._subscriptionManager,
+    this._databaseManager,
+  );
 
   late final _firebaseAuth = FirebaseAuth.instance;
 
@@ -24,6 +29,7 @@ final class FirebaseUserManager implements UserManager {
           if (user != null) {
             await _subscriptionManager.login(user.uid);
           }
+          await _databaseManager.clearDb();
           return user;
         },
       );

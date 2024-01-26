@@ -58,6 +58,7 @@ dependencies:
   shared_preferences: ^2.2.2
   flutter_shaders: ^0.1.2
   flutter_native_splash: ^2.3.9
+  logger: ^2.0.2+1
 
 dev_dependencies:
   flutter_test:

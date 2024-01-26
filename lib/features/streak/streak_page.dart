@@ -28,33 +28,26 @@ class StreakPage extends ConsumerWidget {
               bloc: bloc,
               builder: (context, state) {
                 final locale = EasyLocalization.of(context)!.locale;
-                return state.when(
-                  loading: (_) => Center(
-                    child: CircularProgressIndicator(color: theme.green3),
-                  ),
-                  error: (_) => Center(
-                    child: CircularProgressIndicator(color: theme.green3),
-                  ),
-                  data: (progress, premiumEnabled, useMissingDays) {
-                    if (premiumEnabled) {
-                      if (progress.totalMissedDays > 0 && useMissingDays) {
-                        return StreakPremiumMissed(
-                          bloc: bloc,
-                          onRestoreTap: bloc.onRestoreTap,
-                          onSkipTap: bloc.onSkipTap,
-                        );
-                      } else {
-                        return StreakPremiumStartedOrContinued(bloc: bloc);
-                      }
-                    } else {
-                      return StreakWithoutPremium(
-                        streaksCount: progress.totalStreak,
-                        quote: const StreaksQuotesRepository()
-                            .getQuote(locale.languageCode),
-                      );
-                    }
-                  },
-                );
+                if (bloc.isPremiumEnabled) {
+                  if (state.progress.totalMissedDays > 0 &&
+                      !state.ignoreMissingDays) {
+                    return StreakPremiumMissed(
+                      onRestoreTap: bloc.onRestoreTap,
+                      onSkipTap: bloc.onSkipTap,
+                      totalLives: state.progress.totalLives,
+                    );
+                  } else {
+                    return StreakPremiumStartedOrContinued(
+                      totalStreak: state.progress.totalStreak,
+                    );
+                  }
+                } else {
+                  return StreakWithoutPremium(
+                    streaksCount: state.progress.totalStreak,
+                    quote: const StreaksQuotesRepository()
+                        .getQuote(locale.languageCode),
+                  );
+                }
               },
             ),
             Align(

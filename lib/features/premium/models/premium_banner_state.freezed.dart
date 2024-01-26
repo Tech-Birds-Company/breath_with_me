@@ -19,6 +19,7 @@ mixin _$PremiumBannerState {
   int get premiumBannerTracksPosition => throw _privateConstructorUsedError;
   bool get premiumBannerTracksEnabled => throw _privateConstructorUsedError;
   bool get premiumBannerTracksWasHidden => throw _privateConstructorUsedError;
+  bool get premiumEnabled => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PremiumBannerStateCopyWith<PremiumBannerState> get copyWith =>
@@ -34,7 +35,8 @@ abstract class $PremiumBannerStateCopyWith<$Res> {
   $Res call(
       {int premiumBannerTracksPosition,
       bool premiumBannerTracksEnabled,
-      bool premiumBannerTracksWasHidden});
+      bool premiumBannerTracksWasHidden,
+      bool premiumEnabled});
 }
 
 /// @nodoc
@@ -53,6 +55,7 @@ class _$PremiumBannerStateCopyWithImpl<$Res, $Val extends PremiumBannerState>
     Object? premiumBannerTracksPosition = null,
     Object? premiumBannerTracksEnabled = null,
     Object? premiumBannerTracksWasHidden = null,
+    Object? premiumEnabled = null,
   }) {
     return _then(_value.copyWith(
       premiumBannerTracksPosition: null == premiumBannerTracksPosition
@@ -66,6 +69,10 @@ class _$PremiumBannerStateCopyWithImpl<$Res, $Val extends PremiumBannerState>
       premiumBannerTracksWasHidden: null == premiumBannerTracksWasHidden
           ? _value.premiumBannerTracksWasHidden
           : premiumBannerTracksWasHidden // ignore: cast_nullable_to_non_nullable
+              as bool,
+      premiumEnabled: null == premiumEnabled
+          ? _value.premiumEnabled
+          : premiumEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -82,7 +89,8 @@ abstract class _$$PremiumBannerStateImplCopyWith<$Res>
   $Res call(
       {int premiumBannerTracksPosition,
       bool premiumBannerTracksEnabled,
-      bool premiumBannerTracksWasHidden});
+      bool premiumBannerTracksWasHidden,
+      bool premiumEnabled});
 }
 
 /// @nodoc
@@ -99,6 +107,7 @@ class __$$PremiumBannerStateImplCopyWithImpl<$Res>
     Object? premiumBannerTracksPosition = null,
     Object? premiumBannerTracksEnabled = null,
     Object? premiumBannerTracksWasHidden = null,
+    Object? premiumEnabled = null,
   }) {
     return _then(_$PremiumBannerStateImpl(
       premiumBannerTracksPosition: null == premiumBannerTracksPosition
@@ -113,6 +122,10 @@ class __$$PremiumBannerStateImplCopyWithImpl<$Res>
           ? _value.premiumBannerTracksWasHidden
           : premiumBannerTracksWasHidden // ignore: cast_nullable_to_non_nullable
               as bool,
+      premiumEnabled: null == premiumEnabled
+          ? _value.premiumEnabled
+          : premiumEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -123,7 +136,8 @@ class _$PremiumBannerStateImpl implements _PremiumBannerState {
   const _$PremiumBannerStateImpl(
       {this.premiumBannerTracksPosition = 0,
       this.premiumBannerTracksEnabled = false,
-      this.premiumBannerTracksWasHidden = false});
+      this.premiumBannerTracksWasHidden = false,
+      this.premiumEnabled = false});
 
   @override
   @JsonKey()
@@ -134,10 +148,13 @@ class _$PremiumBannerStateImpl implements _PremiumBannerState {
   @override
   @JsonKey()
   final bool premiumBannerTracksWasHidden;
+  @override
+  @JsonKey()
+  final bool premiumEnabled;
 
   @override
   String toString() {
-    return 'PremiumBannerState(premiumBannerTracksPosition: $premiumBannerTracksPosition, premiumBannerTracksEnabled: $premiumBannerTracksEnabled, premiumBannerTracksWasHidden: $premiumBannerTracksWasHidden)';
+    return 'PremiumBannerState(premiumBannerTracksPosition: $premiumBannerTracksPosition, premiumBannerTracksEnabled: $premiumBannerTracksEnabled, premiumBannerTracksWasHidden: $premiumBannerTracksWasHidden, premiumEnabled: $premiumEnabled)';
   }
 
   @override
@@ -156,12 +173,14 @@ class _$PremiumBannerStateImpl implements _PremiumBannerState {
             (identical(other.premiumBannerTracksWasHidden,
                     premiumBannerTracksWasHidden) ||
                 other.premiumBannerTracksWasHidden ==
-                    premiumBannerTracksWasHidden));
+                    premiumBannerTracksWasHidden) &&
+            (identical(other.premiumEnabled, premiumEnabled) ||
+                other.premiumEnabled == premiumEnabled));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, premiumBannerTracksPosition,
-      premiumBannerTracksEnabled, premiumBannerTracksWasHidden);
+      premiumBannerTracksEnabled, premiumBannerTracksWasHidden, premiumEnabled);
 
   @JsonKey(ignore: true)
   @override
@@ -175,7 +194,8 @@ abstract class _PremiumBannerState implements PremiumBannerState {
   const factory _PremiumBannerState(
       {final int premiumBannerTracksPosition,
       final bool premiumBannerTracksEnabled,
-      final bool premiumBannerTracksWasHidden}) = _$PremiumBannerStateImpl;
+      final bool premiumBannerTracksWasHidden,
+      final bool premiumEnabled}) = _$PremiumBannerStateImpl;
 
   @override
   int get premiumBannerTracksPosition;
@@ -183,6 +203,8 @@ abstract class _PremiumBannerState implements PremiumBannerState {
   bool get premiumBannerTracksEnabled;
   @override
   bool get premiumBannerTracksWasHidden;
+  @override
+  bool get premiumEnabled;
   @override
   @JsonKey(ignore: true)
   _$$PremiumBannerStateImplCopyWith<_$PremiumBannerStateImpl> get copyWith =>

@@ -18,7 +18,6 @@ class ProfilePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final profileBloc = ref.watch(Di.bloc.profile);
-    final streakBloc = ref.watch(Di.bloc.streak);
     final reminderBloc = ref.watch(Di.bloc.reminder);
 
     final theme = Theme.of(context).extension<BWMTheme>()!;
@@ -67,9 +66,17 @@ class ProfilePage extends ConsumerWidget {
                           );
                         },
                       ).toSliver(),
-                      ProfileStatistics(
-                        bloc: streakBloc,
-                        onPremiumButtonPressed: profileBloc.openPremiumPaywall,
+                      StreamBuilder<bool>(
+                        stream: profileBloc.premiumEnabledStream,
+                        initialData: false,
+                        builder: (context, snapshot) {
+                          final premiumEnabled = snapshot.requireData;
+                          return ProfileStatistics(
+                            premiumEnabled: premiumEnabled,
+                            onPremiumButtonPressed:
+                                profileBloc.openPremiumPaywall,
+                          );
+                        },
                       ).toSliver(),
                       const SizedBox(height: 24).toSliver(),
                       ProfileMenuItem(

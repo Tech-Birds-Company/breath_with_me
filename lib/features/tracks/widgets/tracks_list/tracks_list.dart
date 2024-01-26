@@ -36,8 +36,18 @@ class TracksList extends HookConsumerWidget {
         data: (tracks) => BlocBuilder<PremiumBannerBloc, PremiumBannerState>(
           bloc: premiumBannerBloc,
           builder: (context, premiumBannerState) {
-            final premiumBannerEnabled = premiumBannerBloc.premiumBannerEnabled;
-            final itemsCount = tracks.length + (premiumBannerEnabled ? 1 : 0);
+            final premiumBannerTracksEnabled =
+                premiumBannerState.premiumBannerTracksEnabled;
+            final premiumBannerTracksWasHidden =
+                premiumBannerState.premiumBannerTracksWasHidden;
+
+            final shouldShowPremiumBanner =
+                !premiumBannerState.premiumEnabled &&
+                    premiumBannerTracksEnabled &&
+                    !premiumBannerTracksWasHidden;
+
+            final itemsCount =
+                tracks.length + (shouldShowPremiumBanner ? 1 : 0);
             return SliverList.separated(
               itemCount: itemsCount,
               separatorBuilder: (context, index) => Padding(
@@ -49,26 +59,18 @@ class TracksList extends HookConsumerWidget {
                 ),
               ),
               itemBuilder: (context, index) {
-                if (premiumBannerEnabled &&
+                if (shouldShowPremiumBanner &&
                     index ==
                         premiumBannerState.premiumBannerTracksPosition.clamp(
                           0,
                           itemsCount - 1,
                         )) {
-                  return BlocSelector<PremiumBannerBloc, PremiumBannerState,
-                      bool>(
-                    bloc: premiumBannerBloc,
-                    selector: (state) => state.premiumBannerTracksWasHidden,
-                    builder: (context, premiumBannerIsHidden) =>
-                        PremiumBannerTracks(
-                      premiumBannerIsHidden: premiumBannerIsHidden,
-                      onBannerHide: premiumBannerBloc.onUserHidePremiumBanner,
-                      onLearnMore:
-                          premiumBannerBloc.onUserLearnMoreAboutPremium,
-                    ),
+                  return PremiumBannerTracks(
+                    onBannerHide: premiumBannerBloc.onUserHidePremiumBanner,
+                    onLearnMore: premiumBannerBloc.onUserLearnMoreAboutPremium,
                   );
                 }
-                final adjustedIndex = premiumBannerEnabled
+                final adjustedIndex = shouldShowPremiumBanner
                     ? index -
                         (index > premiumBannerState.premiumBannerTracksPosition
                             ? 1
@@ -83,12 +85,8 @@ class TracksList extends HookConsumerWidget {
             );
           },
         ),
-        loading: () {
-          return const ShimmerList();
-        },
-        error: () {
-          return const SizedBox.shrink().toSliver();
-        },
+        loading: () => const ShimmerList(),
+        error: () => const SizedBox.shrink().toSliver(),
       ),
     );
   }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:breathe_with_me/features/premium/models/premium_banner_state.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
@@ -15,14 +17,7 @@ final class PremiumBannerBloc extends BlocBase<PremiumBannerState> {
     this._navigationManager,
   ) : super(const PremiumBannerState());
 
-  bool get premiumBannerEnabled {
-    final premiumEnabled = _subscriptionsManager.premiumEnabled;
-    if (premiumEnabled) {
-      return false;
-    }
-    return state.premiumBannerTracksEnabled &&
-        !state.premiumBannerTracksWasHidden;
-  }
+  StreamSubscription<bool>? _premiumEnabledSubscription;
 
   void init() {
     final config = _remoteConfigRepository.premium;
@@ -30,9 +25,18 @@ final class PremiumBannerBloc extends BlocBase<PremiumBannerState> {
       state.copyWith(
         premiumBannerTracksEnabled: config.premiumBannerTracksEnabled,
         premiumBannerTracksPosition: config.premiumBannerTracksPosition,
+        premiumEnabled: _subscriptionsManager.premiumEnabled,
       ),
     );
+    _setupPremiumEnabledSubscription();
   }
+
+  void _setupPremiumEnabledSubscription() => _premiumEnabledSubscription ??=
+          _subscriptionsManager.premiumEnabledStream.listen(
+        (isPremiumEnabled) => emit(
+          state.copyWith(premiumEnabled: isPremiumEnabled),
+        ),
+      );
 
   void onUserHidePremiumBanner() => emit(
         state.copyWith(
@@ -40,7 +44,10 @@ final class PremiumBannerBloc extends BlocBase<PremiumBannerState> {
         ),
       );
 
-  void onUserLearnMoreAboutPremium() {
-    _navigationManager.openPremiumPaywall();
+  void onUserLearnMoreAboutPremium() => _navigationManager.openPremiumPaywall();
+
+  void dispose() {
+    _premiumEnabledSubscription?.cancel();
+    _premiumEnabledSubscription = null;
   }
 }
