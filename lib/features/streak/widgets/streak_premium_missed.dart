@@ -1,10 +1,13 @@
+import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/common/widgets/bwm_action_button.dart';
+import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_statistics_card.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class StreakPremiumMissed extends ConsumerWidget {
   final int totalLives;
@@ -23,6 +26,8 @@ class StreakPremiumMissed extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
+    final configLives =
+        ref.watch(Di.repository.firebaseRemoteConfig).streaks.monthLivesCount;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
       child: Column(
@@ -39,6 +44,19 @@ class StreakPremiumMissed extends ConsumerWidget {
             LocaleKeys.streakMissedDaySubtitle.tr(),
             style: theme.typography.bodyS.copyWith(color: theme.primaryText),
             textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 16),
+          Wrap(
+            alignment: WrapAlignment.center,
+            spacing: 8,
+            children: [
+              for (var i = 1; i <= configLives; i++)
+                SvgPicture.asset(
+                  totalLives >= i
+                      ? BWMAssets.streakLifeAvailable
+                      : BWMAssets.streakLifeUnavailable,
+                ),
+            ],
           ),
           if (totalLives >= totalMissedDays)
             Padding(
