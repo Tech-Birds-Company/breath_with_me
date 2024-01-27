@@ -4,6 +4,7 @@ import 'package:breathe_with_me/managers/database_manager/database_manager.dart'
 import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/auth_result.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
+import 'package:breathe_with_me/utils/logger.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -27,7 +28,10 @@ final class FirebaseUserManager implements UserManager {
   void init() => _userSubscription ??= _userStream.listen(
         (user) async {
           if (user != null) {
-            await _subscriptionManager.login(user.uid);
+            final loginResult = await _subscriptionManager.login(user.uid);
+            logger.i(
+              '[RevenueCat]: login ✅: ${loginResult.customerInfo.toJson()}',
+            );
             return;
           }
           await _subscriptionManager.logOut();

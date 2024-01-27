@@ -39,6 +39,7 @@ abstract base class SubscriptionsManager {
   Future<LogInResult> login(String userId) => Purchases.logIn(userId);
 
   Future<void> logOut() async {
+    _customerInfoStreamController.add(null);
     final isAnonymous = await Purchases.isAnonymous;
     if (isAnonymous) {
       return;
