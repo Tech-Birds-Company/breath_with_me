@@ -38,6 +38,14 @@ abstract base class SubscriptionsManager {
 
   Future<LogInResult> login(String userId) => Purchases.logIn(userId);
 
+  Future<void> logOut() async {
+    final isAnonymous = await Purchases.isAnonymous;
+    if (isAnonymous) {
+      return;
+    }
+    await Purchases.logOut();
+  }
+
   Future<Map<String, StoreProduct>> getProducts(
     List<String> productIdentifiers,
   ) async {

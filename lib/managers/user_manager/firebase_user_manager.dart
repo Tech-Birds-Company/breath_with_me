@@ -17,22 +17,26 @@ final class FirebaseUserManager implements UserManager {
     this._databaseManager,
   );
 
+  StreamSubscription<User?>? _userSubscription;
   late final _firebaseAuth = FirebaseAuth.instance;
+  late final _userStream = _firebaseAuth.userChanges();
 
   @override
   User? get currentUser => _firebaseAuth.currentUser;
 
-  @override
-  Stream<User?> get userStream =>
-      _firebaseAuth.userChanges().distinct().asyncMap(
+  void init() => _userSubscription ??= _userStream.listen(
         (user) async {
           if (user != null) {
             await _subscriptionManager.login(user.uid);
+            return;
           }
+          await _subscriptionManager.logOut();
           await _databaseManager.clearDb();
-          return user;
         },
       );
+
+  @override
+  Stream<User?> get userStream => _userStream;
 
   @override
   Future<User?> signInWithEmail(String email, String password) async {
@@ -131,5 +135,11 @@ final class FirebaseUserManager implements UserManager {
     final currentUser = _firebaseAuth.currentUser;
     await currentUser?.updateDisplayName(name);
     await currentUser?.updateEmail(email);
+  }
+
+  @override
+  void dispose() {
+    _userSubscription?.cancel();
+    _userSubscription = null;
   }
 }

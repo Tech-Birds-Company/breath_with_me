@@ -27,4 +27,6 @@ abstract interface class UserManager {
   Stream<User?> get userStream;
 
   User? get currentUser;
+
+  void dispose();
 }

@@ -14,7 +14,7 @@ import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.d
 import 'package:breathe_with_me/managers/player_manager/track_player_manager.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
 import 'package:breathe_with_me/managers/shared_preferences_manager/shared_preferences_manager.dart';
-import 'package:breathe_with_me/managers/subscriptions_manager/bwm_subscriptions_manager.dart';
+import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager_impl.dart';
 import 'package:breathe_with_me/managers/user_manager/firebase_user_manager.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/isar_bloc_storage.dart';
@@ -44,7 +44,7 @@ Future<List<Override>> _setupDependencies({
 
   final tracksDownloadManager = TracksDownloaderManager(databaseManager);
 
-  final subscriptionsManager = BWMSubscriptionsManager(
+  final subscriptionsManager = SubscriptionsManagerImpl(
     isProduction
         ? Platform.isIOS
             ? BWMConstants.revenueCatApiKeyiOSProd

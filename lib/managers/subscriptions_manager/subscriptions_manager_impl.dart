@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
-final class BWMSubscriptionsManager extends SubscriptionsManager {
+final class SubscriptionsManagerImpl extends SubscriptionsManager {
   final String _apiKey;
 
-  BWMSubscriptionsManager(this._apiKey);
+  SubscriptionsManagerImpl(this._apiKey);
 
   @override
   Future<void> configure() async {
