@@ -22,6 +22,7 @@ AccountSettingsState _$AccountSettingsStateFromJson(Map<String, dynamic> json) {
 mixin _$AccountSettingsState {
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
+  bool get isForgotPasswordButtonEnabled => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $AccountSettingsStateCopyWith<$Res> {
           $Res Function(AccountSettingsState) then) =
       _$AccountSettingsStateCopyWithImpl<$Res, AccountSettingsState>;
   @useResult
-  $Res call({String name, String email});
+  $Res call({String name, String email, bool isForgotPasswordButtonEnabled});
 }
 
 /// @nodoc
@@ -54,6 +55,7 @@ class _$AccountSettingsStateCopyWithImpl<$Res,
   $Res call({
     Object? name = null,
     Object? email = null,
+    Object? isForgotPasswordButtonEnabled = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -64,6 +66,10 @@ class _$AccountSettingsStateCopyWithImpl<$Res,
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      isForgotPasswordButtonEnabled: null == isForgotPasswordButtonEnabled
+          ? _value.isForgotPasswordButtonEnabled
+          : isForgotPasswordButtonEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -76,7 +82,7 @@ abstract class _$$AccountSettingsStateImplCopyWith<$Res>
       __$$AccountSettingsStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String email});
+  $Res call({String name, String email, bool isForgotPasswordButtonEnabled});
 }
 
 /// @nodoc
@@ -92,6 +98,7 @@ class __$$AccountSettingsStateImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? email = null,
+    Object? isForgotPasswordButtonEnabled = null,
   }) {
     return _then(_$AccountSettingsStateImpl(
       name: null == name
@@ -102,6 +109,10 @@ class __$$AccountSettingsStateImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      isForgotPasswordButtonEnabled: null == isForgotPasswordButtonEnabled
+          ? _value.isForgotPasswordButtonEnabled
+          : isForgotPasswordButtonEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -109,7 +120,10 @@ class __$$AccountSettingsStateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AccountSettingsStateImpl implements _AccountSettingsState {
-  const _$AccountSettingsStateImpl({required this.name, required this.email});
+  const _$AccountSettingsStateImpl(
+      {required this.name,
+      required this.email,
+      this.isForgotPasswordButtonEnabled = false});
 
   factory _$AccountSettingsStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$AccountSettingsStateImplFromJson(json);
@@ -118,10 +132,13 @@ class _$AccountSettingsStateImpl implements _AccountSettingsState {
   final String name;
   @override
   final String email;
+  @override
+  @JsonKey()
+  final bool isForgotPasswordButtonEnabled;
 
   @override
   String toString() {
-    return 'AccountSettingsState(name: $name, email: $email)';
+    return 'AccountSettingsState(name: $name, email: $email, isForgotPasswordButtonEnabled: $isForgotPasswordButtonEnabled)';
   }
 
   @override
@@ -130,12 +147,17 @@ class _$AccountSettingsStateImpl implements _AccountSettingsState {
         (other.runtimeType == runtimeType &&
             other is _$AccountSettingsStateImpl &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.email, email) || other.email == email));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.isForgotPasswordButtonEnabled,
+                    isForgotPasswordButtonEnabled) ||
+                other.isForgotPasswordButtonEnabled ==
+                    isForgotPasswordButtonEnabled));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, email);
+  int get hashCode =>
+      Object.hash(runtimeType, name, email, isForgotPasswordButtonEnabled);
 
   @JsonKey(ignore: true)
   @override
@@ -156,7 +178,8 @@ class _$AccountSettingsStateImpl implements _AccountSettingsState {
 abstract class _AccountSettingsState implements AccountSettingsState {
   const factory _AccountSettingsState(
       {required final String name,
-      required final String email}) = _$AccountSettingsStateImpl;
+      required final String email,
+      final bool isForgotPasswordButtonEnabled}) = _$AccountSettingsStateImpl;
 
   factory _AccountSettingsState.fromJson(Map<String, dynamic> json) =
       _$AccountSettingsStateImpl.fromJson;
@@ -165,6 +188,8 @@ abstract class _AccountSettingsState implements AccountSettingsState {
   String get name;
   @override
   String get email;
+  @override
+  bool get isForgotPasswordButtonEnabled;
   @override
   @JsonKey(ignore: true)
   _$$AccountSettingsStateImplCopyWith<_$AccountSettingsStateImpl>

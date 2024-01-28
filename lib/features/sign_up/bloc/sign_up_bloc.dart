@@ -2,8 +2,10 @@ import 'package:breathe_with_me/extensions/string.dart';
 import 'package:breathe_with_me/features/sign_up/models/sign_up_error.dart';
 import 'package:breathe_with_me/features/sign_up/models/sign_up_state.dart';
 import 'package:breathe_with_me/features/sign_up/models/sing_up_exception.dart';
+import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpBloc extends BlocBase<SignUpState> {
@@ -78,9 +80,9 @@ class SignUpBloc extends BlocBase<SignUpState> {
 
 extension SignUpErrorExtension on SignUpError {
   String get errorMessage => when(
-        emptyName: () => 'Error: Name field is empty.',
-        invalidEmail: () => 'Error: Email is invalid.',
-        passwordMismatch: () => 'Error: Passwords do not match.',
+        emptyName: () => LocaleKeys.signUpError_nameEmpty.tr(),
+        invalidEmail: () => LocaleKeys.signUpError_emailEmpty.tr(),
+        passwordMismatch: () => LocaleKeys.signUpError_passwordMatch.tr(),
         firebase: (message) => message,
       );
 }

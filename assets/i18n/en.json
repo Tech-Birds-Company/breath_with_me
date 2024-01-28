@@ -152,5 +152,15 @@
 			}
 		}
 	},
-	"networkErrorText": "Network error"
+	"networkErrorText": "Network error",
+	
+	"resetPasswordTitle": "Reset password",
+	"resetPasswordSubtitle": "Enter a new password",
+
+	"signUpError": {
+		"nameEmpty": "Error: Name field is empty.",
+		"emailEmpty": "Error: Email is invalid.",
+		"passwordMatch": "Error: Passwords do not match."
+	}
+
 }

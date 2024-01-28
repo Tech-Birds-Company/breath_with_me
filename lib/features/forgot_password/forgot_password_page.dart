@@ -62,7 +62,7 @@ class ForgotPasswordPage extends HookWidget {
                     children: [
                       ObscuredField(
                         hintText: LocaleKeys.signInEmail.tr(),
-                        prefixIcon: BWMAssets.emailIcon,
+                        prefixIcon: BWMAssets.email,
                         textChange: bloc.updateEmail,
                         defaultValue: bloc.currentEmail,
                       ),

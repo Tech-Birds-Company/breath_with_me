@@ -157,4 +157,11 @@ final class _BlocProviders {
       ref.watch(Di.manager.navigation),
     )..init(),
   );
+
+  late final resetPassword = Provider.family<ResetPasswordBloc, String>(
+    (ref, oodCode) => ResetPasswordBloc(
+      ref.read(Di.manager.user),
+      oodCode,
+    ),
+  );
 }

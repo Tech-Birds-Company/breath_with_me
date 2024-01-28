@@ -2,6 +2,7 @@ library di;
 
 import 'package:breathe_with_me/features/faq/blocs/faq_bloc.dart';
 import 'package:breathe_with_me/features/forgot_password/bloc/forgot_password_bloc.dart';
+import 'package:breathe_with_me/features/forgot_password/bloc/reset_password_block.dart';
 import 'package:breathe_with_me/features/home/blocs/home_bloc.dart';
 import 'package:breathe_with_me/features/onboarding/blocs/onboarding_bloc.dart';
 import 'package:breathe_with_me/features/premium/blocs/premium_banner_bloc.dart';

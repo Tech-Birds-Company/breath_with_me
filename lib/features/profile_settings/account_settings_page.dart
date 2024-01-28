@@ -9,10 +9,10 @@ import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class ProfileSettingsPage extends StatelessWidget {
+class AccountSettingsPage extends StatelessWidget {
   final AccountSettingsBloc bloc;
 
-  const ProfileSettingsPage({
+  const AccountSettingsPage({
     required this.bloc,
     super.key,
   });
@@ -48,7 +48,7 @@ class ProfileSettingsPage extends StatelessWidget {
                       ),
                       ObscuredField(
                         hintText: LocaleKeys.signInEmail.tr(),
-                        prefixIcon: BWMAssets.emailIcon,
+                        prefixIcon: BWMAssets.email,
                         textChange: bloc.onEmailChange,
                         defaultValue: bloc.state.email,
                       ),

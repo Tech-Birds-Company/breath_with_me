@@ -28,9 +28,10 @@ abstract final class BWMAssets {
   static const premiumBannerIcon = '$_icons/premium_banner_icon.png';
 
   static const trackPlayerAnimation = '$_shaders/player_animation.glsl';
-  static const emailIcon = '$_icons/email.svg';
   static const lockIcon = '$_icons/lock.svg';
 
   static const streakLifeAvailable = '$_icons/life_available.svg';
   static const streakLifeUnavailable = '$_icons/life_unavailable.svg';
+
+  static const user = '$_icons/user.svg';
 }
