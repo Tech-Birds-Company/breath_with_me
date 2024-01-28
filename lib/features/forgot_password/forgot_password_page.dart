@@ -5,7 +5,7 @@ import 'package:breathe_with_me/common/widgets/obscured_field.dart';
 import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/forgot_password/bloc/forgot_password_bloc.dart';
 import 'package:breathe_with_me/features/forgot_password/models/forgot_password_state.dart';
-import 'package:breathe_with_me/features/forgot_password/widgets/forgot_password_email_sended.dart';
+import 'package:breathe_with_me/features/forgot_password/widgets/forgot_password_email_sent.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -90,11 +90,11 @@ class ForgotPasswordPage extends ConsumerWidget {
         ),
         BlocSelector<ForgotPasswordBloc, ForgotPasswordState, bool>(
           bloc: bloc,
-          selector: (state) => state.requestSended,
-          builder: (context, requestSended) {
-            if (requestSended) {
+          selector: (state) => state.requestSent,
+          builder: (context, requestSent) {
+            if (requestSent) {
               return SizedBox(
-                child: ForgotPasswordEmailSendedWidget(
+                child: ForgotPasswordEmailSentWidget(
                   onOpenEmailTap: bloc.openEmailApp,
                   onTryAgainTap: bloc.tryAnotherEmail,
                 ),

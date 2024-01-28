@@ -9,12 +9,12 @@ part of 'forgot_password_state.dart';
 _$ForgotPasswordStateImpl _$$ForgotPasswordStateImplFromJson(Map json) =>
     _$ForgotPasswordStateImpl(
       email: json['email'] as String? ?? '',
-      requestSended: json['requestSended'] as bool? ?? false,
+      requestSent: json['requestSent'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$ForgotPasswordStateImplToJson(
         _$ForgotPasswordStateImpl instance) =>
     <String, dynamic>{
       'email': instance.email,
-      'requestSended': instance.requestSended,
+      'requestSent': instance.requestSent,
     };

@@ -16,10 +16,10 @@ final class ForgotPasswordBloc extends BlocBase<ForgotPasswordState> {
 
   Future<void> resetPassword() async {
     await _userManager.sendResetPassword(state.email);
-    emit(state.copyWith(requestSended: true));
+    emit(state.copyWith(requestSent: true));
   }
 
-  void tryAnotherEmail() => emit(state.copyWith(requestSended: false));
+  void tryAnotherEmail() => emit(state.copyWith(requestSent: false));
 
   Future<void> openEmailApp() => _deeplinkManager.onComposeEmail();
 }

@@ -236,7 +236,7 @@ PODS:
   - GTMAppAuth (2.0.0):
     - AppAuth/Core (~> 1.6)
     - GTMSessionFetcher/Core (< 4.0, >= 1.5)
-  - GTMSessionFetcher/Core (3.2.0)
+  - GTMSessionFetcher/Core (3.3.1)
   - isar_flutter_libs (1.0.0):
     - Flutter
   - just_audio (0.0.1):
@@ -252,16 +252,13 @@ PODS:
   - PromisesObjC (2.3.1)
   - PromisesSwift (2.3.1):
     - PromisesObjC (= 2.3.1)
-  - purchases_flutter (6.16.1):
+  - purchases_flutter (6.18.0):
     - Flutter
-    - PurchasesHybridCommon (= 8.11.1)
-  - PurchasesHybridCommon (8.11.1):
-    - RevenueCat (= 4.32.0)
-    - RevenueCatUI (= 4.32.0)
+    - PurchasesHybridCommon (= 9.2.0)
+  - PurchasesHybridCommon (9.2.0):
+    - RevenueCat (= 4.32.2)
   - RecaptchaInterop (100.0.0)
-  - RevenueCat (4.32.0)
-  - RevenueCatUI (4.32.0):
-    - RevenueCat (= 4.32.0)
+  - RevenueCat (4.32.2)
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -335,7 +332,6 @@ SPEC REPOS:
     - PurchasesHybridCommon
     - RecaptchaInterop
     - RevenueCat
-    - RevenueCatUI
 
 EXTERNAL SOURCES:
   app_settings:
@@ -441,18 +437,17 @@ SPEC CHECKSUMS:
   GoogleSignIn: b232380cf495a429b8095d3178a8d5855b42e842
   GoogleUtilities: 0759d1a57ebb953965c2dfe0ba4c82e95ccc2e34
   GTMAppAuth: 99fb010047ba3973b7026e45393f51f27ab965ae
-  GTMSessionFetcher: 41b9ef0b4c08a6db4b7eb51a21ae5183ec99a2c8
+  GTMSessionFetcher: 8a1b34ad97ebe6f909fb8b9b77fba99943007556
   isar_flutter_libs: b69f437aeab9c521821c3f376198c4371fa21073
   just_audio: baa7252489dbcf47a4c7cc9ca663e9661c99aafa
   nanopb: d4d75c12cd1316f4a64e3c6963f879ecd4b5e0d5
   path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
   PromisesSwift: 28dca69a9c40779916ac2d6985a0192a5cb4a265
-  purchases_flutter: 4048b4d0052cf452faa5d85e3aa3907a7929032c
-  PurchasesHybridCommon: db0f4063a1e77fd255318c4a2f05d26eff6f150a
+  purchases_flutter: d72ff299589418cddae4ccac2d2ce55e0fbd1eba
+  PurchasesHybridCommon: e6c4550d06ecdfc61a228a0e17b2f125b3bd14c2
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
-  RevenueCat: 2d99a5ebabd33955c3a38dfdfa9d3efe77c5db0c
-  RevenueCatUI: fa6b619083afb967facc20ecdc7ae53a4c512d10
+  RevenueCat: 298f40f434e6675ea51744cfca5945f09f7c5a07
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
   sign_in_with_apple: f3bf75217ea4c2c8b91823f225d70230119b8440
   sqflite: 31f7eba61e3074736dff8807a9b41581e4f7f15a
