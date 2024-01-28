@@ -4,7 +4,6 @@ import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
 import 'package:breathe_with_me/common/widgets/keyboard_hider.dart';
 import 'package:breathe_with_me/common/widgets/obscured_field.dart';
 import 'package:breathe_with_me/common/widgets/sing_in_buttons.dart';
-import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/sign_up/bloc/sign_up_bloc.dart';
 import 'package:breathe_with_me/features/sign_up/models/sign_up_error.dart';
 import 'package:breathe_with_me/features/sign_up/models/sign_up_state.dart';
@@ -13,15 +12,18 @@ import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SignUpPage extends ConsumerWidget {
-  const SignUpPage({super.key});
+class SignUpPage extends StatelessWidget {
+  final SignUpBloc bloc;
+
+  const SignUpPage({
+    required this.bloc,
+    super.key,
+  });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    final bloc = ref.watch(Di.bloc.signUp);
     final appBar = BWMAppBar(
       title: LocaleKeys.welcomeBreather.tr(),
     );

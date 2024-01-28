@@ -4,20 +4,23 @@ import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
 import 'package:breathe_with_me/common/widgets/keyboard_hider.dart';
 import 'package:breathe_with_me/common/widgets/obscured_field.dart';
 import 'package:breathe_with_me/common/widgets/sing_in_buttons.dart';
-import 'package:breathe_with_me/di/di.dart';
+import 'package:breathe_with_me/features/sign_in/blocs/signin_bloc.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SignInPage extends ConsumerWidget {
-  const SignInPage({super.key});
+class SignInPage extends StatelessWidget {
+  final SignInBloc bloc;
+
+  const SignInPage({
+    required this.bloc,
+    super.key,
+  });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    final bloc = ref.watch(Di.bloc.signIn);
     return KeyboardHider(
       child: Scaffold(
         resizeToAvoidBottomInset: false,

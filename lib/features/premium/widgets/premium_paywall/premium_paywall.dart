@@ -1,5 +1,4 @@
 import 'package:breathe_with_me/assets.dart';
-import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/extensions/string.dart';
 import 'package:breathe_with_me/features/premium/blocs/premium_paywall_bloc.dart';
 import 'package:breathe_with_me/features/premium/models/premium_paywall_state.dart';
@@ -12,20 +11,20 @@ import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
-class PremiumPaywall extends ConsumerWidget {
+class PremiumPaywall extends StatelessWidget {
   final double topInset;
+  final PremiumPaywallBloc bloc;
 
   const PremiumPaywall({
+    required this.bloc,
     this.topInset = 0,
     super.key,
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final bloc = ref.watch(Di.bloc.premiumPaywall);
+  Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return Scaffold(
       backgroundColor: Colors.black,

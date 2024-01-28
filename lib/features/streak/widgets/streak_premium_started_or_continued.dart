@@ -1,3 +1,4 @@
+import 'package:breathe_with_me/features/streak/blocs/streak_bloc.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_quote.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_statistics_card.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_weeks.dart';
@@ -7,9 +8,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class StreakPremiumStartedOrContinued extends StatelessWidget {
+  final StreakBloc bloc;
   final int totalStreak;
 
   const StreakPremiumStartedOrContinued({
+    required this.bloc,
     required this.totalStreak,
     super.key,
   });
@@ -23,7 +26,7 @@ class StreakPremiumStartedOrContinued extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 20),
         child: Column(
           children: [
-            const StreakStatisticsCard(),
+            StreakStatisticsCard(bloc: bloc),
             const SizedBox(height: 24),
             StreakWeeks(selectedDay: totalStreak),
           ],

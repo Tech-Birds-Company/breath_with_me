@@ -1,25 +1,32 @@
 import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
-import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/extensions/widget.dart';
+import 'package:breathe_with_me/features/profile/blocs/profile_bloc.dart';
 import 'package:breathe_with_me/features/profile/widgets/profile_header.dart';
 import 'package:breathe_with_me/features/profile/widgets/profile_menu_button.dart';
 import 'package:breathe_with_me/features/profile/widgets/profile_statistics.dart';
 import 'package:breathe_with_me/features/profile/widgets/reminder_profile_item.dart';
+import 'package:breathe_with_me/features/reminder/blocs/reminder_bloc.dart';
+import 'package:breathe_with_me/features/streak/blocs/streak_bloc.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ProfilePage extends ConsumerWidget {
-  const ProfilePage({super.key});
+class ProfilePage extends StatelessWidget {
+  final ProfileBloc profileBloc;
+  final ReminderBloc reminderBloc;
+  final StreakBloc streakBloc;
+
+  const ProfilePage({
+    required this.profileBloc,
+    required this.reminderBloc,
+    required this.streakBloc,
+    super.key,
+  });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final profileBloc = ref.watch(Di.bloc.profile);
-    final reminderBloc = ref.watch(Di.bloc.reminder);
-
+  Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     final currentLocale = EasyLocalization.of(context)!.locale;
 
@@ -75,6 +82,7 @@ class ProfilePage extends ConsumerWidget {
                             premiumEnabled: premiumEnabled,
                             onPremiumButtonPressed:
                                 profileBloc.openPremiumPaywall,
+                            bloc: streakBloc,
                           );
                         },
                       ).toSliver(),

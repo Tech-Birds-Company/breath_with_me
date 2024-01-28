@@ -1,23 +1,29 @@
-import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/streak/blocs/streak_bloc.dart';
 import 'package:breathe_with_me/features/streak/models/streak_state.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_premium_missed.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_premium_started_or_continued.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_without_premium.dart';
+import 'package:breathe_with_me/repositories/remote_config_repository.dart';
 import 'package:breathe_with_me/repositories/streaks_quotes_repository.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class StreakPage extends ConsumerWidget {
-  const StreakPage({super.key});
+class StreakPage extends StatelessWidget {
+  final StreakBloc bloc;
+  final RemoteConfigRepository remoteConfigRepository;
+
+  const StreakPage({
+    required this.bloc,
+    required this.remoteConfigRepository,
+    super.key,
+  });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    final bloc = ref.watch(Di.bloc.streak);
+    final locale = EasyLocalization.of(context)!.locale;
     return Scaffold(
       backgroundColor: theme.primaryBackground,
       body: SafeArea(
@@ -27,18 +33,19 @@ class StreakPage extends ConsumerWidget {
             BlocBuilder<StreakBloc, StreakState>(
               bloc: bloc,
               builder: (context, state) {
-                final locale = EasyLocalization.of(context)!.locale;
                 if (bloc.isPremiumEnabled) {
                   if (state.progress.totalMissedDays > 0 &&
                       !state.ignoreMissingDays) {
                     return StreakPremiumMissed(
-                      onRestoreTap: bloc.onRestoreTap,
-                      onSkipTap: bloc.onSkipTap,
                       totalLives: state.progress.totalLives,
                       totalMissedDays: state.progress.totalMissedDays,
+                      configMaxLives:
+                          remoteConfigRepository.streaks.monthLivesCount,
+                      bloc: bloc,
                     );
                   } else {
                     return StreakPremiumStartedOrContinued(
+                      bloc: bloc,
                       totalStreak: state.progress.totalStreak,
                     );
                   }

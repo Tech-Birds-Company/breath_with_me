@@ -1,26 +1,28 @@
 import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/common/widgets/bwm_action_button.dart';
 import 'package:breathe_with_me/features/premium/premium_constants.dart';
+import 'package:breathe_with_me/features/streak/blocs/streak_bloc.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_statistics_with_details.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ProfileStatistics extends ConsumerWidget {
+class ProfileStatistics extends StatelessWidget {
+  final StreakBloc bloc;
   final VoidCallback onPremiumButtonPressed;
   final bool premiumEnabled;
 
   const ProfileStatistics({
+    required this.bloc,
     required this.onPremiumButtonPressed,
     required this.premiumEnabled,
     super.key,
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     if (premiumEnabled) {
       return Padding(
@@ -30,9 +32,9 @@ class ProfileStatistics extends ConsumerWidget {
             borderRadius: BorderRadius.circular(12),
             color: const Color(0xFF111112),
           ),
-          child: const Padding(
-            padding: EdgeInsets.all(16),
-            child: StreakStatisticsWithDetails(),
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: StreakStatisticsWithDetails(bloc: bloc),
           ),
         ),
       );

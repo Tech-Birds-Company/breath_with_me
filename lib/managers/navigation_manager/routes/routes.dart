@@ -1,3 +1,4 @@
+import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/faq/faq_page.dart';
 import 'package:breathe_with_me/features/home/home_page.dart';
 import 'package:breathe_with_me/features/onboarding/create_account_modal_page.dart';
@@ -16,6 +17,7 @@ import 'package:breathe_with_me/features/tracks/widgets/tracks_filters/tracks_fi
 import 'package:breathe_with_me/managers/navigation_manager/bwm_modal_page.dart';
 import 'package:breathe_with_me/managers/navigation_manager/routes/auth_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 abstract final class BWMRoutes {
@@ -39,32 +41,63 @@ abstract final class BWMRoutes {
     ...auth.createAuthRoutes(),
     GoRoute(
       path: BWMRoutes.onboarding,
-      builder: (BuildContext context, GoRouterState state) =>
-          const OnboardingPage(),
+      builder: (BuildContext context, GoRouterState state) => Consumer(
+        builder: (context, ref, child) => OnboardingPage(
+          bloc: ref.watch(Di.bloc.onboarding),
+        ),
+      ),
     ),
     GoRoute(
       path: BWMRoutes.home,
-      builder: (context, state) => const HomePage(),
+      builder: (context, state) => Consumer(
+        builder: (context, ref, child) => HomePage(
+          navigationManager: ref.watch(Di.manager.navigation),
+          tracksFiltersBloc: ref.watch(Di.bloc.tracksFilters),
+          tracksListBloc: ref.watch(Di.bloc.tracksList),
+          premiumBannerBloc: ref.watch(Di.bloc.premiumBanner),
+        ),
+      ),
     ),
     GoRoute(
       path: BWMRoutes.profile,
-      builder: (context, state) => const ProfilePage(),
+      builder: (context, state) => Consumer(
+        builder: (context, ref, child) {
+          final profileBloc = ref.watch(Di.bloc.profile);
+          final reminderBloc = ref.watch(Di.bloc.reminder);
+          final streakBloc = ref.watch(Di.bloc.streak);
+
+          return ProfilePage(
+            profileBloc: profileBloc,
+            reminderBloc: reminderBloc,
+            streakBloc: streakBloc,
+          );
+        },
+      ),
     ),
     GoRoute(
       path: BWMRoutes.player,
       builder: (context, state) {
         final track = state.extra! as Track;
-        return TrackPlayerPage(track);
+        return Consumer(
+          builder: (context, ref, child) {
+            final bloc = ref.watch(Di.bloc.trackPlayer(track));
+            return TrackPlayerPage(bloc: bloc);
+          },
+        );
       },
     ),
     GoRoute(
       path: BWMRoutes.createAccount,
-      pageBuilder: (context, state) => const BWMModalPage(
+      pageBuilder: (context, state) => BWMModalPage(
         barrierColor: Colors.black,
         isScrollControlled: true,
         useSafeArea: true,
         enableDrag: false,
-        child: CreateAccountModalPage(),
+        child: Consumer(
+          builder: (context, ref, child) => CreateAccountModalPage(
+            bloc: ref.watch(Di.bloc.onboarding),
+          ),
+        ),
       ),
     ),
     GoRoute(
@@ -76,21 +109,33 @@ abstract final class BWMRoutes {
     ),
     GoRoute(
       path: BWMRoutes.reminderPage,
-      builder: (context, state) => const ReminderPage(),
+      builder: (context, state) => Consumer(
+        builder: (context, ref, child) => ReminderPage(
+          bloc: ref.watch(Di.bloc.reminder),
+        ),
+      ),
     ),
     GoRoute(
       path: BWMRoutes.faq,
-      builder: (context, state) => const FaqPage(),
+      builder: (context, state) => Consumer(
+        builder: (context, ref, child) => FaqPage(
+          bloc: ref.watch(Di.bloc.faq),
+        ),
+      ),
     ),
     GoRoute(
       path: BWMRoutes.safetyPrecautions,
-      pageBuilder: (context, state) => const BWMModalPage(
+      pageBuilder: (context, state) => BWMModalPage(
         barrierColor: Colors.transparent,
         useSafeArea: true,
         enableDrag: false,
         isDismissible: false,
         isScrollControlled: true,
-        child: SafetyPrecautionsPage(),
+        child: Consumer(
+          builder: (context, ref, child) => SafetyPrecautionsPage(
+            bloc: ref.watch(Di.bloc.safetyPrecautions),
+          ),
+        ),
       ),
     ),
     GoRoute(
@@ -98,8 +143,11 @@ abstract final class BWMRoutes {
       pageBuilder: (context, state) => BWMModalPage(
         backgroundColor: Colors.transparent,
         isScrollControlled: true,
-        child: TracksFilterSheet(
-          filterType: state.extra! as FilterType,
+        child: Consumer(
+          builder: (context, ref, child) => TracksFilterSheet(
+            bloc: ref.watch(Di.bloc.tracksFilters),
+            filterType: state.extra! as FilterType,
+          ),
         ),
       ),
     ),
@@ -112,24 +160,40 @@ abstract final class BWMRoutes {
           isDismissible: false,
           isScrollControlled: true,
           enableDrag: false,
-          child: PremiumPaywall(topInset: topInset),
+          child: Consumer(
+            builder: (context, ref, child) => PremiumPaywall(
+              bloc: ref.watch(Di.bloc.premiumPaywall),
+              topInset: topInset,
+            ),
+          ),
         );
       },
     ),
     GoRoute(
       path: BWMRoutes.streak,
-      pageBuilder: (context, state) => const BWMModalPage(
+      pageBuilder: (context, state) => BWMModalPage(
         barrierColor: Colors.transparent,
         useSafeArea: true,
         enableDrag: false,
         isDismissible: false,
         isScrollControlled: true,
-        child: StreakPage(),
+        child: Consumer(
+          builder: (context, ref, child) => StreakPage(
+            bloc: ref.watch(Di.bloc.streak),
+            remoteConfigRepository: ref.watch(
+              Di.repository.firebaseRemoteConfig,
+            ),
+          ),
+        ),
       ),
     ),
     GoRoute(
       path: BWMRoutes.profileSettings,
-      builder: (context, state) => const ProfileSettingsPage(),
+      builder: (context, state) => Consumer(
+        builder: (context, ref, child) => ProfileSettingsPage(
+          bloc: ref.watch(Di.bloc.accountSettings),
+        ),
+      ),
     ),
   ];
 }
