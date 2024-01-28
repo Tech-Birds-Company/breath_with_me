@@ -12,6 +12,8 @@ final class ForgotPasswordBloc extends BlocBase<ForgotPasswordState> {
     this._deeplinkManager,
   ) : super(const ForgotPasswordState());
 
+  String? get currentEmail => _userManager.currentUser?.email;
+
   void updateEmail(String email) => emit(state.copyWith(email: email));
 
   Future<void> resetPassword() async {

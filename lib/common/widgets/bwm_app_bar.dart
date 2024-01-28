@@ -18,7 +18,7 @@ class BWMAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize =>
-      Size.fromHeight(title == null ? appBarHeight : appBarHeight + 36);
+      Size.fromHeight(title == null ? appBarHeight : appBarHeight + 37);
 
   @override
   Widget build(BuildContext context) {
