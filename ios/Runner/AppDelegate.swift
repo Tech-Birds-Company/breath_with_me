@@ -13,5 +13,21 @@ import Flutter
         }
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
+
+    override func application(
+        _ application: UIApplication,
+        continue userActivity: NSUserActivity,
+        restorationHandler: @escaping ([UIUserActivityRestoring]?
+        ) -> Void) -> Bool {
+        AppDelegate.showReceivedUrl(userActivity: userActivity)
+        return true
+    }
+
+    static func showReceivedUrl(userActivity: NSUserActivity) {
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
+            let url = userActivity.webpageURL!
+            print(url.absoluteString)
+        }
+    }
 }
 

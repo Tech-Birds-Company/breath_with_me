@@ -22,6 +22,8 @@ abstract interface class UserManager {
 
   Future<void> updateAccountSettings(String name, String email);
 
+  Future<void> resetPassword(String code, String password);
+
   Stream<User?> get userStream;
 
   User? get currentUser;
