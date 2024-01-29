@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 class TrackItem extends StatelessWidget {
   final Track track;
+  final bool trackIsLocked;
   final Stream<bool> trackIsDownloadedStream;
   final Stream<bool> trackIsLikedStream;
   final VoidCallback onTap;
@@ -13,6 +14,7 @@ class TrackItem extends StatelessWidget {
 
   const TrackItem({
     required this.track,
+    required this.trackIsLocked,
     required this.trackIsDownloadedStream,
     required this.trackIsLikedStream,
     required this.onTap,
@@ -35,7 +37,9 @@ class TrackItem extends StatelessWidget {
                   TrackCover(
                     coverUrl: track.coverIcon,
                   ),
-                  const TrackPlayCover(),
+                  TrackPlayCover(
+                    isLocked: trackIsLocked,
+                  ),
                 ],
               ),
             ),
@@ -43,6 +47,7 @@ class TrackItem extends StatelessWidget {
             Expanded(
               child: TrackInfo(
                 track: track,
+                trackIsLocked: trackIsLocked,
                 trackIsDownloadedStream: trackIsDownloadedStream,
                 trackIsLikedStream: trackIsLikedStream,
                 onTrackLiked: onTrackLiked,
