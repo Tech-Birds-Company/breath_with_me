@@ -1,5 +1,12 @@
+import 'dart:convert';
+
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
+
+extension RemoteConfig on String? {
+  Map<String, dynamic> get asJson =>
+      jsonDecode(this?.isEmpty ?? true ? '{}' : this!) as Map<String, dynamic>;
+}
 
 extension EmailValidator on String? {
   bool get isValidEmail {

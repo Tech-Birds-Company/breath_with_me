@@ -4,7 +4,7 @@ class AuthResult {
   final User? user;
   final String? errorMessage;
 
-  AuthResult({
+  const AuthResult({
     this.user,
     this.errorMessage,
   });

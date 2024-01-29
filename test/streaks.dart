@@ -1,6 +1,6 @@
 import 'package:breathe_with_me/managers/streak_progress_manager/streak_progress_manager.dart';
 import 'package:breathe_with_me/repositories/models/remote_config/remote_config_legal_documents.dart';
-import 'package:breathe_with_me/repositories/models/remote_config/remote_config_premium.dart';
+import 'package:breathe_with_me/repositories/models/remote_config/remote_config_premium_v2.dart';
 import 'package:breathe_with_me/repositories/models/remote_config/remote_config_socials.dart';
 import 'package:breathe_with_me/repositories/models/remote_config/remote_config_streaks.dart';
 import 'package:breathe_with_me/repositories/models/streak_progress_v2.dart';
@@ -14,7 +14,7 @@ final class MockRemoteConfig implements RemoteConfigRepository {
   RemoteConfigLegalDocuments get legalDocuments => throw UnimplementedError();
 
   @override
-  RemoteConfigPremium get premium => throw UnimplementedError();
+  RemoteConfigPremiumV2 get premiumV2 => throw UnimplementedError();
 
   @override
   RemoteConfigSocials get socials => throw UnimplementedError();

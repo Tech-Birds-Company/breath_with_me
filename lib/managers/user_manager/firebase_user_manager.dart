@@ -112,7 +112,7 @@ final class FirebaseUserManager implements UserManager {
         password: password,
       );
       await credential.user?.updateDisplayName(name);
-      await sendEmailVerification();
+      await _sendEmailVerification();
 
       return AuthResult(user: credential.user);
     } on FirebaseAuthException catch (error) {
@@ -122,12 +122,6 @@ final class FirebaseUserManager implements UserManager {
 
   @override
   Future<void> signOut() => _firebaseAuth.signOut();
-
-  // TODO(musamuss): кажется что надо сделать приватным
-  @override
-  Future<void> sendEmailVerification() async {
-    await _firebaseAuth.currentUser?.sendEmailVerification();
-  }
 
   @override
   Future<void> sendResetPassword(String email) async {
@@ -139,6 +133,10 @@ final class FirebaseUserManager implements UserManager {
     final currentUser = _firebaseAuth.currentUser;
     await currentUser?.updateDisplayName(name);
     await currentUser?.updateEmail(email);
+  }
+
+  Future<void> _sendEmailVerification() async {
+    await _firebaseAuth.currentUser?.sendEmailVerification();
   }
 
   @override

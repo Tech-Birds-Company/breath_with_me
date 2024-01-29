@@ -20,7 +20,7 @@ final class PremiumBannerBloc extends BlocBase<PremiumBannerState> {
   StreamSubscription<bool>? _premiumEnabledSubscription;
 
   void init() {
-    final config = _remoteConfigRepository.premium;
+    final config = _remoteConfigRepository.premiumV2;
     emit(
       state.copyWith(
         premiumBannerTracksEnabled: config.premiumBannerTracksEnabled,

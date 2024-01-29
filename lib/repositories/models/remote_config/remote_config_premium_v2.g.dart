@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'remote_config_premium.dart';
+part of 'remote_config_premium_v2.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-RemoteConfigPremium _$RemoteConfigPremiumFromJson(Map json) =>
-    RemoteConfigPremium(
+RemoteConfigPremiumV2 _$RemoteConfigPremiumV2FromJson(Map json) =>
+    RemoteConfigPremiumV2(
       premiumBannerTracksPosition:
           json['premiumBannerTracksPosition'] as int? ?? 0,
       premiumBannerTracksEnabled:
@@ -15,7 +15,7 @@ RemoteConfigPremium _$RemoteConfigPremiumFromJson(Map json) =>
       premiumLandingEnabled: json['premiumLandingEnabled'] as bool? ?? false,
       premiumLandingUrl: json['premiumLandingUrl'] as String? ?? '',
       paywall: json['paywall'] == null
-          ? const RemoteConfigPremiumPaywall()
-          : RemoteConfigPremiumPaywall.fromJson(
+          ? const RemoteConfigPremiumV2Paywall()
+          : RemoteConfigPremiumV2Paywall.fromJson(
               Map<String, dynamic>.from(json['paywall'] as Map)),
     );
