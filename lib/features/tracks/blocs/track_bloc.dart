@@ -13,9 +13,11 @@ final class TrackBloc extends BlocBase<Object?> {
   final NavigationManager _navigationManager;
   final SubscriptionsManager _subscriptionsManager;
 
-  bool get trackIsLocked => _track.isPremium && !_premiumEnabled;
-
-  bool get _premiumEnabled => _subscriptionsManager.premiumEnabled;
+  Stream<bool> get trackIsLockedStream =>
+      _subscriptionsManager.premiumEnabledStream
+          .map((isPremium) => !isPremium && _track.isPremium)
+          .distinct()
+          .asBroadcastStream();
 
   TrackBloc(
     this._track,
@@ -44,7 +46,7 @@ final class TrackBloc extends BlocBase<Object?> {
       .distinct();
 
   void onTrackTap() {
-    if (trackIsLocked) {
+    if (_track.isPremium && !_subscriptionsManager.premiumEnabled) {
       _navigationManager.openPremiumPaywall();
     } else {
       _navigationManager.openTrackPlayer(_track);
