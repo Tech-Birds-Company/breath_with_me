@@ -65,6 +65,7 @@ Future<List<Override>> _setupDependencies({
   final userManager = FirebaseUserManager(
     subscriptionsManager,
     databaseManager,
+    isProduction: isProduction,
   );
 
   final sharedPrefsManager = SharedPreferencesManager();
@@ -124,6 +125,10 @@ Future<List<Override>> _setupDependencies({
     Di.manager.sharedPreferences.overrideWithValue(sharedPrefsManager),
     Di.manager.pushNotifications.overrideWithValue(pushNotificationsManager),
     Di.manager.navigation.overrideWithValue(navigationManager),
+    Di.manager.user.overrideWith((ref) {
+      ref.onDispose(userManager.dispose);
+      return userManager;
+    }),
   ];
 
   return dependencies;
