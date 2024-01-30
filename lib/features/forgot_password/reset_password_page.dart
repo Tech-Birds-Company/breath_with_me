@@ -23,90 +23,58 @@ class ResetPasswordPage extends StatelessWidget {
       children: [
         Scaffold(
           backgroundColor: theme.primaryBackground,
-          appBar: const BWMAppBar(),
-          body: SizedBox(
-            height: double.infinity,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    theme.primaryBackground,
-                    Colors.black,
+          appBar: BWMAppBar(
+            title: LocaleKeys.resetPasswordTitle.tr(),
+          ),
+          body: Stack(
+            children: [
+              const SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  LocaleKeys.resetPasswordSubtitle.tr(),
+                  style: theme.typography.bodyS.copyWith(
+                    color: theme.primaryColor,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    const SizedBox(height: 46),
+                    Wrap(
+                      spacing: 12,
+                      runSpacing: 12,
+                      children: [
+                        ObscuredField(
+                          hintText: LocaleKeys.signInPassword.tr(),
+                          prefixIcon: BWMAssets.lockIcon,
+                          textChange: bloc.updatePassword,
+                        ),
+                        ObscuredField(
+                          hintText: LocaleKeys.confirmPassword.tr(),
+                          prefixIcon: BWMAssets.lockIcon,
+                          textChange: bloc.updateConfirmPassword,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    BWMActionButton(
+                      title: LocaleKeys.resetPassword.tr(),
+                      width: double.infinity,
+                      height: 40,
+                      onPressed: bloc.resetPassword,
+                    ),
+                    const Spacer(),
                   ],
                 ),
               ),
-              child: Stack(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        const SizedBox(height: 79),
-                        Text(
-                          LocaleKeys.resetPasswordTitle.tr(),
-                          style: theme.typography.heading1.copyWith(
-                            color: theme.primaryColor,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          LocaleKeys.resetPasswordSubtitle.tr(),
-                          style: theme.typography.bodyS.copyWith(
-                            color: theme.primaryColor,
-                          ),
-                        ),
-                        const SizedBox(height: 46),
-                        Wrap(
-                          spacing: 12,
-                          runSpacing: 12,
-                          children: [
-                            ObscuredField(
-                              hintText: LocaleKeys.signInPassword.tr(),
-                              prefixIcon: BWMAssets.lockIcon,
-                              textChange: bloc.updatePassword,
-                            ),
-                            ObscuredField(
-                              hintText: LocaleKeys.confirmPassword.tr(),
-                              prefixIcon: BWMAssets.lockIcon,
-                              textChange: bloc.updateConfirmPassword,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 20),
-                        BWMActionButton(
-                          title: LocaleKeys.resetPassword.tr(),
-                          width: double.infinity,
-                          height: 40,
-                          onPressed: bloc.resetPassword,
-                        ),
-                        const Spacer(),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            ],
           ),
         ),
-        // BlocSelector<ForgotPasswordBloc, ForgotPasswordState, bool>(
-        //   bloc: bloc,
-        //   selector: (state) => state.requestSended,
-        //   builder: (context, requestSended) {
-        //     if (requestSended) {
-        //       return SizedBox(
-        //         child: ForgotPasswordEmailSendedWidget(
-        //           onOpenEmailTap: bloc.openEmailApp,
-        //           onTryAgainTap: bloc.tryAnotherEmail,
-        //         ),
-        //       );
-        //     }
-        //     return const SizedBox.shrink();
-        //   },
-        // ),
       ],
     );
   }

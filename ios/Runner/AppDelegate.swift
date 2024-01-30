@@ -25,8 +25,8 @@ import Flutter
 
     static func showReceivedUrl(userActivity: NSUserActivity) {
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb {
-            let url = userActivity.webpageURL!
-            print(url.absoluteString)
+            guard let url = userActivity.webpageURL else { return }
+            debugPrint(url.absoluteString)
         }
     }
 }

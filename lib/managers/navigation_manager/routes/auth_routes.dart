@@ -64,11 +64,16 @@ class AuthRoutes {
         GoRoute(
           path: _resetPasswordPath,
           builder: (context, state) => Consumer(
-            builder: (context, ref, child) => ResetPasswordPage(
-              bloc: ref.watch(
-                Di.bloc.resetPassword(state.pathParameters['oobCode']!),
-              ),
-            ),
+            builder: (context, ref, child) {
+              final oobCode = state.pathParameters['oobCode'];
+              if (oobCode != null) {
+                return ResetPasswordPage(
+                  bloc: ref.watch(Di.bloc.resetPassword(oobCode)),
+                );
+              } else {
+                throw AssertionError('oobCode is null');
+              }
+            },
           ),
         ),
       ];

@@ -156,9 +156,10 @@ final class _BlocProviders {
     )..init(),
   );
 
-  late final resetPassword = Provider.family<ResetPasswordBloc, String>(
+  late final resetPassword =
+      Provider.family.autoDispose<ResetPasswordBloc, String>(
     (ref, oodCode) => ResetPasswordBloc(
-      ref.read(Di.manager.user),
+      ref.watch(Di.manager.user),
       oodCode,
     ),
   );
