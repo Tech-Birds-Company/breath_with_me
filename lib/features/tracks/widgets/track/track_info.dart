@@ -1,4 +1,5 @@
 import 'package:breathe_with_me/assets.dart';
+import 'package:breathe_with_me/features/premium/widgets/premium_badge.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/features/tracks/widgets/track/track_download_indicator.dart';
 import 'package:breathe_with_me/features/tracks/widgets/track/track_tutor.dart';
@@ -10,12 +11,16 @@ import 'package:flutter_svg/svg.dart';
 
 class TrackInfo extends StatelessWidget {
   final Track track;
+  final bool trackIsLocked;
   final Stream<bool> trackIsDownloadedStream;
   final Stream<bool> trackIsLikedStream;
   final VoidCallback onTrackLiked;
 
+  bool get isButtonsVisible => !trackIsLocked;
+
   const TrackInfo({
     required this.track,
+    required this.trackIsLocked,
     required this.trackIsDownloadedStream,
     required this.trackIsLikedStream,
     required this.onTrackLiked,
@@ -40,34 +45,39 @@ class TrackInfo extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
-              flex: 0,
-              child: IconButton(
-                onPressed: onTrackLiked,
-                constraints: BoxConstraints.tight(const Size(24, 24)),
-                splashRadius: 24,
-                padding: EdgeInsets.zero,
-                icon: Align(
-                  alignment: Alignment.topCenter,
-                  child: StreamBuilder<bool>(
-                    stream: trackIsLikedStream,
-                    initialData: false,
-                    builder: (context, snapshot) {
-                      final isLiked = snapshot.requireData;
-                      return SvgPicture.asset(
-                        isLiked
-                            ? BWMAssets.heartIconFilled
-                            : BWMAssets.heartIcon,
-                        colorFilter: ColorFilter.mode(
-                          isLiked ? theme.secondaryColor : theme.fourthColor,
-                          BlendMode.srcIn,
-                        ),
-                      );
-                    },
+            if (trackIsLocked)
+              PremiumBadge(
+                text: LocaleKeys.premium_premium.tr(),
+              ),
+            if (isButtonsVisible)
+              Expanded(
+                flex: 0,
+                child: IconButton(
+                  onPressed: onTrackLiked,
+                  constraints: BoxConstraints.tight(const Size(24, 24)),
+                  splashRadius: 24,
+                  padding: EdgeInsets.zero,
+                  icon: Align(
+                    alignment: Alignment.topCenter,
+                    child: StreamBuilder<bool>(
+                      stream: trackIsLikedStream,
+                      initialData: false,
+                      builder: (context, snapshot) {
+                        final isLiked = snapshot.requireData;
+                        return SvgPicture.asset(
+                          isLiked
+                              ? BWMAssets.heartIconFilled
+                              : BWMAssets.heartIcon,
+                          colorFilter: ColorFilter.mode(
+                            isLiked ? theme.secondaryColor : theme.fourthColor,
+                            BlendMode.srcIn,
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
-            ),
           ],
         ),
         const SizedBox(height: 4),
@@ -91,10 +101,11 @@ class TrackInfo extends StatelessWidget {
                 tutorName: track.tutor.tutorNameKey.tr(),
               ),
             ),
-            Expanded(
-              flex: 0,
-              child: TrackDownloadIndicator(trackIsDownloadedStream),
-            ),
+            if (isButtonsVisible)
+              Expanded(
+                flex: 0,
+                child: TrackDownloadIndicator(trackIsDownloadedStream),
+              ),
           ],
         ),
       ],

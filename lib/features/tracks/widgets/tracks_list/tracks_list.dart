@@ -105,7 +105,8 @@ class _TrackItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) => TrackItem(
         track: track,
-        onTap: bloc.openTrackPlayer,
+        trackIsLockedStream: bloc.trackIsLockedStream,
+        onTap: bloc.onTrackTap,
         trackIsDownloadedStream: bloc.trackIsDownloadedStream,
         trackIsLikedStream: bloc.trackLikedStream,
         onTrackLiked: bloc.onTrackLiked,
