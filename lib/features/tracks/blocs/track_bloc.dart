@@ -16,8 +16,7 @@ final class TrackBloc extends BlocBase<Object?> {
   Stream<bool> get trackIsLockedStream =>
       _subscriptionsManager.premiumEnabledStream
           .map((isPremium) => !isPremium && _track.isPremium)
-          .distinct()
-          .asBroadcastStream();
+          .distinct();
 
   TrackBloc(
     this._track,
