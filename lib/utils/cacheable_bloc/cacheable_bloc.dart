@@ -25,7 +25,7 @@ abstract base class CacheableBloc<State> extends BlocBase<State> {
           if (object == null) {
             return null;
           }
-          final jsonMap = jsonDecode(object as String) as Map<String, dynamic>;
+          final jsonMap = jsonDecode(object) as Map<String, dynamic>;
           return fromJson(jsonMap);
         },
       );
@@ -45,9 +45,11 @@ abstract base class CacheableBloc<State> extends BlocBase<State> {
 
   Future<void> loadCache() async {
     final json = _storage.read(key);
+
     if (json == null) {
       return;
     }
+
     final jsonMap = jsonDecode(json as String) as Map<String, dynamic>;
     emit(fromJson(jsonMap));
   }
