@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>aps-environment</key>
-	<string>development</string>
+	<string>production</string>
 	<key>com.apple.developer.applesignin</key>
 	<array>
 		<string>Default</string>
@@ -12,7 +12,7 @@
 	<array>
 		<string>applinks:breathewithme.page.link</string>
 		<string>applinks:innate.page.link</string>
-		<string>applinks:breathwithme-5376b.firebaseapp.com</string>
+		<string>applinks:bwithmedev.firebaseapp.com</string>
 	</array>
 </dict>
 </plist>

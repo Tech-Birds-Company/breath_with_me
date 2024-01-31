@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Breathe With Me: breathwork</string>
-    <string name="firebase_host_name">bwithme.firebaseapp.com</string>
+    <string name="firebase_host_name">breathwithme-5376b.firebaseapp.com</string>
 </resources>

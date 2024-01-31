@@ -37,7 +37,6 @@ import 'package:breathe_with_me/repositories/firebase_tutors_repository.dart';
 import 'package:breathe_with_me/repositories/streaks_progress_repository_v2.dart';
 import 'package:breathe_with_me/repositories/streaks_quotes_repository.dart';
 import 'package:breathe_with_me/repositories/tracks_repository_impl.dart';
-import 'package:breathe_with_me/utils/environment.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

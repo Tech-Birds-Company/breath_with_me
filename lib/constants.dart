@@ -18,5 +18,6 @@ abstract final class BWMConstants {
   static const androidPackageNameDev = 'com.dobry.breathewithme.develop';
   static const androidPackageNameProd = 'com.innate.beat.breathewithme';
   static const firebaseHostNameDev = 'https://bwithmedev.firebaseapp.com';
-  static const firebaseHostNameProd = 'https://bwithme.firebaseapp.com';
+  static const firebaseHostNameProd =
+      'https://breathwithme-5376b.firebaseapp.com';
 }
