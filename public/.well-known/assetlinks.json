@@ -1,0 +1,15 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.dobry.breathewithme.develop",
+            "sha256_cert_fingerprints": [
+                "a9:68:34:04:91:62:fc:1b:ef:ee:e2:85:4a:e3:fe:9f:c7:cf:f9:fc:28:98:10:f4:53:2d:34:e9:95:f8:13:0c",
+                "f6:54:49:9c:48:b0:dc:22:18:dd:9c:34:ac:2f:e3:d9:e5:63:bd:46:b9:34:0b:2f:c9:4d:77:b9:2f:5b:15:9e"
+            ]
+        }
+    }
+]

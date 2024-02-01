@@ -5,8 +5,17 @@ import 'package:breathe_with_me/features/sign_in/sign_in_page.dart';
 import 'package:breathe_with_me/features/sign_up/sign_up_page.dart';
 import 'package:breathe_with_me/features/sign_up/sign_up_success.dart';
 import 'package:breathe_with_me/managers/navigation_manager/bwm_transparent_page.dart';
+import 'package:breathe_with_me/managers/navigation_manager/routes/routes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
+enum _Mode {
+  resetPassword('resetPassword');
+
+  final String key;
+
+  const _Mode(this.key);
+}
 
 class AuthRoutes {
   const AuthRoutes();
@@ -20,6 +29,8 @@ class AuthRoutes {
   String get successSignUp => _successSignUp;
   String get resetPassword => _resetPasswordPath;
 
+  static const _firebaseGlobaRedirectlAction = '/auth/action';
+
   static const _signInPath = '/sign-in';
   static const _signUpPath = '/sign-up';
   static const _forgotPasswordPath = '/forgot-password';
@@ -27,6 +38,18 @@ class AuthRoutes {
   static const _resetPasswordPath = '/reset-password';
 
   List<GoRoute> createAuthRoutes() => [
+        // TODO(musamuss): Вася почини плз pop потому что я не понял как брать редирект от того места где было открыто
+        GoRoute(
+          path: _firebaseGlobaRedirectlAction,
+          redirect: (context, state) {
+            final mode = state.uri.queryParameters['mode'];
+
+            if (mode != null && mode == _Mode.resetPassword.key) {
+              return '${BWMRoutes.auth.resetPassword}?${state.uri.query}';
+            }
+            return null;
+          },
+        ),
         GoRoute(
           path: _signInPath,
           builder: (context, state) => Consumer(
@@ -65,7 +88,7 @@ class AuthRoutes {
           path: _resetPasswordPath,
           builder: (context, state) => Consumer(
             builder: (context, ref, child) {
-              final oobCode = state.pathParameters['oobCode'];
+              final oobCode = state.uri.queryParameters['oobCode'];
               if (oobCode != null) {
                 return ResetPasswordPage(
                   bloc: ref.watch(Di.bloc.resetPassword(oobCode)),

@@ -48,6 +48,7 @@ final class NavigationManager {
   late final router = GoRouter(
     initialLocation: BWMRoutes.onboarding,
     routes: BWMRoutes.routes,
+    debugLogDiagnostics: true,
     redirect: (context, state) {
       final authorized = _userManager.currentUser != null;
       if (authorized) {

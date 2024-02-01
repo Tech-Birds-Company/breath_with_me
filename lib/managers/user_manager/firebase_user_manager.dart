@@ -152,10 +152,7 @@ final class FirebaseUserManager implements UserManager {
   @override
   Future<void> sendResetPassword(String email) async {
     try {
-      await _firebaseAuth.sendPasswordResetEmail(
-        email: email,
-        actionCodeSettings: _actionCodeSettings,
-      );
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
       if (kDebugMode) {
         // TODO(musamuss): добавить обработку ошибок
@@ -166,7 +163,7 @@ final class FirebaseUserManager implements UserManager {
 
   @override
   Future<void> resetPassword(String code, String password) async {
-    return await _firebaseAuth.confirmPasswordReset(
+    await _firebaseAuth.confirmPasswordReset(
       code: code,
       newPassword: password,
     );

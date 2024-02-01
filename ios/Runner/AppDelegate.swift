@@ -20,7 +20,7 @@ import Flutter
         restorationHandler: @escaping ([UIUserActivityRestoring]?
         ) -> Void) -> Bool {
         AppDelegate.showReceivedUrl(userActivity: userActivity)
-        return true
+        return super.application(application, continue: userActivity, restorationHandler: restorationHandler)
     }
 
     static func showReceivedUrl(userActivity: NSUserActivity) {
