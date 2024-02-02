@@ -26,7 +26,6 @@ abstract class LocaleKeys {
   static const createAccountSignUpButtonTitle =
       'createAccountSignUpButtonTitle';
   static const tracksTitle = 'tracksTitle';
-  static const tracksGuestWelcome = 'tracksGuestWelcome';
   static const tracksHeading = 'tracksHeading';
   static const tracksFilterReset = 'tracksFilterReset';
   static const trackCategoryAll = 'trackCategoryAll';

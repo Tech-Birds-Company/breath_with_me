@@ -6,6 +6,7 @@ import 'package:breathe_with_me/features/tracks/blocs/tracks_list_bloc.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_filters/tracks_filters.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_list/tracks_list.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
+import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -13,12 +14,14 @@ class HomePage extends StatelessWidget {
   final TracksFiltersBloc tracksFiltersBloc;
   final TracksListBloc tracksListBloc;
   final PremiumBannerBloc premiumBannerBloc;
+  final UserManager userManager;
 
   const HomePage({
     required this.navigationManager,
     required this.tracksFiltersBloc,
     required this.tracksListBloc,
     required this.premiumBannerBloc,
+    required this.userManager,
     super.key,
   });
 
@@ -36,6 +39,7 @@ class HomePage extends StatelessWidget {
                   end: 24,
                 ),
                 sliver: HomeHeader(
+                  username: userManager.currentUser?.displayName ?? '',
                   onProfileTap: navigationManager.openProfile,
                 ),
               ),

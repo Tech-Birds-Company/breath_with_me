@@ -55,6 +55,7 @@ abstract final class BWMRoutes {
           tracksFiltersBloc: ref.watch(Di.bloc.tracksFilters),
           tracksListBloc: ref.watch(Di.bloc.tracksList),
           premiumBannerBloc: ref.watch(Di.bloc.premiumBanner),
+          userManager: ref.watch(Di.manager.user),
         ),
       ),
     ),

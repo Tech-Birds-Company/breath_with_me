@@ -1,5 +1,4 @@
 import 'package:breathe_with_me/assets.dart';
-import 'package:breathe_with_me/utils/shadow_clipper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -21,9 +20,11 @@ class LivesIndicator extends StatelessWidget {
           for (var i = 1; i <= configMaxLives; i++)
             DecoratedBox(
               decoration: BoxDecoration(
+                shape: BoxShape.circle,
                 boxShadow: [
                   if (totalLives >= i)
                     const BoxShadow(
+                      blurStyle: BlurStyle.inner,
                       color: Colors.white,
                       blurRadius: 20,
                     ),

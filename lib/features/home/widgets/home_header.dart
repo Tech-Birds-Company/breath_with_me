@@ -8,9 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class HomeHeader extends StatelessWidget {
+  final String username;
   final VoidCallback onProfileTap;
 
   const HomeHeader({
+    required this.username,
     required this.onProfileTap,
     super.key,
   });
@@ -34,13 +36,15 @@ class HomeHeader extends StatelessWidget {
             ],
           ).toSliver(),
           const SizedBox(height: 24).toSliver(),
-          const _WelcomeTitle().toSliver(),
+          _WelcomeTitle(username: username).toSliver(),
         ],
       );
 }
 
 class _WelcomeTitle extends StatelessWidget {
-  const _WelcomeTitle();
+  final String username;
+
+  const _WelcomeTitle({required this.username});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +53,9 @@ class _WelcomeTitle extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          LocaleKeys.tracksGuestWelcome.tr(),
+          LocaleKeys.tracksTitle.tr(
+            args: [username],
+          ),
           style: theme.typography.bodyM.copyWith(
             color: theme.primaryText,
           ),
