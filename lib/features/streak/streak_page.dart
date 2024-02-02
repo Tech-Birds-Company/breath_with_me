@@ -3,7 +3,6 @@ import 'package:breathe_with_me/features/streak/models/streak_state.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_premium_missed.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_premium_started_or_continued.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_without_premium.dart';
-import 'package:breathe_with_me/repositories/remote_config_repository.dart';
 import 'package:breathe_with_me/repositories/streaks_quotes_repository.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -12,11 +11,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StreakPage extends StatelessWidget {
   final StreakBloc bloc;
-  final RemoteConfigRepository remoteConfigRepository;
 
   const StreakPage({
     required this.bloc,
-    required this.remoteConfigRepository,
     super.key,
   });
 
@@ -37,17 +34,11 @@ class StreakPage extends StatelessWidget {
                   if (state.progress.totalMissedDays > 0 &&
                       !state.ignoreMissingDays) {
                     return StreakPremiumMissed(
-                      totalLives: state.progress.totalLives,
-                      totalMissedDays: state.progress.totalMissedDays,
-                      configMaxLives:
-                          remoteConfigRepository.streaks.monthLivesCount,
+                      configMaxLives: bloc.maxLivesCount,
                       bloc: bloc,
                     );
                   } else {
-                    return StreakPremiumStartedOrContinued(
-                      bloc: bloc,
-                      totalStreak: state.progress.totalStreak,
-                    );
+                    return StreakPremiumStartedOrContinued(bloc: bloc);
                   }
                 } else {
                   return StreakWithoutPremium(

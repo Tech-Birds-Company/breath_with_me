@@ -5,20 +5,25 @@ import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.d
 import 'package:breathe_with_me/managers/streak_progress_manager/streak_progress_manager.dart';
 import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
 import 'package:breathe_with_me/repositories/models/streak_progress_v2.dart';
+import 'package:breathe_with_me/repositories/remote_config_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 final class StreakBloc extends BlocBase<StreakState> {
   final StreakProgressManager _streakProgressManager;
   final SubscriptionsManager _subscriptionsManager;
+  final RemoteConfigRepository _remoteConfigRepository;
   final NavigationManager _navigationManager;
 
   StreakBloc(
     this._streakProgressManager,
     this._subscriptionsManager,
+    this._remoteConfigRepository,
     this._navigationManager,
   ) : super(const StreakState());
 
   bool get isPremiumEnabled => _subscriptionsManager.premiumEnabled;
+
+  int get maxLivesCount => _remoteConfigRepository.streaks.monthLivesCount;
 
   StreamSubscription<StreakProgressV2>? _streakProgressSubscription;
 

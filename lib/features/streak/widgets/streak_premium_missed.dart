@@ -1,23 +1,18 @@
-import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/common/widgets/bwm_action_button.dart';
 import 'package:breathe_with_me/features/streak/blocs/streak_bloc.dart';
+import 'package:breathe_with_me/features/streak/widgets/lives_indicator.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_statistics_card.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class StreakPremiumMissed extends StatelessWidget {
   final StreakBloc bloc;
-  final int totalLives;
-  final int totalMissedDays;
   final int configMaxLives;
 
   const StreakPremiumMissed({
     required this.bloc,
-    required this.totalLives,
-    required this.totalMissedDays,
     required this.configMaxLives,
     super.key,
   });
@@ -25,6 +20,7 @@ class StreakPremiumMissed extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
+    final progress = bloc.state.progress;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
       child: Column(
@@ -43,19 +39,11 @@ class StreakPremiumMissed extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 16),
-          Wrap(
-            alignment: WrapAlignment.center,
-            spacing: 8,
-            children: [
-              for (var i = 1; i <= configMaxLives; i++)
-                SvgPicture.asset(
-                  totalLives >= i
-                      ? BWMAssets.streakLifeAvailable
-                      : BWMAssets.streakLifeUnavailable,
-                ),
-            ],
+          LivesIndicator(
+            totalLives: progress.totalLives,
+            configMaxLives: configMaxLives,
           ),
-          if (totalLives >= totalMissedDays)
+          if (progress.totalLives >= progress.totalMissedDays)
             Padding(
               padding: const EdgeInsets.only(top: 36, bottom: 8),
               child: BWMActionButton(

@@ -125,6 +125,7 @@ final class _BlocProviders {
       final bloc = StreakBloc(
         ref.watch(Di.manager.streakProgress),
         ref.watch(Di.manager.subscriptions),
+        ref.watch(Di.repository.firebaseRemoteConfig),
         ref.watch(Di.manager.navigation),
       )..init();
       ref.onDispose(bloc.dispose);

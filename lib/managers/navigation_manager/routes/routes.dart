@@ -186,9 +186,6 @@ abstract final class BWMRoutes {
         child: Consumer(
           builder: (context, ref, child) => StreakPage(
             bloc: ref.watch(Di.bloc.streak),
-            remoteConfigRepository: ref.watch(
-              Di.repository.firebaseRemoteConfig,
-            ),
           ),
         ),
       ),

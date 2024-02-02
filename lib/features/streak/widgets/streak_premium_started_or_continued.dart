@@ -9,11 +9,9 @@ import 'package:flutter/material.dart';
 
 class StreakPremiumStartedOrContinued extends StatelessWidget {
   final StreakBloc bloc;
-  final int totalStreak;
 
   const StreakPremiumStartedOrContinued({
     required this.bloc,
-    required this.totalStreak,
     super.key,
   });
 
@@ -21,6 +19,7 @@ class StreakPremiumStartedOrContinued extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     final locale = EasyLocalization.of(context)!.locale;
+    final progress = bloc.state.progress;
     final widgets = <Widget>[
       Padding(
         padding: const EdgeInsets.symmetric(vertical: 20),
@@ -28,7 +27,7 @@ class StreakPremiumStartedOrContinued extends StatelessWidget {
           children: [
             StreakStatisticsCard(bloc: bloc),
             const SizedBox(height: 24),
-            StreakWeeks(selectedDay: totalStreak),
+            StreakWeeks(selectedDay: progress.totalStreak),
           ],
         ),
       ),
