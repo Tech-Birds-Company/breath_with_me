@@ -102,9 +102,15 @@ abstract final class BWMRoutes {
     ),
     GoRoute(
       path: BWMRoutes.languageSheet,
-      pageBuilder: (context, state) => const BWMModalPage(
+      pageBuilder: (context, state) => BWMModalPage(
         backgroundColor: Colors.transparent,
-        child: LanguageSheet(),
+        child: Consumer(
+          builder: (context, ref, child) => LanguageSheet(
+            navigationManager: ref.watch(
+              Di.manager.navigation,
+            ),
+          ),
+        ),
       ),
     ),
     GoRoute(

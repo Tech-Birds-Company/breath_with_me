@@ -19,9 +19,13 @@ final class AccountSettingsBloc extends BlocBase<AccountSettingsState> {
 
   void openForgotPassword() => _navigationManager.forgotPasswordPage();
 
-  void onEmailChange(String text) => emit(state.copyWith(email: text));
+  void onEmailChange(String text) => emit(
+        state.copyWith(email: text),
+      );
 
-  void onNameChange(String text) => emit(state.copyWith(name: text));
+  void onNameChange(String text) => emit(
+        state.copyWith(name: text),
+      );
 
   void onSave() => _userManager.updateAccountSettings(
         state.name,

@@ -28,7 +28,7 @@ final class OnboardingBloc extends BlocBase<OnboardingState> {
   Future<void> onOpenTermsOfService() =>
       _deeplinkManager.onOpenTermsOfService();
 
-  void onCloseCreateAccountModal() => _navigationManager.router.pop();
+  void onCloseCreateAccountModal() => _navigationManager.pop();
 
   void signUpWithEmail() => _navigationManager.singUpPage();
 

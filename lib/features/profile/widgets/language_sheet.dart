@@ -1,11 +1,16 @@
 import 'package:breathe_with_me/common/widgets/bottom_sheet_notch.dart';
+import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class LanguageSheet extends StatelessWidget {
-  const LanguageSheet({super.key});
+  final NavigationManager navigationManager;
+
+  const LanguageSheet({
+    required this.navigationManager,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +29,18 @@ class LanguageSheet extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const BottomSheetNotch(),
-                const _LanguageItem(languageCode: 'en'),
+                _LanguageItem(
+                  onPop: navigationManager.pop,
+                  languageCode: 'en',
+                ),
                 Divider(
                   thickness: 1,
                   color: theme.secondaryBackground,
                 ),
-                const _LanguageItem(languageCode: 'ru'),
+                _LanguageItem(
+                  onPop: navigationManager.pop,
+                  languageCode: 'ru',
+                ),
               ],
             ),
           ),
@@ -40,9 +51,11 @@ class LanguageSheet extends StatelessWidget {
 }
 
 class _LanguageItem extends StatelessWidget {
+  final VoidCallback onPop;
   final String languageCode;
 
   const _LanguageItem({
+    required this.onPop,
     required this.languageCode,
   });
 
@@ -67,7 +80,7 @@ class _LanguageItem extends StatelessWidget {
           : null,
       onTap: () {
         localization.setLocale(Locale(languageCode));
-        context.pop();
+        onPop();
       },
     );
   }

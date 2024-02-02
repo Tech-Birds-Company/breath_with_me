@@ -20,12 +20,11 @@ class TracksFilters extends StatelessWidget {
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
         scrollDirection: Axis.horizontal,
-        child: Row(
+        child: Wrap(
+          spacing: 8,
           children: [
             _CategoriesFilter(bloc),
-            const SizedBox(width: 8),
             _LanguagesFilter(bloc),
-            const SizedBox(width: 8),
             _LikedTracksFilter(bloc),
           ],
         ),
