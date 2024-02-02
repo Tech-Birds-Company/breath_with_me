@@ -1,16 +1,25 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:breathe_with_me/constants.dart';
 import 'package:breathe_with_me/managers/audio_manager/audio_manager.dart';
+import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/player_manager/player_manager.dart';
+import 'package:breathe_with_me/managers/player_manager/track_player_manager.dart';
+import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:rxdart/rxdart.dart';
 
 final class TrackAudioManager extends AudioManager {
-  final PlayerManager _playerManager;
+  final SubscriptionsManager _subscriptionsManager;
+  final NavigationManager _navigationManager;
 
-  TrackAudioManager(this._playerManager);
+  TrackAudioManager(
+    this._subscriptionsManager,
+    this._navigationManager,
+  );
+
+  PlayerManager? _playerManager;
 
   Future<Uri> _getArtUri() async {
     final appDocsDir = await getApplicationDocumentsDirectory();
@@ -26,9 +35,13 @@ final class TrackAudioManager extends AudioManager {
     required String title,
     required String artist,
   }) async {
-    await _playerManager.init(source);
+    _playerManager ??= TrackPlayerManager(
+      _subscriptionsManager,
+      _navigationManager,
+    );
+    await _playerManager?.init(source);
 
-    final audioPlayer = _playerManager.audioPlayer;
+    final audioPlayer = _playerManager?.audioPlayer;
     final duration = audioPlayer!.duration;
 
     final playerMediaItem = MediaItem(
@@ -73,21 +86,26 @@ final class TrackAudioManager extends AudioManager {
   }
 
   @override
-  Future<void> play() => _playerManager.play();
+  Future<void> play() async {
+    await _playerManager?.play();
+  }
 
   @override
-  Future<void> pause() => _playerManager.pause();
+  Future<void> pause() async {
+    await _playerManager?.pause();
+  }
 
   @override
   Future<void> stop() async {
-    await _playerManager.stop();
+    await _playerManager?.stop();
     await super.stop();
   }
 
   @override
-  void dispose() {
+  Future<void> dispose() async {
     playbackState.add(PlaybackState());
-    _playerManager.dispose();
+    await _playerManager?.dispose();
+    _playerManager = null;
     progressStream = null;
     onPlayerStateChanged = null;
   }

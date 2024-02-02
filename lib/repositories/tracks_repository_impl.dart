@@ -44,16 +44,6 @@ final class TracksRepositoryImpl implements TracksRepository {
   }
 
   @override
-  Future<Track> getTrack(String trackId) async {
-    final response = FirebaseFirestore.instance
-        .doc('${BWMConstants.tracksCollection}/$trackId');
-    final document = await response.get();
-
-    final track = await _getTrackFromDocument(document);
-    return track;
-  }
-
-  @override
   Future<List<Track>> getTracks() async {
     final res = await FirebaseFirestore.instance
         .collection(BWMConstants.tracksCollection)

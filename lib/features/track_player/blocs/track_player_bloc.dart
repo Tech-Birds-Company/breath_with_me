@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:async/async.dart';
 import 'package:breathe_with_me/database/schemas/download_track_task_schema.dart';
 import 'package:breathe_with_me/features/track_player/models/track_player_state.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
@@ -39,6 +40,8 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   StreamSubscription<(int?, double, int?)>? _playerProgressSub;
   StreamSubscription<double>? _downloadProgressSub;
   Stream<double>? _downloadProgressStream;
+
+  CancelableOperation<String>? _getTrackDownloadUrlOperation;
 
   void _initPlayerSubscriptions() {
     _subscribeToPlayerState();
@@ -90,8 +93,10 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   }
 
   Future<void> _handleOnlinePlay() async {
-    final track = await _tracksRepository.getTrack(_track.id);
-    final trackDownloadUrl = await _tracksRepository.getTrackDownloadUrl(track);
+    _getTrackDownloadUrlOperation ??= CancelableOperation.fromFuture(
+      _tracksRepository.getTrackDownloadUrl(track),
+    );
+    final trackDownloadUrl = await _getTrackDownloadUrlOperation!.value;
     _queueTrackDownload(url: trackDownloadUrl);
     await _initPlayerWithUrl(
       url: trackDownloadUrl,
@@ -200,21 +205,20 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
     }
   }
 
-  void _cancelSubscriptions() {
-    _playerStateSub?.cancel();
+  Future<void> _cancelSubscriptions() async {
+    await _playerStateSub?.cancel();
+    await _downloadProgressSub?.cancel();
+    await _playerProgressSub?.cancel();
     _playerStateSub = null;
-
-    _downloadProgressSub?.cancel();
     _downloadProgressSub = null;
-
-    _playerProgressSub?.cancel();
     _playerProgressSub = null;
-
     _downloadProgressStream = null;
   }
 
-  void dispose() {
-    _cancelSubscriptions();
-    _audioManager.dispose();
+  Future<void> dispose() async {
+    await _getTrackDownloadUrlOperation?.cancel();
+    _getTrackDownloadUrlOperation = null;
+    await _cancelSubscriptions();
+    await _audioManager.dispose();
   }
 }

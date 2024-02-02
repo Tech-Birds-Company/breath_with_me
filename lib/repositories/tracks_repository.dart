@@ -2,8 +2,6 @@ import 'package:breathe_with_me/database/schemas/download_track_task_schema.dart
 import 'package:breathe_with_me/features/tracks/models/track.dart';
 
 abstract interface class TracksRepository {
-  Future<Track> getTrack(String trackId);
-
   Future<void> cacheLikedTracks(List<String> likedTracks);
 
   Future<List<Track>> getTracks();

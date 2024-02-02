@@ -11,7 +11,6 @@ import 'package:breathe_with_me/managers/audio_manager/track_audio_manager.dart'
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/tracks_downloader_manger.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
-import 'package:breathe_with_me/managers/player_manager/track_player_manager.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
 import 'package:breathe_with_me/managers/shared_preferences_manager/shared_preferences_manager.dart';
 import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager_impl.dart';
@@ -78,10 +77,8 @@ Future<List<Override>> _setupDependencies({
 
   final trackAudioManager = await AudioService.init(
     builder: () => TrackAudioManager(
-      TrackPlayerManager(
-        subscriptionsManager,
-        navigationManager,
-      ),
+      subscriptionsManager,
+      navigationManager,
     ),
     config: const AudioServiceConfig(
       androidNotificationChannelId: BWMConstants.androidNotificationChannelId,

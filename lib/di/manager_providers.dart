@@ -25,7 +25,7 @@ final class _ManagerProviders {
     },
   );
 
-  late final user = Provider.autoDispose(
+  late final user = Provider(
     (ref) {
       final manager = FirebaseUserManager(
         ref.watch(Di.manager.subscriptions),

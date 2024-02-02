@@ -12,5 +12,5 @@ abstract base class AudioManager extends BaseAudioHandler {
     required String artist,
   });
 
-  void dispose();
+  Future<void> dispose();
 }

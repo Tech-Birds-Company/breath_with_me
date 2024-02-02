@@ -1,7 +1,7 @@
 part of 'di.dart';
 
 final class _RepositoryProviders {
-  late final tracks = Provider.autoDispose(
+  late final tracks = Provider(
     (ref) => TracksRepositoryImpl(
       ref.watch(Di.manager.user),
       ref.watch(Di.manager.database),
