@@ -56,11 +56,9 @@ final class StreakBloc extends BlocBase<StreakState> {
     );
   }
 
-  void onSkipTap() {
-    emit(
-      state.copyWith(ignoreMissingDays: true),
-    );
-  }
+  void onSkipTap() => emit(
+        state.copyWith(ignoreMissingDays: true),
+      );
 
   void dispose() {
     _streakProgressSubscription?.cancel();

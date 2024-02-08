@@ -51,6 +51,7 @@ abstract final class BWMRoutes {
       path: BWMRoutes.home,
       builder: (context, state) => Consumer(
         builder: (context, ref, child) => HomePage(
+          bloc: ref.watch(Di.bloc.home),
           navigationManager: ref.watch(Di.manager.navigation),
           tracksFiltersBloc: ref.watch(Di.bloc.tracksFilters),
           tracksListBloc: ref.watch(Di.bloc.tracksList),

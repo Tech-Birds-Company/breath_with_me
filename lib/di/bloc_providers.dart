@@ -17,7 +17,7 @@ final class _BlocProviders {
       ref.watch(Di.manager.permissions),
       ref.watch(Di.manager.sharedPreferences),
       ref.watch(Di.manager.navigation),
-    )..init(),
+    ),
   );
 
   late final trackPlayer = Provider.family.autoDispose<TrackPlayerBloc, Track>(

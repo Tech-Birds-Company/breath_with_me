@@ -18,8 +18,9 @@ class StreakStatistics extends StatelessWidget {
         bloc: bloc,
         builder: (context, state) {
           final progress = state.progress;
+          final ignoreMissingDays = state.ignoreMissingDays;
           final hasMissedDays = progress.totalMissedDays > 0;
-          if (hasMissedDays) {
+          if (hasMissedDays && !ignoreMissingDays) {
             return StreakStatisticsWithMissingDays(bloc: bloc);
           }
           return StreakStatisticsWithDetails(bloc: bloc);

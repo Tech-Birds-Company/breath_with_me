@@ -8,7 +8,6 @@ import 'package:rxdart/rxdart.dart';
 abstract base class SubscriptionsManager {
   late BehaviorSubject<CustomerInfo?> _customerInfoStreamController;
 
-  @mustBeOverridden
   @mustCallSuper
   Future<void> configure() async {
     try {
