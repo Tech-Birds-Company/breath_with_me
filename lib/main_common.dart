@@ -10,6 +10,7 @@ import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/managers/audio_manager/track_audio_manager.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/tracks_downloader_manger.dart';
+import 'package:breathe_with_me/managers/link_handler_manager.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/premium_manager/premium_manager.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
@@ -84,6 +85,8 @@ Future<List<Override>> _setupDependencies({
 
   final navigationManager = NavigationManager(userManager)..init();
 
+  final linkHandlerManager = LinkHandlerManager(navigationManager)..init();
+
   final trackAudioManager = await AudioService.init(
     builder: () => TrackAudioManager(
       premiumManager,
@@ -129,6 +132,7 @@ Future<List<Override>> _setupDependencies({
       ref.onDispose(userManager.dispose);
       return userManager;
     }),
+    Di.manager.linkHandler.overrideWithValue(linkHandlerManager),
   ];
 
   return dependencies;

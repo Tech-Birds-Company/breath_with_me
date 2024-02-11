@@ -111,7 +111,9 @@ final class NavigationManager {
 
   void forgotPasswordPage() => router.push(BWMRoutes.auth.forgotPassword);
 
-  void resetPassword() => router.push(BWMRoutes.auth.resetPassword);
+  void resetPassword(String query) {
+    router.push('${BWMRoutes.auth.resetPassword}?$query');
+  }
 
   void openPremiumPaywall() => router.push(BWMRoutes.premiumPaywall);
 

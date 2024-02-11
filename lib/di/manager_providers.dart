@@ -57,6 +57,12 @@ final class _ManagerProviders {
     ),
   );
 
+  late final linkHandler = Provider.autoDispose(
+    (ref) => LinkHandlerManager(
+      ref.watch(Di.manager.navigation),
+    ),
+  );
+
   late final premium = Provider.autoDispose(
     (ref) => PremiumManager(
       ref.watch(Di.repository.firebaseRemoteConfig),

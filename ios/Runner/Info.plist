@@ -75,7 +75,7 @@
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>FlutterDeepLinkingEnabled</key>
-	<true/>
+	<false/>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationLandscapeLeft</string>

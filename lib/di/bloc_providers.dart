@@ -160,6 +160,7 @@ final class _BlocProviders {
       Provider.family.autoDispose<ResetPasswordBloc, String>(
     (ref, oodCode) => ResetPasswordBloc(
       ref.watch(Di.manager.user),
+      ref.watch(Di.manager.navigation),
       oodCode,
     ),
   );
