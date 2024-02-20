@@ -57,6 +57,8 @@
 	"profilePremiumAccountType": "Премиум аккаунт",
 	"profilePremiumExpires": "до {}",
 	"profilePremiumOfferButton": "Получить премиум",
+	"profileUserIdentifier": "Ваш идентификатор",
+	"profileUserIdentifierCopiedMessage": "Ваш идентификатор скопирован",
 
 	"reminderTitle": "Напоминания",
 	"reminderDisabled": "Выключено",

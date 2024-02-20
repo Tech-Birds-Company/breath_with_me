@@ -56,6 +56,9 @@ abstract class LocaleKeys {
   static const profilePremiumAccountType = 'profilePremiumAccountType';
   static const profilePremiumExpires = 'profilePremiumExpires';
   static const profilePremiumOfferButton = 'profilePremiumOfferButton';
+  static const profileUserIdentifier = 'profileUserIdentifier';
+  static const profileUserIdentifierCopiedMessage =
+      'profileUserIdentifierCopiedMessage';
   static const reminderTitle = 'reminderTitle';
   static const reminderDisabled = 'reminderDisabled';
   static const reminderSaveButtonTitle = 'reminderSaveButtonTitle';

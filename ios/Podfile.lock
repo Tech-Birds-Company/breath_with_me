@@ -22,6 +22,8 @@ PODS:
     - Firebase/Functions (= 10.20.0)
     - firebase_core
     - Flutter
+  - cryptography_flutter (0.2.0):
+    - Flutter
   - Firebase/Analytics (10.20.0):
     - Firebase/Core
   - Firebase/Auth (10.20.0):
@@ -300,6 +302,7 @@ DEPENDENCIES:
   - audio_session (from `.symlinks/plugins/audio_session/ios`)
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
   - cloud_functions (from `.symlinks/plugins/cloud_functions/ios`)
+  - cryptography_flutter (from `.symlinks/plugins/cryptography_flutter/ios`)
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
@@ -376,6 +379,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/cloud_firestore/ios"
   cloud_functions:
     :path: ".symlinks/plugins/cloud_functions/ios"
+  cryptography_flutter:
+    :path: ".symlinks/plugins/cryptography_flutter/ios"
   firebase_analytics:
     :path: ".symlinks/plugins/firebase_analytics/ios"
   firebase_auth:
@@ -433,6 +438,7 @@ SPEC CHECKSUMS:
   audio_session: 4f3e461722055d21515cf3261b64c973c062f345
   cloud_firestore: 0f0bca4953963272e2d8cf6f15e7adce3c10b7f7
   cloud_functions: befc250156435e78c5662cf27459dfef4095f8b8
+  cryptography_flutter: 381bdacc984abcfbe3ca45ef7c76566ff061614c
   Firebase: 10c8cb12fb7ad2ae0c09ffc86cd9c1ab392a0031
   firebase_analytics: 2c1c3057d5da3bd3aab819f7e6ee153a4e46c59e
   firebase_auth: b237f065b2afc6bd7962124e1cbacdbef31036e6

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'account_settings_state.dart';
+part of 'profile_settings_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,36 +14,36 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-AccountSettingsState _$AccountSettingsStateFromJson(Map<String, dynamic> json) {
-  return _AccountSettingsState.fromJson(json);
+ProfileSettingsState _$ProfileSettingsStateFromJson(Map<String, dynamic> json) {
+  return _ProfileSettingsState.fromJson(json);
 }
 
 /// @nodoc
-mixin _$AccountSettingsState {
+mixin _$ProfileSettingsState {
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   bool get isForgotPasswordButtonEnabled => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AccountSettingsStateCopyWith<AccountSettingsState> get copyWith =>
+  $ProfileSettingsStateCopyWith<ProfileSettingsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AccountSettingsStateCopyWith<$Res> {
-  factory $AccountSettingsStateCopyWith(AccountSettingsState value,
-          $Res Function(AccountSettingsState) then) =
-      _$AccountSettingsStateCopyWithImpl<$Res, AccountSettingsState>;
+abstract class $ProfileSettingsStateCopyWith<$Res> {
+  factory $ProfileSettingsStateCopyWith(ProfileSettingsState value,
+          $Res Function(ProfileSettingsState) then) =
+      _$ProfileSettingsStateCopyWithImpl<$Res, ProfileSettingsState>;
   @useResult
   $Res call({String name, String email, bool isForgotPasswordButtonEnabled});
 }
 
 /// @nodoc
-class _$AccountSettingsStateCopyWithImpl<$Res,
-        $Val extends AccountSettingsState>
-    implements $AccountSettingsStateCopyWith<$Res> {
-  _$AccountSettingsStateCopyWithImpl(this._value, this._then);
+class _$ProfileSettingsStateCopyWithImpl<$Res,
+        $Val extends ProfileSettingsState>
+    implements $ProfileSettingsStateCopyWith<$Res> {
+  _$ProfileSettingsStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -75,22 +75,22 @@ class _$AccountSettingsStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$AccountSettingsStateImplCopyWith<$Res>
-    implements $AccountSettingsStateCopyWith<$Res> {
-  factory _$$AccountSettingsStateImplCopyWith(_$AccountSettingsStateImpl value,
-          $Res Function(_$AccountSettingsStateImpl) then) =
-      __$$AccountSettingsStateImplCopyWithImpl<$Res>;
+abstract class _$$ProfileSettingsStateImplCopyWith<$Res>
+    implements $ProfileSettingsStateCopyWith<$Res> {
+  factory _$$ProfileSettingsStateImplCopyWith(_$ProfileSettingsStateImpl value,
+          $Res Function(_$ProfileSettingsStateImpl) then) =
+      __$$ProfileSettingsStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String name, String email, bool isForgotPasswordButtonEnabled});
 }
 
 /// @nodoc
-class __$$AccountSettingsStateImplCopyWithImpl<$Res>
-    extends _$AccountSettingsStateCopyWithImpl<$Res, _$AccountSettingsStateImpl>
-    implements _$$AccountSettingsStateImplCopyWith<$Res> {
-  __$$AccountSettingsStateImplCopyWithImpl(_$AccountSettingsStateImpl _value,
-      $Res Function(_$AccountSettingsStateImpl) _then)
+class __$$ProfileSettingsStateImplCopyWithImpl<$Res>
+    extends _$ProfileSettingsStateCopyWithImpl<$Res, _$ProfileSettingsStateImpl>
+    implements _$$ProfileSettingsStateImplCopyWith<$Res> {
+  __$$ProfileSettingsStateImplCopyWithImpl(_$ProfileSettingsStateImpl _value,
+      $Res Function(_$ProfileSettingsStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -100,7 +100,7 @@ class __$$AccountSettingsStateImplCopyWithImpl<$Res>
     Object? email = null,
     Object? isForgotPasswordButtonEnabled = null,
   }) {
-    return _then(_$AccountSettingsStateImpl(
+    return _then(_$ProfileSettingsStateImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -119,14 +119,14 @@ class __$$AccountSettingsStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$AccountSettingsStateImpl implements _AccountSettingsState {
-  const _$AccountSettingsStateImpl(
+class _$ProfileSettingsStateImpl implements _ProfileSettingsState {
+  const _$ProfileSettingsStateImpl(
       {required this.name,
       required this.email,
       this.isForgotPasswordButtonEnabled = false});
 
-  factory _$AccountSettingsStateImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AccountSettingsStateImplFromJson(json);
+  factory _$ProfileSettingsStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProfileSettingsStateImplFromJson(json);
 
   @override
   final String name;
@@ -138,14 +138,14 @@ class _$AccountSettingsStateImpl implements _AccountSettingsState {
 
   @override
   String toString() {
-    return 'AccountSettingsState(name: $name, email: $email, isForgotPasswordButtonEnabled: $isForgotPasswordButtonEnabled)';
+    return 'ProfileSettingsState(name: $name, email: $email, isForgotPasswordButtonEnabled: $isForgotPasswordButtonEnabled)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AccountSettingsStateImpl &&
+            other is _$ProfileSettingsStateImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.isForgotPasswordButtonEnabled,
@@ -162,27 +162,27 @@ class _$AccountSettingsStateImpl implements _AccountSettingsState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AccountSettingsStateImplCopyWith<_$AccountSettingsStateImpl>
+  _$$ProfileSettingsStateImplCopyWith<_$ProfileSettingsStateImpl>
       get copyWith =>
-          __$$AccountSettingsStateImplCopyWithImpl<_$AccountSettingsStateImpl>(
+          __$$ProfileSettingsStateImplCopyWithImpl<_$ProfileSettingsStateImpl>(
               this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$AccountSettingsStateImplToJson(
+    return _$$ProfileSettingsStateImplToJson(
       this,
     );
   }
 }
 
-abstract class _AccountSettingsState implements AccountSettingsState {
-  const factory _AccountSettingsState(
+abstract class _ProfileSettingsState implements ProfileSettingsState {
+  const factory _ProfileSettingsState(
       {required final String name,
       required final String email,
-      final bool isForgotPasswordButtonEnabled}) = _$AccountSettingsStateImpl;
+      final bool isForgotPasswordButtonEnabled}) = _$ProfileSettingsStateImpl;
 
-  factory _AccountSettingsState.fromJson(Map<String, dynamic> json) =
-      _$AccountSettingsStateImpl.fromJson;
+  factory _ProfileSettingsState.fromJson(Map<String, dynamic> json) =
+      _$ProfileSettingsStateImpl.fromJson;
 
   @override
   String get name;
@@ -192,6 +192,6 @@ abstract class _AccountSettingsState implements AccountSettingsState {
   bool get isForgotPasswordButtonEnabled;
   @override
   @JsonKey(ignore: true)
-  _$$AccountSettingsStateImplCopyWith<_$AccountSettingsStateImpl>
+  _$$ProfileSettingsStateImplCopyWith<_$ProfileSettingsStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

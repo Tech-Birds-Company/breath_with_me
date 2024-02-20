@@ -16,7 +16,7 @@ class ProfileSettingsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    final bloc = ref.watch(Di.bloc.accountSettings);
+    final bloc = ref.watch(Di.bloc.profileSettings);
     return KeyboardHider(
       child: Scaffold(
         resizeToAvoidBottomInset: false,

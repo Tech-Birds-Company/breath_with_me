@@ -129,7 +129,7 @@ final class _BlocProviders {
     },
   );
 
-  late final accountSettings = Provider.autoDispose(
+  late final profileSettings = Provider.autoDispose(
     (ref) => ProfileSettingsBloc(
       ref.watch(Di.manager.user),
       ref.watch(Di.manager.navigation),

@@ -1,9 +1,9 @@
-import 'package:breathe_with_me/features/profile_settings/models/account_settings_state.dart';
+import 'package:breathe_with_me/features/profile_settings/models/profile_settings_state.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-final class ProfileSettingsBloc extends BlocBase<AccountSettingsState> {
+final class ProfileSettingsBloc extends BlocBase<ProfileSettingsState> {
   final UserManager _userManager;
   final NavigationManager _navigationManager;
 
@@ -11,7 +11,7 @@ final class ProfileSettingsBloc extends BlocBase<AccountSettingsState> {
     this._userManager,
     this._navigationManager,
   ) : super(
-          AccountSettingsState(
+          ProfileSettingsState(
             name: _userManager.currentUser?.displayName ?? '',
             email: _userManager.currentUser?.email ?? '',
           ),
