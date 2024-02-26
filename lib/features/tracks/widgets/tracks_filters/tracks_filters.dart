@@ -1,4 +1,5 @@
 import 'package:breathe_with_me/assets.dart';
+import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/tracks/blocs/tracks_filters_bloc.dart';
 import 'package:breathe_with_me/features/tracks/models/tracks_filters_state.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_filters/track_filter.dart';
@@ -7,28 +8,27 @@ import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
-class TracksFilters extends StatelessWidget {
-  final TracksFiltersBloc bloc;
-
-  const TracksFilters({
-    required this.bloc,
-    super.key,
-  });
+class TracksFilters extends ConsumerWidget {
+  const TracksFilters({super.key});
 
   @override
-  Widget build(BuildContext context) => SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Wrap(
-          spacing: 8,
-          children: [
-            _CategoriesFilter(bloc),
-            _LanguagesFilter(bloc),
-            _LikedTracksFilter(bloc),
-          ],
-        ),
-      );
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bloc = ref.watch(Di.bloc.tracksFilters);
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Wrap(
+        spacing: 8,
+        children: [
+          _CategoriesFilter(bloc),
+          _LanguagesFilter(bloc),
+          _LikedTracksFilter(bloc),
+        ],
+      ),
+    );
+  }
 }
 
 class _CategoriesFilter extends StatelessWidget {

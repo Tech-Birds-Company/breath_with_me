@@ -1,39 +1,22 @@
+import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/extensions/widget.dart';
-import 'package:breathe_with_me/features/home/blocs/home_bloc.dart';
 import 'package:breathe_with_me/features/home/widgets/home_header.dart';
-import 'package:breathe_with_me/features/premium/blocs/premium_banner_bloc.dart';
-import 'package:breathe_with_me/features/tracks/blocs/tracks_filters_bloc.dart';
-import 'package:breathe_with_me/features/tracks/blocs/tracks_list_bloc.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_filters/tracks_filters.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_list/tracks_list.dart';
-import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
-import 'package:breathe_with_me/managers/premium_manager/premium_manager.dart';
-import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomePage extends HookWidget {
-  final HomeBloc bloc;
-  final NavigationManager navigationManager;
-  final TracksFiltersBloc tracksFiltersBloc;
-  final TracksListBloc tracksListBloc;
-  final PremiumBannerBloc premiumBannerBloc;
-  final UserManager userManager;
-  final PremiumManager premiumManager;
-
-  const HomePage({
-    required this.bloc,
-    required this.navigationManager,
-    required this.tracksFiltersBloc,
-    required this.tracksListBloc,
-    required this.premiumBannerBloc,
-    required this.userManager,
-    required this.premiumManager,
-    super.key,
-  });
+class HomePage extends HookConsumerWidget {
+  const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bloc = ref.watch(Di.bloc.home);
+    final userManager = ref.watch(Di.manager.user);
+    final navigationManager = ref.watch(Di.manager.navigation);
+    final premiumManager = ref.watch(Di.manager.premium);
+
     useEffect(
       () {
         bloc.init();
@@ -62,19 +45,14 @@ class HomePage extends HookWidget {
             const SizedBox(height: 28).toSliver(),
             SliverPadding(
               padding: const EdgeInsetsDirectional.symmetric(horizontal: 12),
-              sliver: TracksFilters(
-                bloc: tracksFiltersBloc,
-              ).toSliver(),
+              sliver: const TracksFilters().toSliver(),
             ),
-            SliverPadding(
-              padding: const EdgeInsets.symmetric(
+            const SliverPadding(
+              padding: EdgeInsets.symmetric(
                 horizontal: 20,
                 vertical: 32,
               ),
-              sliver: TracksList(
-                tracksListBloc: tracksListBloc,
-                premiumBannerBloc: premiumBannerBloc,
-              ),
+              sliver: TracksList(),
             ),
           ],
         ),
