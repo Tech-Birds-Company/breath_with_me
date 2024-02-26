@@ -7,6 +7,7 @@ import 'package:breathe_with_me/repositories/models/streak_progress_v2.dart';
 import 'package:breathe_with_me/repositories/remote_config_repository.dart';
 import 'package:breathe_with_me/repositories/streaks_progress_repository_v2.dart';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 final class MockRemoteConfig implements RemoteConfigRepository {
@@ -21,6 +22,9 @@ final class MockRemoteConfig implements RemoteConfigRepository {
 
   @override
   RemoteConfigStreaks get streaks => const RemoteConfigStreaks();
+
+  @override
+  Stream<RemoteConfigUpdate> get configStream => const Stream.empty();
 }
 
 final class MockStreaksProgressRepository extends StreakProgressRepositoryV2 {

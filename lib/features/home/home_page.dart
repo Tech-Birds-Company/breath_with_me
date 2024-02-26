@@ -7,6 +7,7 @@ import 'package:breathe_with_me/features/tracks/blocs/tracks_list_bloc.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_filters/tracks_filters.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_list/tracks_list.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
+import 'package:breathe_with_me/managers/premium_manager/premium_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -18,6 +19,7 @@ class HomePage extends HookWidget {
   final TracksListBloc tracksListBloc;
   final PremiumBannerBloc premiumBannerBloc;
   final UserManager userManager;
+  final PremiumManager premiumManager;
 
   const HomePage({
     required this.bloc,
@@ -26,6 +28,7 @@ class HomePage extends HookWidget {
     required this.tracksListBloc,
     required this.premiumBannerBloc,
     required this.userManager,
+    required this.premiumManager,
     super.key,
   });
 
@@ -53,6 +56,7 @@ class HomePage extends HookWidget {
               sliver: HomeHeader(
                 username: userManager.currentUser?.displayName ?? '',
                 onProfileTap: navigationManager.openProfile,
+                premiumContentEnabled: premiumManager.premiumContentEnabled,
               ),
             ),
             const SizedBox(height: 28).toSliver(),

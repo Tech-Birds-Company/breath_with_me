@@ -22,15 +22,7 @@ abstract base class SubscriptionsManager {
 
   CustomerInfo? get customerInfo => _customerInfoStreamController.value;
 
-  bool get premiumEnabled {
-    if (customerInfo == null) {
-      Purchases.getCustomerInfo().then(_onCustomerInfoUpdated);
-      return false;
-    }
-    return customerInfo!.activeSubscriptions.isNotEmpty;
-  }
-
-  Stream<bool> get premiumEnabledStream => _customerInfoStreamController.stream
+  Stream<bool> get isUserPremiumStream => _customerInfoStreamController.stream
       .map((info) => info?.activeSubscriptions.isNotEmpty ?? false)
       .distinct()
       .asBroadcastStream();

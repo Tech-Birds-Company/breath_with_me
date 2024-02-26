@@ -11,10 +11,12 @@ import 'package:breathe_with_me/managers/audio_manager/track_audio_manager.dart'
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/tracks_downloader_manger.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
+import 'package:breathe_with_me/managers/premium_manager/premium_manager.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
 import 'package:breathe_with_me/managers/shared_preferences_manager/shared_preferences_manager.dart';
 import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager_impl.dart';
 import 'package:breathe_with_me/managers/user_manager/firebase_user_manager.dart';
+import 'package:breathe_with_me/repositories/firebase_remote_config_repository.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/isar_bloc_storage.dart';
 import 'package:breathe_with_me/utils/environment.dart';
@@ -47,12 +49,18 @@ Future<List<Override>> _setupDependencies({
     isProduction
         ? Platform.isIOS
             ? BWMConstants.revenueCatApiKeyiOSProd
-            : '' // TODO android prod key
+            : '' // TODOandroid prod key
         : Platform.isIOS
             ? BWMConstants.revenueCatApiKeyiOSDev
             : BWMConstants.revenueCatApiKeyAndroidDev,
   );
   await subscriptionsManager.configure();
+
+  const remoteConfigRepository = FirebaseRemoteConfigRepository();
+  final premiumManager = PremiumManager(
+    remoteConfigRepository,
+    subscriptionsManager,
+  );
 
   final userManager = FirebaseUserManager(
     subscriptionsManager,
@@ -77,7 +85,7 @@ Future<List<Override>> _setupDependencies({
 
   final trackAudioManager = await AudioService.init(
     builder: () => TrackAudioManager(
-      subscriptionsManager,
+      premiumManager,
       navigationManager,
     ),
     config: const AudioServiceConfig(
@@ -110,6 +118,9 @@ Future<List<Override>> _setupDependencies({
         return trackAudioManager;
       },
     ),
+    Di.repository.firebaseRemoteConfig
+        .overrideWithValue(remoteConfigRepository),
+    Di.manager.premium.overrideWithValue(premiumManager),
     Di.manager.sharedPreferences.overrideWithValue(sharedPrefsManager),
     Di.manager.pushNotifications.overrideWithValue(pushNotificationsManager),
     Di.manager.navigation.overrideWithValue(navigationManager),

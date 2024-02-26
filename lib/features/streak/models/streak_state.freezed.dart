@@ -14,11 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+StreakState _$StreakStateFromJson(Map<String, dynamic> json) {
+  return _StreakState.fromJson(json);
+}
+
 /// @nodoc
 mixin _$StreakState {
   StreakProgressV2 get progress => throw _privateConstructorUsedError;
   bool get ignoreMissingDays => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $StreakStateCopyWith<StreakState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -114,11 +119,14 @@ class __$$StreakStateImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$StreakStateImpl implements _StreakState {
   const _$StreakStateImpl(
       {this.progress = const StreakProgressV2(),
       this.ignoreMissingDays = false});
+
+  factory _$StreakStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$StreakStateImplFromJson(json);
 
   @override
   @JsonKey()
@@ -143,6 +151,7 @@ class _$StreakStateImpl implements _StreakState {
                 other.ignoreMissingDays == ignoreMissingDays));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, progress, ignoreMissingDays);
 
@@ -151,12 +160,22 @@ class _$StreakStateImpl implements _StreakState {
   @pragma('vm:prefer-inline')
   _$$StreakStateImplCopyWith<_$StreakStateImpl> get copyWith =>
       __$$StreakStateImplCopyWithImpl<_$StreakStateImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$StreakStateImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _StreakState implements StreakState {
   const factory _StreakState(
       {final StreakProgressV2 progress,
       final bool ignoreMissingDays}) = _$StreakStateImpl;
+
+  factory _StreakState.fromJson(Map<String, dynamic> json) =
+      _$StreakStateImpl.fromJson;
 
   @override
   StreakProgressV2 get progress;

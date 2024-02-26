@@ -26,18 +26,22 @@ class StreakPremiumMissed extends StatelessWidget {
       child: Column(
         children: [
           StreakStatisticsCard(bloc: bloc),
-          const SizedBox(height: 20),
-          Text(
-            LocaleKeys.streakMissedDayTitle.tr(),
-            style: theme.typography.heading3.copyWith(color: theme.primaryText),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 12),
-          Text(
-            LocaleKeys.streakMissedDaySubtitle.tr(),
-            style: theme.typography.bodyS.copyWith(color: theme.primaryText),
-            textAlign: TextAlign.center,
-          ),
+          const SizedBox(height: 16),
+          if (progress.totalLives >= progress.totalMissedDays)
+            Text(
+              LocaleKeys.streakMissedDayTitle.tr(),
+              style:
+                  theme.typography.heading3.copyWith(color: theme.primaryText),
+              textAlign: TextAlign.center,
+            ),
+          const SizedBox(height: 16),
+          if (progress.totalLives >= progress.totalMissedDays)
+            Text(
+              LocaleKeys.streakMissedDaySubtitle
+                  .plural(progress.totalMissedDays),
+              style: theme.typography.bodyS.copyWith(color: theme.primaryText),
+              textAlign: TextAlign.center,
+            ),
           const SizedBox(height: 16),
           LivesIndicator(
             totalLives: progress.totalLives,
@@ -53,6 +57,7 @@ class StreakPremiumMissed extends StatelessWidget {
                 height: 40,
               ),
             ),
+          const SizedBox(height: 16),
           TextButton(
             onPressed: bloc.onSkipTap,
             child: Text(

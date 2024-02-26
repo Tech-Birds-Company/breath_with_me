@@ -11,19 +11,21 @@ import 'package:flutter/material.dart';
 class ProfileStatistics extends StatelessWidget {
   final StreakBloc bloc;
   final VoidCallback onPremiumButtonPressed;
-  final bool premiumEnabled;
+  final bool premiumContentEnabled;
+  final bool isUserPremium;
 
   const ProfileStatistics({
     required this.bloc,
     required this.onPremiumButtonPressed,
-    required this.premiumEnabled,
+    required this.premiumContentEnabled,
+    required this.isUserPremium,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    final blurSigma = !premiumEnabled ? 10.0 : 0.0;
+    final blurSigma = !premiumContentEnabled ? 10.0 : 0.0;
     return Padding(
       padding: const EdgeInsets.only(top: 32),
       child: DecoratedBox(
@@ -44,7 +46,7 @@ class ProfileStatistics extends StatelessWidget {
                   bloc: bloc,
                 ),
               ),
-              if (!premiumEnabled)
+              if (!isUserPremium && !premiumContentEnabled)
                 Padding(
                   padding: const EdgeInsets.only(top: 32),
                   child: BWMActionButton(

@@ -39,7 +39,8 @@ class TracksList extends StatelessWidget {
                 premiumBannerState.premiumBannerTracksWasHidden;
 
             final shouldShowPremiumBanner =
-                !premiumBannerState.premiumEnabled &&
+                !premiumBannerState.premiumContentEnabled &&
+                    !premiumBannerState.isPremiumUser &&
                     premiumBannerTracksEnabled &&
                     !premiumBannerTracksWasHidden;
 

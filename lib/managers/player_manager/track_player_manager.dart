@@ -3,16 +3,16 @@ import 'dart:async';
 import 'package:audio_session/audio_session.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/player_manager/player_manager.dart';
-import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
+import 'package:breathe_with_me/managers/premium_manager/premium_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:just_audio/just_audio.dart';
 
 final class TrackPlayerManager extends PlayerManager {
-  final SubscriptionsManager _subscriptionsManager;
+  final PremiumManager _premiumManager;
   final NavigationManager _navigationManager;
 
   TrackPlayerManager(
-    this._subscriptionsManager,
+    this._premiumManager,
     this._navigationManager,
   );
 
@@ -24,7 +24,7 @@ final class TrackPlayerManager extends PlayerManager {
     await _setupAudioSession();
     audioPlayer ??= AudioPlayer();
     await audioPlayer!.setAudioSource(source);
-    if (!_subscriptionsManager.premiumEnabled) {
+    if (!_premiumManager.isUserPremium) {
       _setupLifecycleListener();
     }
   }
@@ -50,8 +50,8 @@ final class TrackPlayerManager extends PlayerManager {
 
   @override
   Future<void> play() async {
-    final premiumEnabled = _subscriptionsManager.premiumEnabled;
-    if (!premiumEnabled && _appLifecycleState == AppLifecycleState.paused) {
+    final isUserPremium = _premiumManager.isUserPremium;
+    if (!isUserPremium && _appLifecycleState == AppLifecycleState.paused) {
       return;
     }
     final source = audioPlayer?.audioSource;

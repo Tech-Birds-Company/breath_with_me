@@ -7,12 +7,12 @@ import 'package:flutter/material.dart';
 
 class ProfileHeader extends StatelessWidget {
   final String username;
-  final bool premiumEnabled;
+  final bool isUserPremium;
   final String? premiumEndDate;
 
   const ProfileHeader({
     required this.username,
-    required this.premiumEnabled,
+    required this.isUserPremium,
     this.premiumEndDate,
     super.key,
   });
@@ -42,11 +42,10 @@ class ProfileHeader extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
               Text(
-                (premiumEnabled
-                        ? LocaleKeys.profilePremiumAccountType.tr()
-                        : LocaleKeys.profileBaseAccountType.tr())
-                    .toUpperCase(),
-                style: premiumEnabled
+                isUserPremium
+                    ? LocaleKeys.profilePremiumAccountType.tr()
+                    : LocaleKeys.profileBaseAccountType.tr().toUpperCase(),
+                style: isUserPremium
                     ? theme.typography.labelM.copyWith(
                         color: theme.purple2,
                       )

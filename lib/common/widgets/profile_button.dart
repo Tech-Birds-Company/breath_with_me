@@ -21,28 +21,28 @@ class ProfileButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final manager = ref.watch(Di.manager.subscriptions);
+    final manager = ref.watch(Di.manager.premium);
     return GestureDetector(
       onTap: onTap,
       child: ClipOval(
         child: StreamBuilder<bool>(
-          stream: manager.premiumEnabledStream,
-          initialData: false,
+          stream: manager.isPremiumUserStream,
+          initialData: manager.isUserPremium,
           builder: (context, snapshot) {
             final theme = Theme.of(context).extension<BWMTheme>()!;
-            final premiumEnabled = snapshot.requireData;
+            final isUserPremium = snapshot.requireData;
             return SizedBox(
               width: size,
               height: size,
               child: ColoredBox(
-                color: premiumEnabled ? theme.purple2 : theme.primaryColor,
+                color: isUserPremium ? theme.purple2 : theme.primaryColor,
                 child: Center(
                   child: SvgPicture.asset(
                     BWMAssets.profileIcon,
                     width: iconWidth,
                     height: iconHeight,
                     colorFilter: ColorFilter.mode(
-                      premiumEnabled ? theme.primaryColor : theme.gray1,
+                      isUserPremium ? theme.primaryColor : theme.gray1,
                       BlendMode.srcIn,
                     ),
                   ),

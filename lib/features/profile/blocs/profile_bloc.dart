@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:breathe_with_me/managers/deeplink_manager/deeplink_manager.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/permissions_manager/permissions_manager.dart';
+import 'package:breathe_with_me/managers/premium_manager/premium_manager.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
-import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,7 +13,7 @@ final class ProfileBloc extends BlocBase<Object?> {
   final PushNotificationsManager _pushNotificationsManager;
   final PermissionsManager _permissionsManager;
   final UserManager _userManager;
-  final SubscriptionsManager _subscriptionsManager;
+  final PremiumManager _premiumManager;
   final DeeplinkManager _deepLinkManager;
 
   ProfileBloc(
@@ -21,7 +21,7 @@ final class ProfileBloc extends BlocBase<Object?> {
     this._pushNotificationsManager,
     this._permissionsManager,
     this._userManager,
-    this._subscriptionsManager,
+    this._premiumManager,
     this._deepLinkManager,
   ) : super(null);
 
@@ -30,15 +30,13 @@ final class ProfileBloc extends BlocBase<Object?> {
     return currentUser?.displayName ?? '';
   }
 
-  bool get premiumEnabled => _subscriptionsManager.premiumEnabled;
+  String? get premiumEndDate => _premiumManager.premiumEndDate;
 
-  Stream<bool> get premiumEnabledStream =>
-      _subscriptionsManager.premiumEnabledStream;
+  bool get isUserPremium => _premiumManager.isUserPremium;
 
-  String? get premiumEndDate => _subscriptionsManager
-      .customerInfo?.entitlements.active.values.firstOrNull?.expirationDate;
+  bool get premiumContentEnabled => _premiumManager.premiumContentEnabled;
 
-  StreamSubscription<bool>? _premiumEnabledSubscription;
+  Stream<bool> get isPremiumUserStream => _premiumManager.isPremiumUserStream;
 
   Future<void> openReminder() async {
     final permissionGranted =
@@ -69,10 +67,5 @@ final class ProfileBloc extends BlocBase<Object?> {
 
   Future<void> onSignOut() async {
     await _userManager.signOut();
-  }
-
-  void dispose() {
-    _premiumEnabledSubscription?.cancel();
-    _premiumEnabledSubscription = null;
   }
 }

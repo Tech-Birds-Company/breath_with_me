@@ -8,6 +8,7 @@ part of 'remote_config_premium_v2.dart';
 
 RemoteConfigPremiumV2 _$RemoteConfigPremiumV2FromJson(Map json) =>
     RemoteConfigPremiumV2(
+      premiumEnabled: json['premiumEnabled'] as bool? ?? false,
       premiumBannerTracksPosition:
           json['premiumBannerTracksPosition'] as int? ?? 0,
       premiumBannerTracksEnabled:

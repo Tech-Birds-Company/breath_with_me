@@ -21,6 +21,7 @@ class StreakPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     final locale = EasyLocalization.of(context)!.locale;
+    final premiumContentEnabled = bloc.premiumContentEnabled;
     return Scaffold(
       backgroundColor: theme.primaryBackground,
       body: SafeArea(
@@ -30,7 +31,7 @@ class StreakPage extends StatelessWidget {
             BlocBuilder<StreakBloc, StreakState>(
               bloc: bloc,
               builder: (context, state) {
-                if (bloc.isPremiumEnabled) {
+                if (premiumContentEnabled) {
                   if (state.progress.totalMissedDays > 0 &&
                       !state.ignoreMissingDays) {
                     return StreakPremiumMissed(

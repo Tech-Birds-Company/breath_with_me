@@ -10,6 +10,10 @@ final class FirebaseRemoteConfigRepository implements RemoteConfigRepository {
   const FirebaseRemoteConfigRepository();
 
   @override
+  Stream<RemoteConfigUpdate> get configStream =>
+      FirebaseRemoteConfig.instance.onConfigUpdated;
+
+  @override
   RemoteConfigLegalDocuments get legalDocuments {
     final value = FirebaseRemoteConfig.instance
         .getString(RemoteConfigKey.legalDocuments.key);

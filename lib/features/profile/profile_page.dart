@@ -62,24 +62,26 @@ class ProfilePage extends StatelessWidget {
                   sliver: SliverMainAxisGroup(
                     slivers: [
                       StreamBuilder<bool>(
-                        stream: profileBloc.premiumEnabledStream,
-                        initialData: false,
+                        stream: profileBloc.isPremiumUserStream,
+                        initialData: profileBloc.isUserPremium,
                         builder: (context, snapshot) {
-                          final premiumEnabled = snapshot.requireData;
+                          final isUserPremium = snapshot.requireData;
                           return ProfileHeader(
                             username: profileBloc.username,
-                            premiumEnabled: premiumEnabled,
+                            isUserPremium: isUserPremium,
                             premiumEndDate: profileBloc.premiumEndDate,
                           );
                         },
                       ).toSliver(),
                       StreamBuilder<bool>(
-                        stream: profileBloc.premiumEnabledStream,
-                        initialData: false,
+                        stream: profileBloc.isPremiumUserStream,
+                        initialData: profileBloc.isUserPremium,
                         builder: (context, snapshot) {
-                          final premiumEnabled = snapshot.requireData;
+                          final isUserPremium = snapshot.requireData;
                           return ProfileStatistics(
-                            premiumEnabled: premiumEnabled,
+                            isUserPremium: isUserPremium,
+                            premiumContentEnabled:
+                                profileBloc.premiumContentEnabled,
                             onPremiumButtonPressed:
                                 profileBloc.openPremiumPaywall,
                             bloc: streakBloc,
