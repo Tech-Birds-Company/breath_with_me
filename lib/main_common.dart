@@ -49,7 +49,7 @@ Future<List<Override>> _setupDependencies({
     isProduction
         ? Platform.isIOS
             ? BWMConstants.revenueCatApiKeyiOSProd
-            : '' // TODOandroid prod key
+            : '' // TODO(vasidmi): android prod key
         : Platform.isIOS
             ? BWMConstants.revenueCatApiKeyiOSDev
             : BWMConstants.revenueCatApiKeyAndroidDev,

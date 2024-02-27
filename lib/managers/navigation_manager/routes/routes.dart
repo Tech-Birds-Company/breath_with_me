@@ -125,11 +125,11 @@ abstract final class BWMRoutes {
     GoRoute(
       path: BWMRoutes.safetyPrecautions,
       pageBuilder: (context, state) => BWMModalPage(
-        barrierColor: Colors.transparent,
         useSafeArea: true,
         enableDrag: false,
         isDismissible: false,
         isScrollControlled: true,
+        backgroundColor: Colors.black,
         child: Consumer(
           builder: (context, ref, child) => SafetyPrecautionsPage(
             bloc: ref.watch(Di.bloc.safetyPrecautions),

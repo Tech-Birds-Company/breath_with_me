@@ -1,10 +1,10 @@
 import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/extensions/widget.dart';
-import 'package:breathe_with_me/features/premium/blocs/premium_banner_bloc.dart';
-import 'package:breathe_with_me/features/premium/models/premium_banner_state.dart';
 import 'package:breathe_with_me/features/premium/widgets/premium_banner_tracks.dart';
 import 'package:breathe_with_me/features/tracks/blocs/track_bloc.dart';
+import 'package:breathe_with_me/features/tracks/blocs/tracks_list_bloc.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
+import 'package:breathe_with_me/features/tracks/models/tracks_list_state.dart';
 import 'package:breathe_with_me/features/tracks/widgets/track/track_item.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_list/shimmer_list.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
@@ -20,12 +20,14 @@ class TracksList extends ConsumerWidget {
     final theme = Theme.of(context).extension<BWMTheme>()!;
 
     final premiumBannerBloc = ref.watch(Di.bloc.premiumBanner);
-    final state = ref.watch(Di.bloc.tracksList).state;
+    final tracksListBloc = ref.watch(Di.bloc.tracksList);
 
-    return state.when(
-      data: (tracks) => BlocBuilder<PremiumBannerBloc, PremiumBannerState>(
-        bloc: premiumBannerBloc,
-        builder: (context, premiumBannerState) {
+    return BlocBuilder<TracksListBloc, TracksListState>(
+      bloc: tracksListBloc,
+      buildWhen: (previous, current) => previous != current,
+      builder: (context, state) => state.when(
+        data: (tracks) {
+          final premiumBannerState = premiumBannerBloc.state;
           final premiumBannerTracksEnabled =
               premiumBannerState.premiumBannerTracksEnabled;
           final premiumBannerTracksWasHidden =
@@ -67,19 +69,17 @@ class TracksList extends ConsumerWidget {
                           : 0)
                   : index;
               final track = tracks[adjustedIndex];
-              return Consumer(
-                builder: (context, ref, child) => _TrackItem(
-                  track: track,
-                  bloc: ref.watch(Di.bloc.track(track)),
-                  key: ValueKey(track.id),
-                ),
+              return _TrackItem(
+                track: track,
+                bloc: ref.watch(Di.bloc.track(track)),
+                key: ValueKey(track.id),
               );
             },
           );
         },
+        loading: () => const ShimmerList(),
+        error: () => const SizedBox.shrink().toSliver(),
       ),
-      loading: () => const ShimmerList(),
-      error: () => const SizedBox.shrink().toSliver(),
     );
   }
 }
