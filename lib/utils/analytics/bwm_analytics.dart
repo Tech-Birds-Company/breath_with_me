@@ -1,3 +1,4 @@
+import 'package:breathe_with_me/utils/logger.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 
 abstract final class BWMAnalytics {
@@ -9,13 +10,17 @@ abstract final class BWMAnalytics {
   }) async {
     if (await _analytics.isSupported()) {
       await _analytics.logEvent(name: event, parameters: params);
+      logger.d('Firebase Analytics event: $event, params: $params');
     }
   }
 
-  static void logScreenView(String screenClass) => _analytics.logScreenView(
-        screenClass: screenClass,
-        screenName: screenClass,
-      );
+  static Future<void> logScreenView(String screenClass) async {
+    await _analytics.logScreenView(
+      screenClass: screenClass,
+      screenName: screenClass,
+    );
+    logger.d('Firebase Analytics screen: $screenClass');
+  }
 
   static void event(
     String event, {

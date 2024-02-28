@@ -48,11 +48,15 @@ class _OnboardingPageViewState extends State<OnboardingPageView> {
 
   @override
   Widget build(BuildContext context) {
-    _pageController = usePageController();
+    _pageController = useMemoized(PageController.new);
     useEffect(
       () {
         _pageController.addListener(_pageControllerListener);
-        return null;
+        return () {
+          _pageController
+            ..removeListener(_pageControllerListener)
+            ..dispose();
+        };
       },
       const [],
     );
