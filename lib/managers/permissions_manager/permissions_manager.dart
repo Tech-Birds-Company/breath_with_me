@@ -13,7 +13,12 @@ final class PermissionsManager {
     if (status != TrackingStatus.notSupported) {
       final status =
           await AppTrackingTransparency.requestTrackingAuthorization();
-      BWMAnalytics.event('appTrackingStatus', params: {'status': status});
+      BWMAnalytics.event(
+        'appTrackingStatus',
+        params: {
+          'status': status.toString(),
+        },
+      );
     } else {
       BWMAnalytics.event('appTrackingNotSupported');
     }
@@ -33,7 +38,7 @@ final class PermissionsManager {
         'pushNotificationsPermissions',
         params: {
           'platform': 'ios',
-          'granted': iosGranted ?? false,
+          'granted': (iosGranted ?? false).toString(),
         },
       );
       return iosGranted ?? false;
@@ -54,7 +59,7 @@ final class PermissionsManager {
         'pushNotificationsPermissions',
         params: {
           'platform': 'android',
-          'granted': androidGranted,
+          'granted': (androidGranted).toString(),
         },
       );
       return androidGranted;

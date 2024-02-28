@@ -35,7 +35,7 @@ class OnboardingPageView extends HookWidget {
       BWMAnalytics.event(
         'onboardingSwipePage',
         params: {
-          'onboardingPage': currentPage,
+          'onboardingPage': currentPage.toString(),
         },
       );
     }

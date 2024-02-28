@@ -19,7 +19,7 @@ abstract final class BWMAnalytics {
 
   static void event(
     String event, {
-    Map<String, Object?>? params,
+    Map<String, String>? params,
   }) =>
       _logEvent(
         event,
