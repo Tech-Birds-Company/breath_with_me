@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/managers/download_manager/track_download_task.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/premium_manager/premium_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/repositories/tracks_repository.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 final class TrackBloc extends BlocBase<Object?> {
@@ -13,10 +16,6 @@ final class TrackBloc extends BlocBase<Object?> {
   final PremiumManager _premiumManager;
   final NavigationManager _navigationManager;
 
-  Stream<bool> get trackIsLockedStream => _premiumManager.isPremiumUserStream
-      .map((isUserPremium) => !isUserPremium && _track.isPremium)
-      .distinct();
-
   TrackBloc(
     this._track,
     this._tracksRepository,
@@ -25,12 +24,16 @@ final class TrackBloc extends BlocBase<Object?> {
     this._navigationManager,
   ) : super(null);
 
+  Stream<bool> get trackIsLockedStream => _premiumManager.isPremiumUserStream
+      .map((isUserPremium) => !isUserPremium && _track.isPremium)
+      .distinct();
+
   Stream<bool> get trackIsDownloadedStream {
     final userId = _userManager.currentUser!.uid;
     final task = TrackDownloadTask(
       trackId: _track.id,
       userId: userId,
-      url: '',
+      url: '', // TODO(vasidmi): fix this
     );
     return _tracksRepository.getTrackIsDownloadedStream(
       taskId: task.taskId,
@@ -44,6 +47,12 @@ final class TrackBloc extends BlocBase<Object?> {
       .distinct();
 
   Future<void> onTrackTap() async {
+    BWMAnalytics.event(
+      'onTrackTap',
+      params: {
+        'track': jsonEncode(_track.toJson()),
+      },
+    );
     if (_track.isPremium && !_premiumManager.isUserPremium) {
       return;
     } else {
@@ -51,5 +60,13 @@ final class TrackBloc extends BlocBase<Object?> {
     }
   }
 
-  Future<void> onTrackLiked() => _tracksRepository.updateLikes(_track.id);
+  Future<void> onTrackLiked() async {
+    await _tracksRepository.updateLikes(_track.id);
+    BWMAnalytics.event(
+      'onTrackLikePressed',
+      params: {
+        'track': jsonEncode(_track.toJson()),
+      },
+    );
+  }
 }
