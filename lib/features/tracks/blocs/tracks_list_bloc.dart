@@ -5,6 +5,7 @@ import 'package:breathe_with_me/features/tracks/models/tracks_filters_state.dart
 import 'package:breathe_with_me/features/tracks/models/tracks_list_state.dart';
 import 'package:breathe_with_me/managers/database_manager/database_cached_keys.dart';
 import 'package:breathe_with_me/repositories/tracks_repository.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -71,6 +72,8 @@ final class TracksListBloc extends CacheableBloc<TracksListState> {
 
   Future<void> _loadTracks() async {
     final tracks = await _tracksRepository.getTracks();
+    final trackIds = tracks.map((e) => e.id).toString();
+    BWMAnalytics.event('onTracksLoaded', params: {'tracks': trackIds});
     emit(TracksListState.data(tracks));
     await cache();
   }
