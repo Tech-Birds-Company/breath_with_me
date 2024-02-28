@@ -10,10 +10,12 @@ import 'package:breathe_with_me/features/reminder/blocs/reminder_bloc.dart';
 import 'package:breathe_with_me/features/streak/blocs/streak_bloc.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends HookWidget {
   final ProfileBloc profileBloc;
   final ReminderBloc reminderBloc;
   final StreakBloc streakBloc;
@@ -29,6 +31,14 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     final currentLocale = EasyLocalization.of(context)!.locale;
+
+    useEffect(
+      () {
+        BWMAnalytics.logScreenView('ProfilePage');
+        return null;
+      },
+      const [],
+    );
 
     return Scaffold(
       backgroundColor: theme.primaryBackground,

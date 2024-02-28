@@ -36,7 +36,7 @@ class OnboardingPage extends HookWidget {
               flex: 0,
               child: OnboardingHeader(),
             ),
-            Expanded(
+            const Expanded(
               child: OnboardingPageView(),
             ),
             Padding(
