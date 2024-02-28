@@ -1,7 +1,4 @@
 import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
-import 'package:breathe_with_me/features/faq/analytics/faq_analytics_constants.dart';
-import 'package:breathe_with_me/features/faq/analytics/faq_analytics_event.dart';
-
 import 'package:breathe_with_me/features/faq/blocs/faq_bloc.dart';
 import 'package:breathe_with_me/features/faq/models/faq_state.dart';
 import 'package:breathe_with_me/features/faq/widgets/faq_question_list.dart';
@@ -28,9 +25,9 @@ class FaqPage extends HookWidget {
 
     useEffect(
       () {
-        BWMAnalytics.logScreenView(FaqAnalyticsConstants.faqPage);
+        BWMAnalytics.logScreenView('FaqPage');
         bloc.loadQuestions(currentLocale.languageCode);
-        return () => BWMAnalytics.event(FaqAnalyticsEvent.faqClosed);
+        return () => BWMAnalytics.event('faqClosed');
       },
       const [],
     );

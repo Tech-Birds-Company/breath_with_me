@@ -1,5 +1,3 @@
-import 'package:breathe_with_me/features/faq/analytics/faq_analytics_constants.dart';
-import 'package:breathe_with_me/features/faq/analytics/faq_analytics_event.dart';
 import 'package:breathe_with_me/features/faq/models/faq_language.dart';
 import 'package:breathe_with_me/features/faq/models/faq_state.dart';
 import 'package:breathe_with_me/managers/database_manager/database_cached_keys.dart';
@@ -17,9 +15,9 @@ final class FaqBloc extends CacheableBloc<FaqState> {
 
   Future<void> loadQuestions(String languageCode) async {
     BWMAnalytics.event(
-      FaqAnalyticsEvent.faqLoadQuestions,
+      'faqLoadQuestions',
       params: {
-        FaqAnalyticsConstants.languageCode: languageCode,
+        'languageCode': languageCode,
       },
     );
     final language = FaqLanguageHelper.fromCode(languageCode);

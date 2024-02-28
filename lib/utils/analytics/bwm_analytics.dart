@@ -12,8 +12,10 @@ abstract final class BWMAnalytics {
     }
   }
 
-  static void logScreenView(String screenName) =>
-      _analytics.logScreenView(screenName: screenName);
+  static void logScreenView(String screenClass) => _analytics.logScreenView(
+        screenClass: screenClass,
+        screenName: screenClass,
+      );
 
   static void event(
     String event, {

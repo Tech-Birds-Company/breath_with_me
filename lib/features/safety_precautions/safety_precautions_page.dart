@@ -1,5 +1,4 @@
 import 'package:breathe_with_me/common/widgets/bwm_action_button.dart';
-import 'package:breathe_with_me/features/safety_precautions/analytics/safety_precautions_analytics_constants.dart';
 import 'package:breathe_with_me/features/safety_precautions/blocs/safety_precautions_bloc.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
@@ -22,9 +21,7 @@ class SafetyPrecautionsPage extends HookWidget {
 
     useEffect(
       () {
-        BWMAnalytics.logScreenView(
-          SafetyPrecautionsAnalyticsConstants.safetyPrecautionsPage,
-        );
+        BWMAnalytics.logScreenView('SafetyPrecautionsPage');
         return bloc.setSafetyPrecautionsShowed;
       },
       const [],
