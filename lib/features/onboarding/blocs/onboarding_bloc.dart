@@ -58,7 +58,7 @@ final class OnboardingBloc extends BlocBase<OnboardingState> {
     await _navigationManager.singInPage();
   }
 
-  void onOpenContactUs() async {
+  Future<void> onOpenContactUs() async {
     BWMAnalytics.event('onboardingOnOpenContactUs');
     await _deeplinkManager.onComposeEmail();
   }

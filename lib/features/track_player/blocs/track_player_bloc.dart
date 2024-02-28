@@ -12,6 +12,7 @@ import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.d
 import 'package:breathe_with_me/managers/streak_progress_manager/streak_progress_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/repositories/tracks_repository.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
@@ -71,8 +72,10 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
     final canPlayOffline = trackDownloadTask?.isCompleted ?? false;
 
     if (canPlayOffline) {
+      BWMAnalytics.event('initOfflineTrack', params: {'trackId': track.id});
       await _handleOfflinePlay(trackDownloadTask!);
     } else {
+      BWMAnalytics.event('initOnlineTrack', params: {'trackId': track.id});
       await _handleOnlinePlay();
     }
   }
@@ -170,7 +173,7 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   }
 
   Future<void> onTrackFinish() async {
-    await _audioManager.stop();
+    BWMAnalytics.event('onTrackFinish', params: {'trackId': track.id});
     await _streakProgressManager.addStreakData(
       minutes: track.duration,
       date: DateTime.now(),

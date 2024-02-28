@@ -4,6 +4,7 @@ import 'package:breathe_with_me/managers/audio_manager/audio_manager.dart';
 import 'package:breathe_with_me/managers/player_manager/player_manager.dart';
 import 'package:breathe_with_me/managers/player_manager/track_player_manager.dart';
 import 'package:breathe_with_me/managers/premium_manager/premium_manager.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -86,6 +87,13 @@ final class TrackAudioManager extends AudioManager {
 
   @override
   Future<void> play() async {
+    BWMAnalytics.event(
+      'onPlayTrack',
+      params: {
+        'trackId': mediaItem.valueOrNull?.id ?? 'null',
+        'playback': playbackState.valueOrNull?.toString() ?? 'null',
+      },
+    );
     await _playerManager?.play();
   }
 
@@ -109,6 +117,13 @@ final class TrackAudioManager extends AudioManager {
 
   @override
   Future<void> pause() async {
+    BWMAnalytics.event(
+      'onPauseTrack',
+      params: {
+        'trackId': mediaItem.valueOrNull?.id ?? 'null',
+        'playback': playbackState.valueOrNull?.toString() ?? 'null',
+      },
+    );
     await _playerManager?.pause();
   }
 
@@ -116,11 +131,18 @@ final class TrackAudioManager extends AudioManager {
   Future<void> stop() async {
     await _playerManager?.stop();
     await super.stop();
+    BWMAnalytics.event(
+      'onAudioManagerStop',
+      params: {
+        'trackId': mediaItem.value?.id ?? 'null',
+        'playback': playbackState.valueOrNull?.toString() ?? 'null',
+      },
+    );
   }
 
   @override
   Future<void> dispose() async {
-    playbackState.add(PlaybackState());
+    await stop();
     await _playerManager?.dispose();
     _playerManager = null;
     progressStream = null;

@@ -53,9 +53,6 @@ final class ProfileBloc extends BlocBase<Object?> {
   Future<void> onSupportEmail() => _deepLinkManager.onComposeEmail();
 
   Future<void> openLanguageSheet() async {
-    if (_navigationManager.context == null) {
-      return;
-    }
     await _navigationManager.openLanguageSheet();
   }
 
