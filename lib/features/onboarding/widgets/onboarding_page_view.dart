@@ -2,14 +2,13 @@ import 'package:breathe_with_me/features/onboarding/models/onboarding_info.dart'
 import 'package:breathe_with_me/features/onboarding/widgets/onboarding_indicator.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 class OnboardingPageView extends HookWidget {
   OnboardingPageView({super.key});
-
-  late final _pageController = PageController();
 
   static const _onboardingItems = [
     OnboardingInfo(
@@ -26,10 +25,30 @@ class OnboardingPageView extends HookWidget {
     ),
   ];
 
+  late PageController _pageController;
+  int? _prevPage;
+
+  void _pageControllerListener() {
+    final currentPage = _pageController.page?.toInt();
+    if (_prevPage != currentPage) {
+      _prevPage = currentPage;
+      BWMAnalytics.event(
+        'onboardingSwipePage',
+        params: {
+          'onboardingPage': currentPage,
+        },
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    _pageController = usePageController();
     useEffect(
-      () => _pageController.dispose,
+      () {
+        _pageController.addListener(_pageControllerListener);
+        return null;
+      },
       const [],
     );
     final theme = Theme.of(context).extension<BWMTheme>()!;

@@ -5,11 +5,13 @@ import 'package:breathe_with_me/features/onboarding/blocs/onboarding_bloc.dart';
 import 'package:breathe_with_me/features/onboarding/widgets/create_account_header.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class CreateAccountModalPage extends StatelessWidget {
+class CreateAccountModalPage extends HookWidget {
   final OnboardingBloc bloc;
 
   const CreateAccountModalPage({
@@ -19,6 +21,14 @@ class CreateAccountModalPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    useEffect(
+      () {
+        BWMAnalytics.logScreenView('CreateAccountModalPage');
+        return null;
+      },
+      const [],
+    );
+
     final theme = Theme.of(context).extension<BWMTheme>()!;
     final locale = context.locale;
     return Scaffold(

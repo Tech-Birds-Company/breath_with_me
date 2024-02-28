@@ -4,6 +4,7 @@ import 'package:breathe_with_me/features/onboarding/models/onboarding_state.dart
 import 'package:breathe_with_me/managers/deeplink_manager/deeplink_manager.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 final class OnboardingBloc extends BlocBase<OnboardingState> {
@@ -17,28 +18,48 @@ final class OnboardingBloc extends BlocBase<OnboardingState> {
     this._deeplinkManager,
   ) : super(const OnboardingState());
 
-  Future<void> signUpWithApple() => _userManager.signInWithApple();
+  Future<void> signUpWithApple() async {
+    BWMAnalytics.event('onboardingSignUpWithApple');
+    await _userManager.signInWithApple();
+  }
 
-  Future<void> signUpWithGoogle() => _userManager.signInWithGoogle();
+  Future<void> signUpWithGoogle() async {
+    BWMAnalytics.event('onboardingSignUpWithGoogle');
+    await _userManager.signInWithGoogle();
+  }
 
   Future<void> onOpenCreateAccountModal() async {
+    BWMAnalytics.event('onboardingOnOpenCreateAccountModal');
     await _navigationManager.openCreateAccount();
   }
 
-  Future<void> onOpenPrivacyPolicy() => _deeplinkManager.onOpenPrivacyPolicy();
+  Future<void> onOpenPrivacyPolicy() async {
+    BWMAnalytics.event('onboardingOnOpenPrivacyPolicy');
+    await _deeplinkManager.onOpenPrivacyPolicy();
+  }
 
-  Future<void> onOpenTermsOfService() =>
-      _deeplinkManager.onOpenTermsOfService();
+  Future<void> onOpenTermsOfService() async {
+    BWMAnalytics.event('onboardingOnOpenTermsOfService');
+    await _deeplinkManager.onOpenTermsOfService();
+  }
 
-  void onCloseCreateAccountModal() => _navigationManager.pop();
+  void onCloseCreateAccountModal() {
+    BWMAnalytics.event('onboardingOnCloseCreateAccountModal');
+    _navigationManager.pop();
+  }
 
   Future<void> signUpWithEmail() async {
+    BWMAnalytics.event('onboardingSignUpWithEmail');
     await _navigationManager.singUpPage();
   }
 
   Future<void> signIn() async {
+    BWMAnalytics.event('onboardingSignIn');
     await _navigationManager.singInPage();
   }
 
-  void onOpenContactUs() => _deeplinkManager.onComposeEmail();
+  void onOpenContactUs() async {
+    BWMAnalytics.event('onboardingOnOpenContactUs');
+    await _deeplinkManager.onComposeEmail();
+  }
 }
