@@ -8,7 +8,7 @@ import 'package:breathe_with_me/features/onboarding/blocs/onboarding_bloc.dart';
 import 'package:breathe_with_me/features/premium/blocs/premium_banner_bloc.dart';
 import 'package:breathe_with_me/features/premium/blocs/premium_paywall_bloc.dart';
 import 'package:breathe_with_me/features/profile/blocs/profile_bloc.dart';
-import 'package:breathe_with_me/features/profile_settings/bloc/account_settings_bloc.dart';
+import 'package:breathe_with_me/features/profile_settings/bloc/profile_settings_bloc.dart';
 import 'package:breathe_with_me/features/reminder/blocs/reminder_bloc.dart';
 import 'package:breathe_with_me/features/safety_precautions/blocs/safety_precautions_bloc.dart';
 import 'package:breathe_with_me/features/sign_in/blocs/signin_bloc.dart';

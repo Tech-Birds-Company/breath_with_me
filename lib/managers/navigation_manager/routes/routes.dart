@@ -6,7 +6,7 @@ import 'package:breathe_with_me/features/onboarding/onboarding_page.dart';
 import 'package:breathe_with_me/features/premium/widgets/premium_paywall/premium_paywall.dart';
 import 'package:breathe_with_me/features/profile/profile_page.dart';
 import 'package:breathe_with_me/features/profile/widgets/language_sheet.dart';
-import 'package:breathe_with_me/features/profile_settings/account_settings_page.dart';
+import 'package:breathe_with_me/features/profile_settings/profile_settings_page.dart';
 import 'package:breathe_with_me/features/reminder/reminder_page.dart';
 import 'package:breathe_with_me/features/safety_precautions/safety_precautions_page.dart';
 import 'package:breathe_with_me/features/streak/streak_page.dart';
@@ -185,11 +185,7 @@ abstract final class BWMRoutes {
     ),
     GoRoute(
       path: BWMRoutes.profileSettings,
-      builder: (context, state) => Consumer(
-        builder: (context, ref, child) => AccountSettingsPage(
-          bloc: ref.watch(Di.bloc.accountSettings),
-        ),
-      ),
+      builder: (context, state) => const ProfileSettingsPage(),
     ),
   ];
 }

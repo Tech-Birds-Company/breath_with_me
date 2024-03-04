@@ -3,11 +3,11 @@ import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.d
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-final class AccountSettingsBloc extends BlocBase<AccountSettingsState> {
+final class ProfileSettingsBloc extends BlocBase<AccountSettingsState> {
   final UserManager _userManager;
   final NavigationManager _navigationManager;
 
-  AccountSettingsBloc(
+  ProfileSettingsBloc(
     this._userManager,
     this._navigationManager,
   ) : super(

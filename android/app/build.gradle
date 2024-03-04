@@ -110,8 +110,3 @@ android {
 flutter {
     source '../..'
 }
-
-dependencies {}
-
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.crashlytics'

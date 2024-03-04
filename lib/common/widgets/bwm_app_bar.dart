@@ -1,10 +1,12 @@
+import 'dart:io';
+
 import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class BWMAppBar extends ConsumerWidget implements PreferredSizeWidget {
-  static const double appBarHeight = 52;
+  static const double appBarHeight = 70;
 
   final String? title;
   final Color? backgroundColor;
@@ -31,12 +33,15 @@ class BWMAppBar extends ConsumerWidget implements PreferredSizeWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              GestureDetector(
-                onTap: navigationManager.pop,
-                child: Icon(
-                  Icons.arrow_back,
-                  size: 24,
-                  color: theme.green3,
+              Padding(
+                padding: EdgeInsets.only(top: Platform.isAndroid ? 16.0 : 0.0),
+                child: GestureDetector(
+                  onTap: navigationManager.pop,
+                  child: Icon(
+                    Icons.arrow_back,
+                    size: 24,
+                    color: theme.green3,
+                  ),
                 ),
               ),
               if (title != null)

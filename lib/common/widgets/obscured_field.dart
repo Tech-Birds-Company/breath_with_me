@@ -6,13 +6,15 @@ class ObscuredField extends StatefulWidget {
   final String hintText;
   final String prefixIcon;
   final bool enableObscuredTextToggle;
+  final bool editable;
   final String? defaultValue;
-  final void Function(String text) textChange;
+  final void Function(String text)? textChange;
 
   const ObscuredField({
-    required this.hintText,
     required this.prefixIcon,
-    required this.textChange,
+    this.textChange,
+    this.hintText = '',
+    this.editable = true,
     this.defaultValue,
     this.enableObscuredTextToggle = false,
     super.key,
@@ -33,9 +35,7 @@ class ObscuredFieldState extends State<ObscuredField> {
     _controller.addListener(_onControllerChanged);
   }
 
-  void _onControllerChanged() {
-    widget.textChange(_controller.text);
-  }
+  void _onControllerChanged() => widget.textChange?.call(_controller.text);
 
   @override
   void dispose() {
@@ -50,11 +50,12 @@ class ObscuredFieldState extends State<ObscuredField> {
     final theme = Theme.of(context).extension<BWMTheme>()!;
 
     return TextField(
+      readOnly: !widget.editable,
       controller: _controller,
       style: TextStyle(color: theme.primaryText),
       obscureText: widget.enableObscuredTextToggle && _isObscured,
       decoration: InputDecoration(
-        filled: true,
+        filled: widget.editable,
         fillColor: theme.gray26,
         hintText: widget.hintText,
         hintStyle: TextStyle(color: theme.secondaryText),
