@@ -10,6 +10,8 @@ _$AccountSettingsStateImpl _$$AccountSettingsStateImplFromJson(Map json) =>
     _$AccountSettingsStateImpl(
       name: json['name'] as String,
       email: json['email'] as String,
+      isForgotPasswordButtonEnabled:
+          json['isForgotPasswordButtonEnabled'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$AccountSettingsStateImplToJson(
@@ -17,4 +19,5 @@ Map<String, dynamic> _$$AccountSettingsStateImplToJson(
     <String, dynamic>{
       'name': instance.name,
       'email': instance.email,
+      'isForgotPasswordButtonEnabled': instance.isForgotPasswordButtonEnabled,
     };

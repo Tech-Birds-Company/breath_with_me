@@ -8,6 +8,7 @@ class AccountSettingsState with _$AccountSettingsState {
   const factory AccountSettingsState({
     required String name,
     required String email,
+    @Default(false) bool isForgotPasswordButtonEnabled,
   }) = _AccountSettingsState;
 
   factory AccountSettingsState.fromJson(Map<String, Object?> json) =>

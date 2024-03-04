@@ -64,7 +64,8 @@ class ObscuredFieldState extends State<ObscuredField> {
           child: Center(
             child: SvgPicture.asset(
               widget.prefixIcon,
-              fit: BoxFit.cover,
+              width: 24,
+              height: 24,
               colorFilter: ColorFilter.mode(
                 theme.secondaryColor,
                 BlendMode.srcIn,

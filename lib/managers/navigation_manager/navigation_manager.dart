@@ -48,6 +48,7 @@ final class NavigationManager {
   late final router = GoRouter(
     initialLocation: BWMRoutes.onboarding,
     routes: BWMRoutes.routes,
+    debugLogDiagnostics: true,
     redirect: (context, state) {
       final authorized = _userManager.currentUser != null;
       if (authorized) {
@@ -109,6 +110,10 @@ final class NavigationManager {
   void successPage() => router.push(BWMRoutes.auth.successSignUp);
 
   void forgotPasswordPage() => router.push(BWMRoutes.auth.forgotPassword);
+
+  void resetPassword(String query) {
+    router.push('${BWMRoutes.auth.resetPassword}?$query');
+  }
 
   void openPremiumPaywall() => router.push(BWMRoutes.premiumPaywall);
 

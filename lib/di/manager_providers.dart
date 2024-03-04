@@ -25,14 +25,9 @@ final class _ManagerProviders {
     },
   );
 
-  late final user = Provider(
+  late final user = Provider<FirebaseUserManager>(
     (ref) {
-      final manager = FirebaseUserManager(
-        ref.watch(Di.manager.subscriptions),
-        ref.watch(Di.manager.database),
-      )..init();
-      ref.onDispose(manager.dispose);
-      return manager;
+      throw UnimplementedError();
     },
   );
 
@@ -59,6 +54,12 @@ final class _ManagerProviders {
     (ref) => StreakProgressManager(
       ref.watch(Di.manager.user).currentUser!.uid,
       ref.watch(Di.repository.firebaseStreaksProgress),
+    ),
+  );
+
+  late final linkHandler = Provider.autoDispose(
+    (ref) => LinkHandlerManager(
+      ref.watch(Di.manager.navigation),
     ),
   );
 

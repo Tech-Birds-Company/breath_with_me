@@ -2,6 +2,7 @@ library di;
 
 import 'package:breathe_with_me/features/faq/blocs/faq_bloc.dart';
 import 'package:breathe_with_me/features/forgot_password/bloc/forgot_password_bloc.dart';
+import 'package:breathe_with_me/features/forgot_password/bloc/reset_password_block.dart';
 import 'package:breathe_with_me/features/home/blocs/home_bloc.dart';
 import 'package:breathe_with_me/features/onboarding/blocs/onboarding_bloc.dart';
 import 'package:breathe_with_me/features/premium/blocs/premium_banner_bloc.dart';
@@ -22,6 +23,7 @@ import 'package:breathe_with_me/managers/audio_manager/audio_manager.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/deeplink_manager/deeplink_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/tracks_downloader_manger.dart';
+import 'package:breathe_with_me/managers/link_handler_manager.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/permissions_manager/permissions_manager.dart';
 import 'package:breathe_with_me/managers/premium_manager/premium_manager.dart';

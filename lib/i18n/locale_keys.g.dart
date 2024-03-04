@@ -136,4 +136,10 @@ abstract class LocaleKeys {
   static const premium_paywall = 'premium.paywall';
   static const premium = 'premium';
   static const networkErrorText = 'networkErrorText';
+  static const resetPasswordTitle = 'resetPasswordTitle';
+  static const resetPasswordSubtitle = 'resetPasswordSubtitle';
+  static const signUpError_nameEmpty = 'signUpError.nameEmpty';
+  static const signUpError_emailEmpty = 'signUpError.emailEmpty';
+  static const signUpError_passwordMatch = 'signUpError.passwordMatch';
+  static const signUpError = 'signUpError';
 }

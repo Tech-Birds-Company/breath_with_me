@@ -35,7 +35,7 @@ class SignInPage extends StatelessWidget {
               const SizedBox(height: 64),
               ObscuredField(
                 hintText: LocaleKeys.signInEmail.tr(),
-                prefixIcon: BWMAssets.emailIcon,
+                prefixIcon: BWMAssets.email,
                 textChange: bloc.onEmailChange,
               ),
               const SizedBox(height: 16),

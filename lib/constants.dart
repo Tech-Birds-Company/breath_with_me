@@ -12,4 +12,12 @@ abstract final class BWMConstants {
   static const revenueCatApiKeyAndroidDev = 'goog_MGDBLkAVyoIHaqFyEtjunNjAnvF';
   static const revenueCatApiKeyiOSProd = 'appl_lNhJPKaKyDMySQoWNJFWtzOiGEw';
 //------------------------------------------
+
+  static const iOSBundleIdDev = 'com.dobry.breathewithme.develop';
+  static const iOSBundleIdProd = 'com.dobry.breathewithme';
+  static const androidPackageNameDev = 'com.dobry.breathewithme.develop';
+  static const androidPackageNameProd = 'com.innate.beat.breathewithme';
+  static const firebaseHostNameDev = 'https://bwithmedev.firebaseapp.com';
+  static const firebaseHostNameProd =
+      'https://breathwithme-5376b.firebaseapp.com';
 }

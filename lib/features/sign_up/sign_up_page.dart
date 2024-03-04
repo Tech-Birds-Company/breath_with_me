@@ -48,7 +48,7 @@ class SignUpPage extends StatelessWidget {
                   ),
                   ObscuredField(
                     hintText: LocaleKeys.signInEmail.tr(),
-                    prefixIcon: BWMAssets.emailIcon,
+                    prefixIcon: BWMAssets.email,
                     textChange: bloc.updateEmail,
                   ),
                   ObscuredField(

@@ -1,26 +1,52 @@
 import 'dart:async';
 
+import 'package:breathe_with_me/constants.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/auth_result.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/utils/logger.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 final class FirebaseUserManager implements UserManager {
+  final bool _isProduction;
   final SubscriptionsManager _subscriptionManager;
   final DatabaseManager _databaseManager;
 
   FirebaseUserManager(
     this._subscriptionManager,
-    this._databaseManager,
-  );
+    this._databaseManager, {
+    required bool isProduction,
+  }) : _isProduction = isProduction;
 
   StreamSubscription<User?>? _userSubscription;
   late final _firebaseAuth = FirebaseAuth.instance;
   late final _userStream = _firebaseAuth.userChanges();
+
+  ActionCodeSettings get _actionCodeSettings {
+    final url = _isProduction
+        ? BWMConstants.firebaseHostNameProd
+        : BWMConstants.firebaseHostNameDev;
+    final iOSBundleId = _isProduction
+        ? BWMConstants.iOSBundleIdProd
+        : BWMConstants.iOSBundleIdDev;
+
+    final androidPackageName = _isProduction
+        ? BWMConstants.androidPackageNameProd
+        : BWMConstants.androidPackageNameDev;
+
+    return ActionCodeSettings(
+      url: url,
+      handleCodeInApp: true,
+      iOSBundleId: iOSBundleId,
+      androidPackageName: androidPackageName,
+      androidInstallApp: true,
+      androidMinimumVersion: '1',
+    );
+  }
 
   @override
   User? get currentUser => _firebaseAuth.currentUser;
@@ -125,7 +151,22 @@ final class FirebaseUserManager implements UserManager {
 
   @override
   Future<void> sendResetPassword(String email) async {
-    await _firebaseAuth.sendPasswordResetEmail(email: email);
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      if (kDebugMode) {
+        // TODO(musamuss): добавить обработку ошибок
+        print(e.message);
+      }
+    }
+  }
+
+  @override
+  Future<void> resetPassword(String code, String password) async {
+    await _firebaseAuth.confirmPasswordReset(
+      code: code,
+      newPassword: password,
+    );
   }
 
   @override
