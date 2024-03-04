@@ -15,7 +15,8 @@ final class PremiumManager {
   bool get premiumContentEnabled => !_premiumEnabled || isUserPremium;
 
   bool get isUserPremium =>
-      _subscriptionsManager.customerInfo!.entitlements.active.isNotEmpty;
+      _subscriptionsManager.customerInfo?.entitlements.active.isNotEmpty ??
+      false;
 
   String? get premiumEndDate {
     if (isUserPremium) {

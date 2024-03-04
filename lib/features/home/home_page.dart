@@ -15,7 +15,6 @@ class HomePage extends HookConsumerWidget {
     final bloc = ref.watch(Di.bloc.home);
     final userManager = ref.watch(Di.manager.user);
     final navigationManager = ref.watch(Di.manager.navigation);
-    final premiumManager = ref.watch(Di.manager.premium);
 
     useEffect(
       () {
@@ -39,7 +38,6 @@ class HomePage extends HookConsumerWidget {
               sliver: HomeHeader(
                 username: userManager.currentUser?.displayName ?? '',
                 onProfileTap: navigationManager.openProfile,
-                premiumContentEnabled: premiumManager.premiumContentEnabled,
               ),
             ),
             const SizedBox(height: 28).toSliver(),

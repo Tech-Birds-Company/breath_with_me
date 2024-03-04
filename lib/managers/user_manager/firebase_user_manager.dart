@@ -132,7 +132,7 @@ final class FirebaseUserManager implements UserManager {
   Future<void> updateAccountSettings(String name, String email) async {
     final currentUser = _firebaseAuth.currentUser;
     await currentUser?.updateDisplayName(name);
-    await currentUser?.updateEmail(email);
+    await currentUser?.verifyBeforeUpdateEmail(email);
   }
 
   Future<void> _sendEmailVerification() async {

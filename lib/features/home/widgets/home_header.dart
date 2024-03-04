@@ -10,12 +10,10 @@ import 'package:flutter_svg/svg.dart';
 class HomeHeader extends StatelessWidget {
   final String username;
   final VoidCallback onProfileTap;
-  final bool premiumContentEnabled;
 
   const HomeHeader({
     required this.username,
     required this.onProfileTap,
-    required this.premiumContentEnabled,
     super.key,
   });
 
