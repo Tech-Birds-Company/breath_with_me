@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:breathe_with_me/managers/deeplink_manager/deeplink_manager.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
@@ -48,7 +49,8 @@ final class ProfileBloc extends BlocBase<Object?> {
     }
   }
 
-  Future<void> openCommunityChat() => _deepLinkManager.openCommunityChat();
+  Future<void> openCommunityChat(Locale locale) =>
+      _deepLinkManager.openCommunityChat(locale);
 
   Future<void> onSupportEmail() => _deepLinkManager.onComposeEmail();
 

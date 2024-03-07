@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:breathe_with_me/repositories/firebase_remote_config_repository.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -33,9 +35,13 @@ final class DeeplinkManager {
     }
   }
 
-  Future<void> openCommunityChat() async {
+  Future<void> openCommunityChat(Locale locale) async {
     final socials = _firebaseRemoteConfigRepository.socials;
-    final communityDeeplink = Uri.parse(socials.communityDeeplink);
+    final communityDeeplink = Uri.parse(
+      locale == const Locale('ru')
+          ? socials.communityDeeplink
+          : socials.communityDeeplinkEn,
+    );
     final communityUrl = Uri.parse(socials.communityUrl);
     final canLaunch = await canLaunchUrl(communityDeeplink);
     if (canLaunch) {

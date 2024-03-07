@@ -113,7 +113,8 @@ class ProfilePage extends StatelessWidget {
                       ProfileMenuItem(
                         title: LocaleKeys.profileChat.tr(),
                         icon: BWMAssets.telegram,
-                        onTap: profileBloc.openCommunityChat,
+                        onTap: () =>
+                            profileBloc.openCommunityChat(currentLocale),
                       ).toSliver(),
                       ProfileMenuItem(
                         title: LocaleKeys.profileContactUs.tr(),

@@ -1,4 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'remote_config_legal_documents.g.dart';
 
@@ -8,9 +8,10 @@ class RemoteConfigLegalDocuments {
   final String termsOfServiceUrl;
 
   const RemoteConfigLegalDocuments({
-    this.privacyPolicyUrl = 'https://breathewithme.app/privacypolicy',
+    this.privacyPolicyUrl =
+        'https://drive.google.com/file/d/1xZ0_3upIQDCkF1RjYoy-64Mt6rfn-qWd/view',
     this.termsOfServiceUrl =
-        'https://drive.google.com/file/d/1ESZt6YCUZFP1ZBvis6YjQzqTx0aLTKKj',
+        'https://drive.google.com/file/d/1ESZt6YCUZFP1ZBvis6YjQzqTx0aLTKKj/view',
   });
 
   factory RemoteConfigLegalDocuments.fromJson(Map<String, dynamic> json) =>

@@ -17,9 +17,9 @@
 	"createAccountContact": "Связаться с нами",
 	"createAccountAgreement": {
 		"part1": "Нажимая на кнопку, вы принимаете ",
-		"privacyPolicyUrl": "лицензионное соглашение",
+		"privacyPolicyUrl": "политику конфиденциальности",
 		"part2": " и ",
-		"termsOfServiceUrl": "политику конфиденциальности"
+		"termsOfServiceUrl": "лицензионное соглашение"
 	},
 	"createAccountSignUpButtonTitle": "Создать аккаунт",
 

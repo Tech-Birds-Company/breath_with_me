@@ -5,6 +5,18 @@
 	<uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 	<uses-permission android:name="android.permission.USE_EXACT_ALARM" />
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
+	<queries>
+		<intent>
+			<action android:name="android.intent.action.VIEW" />
+			<data android:scheme="https" />
+		</intent>
+		<intent>
+			<action android:name="android.intent.action.VIEW" />
+			<data android:scheme="mailto" />
+		</intent>
+	</queries>
+
 	<application
         android:label="@string/app_name"
         android:name="${applicationName}"
@@ -34,7 +46,7 @@
 			<category android:name="android.intent.category.DEFAULT" />
 			<category android:name="android.intent.category.BROWSABLE" />
 			<data android:scheme="https"
-              android:host="@string/firebase_host_name" />  <!-- имя хоста для открытия ссылок -->
+              android:host="@string/firebase_host_name" />
 			</intent-filter>
 		</activity>
 		<!-- Don't delete the meta-data below.
