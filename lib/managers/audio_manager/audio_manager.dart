@@ -12,5 +12,7 @@ abstract base class AudioManager extends BaseAudioHandler {
     required String artist,
   });
 
+  void seekTrack(double percent);
+
   Future<void> dispose();
 }

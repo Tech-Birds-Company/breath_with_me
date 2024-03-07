@@ -91,6 +91,17 @@ final class TrackAudioManager extends AudioManager {
   }
 
   @override
+  void seekTrack(double percent) {
+    final totalDuration = _playerManager?.audioPlayer?.duration;
+    if (totalDuration == null) {
+      return;
+    }
+
+    final seekPosition = (totalDuration.inMilliseconds * percent).round();
+    _playerManager?.audioPlayer?.seek(Duration(milliseconds: seekPosition));
+  }
+
+  @override
   Future<void> pause() async {
     await _playerManager?.pause();
   }

@@ -16,6 +16,7 @@ class TracksFilters extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    EasyLocalization.of(context);
     final bloc = ref.watch(Di.bloc.tracksFilters);
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,

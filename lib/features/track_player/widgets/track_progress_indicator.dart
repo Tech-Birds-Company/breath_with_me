@@ -13,75 +13,53 @@ class TrackProgressIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return Column(
+    return Column(
+      children: [
+        Stack(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Stack(
-                children: [
-                  ColoredBox(
-                    color: theme.secondaryBackground,
-                    child: SizedBox(
-                      width: constraints.maxWidth,
-                      height: 3,
-                    ),
+            BlocSelector<TrackPlayerBloc, TrackPlayerState, (double, double)>(
+              bloc: _bloc,
+              selector: (state) =>
+                  (state.progress ?? 0, state.downloadProgress),
+              builder: (context, state) => SliderTheme(
+                data: const SliderThemeData(
+                  overlayShape: RoundSliderOverlayShape(overlayRadius: 0),
+                  trackHeight: 3,
+                  thumbShape: RoundSliderThumbShape(
+                    enabledThumbRadius: 8,
+                    disabledThumbRadius: 8,
+                    elevation: 0,
+                    pressedElevation: 0,
                   ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: ColoredBox(
-                      color: theme.secondaryColor,
-                      child: BlocSelector<TrackPlayerBloc, TrackPlayerState,
-                          double>(
-                        bloc: _bloc,
-                        selector: (state) => state.progress ?? 0,
-                        builder: (context, progress) {
-                          return SizedBox(
-                            width: constraints.maxWidth * progress,
-                            height: 3,
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                  ColoredBox(
-                    color: theme.secondaryColor.withOpacity(0.2),
-                    child:
-                        BlocSelector<TrackPlayerBloc, TrackPlayerState, double>(
-                      bloc: _bloc,
-                      selector: (state) => state.downloadProgress,
-                      builder: (context, downloadProgress) {
-                        return SizedBox(
-                          width: constraints.maxWidth * downloadProgress,
-                          height: 3,
-                        );
-                      },
-                    ),
-                  ),
-                ],
+                ),
+                child: Slider(
+                  value: state.$1,
+                  activeColor: theme.secondaryColor,
+                  inactiveColor: theme.secondaryBackground,
+                  secondaryActiveColor: theme.secondaryColor.withOpacity(0.2),
+                  secondaryTrackValue: state.$2,
+                  onChanged: _bloc.onSeekTrack,
+                ),
               ),
             ),
-            const SizedBox(height: 4),
-            BlocSelector<TrackPlayerBloc, TrackPlayerState, (int?, int?)>(
-              bloc: _bloc,
-              selector: (state) {
-                return (state.currentTimeMs, state.estimatedTimeMs);
-              },
-              builder: (context, state) {
-                final (current, estimated) = state;
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    TrackTimeLabel(durationMs: current),
-                    TrackTimeLabel(durationMs: estimated, estimated: true),
-                  ],
-                );
-              },
-            ),
           ],
-        );
-      },
+        ),
+        const SizedBox(height: 4),
+        BlocSelector<TrackPlayerBloc, TrackPlayerState, (int?, int?)>(
+          bloc: _bloc,
+          selector: (state) => (state.currentTimeMs, state.estimatedTimeMs),
+          builder: (context, state) {
+            final (current, estimated) = state;
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TrackTimeLabel(durationMs: current),
+                TrackTimeLabel(durationMs: estimated, estimated: true),
+              ],
+            );
+          },
+        ),
+      ],
     );
   }
 }

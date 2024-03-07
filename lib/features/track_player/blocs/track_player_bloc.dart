@@ -161,6 +161,14 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
     _downloaderManager.queue(tasks: [downloadTask]);
   }
 
+  void onSeekTrack(double percent) {
+    final position = _audioManager.playbackState.valueOrNull?.position;
+    if (position == null) {
+      return;
+    }
+    _audioManager.seekTrack(percent);
+  }
+
   Future<void> onTrackFinish() async {
     await _audioManager.stop();
     await _streakProgressManager.addStreakData(
