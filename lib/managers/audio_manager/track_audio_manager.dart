@@ -42,7 +42,16 @@ final class TrackAudioManager extends AudioManager {
     await _playerManager?.init(source);
 
     final audioPlayer = _playerManager?.audioPlayer;
-    final duration = audioPlayer!.duration;
+
+    if (audioPlayer == null) {
+      return;
+    }
+
+    final duration = audioPlayer.duration;
+
+    if (duration == null) {
+      return;
+    }
 
     final playerMediaItem = MediaItem(
       id: id,
@@ -56,8 +65,6 @@ final class TrackAudioManager extends AudioManager {
 
     progressStream ??= audioPlayer.positionStream.map((position) {
       final currentMs = position.inMilliseconds;
-      final estimatedMs = duration!.inMilliseconds - currentMs;
-      final progress = currentMs / duration.inMilliseconds;
 
       playbackState.add(
         playbackState.value.copyWith(
@@ -70,8 +77,8 @@ final class TrackAudioManager extends AudioManager {
         ),
       );
 
-      return (currentMs, progress, estimatedMs);
-    }).startWith((0, 0, 0));
+      return (currentMs, duration.inMilliseconds);
+    }).startWith((0, 0));
 
     onPlayerStateChanged ??= audioPlayer.playerStateStream.map(
       (state) {
@@ -91,14 +98,21 @@ final class TrackAudioManager extends AudioManager {
   }
 
   @override
-  void seekTrack(double percent) {
-    final totalDuration = _playerManager?.audioPlayer?.duration;
-    if (totalDuration == null) {
+  Future<void> seekTrack(double percent) async {
+    final audioPlayer = _playerManager?.audioPlayer;
+
+    if (audioPlayer == null) {
       return;
     }
 
-    final seekPosition = (totalDuration.inMilliseconds * percent).round();
-    _playerManager?.audioPlayer?.seek(Duration(milliseconds: seekPosition));
+    final duration = audioPlayer.duration;
+
+    if (duration == null) {
+      return;
+    }
+
+    final seekPosition = (duration.inMilliseconds * percent).round();
+    await audioPlayer.seek(Duration(milliseconds: seekPosition));
   }
 
   @override

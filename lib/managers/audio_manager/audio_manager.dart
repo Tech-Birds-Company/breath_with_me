@@ -2,7 +2,7 @@ import 'package:audio_service/audio_service.dart';
 import 'package:just_audio/just_audio.dart';
 
 abstract base class AudioManager extends BaseAudioHandler {
-  Stream<(int?, double, int?)>? progressStream;
+  Stream<(int, int)>? progressStream;
   Stream<PlayerState>? onPlayerStateChanged;
 
   Future<void> init(
@@ -12,7 +12,7 @@ abstract base class AudioManager extends BaseAudioHandler {
     required String artist,
   });
 
-  void seekTrack(double percent);
+  Future<void> seekTrack(double percent);
 
   Future<void> dispose();
 }

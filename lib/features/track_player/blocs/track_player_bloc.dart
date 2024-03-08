@@ -37,7 +37,7 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
 
   Track get track => _track;
   StreamSubscription<PlayerState>? _playerStateSub;
-  StreamSubscription<(int?, double, int?)>? _playerProgressSub;
+  StreamSubscription<(int?, int)>? _playerProgressSub;
   StreamSubscription<double>? _downloadProgressSub;
   Stream<double>? _downloadProgressStream;
 
@@ -161,12 +161,12 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
     _downloaderManager.queue(tasks: [downloadTask]);
   }
 
-  void onSeekTrack(double percent) {
+  Future<void> onSeekTrack(double percent) async {
     final position = _audioManager.playbackState.valueOrNull?.position;
     if (position == null) {
       return;
     }
-    _audioManager.seekTrack(percent);
+    await _audioManager.seekTrack(percent);
   }
 
   Future<void> onTrackFinish() async {
@@ -193,12 +193,11 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   void _subscribeToPlayerProgress() =>
       _playerProgressSub ??= _audioManager.progressStream?.listen(
         (event) {
-          final (currentTimeMs, progress, estimatedMs) = event;
+          final (currentMs, totalMs) = event;
           emit(
             state.copyWith(
-              currentTimeMs: currentTimeMs,
-              progress: progress,
-              estimatedTimeMs: estimatedMs,
+              currentTimeMs: currentMs,
+              totalMs: totalMs,
             ),
           );
         },

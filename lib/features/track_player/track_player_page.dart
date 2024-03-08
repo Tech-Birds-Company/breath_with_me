@@ -41,9 +41,14 @@ class TrackPlayerPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: BlocSelector<TrackPlayerBloc, TrackPlayerState, bool>(
                   bloc: bloc,
-                  selector: (state) =>
-                      (state.progress ?? 0.0) >=
-                      BWMConstants.trackPlayerFinishThreshold,
+                  selector: (state) {
+                    if (state.totalMs == 0) {
+                      return false;
+                    }
+                    final progress =
+                        (state.currentTimeMs / state.totalMs).clamp(0.0, 1.0);
+                    return progress >= BWMConstants.trackPlayerFinishThreshold;
+                  },
                   builder: (context, canBeFinished) => Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
