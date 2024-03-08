@@ -61,61 +61,49 @@ final class NavigationManager {
     },
   );
 
-  void openTrackPlayer(Track track) {
+  Future<void> openTrackPlayer(Track track) async {
     final uri = Uri(path: BWMRoutes.player);
-    router.push(
+    await router.push(
       uri.toString(),
       extra: track,
     );
   }
 
-  void openLanguageSheet() {
-    if (context == null) {
-      return;
-    }
-    router.push(BWMRoutes.languageSheet);
-  }
+  Future<void> openLanguageSheet() => router.push(BWMRoutes.languageSheet);
 
-  void openReminderPage() => router.push(BWMRoutes.reminderPage);
+  Future<void> openReminderPage() => router.push(BWMRoutes.reminderPage);
 
-  void openProfile() => router.push(BWMRoutes.profile);
+  Future<void> openProfile() => router.push(BWMRoutes.profile);
 
-  void openProfileSettings() => router.push(BWMRoutes.profileSettings);
+  Future<void> openProfileSettings() => router.push(BWMRoutes.profileSettings);
 
-  void openSafetyPrecautions() => router.push(BWMRoutes.safetyPrecautions);
+  Future<void> openSafetyPrecautions() =>
+      router.push(BWMRoutes.safetyPrecautions);
 
-  void openCreateAccount() {
-    if (context == null) {
-      return;
-    }
-
-    router.push(BWMRoutes.createAccount);
-  }
+  Future<void> openCreateAccount() => router.push(BWMRoutes.createAccount);
 
   Future<void> openFiltersSheet(FilterType filterType) => router.push(
         BWMRoutes.filtersSheet,
         extra: filterType,
       );
 
-  void openFaq() => router.push(BWMRoutes.faq);
+  Future<void> openFaq() => router.push(BWMRoutes.faq);
 
-  void openStreak() => router.push(BWMRoutes.streak);
+  Future<void> openStreak() => router.push(BWMRoutes.streak);
 
-  void replaceHome() => router.pushReplacement(BWMRoutes.home);
+  Future<void> singUpPage() => router.push(BWMRoutes.auth.signUp);
 
-  void singUpPage() => router.push(BWMRoutes.auth.signUp);
+  Future<void> singInPage() => router.push(BWMRoutes.auth.signIn);
 
-  void singInPage() => router.push(BWMRoutes.auth.signIn);
+  Future<void> successPage() => router.push(BWMRoutes.auth.successSignUp);
 
-  void successPage() => router.push(BWMRoutes.auth.successSignUp);
+  Future<void> forgotPasswordPage() =>
+      router.push(BWMRoutes.auth.forgotPassword);
 
-  void forgotPasswordPage() => router.push(BWMRoutes.auth.forgotPassword);
+  Future<void> resetPassword(String query) =>
+      router.push('${BWMRoutes.auth.resetPassword}?$query');
 
-  void resetPassword(String query) {
-    router.push('${BWMRoutes.auth.resetPassword}?$query');
-  }
-
-  void openPremiumPaywall() => router.push(BWMRoutes.premiumPaywall);
+  Future<void> openPremiumPaywall() => router.push(BWMRoutes.premiumPaywall);
 
   void pop() {
     if (router.canPop()) {

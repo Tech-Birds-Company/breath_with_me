@@ -17,7 +17,9 @@ final class ProfileSettingsBloc extends BlocBase<AccountSettingsState> {
           ),
         );
 
-  void openForgotPassword() => _navigationManager.forgotPasswordPage();
+  Future<void> openForgotPassword() async {
+    await _navigationManager.forgotPasswordPage();
+  }
 
   void onEmailChange(String text) {
     emit(

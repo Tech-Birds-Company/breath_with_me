@@ -26,12 +26,12 @@ final class LinkHandlerManager {
   // It will handle app links while the app is already started - be it in
   // the foreground or in the background.
   void _handleIncomingLinks() => _uriLinkSubscription = uriLinkStream.listen(
-        (Uri? uri) {
+        (Uri? uri) async {
           // if (!mounted) return;
           debugPrint('got uri: $uri');
           if (uri != null) {
             if (uri.queryParameters['mode'] == 'resetPassword') {
-              _navigationManager.resetPassword(uri.query);
+              await _navigationManager.resetPassword(uri.query);
             }
           }
           _latestUri = uri;

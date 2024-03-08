@@ -26,7 +26,7 @@ final class HomeBloc extends BlocBase<Object?> {
     final safetyPrecautionsShowed =
         _sharedPreferencesManager.getSafetyPrecautionsShowed;
     if (!safetyPrecautionsShowed) {
-      _navigationManager.openSafetyPrecautions();
+      await _navigationManager.openSafetyPrecautions();
     }
   }
 }

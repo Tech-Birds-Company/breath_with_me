@@ -171,13 +171,12 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
 
   Future<void> onTrackFinish() async {
     await _audioManager.stop();
+    _navigationManager.pop();
+    await _navigationManager.openStreak();
     await _streakProgressManager.addStreakData(
       minutes: track.duration,
       date: DateTime.now(),
     );
-    _navigationManager
-      ..pop()
-      ..openStreak();
   }
 
   void _subscribeToPlayerState() =>

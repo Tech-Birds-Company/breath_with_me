@@ -45,7 +45,9 @@ final class PremiumBannerBloc extends BlocBase<PremiumBannerState> {
         ),
       );
 
-  void onUserLearnMoreAboutPremium() => _navigationManager.openPremiumPaywall();
+  Future<void> onUserLearnMoreAboutPremium() async {
+    await _navigationManager.openPremiumPaywall();
+  }
 
   void dispose() {
     _isUserPremiumSubscription?.cancel();

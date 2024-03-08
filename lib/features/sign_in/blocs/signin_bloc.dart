@@ -26,8 +26,8 @@ final class SignInBloc extends BlocBase<SignInState> {
     await _userManager.signInWithEmail(state.email, state.password);
   }
 
-  void openForgotPassword() {
-    _navigationManager.forgotPasswordPage();
+  Future<void> openForgotPassword() async {
+    await _navigationManager.forgotPasswordPage();
   }
 
   void onEmailChange(String text) {

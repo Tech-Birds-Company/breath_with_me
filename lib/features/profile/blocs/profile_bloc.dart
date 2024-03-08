@@ -43,7 +43,7 @@ final class ProfileBloc extends BlocBase<Object?> {
     final permissionGranted =
         await _permissionsManager.requestPushNotificationsPermissions();
     if (permissionGranted ?? false) {
-      _navigationManager.openReminderPage();
+      await _navigationManager.openReminderPage();
     } else {
       await _pushNotificationsManager.openPushNotificationsSettings();
     }
@@ -54,18 +54,24 @@ final class ProfileBloc extends BlocBase<Object?> {
 
   Future<void> onSupportEmail() => _deepLinkManager.onComposeEmail();
 
-  void openLanguageSheet() {
+  Future<void> openLanguageSheet() async {
     if (_navigationManager.context == null) {
       return;
     }
-    _navigationManager.openLanguageSheet();
+    await _navigationManager.openLanguageSheet();
   }
 
-  void openFaq() => _navigationManager.openFaq();
+  Future<void> openFaq() async {
+    await _navigationManager.openFaq();
+  }
 
-  void openProfileSettings() => _navigationManager.openProfileSettings();
+  Future<void> openProfileSettings() async {
+    await _navigationManager.openProfileSettings();
+  }
 
-  void openPremiumPaywall() => _navigationManager.openPremiumPaywall();
+  Future<void> openPremiumPaywall() async {
+    await _navigationManager.openPremiumPaywall();
+  }
 
   Future<void> onSignOut() async {
     await _userManager.signOut();

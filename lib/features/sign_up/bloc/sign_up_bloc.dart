@@ -28,7 +28,7 @@ class SignUpBloc extends BlocBase<SignUpState> {
 
       if (result.isSuccess) {
         emit(state.copyWith(error: null));
-        _navigationManager.successPage();
+        await _navigationManager.successPage();
       } else {
         emit(
           state.copyWith(

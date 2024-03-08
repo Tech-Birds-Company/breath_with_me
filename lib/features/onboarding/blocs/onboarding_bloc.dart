@@ -21,7 +21,9 @@ final class OnboardingBloc extends BlocBase<OnboardingState> {
 
   Future<void> signUpWithGoogle() => _userManager.signInWithGoogle();
 
-  void onOpenCreateAccountModal() => _navigationManager.openCreateAccount();
+  Future<void> onOpenCreateAccountModal() async {
+    await _navigationManager.openCreateAccount();
+  }
 
   Future<void> onOpenPrivacyPolicy() => _deeplinkManager.onOpenPrivacyPolicy();
 
@@ -30,9 +32,13 @@ final class OnboardingBloc extends BlocBase<OnboardingState> {
 
   void onCloseCreateAccountModal() => _navigationManager.pop();
 
-  void signUpWithEmail() => _navigationManager.singUpPage();
+  Future<void> signUpWithEmail() async {
+    await _navigationManager.singUpPage();
+  }
 
-  void signIn() => _navigationManager.singInPage();
+  Future<void> signIn() async {
+    await _navigationManager.singInPage();
+  }
 
-  Future<void> onOpenContactUs() => _deeplinkManager.onComposeEmail();
+  void onOpenContactUs() => _deeplinkManager.onComposeEmail();
 }

@@ -43,11 +43,11 @@ final class TrackBloc extends BlocBase<Object?> {
       )
       .distinct();
 
-  void onTrackTap() {
+  Future<void> onTrackTap() async {
     if (_track.isPremium && !_premiumManager.isUserPremium) {
-      _navigationManager.openPremiumPaywall();
+      await _navigationManager.openPremiumPaywall();
     } else {
-      _navigationManager.openTrackPlayer(_track);
+      await _navigationManager.openTrackPlayer(_track);
     }
   }
 
