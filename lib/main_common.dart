@@ -7,6 +7,7 @@ import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/constants.dart';
 import 'package:breathe_with_me/database/database.dart';
 import 'package:breathe_with_me/di/di.dart';
+import 'package:breathe_with_me/di/provider_logger.dart';
 import 'package:breathe_with_me/managers/audio_manager/track_audio_manager.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/tracks_downloader_manger.dart';
@@ -21,7 +22,6 @@ import 'package:breathe_with_me/repositories/firebase_remote_config_repository.d
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/isar_bloc_storage.dart';
 import 'package:breathe_with_me/utils/environment.dart';
-import 'package:breathe_with_me/utils/logger.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -169,7 +169,7 @@ Future<void> mainCommon(Environment env) async {
     ProviderScope(
       overrides: dependencies,
       observers: [
-        _Logger(),
+        ProviderLogger(),
       ],
       child: EasyLocalization(
         useOnlyLangCode: true,
@@ -188,35 +188,4 @@ Future<void> mainCommon(Environment env) async {
       ),
     ),
   );
-}
-
-final class _Logger extends ProviderObserver {
-  final _providers = <int, ProviderBase<Object?>>{};
-
-  @override
-  void didAddProvider(
-    ProviderBase<Object?> provider,
-    Object? value,
-    ProviderContainer container,
-  ) {
-    logger.i(
-      '[RIVERPOD]: didAddProvider: ${provider.name ?? provider.runtimeType}',
-      stackTrace: StackTrace.empty,
-    );
-    _providers[provider.hashCode] = provider;
-    logger.i('[RIVERPOD]: ${_providers.length} providers alive');
-  }
-
-  @override
-  void didDisposeProvider(
-    ProviderBase<Object?> provider,
-    ProviderContainer container,
-  ) {
-    logger.w(
-      '[RIVERPOD] didDisposeProvider: ${provider.name ?? provider.runtimeType}',
-      stackTrace: StackTrace.empty,
-    );
-    _providers.remove(provider.hashCode);
-    logger.i('[RIVERPOD]: ${_providers.length} providers alive');
-  }
 }

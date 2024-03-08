@@ -52,8 +52,7 @@ fvm flutter build ipa \
   --build-name="$version" \
   --build-number="$build" \
   --obfuscate \
-  --split-debug-info \
-  --release \
+  --split-debug-info build/ios/symbols \
   --flavor="$env" \
   --target="$target"
 
