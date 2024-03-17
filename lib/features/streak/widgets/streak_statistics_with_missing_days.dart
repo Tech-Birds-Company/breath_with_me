@@ -34,6 +34,7 @@ class StreakStatisticsWithMissingDays extends StatelessWidget {
                 text: progress.totalStreak.toString(),
                 name: LocaleKeys.streakStatisticsCardStreaksCount
                     .plural(progress.totalStreak),
+                isPremiumUser: bloc.isUserPremium,
                 crossAxisAlignment: CrossAxisAlignment.center,
               ),
               const Spacer(),
@@ -43,6 +44,7 @@ class StreakStatisticsWithMissingDays extends StatelessWidget {
                 text: progress.totalMissedDays.toString(),
                 name: LocaleKeys.streakStatisticsCardDayMissedCount
                     .plural(progress.totalMissedDays),
+                isPremiumUser: bloc.isUserPremium,
                 crossAxisAlignment: CrossAxisAlignment.center,
               ),
               const Spacer(),

@@ -46,6 +46,7 @@ class StreakPremiumMissed extends StatelessWidget {
           LivesIndicator(
             totalLives: progress.totalLives,
             configMaxLives: configMaxLives,
+            isPremiumUser: bloc.isUserPremium,
           ),
           if (progress.totalLives >= progress.totalMissedDays)
             Padding(

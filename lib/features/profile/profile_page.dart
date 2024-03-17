@@ -73,19 +73,7 @@ class ProfilePage extends StatelessWidget {
                           );
                         },
                       ).toSliver(),
-                      StreamBuilder<bool>(
-                        stream: profileBloc.isPremiumUserStream,
-                        initialData: profileBloc.isUserPremium,
-                        builder: (context, snapshot) {
-                          final isUserPremium = snapshot.requireData;
-                          return ProfileStatistics(
-                            isUserPremium: isUserPremium,
-                            onPremiumButtonPressed:
-                                profileBloc.openPremiumPaywall,
-                            bloc: streakBloc,
-                          );
-                        },
-                      ).toSliver(),
+                      const ProfileStatistics().toSliver(),
                       const SizedBox(height: 24).toSliver(),
                       ProfileMenuItem(
                         title: LocaleKeys.profileSettings.tr(),

@@ -23,7 +23,7 @@ class StreakStatistics extends StatelessWidget {
           if (hasMissedDays && !ignoreMissingDays) {
             return StreakStatisticsWithMissingDays(bloc: bloc);
           }
-          return StreakStatisticsWithDetails(bloc: bloc);
+          return const StreakStatisticsWithDetails();
         },
       );
 }
