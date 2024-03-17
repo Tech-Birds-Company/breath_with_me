@@ -33,10 +33,8 @@ final class TrackPlayerManager extends PlayerManager {
       _appLifecycleListener ??= AppLifecycleListener(
         onStateChange: (state) => _appLifecycleState = state,
         onPause: () async {
-          if (audioPlayer?.playing ?? false) {
-            await _navigationManager.openPremiumPaywall();
-          }
           await pause();
+          await _navigationManager.openPremiumPaywall();
         },
       );
 

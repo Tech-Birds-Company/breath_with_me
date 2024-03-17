@@ -47,12 +47,12 @@ Future<List<Override>> _setupDependencies({
   final tracksDownloadManager = TracksDownloaderManager(databaseManager);
 
   final subscriptionsManager = SubscriptionsManagerImpl(
-    isProduction
-        ? Platform.isIOS
+    Platform.isIOS
+        ? isProduction
             ? BWMConstants.revenueCatApiKeyiOSProd
-            : '' // TODO(vasidmi): android prod key
-        : Platform.isIOS
-            ? BWMConstants.revenueCatApiKeyiOSDev
+            : BWMConstants.revenueCatApiKeyiOSDev
+        : isProduction
+            ? BWMConstants.revenueCatApiKeyAndroidProd
             : BWMConstants.revenueCatApiKeyAndroidDev,
   );
   await subscriptionsManager.configure();
@@ -64,7 +64,7 @@ Future<List<Override>> _setupDependencies({
     subscriptionsManager,
     databaseManager,
     isProduction: isProduction,
-  );
+  )..init();
 
   final sharedPrefsManager = SharedPreferencesManager();
 

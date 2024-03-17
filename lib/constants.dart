@@ -9,8 +9,9 @@ abstract final class BWMConstants {
 
   // RevenueCat ------------------------------
   static const revenueCatApiKeyiOSDev = 'appl_bKRMZpNDZwTkkKDiiSahjGlSvmc';
-  static const revenueCatApiKeyAndroidDev = 'goog_MGDBLkAVyoIHaqFyEtjunNjAnvF';
   static const revenueCatApiKeyiOSProd = 'appl_lNhJPKaKyDMySQoWNJFWtzOiGEw';
+  static const revenueCatApiKeyAndroidDev = 'goog_MGDBLkAVyoIHaqFyEtjunNjAnvF';
+  static const revenueCatApiKeyAndroidProd = 'goog_CpKZwKovWKBUwJaSNsZnCMsNqzb';
 //------------------------------------------
 
   static const iOSBundleIdDev = 'com.dobry.breathewithme.develop';
