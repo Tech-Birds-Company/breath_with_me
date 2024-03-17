@@ -80,8 +80,6 @@ class ProfilePage extends StatelessWidget {
                           final isUserPremium = snapshot.requireData;
                           return ProfileStatistics(
                             isUserPremium: isUserPremium,
-                            premiumContentEnabled:
-                                profileBloc.premiumContentEnabled,
                             onPremiumButtonPressed:
                                 profileBloc.openPremiumPaywall,
                             bloc: streakBloc,

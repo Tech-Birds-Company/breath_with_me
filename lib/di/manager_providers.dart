@@ -65,7 +65,6 @@ final class _ManagerProviders {
 
   late final premium = Provider.autoDispose(
     (ref) => PremiumManager(
-      ref.watch(Di.repository.firebaseRemoteConfig),
       ref.watch(Di.manager.subscriptions),
     ),
   );

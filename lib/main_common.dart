@@ -58,10 +58,7 @@ Future<List<Override>> _setupDependencies({
   await subscriptionsManager.configure();
 
   const remoteConfigRepository = FirebaseRemoteConfigRepository();
-  final premiumManager = PremiumManager(
-    remoteConfigRepository,
-    subscriptionsManager,
-  );
+  final premiumManager = PremiumManager(subscriptionsManager);
 
   final userManager = FirebaseUserManager(
     subscriptionsManager,

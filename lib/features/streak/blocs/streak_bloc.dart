@@ -36,34 +36,23 @@ final class StreakBloc extends CacheableBloc<StreakState> {
 
   bool get isUserPremium => _premiumManager.isUserPremium;
 
-  bool get premiumContentEnabled => _premiumManager.premiumContentEnabled;
-
   int get maxLivesCount => _remoteConfigRepository.streaks.monthLivesCount;
 
   StreamSubscription<StreakProgressV2>? _streakProgressSubscription;
 
   Future<void> init() async {
     final progress = await _streakProgressManager.getUserStreakProgress();
-    emit(
-      state.copyWith(progress: progress),
-    );
+    emit(state.copyWith(progress: progress));
     await cache();
     _setupStreakProgressSubscription();
   }
 
-  void _setupStreakProgressSubscription() {
-    _streakProgressSubscription ??= _streakProgressManager.stream.listen(
-      (streakProgress) {
-        emit(
-          state.copyWith(
-            progress: streakProgress,
-          ),
-        );
-      },
-    );
-  }
-
-  void onCloseTap() => _navigationManager.popToRoot();
+  void _setupStreakProgressSubscription() =>
+      _streakProgressSubscription ??= _streakProgressManager.stream.listen(
+        (streakProgress) => emit(
+          state.copyWith(progress: streakProgress),
+        ),
+      );
 
   Future<void> onRestoreTap() async {
     final progress = await _streakProgressManager.restoreUserStreakProgress();
@@ -72,9 +61,9 @@ final class StreakBloc extends CacheableBloc<StreakState> {
     );
   }
 
-  void onSkipTap() => emit(
-        state.copyWith(ignoreMissingDays: true),
-      );
+  void onSkipTap() => emit(state.copyWith(ignoreMissingDays: true));
+
+  void onCloseTap() => _navigationManager.popToRoot();
 
   void dispose() {
     _streakProgressSubscription?.cancel();

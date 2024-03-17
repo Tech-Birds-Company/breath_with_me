@@ -26,7 +26,6 @@ final class PremiumBannerBloc extends BlocBase<PremiumBannerState> {
         premiumBannerTracksEnabled: config.premiumBannerTracksEnabled,
         premiumBannerTracksPosition: config.premiumBannerTracksPosition,
         isPremiumUser: _premiumManager.isUserPremium,
-        premiumContentEnabled: _premiumManager.premiumContentEnabled,
       ),
     );
     _setupIsUserPremiumSubscription();

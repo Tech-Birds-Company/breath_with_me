@@ -33,11 +33,9 @@ class TracksList extends ConsumerWidget {
           final premiumBannerTracksWasHidden =
               premiumBannerState.premiumBannerTracksWasHidden;
 
-          final shouldShowPremiumBanner =
-              !premiumBannerState.premiumContentEnabled &&
-                  !premiumBannerState.isPremiumUser &&
-                  premiumBannerTracksEnabled &&
-                  !premiumBannerTracksWasHidden;
+          final shouldShowPremiumBanner = !premiumBannerState.isPremiumUser &&
+              premiumBannerTracksEnabled &&
+              !premiumBannerTracksWasHidden;
 
           final itemsCount = tracks.length + (shouldShowPremiumBanner ? 1 : 0);
           return SliverList.separated(

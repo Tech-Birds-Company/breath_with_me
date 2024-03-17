@@ -35,8 +35,6 @@ final class ProfileBloc extends BlocBase<Object?> {
 
   bool get isUserPremium => _premiumManager.isUserPremium;
 
-  bool get premiumContentEnabled => _premiumManager.premiumContentEnabled;
-
   Stream<bool> get isPremiumUserStream => _premiumManager.isPremiumUserStream;
 
   Future<void> openReminder() async {
