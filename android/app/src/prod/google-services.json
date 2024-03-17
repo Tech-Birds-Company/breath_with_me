@@ -198,11 +198,27 @@
           }
         },
         {
+          "client_id": "807142596957-e45fg515knpagd26msn7rp95ah0mnsp8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.innate.beat.breathewithme",
+            "certificate_hash": "82da488523dea38619dcf024e08e30c1323e0721"
+          }
+        },
+        {
           "client_id": "807142596957-fas4pq5hqtae2uj921loe4gg45aovf2t.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.innate.beat.breathewithme",
             "certificate_hash": "e3c7bdff647c6c18d198b48631e71d0554af2caf"
+          }
+        },
+        {
+          "client_id": "807142596957-ij26ojcees0mkbr7a44cfci1c42qd79o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.innate.beat.breathewithme",
+            "certificate_hash": "576a6481827bdceeb069fd0fad22985aefcf730e"
           }
         },
         {
