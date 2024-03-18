@@ -1,3 +1,4 @@
+import 'package:breathe_with_me/features/streak/widgets/lives_indicator.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_quote.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_weeks.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
@@ -47,6 +48,25 @@ class StreakWithoutPremium extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             StreakWeeks(selectedDay: streaksCount),
+            const SizedBox(height: 20),
+            Text(
+              LocaleKeys.streakLivesTitle.tr().toUpperCase(),
+              style: theme.typography.label.copyWith(color: theme.gray3),
+            ),
+            const SizedBox(height: 8),
+            const LivesIndicator(
+              totalLives: 0,
+              configMaxLives: 3,
+              isPremiumUser: true,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              LocaleKeys.streakLivesWhenPremiumEnabled.tr().toUpperCase(),
+              textAlign: TextAlign.center,
+              style: theme.typography.label.copyWith(
+                color: theme.gray6,
+              ),
+            ),
           ],
         ),
       ),

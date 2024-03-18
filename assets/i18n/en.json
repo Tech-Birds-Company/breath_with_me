@@ -113,6 +113,7 @@
 	"streakWithoutPremiumTitle": "You have",
 	"streakWithoutPremiumSubtitle": "{} day streak",
 	"streakLivesTitle": "Monthly streak lives",
+	"streakLivesWhenPremiumEnabled": "Will be available after starting a premium account",
 	"streakLivesFooter": {
 		"one": "You will get {} more live next month",
 		"other": "You will get {} more lives next month"
