@@ -40,7 +40,7 @@ final class ProfileBloc extends BlocBase<Object?> {
   Future<void> openReminder() async {
     final permissionGranted =
         await _permissionsManager.requestPushNotificationsPermissions();
-    if (permissionGranted ?? false) {
+    if (permissionGranted) {
       await _navigationManager.openReminderPage();
     } else {
       await _pushNotificationsManager.openPushNotificationsSettings();
@@ -53,9 +53,6 @@ final class ProfileBloc extends BlocBase<Object?> {
   Future<void> onSupportEmail() => _deepLinkManager.onComposeEmail();
 
   Future<void> openLanguageSheet() async {
-    if (_navigationManager.context == null) {
-      return;
-    }
     await _navigationManager.openLanguageSheet();
   }
 

@@ -3,10 +3,12 @@ import 'dart:ui';
 import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 
-class SighUpSuccess extends StatelessWidget {
+class SighUpSuccess extends HookWidget {
   final NavigationManager navigationManager;
 
   const SighUpSuccess({
@@ -17,6 +19,15 @@ class SighUpSuccess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
+
+    useEffect(
+      () {
+        BWMAnalytics.logScreenView('SignUpSuccess');
+        return null;
+      },
+      const [],
+    );
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: BackdropFilter(

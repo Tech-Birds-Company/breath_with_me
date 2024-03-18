@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 final class PermissionsManager {
@@ -10,13 +11,22 @@ final class PermissionsManager {
   Future<void> handleAppTracking() async {
     final status = await AppTrackingTransparency.trackingAuthorizationStatus;
     if (status != TrackingStatus.notSupported) {
-      await AppTrackingTransparency.requestTrackingAuthorization();
+      final status =
+          await AppTrackingTransparency.requestTrackingAuthorization();
+      BWMAnalytics.event(
+        'appTrackingStatus',
+        params: {
+          'status': status.toString(),
+        },
+      );
+    } else {
+      BWMAnalytics.event('appTrackingNotSupported');
     }
   }
 
-  Future<bool?> requestPushNotificationsPermissions() async {
+  Future<bool> requestPushNotificationsPermissions() async {
     if (Platform.isIOS) {
-      return _flutterLocalNotificationsPlugin
+      final iosGranted = await _flutterLocalNotificationsPlugin
           .resolvePlatformSpecificImplementation<
               IOSFlutterLocalNotificationsPlugin>()
           ?.requestPermissions(
@@ -24,6 +34,14 @@ final class PermissionsManager {
             badge: true,
             sound: true,
           );
+      BWMAnalytics.event(
+        'pushNotificationsPermissions',
+        params: {
+          'platform': 'ios',
+          'granted': (iosGranted ?? false).toString(),
+        },
+      );
+      return iosGranted ?? false;
     } else if (Platform.isAndroid) {
       final notificationsPermissionGranted =
           await _flutterLocalNotificationsPlugin
@@ -35,9 +53,17 @@ final class PermissionsManager {
               .resolvePlatformSpecificImplementation<
                   AndroidFlutterLocalNotificationsPlugin>()
               ?.requestExactAlarmsPermission();
-      return (notificationsPermissionGranted ?? false) &&
+      final androidGranted = (notificationsPermissionGranted ?? false) &&
           (exactAlarmsPermissionGranted ?? false);
+      BWMAnalytics.event(
+        'pushNotificationsPermissions',
+        params: {
+          'platform': 'android',
+          'granted': (androidGranted).toString(),
+        },
+      );
+      return androidGranted;
     }
-    return null;
+    return false;
   }
 }

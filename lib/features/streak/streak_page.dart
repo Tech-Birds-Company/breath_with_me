@@ -5,11 +5,13 @@ import 'package:breathe_with_me/features/streak/widgets/streak_premium_started_o
 import 'package:breathe_with_me/features/streak/widgets/streak_without_premium.dart';
 import 'package:breathe_with_me/repositories/streaks_quotes_repository.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class StreakPage extends StatelessWidget {
+class StreakPage extends HookWidget {
   final StreakBloc bloc;
 
   const StreakPage({
@@ -22,6 +24,14 @@ class StreakPage extends StatelessWidget {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     final locale = EasyLocalization.of(context)!.locale;
     final isUserPremium = bloc.isUserPremium;
+
+    useEffect(
+      () {
+        BWMAnalytics.logScreenView('StreakPage');
+        return null;
+      },
+      const [],
+    );
     return Scaffold(
       backgroundColor: theme.primaryBackground,
       body: SafeArea(
