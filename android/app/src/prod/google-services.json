@@ -238,6 +238,14 @@
           }
         },
         {
+          "client_id": "807142596957-t0l2j5kb9c2rd13ov2d1qrsgjl7roc0b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.innate.beat.breathewithme",
+            "certificate_hash": "7e551b9aad6b0e9d432e84d26f81e9fbc02db61d"
+          }
+        },
+        {
           "client_id": "807142596957-l7ti47nonccj4g66nmg11e9gvpdgci3q.apps.googleusercontent.com",
           "client_type": 3
         }
