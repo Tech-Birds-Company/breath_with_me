@@ -1,5 +1,4 @@
 import 'package:breathe_with_me/assets.dart';
-import 'package:breathe_with_me/common/widgets/bwm_action_button.dart';
 import 'package:breathe_with_me/features/premium/premium_constants.dart';
 import 'package:breathe_with_me/features/premium/widgets/premium_badge.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
@@ -9,11 +8,9 @@ import 'package:flutter/material.dart';
 
 class PremiumBannerTracks extends StatelessWidget {
   final VoidCallback onBannerHide;
-  final VoidCallback onLearnMore;
 
   const PremiumBannerTracks({
     required this.onBannerHide,
-    required this.onLearnMore,
     super.key,
   });
 
@@ -46,15 +43,6 @@ class PremiumBannerTracks extends StatelessWidget {
                           maxLines: 2,
                         ),
                       ),
-                    const SizedBox(height: 32),
-                    BWMActionButton(
-                      title: LocaleKeys.premium_learnMore.tr(),
-                      height: 36,
-                      textColor: theme.primaryColor,
-                      borderColor: theme.gray5,
-                      overlayColor: theme.primaryColor.withOpacity(0.2),
-                      onPressed: onLearnMore,
-                    ),
                   ],
                 ),
               ),

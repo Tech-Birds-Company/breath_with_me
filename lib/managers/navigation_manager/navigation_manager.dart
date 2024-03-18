@@ -103,8 +103,6 @@ final class NavigationManager {
   Future<void> resetPassword(String query) =>
       router.push('${BWMRoutes.auth.resetPassword}?$query');
 
-  Future<void> openPremiumPaywall() => router.push(BWMRoutes.premiumPaywall);
-
   void pop() {
     if (router.canPop()) {
       router.pop();

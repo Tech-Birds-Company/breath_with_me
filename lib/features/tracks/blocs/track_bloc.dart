@@ -45,7 +45,7 @@ final class TrackBloc extends BlocBase<Object?> {
 
   Future<void> onTrackTap() async {
     if (_track.isPremium && !_premiumManager.isUserPremium) {
-      await _navigationManager.openPremiumPaywall();
+      return;
     } else {
       await _navigationManager.openTrackPlayer(_track);
     }

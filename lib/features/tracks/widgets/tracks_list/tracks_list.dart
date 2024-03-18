@@ -57,7 +57,6 @@ class TracksList extends ConsumerWidget {
                       )) {
                 return PremiumBannerTracks(
                   onBannerHide: premiumBannerBloc.onUserHidePremiumBanner,
-                  onLearnMore: premiumBannerBloc.onUserLearnMoreAboutPremium,
                 );
               }
               final adjustedIndex = shouldShowPremiumBanner

@@ -67,10 +67,6 @@ final class ProfileBloc extends BlocBase<Object?> {
     await _navigationManager.openProfileSettings();
   }
 
-  Future<void> openPremiumPaywall() async {
-    await _navigationManager.openPremiumPaywall();
-  }
-
   Future<void> onSignOut() async {
     await _userManager.signOut();
   }

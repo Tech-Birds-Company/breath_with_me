@@ -85,10 +85,7 @@ Future<List<Override>> _setupDependencies({
   final linkHandlerManager = LinkHandlerManager(navigationManager)..init();
 
   final trackAudioManager = await AudioService.init(
-    builder: () => TrackAudioManager(
-      premiumManager,
-      navigationManager,
-    ),
+    builder: () => TrackAudioManager(premiumManager),
     config: const AudioServiceConfig(
       androidNotificationChannelId: BWMConstants.androidNotificationChannelId,
       androidNotificationChannelName:
