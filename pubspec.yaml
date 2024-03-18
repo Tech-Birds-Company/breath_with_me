@@ -79,7 +79,6 @@ flutter:
     - assets/fonts/
     - assets/i18n/
     - assets/icons/
-    - assets/audio/
 
   fonts:
     - family: Oxygen

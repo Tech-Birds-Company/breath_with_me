@@ -63,6 +63,8 @@ final class StreakBloc extends CacheableBloc<StreakState> {
 
   void onSkipTap() => emit(state.copyWith(ignoreMissingDays: true));
 
+  void onReminderTap() => _navigationManager.openReminderPage();
+
   void onCloseTap() => _navigationManager.popToRoot();
 
   void dispose() {

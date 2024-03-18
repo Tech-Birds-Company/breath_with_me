@@ -9,10 +9,12 @@ import 'package:flutter/material.dart';
 class StreakWithoutPremium extends StatelessWidget {
   final int streaksCount;
   final StreakQuoteData quote;
+  final VoidCallback onReminderTap;
 
   const StreakWithoutPremium({
     required this.streaksCount,
     required this.quote,
+    required this.onReminderTap,
     super.key,
   });
 
@@ -47,6 +49,19 @@ class StreakWithoutPremium extends StatelessWidget {
             StreakWeeks(selectedDay: streaksCount),
           ],
         ),
+      ),
+      ListTile(
+        contentPadding: EdgeInsets.zero,
+        title: Text(
+          LocaleKeys.reminderTitle.tr(),
+          style: theme.typography.heading3,
+        ),
+        trailing: Icon(
+          Icons.arrow_forward_ios,
+          color: theme.gray4,
+          size: 16,
+        ),
+        onTap: onReminderTap,
       ),
       Padding(
         padding: const EdgeInsets.symmetric(vertical: 20),

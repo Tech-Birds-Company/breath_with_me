@@ -46,6 +46,7 @@ class StreakPage extends StatelessWidget {
                     streaksCount: state.progress.totalStreak,
                     quote: const StreaksQuotesRepository()
                         .getQuote(locale.languageCode),
+                    onReminderTap: bloc.onReminderTap,
                   );
                 }
               },
