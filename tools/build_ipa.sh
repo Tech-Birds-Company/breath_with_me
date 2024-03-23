@@ -16,7 +16,8 @@ has_argument() {
 
 version=""
 build=""
-env="dev"
+env="prod"
+target="lib/main_prod.dart"
 
 if has_argument "--version" "$@"; then
   version="${@:2:1}"
@@ -35,7 +36,6 @@ if [[ -z "$version" || -z "$build" ]]; then
   exit 1
 fi
 
-target="lib/main_prod.dart"
 if [[ "$env" == "dev" ]]; then
   target="lib/main_dev.dart"
 fi
