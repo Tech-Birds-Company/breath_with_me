@@ -35,7 +35,7 @@ class StreakStatisticsWithDetails extends HookConsumerWidget {
                   text: progress.totalStreak.toString(),
                   name: LocaleKeys.streakStatisticsCardStreaksCount
                       .plural(progress.totalStreak),
-                  isPremiumUser: bloc.isUserPremium,
+                  applyBlur: false,
                   crossAxisAlignment: CrossAxisAlignment.center,
                 ),
                 const Spacer(),
@@ -45,7 +45,7 @@ class StreakStatisticsWithDetails extends HookConsumerWidget {
                   text: progress.totalPractices.toString(),
                   name: LocaleKeys.streakStatisticsCardPracticesCount
                       .plural(progress.totalPractices),
-                  isPremiumUser: bloc.isUserPremium,
+                  applyBlur: true,
                   crossAxisAlignment: CrossAxisAlignment.center,
                 ),
                 const Spacer(),
@@ -55,7 +55,7 @@ class StreakStatisticsWithDetails extends HookConsumerWidget {
                   text: progress.totalMinutes.toString(),
                   name: LocaleKeys.streakStatisticsCardMinCount
                       .plural(progress.totalMinutes),
-                  isPremiumUser: bloc.isUserPremium,
+                  applyBlur: true,
                   crossAxisAlignment: CrossAxisAlignment.center,
                 ),
                 const Spacer(),
@@ -63,10 +63,22 @@ class StreakStatisticsWithDetails extends HookConsumerWidget {
             ),
           ),
           const SizedBox(height: 16),
-          LivesIndicator(
-            totalLives: progress.totalLives,
-            configMaxLives: bloc.maxLivesCount,
-            isPremiumUser: bloc.isUserPremium,
+          Text(
+            LocaleKeys.streakLivesTitle.tr().toUpperCase(),
+            style: theme.typography.label.copyWith(color: theme.gray3),
+          ),
+          const SizedBox(height: 8),
+          const LivesIndicator(
+            totalLives: 0,
+            configMaxLives: 3,
+          ),
+          const SizedBox(height: 16),
+          Text(
+            LocaleKeys.streakLivesWhenPremiumEnabled.tr().toUpperCase(),
+            textAlign: TextAlign.center,
+            style: theme.typography.label.copyWith(
+              color: theme.gray6,
+            ),
           ),
         ],
       ),

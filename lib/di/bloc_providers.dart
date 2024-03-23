@@ -136,17 +136,6 @@ final class _BlocProviders {
     ),
   );
 
-  late final premiumBanner = Provider.autoDispose(
-    (ref) {
-      final bloc = PremiumBannerBloc(
-        ref.watch(Di.manager.premium),
-        ref.watch(Di.repository.firebaseRemoteConfig),
-      )..init();
-      ref.onDispose(bloc.dispose);
-      return bloc;
-    },
-  );
-
   late final premiumPaywall = Provider.autoDispose(
     (ref) => PremiumPaywallBloc(
       ref.watch(Di.manager.subscriptions),

@@ -1,13 +1,9 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:breathe_with_me/constants.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
-import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/auth_result.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
-import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
-import 'package:breathe_with_me/utils/logger.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -16,11 +12,9 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 final class FirebaseUserManager implements UserManager {
   final bool _isProduction;
-  final SubscriptionsManager _subscriptionManager;
   final DatabaseManager _databaseManager;
 
   FirebaseUserManager(
-    this._subscriptionManager,
     this._databaseManager, {
     required bool isProduction,
   }) : _isProduction = isProduction;
@@ -59,24 +53,11 @@ final class FirebaseUserManager implements UserManager {
           if (user != null) {
             await FirebaseAnalytics.instance
                 .setUserProperty(name: 'userId', value: user.uid);
-            final loginResult = await _subscriptionManager.login(user.uid);
-            final customerInfoJson =
-                jsonEncode(loginResult.customerInfo.toJson());
-            BWMAnalytics.event(
-              'RevenueCatLogin',
-              params: {
-                'customerInfo': customerInfoJson,
-              },
-            );
-            logger.i(
-              '[RevenueCat]: login ✅: $customerInfoJson',
-            );
             return;
           } else {
             await FirebaseAnalytics.instance
                 .setUserProperty(name: 'userId', value: null);
           }
-          await _subscriptionManager.logOut();
           await _databaseManager.clearDb();
         },
       );

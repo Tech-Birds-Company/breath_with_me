@@ -29,12 +29,9 @@ final class StreakBloc extends CacheableBloc<StreakState> {
   StreakState fromJson(Map<String, dynamic> json) => StreakState.fromJson(json);
 
   @override
-  Map<String, dynamic> toJson(StreakState state) =>
-      state.copyWith(ignoreMissingDays: false).toJson();
+  Map<String, dynamic> toJson(StreakState state) => state.toJson();
 
   Stream<bool> get isPremiumUserStream => _premiumManager.isPremiumUserStream;
-
-  bool get isUserPremium => _premiumManager.isUserPremium;
 
   int get maxLivesCount => _remoteConfigRepository.streaks.monthLivesCount;
 
@@ -60,8 +57,6 @@ final class StreakBloc extends CacheableBloc<StreakState> {
       state.copyWith(progress: progress),
     );
   }
-
-  void onSkipTap() => emit(state.copyWith(ignoreMissingDays: true));
 
   void onReminderTap() => _navigationManager.openReminderPage();
 

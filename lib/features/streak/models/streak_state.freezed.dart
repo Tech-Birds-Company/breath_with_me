@@ -21,7 +21,6 @@ StreakState _$StreakStateFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$StreakState {
   StreakProgressV2 get progress => throw _privateConstructorUsedError;
-  bool get ignoreMissingDays => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +34,7 @@ abstract class $StreakStateCopyWith<$Res> {
           StreakState value, $Res Function(StreakState) then) =
       _$StreakStateCopyWithImpl<$Res, StreakState>;
   @useResult
-  $Res call({StreakProgressV2 progress, bool ignoreMissingDays});
+  $Res call({StreakProgressV2 progress});
 
   $StreakProgressV2CopyWith<$Res> get progress;
 }
@@ -54,17 +53,12 @@ class _$StreakStateCopyWithImpl<$Res, $Val extends StreakState>
   @override
   $Res call({
     Object? progress = null,
-    Object? ignoreMissingDays = null,
   }) {
     return _then(_value.copyWith(
       progress: null == progress
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
               as StreakProgressV2,
-      ignoreMissingDays: null == ignoreMissingDays
-          ? _value.ignoreMissingDays
-          : ignoreMissingDays // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 
@@ -85,7 +79,7 @@ abstract class _$$StreakStateImplCopyWith<$Res>
       __$$StreakStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({StreakProgressV2 progress, bool ignoreMissingDays});
+  $Res call({StreakProgressV2 progress});
 
   @override
   $StreakProgressV2CopyWith<$Res> get progress;
@@ -103,17 +97,12 @@ class __$$StreakStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? progress = null,
-    Object? ignoreMissingDays = null,
   }) {
     return _then(_$StreakStateImpl(
       progress: null == progress
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
               as StreakProgressV2,
-      ignoreMissingDays: null == ignoreMissingDays
-          ? _value.ignoreMissingDays
-          : ignoreMissingDays // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -121,9 +110,7 @@ class __$$StreakStateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$StreakStateImpl implements _StreakState {
-  const _$StreakStateImpl(
-      {this.progress = const StreakProgressV2(),
-      this.ignoreMissingDays = false});
+  const _$StreakStateImpl({this.progress = const StreakProgressV2()});
 
   factory _$StreakStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$StreakStateImplFromJson(json);
@@ -131,13 +118,10 @@ class _$StreakStateImpl implements _StreakState {
   @override
   @JsonKey()
   final StreakProgressV2 progress;
-  @override
-  @JsonKey()
-  final bool ignoreMissingDays;
 
   @override
   String toString() {
-    return 'StreakState(progress: $progress, ignoreMissingDays: $ignoreMissingDays)';
+    return 'StreakState(progress: $progress)';
   }
 
   @override
@@ -146,14 +130,12 @@ class _$StreakStateImpl implements _StreakState {
         (other.runtimeType == runtimeType &&
             other is _$StreakStateImpl &&
             (identical(other.progress, progress) ||
-                other.progress == progress) &&
-            (identical(other.ignoreMissingDays, ignoreMissingDays) ||
-                other.ignoreMissingDays == ignoreMissingDays));
+                other.progress == progress));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, progress, ignoreMissingDays);
+  int get hashCode => Object.hash(runtimeType, progress);
 
   @JsonKey(ignore: true)
   @override
@@ -170,17 +152,14 @@ class _$StreakStateImpl implements _StreakState {
 }
 
 abstract class _StreakState implements StreakState {
-  const factory _StreakState(
-      {final StreakProgressV2 progress,
-      final bool ignoreMissingDays}) = _$StreakStateImpl;
+  const factory _StreakState({final StreakProgressV2 progress}) =
+      _$StreakStateImpl;
 
   factory _StreakState.fromJson(Map<String, dynamic> json) =
       _$StreakStateImpl.fromJson;
 
   @override
   StreakProgressV2 get progress;
-  @override
-  bool get ignoreMissingDays;
   @override
   @JsonKey(ignore: true)
   _$$StreakStateImplCopyWith<_$StreakStateImpl> get copyWith =>

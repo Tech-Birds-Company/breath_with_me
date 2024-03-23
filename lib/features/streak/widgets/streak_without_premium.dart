@@ -1,5 +1,5 @@
-import 'package:breathe_with_me/features/streak/widgets/lives_indicator.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_quote.dart';
+import 'package:breathe_with_me/features/streak/widgets/streak_statistics_card.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_weeks.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/repositories/models/streak_quote_data.dart';
@@ -22,59 +22,15 @@ class StreakWithoutPremium extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-
-    final widgets = <Widget>[
-      Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 12),
-        child: Column(
-          children: [
-            Text(
-              LocaleKeys.streakWithoutPremiumTitle.tr().toUpperCase(),
-              style: theme.typography.label.copyWith(color: theme.gray4),
-            ),
-            const SizedBox(height: 4),
-            ShaderMask(
-              shaderCallback: LinearGradient(
-                colors: [theme.green3, theme.gray4],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ).createShader,
-              child: Text(
-                LocaleKeys.streakWithoutPremiumSubtitle
-                    .plural(streaksCount)
-                    .toUpperCase(),
-                style: theme.typography.bodyM.copyWith(color: theme.gray4),
-              ),
-            ),
-            const SizedBox(height: 20),
-            StreakWeeks(selectedDay: streaksCount),
-            const SizedBox(height: 20),
-            Text(
-              LocaleKeys.streakLivesTitle.tr().toUpperCase(),
-              style: theme.typography.label.copyWith(color: theme.gray3),
-            ),
-            const SizedBox(height: 8),
-            const LivesIndicator(
-              totalLives: 0,
-              configMaxLives: 3,
-              isPremiumUser: true,
-            ),
-            const SizedBox(height: 16),
-            Text(
-              LocaleKeys.streakLivesWhenPremiumEnabled.tr().toUpperCase(),
-              textAlign: TextAlign.center,
-              style: theme.typography.label.copyWith(
-                color: theme.gray6,
-              ),
-            ),
-          ],
-        ),
-      ),
+    final widgets = [
+      const SizedBox(height: 32),
+      const StreakStatisticsCard(),
+      StreakWeeks(selectedDay: streaksCount),
       ListTile(
         contentPadding: EdgeInsets.zero,
         title: Text(
           LocaleKeys.reminderTitle.tr(),
-          style: theme.typography.heading3,
+          style: theme.typography.bodyM,
         ),
         trailing: Icon(
           Icons.arrow_forward_ios,
@@ -83,22 +39,13 @@ class StreakWithoutPremium extends StatelessWidget {
         ),
         onTap: onReminderTap,
       ),
-      Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        child: StreakQuote(data: quote),
-      ),
+      StreakQuote(data: quote),
     ];
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
-      child: ListView.separated(
-        itemCount: widgets.length,
-        itemBuilder: (context, index) => widgets[index],
-        separatorBuilder: (context, index) => Divider(
-          thickness: 1,
-          color: theme.secondaryBackground,
-        ),
-      ),
+    return ListView.separated(
+      itemCount: widgets.length,
+      padding: const EdgeInsets.all(16),
+      separatorBuilder: (context, index) => const SizedBox(height: 16),
+      itemBuilder: (context, index) => widgets[index],
     );
   }
 }

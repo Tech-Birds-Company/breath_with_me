@@ -16,7 +16,6 @@ import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.d
 import 'package:breathe_with_me/managers/premium_manager/premium_manager.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
 import 'package:breathe_with_me/managers/shared_preferences_manager/shared_preferences_manager.dart';
-import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager_impl.dart';
 import 'package:breathe_with_me/managers/user_manager/firebase_user_manager.dart';
 import 'package:breathe_with_me/repositories/firebase_remote_config_repository.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
@@ -46,22 +45,11 @@ Future<List<Override>> _setupDependencies({
 
   final tracksDownloadManager = TracksDownloaderManager(databaseManager);
 
-  final subscriptionsManager = SubscriptionsManagerImpl(
-    Platform.isIOS
-        ? isProduction
-            ? BWMConstants.revenueCatApiKeyiOSProd
-            : BWMConstants.revenueCatApiKeyiOSDev
-        : isProduction
-            ? BWMConstants.revenueCatApiKeyAndroidProd
-            : BWMConstants.revenueCatApiKeyAndroidDev,
-  );
-  await subscriptionsManager.configure();
-
   const remoteConfigRepository = FirebaseRemoteConfigRepository();
-  final premiumManager = PremiumManager(subscriptionsManager);
+
+  final premiumManager = PremiumManager();
 
   final userManager = FirebaseUserManager(
-    subscriptionsManager,
     databaseManager,
     isProduction: isProduction,
   )..init();
@@ -105,10 +93,6 @@ Future<List<Override>> _setupDependencies({
     Di.manager.database.overrideWith((ref) {
       ref.onDispose(databaseManager.dispose);
       return databaseManager;
-    }),
-    Di.manager.subscriptions.overrideWith((ref) {
-      ref.onDispose(subscriptionsManager.dispose);
-      return subscriptionsManager;
     }),
     Di.manager.audio.overrideWith(
       (ref) {

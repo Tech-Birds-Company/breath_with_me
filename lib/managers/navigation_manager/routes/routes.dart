@@ -1,4 +1,3 @@
-import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/faq/faq_page.dart';
 import 'package:breathe_with_me/features/home/home_page.dart';
 import 'package:breathe_with_me/features/onboarding/create_account_modal_page.dart';
@@ -17,7 +16,6 @@ import 'package:breathe_with_me/features/tracks/widgets/tracks_filters/tracks_fi
 import 'package:breathe_with_me/managers/navigation_manager/bwm_modal_page.dart';
 import 'package:breathe_with_me/managers/navigation_manager/routes/auth_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 abstract final class BWMRoutes {
@@ -41,11 +39,8 @@ abstract final class BWMRoutes {
     ...auth.createAuthRoutes(),
     GoRoute(
       path: BWMRoutes.onboarding,
-      builder: (BuildContext context, GoRouterState state) => Consumer(
-        builder: (context, ref, child) => OnboardingPage(
-          bloc: ref.watch(Di.bloc.onboarding),
-        ),
-      ),
+      builder: (BuildContext context, GoRouterState state) =>
+          const OnboardingPage(),
     ),
     GoRoute(
       path: BWMRoutes.home,
@@ -53,88 +48,49 @@ abstract final class BWMRoutes {
     ),
     GoRoute(
       path: BWMRoutes.profile,
-      builder: (context, state) => Consumer(
-        builder: (context, ref, child) {
-          final profileBloc = ref.watch(Di.bloc.profile);
-          final reminderBloc = ref.watch(Di.bloc.reminder);
-          final streakBloc = ref.watch(Di.bloc.streak);
-
-          return ProfilePage(
-            profileBloc: profileBloc,
-            reminderBloc: reminderBloc,
-            streakBloc: streakBloc,
-          );
-        },
-      ),
+      builder: (context, state) => const ProfilePage(),
     ),
     GoRoute(
       path: BWMRoutes.player,
       builder: (context, state) {
         final track = state.extra! as Track;
-        return Consumer(
-          builder: (context, ref, child) {
-            final bloc = ref.watch(Di.bloc.trackPlayer(track));
-            return TrackPlayerPage(bloc: bloc);
-          },
-        );
+        return TrackPlayerPage(track: track);
       },
     ),
     GoRoute(
       path: BWMRoutes.createAccount,
-      pageBuilder: (context, state) => BWMModalPage(
+      pageBuilder: (context, state) => const BWMModalPage(
         barrierColor: Colors.black,
         isScrollControlled: true,
         useSafeArea: true,
         enableDrag: false,
-        child: Consumer(
-          builder: (context, ref, child) => CreateAccountModalPage(
-            bloc: ref.watch(Di.bloc.onboarding),
-          ),
-        ),
+        child: CreateAccountModalPage(),
       ),
     ),
     GoRoute(
       path: BWMRoutes.languageSheet,
-      pageBuilder: (context, state) => BWMModalPage(
+      pageBuilder: (context, state) => const BWMModalPage(
         backgroundColor: Colors.transparent,
-        child: Consumer(
-          builder: (context, ref, child) => LanguageSheet(
-            navigationManager: ref.watch(
-              Di.manager.navigation,
-            ),
-          ),
-        ),
+        child: LanguageSheet(),
       ),
     ),
     GoRoute(
       path: BWMRoutes.reminderPage,
-      builder: (context, state) => Consumer(
-        builder: (context, ref, child) => ReminderPage(
-          bloc: ref.watch(Di.bloc.reminder),
-        ),
-      ),
+      builder: (context, state) => const ReminderPage(),
     ),
     GoRoute(
       path: BWMRoutes.faq,
-      builder: (context, state) => Consumer(
-        builder: (context, ref, child) => FaqPage(
-          bloc: ref.watch(Di.bloc.faq),
-        ),
-      ),
+      builder: (context, state) => const FaqPage(),
     ),
     GoRoute(
       path: BWMRoutes.safetyPrecautions,
-      pageBuilder: (context, state) => BWMModalPage(
+      pageBuilder: (context, state) => const BWMModalPage(
         useSafeArea: true,
         enableDrag: false,
         isDismissible: false,
         isScrollControlled: true,
         backgroundColor: Colors.black,
-        child: Consumer(
-          builder: (context, ref, child) => SafetyPrecautionsPage(
-            bloc: ref.watch(Di.bloc.safetyPrecautions),
-          ),
-        ),
+        child: SafetyPrecautionsPage(),
       ),
     ),
     GoRoute(
@@ -142,11 +98,8 @@ abstract final class BWMRoutes {
       pageBuilder: (context, state) => BWMModalPage(
         backgroundColor: Colors.transparent,
         isScrollControlled: true,
-        child: Consumer(
-          builder: (context, ref, child) => TracksFilterSheet(
-            bloc: ref.watch(Di.bloc.tracksFilters),
-            filterType: state.extra! as FilterType,
-          ),
+        child: TracksFilterSheet(
+          filterType: state.extra! as FilterType,
         ),
       ),
     ),
@@ -159,28 +112,22 @@ abstract final class BWMRoutes {
           isDismissible: false,
           isScrollControlled: true,
           enableDrag: false,
-          child: Consumer(
-            builder: (context, ref, child) => PremiumPaywall(
-              bloc: ref.watch(Di.bloc.premiumPaywall),
-              topInset: topInset,
-            ),
+          child: PremiumPaywall(
+            topInset: topInset,
           ),
         );
       },
     ),
     GoRoute(
       path: BWMRoutes.streak,
-      pageBuilder: (context, state) => BWMModalPage(
+      pageBuilder: (context, state) => const BWMModalPage(
         barrierColor: Colors.transparent,
         useSafeArea: true,
         enableDrag: false,
         isDismissible: false,
         isScrollControlled: true,
-        child: Consumer(
-          builder: (context, ref, child) => StreakPage(
-            bloc: ref.watch(Di.bloc.streak),
-          ),
-        ),
+        backgroundColor: Colors.black,
+        child: StreakPage(),
       ),
     ),
     GoRoute(

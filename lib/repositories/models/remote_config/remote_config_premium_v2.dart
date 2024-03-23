@@ -5,13 +5,9 @@ part 'remote_config_premium_v2.g.dart';
 
 @JsonSerializable(createToJson: false)
 class RemoteConfigPremiumV2 {
-  final int premiumBannerTracksPosition;
-  final bool premiumBannerTracksEnabled;
   final RemoteConfigPremiumV2Paywall paywall;
 
   const RemoteConfigPremiumV2({
-    this.premiumBannerTracksPosition = 0,
-    this.premiumBannerTracksEnabled = false,
     this.paywall = const RemoteConfigPremiumV2Paywall(),
   });
 

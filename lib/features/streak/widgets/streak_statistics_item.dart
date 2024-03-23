@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 class StreakStatisticsItem extends StatelessWidget {
   final String text;
   final String name;
-  final bool isPremiumUser;
+  final bool applyBlur;
   final CrossAxisAlignment crossAxisAlignment;
 
   const StreakStatisticsItem({
     required this.text,
     required this.name,
-    required this.isPremiumUser,
+    required this.applyBlur,
     required this.crossAxisAlignment,
     super.key,
   });
@@ -20,7 +20,7 @@ class StreakStatisticsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    final blurSigma = !isPremiumUser ? 13.0 : 0.0;
+    final blurSigma = applyBlur ? 13.0 : 0.0;
     return Column(
       crossAxisAlignment: crossAxisAlignment,
       children: [

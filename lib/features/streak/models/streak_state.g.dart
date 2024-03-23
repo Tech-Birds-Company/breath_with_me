@@ -11,11 +11,9 @@ _$StreakStateImpl _$$StreakStateImplFromJson(Map json) => _$StreakStateImpl(
           ? const StreakProgressV2()
           : StreakProgressV2.fromJson(
               Map<String, dynamic>.from(json['progress'] as Map)),
-      ignoreMissingDays: json['ignoreMissingDays'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$StreakStateImplToJson(_$StreakStateImpl instance) =>
     <String, dynamic>{
       'progress': instance.progress.toJson(),
-      'ignoreMissingDays': instance.ignoreMissingDays,
     };

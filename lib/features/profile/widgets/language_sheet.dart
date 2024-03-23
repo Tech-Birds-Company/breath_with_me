@@ -1,20 +1,17 @@
 import 'package:breathe_with_me/common/widgets/bottom_sheet_notch.dart';
-import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
+import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LanguageSheet extends StatelessWidget {
-  final NavigationManager navigationManager;
-
-  const LanguageSheet({
-    required this.navigationManager,
-    super.key,
-  });
+class LanguageSheet extends ConsumerWidget {
+  const LanguageSheet({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
+    final navigationManager = ref.watch(Di.manager.navigation);
     return ClipRRect(
       borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(20),

@@ -55,9 +55,13 @@ final class TracksRepositoryImpl implements TracksRepository {
       tracks.add(track);
     }
 
-    return tracks
-        .where((track) => track.language != TrackLanguage.unknown)
+    final filteredTracks = tracks
+        .where(
+          (track) =>
+              track.language != TrackLanguage.unknown && !track.isPremium,
+        )
         .toList();
+    return filteredTracks;
   }
 
   @override

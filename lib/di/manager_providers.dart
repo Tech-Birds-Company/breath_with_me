@@ -63,9 +63,5 @@ final class _ManagerProviders {
     ),
   );
 
-  late final premium = Provider.autoDispose(
-    (ref) => PremiumManager(
-      ref.watch(Di.manager.subscriptions),
-    ),
-  );
+  late final premium = Provider.autoDispose((_) => PremiumManager());
 }
