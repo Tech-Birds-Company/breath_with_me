@@ -1,6 +1,7 @@
 import 'package:breathe_with_me/common/widgets/bottom_sheet_notch.dart';
 import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -77,6 +78,12 @@ class _LanguageItem extends StatelessWidget {
           : null,
       onTap: () {
         localization.setLocale(Locale(languageCode));
+        BWMAnalytics.event(
+          'onLanguageChanged',
+          params: {
+            'language': languageCode,
+          },
+        );
         onPop();
       },
     );
