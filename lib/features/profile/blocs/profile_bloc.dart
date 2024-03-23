@@ -7,6 +7,7 @@ import 'package:breathe_with_me/managers/permissions_manager/permissions_manager
 import 'package:breathe_with_me/managers/premium_manager/premium_manager.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 final class ProfileBloc extends BlocBase<Object?> {
@@ -65,6 +66,7 @@ final class ProfileBloc extends BlocBase<Object?> {
   }
 
   Future<void> onSignOut() async {
+    BWMAnalytics.event('onSignOut');
     await _userManager.signOut();
   }
 }
