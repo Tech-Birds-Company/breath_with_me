@@ -157,12 +157,7 @@ Future<void> mainCommon(Environment env) async {
           Locale('en'),
           Locale('ru'),
         ],
-        child: Consumer(
-          builder: (context, ref, _) {
-            final router = ref.watch(Di.manager.navigation).router;
-            return BWMApp(router);
-          },
-        ),
+        child: const BWMApp(),
       ),
     ),
   );

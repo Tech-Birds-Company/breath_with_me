@@ -1,21 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'account_settings_state.dart';
+part of 'profile_settings_state.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AccountSettingsStateImpl _$$AccountSettingsStateImplFromJson(Map json) =>
-    _$AccountSettingsStateImpl(
+_$ProfileSettingsStateImpl _$$ProfileSettingsStateImplFromJson(Map json) =>
+    _$ProfileSettingsStateImpl(
       name: json['name'] as String,
       email: json['email'] as String,
       isForgotPasswordButtonEnabled:
           json['isForgotPasswordButtonEnabled'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$AccountSettingsStateImplToJson(
-        _$AccountSettingsStateImpl instance) =>
+Map<String, dynamic> _$$ProfileSettingsStateImplToJson(
+        _$ProfileSettingsStateImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'email': instance.email,

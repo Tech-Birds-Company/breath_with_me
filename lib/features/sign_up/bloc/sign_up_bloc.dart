@@ -8,7 +8,7 @@ import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignUpBloc extends BlocBase<SignUpState> {
+final class SignUpBloc extends BlocBase<SignUpState> {
   final UserManager _userManager;
   final NavigationManager _navigationManager;
 
