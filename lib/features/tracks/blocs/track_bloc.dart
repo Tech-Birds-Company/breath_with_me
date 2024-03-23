@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/managers/download_manager/track_download_task.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
@@ -35,9 +33,7 @@ final class TrackBloc extends BlocBase<Object?> {
       userId: userId,
       url: '', // TODO(vasidmi): fix this
     );
-    return _tracksRepository.getTrackIsDownloadedStream(
-      taskId: task.taskId,
-    );
+    return _tracksRepository.getTrackIsDownloadedStream(taskId: task.taskId);
   }
 
   Stream<bool> get trackLikedStream => _tracksRepository.likedTracksStream
@@ -49,9 +45,7 @@ final class TrackBloc extends BlocBase<Object?> {
   Future<void> onTrackTap() async {
     BWMAnalytics.event(
       'onTrackTap',
-      params: {
-        'track': jsonEncode(_track.toJson()),
-      },
+      params: {'trackId': _track.id},
     );
     if (_track.isPremium && !_premiumManager.isUserPremium) {
       return;
@@ -64,9 +58,7 @@ final class TrackBloc extends BlocBase<Object?> {
     await _tracksRepository.updateLikes(_track.id);
     BWMAnalytics.event(
       'onTrackLikePressed',
-      params: {
-        'track': jsonEncode(_track.toJson()),
-      },
+      params: {'trackId': _track.id},
     );
   }
 }

@@ -57,8 +57,7 @@ final class TracksRepositoryImpl implements TracksRepository {
 
     final filteredTracks = tracks
         .where(
-          (track) =>
-              track.language != TrackLanguage.unknown && !track.isPremium,
+          (track) => track.language != TrackLanguage.unknown,
         )
         .toList();
     return filteredTracks;
