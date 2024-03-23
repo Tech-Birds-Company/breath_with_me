@@ -15,6 +15,7 @@ final class ResetPasswordBloc extends BlocBase<ResetPasswordState> {
 
   void updatePassword(String password) =>
       emit(state.copyWith(password: password));
+
   void updateConfirmPassword(String password) =>
       emit(state.copyWith(confirmPassword: password));
 

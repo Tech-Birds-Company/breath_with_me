@@ -5,11 +5,13 @@ import 'package:breathe_with_me/common/widgets/obscured_field.dart';
 import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ResetPasswordPage extends ConsumerWidget {
+class ResetPasswordPage extends HookConsumerWidget {
   final String oobCode;
 
   const ResetPasswordPage({
@@ -19,6 +21,14 @@ class ResetPasswordPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    useEffect(
+      () {
+        BWMAnalytics.logScreenView('ResetPasswordPage');
+        return null;
+      },
+      const [],
+    );
+
     final theme = Theme.of(context).extension<BWMTheme>()!;
     final bloc = ref.watch(Di.bloc.resetPassword(oobCode));
     return Stack(

@@ -9,6 +9,7 @@ import 'package:breathe_with_me/features/forgot_password/models/forgot_password_
 import 'package:breathe_with_me/features/forgot_password/widgets/forgot_password_email_sent.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,6 +26,7 @@ class ForgotPasswordPage extends HookConsumerWidget {
 
     useEffect(
       () {
+        BWMAnalytics.logScreenView('ForgotPasswordPage');
         bloc.updateEmail(bloc.currentEmail ?? '');
         return null;
       },
