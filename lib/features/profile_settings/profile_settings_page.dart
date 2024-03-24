@@ -4,11 +4,14 @@ import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
 import 'package:breathe_with_me/common/widgets/keyboard_hider.dart';
 import 'package:breathe_with_me/common/widgets/obscured_field.dart';
 import 'package:breathe_with_me/di/di.dart';
+import 'package:breathe_with_me/features/profile_settings/bloc/profile_settings_bloc.dart';
+import 'package:breathe_with_me/features/profile_settings/models/profile_settings_state.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -43,7 +46,7 @@ class ProfileSettingsPage extends HookConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 24),
                   Wrap(
                     spacing: 12,
                     runSpacing: 12,
@@ -61,14 +64,24 @@ class ProfileSettingsPage extends HookConsumerWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 20),
-                  BWMActionButton(
-                    title: LocaleKeys.reminderSaveButtonTitle.tr(),
-                    width: double.infinity,
-                    height: 40,
-                    onPressed: bloc.onSave,
+                  BlocSelector<ProfileSettingsBloc, ProfileSettingsState, bool>(
+                    bloc: bloc,
+                    selector: (state) => state.name != state.initialName,
+                    builder: (context, nameChanged) {
+                      if (nameChanged) {
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 24),
+                          child: BWMActionButton(
+                            title: LocaleKeys.reminderSaveButtonTitle.tr(),
+                            width: double.infinity,
+                            height: 40,
+                            onPressed: bloc.onSave,
+                          ),
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    },
                   ),
-                  const SizedBox(height: 16),
                   TextButton(
                     onPressed: bloc.openForgotPassword,
                     child: Text(

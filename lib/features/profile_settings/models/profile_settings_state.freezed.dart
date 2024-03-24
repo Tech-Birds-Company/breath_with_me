@@ -20,9 +20,9 @@ ProfileSettingsState _$ProfileSettingsStateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProfileSettingsState {
+  String get initialName => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
-  bool get isForgotPasswordButtonEnabled => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $ProfileSettingsStateCopyWith<$Res> {
           $Res Function(ProfileSettingsState) then) =
       _$ProfileSettingsStateCopyWithImpl<$Res, ProfileSettingsState>;
   @useResult
-  $Res call({String name, String email, bool isForgotPasswordButtonEnabled});
+  $Res call({String initialName, String name, String email});
 }
 
 /// @nodoc
@@ -53,11 +53,15 @@ class _$ProfileSettingsStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? initialName = null,
     Object? name = null,
     Object? email = null,
-    Object? isForgotPasswordButtonEnabled = null,
   }) {
     return _then(_value.copyWith(
+      initialName: null == initialName
+          ? _value.initialName
+          : initialName // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -66,10 +70,6 @@ class _$ProfileSettingsStateCopyWithImpl<$Res,
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      isForgotPasswordButtonEnabled: null == isForgotPasswordButtonEnabled
-          ? _value.isForgotPasswordButtonEnabled
-          : isForgotPasswordButtonEnabled // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 }
@@ -82,7 +82,7 @@ abstract class _$$ProfileSettingsStateImplCopyWith<$Res>
       __$$ProfileSettingsStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String email, bool isForgotPasswordButtonEnabled});
+  $Res call({String initialName, String name, String email});
 }
 
 /// @nodoc
@@ -96,11 +96,15 @@ class __$$ProfileSettingsStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? initialName = null,
     Object? name = null,
     Object? email = null,
-    Object? isForgotPasswordButtonEnabled = null,
   }) {
     return _then(_$ProfileSettingsStateImpl(
+      initialName: null == initialName
+          ? _value.initialName
+          : initialName // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -109,10 +113,6 @@ class __$$ProfileSettingsStateImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      isForgotPasswordButtonEnabled: null == isForgotPasswordButtonEnabled
-          ? _value.isForgotPasswordButtonEnabled
-          : isForgotPasswordButtonEnabled // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -121,24 +121,21 @@ class __$$ProfileSettingsStateImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProfileSettingsStateImpl implements _ProfileSettingsState {
   const _$ProfileSettingsStateImpl(
-      {required this.name,
-      required this.email,
-      this.isForgotPasswordButtonEnabled = false});
+      {required this.initialName, required this.name, required this.email});
 
   factory _$ProfileSettingsStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProfileSettingsStateImplFromJson(json);
 
   @override
+  final String initialName;
+  @override
   final String name;
   @override
   final String email;
-  @override
-  @JsonKey()
-  final bool isForgotPasswordButtonEnabled;
 
   @override
   String toString() {
-    return 'ProfileSettingsState(name: $name, email: $email, isForgotPasswordButtonEnabled: $isForgotPasswordButtonEnabled)';
+    return 'ProfileSettingsState(initialName: $initialName, name: $name, email: $email)';
   }
 
   @override
@@ -146,18 +143,15 @@ class _$ProfileSettingsStateImpl implements _ProfileSettingsState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProfileSettingsStateImpl &&
+            (identical(other.initialName, initialName) ||
+                other.initialName == initialName) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.isForgotPasswordButtonEnabled,
-                    isForgotPasswordButtonEnabled) ||
-                other.isForgotPasswordButtonEnabled ==
-                    isForgotPasswordButtonEnabled));
+            (identical(other.email, email) || other.email == email));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, email, isForgotPasswordButtonEnabled);
+  int get hashCode => Object.hash(runtimeType, initialName, name, email);
 
   @JsonKey(ignore: true)
   @override
@@ -177,19 +171,19 @@ class _$ProfileSettingsStateImpl implements _ProfileSettingsState {
 
 abstract class _ProfileSettingsState implements ProfileSettingsState {
   const factory _ProfileSettingsState(
-      {required final String name,
-      required final String email,
-      final bool isForgotPasswordButtonEnabled}) = _$ProfileSettingsStateImpl;
+      {required final String initialName,
+      required final String name,
+      required final String email}) = _$ProfileSettingsStateImpl;
 
   factory _ProfileSettingsState.fromJson(Map<String, dynamic> json) =
       _$ProfileSettingsStateImpl.fromJson;
 
   @override
+  String get initialName;
+  @override
   String get name;
   @override
   String get email;
-  @override
-  bool get isForgotPasswordButtonEnabled;
   @override
   @JsonKey(ignore: true)
   _$$ProfileSettingsStateImplCopyWith<_$ProfileSettingsStateImpl>

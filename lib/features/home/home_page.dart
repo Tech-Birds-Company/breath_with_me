@@ -14,9 +14,6 @@ class HomePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final bloc = ref.watch(Di.bloc.home);
-    final userManager = ref.watch(Di.manager.user);
-    final navigationManager = ref.watch(Di.manager.navigation);
-
     useEffect(
       () {
         BWMAnalytics.logScreenView('HomePage');
@@ -31,16 +28,13 @@ class HomePage extends HookConsumerWidget {
         bottom: false,
         child: CustomScrollView(
           slivers: [
-            SliverPadding(
-              padding: const EdgeInsetsDirectional.only(
+            const SliverPadding(
+              padding: EdgeInsetsDirectional.only(
                 top: 28,
                 start: 24,
                 end: 24,
               ),
-              sliver: HomeHeader(
-                username: userManager.currentUser?.displayName ?? '',
-                onProfileTap: navigationManager.openProfile,
-              ),
+              sliver: HomeHeader(),
             ),
             const SizedBox(height: 28).toSliver(),
             SliverPadding(

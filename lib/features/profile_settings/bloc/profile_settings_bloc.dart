@@ -1,6 +1,7 @@
 import 'package:breathe_with_me/features/profile_settings/models/profile_settings_state.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 final class ProfileSettingsBloc extends BlocBase<ProfileSettingsState> {
@@ -12,35 +13,39 @@ final class ProfileSettingsBloc extends BlocBase<ProfileSettingsState> {
     this._navigationManager,
   ) : super(
           ProfileSettingsState(
+            initialName: _userManager.currentUser?.displayName ?? '',
             name: _userManager.currentUser?.displayName ?? '',
             email: _userManager.currentUser?.email ?? '',
           ),
         );
 
-  Future<void> openForgotPassword() async {
-    await _navigationManager.forgotPasswordPage();
-  }
+  Future<void> openForgotPassword() => _navigationManager.forgotPasswordPage();
 
-  void onEmailChange(String text) {
-    emit(
-      state.copyWith(
-        email: text,
-        isForgotPasswordButtonEnabled: true,
-      ),
-    );
-  }
+  void onEmailChange(String text) => emit(state.copyWith(email: text));
 
-  void onNameChange(String text) {
-    emit(
-      state.copyWith(
-        name: text,
-        isForgotPasswordButtonEnabled: true,
-      ),
-    );
-  }
+  void onNameChange(String text) => emit(state.copyWith(name: text));
 
-  void onSave() => _userManager.updateAccountSettings(
+  Future<void> onSave() async {
+    final currentName = state.initialName;
+    try {
+      emit(state.copyWith(initialName: state.name));
+      await _userManager.updateAccountSettings(
         state.name,
         state.email,
       );
+    } on Exception catch (e) {
+      BWMAnalytics.event(
+        'onProfileSettingsSaveNameError',
+        params: {
+          'error': e.toString(),
+        },
+      );
+      emit(
+        state.copyWith(
+          initialName: currentName,
+          name: currentName,
+        ),
+      );
+    }
+  }
 }

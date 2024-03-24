@@ -1,77 +1,56 @@
 import 'package:breathe_with_me/common/widgets/profile_button.dart';
+import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
-import 'package:breathe_with_me/utils/datetime_formatter.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ProfileHeader extends StatelessWidget {
-  final String username;
-  final bool isUserPremium;
-  final String? premiumEndDate;
-
-  const ProfileHeader({
-    required this.username,
-    required this.isUserPremium,
-    this.premiumEndDate,
-    super.key,
-  });
+class ProfileHeader extends ConsumerWidget {
+  const ProfileHeader({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final locale = EasyLocalization.of(context)!.locale;
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    return Row(
-      children: [
-        const ProfileButton(
-          size: 64,
-          iconWidth: 28,
-          iconHeight: 30,
-        ),
-        const SizedBox(width: 20),
-        Expanded(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                username,
-                style: theme.typography.heading2.copyWith(
-                  color: theme.primaryText,
-                ),
-                overflow: TextOverflow.ellipsis,
-              ),
-              Text(
-                isUserPremium
-                    ? LocaleKeys.profilePremiumAccountType.tr()
-                    : LocaleKeys.profileBaseAccountType.tr().toUpperCase(),
-                style: isUserPremium
-                    ? theme.typography.labelM.copyWith(
-                        color: theme.purple2,
-                      )
-                    : theme.typography.label.copyWith(
-                        color: theme.gray4,
-                      ),
-              ),
-              if (premiumEndDate != null)
-                Text(
-                  LocaleKeys.profilePremiumExpires.tr(
-                    args: [
-                      DateTimeFormatter.convertDateToLocalizedText(
-                        premiumEndDate!,
-                        locale.languageCode,
-                      ),
-                    ],
+    final userManager = ref.watch(Di.manager.user);
+    return StreamBuilder<User?>(
+      stream: userManager.userStream,
+      initialData: userManager.currentUser,
+      builder: (context, snapshot) {
+        final user = snapshot.requireData;
+        return Row(
+          children: [
+            const ProfileButton(
+              size: 64,
+              iconWidth: 28,
+              iconHeight: 30,
+            ),
+            const SizedBox(width: 20),
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    user?.displayName ?? '',
+                    style: theme.typography.heading2.copyWith(
+                      color: theme.primaryText,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  style: theme.typography.label.copyWith(
-                    color: theme.gray6,
+                  Text(
+                    LocaleKeys.profileBaseAccountType.tr().toUpperCase(),
+                    style: theme.typography.label.copyWith(
+                      color: theme.gray4,
+                    ),
                   ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-            ],
-          ),
-        ),
-      ],
+                ],
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

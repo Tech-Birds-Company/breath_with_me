@@ -64,18 +64,7 @@ class ProfilePage extends HookConsumerWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   sliver: SliverMainAxisGroup(
                     slivers: [
-                      StreamBuilder<bool>(
-                        stream: profileBloc.isPremiumUserStream,
-                        initialData: profileBloc.isUserPremium,
-                        builder: (context, snapshot) {
-                          final isUserPremium = snapshot.requireData;
-                          return ProfileHeader(
-                            username: profileBloc.username,
-                            isUserPremium: isUserPremium,
-                            premiumEndDate: profileBloc.premiumEndDate,
-                          );
-                        },
-                      ).toSliver(),
+                      const ProfileHeader().toSliver(),
                       const SizedBox(height: 24).toSliver(),
                       const StreakStatisticsCard().toSliver(),
                       const SizedBox(height: 24).toSliver(),
