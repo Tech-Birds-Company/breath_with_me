@@ -113,6 +113,7 @@ final class _BlocProviders {
     (ref) => ForgotPasswordBloc(
       ref.watch(Di.manager.user),
       ref.watch(Di.manager.deeplink),
+      ref.watch(Di.manager.navigation),
     ),
   );
 

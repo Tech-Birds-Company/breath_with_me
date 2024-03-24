@@ -25,7 +25,9 @@ class SafetyPrecautionsPage extends HookConsumerWidget {
     );
 
     return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
+      borderRadius: const BorderRadius.vertical(
+        top: Radius.circular(20),
+      ),
       child: Stack(
         alignment: Alignment.center,
         children: [

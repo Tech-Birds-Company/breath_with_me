@@ -56,7 +56,6 @@ final class NavigationManager {
           return BWMRoutes.home;
         }
       }
-
       return null;
     },
   );
@@ -99,6 +98,9 @@ final class NavigationManager {
 
   Future<void> forgotPasswordPage() =>
       router.push(BWMRoutes.auth.forgotPassword);
+
+  Future<void> openPasswordEmailSent() =>
+      router.push(BWMRoutes.passwordEmailSent);
 
   Future<void> resetPassword(String query) =>
       router.push('${BWMRoutes.auth.resetPassword}?$query');

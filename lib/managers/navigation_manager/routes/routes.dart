@@ -1,4 +1,5 @@
 import 'package:breathe_with_me/features/faq/faq_page.dart';
+import 'package:breathe_with_me/features/forgot_password/widgets/forgot_password_email_sent.dart';
 import 'package:breathe_with_me/features/home/home_page.dart';
 import 'package:breathe_with_me/features/onboarding/create_account_modal_page.dart';
 import 'package:breathe_with_me/features/onboarding/onboarding_page.dart';
@@ -32,6 +33,7 @@ abstract final class BWMRoutes {
   static const streak = '/streak';
   static const profileSettings = '/profile-settings';
   static const premiumPaywall = '/premium-paywall';
+  static const passwordEmailSent = '/password-email-sent';
 
   static const auth = AuthRoutes();
 
@@ -133,6 +135,19 @@ abstract final class BWMRoutes {
     GoRoute(
       path: BWMRoutes.profileSettings,
       builder: (context, state) => const ProfileSettingsPage(),
+    ),
+    GoRoute(
+      path: BWMRoutes.passwordEmailSent,
+      pageBuilder: (context, state) {
+        return const BWMModalPage(
+          useSafeArea: true,
+          enableDrag: false,
+          isDismissible: false,
+          isScrollControlled: true,
+          backgroundColor: Colors.transparent,
+          child: ForgotPasswordEmailSentPage(),
+        );
+      },
     ),
   ];
 }

@@ -21,7 +21,6 @@ ForgotPasswordState _$ForgotPasswordStateFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ForgotPasswordState {
   String get email => throw _privateConstructorUsedError;
-  bool get requestSent => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +34,7 @@ abstract class $ForgotPasswordStateCopyWith<$Res> {
           ForgotPasswordState value, $Res Function(ForgotPasswordState) then) =
       _$ForgotPasswordStateCopyWithImpl<$Res, ForgotPasswordState>;
   @useResult
-  $Res call({String email, bool requestSent});
+  $Res call({String email});
 }
 
 /// @nodoc
@@ -52,17 +51,12 @@ class _$ForgotPasswordStateCopyWithImpl<$Res, $Val extends ForgotPasswordState>
   @override
   $Res call({
     Object? email = null,
-    Object? requestSent = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      requestSent: null == requestSent
-          ? _value.requestSent
-          : requestSent // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 }
@@ -75,7 +69,7 @@ abstract class _$$ForgotPasswordStateImplCopyWith<$Res>
       __$$ForgotPasswordStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, bool requestSent});
+  $Res call({String email});
 }
 
 /// @nodoc
@@ -90,17 +84,12 @@ class __$$ForgotPasswordStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? email = null,
-    Object? requestSent = null,
   }) {
     return _then(_$ForgotPasswordStateImpl(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      requestSent: null == requestSent
-          ? _value.requestSent
-          : requestSent // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -108,7 +97,7 @@ class __$$ForgotPasswordStateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ForgotPasswordStateImpl implements _ForgotPasswordState {
-  const _$ForgotPasswordStateImpl({this.email = '', this.requestSent = false});
+  const _$ForgotPasswordStateImpl({this.email = ''});
 
   factory _$ForgotPasswordStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$ForgotPasswordStateImplFromJson(json);
@@ -116,13 +105,10 @@ class _$ForgotPasswordStateImpl implements _ForgotPasswordState {
   @override
   @JsonKey()
   final String email;
-  @override
-  @JsonKey()
-  final bool requestSent;
 
   @override
   String toString() {
-    return 'ForgotPasswordState(email: $email, requestSent: $requestSent)';
+    return 'ForgotPasswordState(email: $email)';
   }
 
   @override
@@ -130,14 +116,12 @@ class _$ForgotPasswordStateImpl implements _ForgotPasswordState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ForgotPasswordStateImpl &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.requestSent, requestSent) ||
-                other.requestSent == requestSent));
+            (identical(other.email, email) || other.email == email));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, email, requestSent);
+  int get hashCode => Object.hash(runtimeType, email);
 
   @JsonKey(ignore: true)
   @override
@@ -155,16 +139,14 @@ class _$ForgotPasswordStateImpl implements _ForgotPasswordState {
 }
 
 abstract class _ForgotPasswordState implements ForgotPasswordState {
-  const factory _ForgotPasswordState(
-      {final String email, final bool requestSent}) = _$ForgotPasswordStateImpl;
+  const factory _ForgotPasswordState({final String email}) =
+      _$ForgotPasswordStateImpl;
 
   factory _ForgotPasswordState.fromJson(Map<String, dynamic> json) =
       _$ForgotPasswordStateImpl.fromJson;
 
   @override
   String get email;
-  @override
-  bool get requestSent;
   @override
   @JsonKey(ignore: true)
   _$$ForgotPasswordStateImplCopyWith<_$ForgotPasswordStateImpl> get copyWith =>
