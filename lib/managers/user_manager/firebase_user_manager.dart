@@ -48,6 +48,9 @@ final class FirebaseUserManager implements UserManager {
   @override
   User? get currentUser => _firebaseAuth.currentUser;
 
+  @override
+  Stream<User?> get userStream => _userStream;
+
   void init() => _userSubscription ??= _userStream.listen(
         (user) async {
           if (user != null) {
@@ -61,9 +64,6 @@ final class FirebaseUserManager implements UserManager {
           await _databaseManager.clearDb();
         },
       );
-
-  @override
-  Stream<User?> get userStream => _userStream;
 
   @override
   Future<User?> signInWithEmail(String email, String password) async {
@@ -173,7 +173,6 @@ final class FirebaseUserManager implements UserManager {
   Future<void> updateAccountSettings(String name, String email) async {
     final currentUser = _firebaseAuth.currentUser;
     await currentUser?.updateDisplayName(name);
-    await currentUser?.verifyBeforeUpdateEmail(email);
   }
 
   Future<void> _sendEmailVerification() async {
