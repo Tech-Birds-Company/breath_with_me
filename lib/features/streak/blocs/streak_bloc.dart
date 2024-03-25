@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:breathe_with_me/features/streak/models/streak_state.dart';
 import 'package:breathe_with_me/managers/database_manager/database_cached_keys.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
-import 'package:breathe_with_me/managers/premium_manager/premium_manager.dart';
 import 'package:breathe_with_me/managers/streak_progress_manager/streak_progress_manager.dart';
 import 'package:breathe_with_me/repositories/models/streak_progress_v2.dart';
 import 'package:breathe_with_me/repositories/remote_config_repository.dart';
@@ -11,13 +10,11 @@ import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 
 final class StreakBloc extends CacheableBloc<StreakState> {
   final StreakProgressManager _streakProgressManager;
-  final PremiumManager _premiumManager;
   final RemoteConfigRepository _remoteConfigRepository;
   final NavigationManager _navigationManager;
 
   StreakBloc(
     this._streakProgressManager,
-    this._premiumManager,
     this._remoteConfigRepository,
     this._navigationManager,
   ) : super(const StreakState());
@@ -30,8 +27,6 @@ final class StreakBloc extends CacheableBloc<StreakState> {
 
   @override
   Map<String, dynamic> toJson(StreakState state) => state.toJson();
-
-  Stream<bool> get isPremiumUserStream => _premiumManager.isPremiumUserStream;
 
   int get maxLivesCount => _remoteConfigRepository.streaks.monthLivesCount;
 

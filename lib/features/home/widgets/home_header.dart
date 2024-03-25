@@ -38,7 +38,7 @@ class HomeHeader extends ConsumerWidget {
           stream: userManager.userStream,
           initialData: userManager.currentUser,
           builder: (context, snapshot) {
-            final user = snapshot.requireData;
+            final user = snapshot.data;
             return _WelcomeTitle(username: user?.displayName ?? '');
           },
         ).toSliver(),

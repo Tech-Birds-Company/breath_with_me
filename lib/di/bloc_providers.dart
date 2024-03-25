@@ -50,7 +50,6 @@ final class _BlocProviders {
       ref.watch(Di.manager.pushNotifications),
       ref.watch(Di.manager.permissions),
       ref.watch(Di.manager.user),
-      ref.watch(Di.manager.premium),
       ref.watch(Di.manager.deeplink),
     ),
   );
@@ -79,7 +78,6 @@ final class _BlocProviders {
       track,
       ref.watch(Di.repository.tracks),
       ref.watch(Di.manager.user),
-      ref.watch(Di.manager.premium),
       ref.watch(Di.manager.navigation),
     ),
   );
@@ -121,7 +119,6 @@ final class _BlocProviders {
     (ref) {
       final bloc = StreakBloc(
         ref.watch(Di.manager.streakProgress),
-        ref.watch(Di.manager.premium),
         ref.watch(Di.repository.firebaseRemoteConfig),
         ref.watch(Di.manager.navigation),
       )..init();

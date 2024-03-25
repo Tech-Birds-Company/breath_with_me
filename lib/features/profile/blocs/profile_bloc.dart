@@ -4,7 +4,6 @@ import 'dart:ui';
 import 'package:breathe_with_me/managers/deeplink_manager/deeplink_manager.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/permissions_manager/permissions_manager.dart';
-import 'package:breathe_with_me/managers/premium_manager/premium_manager.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
@@ -15,7 +14,7 @@ final class ProfileBloc extends BlocBase<Object?> {
   final PushNotificationsManager _pushNotificationsManager;
   final PermissionsManager _permissionsManager;
   final UserManager _userManager;
-  final PremiumManager _premiumManager;
+
   final DeeplinkManager _deepLinkManager;
 
   ProfileBloc(
@@ -23,7 +22,6 @@ final class ProfileBloc extends BlocBase<Object?> {
     this._pushNotificationsManager,
     this._permissionsManager,
     this._userManager,
-    this._premiumManager,
     this._deepLinkManager,
   ) : super(null);
 
@@ -31,12 +29,6 @@ final class ProfileBloc extends BlocBase<Object?> {
     final currentUser = _userManager.currentUser;
     return currentUser?.displayName ?? '';
   }
-
-  String? get premiumEndDate => _premiumManager.premiumEndDate;
-
-  bool get isUserPremium => _premiumManager.isUserPremium;
-
-  Stream<bool> get isPremiumUserStream => _premiumManager.isPremiumUserStream;
 
   Future<void> openReminder() async {
     final permissionGranted =

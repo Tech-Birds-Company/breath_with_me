@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 
 class TrackItem extends StatelessWidget {
   final Track track;
-  final Stream<bool> trackIsLockedStream;
   final Stream<bool> trackIsDownloadedStream;
   final Stream<bool> trackIsLikedStream;
   final VoidCallback onTap;
@@ -14,7 +13,6 @@ class TrackItem extends StatelessWidget {
 
   const TrackItem({
     required this.track,
-    required this.trackIsLockedStream,
     required this.trackIsDownloadedStream,
     required this.trackIsLikedStream,
     required this.onTap,
@@ -26,41 +24,31 @@ class TrackItem extends StatelessWidget {
   Widget build(BuildContext context) => GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: onTap,
-        child: StreamBuilder<bool>(
-          stream: trackIsLockedStream,
-          initialData: false,
-          builder: (context, snapshot) {
-            final trackIsLocked = snapshot.requireData;
-            return Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  flex: 0,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      TrackCover(
-                        coverUrl: track.coverIcon,
-                      ),
-                      TrackPlayCover(
-                        isLocked: trackIsLocked,
-                      ),
-                    ],
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 0,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  TrackCover(
+                    coverUrl: track.coverIcon,
                   ),
-                ),
-                const SizedBox(width: 20),
-                Expanded(
-                  child: TrackInfo(
-                    track: track,
-                    trackIsLocked: trackIsLocked,
-                    trackIsDownloadedStream: trackIsDownloadedStream,
-                    trackIsLikedStream: trackIsLikedStream,
-                    onTrackLiked: onTrackLiked,
-                  ),
-                ),
-              ],
-            );
-          },
+                  const TrackPlayCover(),
+                ],
+              ),
+            ),
+            const SizedBox(width: 20),
+            Expanded(
+              child: TrackInfo(
+                track: track,
+                trackIsDownloadedStream: trackIsDownloadedStream,
+                trackIsLikedStream: trackIsLikedStream,
+                onTrackLiked: onTrackLiked,
+              ),
+            ),
+          ],
         ),
       );
 }

@@ -1,11 +1,9 @@
 import 'package:breathe_with_me/assets.dart';
-import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
-class ProfileButton extends ConsumerWidget {
+class ProfileButton extends StatelessWidget {
   final VoidCallback? onTap;
   final double size;
   final double iconWidth;
@@ -20,36 +18,28 @@ class ProfileButton extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final manager = ref.watch(Di.manager.premium);
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context).extension<BWMTheme>()!;
     return GestureDetector(
       onTap: onTap,
       child: ClipOval(
-        child: StreamBuilder<bool>(
-          stream: manager.isPremiumUserStream,
-          initialData: manager.isUserPremium,
-          builder: (context, snapshot) {
-            final theme = Theme.of(context).extension<BWMTheme>()!;
-            final isUserPremium = snapshot.requireData;
-            return SizedBox(
-              width: size,
-              height: size,
-              child: ColoredBox(
-                color: isUserPremium ? theme.purple2 : theme.primaryColor,
-                child: Center(
-                  child: SvgPicture.asset(
-                    BWMAssets.profileIcon,
-                    width: iconWidth,
-                    height: iconHeight,
-                    colorFilter: ColorFilter.mode(
-                      isUserPremium ? theme.primaryColor : theme.gray1,
-                      BlendMode.srcIn,
-                    ),
-                  ),
+        child: SizedBox(
+          width: size,
+          height: size,
+          child: ColoredBox(
+            color: theme.primaryColor,
+            child: Center(
+              child: SvgPicture.asset(
+                BWMAssets.profileIcon,
+                width: iconWidth,
+                height: iconHeight,
+                colorFilter: ColorFilter.mode(
+                  theme.gray1,
+                  BlendMode.srcIn,
                 ),
               ),
-            );
-          },
+            ),
+          ),
         ),
       ),
     );

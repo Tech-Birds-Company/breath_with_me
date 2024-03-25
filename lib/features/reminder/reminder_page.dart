@@ -94,7 +94,7 @@ class ReminderPage extends HookConsumerWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-                StreamBuilder<bool>(
+                StreamBuilder(
                   stream: Rx.combineLatest2(
                     bloc.stream,
                     bloc.cachedBlocStateStream,

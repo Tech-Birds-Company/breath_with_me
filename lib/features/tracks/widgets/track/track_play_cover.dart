@@ -4,12 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class TrackPlayCover extends StatelessWidget {
-  final bool isLocked;
-
-  const TrackPlayCover({
-    required this.isLocked,
-    super.key,
-  });
+  const TrackPlayCover({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +29,7 @@ class TrackPlayCover extends StatelessWidget {
             ],
           ),
           child: Center(
-            child: isLocked
-                ? SvgPicture.asset(BWMAssets.lockFilledIcon)
-                : SvgPicture.asset(BWMAssets.playIcon),
+            child: SvgPicture.asset(BWMAssets.playIcon),
           ),
         ),
       ),

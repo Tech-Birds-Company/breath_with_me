@@ -14,7 +14,7 @@ class TrackDownloadIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    return StreamBuilder<bool>(
+    return StreamBuilder(
       stream: trackIsDownloadedStream,
       initialData: false,
       builder: (context, snapshot) {
