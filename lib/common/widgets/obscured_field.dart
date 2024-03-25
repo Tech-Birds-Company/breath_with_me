@@ -54,14 +54,14 @@ class ObscuredFieldState extends State<ObscuredField> {
     return TextFormField(
       readOnly: !widget.editable,
       controller: _controller,
-      style: TextStyle(color: theme.primaryText),
+      style: theme.typography.bodyM.copyWith(color: theme.primaryText),
       obscureText: widget.enableObscuredTextToggle && _isObscured,
       validator: widget.validator,
       decoration: InputDecoration(
         filled: widget.editable,
         fillColor: theme.gray26,
         hintText: widget.hintText,
-        hintStyle: TextStyle(color: theme.secondaryText),
+        hintStyle: theme.typography.bodyM.copyWith(color: theme.secondaryText),
         prefixIcon: SizedBox(
           width: 24,
           height: 24,

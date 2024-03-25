@@ -44,7 +44,6 @@ class ProfileSettingsPage extends HookConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   const SizedBox(height: 24),
                   Wrap(
@@ -86,7 +85,8 @@ class ProfileSettingsPage extends HookConsumerWidget {
                     onPressed: bloc.openForgotPassword,
                     child: Text(
                       LocaleKeys.resetPassword.tr(),
-                      style: TextStyle(color: theme.secondaryColor),
+                      style: theme.typography.bodyM
+                          .copyWith(color: theme.secondaryColor),
                     ),
                   ),
                   const Spacer(),

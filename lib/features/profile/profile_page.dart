@@ -1,4 +1,5 @@
 import 'package:breathe_with_me/assets.dart';
+import 'package:breathe_with_me/common/widgets/app_version_label.dart';
 import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
 import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/extensions/widget.dart';
@@ -103,8 +104,12 @@ class ProfilePage extends HookConsumerWidget {
                       ProfileMenuItem(
                         title: LocaleKeys.profileLogout.tr(),
                         icon: BWMAssets.logout,
+                        showDivider: false,
                         onTap: profileBloc.onSignOut,
                       ).toSliver(),
+                      const SizedBox(height: 64).toSliver(),
+                      AppVersionLabel().toSliver(),
+                      const SizedBox(height: 16).toSliver(),
                     ],
                   ),
                 ),

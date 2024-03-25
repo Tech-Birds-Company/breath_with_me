@@ -88,7 +88,8 @@ class SignInPage extends HookConsumerWidget {
                   onPressed: bloc.openForgotPassword,
                   child: Text(
                     LocaleKeys.signInForgotPass.tr(),
-                    style: TextStyle(color: theme.secondaryColor),
+                    style: theme.typography.bodyM
+                        .copyWith(color: theme.secondaryColor),
                   ),
                 ),
                 const Spacer(),

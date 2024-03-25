@@ -38,14 +38,24 @@ final class SignInBloc extends BlocBase<SignInState> {
         final sb = SnackBar(
           backgroundColor: theme.red,
           elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-          content: Text(
-            LocaleKeys.signInErrorMessage.tr(),
-            style: TextStyle(
-              color: theme.primaryText,
+          padding: const EdgeInsets.all(16),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(8),
             ),
+          ),
+          content: Row(
+            children: [
+              const Icon(Icons.error),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  LocaleKeys.signInErrorMessage.tr(),
+                  style: theme.typography.labelM
+                      .copyWith(color: theme.primaryText),
+                ),
+              ),
+            ],
           ),
         );
         ScaffoldMessenger.of(context).showSnackBar(sb);
