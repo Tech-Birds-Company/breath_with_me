@@ -21,6 +21,7 @@ import 'package:breathe_with_me/repositories/firebase_remote_config_repository.d
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/isar_bloc_storage.dart';
 import 'package:breathe_with_me/utils/environment.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -129,6 +130,12 @@ Future<void> mainCommon(Environment env) async {
   tz.initializeTimeZones();
   await Firebase.initializeApp();
   _setupCrashlytics();
+
+  FirebaseFirestore.instance.settings = const Settings(
+    persistenceEnabled: true,
+    cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED,
+  );
+
   await EasyLocalization.ensureInitialized();
 
   await FirebaseRemoteConfig.instance.ensureInitialized();

@@ -35,8 +35,8 @@ final class StreakBloc extends CacheableBloc<StreakState> {
   Future<void> init() async {
     final progress = await _streakProgressManager.getUserStreakProgress();
     emit(state.copyWith(progress: progress));
-    await cache();
     _setupStreakProgressSubscription();
+    await cache();
   }
 
   void _setupStreakProgressSubscription() =>
@@ -60,6 +60,5 @@ final class StreakBloc extends CacheableBloc<StreakState> {
   void dispose() {
     _streakProgressSubscription?.cancel();
     _streakProgressSubscription = null;
-    cache();
   }
 }

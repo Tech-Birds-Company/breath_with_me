@@ -85,6 +85,9 @@ abstract class LocaleKeys {
   static const signInPassword = 'signInPassword';
   static const signInForgotPass = 'signInForgotPass';
   static const signInOrSignUp = 'signInOrSignUp';
+  static const signInEmailError = 'signInEmailError';
+  static const signInPasswordError = 'signInPasswordError';
+  static const signInErrorMessage = 'signInErrorMessage';
   static const welcomeBack = 'welcomeBack';
   static const welcomeBreather = 'welcomeBreather';
   static const confirmPassword = 'confirmPassword';

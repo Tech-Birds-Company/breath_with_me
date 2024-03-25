@@ -9,6 +9,7 @@ class ObscuredField extends StatefulWidget {
   final bool editable;
   final String? defaultValue;
   final void Function(String text)? textChange;
+  final FormFieldValidator<String?>? validator;
 
   const ObscuredField({
     required this.prefixIcon,
@@ -17,6 +18,7 @@ class ObscuredField extends StatefulWidget {
     this.editable = true,
     this.defaultValue,
     this.enableObscuredTextToggle = false,
+    this.validator,
     super.key,
   });
 
@@ -49,11 +51,12 @@ class ObscuredFieldState extends State<ObscuredField> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
 
-    return TextField(
+    return TextFormField(
       readOnly: !widget.editable,
       controller: _controller,
       style: TextStyle(color: theme.primaryText),
       obscureText: widget.enableObscuredTextToggle && _isObscured,
+      validator: widget.validator,
       decoration: InputDecoration(
         filled: widget.editable,
         fillColor: theme.gray26,
@@ -76,11 +79,7 @@ class ObscuredFieldState extends State<ObscuredField> {
         ),
         suffixIcon: widget.enableObscuredTextToggle
             ? GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _isObscured = !_isObscured;
-                  });
-                },
+                onTap: () => setState(() => _isObscured = !_isObscured),
                 child: Icon(
                   _isObscured ? Icons.visibility_off : Icons.visibility,
                   color: theme.secondaryColor,

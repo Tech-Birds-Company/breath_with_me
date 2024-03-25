@@ -23,6 +23,7 @@ final class FaqBloc extends CacheableBloc<FaqState> {
     final language = FaqLanguageHelper.fromCode(languageCode);
     final questions = await _questionsRepository.getQuestions(language);
     emit(FaqState.data(questions));
+    await cache();
   }
 
   @override

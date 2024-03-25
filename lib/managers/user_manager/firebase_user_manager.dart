@@ -4,6 +4,7 @@ import 'package:breathe_with_me/constants.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/auth_result.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -62,6 +63,7 @@ final class FirebaseUserManager implements UserManager {
                 .setUserProperty(name: 'userId', value: null);
           }
           await _databaseManager.clearDb();
+          await FirebaseFirestore.instance.clearPersistence();
         },
       );
 
