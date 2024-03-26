@@ -1,23 +1,214 @@
 {
 	"appName": "BreatheWithMe",
-	"onboardingCreateAccount": "Создать аккаунт",
-	"onboardingPage1Title":"Как ты хочешь себя чувствовать?",
-	"onboardingPage2Title":"Испытай силу дыхания",
-	"onboardingPage3Title":"Присоединяйся к сообществу",
-	
-	"onboardingPage1Subtitle":"Расслабься, сконцентрируйся или зарядись энергией с BREATHE WITH ME",
-	"onboardingPage2Subtitle":"Дыхательные практики и электронная музыка могут усилить эффект медитации",
-	"onboardingPage3Subtitle":"Общайся с преподавателями практик и другими дышателями",
+	"appBarBackTitle": "Назад",
 
-	"practicesTitle": "Привет, {}",
-	"practicesGuestWelcome": "Привет",
-	"practicesHeading": "Подышим?",
-	"practiceCategoryTitle": "Выбрать категории",
-	"practiceCategoryAll": "Все практики",
-	"practiceCategoryRelax": "Релакс",
-	"practiceCategoryEnergize": "Энергия",
-	"practiceCategoryBalance": "Баланс",
-	"practiceLanguageTitle": "Выберете язык практик",
-	"practiceLanguageEn": "En",
-	"practiceLanguageRu": "Ru"
+	"onboardingPage1Title": "Как ты хочешь себя чувствовать?",
+	"onboardingPage2Title": "Испытай силу дыхания",
+	"onboardingPage3Title": "Присоединяйся к сообществу",
+	"onboardingPage1Subtitle": "Расслабься, сконцентрируйся или зарядись энергией с BREATHE WITH ME",
+	"onboardingPage2Subtitle": "Дыхательные практики и электронная музыка могут усилить эффект медитации",
+	"onboardingPage3Subtitle": "Общайся с преподавателями практик и другими дышателями",
+	"onboardingButtonTitle": "Создать аккаунт",
+
+	"createAccountHeaderTitle": "Создай аккаунт",
+	"createAccountHeaderConjunction": "и получи",
+	"createAccountHeaderSubtitle": "доступ ко всем практикам и возможность сохранять свой прогресс",
+	"createAccountHeaderLogin": "У меня уже есть аккаунт",
+	"createAccountContact": "Связаться с нами",
+	"createAccountAgreement": {
+		"part1": "Нажимая на кнопку, вы принимаете ",
+		"privacyPolicyUrl": "политику конфиденциальности",
+		"part2": " и ",
+		"termsOfServiceUrl": "лицензионное соглашение"
+	},
+	"createAccountSignUpButtonTitle": "Создать аккаунт",
+
+	"tracksTitle": "Привет, {}",
+	"tracksHeading": "Подышим?",
+	"tracksFilterReset": "Сбросить фильтр",
+	"trackCategoryAll": "Все практики",
+	"trackCategoryRelax": "Релакс",
+	"trackCategoryEnergize": "Энергия",
+	"trackCategoryBalance": "Баланс",
+	"trackLanguageAll": "Все языки",
+	"trackLanguageEn": "Английский",
+	"trackLanguageRu": "Русский",
+	"trackDurationTitle": "{duration} мин",
+	"trackFinishButton": "Закончить",
+
+	"tutorJacksonNameKey": "Джексон",
+	"tutorDashaNameKey": "Даша",
+	"tutorJohnnyNameKey": "Джонни",
+
+	"en": "English",
+	"ru": "Русский",
+
+	"profileSettings": "Настройки",
+	"profileLanguage": "Язык",
+	"profileFAQ": "FAQ",
+	"profileChat": "Сообщество",
+	"profileContactUs": "Свяжитесь с нами",
+	"profileProgress": "Расширенная статистика вашего прогресса дыхания",
+	"profileStreak": "Возможность восстановить серию практик 3 раза",
+	"profileTotalFriends": "Друзей присоединилось",
+	"profileFaqTitle": "FAQ",
+	"profileLogout": "Выйти",
+	"profileBaseAccountType": "Бесплатный аккаунт",
+	"profilePremiumAccountType": "Премиум аккаунт",
+	"profilePremiumExpires": "до {}",
+	"profilePremiumOfferButton": "Получить премиум",
+
+	"reminderTitle": "Напоминания",
+	"reminderDisabled": "Выключено",
+	"reminderSaveButtonTitle": "Сохранить",
+	"reminderEveryWd1": "Каждый понедельник",
+	"reminderEveryWd2": "Каждый вторник",
+	"reminderEveryWd3": "Каждую среду",
+	"reminderEveryWd4": "Каждый четверг",
+	"reminderEveryWd5": "Каждую пятницу",
+	"reminderEveryWd6": "Каждую субботу",
+	"reminderEveryWd7": "Каждое воскресенье",
+	"reminderWd1Short": "Пн",
+	"reminderWd2Short": "Вт",
+	"reminderWd3Short": "Ср",
+	"reminderWd4Short": "Чт",
+	"reminderWd5Short": "Пт",
+	"reminderWd6Short": "Сб",
+	"reminderWd7Short": "Вс",
+	"reminderNotificationTitle": "Пора дышать",
+	"reminderNotificationDescription": "Примите удобную позицию и начнем",
+
+	"safetyPrecautionsWelcomeTitle": "Привет, мы рады тебя видеть!",
+	"safetyPrecautionsWelcomeDescription": "Прежде чем продолжить, ознакомься с техникой безопасности и рекомендациями по дыханию",
+	"safetyPrecautionsReadNow": "Читать сейчас",
+	
+	"signInLogin": "Войти",
+	"signInEmail": "Email",
+	"signInPassword": "Пароль",
+	"signInForgotPass": "Не помню пароль",
+	"signInOrSignUp": "или войти через",
+	"signInEmailError": "Укажите действительный email",
+	"signInPasswordError": "Пароль должен содержать не менее 6 символов",
+	"signInErrorMessage": "Ошибка авторизации. Проверьте почту или пароль",
+	"welcomeBack": "Рады тебя видеть!",
+	"welcomeBreather": "Добро пожаловать",
+	"confirmPassword": "Повторить пароль",
+	"yourName": "Имя",
+	"forgotPassSubtitle": "Мы отправим инструкции на указанный email",
+	"resetPassword": "Восстановить пароль",
+	"openEmailApp": "Открыть почту",
+	"checkYourEmailSubtitle": "Письмо с инструкциями по восстановлению пароля уже должно быть у тебя на почте",
+	"checkYourEmail": "Проверь почту!",
+	"forgotPassword": "Восстановление пароля",
+	"forgotPasswordSpamFirst": "Не пришло письмо? Проверь папку «спам» или попробуй ",
+	"forgotPasswordSpamSecond": "указать другой email",
+
+	"streakStatisticsCardTitle": "Ты впечатляешь!",
+	"streakStatisticsCardStreaksCount": {
+		"zero":"Дней подряд",
+		"one": "День подряд",
+		"two": "Дня подряд",
+		"few": "Дня подряд",
+		"many": "Дней подряд",
+		"other": "Дней подряд"
+	},
+	"streakStatisticsCardPracticesCount": {
+		"one": "Практика",
+		"many": "Практик",
+		"other": "Практики"
+	},
+	"streakStatisticsCardMinCount": {
+		"one": "Минута",
+		"few": "Минуты",
+		"many": "Минут",
+		"other": "Минут"
+	},
+	"streakStatisticsCardDayMissedCount": {
+		"zero":"Дней пропущено",
+		"one": "День пропущено",
+		"two": "Дня пропущено",
+		"few": "Дня пропущено",
+		"many": "Дней пропущено",
+		"other": "Дней пропущено"
+	},
+	"streakWithoutPremiumTitle": "Круто! Ты практикуешь уже",
+	"streakWithoutPremiumSubtitle": {
+		"zero":"{} дней подряд",
+		"one": "{} день подряд",
+		"two": "{} дня подряд",
+		"few": "{} дня подряд",
+		"many": "{} дней подряд",
+		"other": "{} дней подряд"
+	},
+	"streakLivesTitle": "Восстановление прогресса",
+	"streakLivesWhenPremiumEnabled": "Будет доступно после запуска\nПремиум аккаунта",
+	"streakLivesFooter": {
+		"one": "Вы получите ещё {} жизнь в следующем месяце",
+		"two": "Вы получите ещё {} жизни в следующем месяце",
+		"other": "Вы получите ещё {} жизней в следующем месяце"
+	},
+	"streakMissedDayTitle": "Вы уверены, что хотите восстановить пропущенный день и сохранить прогресс?",
+	"streakMissedDaySubtitle": {
+		"zero": "У вас будет на {} жизней меньше",
+		"one": "У вас будет на {} жизнь меньше",
+		"two": "У вас будет на {} жизни меньше",
+		"few": "У вас будет на {} жизни меньше",
+		"many": "У вас будет на {} жизней меньше",
+		"other": "У вас будет на {} жизней меньше"
+	},
+	"streakMissedDayRestore": "Восстановить прогресс",
+	"streakMissedDaySkip": "Пропустить",
+
+	"accountSetting": "Настройки аккаунта",
+
+	"premium": {
+		"premium": "Премиум",
+		"goPremium": "Оформи премиум",
+		"extendedStats": "Расширенная статистика вашего прогресса",
+		"restoreStreaks": "Возможность восстановить серию практик",
+		"backgroundMode": "Фоновый режим",
+		"learnMore": "Узнать больше",
+		"buyPremium": "Оформить премиум",
+		"paywall": {
+			"selectTariffTitle": "Выберите тариф",
+			"trialDescription": "Первые 7 дней бесплатно",
+			"subscriptionPeriod": {
+				"W": {
+					"zero":"{} недель",
+					"one": "{} неделя",
+					"two": "{} недели",
+					"few": "{} недели",
+					"many": "{} недель",
+					"other": "{} недель"
+				},
+				"M": {
+					"zero":"{} месяцев",
+					"one": "{} месяц",
+					"two": "{} месяца",
+					"few": "{} месяца",
+					"many": "{} месяцев",
+					"other": "{} месяцев"
+				},
+				"Y": {
+					"zero":"{} месяцев",
+					"one": "{} месяц",
+					"two": "{} месяца",
+					"few": "{} месяца",
+					"many": "{} месяцев",
+					"other": "{} месяцев"
+				}
+			}
+		}
+	},
+
+	"networkErrorText": "Ошибка сети",
+	
+	"resetPasswordTitle": "Новый пароль",
+	"resetPasswordSubtitle": "Придумай пароль посложнее — так безопаснее. Лучше использовать буквы, цифры и символы",
+
+	"signUpError": {
+		"nameEmpty": "Ошибка: поле с именем пусто.",
+		"emailEmpty": "Ошибка: недействительный адрес электронной почты.",
+		"passwordMatch": "Ошибка: пароли не совпадают."
+		}
 }

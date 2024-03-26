@@ -1,0 +1,70 @@
+{
+  "project_info": {
+    "project_number": "847416864961",
+    "project_id": "bwithmedev",
+    "storage_bucket": "bwithmedev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:847416864961:android:e7a8aa067c6df9e4cb6440",
+        "android_client_info": {
+          "package_name": "com.dobry.breathewithme.develop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "847416864961-54nq8tu2rnqm4kt44rs48vnhd91pnslq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dobry.breathewithme.develop",
+            "certificate_hash": "cd4a065aa62436e9f6bb0af673f3c77e2ffffa9e"
+          }
+        },
+        {
+          "client_id": "847416864961-a3usjke42nr36k0b98v92i3svl6m9444.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dobry.breathewithme.develop",
+            "certificate_hash": "576a6481827bdceeb069fd0fad22985aefcf730e"
+          }
+        },
+        {
+          "client_id": "847416864961-tr5c9b5q2g67tpf7rno2982kvk8il82v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dobry.breathewithme.develop",
+            "certificate_hash": "7e551b9aad6b0e9d432e84d26f81e9fbc02db61d"
+          }
+        },
+        {
+          "client_id": "847416864961-hth864tu36o6glhvek8cbldpni3n4hmh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwIpAXuiZIqbseUH1fpqhXLxcO1sbesrs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "847416864961-hth864tu36o6glhvek8cbldpni3n4hmh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "847416864961-ecn875f4kj2ocr9tslq9pnbr5ushhshr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dobry.breathewithme.develop"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

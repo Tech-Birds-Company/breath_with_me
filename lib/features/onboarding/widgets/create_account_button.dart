@@ -24,8 +24,10 @@ class OnboardingCreateAccountButton extends StatelessWidget {
             height: 44,
             child: Center(
               child: Text(
-                LocaleKeys.onboardingCreateAccount.tr(),
-                style: theme.typography.bodyMTrue,
+                LocaleKeys.onboardingButtonTitle.tr(),
+                style: theme.typography.bodyMTrue.copyWith(
+                  color: Colors.black,
+                ),
               ),
             ),
           ),
