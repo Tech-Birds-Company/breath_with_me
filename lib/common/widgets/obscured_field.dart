@@ -6,15 +6,19 @@ class ObscuredField extends StatefulWidget {
   final String hintText;
   final String prefixIcon;
   final bool enableObscuredTextToggle;
+  final bool editable;
   final String? defaultValue;
-  final void Function(String text) textChange;
+  final void Function(String text)? textChange;
+  final FormFieldValidator<String?>? validator;
 
   const ObscuredField({
-    required this.hintText,
     required this.prefixIcon,
-    required this.textChange,
+    this.textChange,
+    this.hintText = '',
+    this.editable = true,
     this.defaultValue,
     this.enableObscuredTextToggle = false,
+    this.validator,
     super.key,
   });
 
@@ -33,9 +37,7 @@ class ObscuredFieldState extends State<ObscuredField> {
     _controller.addListener(_onControllerChanged);
   }
 
-  void _onControllerChanged() {
-    widget.textChange(_controller.text);
-  }
+  void _onControllerChanged() => widget.textChange?.call(_controller.text);
 
   @override
   void dispose() {
@@ -49,22 +51,25 @@ class ObscuredFieldState extends State<ObscuredField> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
 
-    return TextField(
+    return TextFormField(
+      readOnly: !widget.editable,
       controller: _controller,
-      style: TextStyle(color: theme.primaryText),
+      style: theme.typography.bodyM.copyWith(color: theme.primaryText),
       obscureText: widget.enableObscuredTextToggle && _isObscured,
+      validator: widget.validator,
       decoration: InputDecoration(
-        filled: true,
+        filled: widget.editable,
         fillColor: theme.gray26,
         hintText: widget.hintText,
-        hintStyle: TextStyle(color: theme.secondaryText),
+        hintStyle: theme.typography.bodyM.copyWith(color: theme.secondaryText),
         prefixIcon: SizedBox(
           width: 24,
           height: 24,
           child: Center(
             child: SvgPicture.asset(
               widget.prefixIcon,
-              fit: BoxFit.cover,
+              width: 24,
+              height: 24,
               colorFilter: ColorFilter.mode(
                 theme.secondaryColor,
                 BlendMode.srcIn,
@@ -74,11 +79,7 @@ class ObscuredFieldState extends State<ObscuredField> {
         ),
         suffixIcon: widget.enableObscuredTextToggle
             ? GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _isObscured = !_isObscured;
-                  });
-                },
+                onTap: () => setState(() => _isObscured = !_isObscured),
                 child: Icon(
                   _isObscured ? Icons.visibility_off : Icons.visibility,
                   color: theme.secondaryColor,

@@ -15,11 +15,27 @@
       },
       "oauth_client": [
         {
+          "client_id": "807142596957-3qkftm503jmk4br5qlo6bu4be7ar8m4h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dobry.breathewithme",
+            "certificate_hash": "7e551b9aad6b0e9d432e84d26f81e9fbc02db61d"
+          }
+        },
+        {
           "client_id": "807142596957-4mteg9l6rfi843ta568s51u57s2bmare.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.dobry.breathewithme",
             "certificate_hash": "a9fd3f94a3d29c5bbd58f47b7b48f89da3aef208"
+          }
+        },
+        {
+          "client_id": "807142596957-b77qi3ochvdnf97h4u4qlci1717aoph3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dobry.breathewithme",
+            "certificate_hash": "cd4a065aa62436e9f6bb0af673f3c77e2ffffa9e"
           }
         },
         {
@@ -182,11 +198,27 @@
           }
         },
         {
+          "client_id": "807142596957-e45fg515knpagd26msn7rp95ah0mnsp8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.innate.beat.breathewithme",
+            "certificate_hash": "82da488523dea38619dcf024e08e30c1323e0721"
+          }
+        },
+        {
           "client_id": "807142596957-fas4pq5hqtae2uj921loe4gg45aovf2t.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.innate.beat.breathewithme",
             "certificate_hash": "e3c7bdff647c6c18d198b48631e71d0554af2caf"
+          }
+        },
+        {
+          "client_id": "807142596957-ij26ojcees0mkbr7a44cfci1c42qd79o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.innate.beat.breathewithme",
+            "certificate_hash": "576a6481827bdceeb069fd0fad22985aefcf730e"
           }
         },
         {
@@ -198,19 +230,19 @@
           }
         },
         {
-          "client_id": "807142596957-rmv29j6odd9bodek2d9nb1c1kdn24p6m.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.innate.beat.breathewithme",
-            "certificate_hash": "d4df021e8c386b61c2ab5f609e74e7711e50d6b9"
-          }
-        },
-        {
           "client_id": "807142596957-ruf5qamgh8p8pvr4lftb5a107ku5u6f2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.innate.beat.breathewithme",
             "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "807142596957-t0l2j5kb9c2rd13ov2d1qrsgjl7roc0b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.innate.beat.breathewithme",
+            "certificate_hash": "7e551b9aad6b0e9d432e84d26f81e9fbc02db61d"
           }
         },
         {

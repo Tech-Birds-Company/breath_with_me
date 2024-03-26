@@ -7,16 +7,13 @@ part of 'streak_state.dart';
 // **************************************************************************
 
 _$StreakStateImpl _$$StreakStateImplFromJson(Map json) => _$StreakStateImpl(
-      json['progress'] == null
-          ? null
-          : StreaksProgress.fromJson(
+      progress: json['progress'] == null
+          ? const StreakProgressV2()
+          : StreakProgressV2.fromJson(
               Map<String, dynamic>.from(json['progress'] as Map)),
-      StreakContentState.fromJson(
-          Map<String, dynamic>.from(json['contentState'] as Map)),
     );
 
 Map<String, dynamic> _$$StreakStateImplToJson(_$StreakStateImpl instance) =>
     <String, dynamic>{
-      'progress': instance.progress?.toJson(),
-      'contentState': instance.contentState.toJson(),
+      'progress': instance.progress.toJson(),
     };

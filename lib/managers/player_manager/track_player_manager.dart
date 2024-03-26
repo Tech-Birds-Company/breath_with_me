@@ -1,20 +1,15 @@
 import 'dart:async';
 
 import 'package:audio_session/audio_session.dart';
-import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/player_manager/player_manager.dart';
-import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
+import 'package:breathe_with_me/managers/premium_manager/premium_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:just_audio/just_audio.dart';
 
 final class TrackPlayerManager extends PlayerManager {
-  final SubscriptionsManager _subscriptionsManager;
-  final NavigationManager _navigationManager;
+  final PremiumManager _premiumManager;
 
-  TrackPlayerManager(
-    this._subscriptionsManager,
-    this._navigationManager,
-  );
+  TrackPlayerManager(this._premiumManager);
 
   AppLifecycleListener? _appLifecycleListener;
   AppLifecycleState? _appLifecycleState;
@@ -24,20 +19,18 @@ final class TrackPlayerManager extends PlayerManager {
     await _setupAudioSession();
     audioPlayer ??= AudioPlayer();
     await audioPlayer!.setAudioSource(source);
-    if (!_subscriptionsManager.premiumEnabled) {
+    if (!_premiumManager.isUserPremium) {
       _setupLifecycleListener();
     }
   }
 
-  void _setupLifecycleListener() {
-    _appLifecycleListener ??= AppLifecycleListener(
-      onStateChange: (state) => _appLifecycleState = state,
-      onPause: () {
-        pause();
-        _navigationManager.openPremiumPaywall();
-      },
-    );
-  }
+  void _setupLifecycleListener() =>
+      _appLifecycleListener ??= AppLifecycleListener(
+        onStateChange: (state) => _appLifecycleState = state,
+        onPause: () async {
+          await pause();
+        },
+      );
 
   Future<void> _setupAudioSession() async {
     audioSession = await AudioSession.instance;
@@ -49,8 +42,8 @@ final class TrackPlayerManager extends PlayerManager {
 
   @override
   Future<void> play() async {
-    final premiumEnabled = _subscriptionsManager.premiumEnabled;
-    if (!premiumEnabled && _appLifecycleState == AppLifecycleState.paused) {
+    final isUserPremium = _premiumManager.isUserPremium;
+    if (!isUserPremium && _appLifecycleState == AppLifecycleState.paused) {
       return;
     }
     final source = audioPlayer?.audioSource;

@@ -1,5 +1,5 @@
 import 'package:breathe_with_me/features/faq/models/faq_language.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'faq_question.g.dart';
 
@@ -19,5 +19,6 @@ class FaqQuestion {
 
   factory FaqQuestion.fromJson(Map<String, dynamic> json) =>
       _$FaqQuestionFromJson(json);
+
   Map<String, dynamic> toJson() => _$FaqQuestionToJson(this);
 }

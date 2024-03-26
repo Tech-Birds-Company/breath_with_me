@@ -6,14 +6,14 @@ final class _ManagerProviders {
   );
 
   late final tracksDownloader = Provider.autoDispose(
-    (ref) => TracksDownloaderManager(ref.read(database)),
+    (ref) => TracksDownloaderManager(ref.watch(database)),
   );
 
-  late final navigation = Provider(
+  late final navigation = Provider.autoDispose(
     (ref) {
       final manager = NavigationManager(
-        ref.read(Di.manager.user),
-      );
+        ref.watch(Di.manager.user),
+      )..init();
       ref.onDispose(manager.dispose);
       return manager;
     },
@@ -25,13 +25,15 @@ final class _ManagerProviders {
     },
   );
 
-  late final user = Provider.autoDispose(
-    (ref) => FirebaseUserManager(
-      ref.read(Di.manager.subscriptions),
-    ),
+  late final user = Provider<FirebaseUserManager>(
+    (ref) {
+      throw UnimplementedError();
+    },
   );
 
-  late final permissions = Provider.autoDispose((ref) => PermissionsManager());
+  late final permissions = Provider(
+    (ref) => PermissionsManager(),
+  );
 
   late final pushNotifications = Provider(
     (ref) => PushNotificationsManager(),
@@ -41,4 +43,25 @@ final class _ManagerProviders {
       Provider<SubscriptionsManager>((ref) => throw UnimplementedError());
 
   late final sharedPreferences = Provider((ref) => SharedPreferencesManager());
+
+  late final deeplink = Provider(
+    (ref) => DeeplinkManager(
+      ref.watch(Di.repository.firebaseRemoteConfig),
+    ),
+  );
+
+  late final streakProgress = Provider.autoDispose(
+    (ref) => StreakProgressManager(
+      ref.watch(Di.manager.user).currentUser!.uid,
+      ref.watch(Di.repository.firebaseStreaksProgress),
+    ),
+  );
+
+  late final linkHandler = Provider.autoDispose(
+    (ref) => LinkHandlerManager(
+      ref.watch(Di.manager.navigation),
+    ),
+  );
+
+  late final premium = Provider.autoDispose((_) => PremiumManager());
 }

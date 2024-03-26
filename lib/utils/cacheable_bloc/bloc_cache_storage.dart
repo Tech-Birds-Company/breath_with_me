@@ -3,7 +3,7 @@ abstract interface class BlocCacheStorage {
 
   Future<void> write(String key, Object? value);
 
-  Stream<Object?> stream(String key);
+  Stream<String?> stream(String key);
 
   Future<void> delete(String key);
 }

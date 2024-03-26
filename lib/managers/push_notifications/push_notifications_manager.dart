@@ -11,7 +11,7 @@ final class PushNotificationsManager {
 
   Future<bool?> init() => _flutterLocalNotificationsPlugin.initialize(
         const InitializationSettings(
-          android: AndroidInitializationSettings('mipmap/ic_launcher'),
+          android: AndroidInitializationSettings('@drawable/ic_bwm_push'),
           iOS: DarwinInitializationSettings(
             requestAlertPermission: false,
             requestBadgePermission: false,

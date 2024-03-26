@@ -8,5 +8,11 @@
 	<array>
 		<string>Default</string>
 	</array>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:breathewithme.page.link</string>
+		<string>applinks:innate.page.link</string>
+		<string>applinks:breathwithme-5376b.firebaseapp.com</string>
+	</array>
 </dict>
 </plist>

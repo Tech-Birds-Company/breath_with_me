@@ -1,26 +1,31 @@
 import 'dart:ui';
 
 import 'package:breathe_with_me/assets.dart';
-import 'package:breathe_with_me/features/onboarding/blocs/onboarding_bloc.dart';
+import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/onboarding/widgets/create_account_header.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-// TODO(bestk1ngarthur): Hide apple sign if anavailable
-
-class CreateAccountModalPage extends StatelessWidget {
-  final OnboardingBloc bloc;
-
-  const CreateAccountModalPage({
-    required this.bloc,
-    super.key,
-  });
+class CreateAccountModalPage extends HookConsumerWidget {
+  const CreateAccountModalPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bloc = ref.watch(Di.bloc.onboarding);
+    useEffect(
+      () {
+        BWMAnalytics.logScreenView('CreateAccountModalPage');
+        return null;
+      },
+      const [],
+    );
+
     final theme = Theme.of(context).extension<BWMTheme>()!;
     final locale = context.locale;
     return Scaffold(
@@ -57,9 +62,7 @@ class CreateAccountModalPage extends StatelessWidget {
                     shape: const StadiumBorder(),
                     backgroundColor: const Color(0x24BDD6E9),
                   ),
-                  onPressed: () {
-                    // TODO(bestk1ngarthur): code
-                  },
+                  onPressed: bloc.onOpenContactUs,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text(

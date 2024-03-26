@@ -1,128 +1,64 @@
-import 'package:breathe_with_me/features/streak/models/streak_content_state.dart';
-import 'package:breathe_with_me/features/streak/models/streak_lives_data.dart';
+import 'dart:async';
+
 import 'package:breathe_with_me/features/streak/models/streak_state.dart';
-import 'package:breathe_with_me/features/streak/models/streak_statistics_data.dart';
-import 'package:breathe_with_me/features/tracks/models/track.dart';
+import 'package:breathe_with_me/managers/database_manager/database_cached_keys.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
-import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
-import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
-import 'package:breathe_with_me/repositories/models/streaks_progress.dart';
+import 'package:breathe_with_me/managers/streak_progress_manager/streak_progress_manager.dart';
+import 'package:breathe_with_me/repositories/models/streak_progress_v2.dart';
 import 'package:breathe_with_me/repositories/remote_config_repository.dart';
-import 'package:breathe_with_me/repositories/streaks_progress_repository.dart';
-import 'package:breathe_with_me/repositories/streaks_quotes_repository.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 
-final class StreakBloc extends BlocBase<StreakState> {
-  final Track _track;
-  final Locale _locale;
-
+final class StreakBloc extends CacheableBloc<StreakState> {
+  final StreakProgressManager _streakProgressManager;
   final RemoteConfigRepository _remoteConfigRepository;
-  final StreaksProgressRepository _streaksProgressRepository;
-  final StreaksQuotesRepository _streaksQuotesRepository;
-
-  final UserManager _userManager;
   final NavigationManager _navigationManager;
-  final SubscriptionsManager _subscriptionManager;
 
   StreakBloc(
-    this._track,
-    this._locale,
+    this._streakProgressManager,
     this._remoteConfigRepository,
-    this._streaksProgressRepository,
-    this._streaksQuotesRepository,
-    this._userManager,
     this._navigationManager,
-    this._subscriptionManager,
-  ) : super(const StreakState(null, StreakContentState.loading()));
+  ) : super(const StreakState());
 
-  bool get _premiumEnabled => _subscriptionManager.premiumEnabled;
+  @override
+  String get key => DatabaseCachedKeys.cachedStreakStateKey;
+
+  @override
+  StreakState fromJson(Map<String, dynamic> json) => StreakState.fromJson(json);
+
+  @override
+  Map<String, dynamic> toJson(StreakState state) => state.toJson();
+
+  int get maxLivesCount => _remoteConfigRepository.streaks.monthLivesCount;
+
+  StreamSubscription<StreakProgressV2>? _streakProgressSubscription;
 
   Future<void> init() async {
-    emit(const StreakState(null, StreakContentState.loading()));
-
-    final progress = await _streaksProgressRepository.addPractice(
-      _userManager.currentUser!.uid,
-      DateTime.now(),
-      _track.duration,
-      _remoteConfigRepository.streaks.monthLivesCount,
-    );
-    final contentState = getContentState(progress);
-    emit(StreakState(progress, contentState));
+    final progress = await _streakProgressManager.getUserStreakProgress();
+    emit(state.copyWith(progress: progress));
+    _setupStreakProgressSubscription();
+    await cache();
   }
+
+  void _setupStreakProgressSubscription() =>
+      _streakProgressSubscription ??= _streakProgressManager.stream.listen(
+        (streakProgress) => emit(
+          state.copyWith(progress: streakProgress),
+        ),
+      );
+
+  Future<void> onRestoreTap() async {
+    final progress = await _streakProgressManager.restoreUserStreakProgress();
+    emit(
+      state.copyWith(progress: progress),
+    );
+  }
+
+  void onReminderTap() => _navigationManager.openReminderPage();
 
   void onCloseTap() => _navigationManager.popToRoot();
 
-  Future<void> onRestoreTap() async {
-    final restoredDate = DateTime.now().subtract(const Duration(days: 1));
-    final progress = await _streaksProgressRepository.restoreStreak(
-      _userManager.currentUser!.uid,
-      restoredDate,
-      _remoteConfigRepository.streaks.monthLivesCount,
-    );
-    final contentState = getContentState(progress);
-    emit(StreakState(progress, contentState));
-  }
-
-  void onSkipTap() {
-    final progress = state.progress;
-    if (progress != null) {
-      final streaksCount = progress.lastStreaksCount;
-      final contentState = StreakContentState.premiumStartedOrContinued(
-        StreakStatisticsData.full(
-          progress.lastStreaksCount,
-          progress.practicesCount,
-          progress.minutesCount,
-        ),
-        streaksCount,
-        StreakLivesData(
-          availableLivesCount: progress.livesCount,
-          totalLivesCount: _remoteConfigRepository.streaks.monthLivesCount,
-          showTitle: true,
-          showFooter: progress.livesCount == 0,
-        ),
-        _streaksQuotesRepository.getQuote(_locale.languageCode),
-      );
-      emit(StreakState(progress, contentState));
-    }
-  }
-
-  StreakContentState getContentState(StreaksProgress progress) {
-    final StreakContentState state;
-    if (_premiumEnabled) {
-      final streaksCount = progress.lastStreaksCount;
-      final missedDaysCount = progress.lastMissedDaysCount;
-      if ((missedDaysCount == 1) && (progress.livesCount > 0)) {
-        state = StreakContentState.premiumMissed(
-          StreakStatisticsData.missed(streaksCount, missedDaysCount),
-          StreakLivesData(
-            availableLivesCount: progress.livesCount,
-            totalLivesCount: _remoteConfigRepository.streaks.monthLivesCount,
-          ),
-        );
-      } else {
-        state = StreakContentState.premiumStartedOrContinued(
-          StreakStatisticsData.full(
-            streaksCount,
-            progress.practicesCount,
-            progress.minutesCount,
-          ),
-          streaksCount,
-          StreakLivesData(
-            availableLivesCount: progress.livesCount,
-            totalLivesCount: _remoteConfigRepository.streaks.monthLivesCount,
-            showTitle: true,
-            showFooter: progress.livesCount == 0,
-          ),
-          _streaksQuotesRepository.getQuote(_locale.languageCode),
-        );
-      }
-    } else {
-      state = StreakContentState.withoutPremium(
-        progress.lastStreaksCount,
-        _streaksQuotesRepository.getQuote(_locale.languageCode),
-      );
-    }
-    return state;
+  void dispose() {
+    _streakProgressSubscription?.cancel();
+    _streakProgressSubscription = null;
   }
 }

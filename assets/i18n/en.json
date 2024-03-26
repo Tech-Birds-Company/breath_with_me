@@ -24,7 +24,6 @@
 	"createAccountSignUpButtonTitle": "Create account",
 
 	"tracksTitle": "Hi, {}",
-	"tracksGuestWelcome": "Hello",
 	"tracksHeading": "Let's breathe",
 	"tracksFilterReset": "Reset",
 	"trackCategoryAll": "All practices",
@@ -53,7 +52,7 @@
 	"profileStreak": "Ability to restore your practice streak 3 times",
 	"profileFaqTitle": "FAQ",
 	"profileLogout": "Log out",
-	"profileBaseAccountType": "Base account",
+	"profileBaseAccountType": "Free account",
 	"profilePremiumAccountType": "Premium account",
 	"profilePremiumExpires": "till {}",
 	"profilePremiumOfferButton": "Go premium",
@@ -87,6 +86,9 @@
 	"signInPassword": "Password",
 	"signInForgotPass": "Forgot Password",
 	"signInOrSignUp": "or Log in with",
+	"signInEmailError": "Invalid email address",
+	"signInPasswordError": "Password must be at least 6 characters",
+	"signInErrorMessage": "Authorization failed. Please check your email or password",
 	"welcomeBack": "Welcome back!",
 	"welcomeBreather": "Welcome, breather!",
 	"confirmPassword": "Confirm Password",
@@ -114,12 +116,13 @@
 	"streakWithoutPremiumTitle": "You have",
 	"streakWithoutPremiumSubtitle": "{} day streak",
 	"streakLivesTitle": "Monthly streak lives",
+	"streakLivesWhenPremiumEnabled": "Will be available after starting a premium account",
 	"streakLivesFooter": {
 		"one": "You will get {} more live next month",
 		"other": "You will get {} more lives next month"
 	},
 	"streakMissedDayTitle": "Do you want to restore missed day and save your progress?",
-	"streakMissedDaySubtitle": "You will have one less streak live",
+	"streakMissedDaySubtitle": "You will have {} less streak live",
 	"streakMissedDayRestore": "Restore streak",
 	"streakMissedDaySkip": "Skip",
 
@@ -152,5 +155,15 @@
 			}
 		}
 	},
-	"networkErrorText": "Network error"
+	"networkErrorText": "Network error",
+	
+	"resetPasswordTitle": "Reset password",
+	"resetPasswordSubtitle": "Enter a new password",
+
+	"signUpError": {
+		"nameEmpty": "Error: Name field is empty.",
+		"emailEmpty": "Error: Email is invalid.",
+		"passwordMatch": "Error: Passwords do not match."
+	}
+
 }

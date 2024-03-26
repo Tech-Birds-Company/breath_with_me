@@ -19,7 +19,7 @@ class DateTimeFormatter {
 
   static String convertDateToLocalizedText(String dateString, String locale) {
     final date = DateTime.parse(dateString);
-    final dateFormat = DateFormat('d MMM yyyy', locale);
+    final dateFormat = DateFormat('d MMMM yyyy', locale);
 
     return dateFormat.format(date);
   }

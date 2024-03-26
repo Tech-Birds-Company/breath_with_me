@@ -1,17 +1,23 @@
 import 'package:breathe_with_me/common/widgets/bottom_sheet_notch.dart';
+import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LanguageSheet extends StatelessWidget {
+class LanguageSheet extends ConsumerWidget {
   const LanguageSheet({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
+    final navigationManager = ref.watch(Di.manager.navigation);
     return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
+      borderRadius: const BorderRadius.only(
+        topLeft: Radius.circular(20),
+        topRight: Radius.circular(20),
+      ),
       child: ColoredBox(
         color: theme.primaryBackground,
         child: SafeArea(
@@ -21,12 +27,18 @@ class LanguageSheet extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const BottomSheetNotch(),
-                const _LanguageItem(languageCode: 'en'),
+                _LanguageItem(
+                  onPop: navigationManager.pop,
+                  languageCode: 'en',
+                ),
                 Divider(
                   thickness: 1,
                   color: theme.secondaryBackground,
                 ),
-                const _LanguageItem(languageCode: 'ru'),
+                _LanguageItem(
+                  onPop: navigationManager.pop,
+                  languageCode: 'ru',
+                ),
               ],
             ),
           ),
@@ -37,9 +49,11 @@ class LanguageSheet extends StatelessWidget {
 }
 
 class _LanguageItem extends StatelessWidget {
+  final VoidCallback onPop;
   final String languageCode;
 
   const _LanguageItem({
+    required this.onPop,
     required this.languageCode,
   });
 
@@ -64,7 +78,13 @@ class _LanguageItem extends StatelessWidget {
           : null,
       onTap: () {
         localization.setLocale(Locale(languageCode));
-        context.pop();
+        BWMAnalytics.event(
+          'onLanguageChanged',
+          params: {
+            'language': languageCode,
+          },
+        );
+        onPop();
       },
     );
   }

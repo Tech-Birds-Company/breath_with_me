@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:breathe_with_me/features/premium/models/premium_paywall_state.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
@@ -17,8 +19,12 @@ final class PremiumPaywallBloc extends BlocBase<PremiumPaywallState> {
   ) : super(const PremiumPaywallState.loading());
 
   Future<void> init() async {
-    final configSubscriptions =
-        _remoteConfigRepository.premium.paywall.subscriptions;
+    final configSubscriptionsPaywall =
+        _remoteConfigRepository.premiumV2.paywall;
+
+    final configSubscriptions = Platform.isIOS
+        ? configSubscriptionsPaywall.subscriptions.ios
+        : configSubscriptionsPaywall.subscriptions.android;
 
     final subscriptions =
         await _subscriptionsManager.getProducts(configSubscriptions);

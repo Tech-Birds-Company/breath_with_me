@@ -1,35 +1,40 @@
 import 'package:breathe_with_me/common/widgets/bwm_app_bar.dart';
 import 'package:breathe_with_me/constants.dart';
+import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/track_player/blocs/track_player_bloc.dart';
 import 'package:breathe_with_me/features/track_player/models/track_player_state.dart';
 import 'package:breathe_with_me/features/track_player/widgets/track_player_animation.dart';
 import 'package:breathe_with_me/features/track_player/widgets/track_player_button.dart';
 import 'package:breathe_with_me/features/track_player/widgets/track_progress_indicator.dart';
+import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:breathe_with_me/utils/string_hex_to_color.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:rxdart/rxdart.dart';
 
-class TrackPlayerPage extends HookWidget {
-  final TrackPlayerBloc bloc;
+class TrackPlayerPage extends HookConsumerWidget {
+  final Track track;
 
   const TrackPlayerPage({
-    required this.bloc,
+    required this.track,
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
+    final bloc = ref.watch(Di.bloc.trackPlayer(track));
 
     useEffect(
       () {
-        bloc.init();
-        return bloc.dispose;
+        BWMAnalytics.logScreenView('TrackPlayerPage');
+        return null;
       },
       const [],
     );
@@ -51,9 +56,14 @@ class TrackPlayerPage extends HookWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: BlocSelector<TrackPlayerBloc, TrackPlayerState, bool>(
                   bloc: bloc,
-                  selector: (state) =>
-                      (state.progress ?? 0.0) >=
-                      BWMConstants.trackPlayerFinishThreshold,
+                  selector: (state) {
+                    if (state.totalMs == 0) {
+                      return false;
+                    }
+                    final progress =
+                        (state.currentTimeMs / state.totalMs).clamp(0.0, 1.0);
+                    return progress >= BWMConstants.trackPlayerFinishThreshold;
+                  },
                   builder: (context, canBeFinished) => Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [

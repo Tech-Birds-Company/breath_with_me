@@ -1,6 +1,7 @@
 import 'package:breathe_with_me/features/reminder/models/reminder_state.dart';
 import 'package:breathe_with_me/managers/database_manager/database_cached_keys.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 
 final class ReminderBloc extends CacheableBloc<ReminderState> {
@@ -13,6 +14,12 @@ final class ReminderBloc extends CacheableBloc<ReminderState> {
   String get key => DatabaseCachedKeys.cachedReminderKey;
 
   void onWeekDaySelected(int weekDay) {
+    BWMAnalytics.event(
+      'onReminderWeekDaySelected',
+      params: {
+        'weekDay': weekDay.toString(),
+      },
+    );
     final selectedWeekDays = Set<int>.from(state.selectedWeekDays);
     if (selectedWeekDays.contains(weekDay)) {
       selectedWeekDays.remove(weekDay);
@@ -26,17 +33,33 @@ final class ReminderBloc extends CacheableBloc<ReminderState> {
     );
   }
 
-  void onHoursChanged(int hours) => emit(
-        state.copyWith(
-          selectedHours: hours,
-        ),
-      );
+  void onHoursChanged(int hours) {
+    BWMAnalytics.event(
+      'onReminderHoursChanged',
+      params: {
+        'hours': hours.toString(),
+      },
+    );
+    emit(
+      state.copyWith(
+        selectedHours: hours,
+      ),
+    );
+  }
 
-  void onMinutesChanged(int minutes) => emit(
-        state.copyWith(
-          selectedMinutes: minutes,
-        ),
-      );
+  void onMinutesChanged(int minutes) {
+    BWMAnalytics.event(
+      'onReminderMinutesChanged',
+      params: {
+        'minutes': minutes.toString(),
+      },
+    );
+    emit(
+      state.copyWith(
+        selectedMinutes: minutes,
+      ),
+    );
+  }
 
   Future<void> saveReminder() async {
     if (state.selectedWeekDays.isEmpty) {
@@ -52,6 +75,14 @@ final class ReminderBloc extends CacheableBloc<ReminderState> {
         state.selectedMinutes,
       );
     }
+    BWMAnalytics.event(
+      'onReminderScheduled',
+      params: {
+        'selectedWeekDays': state.selectedWeekDays.toString(),
+        'selectedHours': state.selectedHours.toString(),
+        'selectedMinutes': state.selectedMinutes.toString(),
+      },
+    );
   }
 
   @override

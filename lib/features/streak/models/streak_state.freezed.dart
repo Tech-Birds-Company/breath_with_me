@@ -12,7 +12,7 @@ part of 'streak_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 StreakState _$StreakStateFromJson(Map<String, dynamic> json) {
   return _StreakState.fromJson(json);
@@ -20,8 +20,7 @@ StreakState _$StreakStateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$StreakState {
-  StreaksProgress? get progress => throw _privateConstructorUsedError;
-  StreakContentState get contentState => throw _privateConstructorUsedError;
+  StreakProgressV2 get progress => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,10 +34,9 @@ abstract class $StreakStateCopyWith<$Res> {
           StreakState value, $Res Function(StreakState) then) =
       _$StreakStateCopyWithImpl<$Res, StreakState>;
   @useResult
-  $Res call({StreaksProgress? progress, StreakContentState contentState});
+  $Res call({StreakProgressV2 progress});
 
-  $StreaksProgressCopyWith<$Res>? get progress;
-  $StreakContentStateCopyWith<$Res> get contentState;
+  $StreakProgressV2CopyWith<$Res> get progress;
 }
 
 /// @nodoc
@@ -54,38 +52,21 @@ class _$StreakStateCopyWithImpl<$Res, $Val extends StreakState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? progress = freezed,
-    Object? contentState = null,
+    Object? progress = null,
   }) {
     return _then(_value.copyWith(
-      progress: freezed == progress
+      progress: null == progress
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
-              as StreaksProgress?,
-      contentState: null == contentState
-          ? _value.contentState
-          : contentState // ignore: cast_nullable_to_non_nullable
-              as StreakContentState,
+              as StreakProgressV2,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $StreaksProgressCopyWith<$Res>? get progress {
-    if (_value.progress == null) {
-      return null;
-    }
-
-    return $StreaksProgressCopyWith<$Res>(_value.progress!, (value) {
+  $StreakProgressV2CopyWith<$Res> get progress {
+    return $StreakProgressV2CopyWith<$Res>(_value.progress, (value) {
       return _then(_value.copyWith(progress: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $StreakContentStateCopyWith<$Res> get contentState {
-    return $StreakContentStateCopyWith<$Res>(_value.contentState, (value) {
-      return _then(_value.copyWith(contentState: value) as $Val);
     });
   }
 }
@@ -98,12 +79,10 @@ abstract class _$$StreakStateImplCopyWith<$Res>
       __$$StreakStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({StreaksProgress? progress, StreakContentState contentState});
+  $Res call({StreakProgressV2 progress});
 
   @override
-  $StreaksProgressCopyWith<$Res>? get progress;
-  @override
-  $StreakContentStateCopyWith<$Res> get contentState;
+  $StreakProgressV2CopyWith<$Res> get progress;
 }
 
 /// @nodoc
@@ -117,18 +96,13 @@ class __$$StreakStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? progress = freezed,
-    Object? contentState = null,
+    Object? progress = null,
   }) {
     return _then(_$StreakStateImpl(
-      freezed == progress
+      progress: null == progress
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
-              as StreaksProgress?,
-      null == contentState
-          ? _value.contentState
-          : contentState // ignore: cast_nullable_to_non_nullable
-              as StreakContentState,
+              as StreakProgressV2,
     ));
   }
 }
@@ -136,19 +110,18 @@ class __$$StreakStateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$StreakStateImpl implements _StreakState {
-  const _$StreakStateImpl(this.progress, this.contentState);
+  const _$StreakStateImpl({this.progress = const StreakProgressV2()});
 
   factory _$StreakStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$StreakStateImplFromJson(json);
 
   @override
-  final StreaksProgress? progress;
-  @override
-  final StreakContentState contentState;
+  @JsonKey()
+  final StreakProgressV2 progress;
 
   @override
   String toString() {
-    return 'StreakState(progress: $progress, contentState: $contentState)';
+    return 'StreakState(progress: $progress)';
   }
 
   @override
@@ -157,14 +130,12 @@ class _$StreakStateImpl implements _StreakState {
         (other.runtimeType == runtimeType &&
             other is _$StreakStateImpl &&
             (identical(other.progress, progress) ||
-                other.progress == progress) &&
-            (identical(other.contentState, contentState) ||
-                other.contentState == contentState));
+                other.progress == progress));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, progress, contentState);
+  int get hashCode => Object.hash(runtimeType, progress);
 
   @JsonKey(ignore: true)
   @override
@@ -181,16 +152,14 @@ class _$StreakStateImpl implements _StreakState {
 }
 
 abstract class _StreakState implements StreakState {
-  const factory _StreakState(final StreaksProgress? progress,
-      final StreakContentState contentState) = _$StreakStateImpl;
+  const factory _StreakState({final StreakProgressV2 progress}) =
+      _$StreakStateImpl;
 
   factory _StreakState.fromJson(Map<String, dynamic> json) =
       _$StreakStateImpl.fromJson;
 
   @override
-  StreaksProgress? get progress;
-  @override
-  StreakContentState get contentState;
+  StreakProgressV2 get progress;
   @override
   @JsonKey(ignore: true)
   _$$StreakStateImplCopyWith<_$StreakStateImpl> get copyWith =>

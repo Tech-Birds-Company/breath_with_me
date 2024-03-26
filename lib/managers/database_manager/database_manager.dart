@@ -24,15 +24,13 @@ final class DatabaseManager {
       downloadTrackTasksCollection.getByTaskId(taskId);
 
   Future<DownloadTrackTask> createDownloadTrackTask({
-    required String uid,
-    required String id,
+    required String taskId,
     required String filename,
     required String url,
     required int totalBytes,
   }) async {
     final task = DownloadTrackTask(
-      uid: uid,
-      taskId: id,
+      taskId: taskId,
       filename: filename,
       url: url,
       totalBytes: totalBytes,
@@ -57,7 +55,7 @@ final class DatabaseManager {
   Future<SecureImageUrl?> getSecureUrl(String baseUrl) =>
       db.secureImageUrls.getByBaseUrl(baseUrl);
 
-  Stream<double> taskProgressStream(String taskId) =>
+  Stream<double> taskProgressStream({required String taskId}) =>
       downloadTrackTasksCollection
           .where()
           .taskIdEqualTo(taskId)

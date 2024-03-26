@@ -7,7 +7,6 @@ final class DownloadTrackTask {
   Id? id;
   @Index(unique: true, replace: true, type: IndexType.hash)
   String taskId;
-  String uid;
   String url;
   String filename;
   int downloadedBytes = 0;
@@ -17,7 +16,6 @@ final class DownloadTrackTask {
   bool get isCompleted => downloadedBytes == totalBytes;
 
   DownloadTrackTask({
-    required this.uid,
     required this.taskId,
     required this.url,
     required this.filename,

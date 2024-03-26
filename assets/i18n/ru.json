@@ -17,14 +17,13 @@
 	"createAccountContact": "Связаться с нами",
 	"createAccountAgreement": {
 		"part1": "Нажимая на кнопку, вы принимаете ",
-		"privacyPolicyUrl": "лицензионное соглашение",
+		"privacyPolicyUrl": "политику конфиденциальности",
 		"part2": " и ",
-		"termsOfServiceUrl": "политику конфиденциальности"
+		"termsOfServiceUrl": "лицензионное соглашение"
 	},
 	"createAccountSignUpButtonTitle": "Создать аккаунт",
 
 	"tracksTitle": "Привет, {}",
-	"tracksGuestWelcome": "Привет",
 	"tracksHeading": "Подышим?",
 	"tracksFilterReset": "Сбросить фильтр",
 	"trackCategoryAll": "Все практики",
@@ -54,7 +53,7 @@
 	"profileTotalFriends": "Друзей присоединилось",
 	"profileFaqTitle": "FAQ",
 	"profileLogout": "Выйти",
-	"profileBaseAccountType": "Базовый аккаунт",
+	"profileBaseAccountType": "Бесплатный аккаунт",
 	"profilePremiumAccountType": "Премиум аккаунт",
 	"profilePremiumExpires": "до {}",
 	"profilePremiumOfferButton": "Получить премиум",
@@ -88,6 +87,9 @@
 	"signInPassword": "Пароль",
 	"signInForgotPass": "Не помню пароль",
 	"signInOrSignUp": "или войти через",
+	"signInEmailError": "Укажите действительный email",
+	"signInPasswordError": "Пароль должен содержать не менее 6 символов",
+	"signInErrorMessage": "Ошибка авторизации. Проверьте почту или пароль",
 	"welcomeBack": "Рады тебя видеть!",
 	"welcomeBreather": "Добро пожаловать",
 	"confirmPassword": "Повторить пароль",
@@ -139,13 +141,21 @@
 		"other": "{} дней подряд"
 	},
 	"streakLivesTitle": "Восстановление прогресса",
+	"streakLivesWhenPremiumEnabled": "Будет доступно после запуска\nПремиум аккаунта",
 	"streakLivesFooter": {
 		"one": "Вы получите ещё {} жизнь в следующем месяце",
 		"two": "Вы получите ещё {} жизни в следующем месяце",
 		"other": "Вы получите ещё {} жизней в следующем месяце"
 	},
 	"streakMissedDayTitle": "Вы уверены, что хотите восстановить пропущенный день и сохранить прогресс?",
-	"streakMissedDaySubtitle": "У вас будет на одну жизнь меньше",
+	"streakMissedDaySubtitle": {
+		"zero": "У вас будет на {} жизней меньше",
+		"one": "У вас будет на {} жизнь меньше",
+		"two": "У вас будет на {} жизни меньше",
+		"few": "У вас будет на {} жизни меньше",
+		"many": "У вас будет на {} жизней меньше",
+		"other": "У вас будет на {} жизней меньше"
+	},
 	"streakMissedDayRestore": "Восстановить прогресс",
 	"streakMissedDaySkip": "Пропустить",
 
@@ -191,5 +201,14 @@
 		}
 	},
 
-	"networkErrorText": "Ошибка сети"
+	"networkErrorText": "Ошибка сети",
+	
+	"resetPasswordTitle": "Новый пароль",
+	"resetPasswordSubtitle": "Придумай пароль посложнее — так безопаснее. Лучше использовать буквы, цифры и символы",
+
+	"signUpError": {
+		"nameEmpty": "Ошибка: поле с именем пусто.",
+		"emailEmpty": "Ошибка: недействительный адрес электронной почты.",
+		"passwordMatch": "Ошибка: пароли не совпадают."
+		}
 }

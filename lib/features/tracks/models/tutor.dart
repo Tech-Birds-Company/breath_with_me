@@ -1,4 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'tutor.g.dart';
 
@@ -15,5 +15,6 @@ class Tutor {
   });
 
   factory Tutor.fromJson(Map<String, dynamic> json) => _$TutorFromJson(json);
+
   Map<String, dynamic> toJson() => _$TutorToJson(this);
 }

@@ -27,12 +27,10 @@ class OnboardingIndicator extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: pageController,
-      builder: (context, _) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+  Widget build(BuildContext context) => AnimatedBuilder(
+        animation: pageController,
+        builder: (context, _) => Wrap(
+          spacing: 8,
           children: [
             for (var i = 0; i < totalPages; i++)
               Builder(
@@ -48,18 +46,15 @@ class OnboardingIndicator extends StatelessWidget {
                     to: 1,
                     index: i,
                   );
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(4),
-                      child: SizedBox(
-                        width: width,
-                        height: 8,
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: theme.fifthColor.withOpacity(
-                              opacity,
-                            ),
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(4),
+                    child: SizedBox(
+                      width: width,
+                      height: 8,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: theme.fifthColor.withOpacity(
+                            opacity,
                           ),
                         ),
                       ),
@@ -68,8 +63,6 @@ class OnboardingIndicator extends StatelessWidget {
                 },
               ),
           ],
-        );
-      },
-    );
-  }
+        ),
+      );
 }

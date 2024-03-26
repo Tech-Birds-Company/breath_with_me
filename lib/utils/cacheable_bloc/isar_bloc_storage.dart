@@ -25,9 +25,11 @@ final class IsarBlocStateStorage implements BlocCacheStorage {
 
     if (dbEntity != null) {
       dbEntity.json = jsonString;
-      await _databaseManager.db.writeTxn(() async {
-        await _databaseManager.blocStateCollection.put(dbEntity);
-      });
+      await _databaseManager.db.writeTxn(
+        () async {
+          await _databaseManager.blocStateCollection.put(dbEntity);
+        },
+      );
       return;
     }
 
@@ -36,29 +38,35 @@ final class IsarBlocStateStorage implements BlocCacheStorage {
       json: jsonString,
     );
 
-    await _databaseManager.db.writeTxn(() async {
-      await _databaseManager.blocStateCollection.put(entity);
-    });
+    await _databaseManager.db.writeTxn(
+      () async {
+        await _databaseManager.blocStateCollection.put(entity);
+      },
+    );
   }
 
   @override
-  Stream<Object?> stream(String key) => _databaseManager.blocStateCollection
+  Stream<String?> stream(String key) => _databaseManager.blocStateCollection
           .where()
           .keyEqualTo(key)
           .watch(fireImmediately: true)
-          .map((event) {
-        final entity = event.firstOrNull;
-        return entity?.json;
-      }).distinct();
+          .map(
+        (event) {
+          final entity = event.firstOrNull;
+          return entity?.json;
+        },
+      ).distinct();
 
   @override
   Future<void> delete(String key) async {
     final entity = _getBlocStateEntity(key);
 
     if (entity != null) {
-      await _databaseManager.db.writeTxn(() async {
-        await _databaseManager.blocStateCollection.deleteByKey(entity.key);
-      });
+      await _databaseManager.db.writeTxn(
+        () async {
+          await _databaseManager.blocStateCollection.deleteByKey(entity.key);
+        },
+      );
     }
   }
 }

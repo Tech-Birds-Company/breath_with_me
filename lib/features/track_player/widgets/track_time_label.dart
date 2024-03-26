@@ -3,11 +3,11 @@ import 'package:breathe_with_me/utils/datetime_formatter.dart';
 import 'package:flutter/material.dart';
 
 class TrackTimeLabel extends StatelessWidget {
-  final int? durationMs;
+  final int durationMs;
   final bool estimated;
 
   const TrackTimeLabel({
-    this.durationMs,
+    this.durationMs = 0,
     this.estimated = false,
     super.key,
   });
@@ -16,8 +16,8 @@ class TrackTimeLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return Text(
-      durationMs != null
-          ? '${estimated ? '-' : ''}${DateTimeFormatter.formatMilliseconds(durationMs!)}'
+      durationMs > 0
+          ? '${estimated ? '-' : ''}${DateTimeFormatter.formatMilliseconds(durationMs)}'
           : '-:--',
       style: theme.typography.label.copyWith(color: theme.secondaryText),
     );

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:breathe_with_me/features/onboarding/widgets/sign_circle_button.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
@@ -27,14 +29,15 @@ class SingInWithButtons extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Wrap(
+            alignment: WrapAlignment.center,
+            spacing: 12,
             children: [
-              SignCircleButton(
-                provider: SignCircleButtonProvider.apple,
-                onPressed: onApplePressed,
-              ),
-              const SizedBox(width: 12),
+              if (Platform.isIOS)
+                SignCircleButton(
+                  provider: SignCircleButtonProvider.apple,
+                  onPressed: onApplePressed,
+                ),
               SignCircleButton(
                 provider: SignCircleButtonProvider.google,
                 onPressed: onGooglePressed,

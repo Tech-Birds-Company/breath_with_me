@@ -8,7 +8,6 @@ import 'package:rxdart/rxdart.dart';
 abstract base class SubscriptionsManager {
   late BehaviorSubject<CustomerInfo?> _customerInfoStreamController;
 
-  @mustBeOverridden
   @mustCallSuper
   Future<void> configure() async {
     try {
@@ -23,20 +22,21 @@ abstract base class SubscriptionsManager {
 
   CustomerInfo? get customerInfo => _customerInfoStreamController.value;
 
-  bool get premiumEnabled {
-    if (customerInfo == null) {
-      Purchases.getCustomerInfo().then(_onCustomerInfoUpdated);
-      return false;
-    }
-    return customerInfo!.activeSubscriptions.isNotEmpty;
-  }
-
-  Stream<bool> get premiumEnabledStream => _customerInfoStreamController.stream
+  Stream<bool> get isUserPremiumStream => _customerInfoStreamController.stream
       .map((info) => info?.activeSubscriptions.isNotEmpty ?? false)
       .distinct()
       .asBroadcastStream();
 
   Future<LogInResult> login(String userId) => Purchases.logIn(userId);
+
+  Future<void> logOut() async {
+    _customerInfoStreamController.add(null);
+    final isAnonymous = await Purchases.isAnonymous;
+    if (isAnonymous) {
+      return;
+    }
+    await Purchases.logOut();
+  }
 
   Future<Map<String, StoreProduct>> getProducts(
     List<String> productIdentifiers,

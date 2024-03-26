@@ -7,21 +7,26 @@ import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/constants.dart';
 import 'package:breathe_with_me/database/database.dart';
 import 'package:breathe_with_me/di/di.dart';
-import 'package:breathe_with_me/managers/audio_manager/track_audio_manger.dart';
+import 'package:breathe_with_me/di/provider_logger.dart';
+import 'package:breathe_with_me/managers/audio_manager/track_audio_manager.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/download_manager/tracks_downloader_manger.dart';
+import 'package:breathe_with_me/managers/link_handler_manager.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
-import 'package:breathe_with_me/managers/player_manager/track_player_manager.dart';
+import 'package:breathe_with_me/managers/premium_manager/premium_manager.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
 import 'package:breathe_with_me/managers/shared_preferences_manager/shared_preferences_manager.dart';
-import 'package:breathe_with_me/managers/subscriptions_manager/bwm_subscriptions_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/firebase_user_manager.dart';
+import 'package:breathe_with_me/repositories/firebase_remote_config_repository.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/isar_bloc_storage.dart';
 import 'package:breathe_with_me/utils/environment.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -29,7 +34,7 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 
-Future<ProviderContainer> _setupDependencies({
+Future<List<Override>> _setupDependencies({
   required bool isProduction,
 }) async {
   final database = BWMDatabase();
@@ -41,14 +46,14 @@ Future<ProviderContainer> _setupDependencies({
 
   final tracksDownloadManager = TracksDownloaderManager(databaseManager);
 
-  final subscriptionsManager = BWMSubscriptionsManager(
-    isProduction
-        ? BWMConstants.revenueCatApiKeyProd
-        : BWMConstants.revenueCatApiKeyDev,
-  );
-  await subscriptionsManager.configure();
+  const remoteConfigRepository = FirebaseRemoteConfigRepository();
 
-  final userManager = FirebaseUserManager(subscriptionsManager);
+  final premiumManager = PremiumManager();
+
+  final userManager = FirebaseUserManager(
+    databaseManager,
+    isProduction: isProduction,
+  )..init();
 
   final sharedPrefsManager = SharedPreferencesManager();
 
@@ -66,13 +71,10 @@ Future<ProviderContainer> _setupDependencies({
 
   final navigationManager = NavigationManager(userManager)..init();
 
+  final linkHandlerManager = LinkHandlerManager(navigationManager)..init();
+
   final trackAudioManager = await AudioService.init(
-    builder: () => TrackAudioManager(
-      TrackPlayerManager(
-        subscriptionsManager,
-        navigationManager,
-      ),
-    ),
+    builder: () => TrackAudioManager(premiumManager),
     config: const AudioServiceConfig(
       androidNotificationChannelId: BWMConstants.androidNotificationChannelId,
       androidNotificationChannelName:
@@ -93,23 +95,47 @@ Future<ProviderContainer> _setupDependencies({
       ref.onDispose(databaseManager.dispose);
       return databaseManager;
     }),
-    Di.manager.subscriptions.overrideWith((ref) {
-      ref.onDispose(subscriptionsManager.dispose);
-      return subscriptionsManager;
-    }),
-    Di.manager.audio.overrideWithValue(trackAudioManager),
+    Di.manager.audio.overrideWith(
+      (ref) {
+        ref.onDispose(trackAudioManager.dispose);
+        return trackAudioManager;
+      },
+    ),
+    Di.repository.firebaseRemoteConfig
+        .overrideWithValue(remoteConfigRepository),
+    Di.manager.premium.overrideWithValue(premiumManager),
     Di.manager.sharedPreferences.overrideWithValue(sharedPrefsManager),
     Di.manager.pushNotifications.overrideWithValue(pushNotificationsManager),
     Di.manager.navigation.overrideWithValue(navigationManager),
+    Di.manager.user.overrideWith((ref) {
+      ref.onDispose(userManager.dispose);
+      return userManager;
+    }),
+    Di.manager.linkHandler.overrideWithValue(linkHandlerManager),
   ];
 
-  return ProviderContainer(overrides: dependencies);
+  return dependencies;
+}
+
+void _setupCrashlytics() {
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
 }
 
 Future<void> mainCommon(Environment env) async {
   WidgetsFlutterBinding.ensureInitialized();
   tz.initializeTimeZones();
   await Firebase.initializeApp();
+  _setupCrashlytics();
+
+  FirebaseFirestore.instance.settings = const Settings(
+    persistenceEnabled: true,
+    cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED,
+  );
+
   await EasyLocalization.ensureInitialized();
 
   await FirebaseRemoteConfig.instance.ensureInitialized();
@@ -121,25 +147,24 @@ Future<void> mainCommon(Environment env) async {
   );
   await FirebaseRemoteConfig.instance.fetchAndActivate();
 
-  final diContainer =
+  final dependencies =
       await _setupDependencies(isProduction: env == Environment.prod);
-  final navigationManager = diContainer.read(Di.manager.navigation);
-  final routerConfig = navigationManager.router;
 
   runApp(
-    EasyLocalization(
-      useOnlyLangCode: true,
-      path: BWMAssets.i18n,
-      fallbackLocale: const Locale('en'),
-      supportedLocales: const [
-        Locale('en'),
-        Locale('ru'),
+    ProviderScope(
+      overrides: dependencies,
+      observers: [
+        ProviderLogger(),
       ],
-      child: ProviderScope(
-        parent: diContainer,
-        child: BWMApp(
-          routerConfig: routerConfig,
-        ),
+      child: EasyLocalization(
+        useOnlyLangCode: true,
+        path: BWMAssets.i18n,
+        fallbackLocale: const Locale('en'),
+        supportedLocales: const [
+          Locale('en'),
+          Locale('ru'),
+        ],
+        child: const BWMApp(),
       ),
     ),
   );

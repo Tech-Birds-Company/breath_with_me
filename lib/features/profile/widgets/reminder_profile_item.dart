@@ -15,8 +15,7 @@ class ReminderProfileItem extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => StreamBuilder<String>(
-        initialData: LocaleKeys.reminderDisabled.tr(),
+  Widget build(BuildContext context) => StreamBuilder(
         stream: cachedBlocStateStream.map(
           (state) {
             if (state == null || !state.isReminderEnabled) {
@@ -43,6 +42,7 @@ class ReminderProfileItem extends StatelessWidget {
             return '$formattedTime; $weekDays';
           },
         ),
+        initialData: LocaleKeys.reminderDisabled.tr(),
         builder: (context, snapshot) => ProfileMenuItem(
           title: LocaleKeys.reminderTitle.tr(),
           subtitle: snapshot.requireData,

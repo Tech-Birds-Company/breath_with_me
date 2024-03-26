@@ -44,16 +44,6 @@ final class TracksRepositoryImpl implements TracksRepository {
   }
 
   @override
-  Future<Track> getTrack(String trackId) async {
-    final response = FirebaseFirestore.instance
-        .doc('${BWMConstants.tracksCollection}/$trackId');
-    final document = await response.get();
-
-    final track = await _getTrackFromDocument(document);
-    return track;
-  }
-
-  @override
   Future<List<Track>> getTracks() async {
     final res = await FirebaseFirestore.instance
         .collection(BWMConstants.tracksCollection)
@@ -65,14 +55,19 @@ final class TracksRepositoryImpl implements TracksRepository {
       tracks.add(track);
     }
 
-    return tracks
-        .where((track) => track.language != TrackLanguage.unknown)
+    final filteredTracks = tracks
+        .where(
+          (track) => track.language != TrackLanguage.unknown,
+        )
         .toList();
+    return filteredTracks;
   }
 
   @override
-  Future<DownloadTrackTask?> getTrackDownloadTask(String trackId) async {
-    final entity = await _databaseManager.getDownloadTask(trackId);
+  Future<DownloadTrackTask?> getTrackDownloadTask({
+    required String taskId,
+  }) async {
+    final entity = await _databaseManager.getDownloadTask(taskId);
 
     return entity;
   }
@@ -87,12 +82,13 @@ final class TracksRepositoryImpl implements TracksRepository {
   }
 
   @override
-  Stream<bool> getTrackIsDownloadedStream(String trackId) => _databaseManager
-      .taskProgressStream(trackId)
-      .map((progress) => progress == 1.0);
+  Stream<bool> getTrackIsDownloadedStream({required String taskId}) =>
+      _databaseManager
+          .taskProgressStream(taskId: taskId)
+          .map((progress) => progress == 1.0);
 
   @override
-  Future<void> deleteTrackDownloadTask(String taskId) =>
+  Future<void> deleteTrackDownloadTask({required String taskId}) =>
       _databaseManager.deleteDownloadTask(taskId);
 
   @override

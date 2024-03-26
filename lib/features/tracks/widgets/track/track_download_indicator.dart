@@ -14,7 +14,7 @@ class TrackDownloadIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    return StreamBuilder<bool>(
+    return StreamBuilder(
       stream: trackIsDownloadedStream,
       initialData: false,
       builder: (context, snapshot) {
@@ -25,13 +25,13 @@ class TrackDownloadIndicator extends StatelessWidget {
             color:
                 downloaded ? theme.secondaryColor : theme.secondaryBackground,
             child: SizedBox(
-              width: 24,
-              height: 24,
+              width: 20,
+              height: 20,
               child: Center(
                 child: SvgPicture.asset(
                   BWMAssets.arrowDown,
-                  width: 14,
-                  height: 14,
+                  width: 12,
+                  height: 12,
                 ),
               ),
             ),

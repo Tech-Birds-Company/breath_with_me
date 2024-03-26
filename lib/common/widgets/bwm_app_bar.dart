@@ -1,11 +1,12 @@
-import 'package:breathe_with_me/i18n/locale_keys.g.dart';
-import 'package:breathe_with_me/theme/bwm_theme.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'dart:io';
 
-class BWMAppBar extends StatelessWidget implements PreferredSizeWidget {
-  static const double appBarHeight = 52;
+import 'package:breathe_with_me/di/di.dart';
+import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+class BWMAppBar extends ConsumerWidget implements PreferredSizeWidget {
+  static const double appBarHeight = 70;
 
   final String? title;
   final Color? backgroundColor;
@@ -18,11 +19,12 @@ class BWMAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize =>
-      Size.fromHeight(title == null ? appBarHeight : appBarHeight + 36);
+      Size.fromHeight(title == null ? appBarHeight : appBarHeight + 37);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
+    final navigationManager = ref.watch(Di.manager.navigation);
     return SafeArea(
       child: ColoredBox(
         color: backgroundColor ?? theme.primaryBackground,
@@ -31,23 +33,15 @@ class BWMAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              GestureDetector(
-                onTap: context.pop,
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.arrow_back,
-                      size: 24,
-                      color: theme.green3,
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      LocaleKeys.appBarBackTitle.tr(),
-                      style: theme.typography.bodyMTrue.copyWith(
-                        color: theme.green3,
-                      ),
-                    ),
-                  ],
+              Padding(
+                padding: EdgeInsets.only(top: Platform.isAndroid ? 16.0 : 0.0),
+                child: GestureDetector(
+                  onTap: navigationManager.pop,
+                  child: Icon(
+                    Icons.arrow_back,
+                    size: 24,
+                    color: theme.green3,
+                  ),
                 ),
               ),
               if (title != null)

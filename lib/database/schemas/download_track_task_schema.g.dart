@@ -37,13 +37,8 @@ const DownloadTrackTaskSchema = CollectionSchema(
       name: r'totalBytes',
       type: IsarType.long,
     ),
-    r'uid': PropertySchema(
-      id: 4,
-      name: r'uid',
-      type: IsarType.string,
-    ),
     r'url': PropertySchema(
-      id: 5,
+      id: 4,
       name: r'url',
       type: IsarType.string,
     )
@@ -84,7 +79,6 @@ int _downloadTrackTaskEstimateSize(
   var bytesCount = offsets.last;
   bytesCount += 3 + object.filename.length * 3;
   bytesCount += 3 + object.taskId.length * 3;
-  bytesCount += 3 + object.uid.length * 3;
   bytesCount += 3 + object.url.length * 3;
   return bytesCount;
 }
@@ -99,8 +93,7 @@ void _downloadTrackTaskSerialize(
   writer.writeString(offsets[1], object.filename);
   writer.writeString(offsets[2], object.taskId);
   writer.writeLong(offsets[3], object.totalBytes);
-  writer.writeString(offsets[4], object.uid);
-  writer.writeString(offsets[5], object.url);
+  writer.writeString(offsets[4], object.url);
 }
 
 DownloadTrackTask _downloadTrackTaskDeserialize(
@@ -114,8 +107,7 @@ DownloadTrackTask _downloadTrackTaskDeserialize(
     filename: reader.readString(offsets[1]),
     taskId: reader.readString(offsets[2]),
     totalBytes: reader.readLongOrNull(offsets[3]),
-    uid: reader.readString(offsets[4]),
-    url: reader.readString(offsets[5]),
+    url: reader.readString(offsets[4]),
   );
   object.id = id;
   return object;
@@ -137,8 +129,6 @@ P _downloadTrackTaskDeserializeProp<P>(
     case 3:
       return (reader.readLongOrNull(offset)) as P;
     case 4:
-      return (reader.readString(offset)) as P;
-    case 5:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -818,142 +808,6 @@ extension DownloadTrackTaskQueryFilter
   }
 
   QueryBuilder<DownloadTrackTask, DownloadTrackTask, QAfterFilterCondition>
-      uidEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'uid',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<DownloadTrackTask, DownloadTrackTask, QAfterFilterCondition>
-      uidGreaterThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'uid',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<DownloadTrackTask, DownloadTrackTask, QAfterFilterCondition>
-      uidLessThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'uid',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<DownloadTrackTask, DownloadTrackTask, QAfterFilterCondition>
-      uidBetween(
-    String lower,
-    String upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'uid',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<DownloadTrackTask, DownloadTrackTask, QAfterFilterCondition>
-      uidStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'uid',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<DownloadTrackTask, DownloadTrackTask, QAfterFilterCondition>
-      uidEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'uid',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<DownloadTrackTask, DownloadTrackTask, QAfterFilterCondition>
-      uidContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'uid',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<DownloadTrackTask, DownloadTrackTask, QAfterFilterCondition>
-      uidMatches(String pattern, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'uid',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<DownloadTrackTask, DownloadTrackTask, QAfterFilterCondition>
-      uidIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'uid',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<DownloadTrackTask, DownloadTrackTask, QAfterFilterCondition>
-      uidIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'uid',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<DownloadTrackTask, DownloadTrackTask, QAfterFilterCondition>
       urlEqualTo(
     String value, {
     bool caseSensitive = true,
@@ -1154,19 +1008,6 @@ extension DownloadTrackTaskQuerySortBy
     });
   }
 
-  QueryBuilder<DownloadTrackTask, DownloadTrackTask, QAfterSortBy> sortByUid() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'uid', Sort.asc);
-    });
-  }
-
-  QueryBuilder<DownloadTrackTask, DownloadTrackTask, QAfterSortBy>
-      sortByUidDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'uid', Sort.desc);
-    });
-  }
-
   QueryBuilder<DownloadTrackTask, DownloadTrackTask, QAfterSortBy> sortByUrl() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'url', Sort.asc);
@@ -1252,19 +1093,6 @@ extension DownloadTrackTaskQuerySortThenBy
     });
   }
 
-  QueryBuilder<DownloadTrackTask, DownloadTrackTask, QAfterSortBy> thenByUid() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'uid', Sort.asc);
-    });
-  }
-
-  QueryBuilder<DownloadTrackTask, DownloadTrackTask, QAfterSortBy>
-      thenByUidDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'uid', Sort.desc);
-    });
-  }
-
   QueryBuilder<DownloadTrackTask, DownloadTrackTask, QAfterSortBy> thenByUrl() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'url', Sort.asc);
@@ -1309,13 +1137,6 @@ extension DownloadTrackTaskQueryWhereDistinct
     });
   }
 
-  QueryBuilder<DownloadTrackTask, DownloadTrackTask, QDistinct> distinctByUid(
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'uid', caseSensitive: caseSensitive);
-    });
-  }
-
   QueryBuilder<DownloadTrackTask, DownloadTrackTask, QDistinct> distinctByUrl(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1354,12 +1175,6 @@ extension DownloadTrackTaskQueryProperty
   QueryBuilder<DownloadTrackTask, int?, QQueryOperations> totalBytesProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'totalBytes');
-    });
-  }
-
-  QueryBuilder<DownloadTrackTask, String, QQueryOperations> uidProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'uid');
     });
   }
 

@@ -26,7 +26,6 @@ abstract class LocaleKeys {
   static const createAccountSignUpButtonTitle =
       'createAccountSignUpButtonTitle';
   static const tracksTitle = 'tracksTitle';
-  static const tracksGuestWelcome = 'tracksGuestWelcome';
   static const tracksHeading = 'tracksHeading';
   static const tracksFilterReset = 'tracksFilterReset';
   static const trackCategoryAll = 'trackCategoryAll';
@@ -86,6 +85,9 @@ abstract class LocaleKeys {
   static const signInPassword = 'signInPassword';
   static const signInForgotPass = 'signInForgotPass';
   static const signInOrSignUp = 'signInOrSignUp';
+  static const signInEmailError = 'signInEmailError';
+  static const signInPasswordError = 'signInPasswordError';
+  static const signInErrorMessage = 'signInErrorMessage';
   static const welcomeBack = 'welcomeBack';
   static const welcomeBreather = 'welcomeBreather';
   static const confirmPassword = 'confirmPassword';
@@ -109,6 +111,7 @@ abstract class LocaleKeys {
   static const streakWithoutPremiumTitle = 'streakWithoutPremiumTitle';
   static const streakWithoutPremiumSubtitle = 'streakWithoutPremiumSubtitle';
   static const streakLivesTitle = 'streakLivesTitle';
+  static const streakLivesWhenPremiumEnabled = 'streakLivesWhenPremiumEnabled';
   static const streakLivesFooter = 'streakLivesFooter';
   static const streakMissedDayTitle = 'streakMissedDayTitle';
   static const streakMissedDaySubtitle = 'streakMissedDaySubtitle';
@@ -137,4 +140,10 @@ abstract class LocaleKeys {
   static const premium_paywall = 'premium.paywall';
   static const premium = 'premium';
   static const networkErrorText = 'networkErrorText';
+  static const resetPasswordTitle = 'resetPasswordTitle';
+  static const resetPasswordSubtitle = 'resetPasswordSubtitle';
+  static const signUpError_nameEmpty = 'signUpError.nameEmpty';
+  static const signUpError_emailEmpty = 'signUpError.emailEmpty';
+  static const signUpError_passwordMatch = 'signUpError.passwordMatch';
+  static const signUpError = 'signUpError';
 }

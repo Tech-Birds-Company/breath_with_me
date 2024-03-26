@@ -2,14 +2,13 @@ import 'package:breathe_with_me/features/onboarding/models/onboarding_info.dart'
 import 'package:breathe_with_me/features/onboarding/widgets/onboarding_indicator.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-class OnboardingPageView extends HookWidget {
-  OnboardingPageView({super.key});
-
-  late final _pageController = PageController();
+class OnboardingPageView extends StatefulHookWidget {
+  const OnboardingPageView({super.key});
 
   static const _onboardingItems = [
     OnboardingInfo(
@@ -27,9 +26,38 @@ class OnboardingPageView extends HookWidget {
   ];
 
   @override
+  State<OnboardingPageView> createState() => _OnboardingPageViewState();
+}
+
+class _OnboardingPageViewState extends State<OnboardingPageView> {
+  late PageController _pageController;
+  int? _prevPage;
+
+  void _pageControllerListener() {
+    final currentPage = _pageController.page?.toInt();
+    if (_prevPage != currentPage) {
+      _prevPage = currentPage;
+      BWMAnalytics.event(
+        'onboardingSwipePage',
+        params: {
+          'onboardingPage': currentPage.toString(),
+        },
+      );
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    _pageController = useMemoized(PageController.new);
     useEffect(
-      () => _pageController.dispose,
+      () {
+        _pageController.addListener(_pageControllerListener);
+        return () {
+          _pageController
+            ..removeListener(_pageControllerListener)
+            ..dispose();
+        };
+      },
       const [],
     );
     final theme = Theme.of(context).extension<BWMTheme>()!;
@@ -37,7 +65,7 @@ class OnboardingPageView extends HookWidget {
       children: [
         Expanded(
           child: PageView.builder(
-            itemCount: _onboardingItems.length,
+            itemCount: OnboardingPageView._onboardingItems.length,
             controller: _pageController,
             itemBuilder: (context, index) {
               return Padding(
@@ -46,7 +74,9 @@ class OnboardingPageView extends HookWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      _onboardingItems[index].title.tr().toUpperCase(),
+                      OnboardingPageView._onboardingItems[index].title
+                          .tr()
+                          .toUpperCase(),
                       textAlign: TextAlign.start,
                       style: theme.typography.title.copyWith(
                         color: theme.primaryText,
@@ -55,7 +85,7 @@ class OnboardingPageView extends HookWidget {
                     ),
                     const SizedBox(height: 12),
                     Text(
-                      _onboardingItems[index].subtitle.tr(),
+                      OnboardingPageView._onboardingItems[index].subtitle.tr(),
                       style: theme.typography.subtitle.copyWith(
                         color: theme.fourthColor,
                       ),
@@ -68,7 +98,7 @@ class OnboardingPageView extends HookWidget {
         ),
         OnboardingIndicator(
           pageController: _pageController,
-          totalPages: _onboardingItems.length,
+          totalPages: OnboardingPageView._onboardingItems.length,
         ),
       ],
     );

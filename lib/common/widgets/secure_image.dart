@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final _secureImageUrlProvider = StreamProvider.family<String, String>(
   (ref, baseUrl) async* {
-    final databaseManager = ref.read(Di.manager.database);
+    final databaseManager = ref.watch(Di.manager.database);
 
     final entity = await databaseManager.getSecureUrl(baseUrl);
     final dbUrl = entity?.secureUrl;

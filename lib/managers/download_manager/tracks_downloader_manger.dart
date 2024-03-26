@@ -30,7 +30,6 @@ final class TracksDownloaderManager implements DownloaderManager {
       final taskId = task.id;
       if (task.isCompleted) {
         final trackPath = await getTrackPath(
-          uid: uid,
           taskId: task.taskId,
           filename: task.filename,
         );
@@ -63,8 +62,8 @@ final class TracksDownloaderManager implements DownloaderManager {
   }
 
   @override
-  Stream<double> taskProgress({required String taskId}) =>
-      _databaseManager.taskProgressStream(taskId);
+  Stream<double> taskProgress({required DownloadTask task}) =>
+      _databaseManager.taskProgressStream(taskId: task.taskId);
 
   Future<void> _downloadChunk({
     required DownloadTrackTask dbEntity,
@@ -131,22 +130,17 @@ final class TracksDownloaderManager implements DownloaderManager {
   }
 
   Future<void> _queueTask(
-    String uid,
     TrackDownloadTask task, {
     int chunksCount = 10,
   }) async {
     final fileExtension = extension(Uri.parse(task.url).path);
-    final filename = '${task.id}$fileExtension';
+    final filename = '${task.trackId}$fileExtension';
 
-    final trackDirPath = await getTrackDirPath(
-      uid: uid,
-      taskId: task.id,
-    );
+    final trackDirPath = await getTrackDirPath(taskId: task.taskId);
     final trackDir = Directory(trackDirPath);
 
     final trackPath = await getTrackPath(
-      uid: uid,
-      taskId: task.id,
+      taskId: task.taskId,
       filename: filename,
     );
 
@@ -160,8 +154,7 @@ final class TracksDownloaderManager implements DownloaderManager {
     final queue = <Future<void>>[];
 
     final dbEntity = await _databaseManager.createDownloadTrackTask(
-      uid: task.uid,
-      id: task.id,
+      taskId: task.taskId,
       url: task.url,
       filename: filename,
       totalBytes: fileSize,
@@ -202,25 +195,21 @@ final class TracksDownloaderManager implements DownloaderManager {
     required List<DownloadTask> tasks,
   }) {
     for (final task in tasks) {
-      _queueTask(task.uid, task as TrackDownloadTask);
+      _queueTask(task as TrackDownloadTask);
     }
   }
 
   @override
-  Future<String> getTrackDirPath({
-    required String uid,
-    required String taskId,
-  }) async {
+  Future<String> getTrackDirPath({required String taskId}) async {
     final appDocsDir = await getApplicationDocumentsDirectory();
     final tracksPath = join(appDocsDir.path, defaultTracksPath);
-    final trackDir = Directory(join(tracksPath, uid, taskId));
+    final trackDir = Directory(join(tracksPath, taskId));
 
     return trackDir.path;
   }
 
   @override
   Future<String> getTrackPath({
-    required String uid,
     required String taskId,
     required String filename,
   }) async {
@@ -229,7 +218,6 @@ final class TracksDownloaderManager implements DownloaderManager {
     final trackFile = File(
       join(
         tracksPath,
-        uid,
         taskId,
         filename,
       ),
