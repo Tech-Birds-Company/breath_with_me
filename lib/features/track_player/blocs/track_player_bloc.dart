@@ -13,9 +13,11 @@ import 'package:breathe_with_me/managers/streak_progress_manager/streak_progress
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/repositories/tracks_repository.dart';
 import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
+import 'package:breathe_with_me/utils/logger.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 
 final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   final Track _track;
@@ -59,6 +61,8 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   }
 
   Future<void> init() async {
+    await WakelockPlus.toggle(enable: true);
+    logger.i('Wakelock enabled');
     final userId = _userManager.currentUser!.uid;
     final task = TrackDownloadTask(
       trackId: track.id,
@@ -229,5 +233,7 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
     _getTrackDownloadUrlOperation = null;
     await _cancelSubscriptions();
     await _audioManager.dispose();
+    await WakelockPlus.toggle(enable: false);
+    logger.i('Wakelock disabled');
   }
 }

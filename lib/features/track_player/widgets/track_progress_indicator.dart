@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:breathe_with_me/features/track_player/blocs/track_player_bloc.dart';
 import 'package:breathe_with_me/features/track_player/models/track_player_state.dart';
 import 'package:breathe_with_me/features/track_player/widgets/track_time_label.dart';
@@ -91,6 +93,7 @@ class _TrackProgressIndicatorState extends State<TrackProgressIndicator> {
             );
           },
         ),
+        if (Platform.isAndroid) const SizedBox(height: 8),
       ],
     );
   }

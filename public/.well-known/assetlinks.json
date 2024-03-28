@@ -1,15 +1,24 @@
 [
-    {
-        "relation": [
-            "delegate_permission/common.handle_all_urls"
-        ],
-        "target": {
-            "namespace": "android_app",
-            "package_name": "com.dobry.breathewithme.develop",
-            "sha256_cert_fingerprints": [
-                "a9:68:34:04:91:62:fc:1b:ef:ee:e2:85:4a:e3:fe:9f:c7:cf:f9:fc:28:98:10:f4:53:2d:34:e9:95:f8:13:0c",
-                "f6:54:49:9c:48:b0:dc:22:18:dd:9c:34:ac:2f:e3:d9:e5:63:bd:46:b9:34:0b:2f:c9:4d:77:b9:2f:5b:15:9e"
-            ]
-        }
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.dobry.breathewithme.develop",
+      "sha256_cert_fingerprints": [
+        "a9:68:34:04:91:62:fc:1b:ef:ee:e2:85:4a:e3:fe:9f:c7:cf:f9:fc:28:98:10:f4:53:2d:34:e9:95:f8:13:0c",
+        "f6:54:49:9c:48:b0:dc:22:18:dd:9c:34:ac:2f:e3:d9:e5:63:bd:46:b9:34:0b:2f:c9:4d:77:b9:2f:5b:15:9e"
+      ]
     }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.innate.beat.breathewithme",
+      "sha256_cert_fingerprints": [
+        "C5:0B:5C:D5:04:24:86:84:F4:7E:1E:27:72:C6:29:CF:2F:F6:D4:E0:83:57:C6:15:32:B0:02:EE:F8:11:60:4F",
+        "BF:BB:5A:34:5F:E7:CC:74:F1:91:66:65:6C:71:B6:C1:32:3B:A3:09:8B:4C:C0:29:45:CF:39:5B:70:8E:F6:C1"
+      ]
+    }
+  }
 ]
