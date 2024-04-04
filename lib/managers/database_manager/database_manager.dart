@@ -101,7 +101,7 @@ final class DatabaseManager {
             final json = jsonDecode(entity.json) as Map<String, dynamic>;
             final state = TracksListState.fromJson(json);
             final tracks = state.maybeWhen(
-              data: (tracks) => tracks,
+              data: (tracks, _) => tracks,
               orElse: () => <Track>[],
             );
             return tracks;
