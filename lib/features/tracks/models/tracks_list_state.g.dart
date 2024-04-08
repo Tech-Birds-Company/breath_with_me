@@ -6,33 +6,44 @@ part of 'tracks_list_state.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$DataImpl _$$DataImplFromJson(Map json) => _$DataImpl(
+_$TracksListStateDataImpl _$$TracksListStateDataImplFromJson(Map json) =>
+    _$TracksListStateDataImpl(
       (json['tracks'] as List<dynamic>)
           .map((e) => Track.fromJson(Map<String, dynamic>.from(e as Map)))
+          .toList(),
+      filteredTracks: (json['filteredTracks'] as List<dynamic>?)
+          ?.map((e) => Track.fromJson(Map<String, dynamic>.from(e as Map)))
           .toList(),
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$DataImplToJson(_$DataImpl instance) =>
+Map<String, dynamic> _$$TracksListStateDataImplToJson(
+        _$TracksListStateDataImpl instance) =>
     <String, dynamic>{
       'tracks': instance.tracks.map((e) => e.toJson()).toList(),
+      'filteredTracks':
+          instance.filteredTracks?.map((e) => e.toJson()).toList(),
       'runtimeType': instance.$type,
     };
 
-_$LoadingImpl _$$LoadingImplFromJson(Map json) => _$LoadingImpl(
+_$TracksListStateLoadingImpl _$$TracksListStateLoadingImplFromJson(Map json) =>
+    _$TracksListStateLoadingImpl(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$LoadingImplToJson(_$LoadingImpl instance) =>
+Map<String, dynamic> _$$TracksListStateLoadingImplToJson(
+        _$TracksListStateLoadingImpl instance) =>
     <String, dynamic>{
       'runtimeType': instance.$type,
     };
 
-_$ErrorImpl _$$ErrorImplFromJson(Map json) => _$ErrorImpl(
+_$TracksListStateErrorImpl _$$TracksListStateErrorImplFromJson(Map json) =>
+    _$TracksListStateErrorImpl(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$ErrorImplToJson(_$ErrorImpl instance) =>
+Map<String, dynamic> _$$TracksListStateErrorImplToJson(
+        _$TracksListStateErrorImpl instance) =>
     <String, dynamic>{
       'runtimeType': instance.$type,
     };

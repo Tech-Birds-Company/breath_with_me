@@ -17,11 +17,11 @@ final _privateConstructorUsedError = UnsupportedError(
 TracksListState _$TracksListStateFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
     case 'data':
-      return _Data.fromJson(json);
+      return TracksListStateData.fromJson(json);
     case 'loading':
-      return _Loading.fromJson(json);
+      return _TracksListStateLoading.fromJson(json);
     case 'error':
-      return _Error.fromJson(json);
+      return _TracksListStateError.fromJson(json);
 
     default:
       throw CheckedFromJsonException(json, 'runtimeType', 'TracksListState',
@@ -33,21 +33,22 @@ TracksListState _$TracksListStateFromJson(Map<String, dynamic> json) {
 mixin _$TracksListState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Track> tracks) data,
+    required TResult Function(List<Track> tracks, List<Track>? filteredTracks)
+        data,
     required TResult Function() loading,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Track> tracks)? data,
+    TResult? Function(List<Track> tracks, List<Track>? filteredTracks)? data,
     TResult? Function()? loading,
     TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Track> tracks)? data,
+    TResult Function(List<Track> tracks, List<Track>? filteredTracks)? data,
     TResult Function()? loading,
     TResult Function()? error,
     required TResult orElse(),
@@ -55,23 +56,23 @@ mixin _$TracksListState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Data value) data,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
+    required TResult Function(TracksListStateData value) data,
+    required TResult Function(_TracksListStateLoading value) loading,
+    required TResult Function(_TracksListStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Data value)? data,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
+    TResult? Function(TracksListStateData value)? data,
+    TResult? Function(_TracksListStateLoading value)? loading,
+    TResult? Function(_TracksListStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Data value)? data,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
+    TResult Function(TracksListStateData value)? data,
+    TResult Function(_TracksListStateLoading value)? loading,
+    TResult Function(_TracksListStateError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -97,44 +98,52 @@ class _$TracksListStateCopyWithImpl<$Res, $Val extends TracksListState>
 }
 
 /// @nodoc
-abstract class _$$DataImplCopyWith<$Res> {
-  factory _$$DataImplCopyWith(
-          _$DataImpl value, $Res Function(_$DataImpl) then) =
-      __$$DataImplCopyWithImpl<$Res>;
+abstract class _$$TracksListStateDataImplCopyWith<$Res> {
+  factory _$$TracksListStateDataImplCopyWith(_$TracksListStateDataImpl value,
+          $Res Function(_$TracksListStateDataImpl) then) =
+      __$$TracksListStateDataImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Track> tracks});
+  $Res call({List<Track> tracks, List<Track>? filteredTracks});
 }
 
 /// @nodoc
-class __$$DataImplCopyWithImpl<$Res>
-    extends _$TracksListStateCopyWithImpl<$Res, _$DataImpl>
-    implements _$$DataImplCopyWith<$Res> {
-  __$$DataImplCopyWithImpl(_$DataImpl _value, $Res Function(_$DataImpl) _then)
+class __$$TracksListStateDataImplCopyWithImpl<$Res>
+    extends _$TracksListStateCopyWithImpl<$Res, _$TracksListStateDataImpl>
+    implements _$$TracksListStateDataImplCopyWith<$Res> {
+  __$$TracksListStateDataImplCopyWithImpl(_$TracksListStateDataImpl _value,
+      $Res Function(_$TracksListStateDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? tracks = null,
+    Object? filteredTracks = freezed,
   }) {
-    return _then(_$DataImpl(
+    return _then(_$TracksListStateDataImpl(
       null == tracks
           ? _value._tracks
           : tracks // ignore: cast_nullable_to_non_nullable
               as List<Track>,
+      filteredTracks: freezed == filteredTracks
+          ? _value._filteredTracks
+          : filteredTracks // ignore: cast_nullable_to_non_nullable
+              as List<Track>?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$DataImpl implements _Data {
-  const _$DataImpl(final List<Track> tracks, {final String? $type})
+class _$TracksListStateDataImpl implements TracksListStateData {
+  const _$TracksListStateDataImpl(final List<Track> tracks,
+      {final List<Track>? filteredTracks, final String? $type})
       : _tracks = tracks,
+        _filteredTracks = filteredTracks,
         $type = $type ?? 'data';
 
-  factory _$DataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$DataImplFromJson(json);
+  factory _$TracksListStateDataImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TracksListStateDataImplFromJson(json);
 
   final List<Track> _tracks;
   @override
@@ -144,63 +153,79 @@ class _$DataImpl implements _Data {
     return EqualUnmodifiableListView(_tracks);
   }
 
+  final List<Track>? _filteredTracks;
+  @override
+  List<Track>? get filteredTracks {
+    final value = _filteredTracks;
+    if (value == null) return null;
+    if (_filteredTracks is EqualUnmodifiableListView) return _filteredTracks;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'TracksListState.data(tracks: $tracks)';
+    return 'TracksListState.data(tracks: $tracks, filteredTracks: $filteredTracks)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DataImpl &&
-            const DeepCollectionEquality().equals(other._tracks, _tracks));
+            other is _$TracksListStateDataImpl &&
+            const DeepCollectionEquality().equals(other._tracks, _tracks) &&
+            const DeepCollectionEquality()
+                .equals(other._filteredTracks, _filteredTracks));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_tracks));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_tracks),
+      const DeepCollectionEquality().hash(_filteredTracks));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DataImplCopyWith<_$DataImpl> get copyWith =>
-      __$$DataImplCopyWithImpl<_$DataImpl>(this, _$identity);
+  _$$TracksListStateDataImplCopyWith<_$TracksListStateDataImpl> get copyWith =>
+      __$$TracksListStateDataImplCopyWithImpl<_$TracksListStateDataImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Track> tracks) data,
+    required TResult Function(List<Track> tracks, List<Track>? filteredTracks)
+        data,
     required TResult Function() loading,
     required TResult Function() error,
   }) {
-    return data(tracks);
+    return data(tracks, filteredTracks);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Track> tracks)? data,
+    TResult? Function(List<Track> tracks, List<Track>? filteredTracks)? data,
     TResult? Function()? loading,
     TResult? Function()? error,
   }) {
-    return data?.call(tracks);
+    return data?.call(tracks, filteredTracks);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Track> tracks)? data,
+    TResult Function(List<Track> tracks, List<Track>? filteredTracks)? data,
     TResult Function()? loading,
     TResult Function()? error,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(tracks);
+      return data(tracks, filteredTracks);
     }
     return orElse();
   }
@@ -208,9 +233,9 @@ class _$DataImpl implements _Data {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Data value) data,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
+    required TResult Function(TracksListStateData value) data,
+    required TResult Function(_TracksListStateLoading value) loading,
+    required TResult Function(_TracksListStateError value) error,
   }) {
     return data(this);
   }
@@ -218,9 +243,9 @@ class _$DataImpl implements _Data {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Data value)? data,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
+    TResult? Function(TracksListStateData value)? data,
+    TResult? Function(_TracksListStateLoading value)? loading,
+    TResult? Function(_TracksListStateError value)? error,
   }) {
     return data?.call(this);
   }
@@ -228,9 +253,9 @@ class _$DataImpl implements _Data {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Data value)? data,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
+    TResult Function(TracksListStateData value)? data,
+    TResult Function(_TracksListStateLoading value)? loading,
+    TResult Function(_TracksListStateError value)? error,
     required TResult orElse(),
   }) {
     if (data != null) {
@@ -241,46 +266,52 @@ class _$DataImpl implements _Data {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$DataImplToJson(
+    return _$$TracksListStateDataImplToJson(
       this,
     );
   }
 }
 
-abstract class _Data implements TracksListState {
-  const factory _Data(final List<Track> tracks) = _$DataImpl;
+abstract class TracksListStateData implements TracksListState {
+  const factory TracksListStateData(final List<Track> tracks,
+      {final List<Track>? filteredTracks}) = _$TracksListStateDataImpl;
 
-  factory _Data.fromJson(Map<String, dynamic> json) = _$DataImpl.fromJson;
+  factory TracksListStateData.fromJson(Map<String, dynamic> json) =
+      _$TracksListStateDataImpl.fromJson;
 
   List<Track> get tracks;
+  List<Track>? get filteredTracks;
   @JsonKey(ignore: true)
-  _$$DataImplCopyWith<_$DataImpl> get copyWith =>
+  _$$TracksListStateDataImplCopyWith<_$TracksListStateDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
+abstract class _$$TracksListStateLoadingImplCopyWith<$Res> {
+  factory _$$TracksListStateLoadingImplCopyWith(
+          _$TracksListStateLoadingImpl value,
+          $Res Function(_$TracksListStateLoadingImpl) then) =
+      __$$TracksListStateLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$TracksListStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+class __$$TracksListStateLoadingImplCopyWithImpl<$Res>
+    extends _$TracksListStateCopyWithImpl<$Res, _$TracksListStateLoadingImpl>
+    implements _$$TracksListStateLoadingImplCopyWith<$Res> {
+  __$$TracksListStateLoadingImplCopyWithImpl(
+      _$TracksListStateLoadingImpl _value,
+      $Res Function(_$TracksListStateLoadingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl({final String? $type}) : $type = $type ?? 'loading';
+class _$TracksListStateLoadingImpl implements _TracksListStateLoading {
+  const _$TracksListStateLoadingImpl({final String? $type})
+      : $type = $type ?? 'loading';
 
-  factory _$LoadingImpl.fromJson(Map<String, dynamic> json) =>
-      _$$LoadingImplFromJson(json);
+  factory _$TracksListStateLoadingImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TracksListStateLoadingImplFromJson(json);
 
   @JsonKey(name: 'runtimeType')
   final String $type;
@@ -293,7 +324,8 @@ class _$LoadingImpl implements _Loading {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$TracksListStateLoadingImpl);
   }
 
   @JsonKey(ignore: true)
@@ -303,7 +335,8 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Track> tracks) data,
+    required TResult Function(List<Track> tracks, List<Track>? filteredTracks)
+        data,
     required TResult Function() loading,
     required TResult Function() error,
   }) {
@@ -313,7 +346,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Track> tracks)? data,
+    TResult? Function(List<Track> tracks, List<Track>? filteredTracks)? data,
     TResult? Function()? loading,
     TResult? Function()? error,
   }) {
@@ -323,7 +356,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Track> tracks)? data,
+    TResult Function(List<Track> tracks, List<Track>? filteredTracks)? data,
     TResult Function()? loading,
     TResult Function()? error,
     required TResult orElse(),
@@ -337,9 +370,9 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Data value) data,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
+    required TResult Function(TracksListStateData value) data,
+    required TResult Function(_TracksListStateLoading value) loading,
+    required TResult Function(_TracksListStateError value) error,
   }) {
     return loading(this);
   }
@@ -347,9 +380,9 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Data value)? data,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
+    TResult? Function(TracksListStateData value)? data,
+    TResult? Function(_TracksListStateLoading value)? loading,
+    TResult? Function(_TracksListStateError value)? error,
   }) {
     return loading?.call(this);
   }
@@ -357,9 +390,9 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Data value)? data,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
+    TResult Function(TracksListStateData value)? data,
+    TResult Function(_TracksListStateLoading value)? loading,
+    TResult Function(_TracksListStateError value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -370,41 +403,43 @@ class _$LoadingImpl implements _Loading {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LoadingImplToJson(
+    return _$$TracksListStateLoadingImplToJson(
       this,
     );
   }
 }
 
-abstract class _Loading implements TracksListState {
-  const factory _Loading() = _$LoadingImpl;
+abstract class _TracksListStateLoading implements TracksListState {
+  const factory _TracksListStateLoading() = _$TracksListStateLoadingImpl;
 
-  factory _Loading.fromJson(Map<String, dynamic> json) = _$LoadingImpl.fromJson;
+  factory _TracksListStateLoading.fromJson(Map<String, dynamic> json) =
+      _$TracksListStateLoadingImpl.fromJson;
 }
 
 /// @nodoc
-abstract class _$$ErrorImplCopyWith<$Res> {
-  factory _$$ErrorImplCopyWith(
-          _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
-      __$$ErrorImplCopyWithImpl<$Res>;
+abstract class _$$TracksListStateErrorImplCopyWith<$Res> {
+  factory _$$TracksListStateErrorImplCopyWith(_$TracksListStateErrorImpl value,
+          $Res Function(_$TracksListStateErrorImpl) then) =
+      __$$TracksListStateErrorImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$TracksListStateCopyWithImpl<$Res, _$ErrorImpl>
-    implements _$$ErrorImplCopyWith<$Res> {
-  __$$ErrorImplCopyWithImpl(
-      _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
+class __$$TracksListStateErrorImplCopyWithImpl<$Res>
+    extends _$TracksListStateCopyWithImpl<$Res, _$TracksListStateErrorImpl>
+    implements _$$TracksListStateErrorImplCopyWith<$Res> {
+  __$$TracksListStateErrorImplCopyWithImpl(_$TracksListStateErrorImpl _value,
+      $Res Function(_$TracksListStateErrorImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ErrorImpl implements _Error {
-  const _$ErrorImpl({final String? $type}) : $type = $type ?? 'error';
+class _$TracksListStateErrorImpl implements _TracksListStateError {
+  const _$TracksListStateErrorImpl({final String? $type})
+      : $type = $type ?? 'error';
 
-  factory _$ErrorImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ErrorImplFromJson(json);
+  factory _$TracksListStateErrorImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TracksListStateErrorImplFromJson(json);
 
   @JsonKey(name: 'runtimeType')
   final String $type;
@@ -417,7 +452,8 @@ class _$ErrorImpl implements _Error {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ErrorImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$TracksListStateErrorImpl);
   }
 
   @JsonKey(ignore: true)
@@ -427,7 +463,8 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Track> tracks) data,
+    required TResult Function(List<Track> tracks, List<Track>? filteredTracks)
+        data,
     required TResult Function() loading,
     required TResult Function() error,
   }) {
@@ -437,7 +474,7 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Track> tracks)? data,
+    TResult? Function(List<Track> tracks, List<Track>? filteredTracks)? data,
     TResult? Function()? loading,
     TResult? Function()? error,
   }) {
@@ -447,7 +484,7 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Track> tracks)? data,
+    TResult Function(List<Track> tracks, List<Track>? filteredTracks)? data,
     TResult Function()? loading,
     TResult Function()? error,
     required TResult orElse(),
@@ -461,9 +498,9 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Data value) data,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
+    required TResult Function(TracksListStateData value) data,
+    required TResult Function(_TracksListStateLoading value) loading,
+    required TResult Function(_TracksListStateError value) error,
   }) {
     return error(this);
   }
@@ -471,9 +508,9 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Data value)? data,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Error value)? error,
+    TResult? Function(TracksListStateData value)? data,
+    TResult? Function(_TracksListStateLoading value)? loading,
+    TResult? Function(_TracksListStateError value)? error,
   }) {
     return error?.call(this);
   }
@@ -481,9 +518,9 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Data value)? data,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
+    TResult Function(TracksListStateData value)? data,
+    TResult Function(_TracksListStateLoading value)? loading,
+    TResult Function(_TracksListStateError value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -494,14 +531,15 @@ class _$ErrorImpl implements _Error {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ErrorImplToJson(
+    return _$$TracksListStateErrorImplToJson(
       this,
     );
   }
 }
 
-abstract class _Error implements TracksListState {
-  const factory _Error() = _$ErrorImpl;
+abstract class _TracksListStateError implements TracksListState {
+  const factory _TracksListStateError() = _$TracksListStateErrorImpl;
 
-  factory _Error.fromJson(Map<String, dynamic> json) = _$ErrorImpl.fromJson;
+  factory _TracksListStateError.fromJson(Map<String, dynamic> json) =
+      _$TracksListStateErrorImpl.fromJson;
 }

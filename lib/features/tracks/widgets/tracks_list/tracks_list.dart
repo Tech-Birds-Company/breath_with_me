@@ -23,7 +23,8 @@ class TracksList extends ConsumerWidget {
       bloc: tracksListBloc,
       buildWhen: (previous, current) => previous != current,
       builder: (context, state) => state.when(
-        data: (tracks) {
+        data: (stateTracks, filteredTracks) {
+          final tracks = filteredTracks ?? stateTracks;
           final itemsCount = tracks.length;
           return SliverList.separated(
             itemCount: itemsCount,
