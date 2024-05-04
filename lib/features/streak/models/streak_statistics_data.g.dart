@@ -7,9 +7,9 @@ part of 'streak_statistics_data.dart';
 // **************************************************************************
 
 _$FullImpl _$$FullImplFromJson(Map json) => _$FullImpl(
-      json['streaksCount'] as int,
-      json['practicesCount'] as int,
-      json['minutesCount'] as int,
+      (json['streaksCount'] as num).toInt(),
+      (json['practicesCount'] as num).toInt(),
+      (json['minutesCount'] as num).toInt(),
       $type: json['runtimeType'] as String?,
     );
 
@@ -22,8 +22,8 @@ Map<String, dynamic> _$$FullImplToJson(_$FullImpl instance) =>
     };
 
 _$MissedImpl _$$MissedImplFromJson(Map json) => _$MissedImpl(
-      json['streaksCount'] as int,
-      json['missedDaysCount'] as int,
+      (json['streaksCount'] as num).toInt(),
+      (json['missedDaysCount'] as num).toInt(),
       $type: json['runtimeType'] as String?,
     );
 

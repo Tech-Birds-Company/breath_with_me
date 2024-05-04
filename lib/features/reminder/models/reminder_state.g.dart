@@ -8,10 +8,10 @@ part of 'reminder_state.dart';
 
 _$ReminderStateImpl _$$ReminderStateImplFromJson(Map json) =>
     _$ReminderStateImpl(
-      selectedHours: json['selectedHours'] as int,
-      selectedMinutes: json['selectedMinutes'] as int,
+      selectedHours: (json['selectedHours'] as num).toInt(),
+      selectedMinutes: (json['selectedMinutes'] as num).toInt(),
       selectedWeekDays: (json['selectedWeekDays'] as List<dynamic>?)
-              ?.map((e) => e as int)
+              ?.map((e) => (e as num).toInt())
               .toSet() ??
           const {},
     );

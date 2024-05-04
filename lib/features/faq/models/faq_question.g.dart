@@ -7,7 +7,7 @@ part of 'faq_question.dart';
 // **************************************************************************
 
 FaqQuestion _$FaqQuestionFromJson(Map json) => FaqQuestion(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       title: json['title'] as String,
       description: json['description'] as String,
       language: $enumDecode(_$FaqLanguageEnumMap, json['language']),

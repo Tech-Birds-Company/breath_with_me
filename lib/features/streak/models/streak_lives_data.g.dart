@@ -8,8 +8,8 @@ part of 'streak_lives_data.dart';
 
 _$StreakLivesDataImpl _$$StreakLivesDataImplFromJson(Map json) =>
     _$StreakLivesDataImpl(
-      availableLivesCount: json['availableLivesCount'] as int,
-      totalLivesCount: json['totalLivesCount'] as int,
+      availableLivesCount: (json['availableLivesCount'] as num).toInt(),
+      totalLivesCount: (json['totalLivesCount'] as num).toInt(),
       showTitle: json['showTitle'] as bool? ?? false,
       showFooter: json['showFooter'] as bool? ?? false,
     );

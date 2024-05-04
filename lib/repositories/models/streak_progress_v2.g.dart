@@ -8,11 +8,11 @@ part of 'streak_progress_v2.dart';
 
 _$StreakProgressV2Impl _$$StreakProgressV2ImplFromJson(Map json) =>
     _$StreakProgressV2Impl(
-      totalStreak: json['totalStreak'] as int? ?? 0,
-      totalPractices: json['totalPractices'] as int? ?? 0,
-      totalLives: json['totalLives'] as int? ?? 0,
-      totalMinutes: json['totalMinutes'] as int? ?? 0,
-      totalMissedDays: json['totalMissedDays'] as int? ?? 0,
+      totalStreak: (json['totalStreak'] as num?)?.toInt() ?? 0,
+      totalPractices: (json['totalPractices'] as num?)?.toInt() ?? 0,
+      totalLives: (json['totalLives'] as num?)?.toInt() ?? 0,
+      totalMinutes: (json['totalMinutes'] as num?)?.toInt() ?? 0,
+      totalMissedDays: (json['totalMissedDays'] as num?)?.toInt() ?? 0,
       utcTimeline: (json['utcTimeline'] as List<dynamic>?)
               ?.map((e) => DateTime.parse(e as String))
               .toList() ??

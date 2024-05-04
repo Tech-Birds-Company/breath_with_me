@@ -8,5 +8,5 @@ part of 'remote_config_streaks.dart';
 
 RemoteConfigStreaks _$RemoteConfigStreaksFromJson(Map json) =>
     RemoteConfigStreaks(
-      monthLivesCount: json['monthLivesCount'] as int? ?? 3,
+      monthLivesCount: (json['monthLivesCount'] as num?)?.toInt() ?? 3,
     );
