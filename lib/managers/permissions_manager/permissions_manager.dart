@@ -59,7 +59,7 @@ final class PermissionsManager {
         'pushNotificationsPermissions',
         params: {
           'platform': 'android',
-          'granted': (androidGranted).toString(),
+          'granted': androidGranted.toString(),
         },
       );
       return androidGranted;
