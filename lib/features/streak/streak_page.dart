@@ -3,6 +3,7 @@ import 'package:breathe_with_me/features/streak/blocs/streak_bloc.dart';
 import 'package:breathe_with_me/features/streak/models/streak_state.dart';
 import 'package:breathe_with_me/features/streak/widgets/streak_without_premium.dart';
 import 'package:breathe_with_me/repositories/streaks_quotes_repository.dart';
+import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class StreakPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final bloc = ref.watch(Di.bloc.streak);
     final locale = EasyLocalization.of(context)!.locale;
+    final theme = Theme.of(context).extension<BWMTheme>()!;
 
     useEffect(
       () {
@@ -42,9 +44,10 @@ class StreakPage extends HookConsumerWidget {
             top: 16,
             end: 0,
             child: IconButton(
-              icon: const Icon(
+              icon: Icon(
                 Icons.close,
                 size: 20,
+                color: theme.primaryColor,
               ),
               onPressed: bloc.onCloseTap,
             ),

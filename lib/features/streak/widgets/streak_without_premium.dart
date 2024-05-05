@@ -30,11 +30,13 @@ class StreakWithoutPremium extends StatelessWidget {
         contentPadding: EdgeInsets.zero,
         title: Text(
           LocaleKeys.reminderTitle.tr(),
-          style: theme.typography.bodyM,
+          style: theme.typography.bodyM.copyWith(
+            color: theme.gray6,
+          ),
         ),
         trailing: Icon(
           Icons.arrow_forward_ios,
-          color: theme.gray4,
+          color: theme.gray6,
           size: 16,
         ),
         onTap: onReminderTap,
