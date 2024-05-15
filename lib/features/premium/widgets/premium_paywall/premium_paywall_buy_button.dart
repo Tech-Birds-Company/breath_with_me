@@ -26,13 +26,13 @@ class PremiumPaywallButton extends StatelessWidget {
             height: 44,
             child: TextButton(
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(
+                backgroundColor: WidgetStateProperty.all(
                   theme.purple2.withOpacity(onPressed != null ? 1 : 0.3),
                 ),
-                foregroundColor: MaterialStateProperty.all(
+                foregroundColor: WidgetStateProperty.all(
                   theme.primaryText.withOpacity(onPressed != null ? 1 : 0.5),
                 ),
-                overlayColor: MaterialStateProperty.all(
+                overlayColor: WidgetStateProperty.all(
                   theme.primaryText.withOpacity(0.1),
                 ),
               ),

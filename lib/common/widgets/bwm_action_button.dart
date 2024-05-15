@@ -36,7 +36,7 @@ class BWMActionButton extends StatelessWidget {
         height: height,
         child: TextButton(
           style: ButtonStyle(
-            overlayColor: MaterialStateProperty.all(
+            overlayColor: WidgetStateProperty.all(
               overlayColor ?? theme.green3.withOpacity(0.3),
             ),
           ),
