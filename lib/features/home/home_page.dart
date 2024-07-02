@@ -23,7 +23,7 @@ class HomePage extends HookConsumerWidget {
       const [],
     );
     return Scaffold(
-      backgroundColor: Colors.black, // TODO(vasidmi): use theme
+      backgroundColor: Colors.black,
       body: SafeArea(
         bottom: false,
         child: CustomScrollView(

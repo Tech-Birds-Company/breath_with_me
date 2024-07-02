@@ -18,6 +18,8 @@ _$TrackImpl _$$TrackImplFromJson(Map json) => _$TrackImpl(
       animationColor: json['animationColor'] as String?,
       isPremium: json['isPremium'] as bool? ?? false,
       isNew: json['isNew'] as bool? ?? false,
+      artist: json['artist'] as String?,
+      trackName: json['trackName'] as String?,
     );
 
 Map<String, dynamic> _$$TrackImplToJson(_$TrackImpl instance) =>
@@ -32,6 +34,8 @@ Map<String, dynamic> _$$TrackImplToJson(_$TrackImpl instance) =>
       'animationColor': instance.animationColor,
       'isPremium': instance.isPremium,
       'isNew': instance.isNew,
+      'artist': instance.artist,
+      'trackName': instance.trackName,
     };
 
 const _$TrackLanguageEnumMap = {

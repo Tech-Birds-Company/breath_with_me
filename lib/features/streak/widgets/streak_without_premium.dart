@@ -11,11 +11,15 @@ class StreakWithoutPremium extends StatelessWidget {
   final int streaksCount;
   final StreakQuoteData quote;
   final VoidCallback onReminderTap;
+  final String? artist;
+  final String? trackName;
 
   const StreakWithoutPremium({
     required this.streaksCount,
     required this.quote,
     required this.onReminderTap,
+    this.artist,
+    this.trackName,
     super.key,
   });
 
@@ -42,6 +46,49 @@ class StreakWithoutPremium extends StatelessWidget {
         onTap: onReminderTap,
       ),
       StreakQuote(data: quote),
+      if (artist != null && trackName != null)
+        Column(
+          children: [
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                const DecoratedBox(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.white,
+                        blurRadius: 20,
+                      ),
+                    ],
+                  ),
+                  child: Icon(
+                    Icons.music_note,
+                    color: Colors.white,
+                    size: 32,
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      artist!,
+                      style: theme.typography.bodyMTrue.copyWith(
+                        color: theme.primaryText,
+                      ),
+                    ),
+                    Text(
+                      trackName!,
+                      style: theme.typography.bodyS.copyWith(
+                        color: theme.gray6,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
     ];
     return ListView.separated(
       itemCount: widgets.length,

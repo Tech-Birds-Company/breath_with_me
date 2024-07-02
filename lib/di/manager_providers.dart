@@ -20,29 +20,20 @@ final class _ManagerProviders {
   );
 
   late final database = Provider<DatabaseManager>(
-    (ref) {
+    (_) {
       throw UnimplementedError();
     },
   );
 
   late final user = Provider<FirebaseUserManager>(
-    (ref) {
-      throw UnimplementedError();
-    },
+    (_) => throw UnimplementedError(),
   );
 
-  late final permissions = Provider(
-    (ref) => PermissionsManager(),
-  );
+  late final permissions = Provider((_) => PermissionsManager());
 
-  late final pushNotifications = Provider(
-    (ref) => PushNotificationsManager(),
-  );
+  late final pushNotifications = Provider((_) => PushNotificationsManager());
 
-  late final subscriptions =
-      Provider<SubscriptionsManager>((ref) => throw UnimplementedError());
-
-  late final sharedPreferences = Provider((ref) => SharedPreferencesManager());
+  late final sharedPreferences = Provider((_) => SharedPreferencesManager());
 
   late final deeplink = Provider(
     (ref) => DeeplinkManager(
@@ -63,5 +54,7 @@ final class _ManagerProviders {
     ),
   );
 
-  late final premium = Provider.autoDispose((_) => PremiumManager());
+  late final premium = Provider.autoDispose<PremiumManager>(
+    (ref) => throw UnimplementedError(),
+  );
 }

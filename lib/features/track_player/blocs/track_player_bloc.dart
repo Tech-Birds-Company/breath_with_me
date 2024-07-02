@@ -183,7 +183,7 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
       date: DateTime.now(),
     );
     _navigationManager.pop();
-    await _navigationManager.openStreak();
+    await _navigationManager.openStreak(_track);
   }
 
   void _subscribeToPlayerState() =>

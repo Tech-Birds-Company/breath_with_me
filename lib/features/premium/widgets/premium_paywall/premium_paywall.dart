@@ -1,12 +1,10 @@
 import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/di/di.dart';
-import 'package:breathe_with_me/extensions/string.dart';
 import 'package:breathe_with_me/features/premium/blocs/premium_paywall_bloc.dart';
 import 'package:breathe_with_me/features/premium/models/premium_paywall_state.dart';
 import 'package:breathe_with_me/features/premium/premium_constants.dart';
 import 'package:breathe_with_me/features/premium/widgets/premium_badge.dart';
 import 'package:breathe_with_me/features/premium/widgets/premium_paywall/premium_paywall_buy_button.dart';
-import 'package:breathe_with_me/features/premium/widgets/premium_paywall/premium_paywall_tariff.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -123,28 +121,7 @@ class PremiumPaywall extends ConsumerWidget {
                 BlocBuilder<PremiumPaywallBloc, PremiumPaywallState>(
                   bloc: bloc,
                   builder: (context, state) => state.map(
-                    data: (state) => Column(
-                      children: state.subscriptions.entries.map(
-                        (e) {
-                          return Padding(
-                            padding: const EdgeInsets.only(
-                              bottom: 16,
-                            ),
-                            child: PremiumPaywallProduct(
-                              productId: e.value.identifier,
-                              title: e.value.subscriptionPeriod.periodToText,
-                              description: LocaleKeys
-                                  .premium_paywall_trialDescription
-                                  .tr(),
-                              price: e.value.priceString,
-                              selected: e.value.identifier ==
-                                  state.selectedSubscriptionId,
-                              onPressed: bloc.onSubscriptionSelected,
-                            ),
-                          );
-                        },
-                      ).toList(),
-                    ),
+                    data: (state) => const Column(),
                     loading: (_) => Center(
                       child: CircularProgressIndicator.adaptive(
                         backgroundColor: theme.primaryColor,

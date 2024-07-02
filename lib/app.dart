@@ -16,13 +16,11 @@ class BWMApp extends ConsumerWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       routerConfig: router,
-      // TODO(vasidmi): Add dark theme
       darkTheme: ThemeData.dark(useMaterial3: false).copyWith(
         extensions: [
           const BWMDarkTheme(),
         ],
       ),
-
       theme: ThemeData.light(useMaterial3: false).copyWith(
         extensions: [
           const BWMDarkTheme(),

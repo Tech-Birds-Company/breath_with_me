@@ -17,6 +17,7 @@ import 'package:breathe_with_me/managers/premium_manager/premium_manager.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
 import 'package:breathe_with_me/managers/shared_preferences_manager/shared_preferences_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/firebase_user_manager.dart';
+import 'package:breathe_with_me/repositories/firebase_premium_repository.dart';
 import 'package:breathe_with_me/repositories/firebase_remote_config_repository.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/isar_bloc_storage.dart';
@@ -48,12 +49,15 @@ Future<List<Override>> _setupDependencies({
 
   const remoteConfigRepository = FirebaseRemoteConfigRepository();
 
-  final premiumManager = PremiumManager();
-
   final userManager = FirebaseUserManager(
     databaseManager,
     isProduction: isProduction,
   )..init();
+
+  final premiumManager = PremiumManager(
+    userManager,
+    const FirebasePremiumRepository(),
+  );
 
   final sharedPrefsManager = SharedPreferencesManager();
 
@@ -103,7 +107,6 @@ Future<List<Override>> _setupDependencies({
     ),
     Di.repository.firebaseRemoteConfig
         .overrideWithValue(remoteConfigRepository),
-    Di.manager.premium.overrideWithValue(premiumManager),
     Di.manager.sharedPreferences.overrideWithValue(sharedPrefsManager),
     Di.manager.pushNotifications.overrideWithValue(pushNotificationsManager),
     Di.manager.navigation.overrideWithValue(navigationManager),
@@ -112,6 +115,7 @@ Future<List<Override>> _setupDependencies({
       return userManager;
     }),
     Di.manager.linkHandler.overrideWithValue(linkHandlerManager),
+    Di.manager.premium.overrideWithValue(premiumManager),
   ];
 
   return dependencies;

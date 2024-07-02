@@ -24,8 +24,7 @@ class TrackPlayerButton extends StatelessWidget {
             child: FloatingActionButton(
               onPressed: bloc.onTogglePlay,
               elevation: 0,
-              backgroundColor: const Color(0xFFC4C4C4)
-                  .withOpacity(0.12), // TODO(vasidmi): update theme
+              backgroundColor: const Color(0xFFC4C4C4).withOpacity(0.12),
               child: Center(
                 child: SvgPicture.asset(
                   isPaused ? BWMAssets.playIcon : BWMAssets.pauseIcon,

@@ -69,24 +69,25 @@ class StreakProgressManager {
     final totalLives = currentProgress.totalLives;
     final totalMissedDays = currentProgress.totalMissedDays;
 
-    if (totalLives < totalMissedDays) {
-      return currentProgress;
-    }
-
     final currentTimelineLength = currentProgress.utcTimeline.length;
     final sortedTimeline = [...currentProgress.utcTimeline]..sort();
-    final oldTimeline =
-        sortedTimeline.sublist(0, currentTimelineLength - totalStreak);
+    final oldTimeline = sortedTimeline.sublist(
+        0,
+        currentTimelineLength - totalStreak < 0
+            ? 0
+            : currentTimelineLength - totalStreak);
     final oldStreak = _calculateStreak(oldTimeline);
     final newTimeline = <DateTime>[];
-    final lastDate = sortedTimeline.last;
+    final lastDate =
+        sortedTimeline.isEmpty ? DateTime.now() : sortedTimeline.last;
     for (var i = 0; i < oldStreak; i++) {
       newTimeline.add(lastDate.subtract(Duration(days: i)));
     }
 
     final restoredProgress = currentProgress.copyWith(
       totalMissedDays: 0,
-      totalLives: totalLives - totalMissedDays,
+      totalLives:
+          (totalLives - totalMissedDays) < 0 ? 0 : totalLives - totalMissedDays,
       totalStreak: oldStreak + totalMissedDays + totalStreak,
       utcTimeline: newTimeline,
     );

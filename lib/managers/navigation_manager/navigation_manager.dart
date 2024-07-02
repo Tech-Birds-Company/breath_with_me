@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:breathe_with_me/features/tracks/filter_type.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
+import 'package:breathe_with_me/features/tracks/tracks_filter_type.dart';
 import 'package:breathe_with_me/managers/navigation_manager/routes/routes.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -81,14 +81,17 @@ final class NavigationManager {
 
   Future<void> openCreateAccount() => router.push(BWMRoutes.createAccount);
 
-  Future<void> openFiltersSheet(FilterType filterType) => router.push(
+  Future<void> openFiltersSheet(TracksFilterType filterType) => router.push(
         BWMRoutes.filtersSheet,
         extra: filterType,
       );
 
   Future<void> openFaq() => router.push(BWMRoutes.faq);
 
-  Future<void> openStreak() => router.push(BWMRoutes.streak);
+  Future<void> openStreak(Track track) => router.push(
+        BWMRoutes.streak,
+        extra: track,
+      );
 
   Future<void> singUpPage() => router.push(BWMRoutes.auth.signUp);
 

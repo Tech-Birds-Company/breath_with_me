@@ -19,6 +19,8 @@ class Track with _$Track {
     String? animationColor,
     @Default(false) bool isPremium,
     @Default(false) bool isNew,
+    String? artist,
+    String? trackName,
   }) = _Track;
 
   factory Track.fromJson(Map<String, dynamic> json) => _$TrackFromJson(json);

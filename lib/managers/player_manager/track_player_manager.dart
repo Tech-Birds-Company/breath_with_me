@@ -19,7 +19,8 @@ final class TrackPlayerManager extends PlayerManager {
     await _setupAudioSession();
     audioPlayer ??= AudioPlayer();
     await audioPlayer!.setAudioSource(source);
-    if (!_premiumManager.isUserPremium) {
+    final isUserPremium = await _premiumManager.isUserPremium;
+    if (!isUserPremium) {
       _setupLifecycleListener();
     }
   }
@@ -42,8 +43,8 @@ final class TrackPlayerManager extends PlayerManager {
 
   @override
   Future<void> play() async {
-    final isUserPremium = _premiumManager.isUserPremium;
-    if (!isUserPremium && _appLifecycleState == AppLifecycleState.paused) {
+    if (_appLifecycleState != null &&
+        _appLifecycleState == AppLifecycleState.paused) {
       return;
     }
     final source = audioPlayer?.audioSource;

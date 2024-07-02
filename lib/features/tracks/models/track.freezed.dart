@@ -31,6 +31,8 @@ mixin _$Track {
   String? get animationColor => throw _privateConstructorUsedError;
   bool get isPremium => throw _privateConstructorUsedError;
   bool get isNew => throw _privateConstructorUsedError;
+  String? get artist => throw _privateConstructorUsedError;
+  String? get trackName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,7 +54,9 @@ abstract class $TrackCopyWith<$Res> {
       @JsonKey(unknownEnumValue: TrackLanguage.unknown) TrackLanguage language,
       String? animationColor,
       bool isPremium,
-      bool isNew});
+      bool isNew,
+      String? artist,
+      String? trackName});
 }
 
 /// @nodoc
@@ -78,6 +82,8 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
     Object? animationColor = freezed,
     Object? isPremium = null,
     Object? isNew = null,
+    Object? artist = freezed,
+    Object? trackName = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -120,6 +126,14 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
           ? _value.isNew
           : isNew // ignore: cast_nullable_to_non_nullable
               as bool,
+      artist: freezed == artist
+          ? _value.artist
+          : artist // ignore: cast_nullable_to_non_nullable
+              as String?,
+      trackName: freezed == trackName
+          ? _value.trackName
+          : trackName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -141,7 +155,9 @@ abstract class _$$TrackImplCopyWith<$Res> implements $TrackCopyWith<$Res> {
       @JsonKey(unknownEnumValue: TrackLanguage.unknown) TrackLanguage language,
       String? animationColor,
       bool isPremium,
-      bool isNew});
+      bool isNew,
+      String? artist,
+      String? trackName});
 }
 
 /// @nodoc
@@ -165,6 +181,8 @@ class __$$TrackImplCopyWithImpl<$Res>
     Object? animationColor = freezed,
     Object? isPremium = null,
     Object? isNew = null,
+    Object? artist = freezed,
+    Object? trackName = freezed,
   }) {
     return _then(_$TrackImpl(
       id: null == id
@@ -207,6 +225,14 @@ class __$$TrackImplCopyWithImpl<$Res>
           ? _value.isNew
           : isNew // ignore: cast_nullable_to_non_nullable
               as bool,
+      artist: freezed == artist
+          ? _value.artist
+          : artist // ignore: cast_nullable_to_non_nullable
+              as String?,
+      trackName: freezed == trackName
+          ? _value.trackName
+          : trackName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -224,7 +250,9 @@ class _$TrackImpl implements _Track {
       @JsonKey(unknownEnumValue: TrackLanguage.unknown) required this.language,
       this.animationColor,
       this.isPremium = false,
-      this.isNew = false});
+      this.isNew = false,
+      this.artist,
+      this.trackName});
 
   factory _$TrackImpl.fromJson(Map<String, dynamic> json) =>
       _$$TrackImplFromJson(json);
@@ -252,10 +280,14 @@ class _$TrackImpl implements _Track {
   @override
   @JsonKey()
   final bool isNew;
+  @override
+  final String? artist;
+  @override
+  final String? trackName;
 
   @override
   String toString() {
-    return 'Track(id: $id, trackFile: $trackFile, categoryKey: $categoryKey, duration: $duration, tutor: $tutor, coverIcon: $coverIcon, language: $language, animationColor: $animationColor, isPremium: $isPremium, isNew: $isNew)';
+    return 'Track(id: $id, trackFile: $trackFile, categoryKey: $categoryKey, duration: $duration, tutor: $tutor, coverIcon: $coverIcon, language: $language, animationColor: $animationColor, isPremium: $isPremium, isNew: $isNew, artist: $artist, trackName: $trackName)';
   }
 
   @override
@@ -279,13 +311,28 @@ class _$TrackImpl implements _Track {
                 other.animationColor == animationColor) &&
             (identical(other.isPremium, isPremium) ||
                 other.isPremium == isPremium) &&
-            (identical(other.isNew, isNew) || other.isNew == isNew));
+            (identical(other.isNew, isNew) || other.isNew == isNew) &&
+            (identical(other.artist, artist) || other.artist == artist) &&
+            (identical(other.trackName, trackName) ||
+                other.trackName == trackName));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, trackFile, categoryKey,
-      duration, tutor, coverIcon, language, animationColor, isPremium, isNew);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      trackFile,
+      categoryKey,
+      duration,
+      tutor,
+      coverIcon,
+      language,
+      animationColor,
+      isPremium,
+      isNew,
+      artist,
+      trackName);
 
   @JsonKey(ignore: true)
   @override
@@ -313,7 +360,9 @@ abstract class _Track implements Track {
       required final TrackLanguage language,
       final String? animationColor,
       final bool isPremium,
-      final bool isNew}) = _$TrackImpl;
+      final bool isNew,
+      final String? artist,
+      final String? trackName}) = _$TrackImpl;
 
   factory _Track.fromJson(Map<String, dynamic> json) = _$TrackImpl.fromJson;
 
@@ -338,6 +387,10 @@ abstract class _Track implements Track {
   bool get isPremium;
   @override
   bool get isNew;
+  @override
+  String? get artist;
+  @override
+  String? get trackName;
   @override
   @JsonKey(ignore: true)
   _$$TrackImplCopyWith<_$TrackImpl> get copyWith =>

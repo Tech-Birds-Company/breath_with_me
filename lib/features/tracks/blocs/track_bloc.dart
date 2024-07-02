@@ -24,7 +24,7 @@ final class TrackBloc extends BlocBase<Object?> {
     final task = TrackDownloadTask(
       trackId: _track.id,
       userId: userId,
-      url: '', // TODO(vasidmi): fix this
+      url: '',
     );
     return _tracksRepository.getTrackIsDownloadedStream(taskId: task.taskId);
   }

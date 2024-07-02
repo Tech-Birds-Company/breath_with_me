@@ -1,3 +1,4 @@
+import 'package:breathe_with_me/common/widgets/bwm_action_button.dart';
 import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/streak/blocs/streak_bloc.dart';
 import 'package:breathe_with_me/features/streak/models/streak_state.dart';
@@ -25,62 +26,89 @@ class StreakStatisticsWithDetails extends HookConsumerWidget {
     return BlocSelector<StreakBloc, StreakState, StreakProgressV2>(
       bloc: bloc,
       selector: (state) => state.progress,
-      builder: (context, progress) => Column(
-        children: [
-          IntrinsicHeight(
-            child: Row(
-              children: [
-                const Spacer(),
-                StreakStatisticsItem(
-                  text: progress.totalStreak.toString(),
-                  name: LocaleKeys.streakStatisticsCardStreaksCount
-                      .plural(progress.totalStreak),
-                  applyBlur: false,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+      builder: (context, progress) => StreamBuilder<bool>(
+        initialData: false,
+        stream: ref.watch(Di.manager.premium).isPremiumUserStream,
+        builder: (context, snapshot) {
+          final premiumEnabled = snapshot.requireData;
+          return Column(
+            children: [
+              IntrinsicHeight(
+                child: Row(
+                  children: [
+                    const Spacer(),
+                    StreakStatisticsItem(
+                      text: progress.totalStreak.toString(),
+                      name: LocaleKeys.streakStatisticsCardStreaksCount
+                          .plural(progress.totalStreak),
+                      applyBlur: false,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                    ),
+                    const Spacer(),
+                    divider,
+                    const Spacer(),
+                    StreakStatisticsItem(
+                      text: progress.totalPractices.toString(),
+                      name: LocaleKeys.streakStatisticsCardPracticesCount
+                          .plural(progress.totalPractices),
+                      applyBlur: !premiumEnabled,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                    ),
+                    const Spacer(),
+                    divider,
+                    const Spacer(),
+                    StreakStatisticsItem(
+                      text: progress.totalMinutes.toString(),
+                      name: LocaleKeys.streakStatisticsCardMinCount
+                          .plural(progress.totalMinutes),
+                      applyBlur: !premiumEnabled,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                    ),
+                    const Spacer(),
+                  ],
                 ),
-                const Spacer(),
-                divider,
-                const Spacer(),
-                StreakStatisticsItem(
-                  text: progress.totalPractices.toString(),
-                  name: LocaleKeys.streakStatisticsCardPracticesCount
-                      .plural(progress.totalPractices),
-                  applyBlur: true,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+              ),
+              const SizedBox(height: 16),
+              Text(
+                LocaleKeys.streakLivesTitle.tr().toUpperCase(),
+                style: theme.typography.label.copyWith(color: theme.gray3),
+              ),
+              const SizedBox(height: 8),
+              LivesIndicator(
+                totalLives: premiumEnabled ? progress.totalLives : 0,
+                configMaxLives: 3,
+              ),
+              if (premiumEnabled &&
+                  progress.totalMissedDays > 0 &&
+                  progress.totalLives > 0)
+                Column(
+                  children: [
+                    const SizedBox(height: 16),
+                    BWMActionButton(
+                      title: LocaleKeys.streakMissedDayRestore.tr(),
+                      height: 44,
+                      onPressed: bloc.onRestoreTap,
+                    ),
+                  ],
                 ),
-                const Spacer(),
-                divider,
-                const Spacer(),
-                StreakStatisticsItem(
-                  text: progress.totalMinutes.toString(),
-                  name: LocaleKeys.streakStatisticsCardMinCount
-                      .plural(progress.totalMinutes),
-                  applyBlur: true,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+              if (!premiumEnabled)
+                Column(
+                  children: [
+                    const SizedBox(height: 16),
+                    Text(
+                      LocaleKeys.streakLivesWhenPremiumEnabled
+                          .tr()
+                          .toUpperCase(),
+                      textAlign: TextAlign.center,
+                      style: theme.typography.label.copyWith(
+                        color: theme.gray6,
+                      ),
+                    ),
+                  ],
                 ),
-                const Spacer(),
-              ],
-            ),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            LocaleKeys.streakLivesTitle.tr().toUpperCase(),
-            style: theme.typography.label.copyWith(color: theme.gray3),
-          ),
-          const SizedBox(height: 8),
-          const LivesIndicator(
-            totalLives: 0,
-            configMaxLives: 3,
-          ),
-          const SizedBox(height: 16),
-          Text(
-            LocaleKeys.streakLivesWhenPremiumEnabled.tr().toUpperCase(),
-            textAlign: TextAlign.center,
-            style: theme.typography.label.copyWith(
-              color: theme.gray6,
-            ),
-          ),
-        ],
+            ],
+          );
+        },
       ),
     );
   }

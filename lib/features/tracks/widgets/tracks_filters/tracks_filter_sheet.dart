@@ -4,7 +4,7 @@ import 'package:breathe_with_me/common/widgets/bottom_sheet_notch.dart';
 import 'package:breathe_with_me/common/widgets/bwm_action_button.dart';
 import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/tracks/blocs/tracks_filters_bloc.dart';
-import 'package:breathe_with_me/features/tracks/filter_type.dart';
+import 'package:breathe_with_me/features/tracks/tracks_filter_type.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class TracksFilterSheet extends ConsumerWidget {
-  final FilterType filterType;
+  final TracksFilterType filterType;
 
   const TracksFilterSheet({
     required this.filterType,
@@ -52,7 +52,7 @@ class TracksFilterSheet extends ConsumerWidget {
 }
 
 class _FilterList extends StatelessWidget {
-  final FilterType filterType;
+  final TracksFilterType filterType;
   final TracksFiltersBloc bloc;
 
   const _FilterList({
@@ -62,7 +62,7 @@ class _FilterList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final itemsKeys = filterType == FilterType.categories
+    final itemsKeys = filterType == TracksFilterType.categories
         ? bloc.state.categoriesKeys
         : bloc.state.languagesKeys;
 
@@ -87,7 +87,7 @@ class _FilterList extends StatelessWidget {
 class _FilterListItem extends StatelessWidget {
   final String itemKey;
   final TracksFiltersBloc bloc;
-  final FilterType filterType;
+  final TracksFilterType filterType;
 
   const _FilterListItem({
     required this.itemKey,
@@ -102,9 +102,9 @@ class _FilterListItem extends StatelessWidget {
       contentPadding: EdgeInsets.zero,
       onTap: () {
         switch (filterType) {
-          case FilterType.categories:
+          case TracksFilterType.categories:
             bloc.onCategoriesFilterChanged(itemKey);
-          case FilterType.languages:
+          case TracksFilterType.languages:
             bloc.onLanguagesFilterChanged(itemKey);
         }
       },
@@ -112,7 +112,7 @@ class _FilterListItem extends StatelessWidget {
         itemKey.tr(),
         style: theme.typography.bodyM.copyWith(color: theme.primaryText),
       ),
-      trailing: (filterType == FilterType.categories
+      trailing: (filterType == TracksFilterType.categories
                   ? bloc.state.selectedCategoryKey
                   : bloc.state.selectedLanguageKey) ==
               itemKey
@@ -123,7 +123,7 @@ class _FilterListItem extends StatelessWidget {
 }
 
 class _ResetButton extends StatelessWidget {
-  final FilterType filterType;
+  final TracksFilterType filterType;
   final TracksFiltersBloc bloc;
 
   const _ResetButton({
@@ -134,9 +134,9 @@ class _ResetButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final shouldShowResetButton = (bloc.state.selectedCategoryKey != null &&
-            filterType == FilterType.categories) ||
+            filterType == TracksFilterType.categories) ||
         (bloc.state.selectedLanguageKey != null &&
-            filterType == FilterType.languages);
+            filterType == TracksFilterType.languages);
 
     return shouldShowResetButton
         ? Padding(
@@ -150,9 +150,9 @@ class _ResetButton extends StatelessWidget {
               title: LocaleKeys.tracksFilterReset.tr(),
               onPressed: () {
                 switch (filterType) {
-                  case FilterType.categories:
+                  case TracksFilterType.categories:
                     bloc.onCategoriesFilterReset();
-                  case FilterType.languages:
+                  case TracksFilterType.languages:
                     bloc.onLanguagesFilterReset();
                 }
               },

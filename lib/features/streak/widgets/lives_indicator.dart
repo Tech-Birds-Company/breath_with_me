@@ -24,9 +24,8 @@ class LivesIndicator extends StatelessWidget {
                 boxShadow: [
                   if (totalLives >= i)
                     const BoxShadow(
-                      blurStyle: BlurStyle.inner,
                       color: Colors.white,
-                      blurRadius: 10,
+                      blurRadius: 12,
                     ),
                 ],
               ),
