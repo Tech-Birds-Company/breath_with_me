@@ -178,10 +178,11 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
 
   Future<void> onTrackFinish() async {
     BWMAnalytics.event('onTrackFinish', params: {'trackId': track.id});
-    await _streakProgressManager.addStreakData(
+
+    unawaited(_streakProgressManager.addStreakData(
       minutes: track.duration,
       date: DateTime.now(),
-    );
+    ));
     _navigationManager.pop();
     await _navigationManager.openStreak(_track);
   }

@@ -22,6 +22,7 @@ import 'package:breathe_with_me/repositories/firebase_remote_config_repository.d
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/isar_bloc_storage.dart';
 import 'package:breathe_with_me/utils/environment.dart';
+import 'package:breathe_with_me/utils/logger.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -142,14 +143,22 @@ Future<void> mainCommon(Environment env) async {
 
   await EasyLocalization.ensureInitialized();
 
-  await FirebaseRemoteConfig.instance.ensureInitialized();
-  await FirebaseRemoteConfig.instance.setConfigSettings(
-    RemoteConfigSettings(
-      fetchTimeout: const Duration(seconds: 10),
-      minimumFetchInterval: const Duration(minutes: 12),
-    ),
-  );
-  await FirebaseRemoteConfig.instance.fetchAndActivate();
+  try {
+    await FirebaseRemoteConfig.instance.ensureInitialized();
+    await FirebaseRemoteConfig.instance.setConfigSettings(
+      RemoteConfigSettings(
+        fetchTimeout: const Duration(seconds: 10),
+        minimumFetchInterval: const Duration(minutes: 12),
+      ),
+    );
+    await FirebaseRemoteConfig.instance.fetchAndActivate();
+  } on FirebaseException catch (e) {
+    logger.e(
+      e.message,
+      error: e,
+      stackTrace: e.stackTrace,
+    );
+  }
 
   final dependencies =
       await _setupDependencies(isProduction: env == Environment.prod);
