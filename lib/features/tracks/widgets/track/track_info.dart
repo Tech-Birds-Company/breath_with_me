@@ -25,6 +25,7 @@ class TrackInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
+    final language = context.locale.languageCode;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -34,7 +35,7 @@ class TrackInfo extends StatelessWidget {
             Expanded(
               flex: 0,
               child: Text(
-                track.categoryKey.tr(),
+                track.trackTranslatedTitle(language) ?? track.categoryKey.tr(),
                 style: theme.typography.heading2.copyWith(
                   color: theme.primaryText,
                 ),
