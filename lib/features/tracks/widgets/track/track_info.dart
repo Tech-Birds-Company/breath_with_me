@@ -89,7 +89,8 @@ class TrackInfo extends StatelessWidget {
               child: TrackTutor(
                 key: ValueKey(track.tutor.id),
                 tutorAvatarUrl: track.tutor.avatarUrl,
-                tutorName: track.tutor.tutorNameKey.tr(),
+                tutorName: track.tutor.tutorTranslatedName(language) ??
+                    track.tutor.tutorNameKey.tr(),
               ),
             ),
             Expanded(
