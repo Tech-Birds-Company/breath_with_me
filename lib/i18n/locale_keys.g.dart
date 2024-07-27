@@ -110,6 +110,7 @@ abstract class LocaleKeys {
       'streakStatisticsCardDayMissedCount';
   static const streakWithoutPremiumTitle = 'streakWithoutPremiumTitle';
   static const streakWithoutPremiumSubtitle = 'streakWithoutPremiumSubtitle';
+  static const streakLivesWillResetTitle = 'streakLivesWillResetTitle';
   static const streakLivesTitle = 'streakLivesTitle';
   static const streakLivesWhenPremiumEnabled = 'streakLivesWhenPremiumEnabled';
   static const streakLivesFooter = 'streakLivesFooter';

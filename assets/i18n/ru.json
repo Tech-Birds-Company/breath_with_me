@@ -140,6 +140,7 @@
     "many": "{} дней подряд",
     "other": "{} дней подряд"
   },
+  "streakLivesWillResetTitle": "Восстановятся {}",
   "streakLivesTitle": "Восстановление прогресса",
   "streakLivesWhenPremiumEnabled": "Доступно на Премиум тарифе",
   "streakLivesFooter": {

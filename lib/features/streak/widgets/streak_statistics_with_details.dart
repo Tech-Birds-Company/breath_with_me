@@ -35,8 +35,8 @@ class StreakStatisticsWithDetails extends HookConsumerWidget {
             children: [
               IntrinsicHeight(
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    const Spacer(),
                     StreakStatisticsItem(
                       text: progress.totalStreak.toString(),
                       name: LocaleKeys.streakStatisticsCardStreaksCount
@@ -44,9 +44,7 @@ class StreakStatisticsWithDetails extends HookConsumerWidget {
                       applyBlur: false,
                       crossAxisAlignment: CrossAxisAlignment.center,
                     ),
-                    const Spacer(),
                     divider,
-                    const Spacer(),
                     StreakStatisticsItem(
                       text: progress.totalPractices.toString(),
                       name: LocaleKeys.streakStatisticsCardPracticesCount
@@ -54,9 +52,7 @@ class StreakStatisticsWithDetails extends HookConsumerWidget {
                       applyBlur: !premiumEnabled,
                       crossAxisAlignment: CrossAxisAlignment.center,
                     ),
-                    const Spacer(),
                     divider,
-                    const Spacer(),
                     StreakStatisticsItem(
                       text: progress.totalMinutes.toString(),
                       name: LocaleKeys.streakStatisticsCardMinCount
@@ -64,7 +60,6 @@ class StreakStatisticsWithDetails extends HookConsumerWidget {
                       applyBlur: !premiumEnabled,
                       crossAxisAlignment: CrossAxisAlignment.center,
                     ),
-                    const Spacer(),
                   ],
                 ),
               ),
@@ -73,10 +68,11 @@ class StreakStatisticsWithDetails extends HookConsumerWidget {
                 LocaleKeys.streakLivesTitle.tr().toUpperCase(),
                 style: theme.typography.label.copyWith(color: theme.gray3),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 16),
               LivesIndicator(
                 totalLives: premiumEnabled ? progress.totalLives : 0,
                 configMaxLives: 3,
+                utcLivesExpireDateTime: progress.utcLivesExpireDateTime,
               ),
               if (premiumEnabled &&
                   progress.totalMissedDays > 0 &&

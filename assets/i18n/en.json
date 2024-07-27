@@ -115,6 +115,7 @@
   "streakStatisticsCardDayMissedCount": "Day missed",
   "streakWithoutPremiumTitle": "You have",
   "streakWithoutPremiumSubtitle": "{} day streak",
+  "streakLivesWillResetTitle": "Will reset on {}",
   "streakLivesTitle": "Monthly streak lives",
   "streakLivesWhenPremiumEnabled": "Available on premium",
   "streakLivesFooter": {

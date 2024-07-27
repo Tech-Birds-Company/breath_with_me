@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:breathe_with_me/managers/streak_progress_manager/streak_progress_manager.dart';
 import 'package:breathe_with_me/repositories/models/remote_config/remote_config_legal_documents.dart';
 import 'package:breathe_with_me/repositories/models/remote_config/remote_config_premium_v2.dart';
@@ -206,27 +208,31 @@ void main() {
       group(
         'Restore',
         () {
-          test('Simple restore', () async {
-            final initialDate = DateTime.utc(2024, 1, 20);
-            late StreakProgressV2 progress;
-            progress = await streakProgressManager.addStreakData(
-              minutes: 3,
-              date: initialDate,
-            );
-            expect(progress.totalPractices, 1);
-            expect(progress.totalStreak, 1);
-            expect(progress.totalMissedDays, 0);
-            final secondDate = initialDate.add(const Duration(days: 2));
-            progress = await streakProgressManager.addStreakData(
-              minutes: 8,
-              date: secondDate,
-            );
-            expect(progress.totalPractices, 2);
-            expect(progress.totalStreak, 1);
-            expect(progress.totalMissedDays, 1);
-            progress = await streakProgressManager.restoreUserStreakProgress();
-            expect(progress.totalStreak, 3);
-          });
+          test(
+            'Simple restore',
+            () async {
+              final initialDate = DateTime.utc(2024, 1, 20);
+              late StreakProgressV2 progress;
+              progress = await streakProgressManager.addStreakData(
+                minutes: 3,
+                date: initialDate,
+              );
+              expect(progress.totalPractices, 1);
+              expect(progress.totalStreak, 1);
+              expect(progress.totalMissedDays, 0);
+              final secondDate = initialDate.add(const Duration(days: 2));
+              progress = await streakProgressManager.addStreakData(
+                minutes: 8,
+                date: secondDate,
+              );
+              expect(progress.totalPractices, 2);
+              expect(progress.totalStreak, 1);
+              expect(progress.totalMissedDays, 1);
+              progress =
+                  await streakProgressManager.restoreUserStreakProgress();
+              expect(progress.totalStreak, 2);
+            },
+          );
           test(
             'Restore progress',
             () async {
@@ -261,13 +267,45 @@ void main() {
               final restoredProgress =
                   await streakProgressManager.restoreUserStreakProgress();
 
-              expect(restoredProgress.utcTimeline.length, 3);
+              expect(restoredProgress.utcTimeline.length, 4);
               expect(
                 restoredProgress.totalLives,
                 0,
               );
               expect(restoredProgress.totalMinutes, 48);
-              expect(restoredProgress.totalStreak, 7);
+              expect(restoredProgress.totalStreak, 4);
+            },
+          );
+          test(
+            'Long restore',
+            () async {
+              const longestStreakDuration = 200;
+              final dateNow = DateTime.now();
+              final startDate = dateNow
+                  .subtract(const Duration(days: 3))
+                  .subtract(const Duration(days: longestStreakDuration));
+              for (final i
+                  in List.generate(longestStreakDuration, (index) => index)) {
+                await streakProgressManager.addStreakData(
+                  minutes: Random().nextInt(11) + 4,
+                  date: startDate.add(Duration(days: i)),
+                );
+              }
+              await streakProgressManager.addStreakData(
+                minutes: 10,
+                date: dateNow,
+              );
+              await streakProgressManager.addStreakData(
+                minutes: 4,
+                date: dateNow.add(const Duration(days: 1)),
+              );
+              await streakProgressManager.addStreakData(
+                minutes: 2,
+                date: dateNow.add(const Duration(days: 2)),
+              );
+              final progress =
+                  await streakProgressManager.restoreUserStreakProgress();
+              expect(progress.totalStreak, 6);
             },
           );
         },
