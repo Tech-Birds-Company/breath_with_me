@@ -1,169 +1,168 @@
 {
-	"appName": "BreatheWithMe",
-	"appBarBackTitle": "Back",
+  "appName": "BreatheWithMe",
+  "appBarBackTitle": "Back",
 
-	"onboardingPage1Title": "How do you want to feel?",
-	"onboardingPage2Title": "Feel the power of breath",
-	"onboardingPage3Title": "Join a growing community of breathers",
-	"onboardingPage1Subtitle": "Get more relaxed, balanced or energized in just minutes with BREATHE WITH ME",
-	"onboardingPage2Subtitle": "Breathing and electronic music can enhance the effects of your meditation",
-	"onboardingPage3Subtitle": "Discuss your breathing experience with fellow breathers and practice instructors",
-	"onboardingButtonTitle": "Get started",
+  "onboardingPage1Title": "How do you want to feel?",
+  "onboardingPage2Title": "Feel the power of breath",
+  "onboardingPage3Title": "Join a growing community of breathers",
+  "onboardingPage1Subtitle": "Get more relaxed, balanced or energized in just minutes with BREATHE WITH ME",
+  "onboardingPage2Subtitle": "Breathing and electronic music can enhance the effects of your meditation",
+  "onboardingPage3Subtitle": "Discuss your breathing experience with fellow breathers and practice instructors",
+  "onboardingButtonTitle": "Get started",
 
-	"createAccountHeaderTitle": "Create account",
-	"createAccountHeaderConjunction": "and",
-	"createAccountHeaderSubtitle": "get access to all practices\nand extended breathing statistics",
-	"createAccountHeaderLogin": "Existing account? Log in",
-	"createAccountContact": "Contact us",
-	"createAccountAgreement": {
-		"part1": "By clicking \"Create account\" you agree to the ",
-		"privacyPolicyUrl": "privacy policy",
-		"part2": " and ",
-		"termsOfServiceUrl": "terms of service"
-	},
-	"createAccountSignUpButtonTitle": "Create account",
+  "createAccountHeaderTitle": "Create account",
+  "createAccountHeaderConjunction": "and",
+  "createAccountHeaderSubtitle": "get access to all practices\nand extended breathing statistics",
+  "createAccountHeaderLogin": "Existing account? Log in",
+  "createAccountContact": "Contact us",
+  "createAccountAgreement": {
+    "part1": "By clicking \"Create account\" you agree to the ",
+    "privacyPolicyUrl": "privacy policy",
+    "part2": " and ",
+    "termsOfServiceUrl": "terms of service"
+  },
+  "createAccountSignUpButtonTitle": "Create account",
 
-	"tracksTitle": "Hi, {}",
-	"tracksHeading": "Let's breathe",
-	"tracksFilterReset": "Reset",
-	"trackCategoryAll": "All practices",
-	"trackCategoryRelax": "Relax",
-	"trackCategoryEnergize": "Energize",
-	"trackCategoryBalance": "Balance",
-	"trackLanguageAll": "All languages",
-	"trackLanguageEn": "En",
-	"trackLanguageRu": "Ru",
-	"trackDurationTitle": "{duration} min",
-	"trackFinishButton": "Finish",
+  "tracksTitle": "Hi, {}",
+  "tracksHeading": "Let's breathe",
+  "tracksFilterReset": "Reset",
+  "trackCategoryAll": "All practices",
+  "trackCategoryRelax": "Relax",
+  "trackCategoryEnergize": "Energize",
+  "trackCategoryBalance": "Balance",
+  "trackLanguageAll": "All languages",
+  "trackLanguageEn": "En",
+  "trackLanguageRu": "Ru",
+  "trackDurationTitle": "{duration} min",
+  "trackFinishButton": "Finish",
 
-	"tutorJacksonNameKey": "Jackson",
-	"tutorDashaNameKey": "Dasha",
-	"tutorJohnnyNameKey": "Johnny",
+  "tutorJacksonNameKey": "Jackson",
+  "tutorDashaNameKey": "Dasha",
+  "tutorJohnnyNameKey": "Johnny",
 
-	"en": "English",
-	"ru": "Русский",
+  "en": "English",
+  "ru": "Русский",
 
-	"profileSettings": "Settings",
-	"profileLanguage": "Language",
-	"profileFAQ": "FAQ",
-	"profileChat": "Community chat",
-	"profileContactUs": "Contact us",
-	"profileProgress": "Extended statistics of your breathing progress",
-	"profileStreak": "Ability to restore your practice streak 3 times",
-	"profileFaqTitle": "FAQ",
-	"profileLogout": "Log out",
-	"profileBaseAccountType": "Free account",
-	"profilePremiumAccountType": "Premium account",
-	"profilePremiumExpires": "till {}",
-	"profilePremiumOfferButton": "Go premium",
+  "profileSettings": "Settings",
+  "profileLanguage": "Language",
+  "profileFAQ": "FAQ",
+  "profileChat": "Community chat",
+  "profileContactUs": "Contact us",
+  "profileProgress": "Extended statistics of your breathing progress",
+  "profileStreak": "Ability to restore your practice streak 3 times",
+  "profileFaqTitle": "FAQ",
+  "profileLogout": "Log out",
+  "profileBaseAccountType": "Free account",
+  "profilePremiumAccountType": "Premium account",
+  "profilePremiumExpires": "till {}",
+  "profilePremiumOfferButton": "Go premium",
 
-	"reminderTitle": "Reminder",
-	"reminderDisabled": "Off",
-	"reminderSaveButtonTitle": "Save",
-	"reminderEveryWd1": "Every Monday",
-	"reminderEveryWd2": "Every Tuesday",
-	"reminderEveryWd3": "Every Wednesday",
-	"reminderEveryWd4": "Every Thursday",
-	"reminderEveryWd5": "Every Friday",
-	"reminderEveryWd6": "Every Saturday",
-	"reminderEveryWd7": "Every Sunday",
-	"reminderWd1Short": "Mon",
-	"reminderWd2Short": "Tue",
-	"reminderWd3Short": "Wed",
-	"reminderWd4Short": "Thu",
-	"reminderWd5Short": "Fri",
-	"reminderWd6Short": "Sat",
-	"reminderWd7Short": "Sun",
-	"reminderNotificationTitle": "It's time to breathe",
-	"reminderNotificationDescription": "Take a comfortable position and let's start",
+  "reminderTitle": "Reminder",
+  "reminderDisabled": "Off",
+  "reminderSaveButtonTitle": "Save",
+  "reminderEveryWd1": "Every Monday",
+  "reminderEveryWd2": "Every Tuesday",
+  "reminderEveryWd3": "Every Wednesday",
+  "reminderEveryWd4": "Every Thursday",
+  "reminderEveryWd5": "Every Friday",
+  "reminderEveryWd6": "Every Saturday",
+  "reminderEveryWd7": "Every Sunday",
+  "reminderWd1Short": "Mon",
+  "reminderWd2Short": "Tue",
+  "reminderWd3Short": "Wed",
+  "reminderWd4Short": "Thu",
+  "reminderWd5Short": "Fri",
+  "reminderWd6Short": "Sat",
+  "reminderWd7Short": "Sun",
+  "reminderNotificationTitle": "It's time to breathe",
+  "reminderNotificationDescription": "Take a comfortable position and let's start",
 
-	"safetyPrecautionsWelcomeTitle": "Hi, we are glad to see you!",
-	"safetyPrecautionsWelcomeDescription": "Before you continue, familiarize yourself with the safety techniques and breathing recommendations",
-	"safetyPrecautionsReadNow": "Read now",
+  "safetyPrecautionsWelcomeTitle": "Hi, we are glad to see you!",
+  "safetyPrecautionsWelcomeDescription": "Before you continue, familiarize yourself with the safety techniques and breathing recommendations",
+  "safetyPrecautionsReadNow": "Read now",
 
-	"signInLogin": "Log In",
-	"signInEmail": "Email",
-	"signInPassword": "Password",
-	"signInForgotPass": "Forgot Password",
-	"signInOrSignUp": "or Log in with",
-	"signInEmailError": "Invalid email address",
-	"signInPasswordError": "Password must be at least 6 characters",
-	"signInErrorMessage": "Authorization failed. Please check your email or password",
-	"welcomeBack": "Welcome back!",
-	"welcomeBreather": "Welcome, breather!",
-	"confirmPassword": "Confirm Password",
-	"yourName": "Your name",
-	"forgotPassSubtitle": "Please remind us the email associated with your account",
-	"resetPassword": "Reset password",
-	"openEmailApp": "Open email app",
-	"checkYourEmailSubtitle": "Instructions on how to reset your password have been sent.",
-	"checkYourEmail": "Check you email",
-	"forgotPassword": "Forgot password",
-	"forgotPasswordSpamFirst": "Did not receive the email? Check your spam folder, ",
-	"forgotPasswordSpamSecond": "or try another email address",
+  "signInLogin": "Log In",
+  "signInEmail": "Email",
+  "signInPassword": "Password",
+  "signInForgotPass": "Forgot Password",
+  "signInOrSignUp": "or Log in with",
+  "signInEmailError": "Invalid email address",
+  "signInPasswordError": "Password must be at least 6 characters",
+  "signInErrorMessage": "Authorization failed. Please check your email or password",
+  "welcomeBack": "Welcome back!",
+  "welcomeBreather": "Welcome, breather!",
+  "confirmPassword": "Confirm Password",
+  "yourName": "Your name",
+  "forgotPassSubtitle": "Please remind us the email associated with your account",
+  "resetPassword": "Reset password",
+  "openEmailApp": "Open email app",
+  "checkYourEmailSubtitle": "Instructions on how to reset your password have been sent.",
+  "checkYourEmail": "Check you email",
+  "forgotPassword": "Forgot password",
+  "forgotPasswordSpamFirst": "Did not receive the email? Check your spam folder, ",
+  "forgotPasswordSpamSecond": "or try another email address",
 
-	"streakStatisticsCardTitle": "You are fantastic",
-	"streakStatisticsCardStreaksCount": {
-		"one": "Streak",
-		"other": "Streaks"
-	},
-	"streakStatisticsCardPracticesCount": {
-		"one": "Practice",
-		"other": "Practices"
-	},
-	"streakStatisticsCardMinCount": "Min",
-	"streakStatisticsCardDayMissedCount": "Day missed",
-	"streakWithoutPremiumTitle": "You have",
-	"streakWithoutPremiumSubtitle": "{} day streak",
-	"streakLivesTitle": "Monthly streak lives",
-	"streakLivesWhenPremiumEnabled": "Will be available after starting a premium account",
-	"streakLivesFooter": {
-		"one": "You will get {} more live next month",
-		"other": "You will get {} more lives next month"
-	},
-	"streakMissedDayTitle": "Do you want to restore missed day and save your progress?",
-	"streakMissedDaySubtitle": "You will have {} less streak live",
-	"streakMissedDayRestore": "Restore streak",
-	"streakMissedDaySkip": "Skip",
+  "streakStatisticsCardTitle": "You are fantastic",
+  "streakStatisticsCardStreaksCount": {
+    "one": "Streak",
+    "other": "Streaks"
+  },
+  "streakStatisticsCardPracticesCount": {
+    "one": "Practice",
+    "other": "Practices"
+  },
+  "streakStatisticsCardMinCount": "Min",
+  "streakStatisticsCardDayMissedCount": "Day missed",
+  "streakWithoutPremiumTitle": "You have",
+  "streakWithoutPremiumSubtitle": "{} day streak",
+  "streakLivesTitle": "Monthly streak lives",
+  "streakLivesWhenPremiumEnabled": "Available on premium",
+  "streakLivesFooter": {
+    "one": "You will get {} more live next month",
+    "other": "You will get {} more lives next month"
+  },
+  "streakMissedDayTitle": "Do you want to restore missed day and save your progress?",
+  "streakMissedDaySubtitle": "You will have {} less streak live",
+  "streakMissedDayRestore": "Restore streak",
+  "streakMissedDaySkip": "Skip",
 
-	"accountSetting": "Account settings",
+  "accountSetting": "Account settings",
 
-	"premium": {
-		"premium": "Premium",
-		"goPremium": "Go Premium",
-		"extendedStats": "Extended statistics of your progress",
-		"restoreStreaks": "Ability to restore your practice streak",
-		"backgroundMode": "Background mode",
-		"learnMore": "Learn more",
-		"buyPremium": "Buy Premium",
-		"paywall": {
-			"selectTariffTitle": "Select tariff",
-			"trialDescription": "7 days free trial",
-			"subscriptionPeriod": {
-				"W": {
-					"one": "{} week",
-					"other": "{} weeks"
-				},
-				"M": {
-					"one": "{} month",
-					"other": "{} months"
-				},
-				"Y": {
-					"one": "{} month",
-					"other": "{} months"
-				}
-			}
-		}
-	},
-	"networkErrorText": "Network error",
-	
-	"resetPasswordTitle": "Reset password",
-	"resetPasswordSubtitle": "Enter a new password",
+  "premium": {
+    "premium": "Premium",
+    "goPremium": "Go Premium",
+    "extendedStats": "Extended statistics of your progress",
+    "restoreStreaks": "Ability to restore your practice streak",
+    "backgroundMode": "Background mode",
+    "learnMore": "Learn more",
+    "buyPremium": "Buy Premium",
+    "paywall": {
+      "selectTariffTitle": "Select tariff",
+      "trialDescription": "7 days free trial",
+      "subscriptionPeriod": {
+        "W": {
+          "one": "{} week",
+          "other": "{} weeks"
+        },
+        "M": {
+          "one": "{} month",
+          "other": "{} months"
+        },
+        "Y": {
+          "one": "{} month",
+          "other": "{} months"
+        }
+      }
+    }
+  },
+  "networkErrorText": "Network error",
 
-	"signUpError": {
-		"nameEmpty": "Error: Name field is empty.",
-		"emailEmpty": "Error: Email is invalid.",
-		"passwordMatch": "Error: Passwords do not match."
-	}
+  "resetPasswordTitle": "Reset password",
+  "resetPasswordSubtitle": "Enter a new password",
 
+  "signUpError": {
+    "nameEmpty": "Error: Name field is empty.",
+    "emailEmpty": "Error: Email is invalid.",
+    "passwordMatch": "Error: Passwords do not match."
+  }
 }
