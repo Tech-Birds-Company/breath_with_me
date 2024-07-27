@@ -122,6 +122,7 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
     _initPlayerSubscriptions();
 
     final userId = _userManager.currentUser!.uid;
+
     _initDownloadProgressSubscription(
       TrackDownloadTask(
         trackId: _track.id,
@@ -179,10 +180,12 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   Future<void> onTrackFinish() async {
     BWMAnalytics.event('onTrackFinish', params: {'trackId': track.id});
 
-    unawaited(_streakProgressManager.addStreakData(
-      minutes: track.duration,
-      date: DateTime.now(),
-    ));
+    unawaited(
+      _streakProgressManager.addStreakData(
+        minutes: track.duration,
+        date: DateTime.now(),
+      ),
+    );
     _navigationManager.pop();
     await _navigationManager.openStreak(_track);
   }

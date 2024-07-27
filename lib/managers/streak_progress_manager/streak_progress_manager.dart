@@ -72,10 +72,11 @@ class StreakProgressManager {
     final currentTimelineLength = currentProgress.utcTimeline.length;
     final sortedTimeline = [...currentProgress.utcTimeline]..sort();
     final oldTimeline = sortedTimeline.sublist(
-        0,
-        currentTimelineLength - totalStreak < 0
-            ? 0
-            : currentTimelineLength - totalStreak);
+      0,
+      currentTimelineLength - totalStreak < 0
+          ? 0
+          : currentTimelineLength - totalStreak,
+    );
     final oldStreak = _calculateStreak(oldTimeline);
     final newTimeline = <DateTime>[];
     final lastDate =

@@ -19,6 +19,7 @@ import 'package:breathe_with_me/managers/shared_preferences_manager/shared_prefe
 import 'package:breathe_with_me/managers/user_manager/firebase_user_manager.dart';
 import 'package:breathe_with_me/repositories/firebase_premium_repository.dart';
 import 'package:breathe_with_me/repositories/firebase_remote_config_repository.dart';
+import 'package:breathe_with_me/repositories/streaks_quotes_repository.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/isar_bloc_storage.dart';
 import 'package:breathe_with_me/utils/environment.dart';
@@ -49,6 +50,11 @@ Future<List<Override>> _setupDependencies({
   final tracksDownloadManager = TracksDownloaderManager(databaseManager);
 
   const remoteConfigRepository = FirebaseRemoteConfigRepository();
+  final streaksQuotesRepository = StreaksQuotesRepository(databaseManager);
+
+  unawaited(
+    streaksQuotesRepository.fetchQuotes(),
+  );
 
   final userManager = FirebaseUserManager(
     databaseManager,
