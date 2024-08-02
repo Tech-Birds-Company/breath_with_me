@@ -9,11 +9,13 @@ class LivesIndicator extends StatelessWidget {
   final int totalLives;
   final int configMaxLives;
   final DateTime? utcLivesExpireDateTime;
+  final bool isPremiumEnabled;
 
   const LivesIndicator({
     required this.totalLives,
     required this.configMaxLives,
     required this.utcLivesExpireDateTime,
+    required this.isPremiumEnabled,
     super.key,
   });
 
@@ -56,7 +58,7 @@ class LivesIndicator extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 8),
-        if (utcLivesExpireDateTime != null)
+        if (isPremiumEnabled && utcLivesExpireDateTime != null)
           Text(
             _countdownText,
             style: theme.typography.label.copyWith(

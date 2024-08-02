@@ -73,6 +73,7 @@ class StreakStatisticsWithDetails extends HookConsumerWidget {
                 totalLives: premiumEnabled ? progress.totalLives : 0,
                 configMaxLives: 3,
                 utcLivesExpireDateTime: progress.utcLivesExpireDateTime,
+                isPremiumEnabled: premiumEnabled,
               ),
               if (premiumEnabled &&
                   progress.totalMissedDays > 0 &&
