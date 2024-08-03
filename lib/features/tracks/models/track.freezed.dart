@@ -28,6 +28,7 @@ mixin _$Track {
   String get coverIcon => throw _privateConstructorUsedError;
   @JsonKey(unknownEnumValue: TrackLanguage.unknown)
   TrackLanguage get language => throw _privateConstructorUsedError;
+  bool get isPremium => throw _privateConstructorUsedError;
   String? get animationColor => throw _privateConstructorUsedError;
   String? get artist => throw _privateConstructorUsedError;
   String? get trackName => throw _privateConstructorUsedError;
@@ -52,6 +53,7 @@ abstract class $TrackCopyWith<$Res> {
       Tutor tutor,
       String coverIcon,
       @JsonKey(unknownEnumValue: TrackLanguage.unknown) TrackLanguage language,
+      bool isPremium,
       String? animationColor,
       String? artist,
       String? trackName,
@@ -78,6 +80,7 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
     Object? tutor = null,
     Object? coverIcon = null,
     Object? language = null,
+    Object? isPremium = null,
     Object? animationColor = freezed,
     Object? artist = freezed,
     Object? trackName = freezed,
@@ -112,6 +115,10 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
               as TrackLanguage,
+      isPremium: null == isPremium
+          ? _value.isPremium
+          : isPremium // ignore: cast_nullable_to_non_nullable
+              as bool,
       animationColor: freezed == animationColor
           ? _value.animationColor
           : animationColor // ignore: cast_nullable_to_non_nullable
@@ -147,6 +154,7 @@ abstract class _$$TrackImplCopyWith<$Res> implements $TrackCopyWith<$Res> {
       Tutor tutor,
       String coverIcon,
       @JsonKey(unknownEnumValue: TrackLanguage.unknown) TrackLanguage language,
+      bool isPremium,
       String? animationColor,
       String? artist,
       String? trackName,
@@ -171,6 +179,7 @@ class __$$TrackImplCopyWithImpl<$Res>
     Object? tutor = null,
     Object? coverIcon = null,
     Object? language = null,
+    Object? isPremium = null,
     Object? animationColor = freezed,
     Object? artist = freezed,
     Object? trackName = freezed,
@@ -205,6 +214,10 @@ class __$$TrackImplCopyWithImpl<$Res>
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
               as TrackLanguage,
+      isPremium: null == isPremium
+          ? _value.isPremium
+          : isPremium // ignore: cast_nullable_to_non_nullable
+              as bool,
       animationColor: freezed == animationColor
           ? _value.animationColor
           : animationColor // ignore: cast_nullable_to_non_nullable
@@ -236,6 +249,7 @@ class _$TrackImpl extends _Track {
       required this.tutor,
       required this.coverIcon,
       @JsonKey(unknownEnumValue: TrackLanguage.unknown) required this.language,
+      this.isPremium = false,
       this.animationColor,
       this.artist,
       this.trackName,
@@ -262,6 +276,9 @@ class _$TrackImpl extends _Track {
   @JsonKey(unknownEnumValue: TrackLanguage.unknown)
   final TrackLanguage language;
   @override
+  @JsonKey()
+  final bool isPremium;
+  @override
   final String? animationColor;
   @override
   final String? artist;
@@ -280,7 +297,7 @@ class _$TrackImpl extends _Track {
 
   @override
   String toString() {
-    return 'Track(id: $id, trackFile: $trackFile, categoryKey: $categoryKey, duration: $duration, tutor: $tutor, coverIcon: $coverIcon, language: $language, animationColor: $animationColor, artist: $artist, trackName: $trackName, trackTitleTranslations: $trackTitleTranslations)';
+    return 'Track(id: $id, trackFile: $trackFile, categoryKey: $categoryKey, duration: $duration, tutor: $tutor, coverIcon: $coverIcon, language: $language, isPremium: $isPremium, animationColor: $animationColor, artist: $artist, trackName: $trackName, trackTitleTranslations: $trackTitleTranslations)';
   }
 
   @override
@@ -300,6 +317,8 @@ class _$TrackImpl extends _Track {
                 other.coverIcon == coverIcon) &&
             (identical(other.language, language) ||
                 other.language == language) &&
+            (identical(other.isPremium, isPremium) ||
+                other.isPremium == isPremium) &&
             (identical(other.animationColor, animationColor) ||
                 other.animationColor == animationColor) &&
             (identical(other.artist, artist) || other.artist == artist) &&
@@ -320,6 +339,7 @@ class _$TrackImpl extends _Track {
       tutor,
       coverIcon,
       language,
+      isPremium,
       animationColor,
       artist,
       trackName,
@@ -349,6 +369,7 @@ abstract class _Track extends Track {
       required final String coverIcon,
       @JsonKey(unknownEnumValue: TrackLanguage.unknown)
       required final TrackLanguage language,
+      final bool isPremium,
       final String? animationColor,
       final String? artist,
       final String? trackName,
@@ -372,6 +393,8 @@ abstract class _Track extends Track {
   @override
   @JsonKey(unknownEnumValue: TrackLanguage.unknown)
   TrackLanguage get language;
+  @override
+  bool get isPremium;
   @override
   String? get animationColor;
   @override

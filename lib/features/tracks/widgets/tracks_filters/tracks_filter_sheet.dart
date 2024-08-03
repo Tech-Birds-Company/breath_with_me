@@ -108,6 +108,14 @@ class _FilterListItem extends StatelessWidget {
             bloc.onLanguagesFilterChanged(itemKey);
         }
       },
+      minLeadingWidth: 0,
+      horizontalTitleGap: 8,
+      leading: itemKey == LocaleKeys.trackCategoryPremium
+          ? Icon(
+              Icons.workspace_premium,
+              color: theme.purple2,
+            )
+          : null,
       title: Text(
         itemKey.tr(),
         style: theme.typography.bodyM.copyWith(color: theme.primaryText),

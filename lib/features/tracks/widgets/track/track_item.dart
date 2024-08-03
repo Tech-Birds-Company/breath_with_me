@@ -35,7 +35,9 @@ class TrackItem extends StatelessWidget {
                   TrackCover(
                     coverUrl: track.coverIcon,
                   ),
-                  const TrackPlayCover(),
+                  TrackPlayCover(
+                    isTrackPremium: track.isPremium,
+                  ),
                 ],
               ),
             ),

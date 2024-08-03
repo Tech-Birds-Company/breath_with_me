@@ -79,6 +79,7 @@ final class _BlocProviders {
       track,
       ref.watch(Di.repository.tracks),
       ref.watch(Di.manager.user),
+      ref.watch(Di.manager.premium),
       ref.watch(Di.manager.navigation),
     ),
   );

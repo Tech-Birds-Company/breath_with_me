@@ -26,19 +26,33 @@ class TrackInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     final language = context.locale.languageCode;
+
+    final isPremiumTrack = track.isPremium;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            if (isPremiumTrack)
+              Expanded(
+                flex: 0,
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.only(end: 8),
+                  child: Icon(
+                    Icons.workspace_premium,
+                    color: theme.purple2,
+                    size: 32,
+                  ),
+                ),
+              ),
             Expanded(
-              flex: 0,
               child: Text(
                 track.trackTranslatedTitle(language) ?? track.categoryKey.tr(),
                 style: theme.typography.heading2.copyWith(
                   color: theme.primaryText,
                 ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
             Expanded(

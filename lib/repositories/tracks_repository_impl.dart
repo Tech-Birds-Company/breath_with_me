@@ -1,4 +1,3 @@
-import 'package:breathe_with_me/constants.dart';
 import 'package:breathe_with_me/database/schemas/download_track_task_schema.dart';
 import 'package:breathe_with_me/database/schemas/liked_track_schema.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
@@ -22,6 +21,8 @@ final class TracksRepositoryImpl implements TracksRepository {
   );
 
   static const _likesCollection = 'tracks_v2_likes';
+  static const _tracksCollection = 'tracks_v2';
+  static const _premiumTracksCollection = 'premium_tracks_v2';
   static const _likesField = 'likes';
 
   String? get currentUserUid => _userManager.currentUser?.uid;
@@ -45,12 +46,14 @@ final class TracksRepositoryImpl implements TracksRepository {
 
   @override
   Future<List<Track>> getTracks() async {
-    final res = await FirebaseFirestore.instance
-        .collection(BWMConstants.tracksCollection)
+    final regularTracksRes =
+        await FirebaseFirestore.instance.collection(_tracksCollection).get();
+    final premiumTracksRes = await FirebaseFirestore.instance
+        .collection(_premiumTracksCollection)
         .get();
     final tracks = <Track>[];
 
-    for (final doc in res.docs) {
+    for (final doc in [...regularTracksRes.docs, ...premiumTracksRes.docs]) {
       final track = await _getTrackFromDocument(doc);
       tracks.add(track);
     }

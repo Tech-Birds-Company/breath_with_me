@@ -16,6 +16,7 @@ class Track with _$Track {
     required String coverIcon,
     @JsonKey(unknownEnumValue: TrackLanguage.unknown)
     required TrackLanguage language,
+    @Default(false) bool isPremium,
     String? animationColor,
     String? artist,
     String? trackName,

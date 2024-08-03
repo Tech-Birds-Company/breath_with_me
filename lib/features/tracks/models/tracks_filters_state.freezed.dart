@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TracksFiltersState {
-  Set<String> get categoriesKeys => throw _privateConstructorUsedError;
-  Set<String> get languagesKeys => throw _privateConstructorUsedError;
+  List<String> get categoriesKeys => throw _privateConstructorUsedError;
+  List<String> get languagesKeys => throw _privateConstructorUsedError;
   bool get likedTracksOnly => throw _privateConstructorUsedError;
   bool get selectingCategory => throw _privateConstructorUsedError;
   bool get selectingLanguage => throw _privateConstructorUsedError;
@@ -36,8 +36,8 @@ abstract class $TracksFiltersStateCopyWith<$Res> {
       _$TracksFiltersStateCopyWithImpl<$Res, TracksFiltersState>;
   @useResult
   $Res call(
-      {Set<String> categoriesKeys,
-      Set<String> languagesKeys,
+      {List<String> categoriesKeys,
+      List<String> languagesKeys,
       bool likedTracksOnly,
       bool selectingCategory,
       bool selectingLanguage,
@@ -70,11 +70,11 @@ class _$TracksFiltersStateCopyWithImpl<$Res, $Val extends TracksFiltersState>
       categoriesKeys: null == categoriesKeys
           ? _value.categoriesKeys
           : categoriesKeys // ignore: cast_nullable_to_non_nullable
-              as Set<String>,
+              as List<String>,
       languagesKeys: null == languagesKeys
           ? _value.languagesKeys
           : languagesKeys // ignore: cast_nullable_to_non_nullable
-              as Set<String>,
+              as List<String>,
       likedTracksOnly: null == likedTracksOnly
           ? _value.likedTracksOnly
           : likedTracksOnly // ignore: cast_nullable_to_non_nullable
@@ -108,8 +108,8 @@ abstract class _$$TracksFiltersStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Set<String> categoriesKeys,
-      Set<String> languagesKeys,
+      {List<String> categoriesKeys,
+      List<String> languagesKeys,
       bool likedTracksOnly,
       bool selectingCategory,
       bool selectingLanguage,
@@ -140,11 +140,11 @@ class __$$TracksFiltersStateImplCopyWithImpl<$Res>
       categoriesKeys: null == categoriesKeys
           ? _value._categoriesKeys
           : categoriesKeys // ignore: cast_nullable_to_non_nullable
-              as Set<String>,
+              as List<String>,
       languagesKeys: null == languagesKeys
           ? _value._languagesKeys
           : languagesKeys // ignore: cast_nullable_to_non_nullable
-              as Set<String>,
+              as List<String>,
       likedTracksOnly: null == likedTracksOnly
           ? _value.likedTracksOnly
           : likedTracksOnly // ignore: cast_nullable_to_non_nullable
@@ -173,8 +173,8 @@ class __$$TracksFiltersStateImplCopyWithImpl<$Res>
 
 class _$TracksFiltersStateImpl implements _TracksFiltersState {
   const _$TracksFiltersStateImpl(
-      {final Set<String> categoriesKeys = const {},
-      final Set<String> languagesKeys = const {},
+      {final List<String> categoriesKeys = const [],
+      final List<String> languagesKeys = const [],
       this.likedTracksOnly = false,
       this.selectingCategory = false,
       this.selectingLanguage = false,
@@ -183,22 +183,22 @@ class _$TracksFiltersStateImpl implements _TracksFiltersState {
       : _categoriesKeys = categoriesKeys,
         _languagesKeys = languagesKeys;
 
-  final Set<String> _categoriesKeys;
+  final List<String> _categoriesKeys;
   @override
   @JsonKey()
-  Set<String> get categoriesKeys {
-    if (_categoriesKeys is EqualUnmodifiableSetView) return _categoriesKeys;
+  List<String> get categoriesKeys {
+    if (_categoriesKeys is EqualUnmodifiableListView) return _categoriesKeys;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(_categoriesKeys);
+    return EqualUnmodifiableListView(_categoriesKeys);
   }
 
-  final Set<String> _languagesKeys;
+  final List<String> _languagesKeys;
   @override
   @JsonKey()
-  Set<String> get languagesKeys {
-    if (_languagesKeys is EqualUnmodifiableSetView) return _languagesKeys;
+  List<String> get languagesKeys {
+    if (_languagesKeys is EqualUnmodifiableListView) return _languagesKeys;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(_languagesKeys);
+    return EqualUnmodifiableListView(_languagesKeys);
   }
 
   @override
@@ -262,8 +262,8 @@ class _$TracksFiltersStateImpl implements _TracksFiltersState {
 
 abstract class _TracksFiltersState implements TracksFiltersState {
   const factory _TracksFiltersState(
-      {final Set<String> categoriesKeys,
-      final Set<String> languagesKeys,
+      {final List<String> categoriesKeys,
+      final List<String> languagesKeys,
       final bool likedTracksOnly,
       final bool selectingCategory,
       final bool selectingLanguage,
@@ -271,9 +271,9 @@ abstract class _TracksFiltersState implements TracksFiltersState {
       final String? selectedCategoryKey}) = _$TracksFiltersStateImpl;
 
   @override
-  Set<String> get categoriesKeys;
+  List<String> get categoriesKeys;
   @override
-  Set<String> get languagesKeys;
+  List<String> get languagesKeys;
   @override
   bool get likedTracksOnly;
   @override

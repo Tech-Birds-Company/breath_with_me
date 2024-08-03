@@ -1,13 +1,19 @@
 import 'package:breathe_with_me/assets.dart';
+import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class TrackPlayCover extends StatelessWidget {
-  const TrackPlayCover({super.key});
+class TrackPlayCover extends ConsumerWidget {
+  final bool isTrackPremium;
+  const TrackPlayCover({
+    required this.isTrackPremium,
+    super.key,
+  });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return ClipRRect(
       borderRadius: const BorderRadius.all(Radius.circular(36.5)),
@@ -29,7 +35,19 @@ class TrackPlayCover extends StatelessWidget {
             ],
           ),
           child: Center(
-            child: SvgPicture.asset(BWMAssets.playIcon),
+            child: StreamBuilder<bool>(
+              initialData: false,
+              stream: ref.watch(Di.manager.premium).isPremiumUserStream,
+              builder: (context, snapshot) {
+                final isPremiumEnabled = snapshot.requireData;
+
+                if (isTrackPremium && !isPremiumEnabled) {
+                  return SvgPicture.asset(BWMAssets.lockFilledIcon);
+                }
+
+                return SvgPicture.asset(BWMAssets.playIcon);
+              },
+            ),
           ),
         ),
       ),
