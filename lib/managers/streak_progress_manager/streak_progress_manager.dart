@@ -11,25 +11,51 @@ class StreakProgressManager {
 
   StreakProgressManager(this._userId, this._streaksProgressRepository);
 
-  Stream<StreakProgressV2> get stream =>
-      _streaksProgressRepository.getStreakProgressStream(_userId).asyncMap(
-            _validateStreak,
-          );
+  Stream<StreakProgressV2> get stream => _streaksProgressRepository
+      .getStreakProgressStream(_userId)
+      .asyncMap(_validateStreak);
 
   Future<StreakProgressV2> _validateStreak(StreakProgressV2 progress) async {
     final timeline = progress.utcTimeline.sorted((a, b) => b.compareTo(a));
     final calculatedMissedDays = _getMissedDays(sortedTimeline: timeline);
 
     if (calculatedMissedDays != progress.totalMissedDays) {
-      return _streaksProgressRepository.setUserProgressData(
+      final updatedProgress =
+          await _streaksProgressRepository.setUserProgressData(
         _userId,
         progress.copyWith(
           totalMissedDays: calculatedMissedDays,
         ),
       );
+      return updatedProgress;
+    }
+    return progress;
+  }
+
+  Future<void> checkAndResetStreak() async {
+    final currentProgress =
+        await _streaksProgressRepository.getUserStreakProgress(_userId);
+    final timeline =
+        currentProgress.utcTimeline.sorted((a, b) => b.compareTo(a));
+
+    if (timeline.isEmpty) {
+      return;
     }
 
-    return progress;
+    final now = DateTime.now().toUtc();
+    final lastActivityDate = timeline.first;
+    final daysSinceLastActivity = now.difference(lastActivityDate).inDays;
+
+    if (daysSinceLastActivity > 1) {
+      final resetProgress = currentProgress.copyWith(
+        totalStreak: 0,
+      );
+
+      await _streaksProgressRepository.setUserProgressData(
+        _userId,
+        resetProgress,
+      );
+    }
   }
 
   Future<StreakProgressV2> addStreakData({

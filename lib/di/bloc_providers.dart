@@ -14,6 +14,7 @@ final class _BlocProviders {
 
   late final home = Provider.autoDispose(
     (ref) => HomeBloc(
+      ref.watch(Di.manager.streakProgress),
       ref.watch(Di.manager.permissions),
       ref.watch(Di.manager.sharedPreferences),
       ref.watch(Di.manager.navigation),
