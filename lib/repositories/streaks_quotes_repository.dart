@@ -12,6 +12,11 @@ final class StreaksQuotesRepository {
 
   static const _collection = 'quotes';
 
+  int _quoteRandomSeed() {
+    final now = DateTime.now();
+    return now.millisecondsSinceEpoch ^ now.minute ^ now.second;
+  }
+
   Future<List<StreakQuoteData>> fetchQuotes() async {
     final snapshot =
         await FirebaseFirestore.instance.collection(_collection).get();
@@ -55,7 +60,8 @@ final class StreaksQuotesRepository {
       return null;
     }
 
-    final randomIndex = Random().nextInt(filteredQuotes.length);
+    final random = Random(_quoteRandomSeed());
+    final randomIndex = random.nextInt(filteredQuotes.length);
     return filteredQuotes[randomIndex];
   }
 }
