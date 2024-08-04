@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 class PremiumPaywallButton extends StatelessWidget {
   final bool isProcessing;
   final VoidCallback? onPressed;
+  final bool isDisabled;
 
   const PremiumPaywallButton({
     this.onPressed,
     this.isProcessing = false,
+    this.isDisabled = false,
     super.key,
   });
 
@@ -27,16 +29,21 @@ class PremiumPaywallButton extends StatelessWidget {
             child: TextButton(
               style: ButtonStyle(
                 backgroundColor: WidgetStateProperty.all(
-                  theme.purple2.withOpacity(onPressed != null ? 1 : 0.3),
+                  isDisabled
+                      ? theme.purple2.withOpacity(0.3)
+                      : theme.purple2.withOpacity(onPressed != null ? 1 : 0.3),
                 ),
                 foregroundColor: WidgetStateProperty.all(
-                  theme.primaryText.withOpacity(onPressed != null ? 1 : 0.5),
+                  isDisabled
+                      ? theme.primaryText.withOpacity(0.5)
+                      : theme.primaryText
+                          .withOpacity(onPressed != null ? 1 : 0.5),
                 ),
                 overlayColor: WidgetStateProperty.all(
                   theme.primaryText.withOpacity(0.1),
                 ),
               ),
-              onPressed: isProcessing ? null : onPressed,
+              onPressed: isProcessing || isDisabled ? null : onPressed,
               child: isProcessing
                   ? CircularProgressIndicator.adaptive(
                       backgroundColor: theme.primaryColor,

@@ -56,15 +56,17 @@ Future<List<Override>> _setupDependencies({
     streaksQuotesRepository.fetchQuotes(),
   );
 
-  final userManager = FirebaseUserManager(
-    databaseManager,
-    isProduction: isProduction,
-  )..init();
-
   final premiumManager = PremiumManager(
-    userManager,
     const FirebasePremiumRepository(),
   );
+
+  await premiumManager.init(isProduction: isProduction);
+  await premiumManager.initSubscriptions();
+
+  final userManager = FirebaseUserManager(
+    premiumManager,
+    databaseManager,
+  )..init();
 
   final sharedPrefsManager = SharedPreferencesManager();
 
@@ -84,8 +86,13 @@ Future<List<Override>> _setupDependencies({
 
   final linkHandlerManager = LinkHandlerManager(navigationManager)..init();
 
+  final uid = userManager.currentUser?.uid;
+  if (uid != null) {
+    await tracksDownloadManager.validateDownloads(uid);
+  }
+
   final trackAudioManager = await AudioService.init(
-    builder: () => TrackAudioManager(premiumManager),
+    builder: () => TrackAudioManager(userManager),
     config: const AudioServiceConfig(
       androidNotificationChannelId: BWMConstants.androidNotificationChannelId,
       androidNotificationChannelName:
@@ -93,19 +100,16 @@ Future<List<Override>> _setupDependencies({
     ),
   );
 
-  final uid = userManager.currentUser?.uid;
-  if (uid != null) {
-    await tracksDownloadManager.validateDownloads(uid);
-  }
-
   await sharedPrefsManager.init();
   await pushNotificationsManager.init();
 
   final dependencies = [
-    Di.manager.database.overrideWith((ref) {
-      ref.onDispose(databaseManager.dispose);
-      return databaseManager;
-    }),
+    Di.manager.database.overrideWith(
+      (ref) {
+        ref.onDispose(databaseManager.dispose);
+        return databaseManager;
+      },
+    ),
     Di.manager.audio.overrideWith(
       (ref) {
         ref.onDispose(trackAudioManager.dispose);
@@ -117,12 +121,19 @@ Future<List<Override>> _setupDependencies({
     Di.manager.sharedPreferences.overrideWithValue(sharedPrefsManager),
     Di.manager.pushNotifications.overrideWithValue(pushNotificationsManager),
     Di.manager.navigation.overrideWithValue(navigationManager),
-    Di.manager.user.overrideWith((ref) {
-      ref.onDispose(userManager.dispose);
-      return userManager;
-    }),
+    Di.manager.user.overrideWith(
+      (ref) {
+        ref.onDispose(userManager.dispose);
+        return userManager;
+      },
+    ),
     Di.manager.linkHandler.overrideWithValue(linkHandlerManager),
-    Di.manager.premium.overrideWithValue(premiumManager),
+    Di.manager.premium.overrideWith(
+      (ref) {
+        ref.onDispose(premiumManager.dispose);
+        return premiumManager;
+      },
+    ),
   ];
 
   return dependencies;

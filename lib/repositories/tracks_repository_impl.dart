@@ -6,6 +6,7 @@ import 'package:breathe_with_me/managers/database_manager/database_manager.dart'
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/repositories/firebase_tutors_repository.dart';
 import 'package:breathe_with_me/repositories/tracks_repository.dart';
+import 'package:breathe_with_me/utils/logger.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
@@ -27,21 +28,26 @@ final class TracksRepositoryImpl implements TracksRepository {
 
   String? get currentUserUid => _userManager.currentUser?.uid;
 
-  Future<Track> _getTrackFromDocument(
+  Future<Track?> _getTrackFromDocument(
     DocumentSnapshot<Map<String, dynamic>> document,
   ) async {
     final id = document.id;
     final data = document.data();
 
-    final tutorRef =
-        data!.remove('tutor') as DocumentReference<Map<String, dynamic>>;
-    final tutor = await _tutorRepository.getTutorFromReference(tutorRef);
-    final trackJson = {
-      'id': id,
-      ...data,
-      'tutor': tutor.toJson(),
-    };
-    return Track.fromJson(trackJson);
+    try {
+      final tutorRef =
+          data!.remove('tutor') as DocumentReference<Map<String, Object?>>;
+      final tutor = await _tutorRepository.getTutorFromReference(tutorRef);
+      final trackJson = {
+        'id': id,
+        ...data,
+        'tutor': tutor.toJson(),
+      };
+      return Track.fromJson(trackJson);
+    } on Object catch (err) {
+      logger.e(err);
+      return null;
+    }
   }
 
   @override
@@ -55,7 +61,9 @@ final class TracksRepositoryImpl implements TracksRepository {
 
     for (final doc in [...regularTracksRes.docs, ...premiumTracksRes.docs]) {
       final track = await _getTrackFromDocument(doc);
-      tracks.add(track);
+      if (track != null) {
+        tracks.add(track);
+      }
     }
 
     final filteredTracks = tracks

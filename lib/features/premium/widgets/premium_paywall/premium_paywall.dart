@@ -5,8 +5,10 @@ import 'package:breathe_with_me/features/premium/models/premium_paywall_state.da
 import 'package:breathe_with_me/features/premium/premium_constants.dart';
 import 'package:breathe_with_me/features/premium/widgets/premium_badge.dart';
 import 'package:breathe_with_me/features/premium/widgets/premium_paywall/premium_paywall_buy_button.dart';
+import 'package:breathe_with_me/features/premium/widgets/premium_paywall/premium_paywall_tariff.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,10 +50,7 @@ class PremiumPaywall extends ConsumerWidget {
                     ),
                     BlocSelector<PremiumPaywallBloc, PremiumPaywallState, bool>(
                       bloc: bloc,
-                      selector: (state) => state.maybeMap(
-                        data: (state) => !state.premiumPurchaseProcessing,
-                        orElse: () => true,
-                      ),
+                      selector: (state) => !state.premiumPurchaseProcessing,
                       builder: (context, isVisible) {
                         return isVisible
                             ? Align(
@@ -118,30 +117,45 @@ class PremiumPaywall extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                BlocBuilder<PremiumPaywallBloc, PremiumPaywallState>(
-                  bloc: bloc,
-                  builder: (context, state) => state.map(
-                    data: (state) => const Column(),
-                    loading: (_) => Center(
-                      child: CircularProgressIndicator.adaptive(
-                        backgroundColor: theme.primaryColor,
-                      ),
-                    ),
-                    error: (_) => const SizedBox.shrink(),
+                Expanded(
+                  child: BlocBuilder<PremiumPaywallBloc, PremiumPaywallState>(
+                    bloc: bloc,
+                    builder: (context, state) {
+                      final products =
+                          state.storeProducts.values.whereNotNull();
+                      return products.isEmpty
+                          ? Center(
+                              child: CircularProgressIndicator.adaptive(
+                                valueColor:AlwaysStoppedAnimation<Color>(theme.purple2),
+                                backgroundColor: theme.primaryBackground,
+                              ),
+                            )
+                          : Column(
+                              children: [
+                                for (final product in products)
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 16),
+                                    child: PremiumPaywallProduct(
+                                      productId: product.identifier,
+                                      title: product.title,
+                                      price: product.priceString,
+                                      onPressed: bloc.onSubscriptionSelected,
+                                      selected: state.selectedSubscriptionId ==
+                                          product.identifier,
+                                    ),
+                                  ),
+                              ],
+                            );
+                    },
                   ),
                 ),
-                const Spacer(),
                 BlocBuilder<PremiumPaywallBloc, PremiumPaywallState>(
                   bloc: bloc,
-                  builder: (context, state) => state.maybeMap(
-                    data: (state) => PremiumPaywallButton(
-                      onPressed: state.selectedSubscriptionId != null
-                          ? bloc.onBuyPremium
-                          : null,
-                      isProcessing: state.premiumPurchaseProcessing,
-                    ),
-                    orElse: () => const PremiumPaywallButton(),
-                    // onPressed: null,
+                  builder: (context, state) => PremiumPaywallButton(
+                    isProcessing: state.premiumPurchaseProcessing,
+                    onPressed: bloc.onBuyPremium,
+                    isDisabled: state.storeProducts.isEmpty ||
+                        state.selectedSubscriptionId == null,
                   ),
                 ),
               ],

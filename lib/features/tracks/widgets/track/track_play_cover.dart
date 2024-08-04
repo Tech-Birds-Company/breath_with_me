@@ -37,7 +37,7 @@ class TrackPlayCover extends ConsumerWidget {
           child: Center(
             child: StreamBuilder<bool>(
               initialData: false,
-              stream: ref.watch(Di.manager.premium).isPremiumUserStream,
+              stream: ref.watch(Di.manager.user).isPremiumUserStream,
               builder: (context, snapshot) {
                 final isPremiumEnabled = snapshot.requireData;
 

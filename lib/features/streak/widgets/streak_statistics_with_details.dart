@@ -28,7 +28,7 @@ class StreakStatisticsWithDetails extends HookConsumerWidget {
       selector: (state) => state.progress,
       builder: (context, progress) => StreamBuilder<bool>(
         initialData: false,
-        stream: ref.watch(Di.manager.premium).isPremiumUserStream,
+        stream: ref.watch(Di.manager.user).isPremiumUserStream,
         builder: (context, snapshot) {
           final premiumEnabled = snapshot.requireData;
           return Column(

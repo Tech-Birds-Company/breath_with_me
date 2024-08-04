@@ -1,7 +1,6 @@
 import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/managers/download_manager/track_download_task.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
-import 'package:breathe_with_me/managers/premium_manager/premium_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/repositories/tracks_repository.dart';
 import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
@@ -11,14 +10,12 @@ final class TrackBloc extends BlocBase<Object?> {
   final Track _track;
   final TracksRepository _tracksRepository;
   final UserManager _userManager;
-  final PremiumManager _premiumManager;
   final NavigationManager _navigationManager;
 
   TrackBloc(
     this._track,
     this._tracksRepository,
     this._userManager,
-    this._premiumManager,
     this._navigationManager,
   ) : super(null);
 
@@ -44,9 +41,9 @@ final class TrackBloc extends BlocBase<Object?> {
       params: {'trackId': _track.id},
     );
     final isTrackPremium = _track.isPremium;
-    final isUserPremium = await _premiumManager.isUserPremium;
+    final isUserPremium = await _userManager.isUserPremium;
     if (isTrackPremium && !isUserPremium) {
-      // TODO: open paywall
+      await _navigationManager.openPaywall();
       return;
     }
     await _navigationManager.openTrackPlayer(_track);

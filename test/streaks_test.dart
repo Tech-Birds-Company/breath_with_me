@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:breathe_with_me/managers/streak_progress_manager/streak_progress_manager.dart';
+import 'package:breathe_with_me/repositories/models/remote_config/remote_config_base_premium.dart';
 import 'package:breathe_with_me/repositories/models/remote_config/remote_config_legal_documents.dart';
-import 'package:breathe_with_me/repositories/models/remote_config/remote_config_premium_v2.dart';
 import 'package:breathe_with_me/repositories/models/remote_config/remote_config_socials.dart';
 import 'package:breathe_with_me/repositories/models/remote_config/remote_config_streaks.dart';
 import 'package:breathe_with_me/repositories/models/streak_progress_v2.dart';
@@ -17,9 +17,6 @@ final class MockRemoteConfig implements RemoteConfigRepository {
   RemoteConfigLegalDocuments get legalDocuments => throw UnimplementedError();
 
   @override
-  RemoteConfigPremiumV2 get premiumV2 => throw UnimplementedError();
-
-  @override
   RemoteConfigSocials get socials => throw UnimplementedError();
 
   @override
@@ -27,6 +24,18 @@ final class MockRemoteConfig implements RemoteConfigRepository {
 
   @override
   Stream<RemoteConfigUpdate> get configStream => const Stream.empty();
+
+  @override
+  RemoteConfigBasePremium get basePremium => RemoteConfigBasePremium(
+        ios: BasePremiumPlatform(
+          annualIdentifier: '',
+          threeMonthsIdentfier: '',
+        ),
+        android: BasePremiumPlatform(
+          annualIdentifier: '',
+          threeMonthsIdentfier: '',
+        ),
+      );
 }
 
 final class MockStreaksProgressRepository extends StreakProgressRepositoryV2 {

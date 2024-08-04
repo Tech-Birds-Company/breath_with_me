@@ -25,7 +25,11 @@ final class FirebasePremiumRepository {
         .snapshots()
         .map((event) {
       if (event.exists) {
-        final model = PremiumUsers.fromJson(event.data()!);
+        final data = event.data();
+        if (data == null) {
+          return false;
+        }
+        final model = PremiumUsers.fromJson(data);
         return _isPremiumEnabled(model);
       }
       return false;

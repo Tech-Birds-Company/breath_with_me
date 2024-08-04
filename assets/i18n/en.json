@@ -141,20 +141,8 @@
     "paywall": {
       "selectTariffTitle": "Select tariff",
       "trialDescription": "7 days free trial",
-      "subscriptionPeriod": {
-        "W": {
-          "one": "{} week",
-          "other": "{} weeks"
-        },
-        "M": {
-          "one": "{} month",
-          "other": "{} months"
-        },
-        "Y": {
-          "one": "{} month",
-          "other": "{} months"
-        }
-      }
+      "annualSubscription": "12 months",
+      "monthlySubscription": "3 months "
     }
   },
   "networkErrorText": "Network error",

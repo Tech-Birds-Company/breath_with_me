@@ -88,6 +88,8 @@ final class NavigationManager {
 
   Future<void> openFaq() => router.push(BWMRoutes.faq);
 
+  Future<void> openPaywall() => router.push(BWMRoutes.premiumPaywall);
+
   Future<void> openStreak(Track track) => router.push(
         BWMRoutes.streak,
         extra: track,

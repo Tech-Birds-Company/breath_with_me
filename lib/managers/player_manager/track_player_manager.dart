@@ -2,14 +2,14 @@ import 'dart:async';
 
 import 'package:audio_session/audio_session.dart';
 import 'package:breathe_with_me/managers/player_manager/player_manager.dart';
-import 'package:breathe_with_me/managers/premium_manager/premium_manager.dart';
+import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:just_audio/just_audio.dart';
 
 final class TrackPlayerManager extends PlayerManager {
-  final PremiumManager _premiumManager;
+  final UserManager _userManager;
 
-  TrackPlayerManager(this._premiumManager);
+  TrackPlayerManager(this._userManager);
 
   AppLifecycleListener? _appLifecycleListener;
   AppLifecycleState? _appLifecycleState;
@@ -19,7 +19,7 @@ final class TrackPlayerManager extends PlayerManager {
     await _setupAudioSession();
     audioPlayer ??= AudioPlayer();
     await audioPlayer!.setAudioSource(source);
-    final isUserPremium = await _premiumManager.isUserPremium;
+    final isUserPremium = await _userManager.isUserPremium;
     if (!isUserPremium) {
       _setupLifecycleListener();
     }

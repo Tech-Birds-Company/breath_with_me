@@ -29,8 +29,9 @@ class ForgotPasswordEmailSentPage extends ConsumerWidget {
                 alignment: AlignmentDirectional.topEnd,
                 child: IconButton(
                   onPressed: navigationManager.pop,
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.close,
+                    color: theme.primaryColor,
                     size: 20,
                   ),
                 ),
