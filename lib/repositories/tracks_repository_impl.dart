@@ -57,8 +57,8 @@ final class TracksRepositoryImpl implements TracksRepository {
     final premiumTracksRes = await FirebaseFirestore.instance
         .collection(_premiumTracksCollection)
         .get();
-    final tracks = <Track>[];
 
+    final tracks = <Track>[];
     for (final doc in [...regularTracksRes.docs, ...premiumTracksRes.docs]) {
       final track = await _getTrackFromDocument(doc);
       if (track != null) {
@@ -66,12 +66,23 @@ final class TracksRepositoryImpl implements TracksRepository {
       }
     }
 
-    final filteredTracks = tracks
+    final languageFilteredTracks = tracks
         .where(
           (track) => track.language != TrackLanguage.unknown,
         )
         .toList();
-    return filteredTracks;
+
+    final sortedTracksByOrder = languageFilteredTracks
+      ..sort(
+        (a, b) {
+          if (a.listOrder == null && b.listOrder == null) return 0;
+          if (a.listOrder == null) return 1;
+          if (b.listOrder == null) return -1;
+          return a.listOrder!.compareTo(b.listOrder!);
+        },
+      );
+
+    return sortedTracksByOrder;
   }
 
   @override

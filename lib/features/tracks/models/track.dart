@@ -17,6 +17,7 @@ class Track with _$Track {
     @JsonKey(unknownEnumValue: TrackLanguage.unknown)
     required TrackLanguage language,
     @Default(false) bool isPremium,
+    int? listOrder,
     String? animationColor,
     String? artist,
     String? trackName,

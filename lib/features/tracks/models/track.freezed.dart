@@ -29,6 +29,7 @@ mixin _$Track {
   @JsonKey(unknownEnumValue: TrackLanguage.unknown)
   TrackLanguage get language => throw _privateConstructorUsedError;
   bool get isPremium => throw _privateConstructorUsedError;
+  int? get listOrder => throw _privateConstructorUsedError;
   String? get animationColor => throw _privateConstructorUsedError;
   String? get artist => throw _privateConstructorUsedError;
   String? get trackName => throw _privateConstructorUsedError;
@@ -54,6 +55,7 @@ abstract class $TrackCopyWith<$Res> {
       String coverIcon,
       @JsonKey(unknownEnumValue: TrackLanguage.unknown) TrackLanguage language,
       bool isPremium,
+      int? listOrder,
       String? animationColor,
       String? artist,
       String? trackName,
@@ -81,6 +83,7 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
     Object? coverIcon = null,
     Object? language = null,
     Object? isPremium = null,
+    Object? listOrder = freezed,
     Object? animationColor = freezed,
     Object? artist = freezed,
     Object? trackName = freezed,
@@ -119,6 +122,10 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
           ? _value.isPremium
           : isPremium // ignore: cast_nullable_to_non_nullable
               as bool,
+      listOrder: freezed == listOrder
+          ? _value.listOrder
+          : listOrder // ignore: cast_nullable_to_non_nullable
+              as int?,
       animationColor: freezed == animationColor
           ? _value.animationColor
           : animationColor // ignore: cast_nullable_to_non_nullable
@@ -155,6 +162,7 @@ abstract class _$$TrackImplCopyWith<$Res> implements $TrackCopyWith<$Res> {
       String coverIcon,
       @JsonKey(unknownEnumValue: TrackLanguage.unknown) TrackLanguage language,
       bool isPremium,
+      int? listOrder,
       String? animationColor,
       String? artist,
       String? trackName,
@@ -180,6 +188,7 @@ class __$$TrackImplCopyWithImpl<$Res>
     Object? coverIcon = null,
     Object? language = null,
     Object? isPremium = null,
+    Object? listOrder = freezed,
     Object? animationColor = freezed,
     Object? artist = freezed,
     Object? trackName = freezed,
@@ -218,6 +227,10 @@ class __$$TrackImplCopyWithImpl<$Res>
           ? _value.isPremium
           : isPremium // ignore: cast_nullable_to_non_nullable
               as bool,
+      listOrder: freezed == listOrder
+          ? _value.listOrder
+          : listOrder // ignore: cast_nullable_to_non_nullable
+              as int?,
       animationColor: freezed == animationColor
           ? _value.animationColor
           : animationColor // ignore: cast_nullable_to_non_nullable
@@ -250,6 +263,7 @@ class _$TrackImpl extends _Track {
       required this.coverIcon,
       @JsonKey(unknownEnumValue: TrackLanguage.unknown) required this.language,
       this.isPremium = false,
+      this.listOrder,
       this.animationColor,
       this.artist,
       this.trackName,
@@ -279,6 +293,8 @@ class _$TrackImpl extends _Track {
   @JsonKey()
   final bool isPremium;
   @override
+  final int? listOrder;
+  @override
   final String? animationColor;
   @override
   final String? artist;
@@ -297,7 +313,7 @@ class _$TrackImpl extends _Track {
 
   @override
   String toString() {
-    return 'Track(id: $id, trackFile: $trackFile, categoryKey: $categoryKey, duration: $duration, tutor: $tutor, coverIcon: $coverIcon, language: $language, isPremium: $isPremium, animationColor: $animationColor, artist: $artist, trackName: $trackName, trackTitleTranslations: $trackTitleTranslations)';
+    return 'Track(id: $id, trackFile: $trackFile, categoryKey: $categoryKey, duration: $duration, tutor: $tutor, coverIcon: $coverIcon, language: $language, isPremium: $isPremium, listOrder: $listOrder, animationColor: $animationColor, artist: $artist, trackName: $trackName, trackTitleTranslations: $trackTitleTranslations)';
   }
 
   @override
@@ -319,6 +335,8 @@ class _$TrackImpl extends _Track {
                 other.language == language) &&
             (identical(other.isPremium, isPremium) ||
                 other.isPremium == isPremium) &&
+            (identical(other.listOrder, listOrder) ||
+                other.listOrder == listOrder) &&
             (identical(other.animationColor, animationColor) ||
                 other.animationColor == animationColor) &&
             (identical(other.artist, artist) || other.artist == artist) &&
@@ -340,6 +358,7 @@ class _$TrackImpl extends _Track {
       coverIcon,
       language,
       isPremium,
+      listOrder,
       animationColor,
       artist,
       trackName,
@@ -370,6 +389,7 @@ abstract class _Track extends Track {
       @JsonKey(unknownEnumValue: TrackLanguage.unknown)
       required final TrackLanguage language,
       final bool isPremium,
+      final int? listOrder,
       final String? animationColor,
       final String? artist,
       final String? trackName,
@@ -395,6 +415,8 @@ abstract class _Track extends Track {
   TrackLanguage get language;
   @override
   bool get isPremium;
+  @override
+  int? get listOrder;
   @override
   String? get animationColor;
   @override
