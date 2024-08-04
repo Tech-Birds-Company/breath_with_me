@@ -20,12 +20,21 @@ final class PremiumPaywallBloc extends BlocBase<PremiumPaywallState> {
         ? _remoteConfigRepository.basePremium.ios
         : _remoteConfigRepository.basePremium.android;
 
-    final res = await Purchases.getProducts(
-      [
+    late List<String> identifiers;
+
+    if (Platform.isIOS) {
+      identifiers = [
         premiumProducts.annualIdentifier,
         premiumProducts.threeMonthsIdentfier,
-      ],
-    );
+      ];
+    } else {
+      identifiers = [
+        premiumProducts.annualIdentifier.split(':').first,
+        premiumProducts.threeMonthsIdentfier.split(':').first,
+      ];
+    }
+
+    final res = await Purchases.getProducts(identifiers);
 
     emit(
       state.copyWith(

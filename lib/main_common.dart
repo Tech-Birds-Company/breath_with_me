@@ -187,6 +187,7 @@ Future<void> mainCommon(Environment env) async {
         ProviderLogger(),
       ],
       child: EasyLocalization(
+        ignorePluralRules: false,
         useOnlyLangCode: true,
         path: BWMAssets.i18n,
         fallbackLocale: const Locale('en'),

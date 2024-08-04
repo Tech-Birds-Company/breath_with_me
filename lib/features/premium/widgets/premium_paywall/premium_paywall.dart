@@ -1,5 +1,6 @@
 import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/di/di.dart';
+import 'package:breathe_with_me/extensions/store_product.dart';
 import 'package:breathe_with_me/features/premium/blocs/premium_paywall_bloc.dart';
 import 'package:breathe_with_me/features/premium/models/premium_paywall_state.dart';
 import 'package:breathe_with_me/features/premium/premium_constants.dart';
@@ -126,7 +127,9 @@ class PremiumPaywall extends ConsumerWidget {
                       return products.isEmpty
                           ? Center(
                               child: CircularProgressIndicator.adaptive(
-                                valueColor:AlwaysStoppedAnimation<Color>(theme.purple2),
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  theme.purple2,
+                                ),
                                 backgroundColor: theme.primaryBackground,
                               ),
                             )
@@ -137,7 +140,7 @@ class PremiumPaywall extends ConsumerWidget {
                                     padding: const EdgeInsets.only(bottom: 16),
                                     child: PremiumPaywallProduct(
                                       productId: product.identifier,
-                                      title: product.title,
+                                      title: product.localizedTitleKey.tr(),
                                       price: product.priceString,
                                       onPressed: bloc.onSubscriptionSelected,
                                       selected: state.selectedSubscriptionId ==

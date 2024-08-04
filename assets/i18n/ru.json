@@ -174,8 +174,26 @@
     "paywall": {
       "selectTariffTitle": "Выберите тариф",
       "trialDescription": "Первые 7 дней бесплатно",
-      "annualSubscription": "12 месяцев",
-      "monthlySubscription": "3 месяца"
+      "periodUnitCount": {
+        "day": {
+          "one": "1 день",
+          "few": "{} дня",
+          "many": "{} дней",
+          "other": "{} дня"
+        },
+        "week": {
+          "one": "1 неделя",
+          "few": "{} недели",
+          "many": "{} недель",
+          "other": "{} недели"
+        },
+        "month": {
+          "one": "{} месяц",
+          "few": "{} месяца",
+          "many": "{} месяцев",
+          "other": "{} месяца"
+        }
+      }
     }
   },
 

@@ -131,10 +131,14 @@ abstract class LocaleKeys {
       'premium.paywall.selectTariffTitle';
   static const premium_paywall_trialDescription =
       'premium.paywall.trialDescription';
-  static const premium_paywall_annualSubscription =
-      'premium.paywall.annualSubscription';
-  static const premium_paywall_monthlySubscription =
-      'premium.paywall.monthlySubscription';
+  static const premium_paywall_periodUnitCount_day =
+      'premium.paywall.periodUnitCount.day';
+  static const premium_paywall_periodUnitCount_week =
+      'premium.paywall.periodUnitCount.week';
+  static const premium_paywall_periodUnitCount_month =
+      'premium.paywall.periodUnitCount.month';
+  static const premium_paywall_periodUnitCount =
+      'premium.paywall.periodUnitCount';
   static const premium_paywall = 'premium.paywall';
   static const premium = 'premium';
   static const networkErrorText = 'networkErrorText';
