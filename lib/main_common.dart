@@ -63,12 +63,14 @@ Future<List<Override>> _setupDependencies({
   await premiumManager.init(isProduction: isProduction);
   await premiumManager.initSubscriptions();
 
+  final sharedPrefsManager = SharedPreferencesManager();
+  await sharedPrefsManager.init();
+
   final userManager = FirebaseUserManager(
     premiumManager,
     databaseManager,
+    sharedPrefsManager,
   )..init();
-
-  final sharedPrefsManager = SharedPreferencesManager();
 
   final pushNotificationsManager = PushNotificationsManager();
 
@@ -100,7 +102,6 @@ Future<List<Override>> _setupDependencies({
     ),
   );
 
-  await sharedPrefsManager.init();
   await pushNotificationsManager.init();
 
   final dependencies = [
@@ -134,6 +135,7 @@ Future<List<Override>> _setupDependencies({
         return premiumManager;
       },
     ),
+    Di.manager.sharedPreferences.overrideWithValue(sharedPrefsManager),
   ];
 
   return dependencies;

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
 import 'package:breathe_with_me/managers/premium_manager/premium_manager.dart';
+import 'package:breathe_with_me/managers/shared_preferences_manager/shared_preferences_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/auth_result.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/utils/logger.dart';
@@ -15,10 +16,12 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 final class FirebaseUserManager implements UserManager {
   final PremiumManager _premiumManager;
   final DatabaseManager _databaseManager;
+  final SharedPreferencesManager _sharedPreferencesManager;
 
   FirebaseUserManager(
     this._premiumManager,
     this._databaseManager,
+    this._sharedPreferencesManager,
   );
 
   StreamSubscription<User?>? _userSubscription;
@@ -61,6 +64,7 @@ final class FirebaseUserManager implements UserManager {
         }
         await FirebaseAnalytics.instance
             .setUserProperty(name: 'userId', value: null);
+        await _sharedPreferencesManager.clear();
         await _databaseManager.clearDb();
       },
     );

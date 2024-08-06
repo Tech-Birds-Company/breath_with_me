@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:breathe_with_me/assets.dart';
 import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/extensions/store_product.dart';
@@ -34,20 +36,19 @@ class PremiumPaywall extends ConsumerWidget {
         children: [
           const _PremiumPaywallGradient(),
           Padding(
-            padding: EdgeInsets.only(
-              top: topInset,
-              left: 24,
-              right: 24,
-            ),
+            padding: EdgeInsets.only(top: topInset),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SvgPicture.asset(
-                      BWMAssets.logoIcon,
-                      height: 53,
+                    Padding(
+                      padding: const EdgeInsetsDirectional.only(start: 8),
+                      child: SvgPicture.asset(
+                        BWMAssets.logoIcon,
+                        height: 53,
+                      ),
                     ),
                     BlocSelector<PremiumPaywallBloc, PremiumPaywallState, bool>(
                       bloc: bloc,
@@ -71,94 +72,113 @@ class PremiumPaywall extends ConsumerWidget {
                   ],
                 ),
                 const SizedBox(height: 20),
-                PremiumBadge(
-                  text: LocaleKeys.premium_premium.tr(),
+                Padding(
+                  padding: const EdgeInsetsDirectional.only(start: 16),
+                  child: PremiumBadge(
+                    text: LocaleKeys.premium_premium.tr(),
+                  ),
                 ),
                 const SizedBox(height: 36),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    for (final offer in PremiumConstants.premiumOffers)
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
-                        child: Row(
-                          children: [
-                            SvgPicture.asset(
-                              BWMAssets.checkmark,
-                              height: 10,
-                              width: 10,
-                              colorFilter: ColorFilter.mode(
-                                theme.purple2,
-                                BlendMode.srcIn,
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            Expanded(
-                              child: Text(
-                                offer.tr(),
-                                style: theme.typography.bodyM.copyWith(
-                                  color: theme.primaryText,
+                Padding(
+                  padding: const EdgeInsetsDirectional.only(start: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      for (final offer in PremiumConstants.premiumOffers)
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: Row(
+                            children: [
+                              SvgPicture.asset(
+                                BWMAssets.checkmark,
+                                height: 10,
+                                width: 10,
+                                colorFilter: ColorFilter.mode(
+                                  theme.purple2,
+                                  BlendMode.srcIn,
                                 ),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
                               ),
-                            ),
-                          ],
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  offer.tr(),
+                                  style: theme.typography.bodyM.copyWith(
+                                    color: theme.primaryText,
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                  ],
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 36),
-                Text(
-                  LocaleKeys.premium_paywall_selectTariffTitle
-                      .tr()
-                      .toUpperCase(),
-                  style: theme.typography.label.copyWith(
-                    color: theme.gray3,
+                Padding(
+                  padding: const EdgeInsetsDirectional.only(start: 16),
+                  child: Text(
+                    LocaleKeys.premium_paywall_selectTariffTitle
+                        .tr()
+                        .toUpperCase(),
+                    style: theme.typography.label.copyWith(
+                      color: theme.gray3,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 16),
                 Expanded(
-                  child: BlocBuilder<PremiumPaywallBloc, PremiumPaywallState>(
-                    bloc: bloc,
-                    builder: (context, state) {
-                      final products =
-                          state.storeProducts.values.whereNotNull();
-                      return products.isEmpty
-                          ? Center(
-                              child: CircularProgressIndicator.adaptive(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  theme.purple2,
-                                ),
-                                backgroundColor: theme.primaryBackground,
-                              ),
-                            )
-                          : Column(
-                              children: [
-                                for (final product in products)
-                                  Padding(
-                                    padding: const EdgeInsets.only(bottom: 16),
-                                    child: PremiumPaywallProduct(
-                                      productId: product.identifier,
-                                      title: product.localizedTitleKey.tr(),
-                                      price: product.priceString,
-                                      onPressed: bloc.onSubscriptionSelected,
-                                      selected: state.selectedSubscriptionId ==
-                                          product.identifier,
-                                    ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: BlocBuilder<PremiumPaywallBloc, PremiumPaywallState>(
+                      bloc: bloc,
+                      builder: (context, state) {
+                        final products =
+                            state.storeProducts.values.whereNotNull();
+                        return products.isEmpty
+                            ? Center(
+                                child: CircularProgressIndicator.adaptive(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    theme.purple2,
                                   ),
-                              ],
-                            );
-                    },
+                                  backgroundColor: Platform.isAndroid
+                                      ? theme.primaryBackground
+                                      : theme.primaryColor,
+                                ),
+                              )
+                            : Column(
+                                children: [
+                                  for (final product in products)
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 16),
+                                      child: PremiumPaywallProduct(
+                                        productId: product.identifier,
+                                        title: product.localizedTitleKey.tr(),
+                                        price: product.priceString,
+                                        onPressed: bloc.onSubscriptionSelected,
+                                        selected:
+                                            state.selectedSubscriptionId ==
+                                                product.identifier,
+                                      ),
+                                    ),
+                                ],
+                              );
+                      },
+                    ),
                   ),
                 ),
                 BlocBuilder<PremiumPaywallBloc, PremiumPaywallState>(
                   bloc: bloc,
-                  builder: (context, state) => PremiumPaywallButton(
-                    isProcessing: state.premiumPurchaseProcessing,
-                    onPressed: bloc.onBuyPremium,
-                    isDisabled: state.storeProducts.isEmpty ||
-                        state.selectedSubscriptionId == null,
+                  builder: (context, state) => Padding(
+                    padding: EdgeInsets.all(Platform.isAndroid ? 16 : 0),
+                    child: PremiumPaywallButton(
+                      isProcessing: state.premiumPurchaseProcessing,
+                      onPressed: bloc.onBuyPremium,
+                      isDisabled: state.storeProducts.isEmpty ||
+                          state.selectedSubscriptionId == null,
+                    ),
                   ),
                 ),
               ],

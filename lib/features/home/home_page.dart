@@ -49,7 +49,9 @@ class HomePage extends HookConsumerWidget {
                 final isPremiumEnabled = snapshot.requireData;
                 return isPremiumEnabled
                     ? const SizedBox.shrink()
-                    : const PremiumBannerTracks();
+                    : PremiumBannerTracks(
+                        onTap: bloc.onOpenPaywall,
+                      );
               },
             ).toSliver(),
             const SliverPadding(

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:breathe_with_me/features/premium/models/premium_paywall_state.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/repositories/remote_config_repository.dart';
+import 'package:breathe_with_me/utils/logger.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
@@ -65,6 +66,8 @@ final class PremiumPaywallBloc extends BlocBase<PremiumPaywallState> {
       emit(state.copyWith(premiumPurchaseProcessing: true));
       await Purchases.purchaseStoreProduct(product);
       _navigationManager.pop();
+    } on Object catch (e) {
+      logger.e('Error purchasing premium: $e');
     } finally {
       emit(state.copyWith(premiumPurchaseProcessing: false));
     }

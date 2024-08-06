@@ -17,6 +17,7 @@ final class _BlocProviders {
       ref.watch(Di.manager.streakProgress),
       ref.watch(Di.manager.permissions),
       ref.watch(Di.manager.sharedPreferences),
+      ref.watch(Di.manager.user),
       ref.watch(Di.manager.navigation),
     ),
   );

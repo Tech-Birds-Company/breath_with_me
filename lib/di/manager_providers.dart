@@ -33,7 +33,13 @@ final class _ManagerProviders {
 
   late final pushNotifications = Provider((_) => PushNotificationsManager());
 
-  late final sharedPreferences = Provider((_) => SharedPreferencesManager());
+  late final sharedPreferences = Provider(
+    (ref) {
+      final manager = SharedPreferencesManager();
+      ref.onDispose(manager.dispose);
+      return manager;
+    },
+  );
 
   late final deeplink = Provider(
     (ref) => DeeplinkManager(
