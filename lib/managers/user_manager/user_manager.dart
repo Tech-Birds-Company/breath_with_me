@@ -32,5 +32,7 @@ abstract interface class UserManager {
 
   Future<bool> get isUserPremium;
 
+  Future<bool> deleteAccount();
+
   void dispose();
 }

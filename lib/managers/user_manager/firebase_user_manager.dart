@@ -181,6 +181,16 @@ final class FirebaseUserManager implements UserManager {
   }
 
   @override
+  Future<bool> deleteAccount() async {
+    final user = _firebaseAuth.currentUser;
+    if (user != null) {
+      await user.delete();
+      return true;
+    }
+    return false;
+  }
+
+  @override
   void dispose() {
     _userSubscription?.cancel();
     _userSubscription = null;

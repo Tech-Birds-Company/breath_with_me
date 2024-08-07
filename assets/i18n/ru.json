@@ -58,6 +58,15 @@
   "profilePremiumAccountType": "Премиум аккаунт",
   "profilePremiumExpires": "до {}",
   "profilePremiumOfferButton": "Получить премиум",
+  "profileDeleteAccount": "Удалить аккаунт",
+  "profileDeleteAccountDialog": {
+    "title": "Вы уверены?",
+    "message": "Вы навсегда удалите свой аккаунт и все связанные с ним данные",
+    "cancel": "Отмена",
+    "ok": "Удалить аккаунт",
+    "oldAuthErrorTitle": "Ошибка",
+    "oldAuthErrorMessage": "Не удалось удалить аккаунт. Попробуйте заново авторизоваться в приложении и повторите попытку"
+  },
 
   "reminderTitle": "Напоминания",
   "reminderDisabled": "Выключено",

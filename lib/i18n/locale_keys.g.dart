@@ -57,6 +57,19 @@ abstract class LocaleKeys {
   static const profilePremiumAccountType = 'profilePremiumAccountType';
   static const profilePremiumExpires = 'profilePremiumExpires';
   static const profilePremiumOfferButton = 'profilePremiumOfferButton';
+  static const profileDeleteAccount = 'profileDeleteAccount';
+  static const profileDeleteAccountDialog_title =
+      'profileDeleteAccountDialog.title';
+  static const profileDeleteAccountDialog_message =
+      'profileDeleteAccountDialog.message';
+  static const profileDeleteAccountDialog_cancel =
+      'profileDeleteAccountDialog.cancel';
+  static const profileDeleteAccountDialog_ok = 'profileDeleteAccountDialog.ok';
+  static const profileDeleteAccountDialog_oldAuthErrorTitle =
+      'profileDeleteAccountDialog.oldAuthErrorTitle';
+  static const profileDeleteAccountDialog_oldAuthErrorMessage =
+      'profileDeleteAccountDialog.oldAuthErrorMessage';
+  static const profileDeleteAccountDialog = 'profileDeleteAccountDialog';
   static const reminderTitle = 'reminderTitle';
   static const reminderDisabled = 'reminderDisabled';
   static const reminderSaveButtonTitle = 'reminderSaveButtonTitle';

@@ -57,6 +57,15 @@
   "profilePremiumAccountType": "Premium account",
   "profilePremiumExpires": "till {}",
   "profilePremiumOfferButton": "Go premium",
+  "profileDeleteAccount": "Delete account",
+  "profileDeleteAccountDialog": {
+    "title": "Are you sure?",
+    "message": "You are going to permanently delete your account and all data related to it",
+    "cancel": "Cancel",
+    "ok": "Delete account",
+    "oldAuthErrorTitle": "Error",
+    "oldAuthErrorMessage": "Failed to delete the account. Try to re-authorize in the application and try again"
+  },
 
   "reminderTitle": "Reminder",
   "reminderDisabled": "Off",

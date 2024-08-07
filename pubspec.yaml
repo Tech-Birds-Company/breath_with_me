@@ -64,6 +64,7 @@ dependencies:
   package_info_plus: 8.0.0
   wakelock_plus: 1.2.5
   purchases_flutter: ^6.30.2
+  adaptive_dialog: ^2.1.0
 
 dev_dependencies:
   flutter_test:
