@@ -18,6 +18,14 @@ class StreakProgressV2 with _$StreakProgressV2 {
 
   const StreakProgressV2._();
 
+  bool get canRestore {
+    if (totalMissedDays < 1 || totalLives < 1) {
+      return false;
+    }
+
+    return totalMissedDays <= totalLives;
+  }
+
   factory StreakProgressV2.fromJson(Map<String, dynamic> json) =>
       _$StreakProgressV2FromJson(json);
 }

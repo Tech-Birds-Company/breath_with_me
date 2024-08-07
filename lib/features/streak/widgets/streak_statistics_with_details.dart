@@ -75,9 +75,7 @@ class StreakStatisticsWithDetails extends HookConsumerWidget {
                 utcLivesExpireDateTime: progress.utcLivesExpireDateTime,
                 isPremiumEnabled: premiumEnabled,
               ),
-              if (premiumEnabled &&
-                  progress.totalLives > 0 &&
-                  progress.totalLives >= progress.totalMissedDays)
+              if (premiumEnabled && progress.canRestore)
                 Column(
                   children: [
                     const SizedBox(height: 16),
