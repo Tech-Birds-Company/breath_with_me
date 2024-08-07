@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FLUTTER_REQUIRED_VERSION="3.22.3"
+FLUTTER_REQUIRED_VERSION="3.24.0"
 
 # Check if fvm and jq are installed
 if command -v fvm &> /dev/null; then

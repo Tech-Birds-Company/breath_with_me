@@ -13,194 +13,180 @@ class StreakProgressManager {
 
   Stream<StreakProgressV2> get stream => _streaksProgressRepository
       .getStreakProgressStream(_userId)
-      .asyncMap(_validateStreak);
+      .asyncMap(_validateProgress);
 
-  Future<StreakProgressV2> _validateStreak(StreakProgressV2 progress) async {
-    final timeline = progress.utcTimeline.sorted((a, b) => b.compareTo(a));
-    final calculatedMissedDays = _getMissedDays(sortedTimeline: timeline);
+  Future<StreakProgressV2> _validateProgress(StreakProgressV2 progress) async {
+    final sortedTimeline =
+        progress.utcTimeline.sorted((a, b) => b.compareTo(a));
 
-    if (calculatedMissedDays != progress.totalMissedDays) {
-      final updatedProgress =
-          await _streaksProgressRepository.setUserProgressData(
+    final currentStreak = _getCurrentStreak(sortedTimeline).length;
+    final missedDays = _calculateMissedDays(sortedTimeline: sortedTimeline);
+
+    if (missedDays != progress.totalMissedDays ||
+        currentStreak != progress.totalStreak) {
+      return _streaksProgressRepository.setUserProgressData(
         _userId,
         progress.copyWith(
-          totalMissedDays: calculatedMissedDays,
+          totalMissedDays: missedDays,
+          totalStreak: currentStreak,
         ),
       );
-      return updatedProgress;
     }
     return progress;
   }
 
-  Future<void> checkAndResetStreak() async {
-    final currentProgress =
-        await _streaksProgressRepository.getUserStreakProgress(_userId);
-    final timeline =
-        currentProgress.utcTimeline.sorted((a, b) => b.compareTo(a));
+  StreakProgressV2 _calculateCurrentProgress(StreakProgressV2 progress) {
+    final sortedTimeline =
+        progress.utcTimeline.sorted((a, b) => b.compareTo(a));
+    final currentStreak = _getCurrentStreak(sortedTimeline).length;
+    final calculatedMissedDays =
+        _calculateMissedDays(sortedTimeline: sortedTimeline);
 
-    if (timeline.isEmpty) {
-      return;
+    return progress.copyWith(
+      totalStreak: currentStreak,
+      totalMissedDays: calculatedMissedDays,
+    );
+  }
+
+  List<List<DateTime>> _getStreaks(List<DateTime> sortedTimeline) {
+    if (sortedTimeline.isEmpty) return [];
+
+    final streaks = <List<DateTime>>[];
+    var currentStreak = [sortedTimeline.first];
+
+    for (var i = 1; i < sortedTimeline.length; i++) {
+      if (sortedTimeline[i - 1].difference(sortedTimeline[i]).inDays == 1) {
+        currentStreak.add(sortedTimeline[i]);
+      } else {
+        streaks.add(currentStreak);
+        currentStreak = [sortedTimeline[i]];
+      }
     }
 
-    final now = DateTime.now().toUtc();
-    final lastActivityDate = timeline.first;
-    final daysSinceLastActivity = now.difference(lastActivityDate).inDays;
+    streaks.add(currentStreak);
+    return streaks;
+  }
 
-    if (daysSinceLastActivity > 1) {
-      final resetProgress = currentProgress.copyWith(
-        totalStreak: 0,
-      );
+  List<DateTime> _getCurrentStreak(List<DateTime> sortedTimeline) {
+    final streaks = _getStreaks(sortedTimeline);
+    return streaks.firstOrNull ?? [];
+  }
 
-      await _streaksProgressRepository.setUserProgressData(
-        _userId,
-        resetProgress,
-      );
+  int _calculateMissedDays({required List<DateTime> sortedTimeline}) {
+    final streaks = _getStreaks(sortedTimeline);
+
+    if (streaks.length < 2) {
+      return 0; // There are no missed days if there's only one streak or no streaks
     }
+
+    final lastStreakEndDate = streaks[0].last;
+    final preLastStreakStartDate = streaks[1].first;
+
+    return lastStreakEndDate.difference(preLastStreakStartDate).inDays - 1;
   }
 
   Future<StreakProgressV2> addStreakData({
     required int minutes,
     required DateTime date,
   }) async {
-    final utcDate = DateTime.utc(date.year, date.month, date.day);
+    final _ = date.toUtc();
+    final utcDate = DateTime.utc(_.year, _.month, _.day);
     final currentProgress =
         await _streaksProgressRepository.getUserStreakProgress(_userId);
 
     final existingTimeline = currentProgress.utcTimeline;
-    final newTimeline = _addOrUpdateDate(existingTimeline, utcDate);
+    final newTimeline = {utcDate, ...existingTimeline}.toList()
+      ..sort(
+        (a, b) => b.compareTo(a),
+      );
 
-    final updatedStreak = _calculateStreak(sortedTimeline: newTimeline);
-
-    // Calculate missed days (if needed)
-    final missedDays = _getMissedDays(sortedTimeline: newTimeline);
-
-    final newProgress = currentProgress.copyWith(
-      totalStreak: updatedStreak,
-      totalPractices: currentProgress.totalPractices + 1,
-      totalMinutes: currentProgress.totalMinutes + minutes,
-      totalMissedDays: missedDays,
-      utcTimeline: newTimeline,
-    );
-
-    return _streaksProgressRepository.setUserProgressData(_userId, newProgress);
-  }
-
-  List<DateTime> _addOrUpdateDate(List<DateTime> timeline, DateTime newDate) {
-    final updatedTimeline = timeline
-        .where(
-          (date) =>
-              date.year != newDate.year ||
-              date.month != newDate.month ||
-              date.day != newDate.day,
-        )
-        .toList()
-      ..add(newDate);
-
-    return updatedTimeline.sorted((a, b) => b.compareTo(a));
-  }
-
-  int _getMissedDays({required List<DateTime> sortedTimeline}) {
-    if (sortedTimeline.isEmpty || sortedTimeline.length == 1) {
-      return 0;
-    }
-
-    var totalMissedDays = 0;
-    for (var i = 0; i < sortedTimeline.length - 1; i++) {
-      final currentDate = sortedTimeline[i];
-      final nextDate = sortedTimeline[i + 1];
-
-      final difference = currentDate.difference(nextDate).inDays - 1;
-      if (difference > 0) {
-        totalMissedDays += difference;
-      }
-    }
-
-    return totalMissedDays;
-  }
-
-  Future<StreakProgressV2> getUserStreakProgress() =>
-      _streaksProgressRepository.getUserStreakProgress(_userId);
-
-  Future<StreakProgressV2> restoreUserStreakProgress() async {
-    final currentProgress =
-        await _streaksProgressRepository.getUserStreakProgress(_userId);
-    var timeline = currentProgress.utcTimeline;
-
-    if (timeline.isEmpty) return currentProgress;
-
-    // Sort timeline in descending order (most recent first)
-    timeline = timeline.sorted((a, b) => b.compareTo(a));
-
-    var currentStreak = 0;
-    var lastStreak = 0;
-    var inCurrentStreak = true;
-    DateTime? previousDate;
-
-    for (final date in timeline) {
-      if (previousDate == null ||
-          date.add(const Duration(days: 1)) == previousDate) {
-        if (inCurrentStreak) {
-          currentStreak++;
-        } else {
-          lastStreak++;
-        }
-      } else if (inCurrentStreak) {
-        inCurrentStreak = false;
-        lastStreak = 1;
-      } else {
-        break;
-      }
-      previousDate = date;
-    }
-
-    // Calculate restored days and total restored streak
-    final restoredDays = min(currentProgress.totalLives, lastStreak);
-    final totalRestoredStreak = currentStreak + restoredDays;
-
-    // Update lives
-    final remainingLives = currentProgress.totalLives - restoredDays;
-
-    // Create a new timeline with the restored streak
-    final restoredTimeline = List<DateTime>.generate(
-      totalRestoredStreak,
-      (index) => timeline.first.subtract(Duration(days: index)),
-    );
-
-    final dateNow = DateTime.now();
-    final utcDate = DateTime.utc(
-      dateNow.year,
-      dateNow.month,
-      dateNow.day,
-    );
-    final restoredProgress = currentProgress.copyWith(
-      totalMissedDays: 0,
-      totalLives: remainingLives,
-      totalStreak: totalRestoredStreak,
-      utcTimeline: restoredTimeline,
-      utcLivesExpireDateTime: utcDate.add(
-        const Duration(days: 30),
+    final updatedProgress = _calculateCurrentProgress(
+      currentProgress.copyWith(
+        totalPractices: currentProgress.totalPractices + 1,
+        totalMinutes: currentProgress.totalMinutes + minutes,
+        utcTimeline: newTimeline,
       ),
     );
 
     return _streaksProgressRepository.setUserProgressData(
       _userId,
-      restoredProgress,
+      updatedProgress,
     );
   }
 
-  int _calculateStreak({required List<DateTime> sortedTimeline}) {
-    if (sortedTimeline.isEmpty) return 0;
+  Future<StreakProgressV2> getUserStreakProgress() async {
+    final progress =
+        await _streaksProgressRepository.getUserStreakProgress(_userId);
+    return progress;
+  }
 
-    var streak = 1;
-    var previousDate = sortedTimeline.first;
-    for (var i = 1; i < sortedTimeline.length; i++) {
-      if (sortedTimeline[i].add(const Duration(days: 1)) == previousDate) {
-        streak++;
-        previousDate = sortedTimeline[i];
-      } else {
-        break;
-      }
+  Future<StreakProgressV2> restoreUserStreakProgress() async {
+    final currentProgress =
+        await _streaksProgressRepository.getUserStreakProgress(_userId);
+    final sortedTimeline =
+        currentProgress.utcTimeline.sorted((a, b) => b.compareTo(a));
+
+    if (sortedTimeline.isEmpty) {
+      return currentProgress;
     }
-    return streak;
+
+    final streaks = _getStreaks(sortedTimeline);
+
+    if (streaks.length < 2) {
+      return currentProgress; // No previous streak to restore
+    }
+
+    final missedDays = _calculateMissedDays(sortedTimeline: sortedTimeline);
+
+    if (missedDays == 0) {
+      return currentProgress; // No missed days to restore
+    }
+
+    if (currentProgress.totalLives < missedDays) {
+      // Not enough lives to restore the full gap, reset to the last streak
+      return currentProgress.copyWith(
+        totalStreak: streaks.last.length,
+        utcTimeline: streaks.last,
+      );
+    }
+
+    // Restore the streak
+    final restoredDays = min(currentProgress.totalLives, missedDays);
+    final lastStreakEndDate = streaks[0].last;
+
+    final restoredDates = List.generate(
+      restoredDays,
+      (index) => lastStreakEndDate.subtract(
+        Duration(days: index + 1),
+      ),
+    );
+
+    final newTimeline = [
+      ...streaks[0],
+      ...restoredDates,
+      ...streaks[1],
+    ]..sort(
+        (a, b) => b.compareTo(a),
+      );
+
+    final updatedProgress = currentProgress.copyWith(
+      totalStreak: streaks[0].length + restoredDays + streaks[1].length,
+      totalMissedDays: 0,
+      totalLives: currentProgress.totalLives - restoredDays,
+      utcTimeline: newTimeline,
+      utcLivesExpireDateTime:
+          DateTime.now().toUtc().add(const Duration(days: 30)).copyWith(
+                minute: 0,
+                hour: 0,
+                second: 0,
+                millisecond: 0,
+                microsecond: 0,
+              ),
+    );
+
+    return _streaksProgressRepository.setUserProgressData(
+      _userId,
+      updatedProgress,
+    );
   }
 }
