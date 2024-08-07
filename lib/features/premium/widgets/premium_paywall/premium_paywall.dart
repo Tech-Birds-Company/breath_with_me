@@ -11,14 +11,16 @@ import 'package:breathe_with_me/features/premium/widgets/premium_paywall/premium
 import 'package:breathe_with_me/features/premium/widgets/premium_paywall/premium_paywall_tariff.dart';
 import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class PremiumPaywall extends ConsumerWidget {
+class PremiumPaywall extends HookConsumerWidget {
   final double topInset;
 
   const PremiumPaywall({
@@ -30,6 +32,15 @@ class PremiumPaywall extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     final bloc = ref.watch(Di.bloc.premiumPaywall);
+
+    useEffect(
+      () {
+        BWMAnalytics.logScreenView('PremiumPaywall');
+        return () => BWMAnalytics.event('premiumPaywallClosed');
+      },
+      const [],
+    );
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: Stack(
@@ -40,6 +51,7 @@ class PremiumPaywall extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: Platform.isAndroid ? 16 : 0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -80,7 +92,8 @@ class PremiumPaywall extends ConsumerWidget {
                 ),
                 const SizedBox(height: 36),
                 Padding(
-                  padding: const EdgeInsetsDirectional.only(start: 16),
+                  padding:
+                      const EdgeInsetsDirectional.symmetric(horizontal: 16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

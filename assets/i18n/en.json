@@ -127,6 +127,7 @@
   "streakWithoutPremiumSubtitle": "{} day streak",
   "streakLivesWillResetTitle": "Will reset on {}",
   "streakLivesTitle": "Monthly streak lives",
+  "streakLastPracticeDate": "The last practice was on {}",
   "streakLivesWhenPremiumEnabled": "Available on premium",
   "streakLivesFooter": {
     "one": "You will get {} more live next month",
@@ -145,6 +146,7 @@
     "extendedStats": "Extended statistics of your progress",
     "restoreStreaks": "Ability to restore your practice streak",
     "backgroundMode": "Background mode",
+    "newPractices": "New practices every month",
     "learnMore": "Learn more",
     "buyPremium": "Buy Premium",
     "paywall": {

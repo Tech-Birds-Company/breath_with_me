@@ -9,7 +9,10 @@ class StreakProgressManager {
   final String _userId;
   final StreakProgressRepositoryV2 _streaksProgressRepository;
 
-  StreakProgressManager(this._userId, this._streaksProgressRepository);
+  const StreakProgressManager(
+    this._userId,
+    this._streaksProgressRepository,
+  );
 
   Stream<StreakProgressV2> get stream => _streaksProgressRepository
       .getStreakProgressStream(_userId)
@@ -19,16 +22,33 @@ class StreakProgressManager {
     final sortedTimeline =
         progress.utcTimeline.sorted((a, b) => b.compareTo(a));
 
+    final dateTimeNowUtc = DateTime.now().toUtc().copyWith(
+          minute: 0,
+          hour: 0,
+          second: 0,
+          millisecond: 0,
+          microsecond: 0,
+        );
     final currentStreak = _getCurrentStreak(sortedTimeline).length;
     final missedDays = _calculateMissedDays(sortedTimeline: sortedTimeline);
 
+    final utcLivesExpireDateTime =
+        progress.totalLives < _streaksProgressRepository.defaultTotalLives &&
+                progress.utcLivesExpireDateTime == null
+            ? dateTimeNowUtc.add(
+                const Duration(days: 30),
+              )
+            : progress.utcLivesExpireDateTime;
+
     if (missedDays != progress.totalMissedDays ||
-        currentStreak != progress.totalStreak) {
+        currentStreak != progress.totalStreak ||
+        utcLivesExpireDateTime != progress.utcLivesExpireDateTime) {
       return _streaksProgressRepository.setUserProgressData(
         _userId,
         progress.copyWith(
           totalMissedDays: missedDays,
           totalStreak: currentStreak,
+          utcLivesExpireDateTime: utcLivesExpireDateTime,
         ),
       );
     }
@@ -99,11 +119,15 @@ class StreakProgressManager {
       ..sort(
         (a, b) => b.compareTo(a),
       );
+    final totalStreak = _getCurrentStreak(newTimeline).length;
+    final totalMissedDays = _calculateMissedDays(sortedTimeline: newTimeline);
 
     final updatedProgress = _calculateCurrentProgress(
       currentProgress.copyWith(
         totalPractices: currentProgress.totalPractices + 1,
         totalMinutes: currentProgress.totalMinutes + minutes,
+        totalMissedDays: totalMissedDays,
+        totalStreak: totalStreak,
         utcTimeline: newTimeline,
       ),
     );
@@ -174,14 +198,18 @@ class StreakProgressManager {
       totalMissedDays: 0,
       totalLives: currentProgress.totalLives - restoredDays,
       utcTimeline: newTimeline,
-      utcLivesExpireDateTime:
-          DateTime.now().toUtc().add(const Duration(days: 30)).copyWith(
-                minute: 0,
-                hour: 0,
-                second: 0,
-                millisecond: 0,
-                microsecond: 0,
-              ),
+      utcLivesExpireDateTime: DateTime.now()
+          .toUtc()
+          .add(
+            const Duration(days: 30),
+          )
+          .copyWith(
+            minute: 0,
+            hour: 0,
+            second: 0,
+            millisecond: 0,
+            microsecond: 0,
+          ),
     );
 
     return _streaksProgressRepository.setUserProgressData(

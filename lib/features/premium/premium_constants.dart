@@ -5,5 +5,6 @@ abstract final class PremiumConstants {
     LocaleKeys.premium_extendedStats,
     LocaleKeys.premium_restoreStreaks,
     LocaleKeys.premium_backgroundMode,
+    LocaleKeys.premium_newPractices,
   ];
 }

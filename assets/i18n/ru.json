@@ -152,6 +152,7 @@
   },
   "streakLivesWillResetTitle": "Восстановятся {}",
   "streakLivesTitle": "Восстановление прогресса",
+  "streakLastPracticeDate": "Последняя практика была: {}",
   "streakLivesWhenPremiumEnabled": "Доступно на Премиум тарифе",
   "streakLivesFooter": {
     "one": "Вы получите ещё {} жизнь в следующем месяце",
@@ -178,6 +179,7 @@
     "extendedStats": "Расширенная статистика вашего прогресса",
     "restoreStreaks": "Возможность восстановить серию практик",
     "backgroundMode": "Фоновый режим",
+    "newPractices": "Новые практики каждый месяц",
     "learnMore": "Узнать больше",
     "buyPremium": "Оформить премиум",
     "paywall": {

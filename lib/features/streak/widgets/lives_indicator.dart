@@ -57,7 +57,7 @@ class LivesIndicator extends StatelessWidget {
               ),
           ],
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: 16),
         if (isPremiumEnabled && utcLivesExpireDateTime != null)
           Text(
             _countdownText,

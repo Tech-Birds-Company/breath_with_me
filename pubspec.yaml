@@ -3,7 +3,7 @@ description: Breathe With Me is an app with breathwork practices that can help y
 
 publish_to: "none"
 
-version: 2.1.0+2
+version: 2.1.0+9
 
 environment:
   sdk: ">=3.3.0 <4.0.0"

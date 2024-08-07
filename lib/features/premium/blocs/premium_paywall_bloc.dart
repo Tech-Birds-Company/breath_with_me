@@ -2,17 +2,21 @@ import 'dart:io';
 
 import 'package:breathe_with_me/features/premium/models/premium_paywall_state.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
+import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/repositories/remote_config_repository.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:breathe_with_me/utils/logger.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 final class PremiumPaywallBloc extends BlocBase<PremiumPaywallState> {
   final RemoteConfigRepository _remoteConfigRepository;
+  final UserManager _userManager;
   final NavigationManager _navigationManager;
 
   PremiumPaywallBloc(
     this._remoteConfigRepository,
+    this._userManager,
     this._navigationManager,
   ) : super(const PremiumPaywallState());
 
@@ -36,6 +40,12 @@ final class PremiumPaywallBloc extends BlocBase<PremiumPaywallState> {
     }
 
     final res = await Purchases.getProducts(identifiers);
+    BWMAnalytics.event(
+      'premium_products_loaded',
+      params: {
+        'products': identifiers.join(','),
+      },
+    );
 
     emit(
       state.copyWith(
@@ -53,11 +63,19 @@ final class PremiumPaywallBloc extends BlocBase<PremiumPaywallState> {
     );
   }
 
-  void onSubscriptionSelected(String id) => emit(
-        state.copyWith(
-          selectedSubscriptionId: id,
-        ),
-      );
+  void onSubscriptionSelected(String id) {
+    emit(
+      state.copyWith(
+        selectedSubscriptionId: id,
+      ),
+    );
+    BWMAnalytics.event(
+      'premium_subscription_selected',
+      params: {
+        'id': id,
+      },
+    );
+  }
 
   Future<void> onBuyPremium() async {
     final product = state.storeProducts[state.selectedSubscriptionId];
@@ -65,9 +83,22 @@ final class PremiumPaywallBloc extends BlocBase<PremiumPaywallState> {
     try {
       emit(state.copyWith(premiumPurchaseProcessing: true));
       await Purchases.purchaseStoreProduct(product);
+      BWMAnalytics.event(
+        'premium_purchased',
+        params: {
+          'id': product.identifier,
+          'user_id': _userManager.currentUser?.uid ?? 'unknown',
+        },
+      );
       _navigationManager.pop();
     } on Object catch (e) {
       logger.e('Error purchasing premium: $e');
+      BWMAnalytics.event(
+        'premium_purchase_error',
+        params: {
+          'error': e.toString(),
+        },
+      );
     } finally {
       emit(state.copyWith(premiumPurchaseProcessing: false));
     }

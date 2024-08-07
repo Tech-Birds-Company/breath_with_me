@@ -62,7 +62,13 @@ final class StreakBloc extends CacheableBloc<StreakState> {
     return quote;
   }
 
-  void onReminderTap() => _navigationManager.openReminderPage();
+  Future<void> onReminderTap() async {
+    await _navigationManager.openReminderPage();
+  }
+
+  Future<void> onOpenPaywall() async {
+    await _navigationManager.openPaywall();
+  }
 
   void onCloseTap() => _navigationManager.popToRoot();
 

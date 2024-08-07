@@ -139,6 +139,7 @@ final class _BlocProviders {
   late final premiumPaywall = Provider.autoDispose(
     (ref) => PremiumPaywallBloc(
       ref.watch(Di.repository.firebaseRemoteConfig),
+      ref.watch(Di.manager.user),
       ref.watch(Di.manager.navigation),
     )..init(),
   );

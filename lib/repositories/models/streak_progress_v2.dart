@@ -1,3 +1,5 @@
+import 'package:collection/collection.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'streak_progress_v2.freezed.dart';
@@ -17,6 +19,17 @@ class StreakProgressV2 with _$StreakProgressV2 {
   }) = _StreakProgressV2;
 
   const StreakProgressV2._();
+
+  String? get lastPracticeDate {
+    if (utcTimeline.isEmpty) {
+      return null;
+    }
+
+    final format = DateFormat('dd.MM.yyyy');
+    final lastPracticeDate = utcTimeline.sorted((a, b) => b.compareTo(a)).first;
+
+    return format.format(lastPracticeDate);
+  }
 
   bool get canRestore {
     if (totalMissedDays < 1 || totalLives < 1) {
