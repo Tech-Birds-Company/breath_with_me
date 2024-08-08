@@ -100,6 +100,11 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   }
 
   Future<void> _handleOnlinePlay() async {
+    final context = _navigationManager.context;
+    if (context == null) return;
+    final language = EasyLocalization.of(context)?.locale.languageCode;
+    if (language == null) return;
+
     _getTrackDownloadUrlOperation ??= CancelableOperation.fromFuture(
       _tracksRepository.getTrackDownloadUrl(track),
     );
@@ -108,16 +113,23 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
     await _initPlayerWithUrl(
       url: trackDownloadUrl,
       categoryKey: track.categoryKey,
-      tutorNameKey: track.tutor.tutorNameKey,
+      tutorName: _track.tutor.tutorNameTranslations?[language] ??
+          track.tutor.tutorNameKey.tr(),
     );
   }
 
   Future<void> _initPlayerWithLocalFile({required File localFile}) async {
+    final context = _navigationManager.context;
+    if (context == null) return;
+    final language = EasyLocalization.of(context)?.locale.languageCode;
+    if (language == null) return;
+
     await _audioManager.init(
       AudioSource.file(localFile.path),
       id: _track.id,
       title: _track.categoryKey.tr(),
-      artist: _track.tutor.tutorNameKey.tr(),
+      artist: _track.tutor.tutorNameTranslations?[language] ??
+          track.tutor.tutorNameKey.tr(),
     );
     _initPlayerSubscriptions();
 
@@ -136,13 +148,13 @@ final class TrackPlayerBloc extends BlocBase<TrackPlayerState> {
   Future<void> _initPlayerWithUrl({
     required String url,
     required String categoryKey,
-    required String tutorNameKey,
+    required String tutorName,
   }) async {
     await _audioManager.init(
       AudioSource.uri(Uri.parse(url)),
       id: _track.id,
       title: categoryKey.tr(),
-      artist: tutorNameKey.tr(),
+      artist: tutorName,
     );
     _initPlayerSubscriptions();
 
