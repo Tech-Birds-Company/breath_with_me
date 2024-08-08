@@ -183,6 +183,8 @@
     "learnMore": "Узнать больше",
     "buyPremium": "Оформить премиум",
     "paywall": {
+      "privacyPolicy": "Политика конфиденциальности",
+      "termsOfService": "Условия использования",
       "selectTariffTitle": "Выберите тариф",
       "trialDescription": "Первые 7 дней бесплатно",
       "periodUnitCount": {

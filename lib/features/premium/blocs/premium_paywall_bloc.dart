@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:breathe_with_me/features/premium/models/premium_paywall_state.dart';
+import 'package:breathe_with_me/managers/deeplink_manager/deeplink_manager.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/repositories/remote_config_repository.dart';
@@ -12,11 +13,13 @@ import 'package:purchases_flutter/purchases_flutter.dart';
 final class PremiumPaywallBloc extends BlocBase<PremiumPaywallState> {
   final RemoteConfigRepository _remoteConfigRepository;
   final UserManager _userManager;
+  final DeeplinkManager _deeplinkManager;
   final NavigationManager _navigationManager;
 
   PremiumPaywallBloc(
     this._remoteConfigRepository,
     this._userManager,
+    this._deeplinkManager,
     this._navigationManager,
   ) : super(const PremiumPaywallState());
 
@@ -102,6 +105,14 @@ final class PremiumPaywallBloc extends BlocBase<PremiumPaywallState> {
     } finally {
       emit(state.copyWith(premiumPurchaseProcessing: false));
     }
+  }
+
+  Future<void> onOpenPrivacyPolicy() async {
+    await _deeplinkManager.onOpenPrivacyPolicy();
+  }
+
+  Future<void> onOpenTermsOfService() async {
+    await _deeplinkManager.onOpenTermsOfService();
   }
 
   void onClosePaywall() => _navigationManager.pop();

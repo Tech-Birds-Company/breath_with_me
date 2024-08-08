@@ -34,24 +34,21 @@ class TrackInfo extends StatelessWidget {
         Row(
           children: [
             if (isPremiumTrack)
-              Expanded(
-                flex: 0,
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.only(end: 8),
-                  child: Icon(
-                    Icons.workspace_premium,
-                    color: theme.purple2,
-                    size: 32,
-                  ),
+              Padding(
+                padding: const EdgeInsetsDirectional.only(end: 4),
+                child: Icon(
+                  Icons.workspace_premium,
+                  color: theme.purple2,
+                  size: 28,
                 ),
               ),
             Expanded(
               child: Text(
                 track.trackTranslatedTitle(language) ?? track.categoryKey.tr(),
-                style: theme.typography.heading2.copyWith(
+                style: theme.typography.heading3.copyWith(
                   color: theme.primaryText,
                 ),
-                maxLines: 1,
+                maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
             ),

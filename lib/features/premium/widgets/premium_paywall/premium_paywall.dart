@@ -184,16 +184,42 @@ class PremiumPaywall extends HookConsumerWidget {
                 ),
                 BlocBuilder<PremiumPaywallBloc, PremiumPaywallState>(
                   bloc: bloc,
-                  builder: (context, state) => Padding(
-                    padding: EdgeInsets.all(Platform.isAndroid ? 16 : 0),
-                    child: PremiumPaywallButton(
-                      isProcessing: state.premiumPurchaseProcessing,
-                      onPressed: bloc.onBuyPremium,
-                      isDisabled: state.storeProducts.isEmpty ||
-                          state.selectedSubscriptionId == null,
-                    ),
+                  builder: (context, state) => PremiumPaywallButton(
+                    isProcessing: state.premiumPurchaseProcessing,
+                    onPressed: bloc.onBuyPremium,
+                    isDisabled: state.storeProducts.isEmpty ||
+                        state.selectedSubscriptionId == null,
                   ),
                 ),
+                const SizedBox(height: 16),
+                Center(
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: bloc.onOpenPrivacyPolicy,
+                        child: Text(
+                          LocaleKeys.premium_paywall_privacyPolicy.tr(),
+                          style: theme.typography.bodyS.copyWith(
+                            color: theme.gray3,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      GestureDetector(
+                        onTap: bloc.onOpenTermsOfService,
+                        child: Text(
+                          LocaleKeys.premium_paywall_termsOfService.tr(),
+                          style: theme.typography.bodyS.copyWith(
+                            color: theme.gray3,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 16),
               ],
             ),
           ),

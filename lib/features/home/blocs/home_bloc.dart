@@ -20,10 +20,10 @@ final class HomeBloc extends BlocBase<Object?> {
   ) : super(null);
 
   Future<void> init() async {
-    await _permissionsManager.requestPushNotificationsPermissions();
     await _handleAppTracking();
     await _showSafetyPrecautions();
     await _showFirstTimePaywall();
+    await _permissionsManager.requestPushNotificationsPermissions();
   }
 
   Future<void> _handleAppTracking() => _permissionsManager.handleAppTracking();

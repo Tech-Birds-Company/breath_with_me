@@ -150,6 +150,8 @@
     "learnMore": "Learn more",
     "buyPremium": "Buy Premium",
     "paywall": {
+      "privacyPolicy": "Privacy policy",
+      "termsOfService": "Terms of service",
       "selectTariffTitle": "Select tariff",
       "trialDescription": "7 days free trial",
       "periodUnitCount": {

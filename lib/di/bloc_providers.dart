@@ -140,6 +140,7 @@ final class _BlocProviders {
     (ref) => PremiumPaywallBloc(
       ref.watch(Di.repository.firebaseRemoteConfig),
       ref.watch(Di.manager.user),
+      ref.watch(Di.manager.deeplink),
       ref.watch(Di.manager.navigation),
     )..init(),
   );
