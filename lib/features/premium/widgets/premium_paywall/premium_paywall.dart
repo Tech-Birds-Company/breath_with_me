@@ -83,14 +83,14 @@ class PremiumPaywall extends HookConsumerWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsetsDirectional.only(start: 16),
                   child: PremiumBadge(
                     text: LocaleKeys.premium_premium.tr(),
                   ),
                 ),
-                const SizedBox(height: 36),
+                const SizedBox(height: 32),
                 Padding(
                   padding:
                       const EdgeInsetsDirectional.symmetric(horizontal: 16),
@@ -128,7 +128,7 @@ class PremiumPaywall extends HookConsumerWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 36),
+                const SizedBox(height: 32),
                 Padding(
                   padding: const EdgeInsetsDirectional.only(start: 16),
                   child: Text(
@@ -192,34 +192,37 @@ class PremiumPaywall extends HookConsumerWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                Center(
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        onTap: bloc.onOpenPrivacyPolicy,
-                        child: Text(
-                          LocaleKeys.premium_paywall_privacyPolicy.tr(),
-                          style: theme.typography.bodyS.copyWith(
-                            color: theme.gray3,
-                            decoration: TextDecoration.underline,
+                SafeArea(
+                  top: false,
+                  child: Center(
+                    child: Column(
+                      children: [
+                        GestureDetector(
+                          onTap: bloc.onOpenPrivacyPolicy,
+                          child: Text(
+                            LocaleKeys.premium_paywall_privacyPolicy.tr(),
+                            style: theme.typography.bodyS.copyWith(
+                              color: theme.gray3,
+                              decoration: TextDecoration.underline,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 8),
-                      GestureDetector(
-                        onTap: bloc.onOpenTermsOfService,
-                        child: Text(
-                          LocaleKeys.premium_paywall_termsOfService.tr(),
-                          style: theme.typography.bodyS.copyWith(
-                            color: theme.gray3,
-                            decoration: TextDecoration.underline,
+                        const SizedBox(height: 8),
+                        GestureDetector(
+                          onTap: bloc.onOpenTermsOfService,
+                          child: Text(
+                            LocaleKeys.premium_paywall_termsOfService.tr(),
+                            style: theme.typography.bodyS.copyWith(
+                              color: theme.gray3,
+                              decoration: TextDecoration.underline,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-                const SizedBox(height: 16),
+                if (Platform.isAndroid) const SizedBox(height: 16),
               ],
             ),
           ),

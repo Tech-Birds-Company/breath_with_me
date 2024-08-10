@@ -18,41 +18,39 @@ class PremiumPaywallButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
-    return SafeArea(
-      child: Align(
-        alignment: AlignmentDirectional.center,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(22),
-          child: SizedBox(
-            width: 310,
-            height: 44,
-            child: TextButton(
-              style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(
-                  isDisabled
-                      ? theme.purple2.withOpacity(0.3)
-                      : theme.purple2.withOpacity(onPressed != null ? 1 : 0.3),
-                ),
-                foregroundColor: WidgetStateProperty.all(
-                  isDisabled
-                      ? theme.primaryText.withOpacity(0.5)
-                      : theme.primaryText
-                          .withOpacity(onPressed != null ? 1 : 0.5),
-                ),
-                overlayColor: WidgetStateProperty.all(
-                  theme.primaryText.withOpacity(0.1),
-                ),
+    return Align(
+      alignment: AlignmentDirectional.center,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(22),
+        child: SizedBox(
+          width: 310,
+          height: 44,
+          child: TextButton(
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.all(
+                isDisabled
+                    ? theme.purple2.withOpacity(0.3)
+                    : theme.purple2.withOpacity(onPressed != null ? 1 : 0.3),
               ),
-              onPressed: isProcessing || isDisabled ? null : onPressed,
-              child: isProcessing
-                  ? CircularProgressIndicator.adaptive(
-                      backgroundColor: theme.primaryColor,
-                    )
-                  : Text(
-                      LocaleKeys.premium_buyPremium.tr(),
-                      style: theme.typography.bodyMTrue,
-                    ),
+              foregroundColor: WidgetStateProperty.all(
+                isDisabled
+                    ? theme.primaryText.withOpacity(0.5)
+                    : theme.primaryText
+                        .withOpacity(onPressed != null ? 1 : 0.5),
+              ),
+              overlayColor: WidgetStateProperty.all(
+                theme.primaryText.withOpacity(0.1),
+              ),
             ),
+            onPressed: isProcessing || isDisabled ? null : onPressed,
+            child: isProcessing
+                ? CircularProgressIndicator.adaptive(
+                    backgroundColor: theme.primaryColor,
+                  )
+                : Text(
+                    LocaleKeys.premium_buyPremium.tr(),
+                    style: theme.typography.bodyMTrue,
+                  ),
           ),
         ),
       ),
