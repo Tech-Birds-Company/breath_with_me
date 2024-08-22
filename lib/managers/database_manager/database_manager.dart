@@ -4,6 +4,7 @@ import 'package:breathe_with_me/database/database.dart';
 import 'package:breathe_with_me/database/schemas/bloc_state_schema.dart';
 import 'package:breathe_with_me/database/schemas/download_track_task_schema.dart';
 import 'package:breathe_with_me/database/schemas/liked_track_schema.dart';
+import 'package:breathe_with_me/database/schemas/quotes_schema.dart';
 import 'package:breathe_with_me/database/schemas/secure_image_url_schema.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/features/tracks/models/tracks_list_state.dart';
@@ -19,6 +20,7 @@ final class DatabaseManager {
   late final blocStateCollection = db.blocStates;
   late final likedTracksCollection = db.likedTracks;
   late final downloadTrackTasksCollection = db.downloadTrackTasks;
+  late final quotesCollection = db.quotes;
 
   Future<DownloadTrackTask?> getDownloadTask(String taskId) =>
       downloadTrackTasksCollection.getByTaskId(taskId);
@@ -50,6 +52,20 @@ final class DatabaseManager {
     await db.writeTxn(
       () async => db.secureImageUrls.putByBaseUrl(secureUrlModel),
     );
+  }
+
+  Future<void> saveQuotes(List<Quotes> quotes) async {
+    await db.writeTxn(
+      () async {
+        await quotesCollection.clear();
+        await quotesCollection.putAll(quotes);
+      },
+    );
+  }
+
+  Future<List<Quotes>> loadQuotes() async {
+    final quotes = await quotesCollection.where().build().findAll();
+    return quotes;
   }
 
   Future<SecureImageUrl?> getSecureUrl(String baseUrl) =>

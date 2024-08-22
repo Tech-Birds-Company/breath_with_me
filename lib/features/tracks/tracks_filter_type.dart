@@ -1,4 +1,4 @@
-enum FilterType {
+enum TracksFilterType {
   categories,
   languages,
 }

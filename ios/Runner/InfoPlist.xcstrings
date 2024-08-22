@@ -1,0 +1,23 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "NSUserTrackingUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We use tracking to improve your user experience and provide better services."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Это помогает нам улучшать пользовательский опыт и предлагать персонализированный контент."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

@@ -38,7 +38,6 @@ class TracksList extends ConsumerWidget {
             ),
             itemBuilder: (context, index) {
               final track = tracks[index];
-
               return _TrackItem(
                 track: track,
                 bloc: ref.watch(Di.bloc.track(track)),

@@ -25,19 +25,31 @@ class TrackInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
+    final language = context.locale.languageCode;
+
+    final isPremiumTrack = track.isPremium;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            if (isPremiumTrack)
+              Padding(
+                padding: const EdgeInsetsDirectional.only(end: 4),
+                child: Icon(
+                  Icons.workspace_premium,
+                  color: theme.purple2,
+                  size: 28,
+                ),
+              ),
             Expanded(
-              flex: 0,
               child: Text(
-                track.categoryKey.tr(),
-                style: theme.typography.heading2.copyWith(
+                track.trackTranslatedTitle(language) ?? track.categoryKey.tr(),
+                style: theme.typography.heading3.copyWith(
                   color: theme.primaryText,
                 ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
             Expanded(
@@ -88,7 +100,8 @@ class TrackInfo extends StatelessWidget {
               child: TrackTutor(
                 key: ValueKey(track.tutor.id),
                 tutorAvatarUrl: track.tutor.avatarUrl,
-                tutorName: track.tutor.tutorNameKey.tr(),
+                tutorName: track.tutor.tutorTranslatedName(language) ??
+                    track.tutor.tutorNameKey.tr(),
               ),
             ),
             Expanded(

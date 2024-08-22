@@ -8,13 +8,15 @@ part of 'streak_quote_data.dart';
 
 _$StreakQuoteDataImpl _$$StreakQuoteDataImplFromJson(Map json) =>
     _$StreakQuoteDataImpl(
-      quote: json['quote'] as String? ?? '',
-      author: json['author'] as String? ?? '',
+      language: json['language'] as String,
+      quote: json['quote'] as String,
+      author: json['author'] as String,
     );
 
 Map<String, dynamic> _$$StreakQuoteDataImplToJson(
         _$StreakQuoteDataImpl instance) =>
     <String, dynamic>{
+      'language': instance.language,
       'quote': instance.quote,
       'author': instance.author,
     };

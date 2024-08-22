@@ -16,6 +16,7 @@ final class _BlocProviders {
     (ref) => HomeBloc(
       ref.watch(Di.manager.permissions),
       ref.watch(Di.manager.sharedPreferences),
+      ref.watch(Di.manager.user),
       ref.watch(Di.manager.navigation),
     ),
   );
@@ -120,6 +121,7 @@ final class _BlocProviders {
       final bloc = StreakBloc(
         ref.watch(Di.manager.streakProgress),
         ref.watch(Di.repository.firebaseRemoteConfig),
+        ref.watch(Di.repository.streaksQuotes),
         ref.watch(Di.manager.navigation),
       )..init();
       ref.onDispose(bloc.dispose);
@@ -136,8 +138,9 @@ final class _BlocProviders {
 
   late final premiumPaywall = Provider.autoDispose(
     (ref) => PremiumPaywallBloc(
-      ref.watch(Di.manager.subscriptions),
       ref.watch(Di.repository.firebaseRemoteConfig),
+      ref.watch(Di.manager.user),
+      ref.watch(Di.manager.deeplink),
       ref.watch(Di.manager.navigation),
     )..init(),
   );

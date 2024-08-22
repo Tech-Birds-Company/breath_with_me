@@ -1,69 +1,74 @@
 import 'dart:async';
 
-import 'package:breathe_with_me/constants.dart';
 import 'package:breathe_with_me/managers/database_manager/database_manager.dart';
+import 'package:breathe_with_me/managers/premium_manager/premium_manager.dart';
+import 'package:breathe_with_me/managers/shared_preferences_manager/shared_preferences_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/auth_result.dart';
 import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
+import 'package:breathe_with_me/utils/logger.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 final class FirebaseUserManager implements UserManager {
-  final bool _isProduction;
+  final PremiumManager _premiumManager;
   final DatabaseManager _databaseManager;
+  final SharedPreferencesManager _sharedPreferencesManager;
 
   FirebaseUserManager(
-    this._databaseManager, {
-    required bool isProduction,
-  }) : _isProduction = isProduction;
+    this._premiumManager,
+    this._databaseManager,
+    this._sharedPreferencesManager,
+  );
 
   StreamSubscription<User?>? _userSubscription;
   late final _firebaseAuth = FirebaseAuth.instance;
   late final _userStream = _firebaseAuth.userChanges();
 
-  ActionCodeSettings get _actionCodeSettings {
-    final url = _isProduction
-        ? BWMConstants.firebaseHostNameProd
-        : BWMConstants.firebaseHostNameDev;
-    final iOSBundleId = _isProduction
-        ? BWMConstants.iOSBundleIdProd
-        : BWMConstants.iOSBundleIdDev;
-
-    final androidPackageName = _isProduction
-        ? BWMConstants.androidPackageNameProd
-        : BWMConstants.androidPackageNameDev;
-
-    return ActionCodeSettings(
-      url: url,
-      handleCodeInApp: true,
-      iOSBundleId: iOSBundleId,
-      androidPackageName: androidPackageName,
-      androidInstallApp: true,
-      androidMinimumVersion: '1',
-    );
-  }
-
   @override
   User? get currentUser => _firebaseAuth.currentUser;
 
   @override
+  Future<bool> get isUserPremium async {
+    final user = _firebaseAuth.currentUser;
+    if (user != null) {
+      return _premiumManager.isUserPremium(user.uid);
+    }
+    return false;
+  }
+
+  @override
   Stream<User?> get userStream => _userStream;
 
-  void init() => _userSubscription ??= _userStream.listen(
-        (user) async {
-          if (user != null) {
-            await FirebaseAnalytics.instance
-                .setUserProperty(name: 'userId', value: user.uid);
-            return;
-          } else {
-            await FirebaseAnalytics.instance
-                .setUserProperty(name: 'userId', value: null);
-          }
-          await _databaseManager.clearDb();
-        },
-      );
+  @override
+  Stream<bool> get isPremiumUserStream {
+    final user = _firebaseAuth.currentUser;
+    if (user != null) {
+      return _premiumManager.isPremiumUserStream(user.uid);
+    }
+    return Stream.value(false);
+  }
+
+  void init() {
+    _userSubscription ??= _userStream.listen(
+      (user) async {
+        if (user != null) {
+          await FirebaseAnalytics.instance
+              .setUserProperty(name: 'userId', value: user.uid);
+          await Purchases.logIn(user.uid);
+          await _premiumManager.initSubscriptions();
+          return;
+        }
+        await FirebaseAnalytics.instance
+            .setUserProperty(name: 'userId', value: null);
+        await _sharedPreferencesManager.clear();
+        await _databaseManager.clearDb();
+      },
+    );
+  }
 
   @override
   Future<User?> signInWithEmail(String email, String password) async {
@@ -149,14 +154,10 @@ final class FirebaseUserManager implements UserManager {
   @override
   Future<void> sendResetPassword(String email) async {
     try {
-      await _firebaseAuth.sendPasswordResetEmail(
-        email: email,
-        actionCodeSettings: _actionCodeSettings,
-      );
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
       if (kDebugMode) {
-        // TODO(musamuss): добавить обработку ошибок
-        print(e.message);
+        logger.e('Error sending password reset email: $e');
       }
     }
   }
@@ -177,6 +178,16 @@ final class FirebaseUserManager implements UserManager {
 
   Future<void> _sendEmailVerification() async {
     await _firebaseAuth.currentUser?.sendEmailVerification();
+  }
+
+  @override
+  Future<bool> deleteAccount() async {
+    final user = _firebaseAuth.currentUser;
+    if (user != null) {
+      await user.delete();
+      return true;
+    }
+    return false;
   }
 
   @override

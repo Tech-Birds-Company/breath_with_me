@@ -1,8 +1,9 @@
 import 'dart:async';
 
-import 'package:breathe_with_me/features/tracks/filter_type.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/features/tracks/models/tracks_filters_state.dart';
+import 'package:breathe_with_me/features/tracks/tracks_filter_type.dart';
+import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/repositories/tracks_repository.dart';
 import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
@@ -22,11 +23,16 @@ final class TracksFiltersBloc extends BlocBase<TracksFiltersState> {
   void init() =>
       _cachedTracksSubscription ??= _tracksRepository.cachedTracksStream.listen(
         (tracks) {
-          final categoriesKeys = tracks.map((e) => e.categoryKey).toSet();
-          final languagesKeys = tracks.map((e) => e.language.name).toSet();
+          final categoriesKeys =
+              tracks.map((e) => e.categoryKey).toSet().toList();
+          final languagesKeys =
+              tracks.map((e) => e.language.name).toSet().toList();
           emit(
             state.copyWith(
-              categoriesKeys: categoriesKeys,
+              categoriesKeys: [
+                LocaleKeys.trackCategoryPremium,
+                ...categoriesKeys,
+              ],
               languagesKeys: languagesKeys,
             ),
           );
@@ -43,14 +49,14 @@ final class TracksFiltersBloc extends BlocBase<TracksFiltersState> {
   Future<void> openCategoryFilterSheet() async {
     BWMAnalytics.event('onOpenCategoryFilterSheet');
     emit(state.copyWith(selectingCategory: true));
-    await _navigationManager.openFiltersSheet(FilterType.categories);
+    await _navigationManager.openFiltersSheet(TracksFilterType.categories);
     emit(state.copyWith(selectingCategory: false));
   }
 
   Future<void> openLanguageFilterSheet() async {
     BWMAnalytics.event('onOpenLanguageFilterSheet');
     emit(state.copyWith(selectingLanguage: true));
-    await _navigationManager.openFiltersSheet(FilterType.languages);
+    await _navigationManager.openFiltersSheet(TracksFilterType.languages);
     emit(state.copyWith(selectingLanguage: false));
   }
 

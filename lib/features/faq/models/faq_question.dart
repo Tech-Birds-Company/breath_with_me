@@ -10,7 +10,7 @@ class FaqQuestion {
   final String description;
   final FaqLanguage language;
 
-  FaqQuestion({
+  const FaqQuestion({
     required this.id,
     required this.title,
     required this.description,

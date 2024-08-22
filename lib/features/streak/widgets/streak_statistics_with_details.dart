@@ -1,3 +1,4 @@
+import 'package:breathe_with_me/common/widgets/bwm_action_button.dart';
 import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/features/streak/blocs/streak_bloc.dart';
 import 'package:breathe_with_me/features/streak/models/streak_state.dart';
@@ -25,63 +26,101 @@ class StreakStatisticsWithDetails extends HookConsumerWidget {
     return BlocSelector<StreakBloc, StreakState, StreakProgressV2>(
       bloc: bloc,
       selector: (state) => state.progress,
-      builder: (context, progress) => Column(
-        children: [
-          IntrinsicHeight(
-            child: Row(
+      builder: (context, progress) {
+        final lastPracticeDate = progress.lastPracticeDate;
+        return StreamBuilder<bool>(
+          initialData: false,
+          stream: ref.watch(Di.manager.user).isPremiumUserStream,
+          builder: (context, snapshot) {
+            final premiumEnabled = snapshot.requireData;
+            return Column(
               children: [
-                const Spacer(),
-                StreakStatisticsItem(
-                  text: progress.totalStreak.toString(),
-                  name: LocaleKeys.streakStatisticsCardStreaksCount
-                      .plural(progress.totalStreak),
-                  applyBlur: false,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                IntrinsicHeight(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      StreakStatisticsItem(
+                        text: progress.totalStreak.toString(),
+                        name: LocaleKeys.streakStatisticsCardStreaksCount
+                            .plural(progress.totalStreak),
+                        applyBlur: false,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        onTap: bloc.onOpenPaywall,
+                      ),
+                      divider,
+                      StreakStatisticsItem(
+                        text: progress.totalPractices.toString(),
+                        name: LocaleKeys.streakStatisticsCardPracticesCount
+                            .plural(progress.totalPractices),
+                        applyBlur: !premiumEnabled,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        onTap: bloc.onOpenPaywall,
+                      ),
+                      divider,
+                      StreakStatisticsItem(
+                        text: progress.totalMinutes.toString(),
+                        name: LocaleKeys.streakStatisticsCardMinCount
+                            .plural(progress.totalMinutes),
+                        applyBlur: !premiumEnabled,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        onTap: bloc.onOpenPaywall,
+                      ),
+                    ],
+                  ),
                 ),
-                const Spacer(),
-                divider,
-                const Spacer(),
-                StreakStatisticsItem(
-                  text: progress.totalPractices.toString(),
-                  name: LocaleKeys.streakStatisticsCardPracticesCount
-                      .plural(progress.totalPractices),
-                  applyBlur: true,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                if (lastPracticeDate != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16),
+                    child: Text(
+                      LocaleKeys.streakLastPracticeDate
+                          .tr(args: [lastPracticeDate]),
+                      style:
+                          theme.typography.label.copyWith(color: theme.purple2),
+                    ),
+                  ),
+                const SizedBox(height: 16),
+                Text(
+                  LocaleKeys.streakLivesTitle.tr().toUpperCase(),
+                  style: theme.typography.label.copyWith(color: theme.gray3),
                 ),
-                const Spacer(),
-                divider,
-                const Spacer(),
-                StreakStatisticsItem(
-                  text: progress.totalMinutes.toString(),
-                  name: LocaleKeys.streakStatisticsCardMinCount
-                      .plural(progress.totalMinutes),
-                  applyBlur: true,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                const SizedBox(height: 16),
+                LivesIndicator(
+                  totalLives: premiumEnabled ? progress.totalLives : 0,
+                  configMaxLives: 3,
+                  utcLivesExpireDateTime: progress.utcLivesExpireDateTime,
+                  isPremiumEnabled: premiumEnabled,
                 ),
-                const Spacer(),
+                if (premiumEnabled && progress.canRestore)
+                  Column(
+                    children: [
+                      const SizedBox(height: 16),
+                      BWMActionButton(
+                        title: LocaleKeys.streakMissedDayRestore.tr(),
+                        height: 44,
+                        onPressed: bloc.onRestoreTap,
+                      ),
+                    ],
+                  ),
+                if (!premiumEnabled)
+                  Column(
+                    children: [
+                      const SizedBox(height: 16),
+                      Text(
+                        LocaleKeys.streakLivesWhenPremiumEnabled
+                            .tr()
+                            .toUpperCase(),
+                        textAlign: TextAlign.center,
+                        style: theme.typography.label.copyWith(
+                          color: theme.gray6,
+                        ),
+                      ),
+                    ],
+                  ),
               ],
-            ),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            LocaleKeys.streakLivesTitle.tr().toUpperCase(),
-            style: theme.typography.label.copyWith(color: theme.gray3),
-          ),
-          const SizedBox(height: 8),
-          const LivesIndicator(
-            totalLives: 0,
-            configMaxLives: 3,
-          ),
-          const SizedBox(height: 16),
-          Text(
-            LocaleKeys.streakLivesWhenPremiumEnabled.tr().toUpperCase(),
-            textAlign: TextAlign.center,
-            style: theme.typography.label.copyWith(
-              color: theme.gray6,
-            ),
-          ),
-        ],
-      ),
+            );
+          },
+        );
+      },
     );
   }
 }

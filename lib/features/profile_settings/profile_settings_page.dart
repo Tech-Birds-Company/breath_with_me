@@ -89,6 +89,22 @@ class ProfileSettingsPage extends HookConsumerWidget {
                           .copyWith(color: theme.secondaryColor),
                     ),
                   ),
+                  ListTile(
+                    minLeadingWidth: 0,
+                    horizontalTitleGap: 8,
+                    contentPadding: EdgeInsets.zero,
+                    leading: Icon(
+                      Icons.delete,
+                      color: theme.red,
+                    ),
+                    title: Text(
+                      LocaleKeys.profileDeleteAccount.tr(),
+                      style: theme.typography.bodyM.copyWith(
+                        color: theme.primaryText,
+                      ),
+                    ),
+                    onTap: bloc.onDeleteAccount,
+                  ),
                   const Spacer(),
                 ],
               ),

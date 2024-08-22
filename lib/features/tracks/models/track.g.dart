@@ -15,9 +15,14 @@ _$TrackImpl _$$TrackImplFromJson(Map json) => _$TrackImpl(
       coverIcon: json['coverIcon'] as String,
       language: $enumDecode(_$TrackLanguageEnumMap, json['language'],
           unknownValue: TrackLanguage.unknown),
-      animationColor: json['animationColor'] as String?,
       isPremium: json['isPremium'] as bool? ?? false,
-      isNew: json['isNew'] as bool? ?? false,
+      listOrder: (json['listOrder'] as num?)?.toInt(),
+      animationColor: json['animationColor'] as String?,
+      artist: json['artist'] as String?,
+      trackName: json['trackName'] as String?,
+      trackTitleTranslations: (json['trackTitleTranslations'] as Map?)?.map(
+        (k, e) => MapEntry(k as String, e as String),
+      ),
     );
 
 Map<String, dynamic> _$$TrackImplToJson(_$TrackImpl instance) =>
@@ -29,9 +34,12 @@ Map<String, dynamic> _$$TrackImplToJson(_$TrackImpl instance) =>
       'tutor': instance.tutor.toJson(),
       'coverIcon': instance.coverIcon,
       'language': _$TrackLanguageEnumMap[instance.language]!,
-      'animationColor': instance.animationColor,
       'isPremium': instance.isPremium,
-      'isNew': instance.isNew,
+      'listOrder': instance.listOrder,
+      'animationColor': instance.animationColor,
+      'artist': instance.artist,
+      'trackName': instance.trackName,
+      'trackTitleTranslations': instance.trackTitleTranslations,
     };
 
 const _$TrackLanguageEnumMap = {

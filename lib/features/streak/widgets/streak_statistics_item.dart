@@ -8,12 +8,14 @@ class StreakStatisticsItem extends StatelessWidget {
   final String name;
   final bool applyBlur;
   final CrossAxisAlignment crossAxisAlignment;
+  final VoidCallback onTap;
 
   const StreakStatisticsItem({
     required this.text,
     required this.name,
     required this.applyBlur,
     required this.crossAxisAlignment,
+    required this.onTap,
     super.key,
   });
 
@@ -24,14 +26,21 @@ class StreakStatisticsItem extends StatelessWidget {
     return Column(
       crossAxisAlignment: crossAxisAlignment,
       children: [
-        ImageFiltered(
-          imageFilter: ImageFilter.blur(
-            sigmaX: blurSigma,
-            sigmaY: blurSigma,
-          ),
-          child: Text(
-            text,
-            style: theme.typography.titleExtra.copyWith(color: theme.gray4),
+        GestureDetector(
+          onTap: () {
+            if (applyBlur) {
+              onTap();
+            }
+          },
+          child: ImageFiltered(
+            imageFilter: ImageFilter.blur(
+              sigmaX: blurSigma,
+              sigmaY: blurSigma,
+            ),
+            child: Text(
+              text,
+              style: theme.typography.titleExtra.copyWith(color: theme.gray4),
+            ),
           ),
         ),
         const SizedBox(height: 8),

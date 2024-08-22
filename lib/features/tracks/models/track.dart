@@ -16,10 +16,18 @@ class Track with _$Track {
     required String coverIcon,
     @JsonKey(unknownEnumValue: TrackLanguage.unknown)
     required TrackLanguage language,
-    String? animationColor,
     @Default(false) bool isPremium,
-    @Default(false) bool isNew,
+    int? listOrder,
+    String? animationColor,
+    String? artist,
+    String? trackName,
+    Map<String, String>? trackTitleTranslations,
   }) = _Track;
+
+  const Track._();
+
+  String? trackTranslatedTitle(String language) =>
+      trackTitleTranslations?[language];
 
   factory Track.fromJson(Map<String, dynamic> json) => _$TrackFromJson(json);
 }

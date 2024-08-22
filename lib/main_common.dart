@@ -17,10 +17,13 @@ import 'package:breathe_with_me/managers/premium_manager/premium_manager.dart';
 import 'package:breathe_with_me/managers/push_notifications/push_notifications_manager.dart';
 import 'package:breathe_with_me/managers/shared_preferences_manager/shared_preferences_manager.dart';
 import 'package:breathe_with_me/managers/user_manager/firebase_user_manager.dart';
+import 'package:breathe_with_me/repositories/firebase_premium_repository.dart';
 import 'package:breathe_with_me/repositories/firebase_remote_config_repository.dart';
+import 'package:breathe_with_me/repositories/streaks_quotes_repository.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/isar_bloc_storage.dart';
 import 'package:breathe_with_me/utils/environment.dart';
+import 'package:breathe_with_me/utils/logger.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -47,15 +50,27 @@ Future<List<Override>> _setupDependencies({
   final tracksDownloadManager = TracksDownloaderManager(databaseManager);
 
   const remoteConfigRepository = FirebaseRemoteConfigRepository();
+  final streaksQuotesRepository = StreaksQuotesRepository(databaseManager);
 
-  final premiumManager = PremiumManager();
+  unawaited(
+    streaksQuotesRepository.fetchQuotes(),
+  );
 
-  final userManager = FirebaseUserManager(
-    databaseManager,
-    isProduction: isProduction,
-  )..init();
+  final premiumManager = PremiumManager(
+    const FirebasePremiumRepository(),
+  );
+
+  await premiumManager.init(isProduction: isProduction);
+  await premiumManager.initSubscriptions();
 
   final sharedPrefsManager = SharedPreferencesManager();
+  await sharedPrefsManager.init();
+
+  final userManager = FirebaseUserManager(
+    premiumManager,
+    databaseManager,
+    sharedPrefsManager,
+  )..init();
 
   final pushNotificationsManager = PushNotificationsManager();
 
@@ -73,8 +88,13 @@ Future<List<Override>> _setupDependencies({
 
   final linkHandlerManager = LinkHandlerManager(navigationManager)..init();
 
+  final uid = userManager.currentUser?.uid;
+  if (uid != null) {
+    await tracksDownloadManager.validateDownloads(uid);
+  }
+
   final trackAudioManager = await AudioService.init(
-    builder: () => TrackAudioManager(premiumManager),
+    builder: () => TrackAudioManager(userManager),
     config: const AudioServiceConfig(
       androidNotificationChannelId: BWMConstants.androidNotificationChannelId,
       androidNotificationChannelName:
@@ -82,19 +102,15 @@ Future<List<Override>> _setupDependencies({
     ),
   );
 
-  final uid = userManager.currentUser?.uid;
-  if (uid != null) {
-    await tracksDownloadManager.validateDownloads(uid);
-  }
-
-  await sharedPrefsManager.init();
   await pushNotificationsManager.init();
 
   final dependencies = [
-    Di.manager.database.overrideWith((ref) {
-      ref.onDispose(databaseManager.dispose);
-      return databaseManager;
-    }),
+    Di.manager.database.overrideWith(
+      (ref) {
+        ref.onDispose(databaseManager.dispose);
+        return databaseManager;
+      },
+    ),
     Di.manager.audio.overrideWith(
       (ref) {
         ref.onDispose(trackAudioManager.dispose);
@@ -103,15 +119,23 @@ Future<List<Override>> _setupDependencies({
     ),
     Di.repository.firebaseRemoteConfig
         .overrideWithValue(remoteConfigRepository),
-    Di.manager.premium.overrideWithValue(premiumManager),
     Di.manager.sharedPreferences.overrideWithValue(sharedPrefsManager),
     Di.manager.pushNotifications.overrideWithValue(pushNotificationsManager),
     Di.manager.navigation.overrideWithValue(navigationManager),
-    Di.manager.user.overrideWith((ref) {
-      ref.onDispose(userManager.dispose);
-      return userManager;
-    }),
+    Di.manager.user.overrideWith(
+      (ref) {
+        ref.onDispose(userManager.dispose);
+        return userManager;
+      },
+    ),
     Di.manager.linkHandler.overrideWithValue(linkHandlerManager),
+    Di.manager.premium.overrideWith(
+      (ref) {
+        ref.onDispose(premiumManager.dispose);
+        return premiumManager;
+      },
+    ),
+    Di.manager.sharedPreferences.overrideWithValue(sharedPrefsManager),
   ];
 
   return dependencies;
@@ -138,14 +162,22 @@ Future<void> mainCommon(Environment env) async {
 
   await EasyLocalization.ensureInitialized();
 
-  await FirebaseRemoteConfig.instance.ensureInitialized();
-  await FirebaseRemoteConfig.instance.setConfigSettings(
-    RemoteConfigSettings(
-      fetchTimeout: const Duration(seconds: 10),
-      minimumFetchInterval: const Duration(minutes: 12),
-    ),
-  );
-  await FirebaseRemoteConfig.instance.fetchAndActivate();
+  try {
+    await FirebaseRemoteConfig.instance.ensureInitialized();
+    await FirebaseRemoteConfig.instance.setConfigSettings(
+      RemoteConfigSettings(
+        fetchTimeout: const Duration(seconds: 10),
+        minimumFetchInterval: const Duration(minutes: 12),
+      ),
+    );
+    await FirebaseRemoteConfig.instance.fetchAndActivate();
+  } on FirebaseException catch (e) {
+    logger.e(
+      e.message,
+      error: e,
+      stackTrace: e.stackTrace,
+    );
+  }
 
   final dependencies =
       await _setupDependencies(isProduction: env == Environment.prod);
@@ -157,6 +189,7 @@ Future<void> mainCommon(Environment env) async {
         ProviderLogger(),
       ],
       child: EasyLocalization(
+        ignorePluralRules: false,
         useOnlyLangCode: true,
         path: BWMAssets.i18n,
         fallbackLocale: const Locale('en'),

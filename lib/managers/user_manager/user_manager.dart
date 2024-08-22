@@ -26,7 +26,13 @@ abstract interface class UserManager {
 
   Stream<User?> get userStream;
 
+  Stream<bool> get isPremiumUserStream;
+
   User? get currentUser;
+
+  Future<bool> get isUserPremium;
+
+  Future<bool> deleteAccount();
 
   void dispose();
 }

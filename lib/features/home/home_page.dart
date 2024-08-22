@@ -1,6 +1,7 @@
 import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/extensions/widget.dart';
 import 'package:breathe_with_me/features/home/widgets/home_header.dart';
+import 'package:breathe_with_me/features/premium/widgets/premium_banner_tracks.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_filters/tracks_filters.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_list/tracks_list.dart';
 import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
@@ -23,7 +24,7 @@ class HomePage extends HookConsumerWidget {
       const [],
     );
     return Scaffold(
-      backgroundColor: Colors.black, // TODO(vasidmi): use theme
+      backgroundColor: Colors.black,
       body: SafeArea(
         bottom: false,
         child: CustomScrollView(
@@ -41,6 +42,18 @@ class HomePage extends HookConsumerWidget {
               padding: const EdgeInsetsDirectional.symmetric(horizontal: 12),
               sliver: const TracksFilters().toSliver(),
             ),
+            StreamBuilder<bool>(
+              initialData: false,
+              stream: ref.watch(Di.manager.user).isPremiumUserStream,
+              builder: (context, snapshot) {
+                final isPremiumEnabled = snapshot.requireData;
+                return isPremiumEnabled
+                    ? const SizedBox.shrink()
+                    : PremiumBannerTracks(
+                        onTap: bloc.onOpenPaywall,
+                      );
+              },
+            ).toSliver(),
             const SliverPadding(
               padding: EdgeInsets.symmetric(
                 horizontal: 20,

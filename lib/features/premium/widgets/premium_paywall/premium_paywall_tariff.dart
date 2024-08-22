@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 class PremiumPaywallProduct extends StatelessWidget {
   final String productId;
   final String title;
-  final String? description;
   final String price;
   final bool selected;
   final void Function(String id)? onPressed;
@@ -13,7 +12,6 @@ class PremiumPaywallProduct extends StatelessWidget {
     required this.productId,
     required this.title,
     required this.price,
-    this.description,
     this.selected = false,
     this.onPressed,
     super.key,
@@ -53,15 +51,6 @@ class PremiumPaywallProduct extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                     ),
-                    if (description != null)
-                      Text(
-                        description!,
-                        style: theme.typography.footer.copyWith(
-                          color: theme.primaryColor,
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                      ),
                   ],
                 ),
               ),

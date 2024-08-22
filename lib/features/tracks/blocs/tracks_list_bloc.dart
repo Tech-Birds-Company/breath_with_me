@@ -4,6 +4,7 @@ import 'package:breathe_with_me/features/tracks/blocs/tracks_filters_bloc.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
 import 'package:breathe_with_me/features/tracks/models/tracks_filters_state.dart';
 import 'package:breathe_with_me/features/tracks/models/tracks_list_state.dart';
+import 'package:breathe_with_me/i18n/locale_keys.g.dart';
 import 'package:breathe_with_me/managers/database_manager/database_cached_keys.dart';
 import 'package:breathe_with_me/repositories/tracks_repository.dart';
 import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
@@ -76,8 +77,14 @@ final class TracksListBloc extends CacheableBloc<TracksListState> {
           (track) {
             final trackIsLiked = likedTracks.contains(track.id);
             final isLikedFilter = filtersState.likedTracksOnly;
+            final isPremiumFilter = filtersState.selectedCategoryKey ==
+                LocaleKeys.trackCategoryPremium;
             final selectedCategory = filtersState.selectedCategoryKey;
             final selectedLanguage = filtersState.selectedLanguageKey;
+
+            if (isPremiumFilter && track.isPremium) {
+              return true;
+            }
 
             if (isLikedFilter && !trackIsLiked) {
               return false;

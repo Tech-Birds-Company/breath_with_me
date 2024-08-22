@@ -20,6 +20,7 @@ StreakQuoteData _$StreakQuoteDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$StreakQuoteData {
+  String get language => throw _privateConstructorUsedError;
   String get quote => throw _privateConstructorUsedError;
   String get author => throw _privateConstructorUsedError;
 
@@ -35,7 +36,7 @@ abstract class $StreakQuoteDataCopyWith<$Res> {
           StreakQuoteData value, $Res Function(StreakQuoteData) then) =
       _$StreakQuoteDataCopyWithImpl<$Res, StreakQuoteData>;
   @useResult
-  $Res call({String quote, String author});
+  $Res call({String language, String quote, String author});
 }
 
 /// @nodoc
@@ -51,10 +52,15 @@ class _$StreakQuoteDataCopyWithImpl<$Res, $Val extends StreakQuoteData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? language = null,
     Object? quote = null,
     Object? author = null,
   }) {
     return _then(_value.copyWith(
+      language: null == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String,
       quote: null == quote
           ? _value.quote
           : quote // ignore: cast_nullable_to_non_nullable
@@ -75,7 +81,7 @@ abstract class _$$StreakQuoteDataImplCopyWith<$Res>
       __$$StreakQuoteDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String quote, String author});
+  $Res call({String language, String quote, String author});
 }
 
 /// @nodoc
@@ -89,10 +95,15 @@ class __$$StreakQuoteDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? language = null,
     Object? quote = null,
     Object? author = null,
   }) {
     return _then(_$StreakQuoteDataImpl(
+      language: null == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String,
       quote: null == quote
           ? _value.quote
           : quote // ignore: cast_nullable_to_non_nullable
@@ -108,21 +119,22 @@ class __$$StreakQuoteDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$StreakQuoteDataImpl implements _StreakQuoteData {
-  const _$StreakQuoteDataImpl({this.quote = '', this.author = ''});
+  const _$StreakQuoteDataImpl(
+      {required this.language, required this.quote, required this.author});
 
   factory _$StreakQuoteDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$StreakQuoteDataImplFromJson(json);
 
   @override
-  @JsonKey()
+  final String language;
+  @override
   final String quote;
   @override
-  @JsonKey()
   final String author;
 
   @override
   String toString() {
-    return 'StreakQuoteData(quote: $quote, author: $author)';
+    return 'StreakQuoteData(language: $language, quote: $quote, author: $author)';
   }
 
   @override
@@ -130,13 +142,15 @@ class _$StreakQuoteDataImpl implements _StreakQuoteData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StreakQuoteDataImpl &&
+            (identical(other.language, language) ||
+                other.language == language) &&
             (identical(other.quote, quote) || other.quote == quote) &&
             (identical(other.author, author) || other.author == author));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, quote, author);
+  int get hashCode => Object.hash(runtimeType, language, quote, author);
 
   @JsonKey(ignore: true)
   @override
@@ -154,12 +168,16 @@ class _$StreakQuoteDataImpl implements _StreakQuoteData {
 }
 
 abstract class _StreakQuoteData implements StreakQuoteData {
-  const factory _StreakQuoteData({final String quote, final String author}) =
-      _$StreakQuoteDataImpl;
+  const factory _StreakQuoteData(
+      {required final String language,
+      required final String quote,
+      required final String author}) = _$StreakQuoteDataImpl;
 
   factory _StreakQuoteData.fromJson(Map<String, dynamic> json) =
       _$StreakQuoteDataImpl.fromJson;
 
+  @override
+  String get language;
   @override
   String get quote;
   @override

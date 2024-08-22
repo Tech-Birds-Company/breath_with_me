@@ -1,85 +1,118 @@
 import 'dart:io';
 
 import 'package:breathe_with_me/features/premium/models/premium_paywall_state.dart';
+import 'package:breathe_with_me/managers/deeplink_manager/deeplink_manager.dart';
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
-import 'package:breathe_with_me/managers/subscriptions_manager/subscriptions_manager.dart';
+import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/repositories/remote_config_repository.dart';
-import 'package:flutter/services.dart';
+import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
+import 'package:breathe_with_me/utils/logger.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 
 final class PremiumPaywallBloc extends BlocBase<PremiumPaywallState> {
-  final SubscriptionsManager _subscriptionsManager;
   final RemoteConfigRepository _remoteConfigRepository;
+  final UserManager _userManager;
+  final DeeplinkManager _deeplinkManager;
   final NavigationManager _navigationManager;
 
   PremiumPaywallBloc(
-    this._subscriptionsManager,
     this._remoteConfigRepository,
+    this._userManager,
+    this._deeplinkManager,
     this._navigationManager,
-  ) : super(const PremiumPaywallState.loading());
+  ) : super(const PremiumPaywallState());
 
   Future<void> init() async {
-    final configSubscriptionsPaywall =
-        _remoteConfigRepository.premiumV2.paywall;
+    final premiumProducts = Platform.isIOS
+        ? _remoteConfigRepository.basePremium.ios
+        : _remoteConfigRepository.basePremium.android;
 
-    final configSubscriptions = Platform.isIOS
-        ? configSubscriptionsPaywall.subscriptions.ios
-        : configSubscriptionsPaywall.subscriptions.android;
+    late List<String> identifiers;
 
-    final subscriptions =
-        await _subscriptionsManager.getProducts(configSubscriptions);
-
-    if (configSubscriptions.isNotEmpty) {
-      subscriptions
-          .removeWhere((key, value) => !configSubscriptions.contains(key));
+    if (Platform.isIOS) {
+      identifiers = [
+        premiumProducts.annualIdentifier,
+        premiumProducts.threeMonthsIdentfier,
+      ];
+    } else {
+      identifiers = [
+        premiumProducts.annualIdentifier.split(':').first,
+        premiumProducts.threeMonthsIdentfier.split(':').first,
+      ];
     }
 
+    final res = await Purchases.getProducts(identifiers);
+    BWMAnalytics.event(
+      'premium_products_loaded',
+      params: {
+        'products': identifiers.join(','),
+      },
+    );
+
     emit(
-      PremiumPaywallState.data(
-        subscriptions: subscriptions,
-        selectedSubscriptionId:
-            subscriptions.entries.firstOrNull?.value.identifier,
+      state.copyWith(
+        storeProducts: {
+          premiumProducts.annualIdentifier: res
+              .where((p) => p.identifier == premiumProducts.annualIdentifier)
+              .firstOrNull,
+          premiumProducts.threeMonthsIdentfier: res
+              .where(
+                (p) => p.identifier == premiumProducts.threeMonthsIdentfier,
+              )
+              .firstOrNull,
+        },
       ),
     );
   }
 
   void onSubscriptionSelected(String id) {
-    if (state is! PremiumPaywallData) {
-      return;
-    } else {
-      final currentState = state as PremiumPaywallData;
-      if (currentState.premiumPurchaseProcessing) {
-        return;
-      }
-    }
     emit(
-      state.maybeMap(
-        data: (state) => PremiumPaywallState.data(
-          subscriptions: state.subscriptions,
-          selectedSubscriptionId: id,
-        ),
-        orElse: () => state,
+      state.copyWith(
+        selectedSubscriptionId: id,
       ),
+    );
+    BWMAnalytics.event(
+      'premium_subscription_selected',
+      params: {
+        'id': id,
+      },
     );
   }
 
-  void onBuyPremium() {
-    state.mapOrNull(
-      data: (state) async {
-        if (state.selectedSubscriptionId != null) {
-          emit(state.copyWith(premiumPurchaseProcessing: true));
-          try {
-            await _subscriptionsManager
-                .purchase(state.subscriptions[state.selectedSubscriptionId]!);
-          } on PlatformException {
-            // TODO(vasidmi): handle error
-          } finally {
-            emit(state.copyWith(premiumPurchaseProcessing: false));
-            _navigationManager.pop();
-          }
-        }
-      },
-    );
+  Future<void> onBuyPremium() async {
+    final product = state.storeProducts[state.selectedSubscriptionId];
+    if (product == null) return;
+    try {
+      emit(state.copyWith(premiumPurchaseProcessing: true));
+      await Purchases.purchaseStoreProduct(product);
+      BWMAnalytics.event(
+        'premium_purchased',
+        params: {
+          'id': product.identifier,
+          'user_id': _userManager.currentUser?.uid ?? 'unknown',
+        },
+      );
+      _navigationManager.pop();
+    } on Object catch (e) {
+      logger.e('Error purchasing premium: $e');
+      BWMAnalytics.event(
+        'premium_purchase_error',
+        params: {
+          'error': e.toString(),
+        },
+      );
+    } finally {
+      emit(state.copyWith(premiumPurchaseProcessing: false));
+    }
+  }
+
+  Future<void> onOpenPrivacyPolicy() async {
+    await _deeplinkManager.onOpenPrivacyPolicy();
+  }
+
+  Future<void> onOpenTermsOfService() async {
+    await _deeplinkManager.onOpenTermsOfService();
   }
 
   void onClosePaywall() => _navigationManager.pop();

@@ -29,6 +29,12 @@ final class _RepositoryProviders {
   );
 
   late final streaksQuotes = Provider(
-    (ref) => const StreaksQuotesRepository(),
+    (ref) => StreaksQuotesRepository(
+      ref.watch(Di.manager.database),
+    ),
+  );
+
+  late final premiumUsers = Provider(
+    (ref) => const FirebasePremiumRepository(),
   );
 }

@@ -1,6 +1,6 @@
 import 'package:breathe_with_me/extensions/string.dart';
+import 'package:breathe_with_me/repositories/models/remote_config/remote_config_base_premium.dart';
 import 'package:breathe_with_me/repositories/models/remote_config/remote_config_legal_documents.dart';
-import 'package:breathe_with_me/repositories/models/remote_config/remote_config_premium_v2.dart';
 import 'package:breathe_with_me/repositories/models/remote_config/remote_config_socials.dart';
 import 'package:breathe_with_me/repositories/models/remote_config/remote_config_streaks.dart';
 import 'package:breathe_with_me/repositories/remote_config_repository.dart';
@@ -28,15 +28,14 @@ final class FirebaseRemoteConfigRepository implements RemoteConfigRepository {
   }
 
   @override
-  RemoteConfigPremiumV2 get premiumV2 {
-    final value =
-        FirebaseRemoteConfig.instance.getString(RemoteConfigKey.premiumV2.key);
-    return RemoteConfigPremiumV2.fromJson(value.asJson);
-  }
-
-  @override
   RemoteConfigStreaks get streaks {
     final value = FirebaseRemoteConfig.instance.getString('streaks');
     return RemoteConfigStreaks.fromJson(value.asJson);
+  }
+
+  @override
+  RemoteConfigBasePremium get basePremium {
+    final value = FirebaseRemoteConfig.instance.getString('base_premium');
+    return RemoteConfigBasePremium.fromJson(value.asJson);
   }
 }

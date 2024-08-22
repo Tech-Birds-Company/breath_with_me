@@ -1,9 +1,11 @@
 import 'package:breathe_with_me/assets.dart';
+import 'package:breathe_with_me/di/di.dart';
 import 'package:breathe_with_me/theme/bwm_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
-class ProfileButton extends StatelessWidget {
+class ProfileButton extends ConsumerWidget {
   final VoidCallback? onTap;
   final double size;
   final double iconWidth;
@@ -18,7 +20,7 @@ class ProfileButton extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).extension<BWMTheme>()!;
     return GestureDetector(
       onTap: onTap,
@@ -26,19 +28,26 @@ class ProfileButton extends StatelessWidget {
         child: SizedBox(
           width: size,
           height: size,
-          child: ColoredBox(
-            color: theme.primaryColor,
-            child: Center(
-              child: SvgPicture.asset(
-                BWMAssets.profileIcon,
-                width: iconWidth,
-                height: iconHeight,
-                colorFilter: ColorFilter.mode(
-                  theme.gray1,
-                  BlendMode.srcIn,
+          child: StreamBuilder<bool>(
+            initialData: false,
+            stream: ref.watch(Di.manager.user).isPremiumUserStream,
+            builder: (context, snapshot) {
+              final premiumEnabled = snapshot.requireData;
+              return ColoredBox(
+                color: premiumEnabled ? theme.purple2 : theme.primaryColor,
+                child: Center(
+                  child: SvgPicture.asset(
+                    BWMAssets.profileIcon,
+                    width: iconWidth,
+                    height: iconHeight,
+                    colorFilter: ColorFilter.mode(
+                      premiumEnabled ? theme.primaryColor : theme.gray1,
+                      BlendMode.srcIn,
+                    ),
+                  ),
                 ),
-              ),
-            ),
+              );
+            },
           ),
         ),
       ),

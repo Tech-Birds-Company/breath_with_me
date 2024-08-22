@@ -11,8 +11,8 @@ import 'package:breathe_with_me/features/reminder/reminder_page.dart';
 import 'package:breathe_with_me/features/safety_precautions/safety_precautions_page.dart';
 import 'package:breathe_with_me/features/streak/streak_page.dart';
 import 'package:breathe_with_me/features/track_player/track_player_page.dart';
-import 'package:breathe_with_me/features/tracks/filter_type.dart';
 import 'package:breathe_with_me/features/tracks/models/track.dart';
+import 'package:breathe_with_me/features/tracks/tracks_filter_type.dart';
 import 'package:breathe_with_me/features/tracks/widgets/tracks_filters/tracks_filter_sheet.dart';
 import 'package:breathe_with_me/managers/navigation_manager/bwm_modal_page.dart';
 import 'package:breathe_with_me/managers/navigation_manager/routes/auth_routes.dart';
@@ -101,7 +101,7 @@ abstract final class BWMRoutes {
         backgroundColor: Colors.transparent,
         isScrollControlled: true,
         child: TracksFilterSheet(
-          filterType: state.extra! as FilterType,
+          filterType: state.extra! as TracksFilterType,
         ),
       ),
     ),
@@ -122,15 +122,18 @@ abstract final class BWMRoutes {
     ),
     GoRoute(
       path: BWMRoutes.streak,
-      pageBuilder: (context, state) => const BWMModalPage(
-        barrierColor: Colors.transparent,
-        useSafeArea: true,
-        enableDrag: false,
-        isDismissible: false,
-        isScrollControlled: true,
-        backgroundColor: Colors.black,
-        child: StreakPage(),
-      ),
+      pageBuilder: (context, state) {
+        final track = state.extra! as Track;
+        return BWMModalPage(
+          barrierColor: Colors.transparent,
+          useSafeArea: true,
+          enableDrag: false,
+          isDismissible: false,
+          isScrollControlled: true,
+          backgroundColor: Colors.black,
+          child: StreakPage(track: track),
+        );
+      },
     ),
     GoRoute(
       path: BWMRoutes.profileSettings,

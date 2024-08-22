@@ -5,17 +5,21 @@ import 'package:breathe_with_me/managers/database_manager/database_cached_keys.d
 import 'package:breathe_with_me/managers/navigation_manager/navigation_manager.dart';
 import 'package:breathe_with_me/managers/streak_progress_manager/streak_progress_manager.dart';
 import 'package:breathe_with_me/repositories/models/streak_progress_v2.dart';
+import 'package:breathe_with_me/repositories/models/streak_quote_data.dart';
 import 'package:breathe_with_me/repositories/remote_config_repository.dart';
+import 'package:breathe_with_me/repositories/streaks_quotes_repository.dart';
 import 'package:breathe_with_me/utils/cacheable_bloc/cacheable_bloc.dart';
 
 final class StreakBloc extends CacheableBloc<StreakState> {
   final StreakProgressManager _streakProgressManager;
   final RemoteConfigRepository _remoteConfigRepository;
+  final StreaksQuotesRepository _streaksQuotesRepository;
   final NavigationManager _navigationManager;
 
   StreakBloc(
     this._streakProgressManager,
     this._remoteConfigRepository,
+    this._streaksQuotesRepository,
     this._navigationManager,
   ) : super(const StreakState());
 
@@ -53,7 +57,18 @@ final class StreakBloc extends CacheableBloc<StreakState> {
     );
   }
 
-  void onReminderTap() => _navigationManager.openReminderPage();
+  Future<StreakQuoteData?> getQuote(String language) async {
+    final quote = await _streaksQuotesRepository.getQuote(language);
+    return quote;
+  }
+
+  Future<void> onReminderTap() async {
+    await _navigationManager.openReminderPage();
+  }
+
+  Future<void> onOpenPaywall() async {
+    await _navigationManager.openPaywall();
+  }
 
   void onCloseTap() => _navigationManager.popToRoot();
 

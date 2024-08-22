@@ -6,8 +6,9 @@ part 'streak_quote_data.g.dart';
 @freezed
 class StreakQuoteData with _$StreakQuoteData {
   const factory StreakQuoteData({
-    @Default('') String quote,
-    @Default('') String author,
+    required String language,
+    required String quote,
+    required String author,
   }) = _StreakQuoteData;
 
   factory StreakQuoteData.fromJson(Map<String, dynamic> json) =>

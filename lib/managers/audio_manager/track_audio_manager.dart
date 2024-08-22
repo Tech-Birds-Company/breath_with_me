@@ -3,7 +3,7 @@ import 'package:breathe_with_me/constants.dart';
 import 'package:breathe_with_me/managers/audio_manager/audio_manager.dart';
 import 'package:breathe_with_me/managers/player_manager/player_manager.dart';
 import 'package:breathe_with_me/managers/player_manager/track_player_manager.dart';
-import 'package:breathe_with_me/managers/premium_manager/premium_manager.dart';
+import 'package:breathe_with_me/managers/user_manager/user_manager.dart';
 import 'package:breathe_with_me/utils/analytics/bwm_analytics.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:path/path.dart';
@@ -11,9 +11,9 @@ import 'package:path_provider/path_provider.dart';
 import 'package:rxdart/rxdart.dart';
 
 final class TrackAudioManager extends AudioManager {
-  final PremiumManager _premiumManager;
+  final UserManager _userManager;
 
-  TrackAudioManager(this._premiumManager);
+  TrackAudioManager(this._userManager);
 
   PlayerManager? _playerManager;
 
@@ -31,7 +31,7 @@ final class TrackAudioManager extends AudioManager {
     required String title,
     required String artist,
   }) async {
-    _playerManager ??= TrackPlayerManager(_premiumManager);
+    _playerManager ??= TrackPlayerManager(_userManager);
     await _playerManager?.init(source);
 
     final audioPlayer = _playerManager?.audioPlayer;

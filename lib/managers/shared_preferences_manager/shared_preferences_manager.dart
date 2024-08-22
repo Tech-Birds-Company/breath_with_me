@@ -12,12 +12,21 @@ final class SharedPreferencesManager {
       _instance?.getBool(SharedPreferencesKeys.safetyPrecautions) ?? false;
 
   Future<void> setSafetyPrecautionsShowed() async {
-    if (_instance != null) {
-      await _instance!.setBool(SharedPreferencesKeys.safetyPrecautions, true);
-    }
+    await _instance?.setBool(SharedPreferencesKeys.safetyPrecautions, true);
+  }
+
+  bool get firstTimePaywallShown =>
+      _instance?.getBool(SharedPreferencesKeys.firstTimePaywallShown) ?? false;
+
+  Future<void> setFirstTimePaywallShown() async {
+    await _instance?.setBool(SharedPreferencesKeys.firstTimePaywallShown, true);
   }
 
   Future<void> clear() async {
     await _instance?.clear();
+  }
+
+  void dispose() {
+    _instance = null;
   }
 }

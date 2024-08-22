@@ -28,9 +28,13 @@ mixin _$Track {
   String get coverIcon => throw _privateConstructorUsedError;
   @JsonKey(unknownEnumValue: TrackLanguage.unknown)
   TrackLanguage get language => throw _privateConstructorUsedError;
-  String? get animationColor => throw _privateConstructorUsedError;
   bool get isPremium => throw _privateConstructorUsedError;
-  bool get isNew => throw _privateConstructorUsedError;
+  int? get listOrder => throw _privateConstructorUsedError;
+  String? get animationColor => throw _privateConstructorUsedError;
+  String? get artist => throw _privateConstructorUsedError;
+  String? get trackName => throw _privateConstructorUsedError;
+  Map<String, String>? get trackTitleTranslations =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,9 +54,12 @@ abstract class $TrackCopyWith<$Res> {
       Tutor tutor,
       String coverIcon,
       @JsonKey(unknownEnumValue: TrackLanguage.unknown) TrackLanguage language,
-      String? animationColor,
       bool isPremium,
-      bool isNew});
+      int? listOrder,
+      String? animationColor,
+      String? artist,
+      String? trackName,
+      Map<String, String>? trackTitleTranslations});
 }
 
 /// @nodoc
@@ -75,9 +82,12 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
     Object? tutor = null,
     Object? coverIcon = null,
     Object? language = null,
-    Object? animationColor = freezed,
     Object? isPremium = null,
-    Object? isNew = null,
+    Object? listOrder = freezed,
+    Object? animationColor = freezed,
+    Object? artist = freezed,
+    Object? trackName = freezed,
+    Object? trackTitleTranslations = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -108,18 +118,30 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
               as TrackLanguage,
-      animationColor: freezed == animationColor
-          ? _value.animationColor
-          : animationColor // ignore: cast_nullable_to_non_nullable
-              as String?,
       isPremium: null == isPremium
           ? _value.isPremium
           : isPremium // ignore: cast_nullable_to_non_nullable
               as bool,
-      isNew: null == isNew
-          ? _value.isNew
-          : isNew // ignore: cast_nullable_to_non_nullable
-              as bool,
+      listOrder: freezed == listOrder
+          ? _value.listOrder
+          : listOrder // ignore: cast_nullable_to_non_nullable
+              as int?,
+      animationColor: freezed == animationColor
+          ? _value.animationColor
+          : animationColor // ignore: cast_nullable_to_non_nullable
+              as String?,
+      artist: freezed == artist
+          ? _value.artist
+          : artist // ignore: cast_nullable_to_non_nullable
+              as String?,
+      trackName: freezed == trackName
+          ? _value.trackName
+          : trackName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      trackTitleTranslations: freezed == trackTitleTranslations
+          ? _value.trackTitleTranslations
+          : trackTitleTranslations // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
     ) as $Val);
   }
 }
@@ -139,9 +161,12 @@ abstract class _$$TrackImplCopyWith<$Res> implements $TrackCopyWith<$Res> {
       Tutor tutor,
       String coverIcon,
       @JsonKey(unknownEnumValue: TrackLanguage.unknown) TrackLanguage language,
-      String? animationColor,
       bool isPremium,
-      bool isNew});
+      int? listOrder,
+      String? animationColor,
+      String? artist,
+      String? trackName,
+      Map<String, String>? trackTitleTranslations});
 }
 
 /// @nodoc
@@ -162,9 +187,12 @@ class __$$TrackImplCopyWithImpl<$Res>
     Object? tutor = null,
     Object? coverIcon = null,
     Object? language = null,
-    Object? animationColor = freezed,
     Object? isPremium = null,
-    Object? isNew = null,
+    Object? listOrder = freezed,
+    Object? animationColor = freezed,
+    Object? artist = freezed,
+    Object? trackName = freezed,
+    Object? trackTitleTranslations = freezed,
   }) {
     return _then(_$TrackImpl(
       id: null == id
@@ -195,25 +223,37 @@ class __$$TrackImplCopyWithImpl<$Res>
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
               as TrackLanguage,
-      animationColor: freezed == animationColor
-          ? _value.animationColor
-          : animationColor // ignore: cast_nullable_to_non_nullable
-              as String?,
       isPremium: null == isPremium
           ? _value.isPremium
           : isPremium // ignore: cast_nullable_to_non_nullable
               as bool,
-      isNew: null == isNew
-          ? _value.isNew
-          : isNew // ignore: cast_nullable_to_non_nullable
-              as bool,
+      listOrder: freezed == listOrder
+          ? _value.listOrder
+          : listOrder // ignore: cast_nullable_to_non_nullable
+              as int?,
+      animationColor: freezed == animationColor
+          ? _value.animationColor
+          : animationColor // ignore: cast_nullable_to_non_nullable
+              as String?,
+      artist: freezed == artist
+          ? _value.artist
+          : artist // ignore: cast_nullable_to_non_nullable
+              as String?,
+      trackName: freezed == trackName
+          ? _value.trackName
+          : trackName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      trackTitleTranslations: freezed == trackTitleTranslations
+          ? _value._trackTitleTranslations
+          : trackTitleTranslations // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$TrackImpl implements _Track {
+class _$TrackImpl extends _Track {
   const _$TrackImpl(
       {required this.id,
       required this.trackFile,
@@ -222,9 +262,14 @@ class _$TrackImpl implements _Track {
       required this.tutor,
       required this.coverIcon,
       @JsonKey(unknownEnumValue: TrackLanguage.unknown) required this.language,
-      this.animationColor,
       this.isPremium = false,
-      this.isNew = false});
+      this.listOrder,
+      this.animationColor,
+      this.artist,
+      this.trackName,
+      final Map<String, String>? trackTitleTranslations})
+      : _trackTitleTranslations = trackTitleTranslations,
+        super._();
 
   factory _$TrackImpl.fromJson(Map<String, dynamic> json) =>
       _$$TrackImplFromJson(json);
@@ -245,17 +290,30 @@ class _$TrackImpl implements _Track {
   @JsonKey(unknownEnumValue: TrackLanguage.unknown)
   final TrackLanguage language;
   @override
-  final String? animationColor;
-  @override
   @JsonKey()
   final bool isPremium;
   @override
-  @JsonKey()
-  final bool isNew;
+  final int? listOrder;
+  @override
+  final String? animationColor;
+  @override
+  final String? artist;
+  @override
+  final String? trackName;
+  final Map<String, String>? _trackTitleTranslations;
+  @override
+  Map<String, String>? get trackTitleTranslations {
+    final value = _trackTitleTranslations;
+    if (value == null) return null;
+    if (_trackTitleTranslations is EqualUnmodifiableMapView)
+      return _trackTitleTranslations;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
 
   @override
   String toString() {
-    return 'Track(id: $id, trackFile: $trackFile, categoryKey: $categoryKey, duration: $duration, tutor: $tutor, coverIcon: $coverIcon, language: $language, animationColor: $animationColor, isPremium: $isPremium, isNew: $isNew)';
+    return 'Track(id: $id, trackFile: $trackFile, categoryKey: $categoryKey, duration: $duration, tutor: $tutor, coverIcon: $coverIcon, language: $language, isPremium: $isPremium, listOrder: $listOrder, animationColor: $animationColor, artist: $artist, trackName: $trackName, trackTitleTranslations: $trackTitleTranslations)';
   }
 
   @override
@@ -275,17 +333,36 @@ class _$TrackImpl implements _Track {
                 other.coverIcon == coverIcon) &&
             (identical(other.language, language) ||
                 other.language == language) &&
-            (identical(other.animationColor, animationColor) ||
-                other.animationColor == animationColor) &&
             (identical(other.isPremium, isPremium) ||
                 other.isPremium == isPremium) &&
-            (identical(other.isNew, isNew) || other.isNew == isNew));
+            (identical(other.listOrder, listOrder) ||
+                other.listOrder == listOrder) &&
+            (identical(other.animationColor, animationColor) ||
+                other.animationColor == animationColor) &&
+            (identical(other.artist, artist) || other.artist == artist) &&
+            (identical(other.trackName, trackName) ||
+                other.trackName == trackName) &&
+            const DeepCollectionEquality().equals(
+                other._trackTitleTranslations, _trackTitleTranslations));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, trackFile, categoryKey,
-      duration, tutor, coverIcon, language, animationColor, isPremium, isNew);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      trackFile,
+      categoryKey,
+      duration,
+      tutor,
+      coverIcon,
+      language,
+      isPremium,
+      listOrder,
+      animationColor,
+      artist,
+      trackName,
+      const DeepCollectionEquality().hash(_trackTitleTranslations));
 
   @JsonKey(ignore: true)
   @override
@@ -301,7 +378,7 @@ class _$TrackImpl implements _Track {
   }
 }
 
-abstract class _Track implements Track {
+abstract class _Track extends Track {
   const factory _Track(
       {required final String id,
       required final String trackFile,
@@ -311,9 +388,13 @@ abstract class _Track implements Track {
       required final String coverIcon,
       @JsonKey(unknownEnumValue: TrackLanguage.unknown)
       required final TrackLanguage language,
-      final String? animationColor,
       final bool isPremium,
-      final bool isNew}) = _$TrackImpl;
+      final int? listOrder,
+      final String? animationColor,
+      final String? artist,
+      final String? trackName,
+      final Map<String, String>? trackTitleTranslations}) = _$TrackImpl;
+  const _Track._() : super._();
 
   factory _Track.fromJson(Map<String, dynamic> json) = _$TrackImpl.fromJson;
 
@@ -333,11 +414,17 @@ abstract class _Track implements Track {
   @JsonKey(unknownEnumValue: TrackLanguage.unknown)
   TrackLanguage get language;
   @override
-  String? get animationColor;
-  @override
   bool get isPremium;
   @override
-  bool get isNew;
+  int? get listOrder;
+  @override
+  String? get animationColor;
+  @override
+  String? get artist;
+  @override
+  String? get trackName;
+  @override
+  Map<String, String>? get trackTitleTranslations;
   @override
   @JsonKey(ignore: true)
   _$$TrackImplCopyWith<_$TrackImpl> get copyWith =>

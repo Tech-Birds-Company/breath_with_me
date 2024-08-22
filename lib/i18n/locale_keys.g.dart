@@ -32,6 +32,7 @@ abstract class LocaleKeys {
   static const trackCategoryRelax = 'trackCategoryRelax';
   static const trackCategoryEnergize = 'trackCategoryEnergize';
   static const trackCategoryBalance = 'trackCategoryBalance';
+  static const trackCategoryPremium = 'trackCategoryPremium';
   static const trackLanguageAll = 'trackLanguageAll';
   static const trackLanguageEn = 'trackLanguageEn';
   static const trackLanguageRu = 'trackLanguageRu';
@@ -56,6 +57,19 @@ abstract class LocaleKeys {
   static const profilePremiumAccountType = 'profilePremiumAccountType';
   static const profilePremiumExpires = 'profilePremiumExpires';
   static const profilePremiumOfferButton = 'profilePremiumOfferButton';
+  static const profileDeleteAccount = 'profileDeleteAccount';
+  static const profileDeleteAccountDialog_title =
+      'profileDeleteAccountDialog.title';
+  static const profileDeleteAccountDialog_message =
+      'profileDeleteAccountDialog.message';
+  static const profileDeleteAccountDialog_cancel =
+      'profileDeleteAccountDialog.cancel';
+  static const profileDeleteAccountDialog_ok = 'profileDeleteAccountDialog.ok';
+  static const profileDeleteAccountDialog_oldAuthErrorTitle =
+      'profileDeleteAccountDialog.oldAuthErrorTitle';
+  static const profileDeleteAccountDialog_oldAuthErrorMessage =
+      'profileDeleteAccountDialog.oldAuthErrorMessage';
+  static const profileDeleteAccountDialog = 'profileDeleteAccountDialog';
   static const reminderTitle = 'reminderTitle';
   static const reminderDisabled = 'reminderDisabled';
   static const reminderSaveButtonTitle = 'reminderSaveButtonTitle';
@@ -110,7 +124,9 @@ abstract class LocaleKeys {
       'streakStatisticsCardDayMissedCount';
   static const streakWithoutPremiumTitle = 'streakWithoutPremiumTitle';
   static const streakWithoutPremiumSubtitle = 'streakWithoutPremiumSubtitle';
+  static const streakLivesWillResetTitle = 'streakLivesWillResetTitle';
   static const streakLivesTitle = 'streakLivesTitle';
+  static const streakLastPracticeDate = 'streakLastPracticeDate';
   static const streakLivesWhenPremiumEnabled = 'streakLivesWhenPremiumEnabled';
   static const streakLivesFooter = 'streakLivesFooter';
   static const streakMissedDayTitle = 'streakMissedDayTitle';
@@ -123,20 +139,24 @@ abstract class LocaleKeys {
   static const premium_extendedStats = 'premium.extendedStats';
   static const premium_restoreStreaks = 'premium.restoreStreaks';
   static const premium_backgroundMode = 'premium.backgroundMode';
+  static const premium_newPractices = 'premium.newPractices';
   static const premium_learnMore = 'premium.learnMore';
   static const premium_buyPremium = 'premium.buyPremium';
+  static const premium_paywall_privacyPolicy = 'premium.paywall.privacyPolicy';
+  static const premium_paywall_termsOfService =
+      'premium.paywall.termsOfService';
   static const premium_paywall_selectTariffTitle =
       'premium.paywall.selectTariffTitle';
   static const premium_paywall_trialDescription =
       'premium.paywall.trialDescription';
-  static const premium_paywall_subscriptionPeriod_W =
-      'premium.paywall.subscriptionPeriod.W';
-  static const premium_paywall_subscriptionPeriod_M =
-      'premium.paywall.subscriptionPeriod.M';
-  static const premium_paywall_subscriptionPeriod_Y =
-      'premium.paywall.subscriptionPeriod.Y';
-  static const premium_paywall_subscriptionPeriod =
-      'premium.paywall.subscriptionPeriod';
+  static const premium_paywall_periodUnitCount_day =
+      'premium.paywall.periodUnitCount.day';
+  static const premium_paywall_periodUnitCount_week =
+      'premium.paywall.periodUnitCount.week';
+  static const premium_paywall_periodUnitCount_month =
+      'premium.paywall.periodUnitCount.month';
+  static const premium_paywall_periodUnitCount =
+      'premium.paywall.periodUnitCount';
   static const premium_paywall = 'premium.paywall';
   static const premium = 'premium';
   static const networkErrorText = 'networkErrorText';

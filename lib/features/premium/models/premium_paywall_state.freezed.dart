@@ -16,55 +16,13 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PremiumPaywallState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Map<String, StoreProduct> subscriptions,
-            String? selectedSubscriptionId, bool premiumPurchaseProcessing)
-        data,
-    required TResult Function() loading,
-    required TResult Function() error,
-  }) =>
+  String? get selectedSubscriptionId => throw _privateConstructorUsedError;
+  Map<String, StoreProduct?> get storeProducts =>
       throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Map<String, StoreProduct> subscriptions,
-            String? selectedSubscriptionId, bool premiumPurchaseProcessing)?
-        data,
-    TResult? Function()? loading,
-    TResult? Function()? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Map<String, StoreProduct> subscriptions,
-            String? selectedSubscriptionId, bool premiumPurchaseProcessing)?
-        data,
-    TResult Function()? loading,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(PremiumPaywallData value) data,
-    required TResult Function(PremiumPaywallLoading value) loading,
-    required TResult Function(PremiumPaywallError value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(PremiumPaywallData value)? data,
-    TResult? Function(PremiumPaywallLoading value)? loading,
-    TResult? Function(PremiumPaywallError value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(PremiumPaywallData value)? data,
-    TResult Function(PremiumPaywallLoading value)? loading,
-    TResult Function(PremiumPaywallError value)? error,
-    required TResult orElse(),
-  }) =>
+  bool get premiumPurchaseProcessing => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $PremiumPaywallStateCopyWith<PremiumPaywallState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -73,6 +31,11 @@ abstract class $PremiumPaywallStateCopyWith<$Res> {
   factory $PremiumPaywallStateCopyWith(
           PremiumPaywallState value, $Res Function(PremiumPaywallState) then) =
       _$PremiumPaywallStateCopyWithImpl<$Res, PremiumPaywallState>;
+  @useResult
+  $Res call(
+      {String? selectedSubscriptionId,
+      Map<String, StoreProduct?> storeProducts,
+      bool premiumPurchaseProcessing});
 }
 
 /// @nodoc
@@ -84,17 +47,42 @@ class _$PremiumPaywallStateCopyWithImpl<$Res, $Val extends PremiumPaywallState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedSubscriptionId = freezed,
+    Object? storeProducts = null,
+    Object? premiumPurchaseProcessing = null,
+  }) {
+    return _then(_value.copyWith(
+      selectedSubscriptionId: freezed == selectedSubscriptionId
+          ? _value.selectedSubscriptionId
+          : selectedSubscriptionId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      storeProducts: null == storeProducts
+          ? _value.storeProducts
+          : storeProducts // ignore: cast_nullable_to_non_nullable
+              as Map<String, StoreProduct?>,
+      premiumPurchaseProcessing: null == premiumPurchaseProcessing
+          ? _value.premiumPurchaseProcessing
+          : premiumPurchaseProcessing // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$PremiumPaywallDataImplCopyWith<$Res> {
+abstract class _$$PremiumPaywallDataImplCopyWith<$Res>
+    implements $PremiumPaywallStateCopyWith<$Res> {
   factory _$$PremiumPaywallDataImplCopyWith(_$PremiumPaywallDataImpl value,
           $Res Function(_$PremiumPaywallDataImpl) then) =
       __$$PremiumPaywallDataImplCopyWithImpl<$Res>;
+  @override
   @useResult
   $Res call(
-      {Map<String, StoreProduct> subscriptions,
-      String? selectedSubscriptionId,
+      {String? selectedSubscriptionId,
+      Map<String, StoreProduct?> storeProducts,
       bool premiumPurchaseProcessing});
 }
 
@@ -109,19 +97,19 @@ class __$$PremiumPaywallDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? subscriptions = null,
     Object? selectedSubscriptionId = freezed,
+    Object? storeProducts = null,
     Object? premiumPurchaseProcessing = null,
   }) {
     return _then(_$PremiumPaywallDataImpl(
-      subscriptions: null == subscriptions
-          ? _value._subscriptions
-          : subscriptions // ignore: cast_nullable_to_non_nullable
-              as Map<String, StoreProduct>,
       selectedSubscriptionId: freezed == selectedSubscriptionId
           ? _value.selectedSubscriptionId
           : selectedSubscriptionId // ignore: cast_nullable_to_non_nullable
               as String?,
+      storeProducts: null == storeProducts
+          ? _value._storeProducts
+          : storeProducts // ignore: cast_nullable_to_non_nullable
+              as Map<String, StoreProduct?>,
       premiumPurchaseProcessing: null == premiumPurchaseProcessing
           ? _value.premiumPurchaseProcessing
           : premiumPurchaseProcessing // ignore: cast_nullable_to_non_nullable
@@ -132,30 +120,32 @@ class __$$PremiumPaywallDataImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PremiumPaywallDataImpl implements PremiumPaywallData {
+class _$PremiumPaywallDataImpl implements _PremiumPaywallData {
   const _$PremiumPaywallDataImpl(
-      {required final Map<String, StoreProduct> subscriptions,
-      this.selectedSubscriptionId,
+      {this.selectedSubscriptionId,
+      final Map<String, StoreProduct?> storeProducts =
+          const <String, StoreProduct?>{},
       this.premiumPurchaseProcessing = false})
-      : _subscriptions = subscriptions;
-
-  final Map<String, StoreProduct> _subscriptions;
-  @override
-  Map<String, StoreProduct> get subscriptions {
-    if (_subscriptions is EqualUnmodifiableMapView) return _subscriptions;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_subscriptions);
-  }
+      : _storeProducts = storeProducts;
 
   @override
   final String? selectedSubscriptionId;
+  final Map<String, StoreProduct?> _storeProducts;
+  @override
+  @JsonKey()
+  Map<String, StoreProduct?> get storeProducts {
+    if (_storeProducts is EqualUnmodifiableMapView) return _storeProducts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_storeProducts);
+  }
+
   @override
   @JsonKey()
   final bool premiumPurchaseProcessing;
 
   @override
   String toString() {
-    return 'PremiumPaywallState.data(subscriptions: $subscriptions, selectedSubscriptionId: $selectedSubscriptionId, premiumPurchaseProcessing: $premiumPurchaseProcessing)';
+    return 'PremiumPaywallState(selectedSubscriptionId: $selectedSubscriptionId, storeProducts: $storeProducts, premiumPurchaseProcessing: $premiumPurchaseProcessing)';
   }
 
   @override
@@ -163,10 +153,10 @@ class _$PremiumPaywallDataImpl implements PremiumPaywallData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PremiumPaywallDataImpl &&
-            const DeepCollectionEquality()
-                .equals(other._subscriptions, _subscriptions) &&
             (identical(other.selectedSubscriptionId, selectedSubscriptionId) ||
                 other.selectedSubscriptionId == selectedSubscriptionId) &&
+            const DeepCollectionEquality()
+                .equals(other._storeProducts, _storeProducts) &&
             (identical(other.premiumPurchaseProcessing,
                     premiumPurchaseProcessing) ||
                 other.premiumPurchaseProcessing == premiumPurchaseProcessing));
@@ -175,8 +165,8 @@ class _$PremiumPaywallDataImpl implements PremiumPaywallData {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_subscriptions),
       selectedSubscriptionId,
+      const DeepCollectionEquality().hash(_storeProducts),
       premiumPurchaseProcessing);
 
   @JsonKey(ignore: true)
@@ -185,326 +175,22 @@ class _$PremiumPaywallDataImpl implements PremiumPaywallData {
   _$$PremiumPaywallDataImplCopyWith<_$PremiumPaywallDataImpl> get copyWith =>
       __$$PremiumPaywallDataImplCopyWithImpl<_$PremiumPaywallDataImpl>(
           this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Map<String, StoreProduct> subscriptions,
-            String? selectedSubscriptionId, bool premiumPurchaseProcessing)
-        data,
-    required TResult Function() loading,
-    required TResult Function() error,
-  }) {
-    return data(
-        subscriptions, selectedSubscriptionId, premiumPurchaseProcessing);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Map<String, StoreProduct> subscriptions,
-            String? selectedSubscriptionId, bool premiumPurchaseProcessing)?
-        data,
-    TResult? Function()? loading,
-    TResult? Function()? error,
-  }) {
-    return data?.call(
-        subscriptions, selectedSubscriptionId, premiumPurchaseProcessing);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Map<String, StoreProduct> subscriptions,
-            String? selectedSubscriptionId, bool premiumPurchaseProcessing)?
-        data,
-    TResult Function()? loading,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) {
-    if (data != null) {
-      return data(
-          subscriptions, selectedSubscriptionId, premiumPurchaseProcessing);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(PremiumPaywallData value) data,
-    required TResult Function(PremiumPaywallLoading value) loading,
-    required TResult Function(PremiumPaywallError value) error,
-  }) {
-    return data(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(PremiumPaywallData value)? data,
-    TResult? Function(PremiumPaywallLoading value)? loading,
-    TResult? Function(PremiumPaywallError value)? error,
-  }) {
-    return data?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(PremiumPaywallData value)? data,
-    TResult Function(PremiumPaywallLoading value)? loading,
-    TResult Function(PremiumPaywallError value)? error,
-    required TResult orElse(),
-  }) {
-    if (data != null) {
-      return data(this);
-    }
-    return orElse();
-  }
 }
 
-abstract class PremiumPaywallData implements PremiumPaywallState {
-  const factory PremiumPaywallData(
-      {required final Map<String, StoreProduct> subscriptions,
-      final String? selectedSubscriptionId,
+abstract class _PremiumPaywallData implements PremiumPaywallState {
+  const factory _PremiumPaywallData(
+      {final String? selectedSubscriptionId,
+      final Map<String, StoreProduct?> storeProducts,
       final bool premiumPurchaseProcessing}) = _$PremiumPaywallDataImpl;
 
-  Map<String, StoreProduct> get subscriptions;
+  @override
   String? get selectedSubscriptionId;
+  @override
+  Map<String, StoreProduct?> get storeProducts;
+  @override
   bool get premiumPurchaseProcessing;
+  @override
   @JsonKey(ignore: true)
   _$$PremiumPaywallDataImplCopyWith<_$PremiumPaywallDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$PremiumPaywallLoadingImplCopyWith<$Res> {
-  factory _$$PremiumPaywallLoadingImplCopyWith(
-          _$PremiumPaywallLoadingImpl value,
-          $Res Function(_$PremiumPaywallLoadingImpl) then) =
-      __$$PremiumPaywallLoadingImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$PremiumPaywallLoadingImplCopyWithImpl<$Res>
-    extends _$PremiumPaywallStateCopyWithImpl<$Res, _$PremiumPaywallLoadingImpl>
-    implements _$$PremiumPaywallLoadingImplCopyWith<$Res> {
-  __$$PremiumPaywallLoadingImplCopyWithImpl(_$PremiumPaywallLoadingImpl _value,
-      $Res Function(_$PremiumPaywallLoadingImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$PremiumPaywallLoadingImpl implements PremiumPaywallLoading {
-  const _$PremiumPaywallLoadingImpl();
-
-  @override
-  String toString() {
-    return 'PremiumPaywallState.loading()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$PremiumPaywallLoadingImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Map<String, StoreProduct> subscriptions,
-            String? selectedSubscriptionId, bool premiumPurchaseProcessing)
-        data,
-    required TResult Function() loading,
-    required TResult Function() error,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Map<String, StoreProduct> subscriptions,
-            String? selectedSubscriptionId, bool premiumPurchaseProcessing)?
-        data,
-    TResult? Function()? loading,
-    TResult? Function()? error,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Map<String, StoreProduct> subscriptions,
-            String? selectedSubscriptionId, bool premiumPurchaseProcessing)?
-        data,
-    TResult Function()? loading,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(PremiumPaywallData value) data,
-    required TResult Function(PremiumPaywallLoading value) loading,
-    required TResult Function(PremiumPaywallError value) error,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(PremiumPaywallData value)? data,
-    TResult? Function(PremiumPaywallLoading value)? loading,
-    TResult? Function(PremiumPaywallError value)? error,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(PremiumPaywallData value)? data,
-    TResult Function(PremiumPaywallLoading value)? loading,
-    TResult Function(PremiumPaywallError value)? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class PremiumPaywallLoading implements PremiumPaywallState {
-  const factory PremiumPaywallLoading() = _$PremiumPaywallLoadingImpl;
-}
-
-/// @nodoc
-abstract class _$$PremiumPaywallErrorImplCopyWith<$Res> {
-  factory _$$PremiumPaywallErrorImplCopyWith(_$PremiumPaywallErrorImpl value,
-          $Res Function(_$PremiumPaywallErrorImpl) then) =
-      __$$PremiumPaywallErrorImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$PremiumPaywallErrorImplCopyWithImpl<$Res>
-    extends _$PremiumPaywallStateCopyWithImpl<$Res, _$PremiumPaywallErrorImpl>
-    implements _$$PremiumPaywallErrorImplCopyWith<$Res> {
-  __$$PremiumPaywallErrorImplCopyWithImpl(_$PremiumPaywallErrorImpl _value,
-      $Res Function(_$PremiumPaywallErrorImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$PremiumPaywallErrorImpl implements PremiumPaywallError {
-  const _$PremiumPaywallErrorImpl();
-
-  @override
-  String toString() {
-    return 'PremiumPaywallState.error()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$PremiumPaywallErrorImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Map<String, StoreProduct> subscriptions,
-            String? selectedSubscriptionId, bool premiumPurchaseProcessing)
-        data,
-    required TResult Function() loading,
-    required TResult Function() error,
-  }) {
-    return error();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Map<String, StoreProduct> subscriptions,
-            String? selectedSubscriptionId, bool premiumPurchaseProcessing)?
-        data,
-    TResult? Function()? loading,
-    TResult? Function()? error,
-  }) {
-    return error?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Map<String, StoreProduct> subscriptions,
-            String? selectedSubscriptionId, bool premiumPurchaseProcessing)?
-        data,
-    TResult Function()? loading,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(PremiumPaywallData value) data,
-    required TResult Function(PremiumPaywallLoading value) loading,
-    required TResult Function(PremiumPaywallError value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(PremiumPaywallData value)? data,
-    TResult? Function(PremiumPaywallLoading value)? loading,
-    TResult? Function(PremiumPaywallError value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(PremiumPaywallData value)? data,
-    TResult Function(PremiumPaywallLoading value)? loading,
-    TResult Function(PremiumPaywallError value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class PremiumPaywallError implements PremiumPaywallState {
-  const factory PremiumPaywallError() = _$PremiumPaywallErrorImpl;
 }

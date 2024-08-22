@@ -24,7 +24,7 @@ final class TrackBloc extends BlocBase<Object?> {
     final task = TrackDownloadTask(
       trackId: _track.id,
       userId: userId,
-      url: '', // TODO(vasidmi): fix this
+      url: '',
     );
     return _tracksRepository.getTrackIsDownloadedStream(taskId: task.taskId);
   }
@@ -40,6 +40,12 @@ final class TrackBloc extends BlocBase<Object?> {
       'onTrackTap',
       params: {'trackId': _track.id},
     );
+    final isTrackPremium = _track.isPremium;
+    final isUserPremium = await _userManager.isUserPremium;
+    if (isTrackPremium && !isUserPremium) {
+      await _navigationManager.openPaywall();
+      return;
+    }
     await _navigationManager.openTrackPlayer(_track);
   }
 
